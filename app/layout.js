@@ -5,6 +5,9 @@ export const metadata = {
   alternates: {
     canonical: '/',
   },
+  verification: {
+    google: 'IIDbfvTOF7fBFu7Qq_NHwku3OY6Yl4HYLbh2oo-MWQg'
+  },
   openGraph: {
     title: '100+ SEO Tools – Free, Fast, Client-side',
     description: 'All Your SEO Tools in One Place. 100+ browser-based tools for marketers, bloggers, and developers.',
