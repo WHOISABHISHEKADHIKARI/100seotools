@@ -1,5 +1,6 @@
 import StructuredData from '../../components/StructuredData';
 import { getAllToolsMeta } from '../../tools';
+import { getAllBlogPosts } from '../../lib/blog';
 
 export const metadata = {
   title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
@@ -24,6 +25,7 @@ export const metadata = {
 export default function BlogPage() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const tools = getAllToolsMeta();
+  const posts = getAllBlogPosts();
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -229,6 +231,22 @@ export default function BlogPage() {
               <div className="mt-2 flex items-center gap-4">
                 <a href={`/blog/${t.slug}`} className="text-brand-600 hover:underline text-sm">Read guide</a>
                 <a href={`/tools/${t.slug}`} className="text-brand-600 hover:underline text-sm">Open tool</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-xl md:text-2xl font-semibold">SEO Mastery (100 Simple Guides)</h2>
+        <p className="text-gray-700 dark:text-gray-300">Quick, actionable posts covering foundations, keyword research, on-page, technical, links, content, local, AI, SERP features, and tracking.</p>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {posts.map((p) => (
+            <div key={p.slug} className="card p-4">
+              <h3 className="font-medium">{p.title}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{p.category}</p>
+              <div className="mt-2 flex items-center gap-4">
+                <a href={`/blog/${p.slug}`} className="text-brand-600 hover:underline text-sm">Read post</a>
               </div>
             </div>
           ))}

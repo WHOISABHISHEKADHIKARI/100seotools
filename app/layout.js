@@ -24,6 +24,7 @@ import './globals.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import BackToTop from '../components/BackToTop';
+import SplashScreen from '../components/SplashScreen';
 
 export default function RootLayout({ children }) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
@@ -46,18 +47,34 @@ export default function RootLayout({ children }) {
     }
   };
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  var isDark = theme ? theme === 'dark' : true;
+                  document.documentElement.classList.toggle('dark', isDark);
+                } catch (e) {
+                  document.documentElement.classList.add('dark');
+                }
+              })();
+            `,
+          }}
+        />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }} />
       </head>
       <body className="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+        <SplashScreen duration={1200} />
         <div className="max-w-7xl mx-auto px-4">
           <Navbar />
           <main id="main" className="pb-12 md:pb-16">{children}</main>
-          <Footer />
-          <BackToTop />
         </div>
+        <Footer />
+        <BackToTop />
       </body>
     </html>
   );

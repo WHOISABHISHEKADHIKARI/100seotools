@@ -53,9 +53,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5 text-slate-600 dark:text-gray-300">
               <li><Link href="/" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Home</Link></li>
               <li><Link href="/about" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">About Us</Link></li>
-              <li><Link href="/services" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Services</Link></li>
               <li><Link href="/blog" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Blog</Link></li>
-              <li><Link href="/contact" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Contact</Link></li>
             </ul>
           </nav>
 

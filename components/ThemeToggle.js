@@ -2,9 +2,11 @@
 import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true); // Start with dark as default
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const saved = localStorage.getItem('theme');
     const isDark = saved ? saved === 'dark' : true; // default to dark
     setDark(isDark);
@@ -17,6 +19,15 @@ export default function ThemeToggle() {
     localStorage.setItem('theme', next ? 'dark' : 'light');
     document.documentElement.classList.toggle('dark', next);
   };
+
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return (
+      <button className="btn-secondary" aria-label="Toggle theme">
+        Dark Mode
+      </button>
+    );
+  }
 
   return (
     <button className="btn-secondary" onClick={toggle} aria-label="Toggle theme">

@@ -32,22 +32,27 @@ export default function SearchFilter({ tools, onChange }) {
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const [category, setCategory] = useState('All');
-  const [sortBy, setSortBy] = useState('Relevance');
+  const [sortBy, setSortBy] = useState('Name A-Z');
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [favorites, setFavorites] = useState([]);
-  const [showFiltersMobile, setShowFiltersMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     // Persist filters if needed
     const favOnly = localStorage.getItem('favoritesOnly');
     if (favOnly) setFavoritesOnly(favOnly === 'true');
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('favoritesOnly', String(favoritesOnly));
-  }, [favoritesOnly]);
+    if (mounted) {
+      localStorage.setItem('favoritesOnly', String(favoritesOnly));
+    }
+  }, [favoritesOnly, mounted]);
 
   useEffect(() => {
+    if (!mounted) return;
+    
     // Safely read favorites from localStorage on client
     try {
       const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -55,7 +60,7 @@ export default function SearchFilter({ tools, onChange }) {
     } catch (_) {
       setFavorites([]);
     }
-  }, []);
+  }, [mounted]);
 
   // Debounce query to improve UX and reduce re-renders
   useEffect(() => {
@@ -82,9 +87,8 @@ export default function SearchFilter({ tools, onChange }) {
       case 'Category':
         sorted.sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name));
         break;
-      case 'Relevance':
       default:
-        // Keep natural order (e.g., as defined in tools index)
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
         break;
     }
     return sorted;
@@ -137,51 +141,20 @@ export default function SearchFilter({ tools, onChange }) {
   };
 
   return (
-    <div className="card p-6 space-y-5" role="search" aria-label="Filter and search tools">
-      <div className="flex items-center justify-between gap-3 sticky top-2 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-md px-3 py-2">
-        <div className="space-y-1">
-          <h2 className="text-lg md:text-xl font-semibold">Find Tools</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">Filter by category, favorites, or search by name/description.</p>
-        </div>
-        <div className="inline-flex items-center gap-2 text-sm">
-          <span className="rounded-full px-2 py-1 bg-gray-100 dark:bg-gray-800">{filteredCount} tools</span>
-          <button
-            type="button"
-            className="btn-secondary px-3 py-1"
-            onClick={clearFilters}
-            aria-label="Reset all filters"
-            disabled={!hasActiveFilters}
-          >
-            <FiRefreshCw aria-hidden className="w-4 h-4" />
-            Reset
-          </button>
-          <button
-            type="button"
-            className="btn-secondary px-3 py-1 md:hidden"
-            onClick={() => setShowFiltersMobile((v) => !v)}
-            aria-expanded={showFiltersMobile}
-            aria-controls="filters-mobile"
-          >
-            <FiFilter aria-hidden className="w-4 h-4" />
-            Filters
-          </button>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
-        <div>
-          <label htmlFor="tool-search" className="block text-sm mb-1">Search tools</label>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Search by tool name or description.</p>
+    <div className="card p-4 space-y-4" role="search" aria-label="Filter and search tools">
+      {/* Minimal toolbar */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-3 items-center">
+        <div className="md:col-span-6">
           <div className="relative">
             <FiSearch aria-hidden className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               id="tool-search"
               type="search"
-              className="input w-full pl-9 pr-10"
+              className="input w-full pl-9 pr-9"
               placeholder="Search tools…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              aria-label="Search tools by name or description"
+              aria-label="Search tools"
             />
             {query && (
               <button
@@ -195,86 +168,59 @@ export default function SearchFilter({ tools, onChange }) {
             )}
           </div>
         </div>
-        <div className={showFiltersMobile ? '' : 'hidden md:block'} id="filters-mobile">
-          <span className="block text-sm mb-1">Category</span>
-          {/* Mobile: Horizontal chips */}
-          <div
-            className="md:hidden -mx-1 overflow-x-auto whitespace-nowrap snap-x snap-mandatory pb-1"
-            role="radiogroup"
+        <div className="md:col-span-3">
+          <select
+            id="category-select"
+            className="input w-full"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
             aria-label="Filter by category"
           >
-            {['All', ...categories].map((c) => {
-              const active = category === c;
-              const Icon = categoryIconMap[c] || FiTool;
-              return (
-                <button
-                  key={c}
-                  type="button"
-                  className={(active ? 'btn ' : 'btn-secondary ') + 'inline-flex items-center gap-2 px-3 py-1 text-sm mx-1 snap-start transition-colors'}
-                  onClick={() => setCategory(c)}
-                  role="radio"
-                  aria-checked={active}
-                  aria-label={`Category ${c}`}
-                >
-                  <Icon aria-hidden className="w-4 h-4" />
-                  {c}
-                </button>
-              );
-            })}
-          </div>
-          {/* Desktop: Chips */}
-          <div
-            className="hidden md:flex w-full gap-2 min-w-0 md:flex-wrap"
-            role="radiogroup"
-            aria-label="Filter by category"
-            onKeyDown={onCategoryKeyDown}
-          >
-              {['All', ...categories].map((c) => {
-                const active = category === c;
-                const Icon = categoryIconMap[c] || FiTool;
-                return (
-                  <button
-                    key={c}
-                    type="button"
-                    className={(active ? 'btn ' : 'btn-secondary ') + 'inline-flex items-center gap-2 max-w-full px-3 py-1 text-sm whitespace-normal break-words text-center transition-colors'}
-                    onClick={() => setCategory(c)}
-                    role="radio"
-                    aria-checked={active}
-                    aria-label={`Category ${c}`}
-                  >
-                    <Icon aria-hidden className="w-4 h-4" />
-                    {c}
-                  </button>
-                );
-              })}
-          </div>
+            {['All', ...categories].map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
         </div>
-      <div className={(showFiltersMobile ? '' : 'hidden md:flex') + ' flex items-center gap-3 flex-wrap md:justify-end md:self-start flex-shrink-0'}>
-          <div className="flex items-center gap-2">
-            <label htmlFor="sort-select" className="text-sm">Sort</label>
-            <select
-              id="sort-select"
-              className="input"
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              aria-label="Sort tools"
-            >
-              {['Relevance', 'Name A-Z', 'Name Z-A', 'Category'].map((o) => (
-                <option key={o} value={o}>{o}</option>
-              ))}
-            </select>
-          </div>
+        <div className="md:col-span-2">
+          <select
+            id="sort-select"
+            className="input w-full"
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            aria-label="Sort tools"
+          >
+            {['Name A-Z', 'Name Z-A', 'Category'].map((o) => (
+              <option key={o} value={o}>{o}</option>
+            ))}
+          </select>
+        </div>
+        <div className="md:col-span-1 flex md:justify-end">
           <button
-            className="btn-secondary inline-flex items-center gap-2"
+            className="btn-secondary inline-flex items-center justify-center w-full md:w-auto p-2"
             onClick={() => setFavoritesOnly((v) => !v)}
             aria-pressed={favoritesOnly}
             aria-label={favoritesOnly ? 'Show all tools' : 'Show only favorites'}
+            title={favoritesOnly ? 'Showing favorites' : 'Show only favorites'}
           >
             <FiStar aria-hidden className={favoritesOnly ? 'text-yellow-500' : 'text-gray-400'} />
-            {favoritesOnly ? 'Show All' : 'Show Favorites'}
           </button>
         </div>
       </div>
+
+      <div className="flex items-center justify-between text-xs md:text-sm">
+        <span aria-live="polite">{filteredCount} tools</span>
+        <button
+          type="button"
+          className="btn-secondary inline-flex items-center gap-1 px-2 py-1"
+          onClick={clearFilters}
+          aria-label="Reset all filters"
+          disabled={!hasActiveFilters}
+        >
+          <FiRefreshCw aria-hidden className="w-4 h-4" />
+          <span className="hidden md:inline">Reset</span>
+        </button>
+      </div>
+      
 
       {hasActiveFilters && (
         <div className="flex flex-wrap items-center gap-2 text-sm" aria-live="polite">

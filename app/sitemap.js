@@ -1,4 +1,5 @@
 import { getAllToolsMeta } from '../tools';
+import { getAllBlogPosts } from '../lib/blog';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
 
@@ -35,6 +36,7 @@ export default function sitemap() {
   });
 
   const tools = getAllToolsMeta();
+  const posts = getAllBlogPosts();
   const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   const categories = Array.from(new Set(tools.map((t) => t.category).filter(Boolean)));
   const toolEntries = tools.map((t) => ({
@@ -52,6 +54,14 @@ export default function sitemap() {
     priority: 0.6
   }));
 
+  // Generic SEO blog posts
+  const seoBlogEntries = posts.map((p) => ({
+    url: `${baseUrl}/blog/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.5
+  }));
+
   const categoryEntries = categories.map((cat) => ({
     url: `${baseUrl}/category/${slugify(cat)}`,
     lastModified: new Date(),
@@ -59,5 +69,5 @@ export default function sitemap() {
     priority: 0.6
   }));
 
-  return [...entries, ...toolEntries, ...blogEntries, ...categoryEntries];
+  return [...entries, ...toolEntries, ...blogEntries, ...seoBlogEntries, ...categoryEntries];
 }

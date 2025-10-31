@@ -29,13 +29,21 @@ const categoryIconMap = {
 
 function ToolGrid({ tools }) {
   const [favorites, setFavorites] = useState([]);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
-    setFavorites(favs);
+    setMounted(true);
+    try {
+      const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+      setFavorites(favs);
+    } catch (e) {
+      setFavorites([]);
+    }
   }, []);
 
   const toggleFavorite = (slug) => {
+    if (!mounted) return;
+    
     setFavorites((prev) => {
       const next = prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug];
       localStorage.setItem('favorites', JSON.stringify(next));
@@ -45,12 +53,14 @@ function ToolGrid({ tools }) {
 
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {tools.map((tool) => (
-        <Link
+      {tools.map((tool, index) => (
+        <article
           key={tool.slug}
-          href={`/tools/${tool.slug}`}
           className="card p-4 flex flex-col gap-3 focus:outline-none focus:ring-2 focus:ring-brand-500"
-          aria-label={`Open ${tool.name} tool`}
+          itemScope
+          itemType="https://schema.org/SoftwareApplication"
+          aria-labelledby={`tool-title-${tool.slug}`}
+          aria-describedby={`tool-desc-${tool.slug}`}
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -58,32 +68,45 @@ function ToolGrid({ tools }) {
                 const Icon = categoryIconMap[tool.category] || FiTool;
                 return <Icon aria-hidden className="w-6 h-6 text-brand-500" />;
               })()}
-              <h3 className="font-medium">{tool.name}</h3>
+              <h3 id={`tool-title-${tool.slug}`} className="font-medium" itemProp="name">
+                <Link href={`/tools/${tool.slug}`} className="hover:underline">
+                  {tool.name}
+                </Link>
+              </h3>
             </div>
             <button
               className="btn-secondary flex items-center gap-1"
-              onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFavorite(tool.slug); }}
+              onClick={(e) => { e.preventDefault(); toggleFavorite(tool.slug); }}
               aria-label={favorites.includes(tool.slug) ? 'Remove from favorites' : 'Add to favorites'}
               aria-pressed={favorites.includes(tool.slug)}
             >
               <FiStar aria-hidden className={favorites.includes(tool.slug) ? 'text-yellow-500' : 'text-gray-400'} />
-              <span className="sr-only">{favorites.includes(tool.slug) ? 'Favorited' : 'Not favorited'}</span>
+              <span className="text-xs">{favorites.includes(tool.slug) ? 'Favorited' : 'Not favorited'}</span>
             </button>
           </div>
-          <p className="text-sm text-gray-600 dark:text-gray-400">{tool.description}</p>
+          <p id={`tool-desc-${tool.slug}`} className="text-sm text-gray-600 dark:text-gray-400" itemProp="description">
+            {tool.description}
+          </p>
           <div className="flex items-center justify-between">
             <span className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 flex items-center gap-1">
               {(() => {
                 const Icon = categoryIconMap[tool.category] || FiTool;
                 return <Icon aria-hidden className="w-3.5 h-3.5" />;
               })()}
-              {tool.category}
+              <span itemProp="applicationCategory">{tool.category}</span>
             </span>
-            <span className="inline-flex items-center gap-1 text-brand-600">
-              Open <FiChevronRight aria-hidden className="w-4 h-4" />
-            </span>
+            <div className="flex items-center gap-3">
+              <Link href={`/tools/${tool.slug}`} className="inline-flex items-center gap-1 text-brand-600 hover:underline" itemProp="url" aria-label={`Open ${tool.name}`}>
+                Open <FiChevronRight aria-hidden className="w-4 h-4" />
+              </Link>
+              <Link href={`/blog/${tool.slug}`} className="text-sm text-gray-500 hover:underline" aria-label={`Read guide for ${tool.name}`}>
+                Read Guide
+              </Link>
+            </div>
           </div>
-        </Link>
+          <meta itemProp="operatingSystem" content="Web browser" />
+          <meta itemProp="offers" content="Free" />
+        </article>
       ))}
     </div>
   );
