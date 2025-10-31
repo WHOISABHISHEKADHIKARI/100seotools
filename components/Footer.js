@@ -1,18 +1,40 @@
 import Link from 'next/link';
 import { FiFacebook, FiInstagram, FiLinkedin, FiMail, FiPhone, FiArrowUpRight } from 'react-icons/fi';
 
+// Categories to surface in footer
+const categories = [
+  'Keyword Research',
+  'On-Page Optimization',
+  'Technical SEO',
+  'Backlink & Link-Building',
+  'Content SEO',
+  'SEO Performance',
+  'Local SEO',
+  'Competitor Analysis',
+  'AI-Powered SEO',
+  'SEO Utility'
+];
+
+function toSlug(name) {
+  return name
+    .toLowerCase()
+    .replace(/&/g, ' ') // normalize ampersand
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-gray-900 text-white py-10" aria-labelledby="footerHeading">
+    <footer className="bg-gray-900 text-white py-12 md:py-16 mt-12 md:mt-16" aria-labelledby="footerHeading">
       <h2 id="footerHeading" className="sr-only">Site footer</h2>
       <div className="container mx-auto px-4">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 md:gap-12 sm:grid-cols-2 lg:grid-cols-4 items-start">
           {/* Brand Info */}
           <div>
             <h3 className="text-2xl font-bold">Hashtag Solutions</h3>
-            <p className="mt-2 text-gray-400">Empowering businesses and individuals with web solutions, SEO tools, and digital growth strategies.</p>
-          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <p className="mt-3 text-gray-400">Empowering businesses and individuals with web solutions, SEO tools, and digital growth strategies.</p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             <a href="mailto:hashtagsolutionsocail@gmail.com" className="inline-flex items-center gap-2 rounded bg-gray-800 hover:bg-gray-700 px-3 py-2 text-sm transition" aria-label="Email Hashtag Solutions">
               <FiMail aria-hidden className="w-4 h-4" /> Email us
             </a>
@@ -28,7 +50,7 @@ export default function Footer() {
           {/* Quick Links */}
           <nav aria-label="Quick links">
             <h3 className="font-semibold">Quick Links</h3>
-            <ul className="mt-3 space-y-2 text-gray-300">
+            <ul className="mt-4 space-y-2.5 text-gray-300">
               <li><Link href="/" className="hover:text-white transition">Home</Link></li>
               <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
               <li><Link href="/services" className="hover:text-white transition">Services</Link></li>
@@ -37,21 +59,24 @@ export default function Footer() {
             </ul>
           </nav>
 
-          {/* Useful */}
-          <nav aria-label="Useful links">
-            <h3 className="font-semibold">Useful</h3>
-            <ul className="mt-3 space-y-2 text-gray-300">
-              <li><Link href="/sitemap.xml" className="hover:text-white transition">Sitemap</Link></li>
-              <li><Link href="/robots.txt" className="hover:text-white transition">Robots.txt</Link></li>
-              <li><Link href="/faq" className="hover:text-white transition">FAQ</Link></li>
-              <li><Link href="/" className="hover:text-white transition">All Tools</Link></li>
+          {/* Categories */}
+          <nav aria-label="Tool categories">
+            <h3 className="font-semibold">Categories</h3>
+            <ul className="mt-4 space-y-2.5 text-gray-300">
+              {categories.map((c) => (
+                <li key={c}>
+                  <Link href={`/category/${toSlug(c)}`} className="hover:text-white transition">
+                    {c}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 
           {/* Social & Contact */}
           <div>
             <h3 className="font-semibold">Follow</h3>
-            <div className="mt-3 flex items-center gap-3">
+            <div className="mt-4 flex items-center gap-3">
               <a href="https://www.facebook.com/hashtag" className="inline-flex items-center gap-2 rounded bg-gray-800 hover:bg-gray-700 px-3 py-2 text-sm transition" rel="noopener noreferrer" target="_blank" aria-label="Facebook">
                 <FiFacebook aria-hidden className="w-4 h-4" /> Facebook <FiArrowUpRight aria-hidden className="w-3 h-3" />
               </a>
@@ -65,7 +90,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-gray-800 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-gray-400">
+        <div className="mt-12 border-t border-gray-800 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-gray-400">
           <p>© {year} Hashtag Solutions. Building digital solutions, one click at a time.</p>
           <div className="flex items-center gap-4">
             <Link href="/" className="hover:text-white">Home</Link>

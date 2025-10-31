@@ -54,7 +54,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
         <div className="max-w-7xl mx-auto px-4">
           <Navbar />
-          <main id="main">{children}</main>
+          <main id="main" className="pb-12 md:pb-16">{children}</main>
           <Footer />
           <BackToTop />
         </div>

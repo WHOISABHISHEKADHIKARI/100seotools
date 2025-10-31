@@ -1,6 +1,19 @@
 "use client";
 import { useEffect, useMemo, useState, useCallback } from 'react';
-import { FiSearch, FiX, FiStar, FiRefreshCw, FiFilter } from 'react-icons/fi';
+import {
+  FiSearch,
+  FiX,
+  FiStar,
+  FiRefreshCw,
+  FiFilter,
+  FiTag,
+  FiLink,
+  FiBarChart2,
+  FiMapPin,
+  FiUsers,
+  FiCpu,
+  FiTool
+} from 'react-icons/fi';
 
 const categories = [
   'Keyword Research',
@@ -19,6 +32,7 @@ export default function SearchFilter({ tools, onChange }) {
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const [category, setCategory] = useState('All');
+  const [sortBy, setSortBy] = useState('Relevance');
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [showFiltersMobile, setShowFiltersMobile] = useState(false);
@@ -50,14 +64,31 @@ export default function SearchFilter({ tools, onChange }) {
   }, [query]);
 
   const filteredTools = useMemo(() => {
-    return tools.filter((t) => {
+    const list = tools.filter((t) => {
       if (favoritesOnly && !favorites.includes(t.slug)) return false;
       if (category !== 'All' && t.category !== category) return false;
       if (!debouncedQuery) return true;
       const hay = `${t.name} ${t.description}`.toLowerCase();
       return hay.includes(debouncedQuery.toLowerCase());
     });
-  }, [tools, debouncedQuery, category, favoritesOnly, favorites]);
+    const sorted = [...list];
+    switch (sortBy) {
+      case 'Name A-Z':
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'Name Z-A':
+        sorted.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case 'Category':
+        sorted.sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name));
+        break;
+      case 'Relevance':
+      default:
+        // Keep natural order (e.g., as defined in tools index)
+        break;
+    }
+    return sorted;
+  }, [tools, debouncedQuery, category, favoritesOnly, favorites, sortBy]);
 
   const filteredCount = filteredTools.length;
 
@@ -90,15 +121,33 @@ export default function SearchFilter({ tools, onChange }) {
 
   const hasActiveFilters = favoritesOnly || category !== 'All' || (debouncedQuery && debouncedQuery.trim().length > 0);
 
+  // Icons per category to visually distinguish filter chips
+  const categoryIconMap = {
+    All: FiFilter,
+    'Keyword Research': FiSearch,
+    'On-Page Optimization': FiTag,
+    'Technical SEO': FiTool,
+    'Backlink & Link-Building': FiLink,
+    'Content SEO': FiTag,
+    'SEO Performance': FiBarChart2,
+    'Local SEO': FiMapPin,
+    'Competitor Analysis': FiUsers,
+    'AI-Powered SEO': FiCpu,
+    'SEO Utility': FiTool
+  };
+
   return (
-    <div className="card p-4 space-y-4" role="search" aria-label="Filter and search tools">
-      <div className="flex items-center justify-between gap-3">
-        <h2 className="text-base font-semibold">Find tools</h2>
+    <div className="card p-6 space-y-5" role="search" aria-label="Filter and search tools">
+      <div className="flex items-center justify-between gap-3 sticky top-2 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-md px-3 py-2">
+        <div className="space-y-1">
+          <h2 className="text-lg md:text-xl font-semibold">Find Tools</h2>
+          <p className="text-sm text-gray-600 dark:text-gray-400">Filter by category, favorites, or search by name/description.</p>
+        </div>
         <div className="inline-flex items-center gap-2 text-sm">
           <span className="rounded-full px-2 py-1 bg-gray-100 dark:bg-gray-800">{filteredCount} tools</span>
           <button
             type="button"
-            className="btn-secondary px-2 py-1"
+            className="btn-secondary px-3 py-1"
             onClick={clearFilters}
             aria-label="Reset all filters"
             disabled={!hasActiveFilters}
@@ -108,7 +157,7 @@ export default function SearchFilter({ tools, onChange }) {
           </button>
           <button
             type="button"
-            className="btn-secondary px-2 py-1 md:hidden"
+            className="btn-secondary px-3 py-1 md:hidden"
             onClick={() => setShowFiltersMobile((v) => !v)}
             aria-expanded={showFiltersMobile}
             aria-controls="filters-mobile"
@@ -119,7 +168,7 @@ export default function SearchFilter({ tools, onChange }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
         <div>
           <label htmlFor="tool-search" className="block text-sm mb-1">Search tools</label>
           <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Search by tool name or description.</p>
@@ -128,8 +177,8 @@ export default function SearchFilter({ tools, onChange }) {
             <input
               id="tool-search"
               type="search"
-              className="input w-full pl-9 pr-9"
-              placeholder="..."
+              className="input w-full pl-9 pr-10"
+              placeholder="Search tools…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               aria-label="Search tools by name or description"
@@ -148,20 +197,30 @@ export default function SearchFilter({ tools, onChange }) {
         </div>
         <div className={showFiltersMobile ? '' : 'hidden md:block'} id="filters-mobile">
           <span className="block text-sm mb-1">Category</span>
-          {/* Mobile: Select */}
-          <div className="md:hidden">
-            <label htmlFor="category-select" className="sr-only">Select category</label>
-            <select
-              id="category-select"
-              className="input w-full"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              aria-label="Select category"
-            >
-              {['All', ...categories].map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </select>
+          {/* Mobile: Horizontal chips */}
+          <div
+            className="md:hidden -mx-1 overflow-x-auto whitespace-nowrap snap-x snap-mandatory pb-1"
+            role="radiogroup"
+            aria-label="Filter by category"
+          >
+            {['All', ...categories].map((c) => {
+              const active = category === c;
+              const Icon = categoryIconMap[c] || FiTool;
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  className={(active ? 'btn ' : 'btn-secondary ') + 'inline-flex items-center gap-2 px-3 py-1 text-sm mx-1 snap-start transition-colors'}
+                  onClick={() => setCategory(c)}
+                  role="radio"
+                  aria-checked={active}
+                  aria-label={`Category ${c}`}
+                >
+                  <Icon aria-hidden className="w-4 h-4" />
+                  {c}
+                </button>
+              );
+            })}
           </div>
           {/* Desktop: Chips */}
           <div
@@ -172,16 +231,18 @@ export default function SearchFilter({ tools, onChange }) {
           >
               {['All', ...categories].map((c) => {
                 const active = category === c;
+                const Icon = categoryIconMap[c] || FiTool;
                 return (
                   <button
                     key={c}
                     type="button"
-                    className={(active ? 'btn ' : 'btn-secondary ') + 'inline-block max-w-full px-3 py-1 text-sm whitespace-normal break-words text-center'}
+                    className={(active ? 'btn ' : 'btn-secondary ') + 'inline-flex items-center gap-2 max-w-full px-3 py-1 text-sm whitespace-normal break-words text-center transition-colors'}
                     onClick={() => setCategory(c)}
                     role="radio"
                     aria-checked={active}
                     aria-label={`Category ${c}`}
                   >
+                    <Icon aria-hidden className="w-4 h-4" />
                     {c}
                   </button>
                 );
@@ -189,6 +250,20 @@ export default function SearchFilter({ tools, onChange }) {
           </div>
         </div>
       <div className={(showFiltersMobile ? '' : 'hidden md:flex') + ' flex items-center gap-3 flex-wrap md:justify-end md:self-start flex-shrink-0'}>
+          <div className="flex items-center gap-2">
+            <label htmlFor="sort-select" className="text-sm">Sort</label>
+            <select
+              id="sort-select"
+              className="input"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              aria-label="Sort tools"
+            >
+              {['Relevance', 'Name A-Z', 'Name Z-A', 'Category'].map((o) => (
+                <option key={o} value={o}>{o}</option>
+              ))}
+            </select>
+          </div>
           <button
             className="btn-secondary inline-flex items-center gap-2"
             onClick={() => setFavoritesOnly((v) => !v)}

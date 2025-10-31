@@ -24,6 +24,14 @@ export const metadata = {
 export default function BlogPage() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const tools = getAllToolsMeta();
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` }
+    ]
+  };
   const articleLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -39,6 +47,7 @@ export default function BlogPage() {
 
   return (
     <article className="max-w-3xl mx-auto py-10 space-y-10">
+      <StructuredData data={breadcrumbLd} />
       <StructuredData data={articleLd} />
 
       <header className="space-y-3 text-center">
