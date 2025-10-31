@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { getToolBySlug } from '../../../tools';
+import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { getToolGuide } from '../../../lib/guides';
-import { getBlogPostBySlug } from '../../../lib/blog';
+import { getBlogPostBySlug, getAllBlogPosts } from '../../../lib/blog';
 
 const siteName = '100 SEO Tools';
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
@@ -38,6 +38,11 @@ export async function generateMetadata({ params }) {
 
 export default function BlogGuidePage({ params }) {
   const post = getBlogPostBySlug(params.slug);
+  const allPosts = getAllBlogPosts();
+  const allTools = getAllToolsMeta();
+
+  const toCategorySlug = (cat = '') => cat.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
   if (post) {
     const jsonLd = {
       '@context': 'https://schema.org',
@@ -52,6 +57,8 @@ export default function BlogGuidePage({ params }) {
       mainEntityOfPage: `${baseUrl}/blog/${post.slug}`,
       author: { '@type': 'Organization', name: post.author },
       publisher: { '@type': 'Organization', name: siteName },
+      datePublished: post.datePublished,
+      keywords: (post.tags || []).join(', '),
       breadcrumb: {
         '@type': 'BreadcrumbList',
         itemListElement: [
@@ -61,38 +68,145 @@ export default function BlogGuidePage({ params }) {
         ]
       }
     };
+    const faqJsonLd = (post.sections?.faq?.length)
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: post.sections.faq.map((f) => ({
+            '@type': 'Question',
+            name: f.q,
+            acceptedAnswer: { '@type': 'Answer', text: f.a }
+          }))
+        }
+      : null;
 
     return (
       <main id="main" className="container mx-auto px-4 py-8">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        {faqJsonLd ? (
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+        ) : null}
 
-        <h1 className="text-2xl sm:text-3xl font-bold mb-3">{post.title}</h1>
-        <p className="text-slate-600 dark:text-slate-300 mb-6">Category: {post.category}</p>
-
-        <div className="prose dark:prose-invert max-w-none">
-          <h2>Overview</h2>
-          <p>{post.description}</p>
-
-          <h2>Steps</h2>
-          <ul>
-            {post.sections.steps.map((s, i) => <li key={i}>{s}</li>)}
-          </ul>
-
-          <h2>Tips</h2>
-          <ul>
-            {post.sections.tips.map((t, i) => <li key={i}>{t}</li>)}
-          </ul>
-
-          <h2>Checklist</h2>
-          <ul>
-            {post.sections.checklist.map((c, i) => <li key={i}>{c}</li>)}
-          </ul>
-
-          <h2>FAQ</h2>
-          <ul>
-            {post.sections.faq.map((qa, i) => <li key={i}><strong>{qa.q}</strong> — {qa.a}</li>)}
-          </ul>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">{post.title}</h1>
+        <div className="text-sm text-slate-600 dark:text-slate-300 mb-4 flex flex-wrap items-center gap-3">
+          <span>Category: {post.category}</span>
+          {post.readTimeMinutes ? <span>• {post.readTimeMinutes} min read</span> : null}
+          {post.datePublished ? <time dateTime={post.datePublished}>• {new Date(post.datePublished).toLocaleDateString()}</time> : null}
         </div>
+        {post.tags?.length ? (
+          <div className="mb-6 flex flex-wrap gap-2">
+            {post.tags.map((tag, i) => (
+              <span key={i} className="px-2 py-1 rounded bg-slate-100 dark:bg-white/10 text-xs text-slate-700 dark:text-slate-200">{tag}</span>
+            ))}
+          </div>
+        ) : null}
+
+        {/* Enhanced, visually-scannable content with quick links, callouts, and tool cards */}
+        <article className="prose prose-slate dark:prose-invert max-w-3xl leading-relaxed mb-10 space-y-6">
+          <p>{post.description}</p>
+          {post.sections?.intro ? <p>{post.sections.intro}</p> : null}
+
+          {/* Quick Links */}
+          <nav aria-label="Quick links" className="not-prose mb-6">
+            <ul className="flex flex-wrap gap-3 text-sm">
+              <li><a href="#what" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">What</a></li>
+              <li><a href="#why" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Why</a></li>
+              <li><a href="#how" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">How</a></li>
+              <li><a href="#to-whom" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">To Whom</a></li>
+              {post.sections?.faq?.length ? (
+                <li><a href="#faq" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">FAQ</a></li>
+              ) : null}
+            </ul>
+          </nav>
+
+          {post.sections?.what ? (
+            <section id="what" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mb-6">
+              <h2 className="text-xl font-semibold mb-2">🔍 What</h2>
+              <p className="text-base"><strong>SEO basics</strong>: {post.sections.what}</p>
+            </section>
+          ) : null}
+
+          {post.sections?.why ? (
+            <section id="why" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mb-6">
+              <h2 className="text-xl font-semibold mb-2">🎯 Why</h2>
+              <p className="text-base">{post.sections.why}</p>
+              {/* Pro Tip callout */}
+              <div role="note" className="mt-3 rounded bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 p-4 text-base">
+                <span className="font-semibold">💡 Pro tip:</span> Write concise titles and meta descriptions; keep pages fast and accessible.
+              </div>
+            </section>
+          ) : null}
+
+          {post.sections?.how?.length ? (
+            <section id="how" className="not-prose">
+              <h2 className="text-xl font-semibold mb-2">⚙️ How</h2>
+              <ul className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
+                {post.sections.how.slice(0,3).map((h, i) => (
+                  <li key={i} className="rounded-lg border border-slate-200 dark:border-white/10 p-4 bg-white dark:bg-slate-900/40">
+                    <div className="font-medium mb-1">{h.label}</div>
+                    <p className="text-base mb-2">{h.text}</p>
+                    <div className="text-sm leading-relaxed">
+                      <Link href={`/tools/${h.slug}`} className="text-brand-600">Open tool</Link>
+                      <span className="text-slate-600 dark:text-slate-300"> — How to use: open, fill the form, run, and review output.</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              {/* AI Crawler Tip */}
+              <div className="mt-4 rounded bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 p-4 text-base">
+                <span className="font-semibold">🤖 AI crawler tip:</span> Submit your sitemap and allow crawling in robots.txt. Use canonical tags and structured data.
+                <div className="mt-2 flex flex-wrap gap-3">
+                  <Link href="/tools/xml-sitemap-visualizer" className="text-brand-600">XML Sitemap Generator</Link>
+                  <Link href="/tools/robots-txt-creator" className="text-brand-600">Robots.txt Creator</Link>
+                  <Link href="/tools/schema-markup-generator" className="text-brand-600">Schema Markup Generator</Link>
+                </div>
+              </div>
+            </section>
+          ) : null}
+
+          {post.sections?.toWhom ? (
+            <section id="to-whom" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
+              <h2 className="text-xl font-semibold mb-2">👥 To Whom</h2>
+              <p className="text-base">{post.sections.toWhom}</p>
+            </section>
+          ) : null}
+
+          {post.sections?.faq?.length ? (
+            <section id="faq" className="not-prose mt-6">
+              <h3 className="text-lg font-semibold mb-3">❓ FAQ</h3>
+              <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
+                {post.sections.faq.slice(0,7).map((f, i) => (
+                  <div key={i} className="rounded border border-slate-200 dark:border-white/10 p-4">
+                    <p className="text-base font-medium mb-1">{f.q}</p>
+                    <p className="text-base">{f.a}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+        </article>
+
+        {(() => {
+          const idx = allPosts.findIndex((p) => p.slug === post.slug);
+          const prev = idx > 0 ? allPosts[idx - 1] : null;
+          const next = idx >= 0 && idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
+          return (
+            <nav className="mt-10 flex flex-col sm:flex-row items-stretch gap-4" aria-label="Pagination">
+              {prev ? (
+                <Link href={`/blog/${prev.slug}`} className="flex-1 rounded border border-slate-200 dark:border-white/10 p-4 hover:shadow-sm transition">
+                  <span className="block text-xs text-slate-500">Previous</span>
+                  <span className="block font-medium">{prev.title}</span>
+                </Link>
+              ) : null}
+              {next ? (
+                <Link href={`/blog/${next.slug}`} className="flex-1 rounded border border-slate-200 dark:border-white/10 p-4 hover:shadow-sm transition text-right">
+                  <span className="block text-xs text-slate-500">Next</span>
+                  <span className="block font-medium">{next.title}</span>
+                </Link>
+              ) : null}
+            </nav>
+          );
+        })()}
 
         <div className="mt-8 flex items-center gap-4">
           <Link href="/blog" className="text-brand-600 hover:underline">Back to Blog</Link>
@@ -100,6 +214,7 @@ export default function BlogGuidePage({ params }) {
       </main>
     );
   }
+
   const tool = getToolBySlug(params.slug);
   if (!tool) {
     return (
@@ -142,19 +257,30 @@ export default function BlogGuidePage({ params }) {
       <h1 className="text-2xl sm:text-3xl font-bold mb-3">How to Use {tool.name}</h1>
       <p className="text-slate-600 dark:text-slate-300 mb-6">Category: {tool.category}</p>
 
+      <nav aria-label="Table of contents" className="rounded border border-slate-200 dark:border-white/10 p-4 mb-6">
+        <ul className="grid sm:grid-cols-2 gap-2 text-sm">
+          <li><a href="#purpose" className="text-brand-600 hover:underline">Purpose</a></li>
+          <li><a href="#how-to-use" className="text-brand-600 hover:underline">How to Use</a></li>
+          <li><a href="#output-explanation" className="text-brand-600 hover:underline">Output</a></li>
+          <li><a href="#benefits" className="text-brand-600 hover:underline">Benefits</a></li>
+          <li><a href="#use-cases" className="text-brand-600 hover:underline">Use Cases</a></li>
+          {guide.referenceCards?.length ? <li><a href="#reference" className="text-brand-600 hover:underline">Reference</a></li> : null}
+        </ul>
+      </nav>
+
       <div className="prose dark:prose-invert max-w-none">
-        <h2>Purpose</h2>
+        <h2 id="purpose">Purpose</h2>
         <p>{guide.purpose}</p>
 
-        <h2>How to Use</h2>
+        <h2 id="how-to-use">How to Use</h2>
         <pre className="bg-slate-100 dark:bg-gray-800 p-4 rounded text-sm overflow-auto whitespace-pre-wrap">{guide.howToUse}</pre>
 
-        <h2>Output Explanation</h2>
+        <h2 id="output-explanation">Output Explanation</h2>
         <p>{guide.outputExplanation}</p>
 
         {guide.benefits?.length ? (
           <>
-            <h2>Benefits</h2>
+            <h2 id="benefits">Benefits</h2>
             <ul>
               {guide.benefits.map((b, i) => <li key={i}>{b}</li>)}
             </ul>
@@ -163,7 +289,7 @@ export default function BlogGuidePage({ params }) {
 
         {guide.useCases?.length ? (
           <>
-            <h2>Use Cases</h2>
+            <h2 id="use-cases">Use Cases</h2>
             <ul>
               {guide.useCases.map((u, i) => <li key={i}>{u}</li>)}
             </ul>
@@ -172,7 +298,7 @@ export default function BlogGuidePage({ params }) {
 
         {guide.referenceCards?.length ? (
           <>
-            <h2>Reference</h2>
+            <h2 id="reference">Reference</h2>
             {guide.referenceCards.map((card, i) => (
               <div key={i} className="rounded border border-slate-200 dark:border-white/10 p-4 mb-4">
                 <h3 className="font-semibold mb-2">{card.title}</h3>
@@ -191,9 +317,43 @@ export default function BlogGuidePage({ params }) {
         ) : null}
       </div>
 
+      <section className="mt-10">
+        <h2 className="text-xl font-semibold mb-3">Recommended Tools</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {allTools.filter((t) => t.category === tool.category).slice(0, 6).map((t) => (
+            <div key={t.slug} className="card p-4 hover:shadow-md transition">
+              <h3 className="font-medium">{t.name}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{t.category}</p>
+              <div className="mt-2 flex items-center gap-4 text-sm">
+                <Link href={`/tools/${t.slug}`} className="text-brand-600 hover:underline">Open tool</Link>
+                <Link href={`/blog/${t.slug}`} className="text-brand-600 hover:underline">Read guide</Link>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-4">
+          <Link href={`/category/${toCategorySlug(tool.category)}`} className="text-slate-500 hover:underline text-sm">More in {tool.category}</Link>
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-xl font-semibold mb-3">Related Guides</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {allPosts.filter((p) => p.category === tool.category).slice(0, 6).map((p) => (
+            <div key={p.slug} className="card p-4 hover:shadow-md transition">
+              <h3 className="font-medium">{p.title}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{p.category}</p>
+              <div className="mt-2 flex items-center gap-4 text-sm">
+                <Link href={`/blog/${p.slug}`} className="text-brand-600 hover:underline">Read post</Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <div className="mt-8 flex items-center gap-4">
         <Link href={`/tools/${tool.slug}`} className="text-brand-600 hover:underline">Open {tool.name}</Link>
-        <Link href={`/category/${tool.category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`} className="text-slate-500 hover:underline">More in {tool.category}</Link>
+        <Link href={`/category/${toCategorySlug(tool.category)}`} className="text-slate-500 hover:underline">More in {tool.category}</Link>
       </div>
     </main>
   );
