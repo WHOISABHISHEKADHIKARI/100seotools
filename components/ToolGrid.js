@@ -96,10 +96,13 @@ function ToolGrid({ tools }) {
   const [mounted, setMounted] = useState(false);
   const [visibleTools, setVisibleTools] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const isLoadingRef = useRef(false);
   const observerRef = useRef(null);
   const loadingRef = useRef(null);
   const loadTimeoutRef = useRef(null);
+  const lastLoadAtRef = useRef(0);
   const batchSize = 12; // Number of tools to load at once
+  const cooldownMs = 600; // cooldown between auto-loads to prevent flicker
 
   // Ensure unique tools by slug to prevent duplicate React keys and duplicate cards
   const uniqueTools = useMemo(() => {
@@ -144,7 +147,9 @@ function ToolGrid({ tools }) {
     // Set up intersection observer for infinite scrolling
     observerRef.current = new IntersectionObserver((entries) => {
       const [entry] = entries;
-      if (entry.isIntersecting && !isLoading) {
+      const now = Date.now();
+      // Guard against stale state and rapid retriggers while layout shifts
+      if (entry.isIntersecting && !isLoadingRef.current && (now - lastLoadAtRef.current > cooldownMs)) {
         loadMoreTools();
       }
     }, { rootMargin: '100px' });
@@ -169,8 +174,15 @@ function ToolGrid({ tools }) {
 
   const loadMoreTools = useCallback(() => {
     if (visibleTools.length >= uniqueTools.length) return;
+    if (isLoadingRef.current) return;
 
     setIsLoading(true);
+    isLoadingRef.current = true;
+    lastLoadAtRef.current = Date.now();
+    // Pause observing while we append the next batch to avoid double-trigger
+    if (observerRef.current && loadingRef.current) {
+      try { observerRef.current.unobserve(loadingRef.current); } catch (_) {}
+    }
     // Simulate loading delay for better UX
     loadTimeoutRef.current = setTimeout(() => {
       const startIndex = visibleTools.length;
@@ -187,7 +199,12 @@ function ToolGrid({ tools }) {
         });
       });
       setIsLoading(false);
+      isLoadingRef.current = false;
       loadTimeoutRef.current = null;
+      // Resume observing after batch is appended
+      if (observerRef.current && loadingRef.current) {
+        try { observerRef.current.observe(loadingRef.current); } catch (_) {}
+      }
     }, 300);
   }, [visibleTools, uniqueTools]);
 
