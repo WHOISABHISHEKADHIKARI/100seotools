@@ -18,8 +18,20 @@ export async function generateMetadata({ params }) {
       title,
       description,
       alternates: { canonical: url },
-      openGraph: { title, description, url, siteName, type: 'article' },
-      twitter: { card: 'summary', title, description }
+      openGraph: {
+        title,
+        description,
+        url,
+        siteName,
+        type: 'article',
+        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: siteName }],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        images: ['/twitter-image.png'],
+      }
     };
   }
   const tool = getToolBySlug(params.slug);
@@ -31,8 +43,20 @@ export async function generateMetadata({ params }) {
       title,
       description,
       alternates: { canonical: url },
-      openGraph: { title, description, url, siteName, type: 'article' },
-      twitter: { card: 'summary', title, description }
+      openGraph: {
+        title,
+        description,
+        url,
+        siteName,
+        type: 'article',
+        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: siteName }],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        images: ['/twitter-image.png'],
+      }
     };
   }
   return { title: `Guide Not Found | ${siteName}`, robots: { index: false, follow: false } };
