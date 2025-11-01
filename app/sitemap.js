@@ -4,10 +4,12 @@ import { getAllBlogPosts } from '../lib/blog';
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
 
 export default function sitemap() {
+  const now = new Date();
   const entries = [
+    // Homepage
     {
       url: `${baseUrl}/`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'daily',
       priority: 1.0
     }
@@ -16,7 +18,7 @@ export default function sitemap() {
   // Blog index
   entries.push({
     url: `${baseUrl}/blog`,
-    lastModified: new Date(),
+    lastModified: now,
     changeFrequency: 'weekly',
     priority: 0.7
   });
@@ -24,15 +26,35 @@ export default function sitemap() {
   // Static pages
   entries.push({
     url: `${baseUrl}/about`,
-    lastModified: new Date(),
+    lastModified: now,
     changeFrequency: 'monthly',
     priority: 0.6
   });
   entries.push({
     url: `${baseUrl}/faq`,
-    lastModified: new Date(),
+    lastModified: now,
     changeFrequency: 'monthly',
     priority: 0.6
+  });
+  // Category index
+  entries.push({
+    url: `${baseUrl}/category`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.7
+  });
+  // Demo and offline utility pages
+  entries.push({
+    url: `${baseUrl}/card-demo`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.3
+  });
+  entries.push({
+    url: `${baseUrl}/offline`,
+    lastModified: now,
+    changeFrequency: 'yearly',
+    priority: 0.1
   });
 
   // SEO Calculator page
@@ -57,7 +79,7 @@ export default function sitemap() {
   const categories = Array.from(new Set(tools.map((t) => t.category).filter(Boolean)));
   const toolEntries = tools.map((t) => ({
     url: `${baseUrl}/tools/${t.slug}`,
-    lastModified: new Date(),
+    lastModified: now,
     changeFrequency: 'weekly',
     priority: 0.8
   }));
@@ -65,7 +87,7 @@ export default function sitemap() {
   // Blog guides per tool
   const blogEntries = tools.map((t) => ({
     url: `${baseUrl}/blog/${t.slug}`,
-    lastModified: new Date(),
+    lastModified: now,
     changeFrequency: 'monthly',
     priority: 0.6
   }));
@@ -73,14 +95,14 @@ export default function sitemap() {
   // Generic SEO blog posts
   const seoBlogEntries = posts.map((p) => ({
     url: `${baseUrl}/blog/${p.slug}`,
-    lastModified: new Date(),
+    lastModified: p.datePublished ? new Date(p.datePublished) : now,
     changeFrequency: 'monthly',
     priority: 0.5
   }));
 
   const categoryEntries = categories.map((cat) => ({
     url: `${baseUrl}/category/${slugify(cat)}`,
-    lastModified: new Date(),
+    lastModified: now,
     changeFrequency: 'monthly',
     priority: 0.6
   }));
