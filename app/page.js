@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import ToolGrid from '../components/ToolGrid';
 import SearchFilter from '../components/SearchFilter';
+import StructuredData from '../components/StructuredData';
 import { getAllToolsMeta } from '../tools';
 
 const SEOCalculator = dynamic(() => import('../components/SEOCalculator'), {
@@ -40,6 +41,21 @@ export default function HomePage() {
 
   return (
     <div className="space-y-8">
+      {(() => {
+        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+        const websiteLd = {
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: '100 SEO Tools',
+          url: `${baseUrl}/`,
+          inLanguage: 'en-US',
+          publisher: {
+            '@type': 'Organization',
+            name: 'Hashtag Solutions'
+          }
+        };
+        return <StructuredData data={websiteLd} />;
+      })()}
       {/* Dynamically loaded SEO Calculator section at the very top */}
       <SEOCalculator />
 

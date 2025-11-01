@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import ClientSEOCalculator from './ClientSEOCalculator';
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+
 export const metadata = {
   title: 'Free SEO Calculator – Measure Keyword Density, ROI, and Traffic Instantly',
   description: 'Use our free SEO Calculator to measure keyword density, ROI, traffic, and authority instantly. A part of 100+ free SEO tools for better Google and Bing optimization.',
   keywords: 'seo calculator, free seo tools, keyword density checker, seo roi calculator, domain authority, seo analyzer, traffic estimator, seo audit, seo score checker, google seo, bing seo',
   robots: 'index, follow',
-  alternates: { canonical: 'https://yourdomain.com/seo-calculator' },
+  alternates: { canonical: `${baseUrl}/seo-calculator` },
   openGraph: {
     title: 'Free SEO Calculator – Measure Keyword Density, ROI, and Traffic Instantly',
     description: 'Use our free SEO Calculator to measure keyword density, ROI, traffic, and authority instantly. A part of 100+ free SEO tools for better Google and Bing optimization.',
     type: 'article',
-    url: 'https://yourdomain.com/seo-calculator',
+    url: `${baseUrl}/seo-calculator`,
   },
   twitter: {
     card: 'summary_large_image',

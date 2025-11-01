@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import ClientSEOCostCalculator from './ClientSEOCostCalculator';
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+
 export const metadata = {
   title: 'SEO Cost Calculator – Estimate Monthly and Project Costs',
   description: 'Estimate SEO budgets including labor, content, link building, tools, and contingency. Free, client-side, and fast.',
   keywords: 'seo cost calculator, seo pricing, seo budget, link building cost, content cost, retainer, setup fee',
   robots: 'index, follow',
-  alternates: { canonical: 'https://yourdomain.com/seo-cost-calculator' },
+  alternates: { canonical: `${baseUrl}/seo-cost-calculator` },
   openGraph: {
     title: 'SEO Cost Calculator – Estimate Monthly and Project Costs',
     description: 'Estimate SEO budgets including labor, content, link building, tools, and contingency.',
     type: 'article',
-    url: 'https://yourdomain.com/seo-cost-calculator',
+    url: `${baseUrl}/seo-cost-calculator`,
   },
   twitter: {
     card: 'summary_large_image',
