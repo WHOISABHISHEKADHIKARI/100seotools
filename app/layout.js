@@ -62,20 +62,8 @@ export const metadata = {
   manifest: '/manifest.json',
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/icon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/icon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180' }
-    ],
-    other: [
-      {
-        rel: 'mask-icon',
-        url: '/safari-pinned-tab.svg',
-        color: '#5bbad5',
-      },
-    ],
+      { url: '/icon.svg', sizes: 'any', type: 'image/svg+xml' }
+    ]
   },
 };
 
@@ -93,7 +81,7 @@ export default function RootLayout({ children }) {
     '@type': 'Organization',
     name: '100 SEO Tools',
     url: baseUrl + '/',
-    logo: baseUrl + '/icon.png'
+    logo: baseUrl + '/icon.svg'
   };
   const siteJsonLd = {
     '@context': 'https://schema.org',
