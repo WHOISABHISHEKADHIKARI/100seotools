@@ -95,6 +95,8 @@ export default function Footer() {
             <Link href="/blog" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Blog</Link>
             <Link href="/sitemap.xml" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Sitemap</Link>
             <Link href="/robots.txt" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Robots</Link>
+            <Link href="/privacy" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Privacy Policy</Link>
+            <Link href="/terms" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Terms of Service</Link>
           </div>
         </div>
       </div>

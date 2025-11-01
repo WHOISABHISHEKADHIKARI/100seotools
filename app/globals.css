@@ -27,6 +27,8 @@ html {
   @apply inline-flex items-center gap-2 px-3 py-2 rounded-md bg-brand-500 text-white hover:bg-brand-600 transition-all;
   position: relative;
   overflow: hidden;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .btn:active {
@@ -66,6 +68,8 @@ html {
   @apply inline-flex items-center gap-2 px-3 py-2 rounded-md bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 transition-all;
   position: relative;
   overflow: hidden;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .btn-secondary:active {
@@ -123,6 +127,8 @@ html {
   
   .btn, .btn-secondary {
     @apply px-2.5 py-1.5 text-sm;
+    min-width: 44px;
+    min-height: 44px;
   }
 }
 
