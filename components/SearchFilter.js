@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState, useCallback } from 'react';
+import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
 import {
   FiSearch,
   FiX,
@@ -12,7 +12,8 @@ import {
   FiMapPin,
   FiUsers,
   FiCpu,
-  FiTool
+  FiTool,
+  FiLoader
 } from 'react-icons/fi';
 
 const categories = [
@@ -28,14 +29,37 @@ const categories = [
   'SEO Utility'
 ];
 
+// Custom hook for debounced value
+function useDebounce(value, delay = 300) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
 export default function SearchFilter({ tools, onChange }) {
   const [query, setQuery] = useState('');
-  const [debouncedQuery, setDebouncedQuery] = useState('');
   const [category, setCategory] = useState('All');
   const [sortBy, setSortBy] = useState('Name A-Z');
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [mounted, setMounted] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
+  const inputRef = useRef(null);
+  
+  // Use debounced query for filtering
+  const debouncedQuery = useDebounce(query, 300);
 
   useEffect(() => {
     setMounted(true);
@@ -62,11 +86,14 @@ export default function SearchFilter({ tools, onChange }) {
     }
   }, [mounted]);
 
-  // Debounce query to improve UX and reduce re-renders
+  // Show searching indicator when query changes but debounced query hasn't caught up
   useEffect(() => {
-    const id = setTimeout(() => setDebouncedQuery(query), 150);
-    return () => clearTimeout(id);
-  }, [query]);
+    if (query !== debouncedQuery) {
+      setIsSearching(true);
+    } else {
+      setIsSearching(false);
+    }
+  }, [query, debouncedQuery]);
 
   const filteredTools = useMemo(() => {
     const list = tools.filter((t) => {
@@ -96,13 +123,32 @@ export default function SearchFilter({ tools, onChange }) {
 
   const filteredCount = filteredTools.length;
 
+  // Build suggestions from tool names and categories
+  const suggestions = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q || q.length < 2) return [];
+    const nameMatches = tools
+      .filter(t => t.name.toLowerCase().includes(q))
+      .slice(0, 8)
+      .map(t => ({ type: 'tool', text: t.name, slug: t.slug, category: t.category }));
+    const categoryMatches = ['All', ...categories]
+      .filter(c => c.toLowerCase().includes(q))
+      .slice(0, 4)
+      .map(c => ({ type: 'category', text: c }));
+    return [...nameMatches, ...categoryMatches];
+  }, [query, tools]);
+
   useEffect(() => {
     if (typeof onChange === 'function') {
       onChange(filteredTools);
     }
   }, [filteredTools, onChange]);
 
-  const clearQuery = useCallback(() => setQuery(''), []);
+  const clearQuery = useCallback(() => {
+    setQuery('');
+    setShowSuggestions(false);
+    setActiveSuggestionIndex(-1);
+  }, []);
   const clearFilters = useCallback(() => {
     setQuery('');
     setCategory('All');
@@ -146,25 +192,101 @@ export default function SearchFilter({ tools, onChange }) {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-3 items-center">
         <div className="md:col-span-6">
           <div className="relative">
-            <FiSearch aria-hidden className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            {isSearching ? (
+              <FiLoader aria-hidden className="pointer-events-none w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 animate-spin" />
+            ) : (
+              <FiSearch aria-hidden className="pointer-events-none w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            )}
             <input
               id="tool-search"
               type="search"
-              className="input w-full pl-9 pr-9"
+              className="input w-full pl-12 pr-10"
               placeholder="Search tools…"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setShowSuggestions(true);
+                setActiveSuggestionIndex(-1);
+              }}
               aria-label="Search tools"
+              autoComplete="off"
+              onFocus={() => {
+                if (query.trim().length >= 2) setShowSuggestions(true);
+              }}
+              onBlur={() => {
+                // Slight delay so clicks on suggestions can register
+                setTimeout(() => setShowSuggestions(false), 120);
+              }}
+              onKeyDown={(e) => {
+                if (!showSuggestions || suggestions.length === 0) return;
+                if (e.key === 'ArrowDown') {
+                  setActiveSuggestionIndex((i) => Math.min(i + 1, suggestions.length - 1));
+                  e.preventDefault();
+                } else if (e.key === 'ArrowUp') {
+                  setActiveSuggestionIndex((i) => Math.max(i - 1, 0));
+                  e.preventDefault();
+                } else if (e.key === 'Enter' && activeSuggestionIndex >= 0) {
+                  const s = suggestions[activeSuggestionIndex];
+                  if (s.type === 'tool') {
+                    setQuery(s.text);
+                  } else if (s.type === 'category') {
+                    setCategory(s.text);
+                  }
+                  setShowSuggestions(false);
+                  setActiveSuggestionIndex(-1);
+                  e.preventDefault();
+                } else if (e.key === 'Escape') {
+                  setShowSuggestions(false);
+                  setActiveSuggestionIndex(-1);
+                }
+              }}
+              ref={inputRef}
             />
             {query && (
               <button
                 type="button"
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-500"
                 onClick={clearQuery}
                 aria-label="Clear search"
               >
                 <FiX aria-hidden className="w-4 h-4" />
               </button>
+            )}
+
+            {/* Suggestions dropdown */}
+            {showSuggestions && suggestions.length > 0 && (
+              <div
+                className="absolute left-0 right-0 mt-2 z-20 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 shadow-lg"
+                role="listbox"
+                aria-label="Search suggestions"
+                onMouseDown={(e) => e.preventDefault()}
+              >
+                {suggestions.map((s, idx) => (
+                  <button
+                    key={`${s.type}:${s.text}:${s.slug || ''}`}
+                    type="button"
+                    className={`flex items-center justify-between w-full text-left px-3 py-2 hover:bg-slate-50 dark:hover:bg-white/5 ${idx === activeSuggestionIndex ? 'bg-slate-50 dark:bg-white/10' : ''}`}
+                    onClick={() => {
+                      if (s.type === 'tool') {
+                        setQuery(s.text);
+                      } else if (s.type === 'category') {
+                        setCategory(s.text);
+                      }
+                      setShowSuggestions(false);
+                      setActiveSuggestionIndex(-1);
+                    }}
+                    role="option"
+                    aria-selected={idx === activeSuggestionIndex}
+                  >
+                    <span className="text-sm">
+                      {s.type === 'tool' ? s.text : `Category: ${s.text}`}
+                    </span>
+                    {s.type === 'tool' && (
+                      <span className="text-xs text-slate-500 dark:text-slate-400">{s.category}</span>
+                    )}
+                  </button>
+                ))}
+              </div>
             )}
           </div>
         </div>
@@ -175,6 +297,7 @@ export default function SearchFilter({ tools, onChange }) {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             aria-label="Filter by category"
+            onKeyDown={onCategoryKeyDown}
           >
             {['All', ...categories].map((c) => (
               <option key={c} value={c}>{c}</option>
@@ -196,7 +319,7 @@ export default function SearchFilter({ tools, onChange }) {
         </div>
         <div className="md:col-span-1 flex md:justify-end">
           <button
-            className="btn-secondary inline-flex items-center justify-center w-full md:w-auto p-2"
+            className="btn-secondary inline-flex items-center justify-center w-full md:w-auto p-2 focus:outline-none focus:ring-2 focus:ring-brand-500"
             onClick={() => setFavoritesOnly((v) => !v)}
             aria-pressed={favoritesOnly}
             aria-label={favoritesOnly ? 'Show all tools' : 'Show only favorites'}
@@ -211,7 +334,7 @@ export default function SearchFilter({ tools, onChange }) {
         <span aria-live="polite">{filteredCount} tools</span>
         <button
           type="button"
-          className="btn-secondary inline-flex items-center gap-1 px-2 py-1"
+          className="btn-secondary inline-flex items-center gap-1 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-brand-500"
           onClick={clearFilters}
           aria-label="Reset all filters"
           disabled={!hasActiveFilters}
@@ -221,7 +344,6 @@ export default function SearchFilter({ tools, onChange }) {
         </button>
       </div>
       
-
       {hasActiveFilters && (
         <div className="flex flex-wrap items-center gap-2 text-sm" aria-live="polite">
           <span className="text-gray-600 dark:text-gray-400">Active filters:</span>
@@ -229,17 +351,17 @@ export default function SearchFilter({ tools, onChange }) {
             <button
               type="button"
               onClick={clearQuery}
-              className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800"
+              className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500"
               aria-label="Clear search filter"
             >
-              “{debouncedQuery}” <FiX aria-hidden className="w-3 h-3" />
+              "{debouncedQuery}" <FiX aria-hidden className="w-3 h-3" />
             </button>
           )}
           {category !== 'All' && (
             <button
               type="button"
               onClick={() => setCategory('All')}
-              className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800"
+              className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500"
               aria-label="Clear category filter"
             >
               {category} <FiX aria-hidden className="w-3 h-3" />
@@ -249,12 +371,26 @@ export default function SearchFilter({ tools, onChange }) {
             <button
               type="button"
               onClick={() => setFavoritesOnly(false)}
-              className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800"
+              className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500"
               aria-label="Clear favorites filter"
             >
               Favorites <FiX aria-hidden className="w-3 h-3" />
             </button>
           )}
+        </div>
+      )}
+      
+      {filteredCount === 0 && (
+        <div className="py-8 text-center" aria-live="assertive">
+          <p className="text-lg font-medium">No tools found</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">Try adjusting your search or filters</p>
+          <button 
+            onClick={clearFilters}
+            className="btn mt-4"
+            aria-label="Clear all filters"
+          >
+            Clear all filters
+          </button>
         </div>
       )}
     </div>

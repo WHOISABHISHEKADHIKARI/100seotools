@@ -7,6 +7,7 @@ export default function Card({
   children,
   className = '',
   iconColor = 'text-brand-500',
+  iconLabel,
 }) {
   const interactive = Boolean(href);
   const titleId = title ? `card-title-${slugify(title)}` : undefined;
@@ -17,18 +18,36 @@ export default function Card({
       className={`card ${interactive ? 'card-interactive relative' : ''} p-4 flex flex-col ${className}`}
       aria-labelledby={titleId}
       aria-describedby={descId}
+      tabIndex={interactive ? '0' : undefined}
+      role={interactive ? 'button' : undefined}
+      onKeyDown={interactive ? (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.location.href = href;
+        }
+      } : undefined}
     >
       {/* Interactive overlay */}
       {interactive && (
-        <a href={href} aria-label={title ? `Open: ${title}` : 'Open'} className="absolute inset-0 z-10" />
+        <a 
+          href={href} 
+          aria-label={title ? `Open: ${title}` : 'Open'} 
+          className="absolute inset-0 z-10"
+          tabIndex="-1" // Focus will be on the article element
+        />
       )}
 
       {/* Card header with icon and meta */}
       <div className="flex items-start justify-between mb-2 relative z-20">
         <div className="flex items-center gap-2.5">
           {Icon && (
-            <div className="card-icon-container flex-shrink-0 w-8 h-8 rounded-md bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
-              <Icon aria-hidden className={`w-4.5 h-4.5 ${iconColor}`} />
+            <div 
+              className="card-icon-container flex-shrink-0 w-8 h-8 rounded-md bg-gray-50 dark:bg-gray-800 flex items-center justify-center"
+              aria-hidden={!iconLabel}
+              aria-label={iconLabel}
+              role={iconLabel ? "img" : undefined}
+            >
+              <Icon aria-hidden="true" className={`w-4.5 h-4.5 ${iconColor}`} />
             </div>
           )}
           {title && (

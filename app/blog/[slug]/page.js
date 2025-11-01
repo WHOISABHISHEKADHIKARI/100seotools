@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ShareActions from '../../../components/ShareActions';
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { getToolGuide } from '../../../lib/guides';
 import { getBlogPostBySlug, getAllBlogPosts } from '../../../lib/blog';
@@ -9,6 +10,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
 export async function generateMetadata({ params }) {
   const post = getBlogPostBySlug(params.slug);
   if (post) {
+    const shareUrl = `${baseUrl}/blog/${post.slug}`;
     const title = `${post.title} | ${siteName}`;
     const description = post.description;
     const url = `${baseUrl}/blog/${post.slug}`;
@@ -79,6 +81,7 @@ export default function BlogGuidePage({ params }) {
           }))
         }
       : null;
+    const shareUrl = `${baseUrl}/blog/${post.slug}`;
 
     return (
       <main id="main" className="container mx-auto px-4 py-8">
@@ -93,6 +96,7 @@ export default function BlogGuidePage({ params }) {
           {post.readTimeMinutes ? <span>• {post.readTimeMinutes} min read</span> : null}
           {post.datePublished ? <time dateTime={post.datePublished}>• {new Date(post.datePublished).toLocaleDateString()}</time> : null}
         </div>
+        <div className="mb-6"><ShareActions url={shareUrl} title={post.title} /></div>
         {post.tags?.length ? (
           <div className="mb-6 flex flex-wrap gap-2">
             {post.tags.map((tag, i) => (
@@ -113,6 +117,33 @@ export default function BlogGuidePage({ params }) {
               <li><a href="#why" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Why</a></li>
               <li><a href="#how" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">How</a></li>
               <li><a href="#to-whom" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">To Whom</a></li>
+              {post.sections?.possibleUses?.length ? (
+                <li><a href="#uses" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Uses</a></li>
+              ) : null}
+              {post.sections?.whoBenefits?.length ? (
+                <li><a href="#who-benefits" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Who Benefits</a></li>
+              ) : null}
+              {post.sections?.reasonsToUse?.length ? (
+                <li><a href="#reasons" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Reasons</a></li>
+              ) : null}
+              {post.sections?.seoBenefits?.length ? (
+                <li><a href="#seo-benefits" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">SEO Benefits</a></li>
+              ) : null}
+              {post.sections?.opportunities?.length ? (
+                <li><a href="#opportunities" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Opportunities</a></li>
+              ) : null}
+              {post.sections?.competition?.length ? (
+                <li><a href="#competition" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Competition</a></li>
+              ) : null}
+              {post.sections?.costConsiderations?.length ? (
+                <li><a href="#cost" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Cost</a></li>
+              ) : null}
+              {post.sections?.integrations?.length ? (
+                <li><a href="#integrations" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Integrations</a></li>
+              ) : null}
+              {post.sections?.relevantKeywords?.length ? (
+                <li><a href="#keywords" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Keywords</a></li>
+              ) : null}
               {post.sections?.faq?.length ? (
                 <li><a href="#faq" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">FAQ</a></li>
               ) : null}
@@ -168,6 +199,116 @@ export default function BlogGuidePage({ params }) {
             <section id="to-whom" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">👥 To Whom</h2>
               <p className="text-base">{post.sections.toWhom}</p>
+            </section>
+          ) : null}
+
+          {post.sections?.possibleUses?.length ? (
+            <section id="uses" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
+              <h2 className="text-xl font-semibold mb-2">📌 Possible Uses</h2>
+              <ul className="list-disc pl-5 space-y-1 text-base">
+                {post.sections.possibleUses.map((u, i) => (
+                  <li key={i}>{u}</li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          {post.sections?.whoBenefits?.length ? (
+            <section id="who-benefits" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
+              <h2 className="text-xl font-semibold mb-2">👤 Who Can Benefit</h2>
+              <div className="flex flex-wrap gap-2">
+                {post.sections.whoBenefits.map((w, i) => (
+                  <span key={i} className="px-2 py-1 rounded bg-slate-100 dark:bg-white/10 text-sm">{w}</span>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          {post.sections?.reasonsToUse?.length ? (
+            <section id="reasons" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
+              <h2 className="text-xl font-semibold mb-2">✅ Reasons to Use</h2>
+              <ul className="list-disc pl-5 space-y-1 text-base">
+                {post.sections.reasonsToUse.map((r, i) => (
+                  <li key={i}>{r}</li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          {post.sections?.seoBenefits?.length ? (
+            <section id="seo-benefits" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
+              <h2 className="text-xl font-semibold mb-2">📈 SEO Benefits</h2>
+              <ul className="list-disc pl-5 space-y-1 text-base">
+                {post.sections.seoBenefits.map((b, i) => (
+                  <li key={i}>{b}</li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          {post.sections?.opportunities?.length ? (
+            <section id="opportunities" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
+              <h2 className="text-xl font-semibold mb-2">🚀 Opportunities</h2>
+              <ul className="list-disc pl-5 space-y-1 text-base">
+                {post.sections.opportunities.map((o, i) => (
+                  <li key={i}>{o}</li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          {post.sections?.competition?.length ? (
+            <section id="competition" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
+              <h2 className="text-xl font-semibold mb-2">🆚 Competition</h2>
+              <ul className="list-disc pl-5 space-y-1 text-base">
+                {post.sections.competition.map((c, i) => (
+                  <li key={i}>{c}</li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          {post.sections?.costConsiderations?.length ? (
+            <section id="cost" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
+              <h2 className="text-xl font-semibold mb-2">💰 Cost Considerations</h2>
+              <ul className="list-disc pl-5 space-y-1 text-base">
+                {post.sections.costConsiderations.map((c, i) => (
+                  <li key={i}>{c}</li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          {post.sections?.integrations?.length ? (
+            <section id="integrations" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
+              <h2 className="text-xl font-semibold mb-2">🔗 Related Tools & Integrations</h2>
+              <div className="flex flex-wrap gap-3">
+                {post.sections.integrations.map((tool, i) => (
+                  <Link key={i} href={`/tools/${tool.slug}`} className="text-brand-600">{tool.name}</Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          {post.sections?.relevantKeywords?.length ? (
+            <section id="keywords" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
+              <h2 className="text-xl font-semibold mb-2">🏷️ Relevant Keywords</h2>
+              <div className="flex flex-wrap gap-2">
+                {post.sections.relevantKeywords.map((k, i) => (
+                  <span key={i} className="px-2 py-1 rounded bg-slate-100 dark:bg-white/10 text-sm">{k}</span>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          {post.sections?.howDetailed?.length ? (
+            <section id="how-detailed" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
+              <h2 className="text-xl font-semibold mb-2">🧭 How (Detailed)</h2>
+              <ol className="list-decimal pl-5 space-y-1 text-base">
+                {post.sections.howDetailed.map((step, i) => (
+                  <li key={i}>{step}</li>
+                ))}
+              </ol>
             </section>
           ) : null}
 
@@ -227,6 +368,7 @@ export default function BlogGuidePage({ params }) {
   }
 
   const guide = getToolGuide(tool);
+  const shareUrlTool = `${baseUrl}/blog/${tool.slug}`;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -256,6 +398,7 @@ export default function BlogGuidePage({ params }) {
 
       <h1 className="text-2xl sm:text-3xl font-bold mb-3">How to Use {tool.name}</h1>
       <p className="text-slate-600 dark:text-slate-300 mb-6">Category: {tool.category}</p>
+      <div className="mb-6"><ShareActions url={shareUrlTool} title={`How to Use ${tool.name}`} /></div>
 
       <nav aria-label="Table of contents" className="rounded border border-slate-200 dark:border-white/10 p-4 mb-6">
         <ul className="grid sm:grid-cols-2 gap-2 text-sm">

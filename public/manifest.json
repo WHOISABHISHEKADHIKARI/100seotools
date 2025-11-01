@@ -1,0 +1,28 @@
+{
+  "name": "100+ SEO Tools",
+  "short_name": "SEO Tools",
+  "description": "All Your SEO Tools in One Place. 100+ browser-based tools for marketers, bloggers, and developers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "orientation": "portrait",
+  "categories": ["productivity", "utilities", "business"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false
+}

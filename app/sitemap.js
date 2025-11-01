@@ -35,6 +35,22 @@ export default function sitemap() {
     priority: 0.6
   });
 
+  // SEO Calculator page
+  entries.push({
+    url: `${baseUrl}/seo-calculator`,
+    lastModified: new Date('2025-11-02'),
+    changeFrequency: 'weekly',
+    priority: 0.9
+  });
+
+  // SEO Cost Calculator page
+  entries.push({
+    url: `${baseUrl}/seo-cost-calculator`,
+    lastModified: new Date('2025-11-02'),
+    changeFrequency: 'weekly',
+    priority: 0.85
+  });
+
   const tools = getAllToolsMeta();
   const posts = getAllBlogPosts();
   const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
