@@ -321,12 +321,14 @@ export default function BlogGuidePage({ params }) {
         <h2 className="text-xl font-semibold mb-3">Recommended Tools</h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {allTools.filter((t) => t.category === tool.category).slice(0, 6).map((t) => (
-            <div key={t.slug} className="card p-4 hover:shadow-md transition">
+            <div key={t.slug} className="card p-4 relative hover:shadow-md transition">
+              {/* Full-card click target: open the tool */}
+              <a href={`/tools/${t.slug}`} aria-label={`Open tool: ${t.name}`} className="absolute inset-0 z-10" />
               <h3 className="font-medium">{t.name}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{t.category}</p>
               <div className="mt-2 flex items-center gap-4 text-sm">
-                <Link href={`/tools/${t.slug}`} className="text-brand-600 hover:underline">Open tool</Link>
-                <Link href={`/blog/${t.slug}`} className="text-brand-600 hover:underline">Read guide</Link>
+                <Link href={`/tools/${t.slug}`} className="relative z-20 text-brand-600 hover:underline">Open tool</Link>
+                <Link href={`/blog/${t.slug}`} className="relative z-20 text-brand-600 hover:underline">Read guide</Link>
               </div>
             </div>
           ))}
@@ -340,11 +342,13 @@ export default function BlogGuidePage({ params }) {
         <h2 className="text-xl font-semibold mb-3">Related Guides</h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {allPosts.filter((p) => p.category === tool.category).slice(0, 6).map((p) => (
-            <div key={p.slug} className="card p-4 hover:shadow-md transition">
+            <div key={p.slug} className="card p-4 relative hover:shadow-md transition">
+              {/* Full-card click target: read the post */}
+              <a href={`/blog/${p.slug}`} aria-label={`Read post: ${p.title}`} className="absolute inset-0 z-10" />
               <h3 className="font-medium">{p.title}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{p.category}</p>
               <div className="mt-2 flex items-center gap-4 text-sm">
-                <Link href={`/blog/${p.slug}`} className="text-brand-600 hover:underline">Read post</Link>
+                <Link href={`/blog/${p.slug}`} className="relative z-20 text-brand-600 hover:underline">Read post</Link>
               </div>
             </div>
           ))}

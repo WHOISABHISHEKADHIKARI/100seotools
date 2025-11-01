@@ -20,5 +20,30 @@
 }
 
 .card {
-  @apply rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm;
+  @apply rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm;
+}
+
+/* Minimal, modern interactive card behavior */
+.card-interactive {
+  @apply transition-all duration-200 ease-out hover:shadow-md hover:-translate-y-0.5 hover:border-gray-300 dark:hover:border-gray-700 focus-within:ring-2 focus-within:ring-brand-500/50;
+}
+
+/* Card icon container animation */
+.card-icon-container {
+  @apply transition-all duration-200 ease-out;
+}
+
+.card-interactive:hover .card-icon-container {
+  @apply transform scale-110;
+}
+
+/* Typography helpers for card content */
+.card-title {
+  @apply text-base font-medium text-gray-900 dark:text-gray-100;
+}
+.card-desc {
+  @apply text-sm text-gray-600 dark:text-gray-400;
+}
+.card-meta {
+  @apply text-xs px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400;
 }

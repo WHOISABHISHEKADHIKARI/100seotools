@@ -225,12 +225,19 @@ export default function BlogPage() {
         <p className="text-gray-700 dark:text-gray-300">Explore how to use each tool effectively. Read the guide or open the tool directly.</p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {tools.map((t) => (
-            <div key={t.slug} className="card p-4">
+            <div key={t.slug} className="card p-4 relative hover:shadow-md transition">
+              {/* Full-card click target for reading the guide */}
+              <a
+                href={`/blog/${t.slug}`}
+                aria-label={`Read guide: ${t.name}`}
+                className="absolute inset-0 z-10"
+              />
               <h3 className="font-medium">{t.name}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{t.category}</p>
               <div className="mt-2 flex items-center gap-4">
-                <a href={`/blog/${t.slug}`} className="text-brand-600 hover:underline text-sm">Read guide</a>
-                <a href={`/tools/${t.slug}`} className="text-brand-600 hover:underline text-sm">Open tool</a>
+                {/* Keep explicit link visible; overlay handles whitespace clicks */}
+                <a href={`/blog/${t.slug}`} className="relative z-20 text-brand-600 hover:underline text-sm">Read guide</a>
+                <a href={`/tools/${t.slug}`} className="relative z-20 text-brand-600 hover:underline text-sm">Open tool</a>
               </div>
             </div>
           ))}
@@ -242,11 +249,17 @@ export default function BlogPage() {
         <p className="text-gray-700 dark:text-gray-300">Quick, actionable posts covering foundations, keyword research, on-page, technical, links, content, local, AI, SERP features, and tracking.</p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {posts.map((p) => (
-            <div key={p.slug} className="card p-4">
+            <div key={p.slug} className="card p-4 relative hover:shadow-md transition">
+              {/* Full-card click target for reading the post */}
+              <a
+                href={`/blog/${p.slug}`}
+                aria-label={`Read post: ${p.title}`}
+                className="absolute inset-0 z-10"
+              />
               <h3 className="font-medium">{p.title}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{p.category}</p>
               <div className="mt-2 flex items-center gap-4">
-                <a href={`/blog/${p.slug}`} className="text-brand-600 hover:underline text-sm">Read post</a>
+                <a href={`/blog/${p.slug}`} className="relative z-20 text-brand-600 hover:underline text-sm">Read post</a>
               </div>
             </div>
           ))}

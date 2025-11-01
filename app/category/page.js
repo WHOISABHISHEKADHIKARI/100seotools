@@ -59,12 +59,14 @@ export default function CategoryIndexPage() {
       <p className="text-slate-600 dark:text-slate-300 mb-6">Pick a category to explore related SEO tools and guides.</p>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {categories.map((c) => (
-          <li key={c} className="rounded-lg border border-slate-200 dark:border-white/10 p-4">
-            <h2 className="font-semibold text-lg mb-2">
+          <li key={c} className="rounded-lg border border-slate-200 dark:border-white/10 p-4 relative">
+            {/* Full-card click target: open category */}
+            <a href={`/category/${slugify(c)}`} aria-label={`Open category: ${c}`} className="absolute inset-0 z-10" />
+            <h2 className="font-semibold text-lg mb-2 relative z-20">
               <Link href={`/category/${slugify(c)}`} className="hover:text-brand-600">{c}</Link>
             </h2>
-            <p className="text-sm text-slate-600 dark:text-slate-300 mb-3">{counts[c]} tool{counts[c] !== 1 ? 's' : ''}</p>
-            <div className="flex items-center gap-3">
+            <p className="text-sm text-slate-600 dark:text-slate-300 mb-3 relative z-20">{counts[c]} tool{counts[c] !== 1 ? 's' : ''}</p>
+            <div className="flex items-center gap-3 relative z-20">
               <Link href={`/category/${slugify(c)}`} className="text-brand-600 hover:underline">Browse Tools</Link>
             </div>
           </li>

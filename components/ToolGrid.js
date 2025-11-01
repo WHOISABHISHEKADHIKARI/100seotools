@@ -56,26 +56,32 @@ function ToolGrid({ tools }) {
       {tools.map((tool, index) => (
         <article
           key={tool.slug}
-          className="card p-4 flex flex-col gap-3 focus:outline-none focus:ring-2 focus:ring-brand-500"
+          className="card card-interactive p-4 flex flex-col gap-3 focus:outline-none focus:ring-2 focus:ring-brand-500 relative"
           itemScope
           itemType="https://schema.org/SoftwareApplication"
           aria-labelledby={`tool-title-${tool.slug}`}
           aria-describedby={`tool-desc-${tool.slug}`}
         >
+          {/* Full-card click target: open the tool */}
+          <a
+            href={`/tools/${tool.slug}`}
+            aria-label={`Open tool: ${tool.name}`}
+            className="absolute inset-0 z-10"
+          />
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               {(() => {
                 const Icon = categoryIconMap[tool.category] || FiTool;
-                return <Icon aria-hidden className="w-6 h-6 text-brand-500" />;
+                return <Icon aria-hidden className="w-6 h-6 text-brand-500 relative z-20" />;
               })()}
-              <h3 id={`tool-title-${tool.slug}`} className="font-medium" itemProp="name">
+              <h3 id={`tool-title-${tool.slug}`} className="font-medium relative z-20" itemProp="name">
                 <Link href={`/tools/${tool.slug}`} className="hover:underline">
                   {tool.name}
                 </Link>
               </h3>
             </div>
             <button
-              className="btn-secondary flex items-center gap-1"
+              className="btn-secondary flex items-center gap-1 relative z-20"
               onClick={(e) => { e.preventDefault(); toggleFavorite(tool.slug); }}
               aria-label={favorites.includes(tool.slug) ? 'Remove from favorites' : 'Add to favorites'}
               aria-pressed={favorites.includes(tool.slug)}
@@ -84,18 +90,18 @@ function ToolGrid({ tools }) {
               <span className="text-xs">{favorites.includes(tool.slug) ? 'Favorited' : 'Not favorited'}</span>
             </button>
           </div>
-          <p id={`tool-desc-${tool.slug}`} className="text-sm text-gray-600 dark:text-gray-400" itemProp="description">
+          <p id={`tool-desc-${tool.slug}`} className="text-sm text-gray-600 dark:text-gray-400 relative z-20" itemProp="description">
             {tool.description}
           </p>
           <div className="flex items-center justify-between">
-            <span className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 flex items-center gap-1">
+            <span className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 flex items-center gap-1 relative z-20">
               {(() => {
                 const Icon = categoryIconMap[tool.category] || FiTool;
                 return <Icon aria-hidden className="w-3.5 h-3.5" />;
               })()}
               <span itemProp="applicationCategory">{tool.category}</span>
             </span>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 relative z-20">
               <Link href={`/tools/${tool.slug}`} className="inline-flex items-center gap-1 text-brand-600 hover:underline" itemProp="url" aria-label={`Open ${tool.name}`}>
                 Open <FiChevronRight aria-hidden className="w-4 h-4" />
               </Link>
