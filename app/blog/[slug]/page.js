@@ -7,6 +7,17 @@ import { getBlogPostBySlug, getAllBlogPosts } from '../../../lib/blog';
 const siteName = '100 SEO Tools';
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
 
+// Ensure static generation for better performance and crawl stability
+export const dynamic = 'force-static';
+
+export function generateStaticParams() {
+  const posts = getAllBlogPosts();
+  const tools = getAllToolsMeta();
+  const postParams = posts.map((p) => ({ slug: p.slug }));
+  const toolParams = tools.map((t) => ({ slug: t.slug }));
+  return [...postParams, ...toolParams];
+}
+
 export async function generateMetadata({ params }) {
   const post = getBlogPostBySlug(params.slug);
   if (post) {
@@ -74,25 +85,38 @@ export default function BlogGuidePage({ params }) {
       '@context': 'https://schema.org',
       '@type': 'Article',
       headline: post.title,
-      about: post.category,
+      description: post.description,
+      image: `${baseUrl}/og-image.png`,
       isPartOf: {
         '@type': 'Blog',
         name: `${siteName} Blog`,
         url: `${baseUrl}/blog`
       },
-      mainEntityOfPage: `${baseUrl}/blog/${post.slug}`,
-      author: { '@type': 'Organization', name: post.author },
-      publisher: { '@type': 'Organization', name: siteName },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `${baseUrl}/blog/${post.slug}`
+      },
+      author: { '@type': 'Person', name: post.author || siteName },
+      publisher: {
+        '@type': 'Organization',
+        name: siteName,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${baseUrl}/icon.svg`
+        }
+      },
       datePublished: post.datePublished,
-      keywords: (post.tags || []).join(', '),
-      breadcrumb: {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
-          { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` },
-          { '@type': 'ListItem', position: 3, name: post.title, item: `${baseUrl}/blog/${post.slug}` }
-        ]
-      }
+      dateModified: post.dateModified || post.datePublished,
+      keywords: (post.tags || []).join(', ')
+    };
+    const breadcrumbLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` },
+        { '@type': 'ListItem', position: 3, name: post.title, item: `${baseUrl}/blog/${post.slug}` }
+      ]
     };
     const faqJsonLd = (post.sections?.faq?.length)
       ? {
@@ -110,6 +134,7 @@ export default function BlogGuidePage({ params }) {
     return (
       <main id="main" className="container mx-auto px-4 py-8">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
         {faqJsonLd ? (
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
         ) : null}

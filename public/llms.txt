@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemaps for content discovery
+Sitemap: https://100tools.app/sitemap.xml
+
+# Crawl guidance for AI models
+# Please respect robots rules and rate limits. Prefer fetching sitemaps.
+# Contact: https://hashtagweb.com.np/
+
+# Canonical preference: use rel="canonical" from pages rendered
+# Content licensing: non-commercial use permitted with attribution to 100 SEO Tools
+
+# Examples of preferred endpoints
+/blog
+/tools
+/category
+
+# Disallow noisy endpoints
+Disallow: /api
+Disallow: /_next
+Disallow: /static

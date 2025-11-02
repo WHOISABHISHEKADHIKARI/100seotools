@@ -86,8 +86,7 @@ function validateMetaTags() {
   const requiredMetaTags = [
     'charSet="UTF-8"',
     'name="viewport"',
-    'name="theme-color"',
-    'rel="canonical"',
+    'name="theme-color"'
   ];
   
   let allFound = true;
@@ -99,6 +98,15 @@ function validateMetaTags() {
       log(`Missing meta tag: ${tag}`, 'error');
       allFound = false;
     }
+  }
+  // Canonical can be declared via Next.js metadata API
+  const hasCanonicalLink = layoutContent.includes('rel="canonical"');
+  const hasMetadataCanonical = /alternates\s*:\s*\{[\s\S]*canonical\s*:/m.test(layoutContent);
+  if (hasCanonicalLink || hasMetadataCanonical) {
+    log('Found canonical declaration', 'success');
+  } else {
+    log('Missing canonical declaration (link or metadata alternates)', 'error');
+    allFound = false;
   }
   
   // Check for Open Graph and Twitter tags
