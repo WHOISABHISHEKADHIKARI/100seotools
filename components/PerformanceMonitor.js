@@ -1,0 +1,298 @@
+"use client";
+import { useEffect, useRef } from 'react';
+import { useUserPreferences } from '../contexts/UserPreferencesContext';
+
+export default function PerformanceMonitor() {
+  const { actions } = useUserPreferences();
+  const metricsRef = useRef({});
+  const observerRef = useRef(null);
+
+  useEffect(() => {
+    // Track Core Web Vitals
+    const trackWebVitals = () => {
+      // Use web-vitals mock library
+      import('../lib/web-vitals-mock').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+        getCLS((metric) => {
+          metricsRef.current.cls = Math.round(metric.value * 1000) / 1000;
+          actions.updatePreferences({
+            performanceMetrics: {
+              ...metricsRef.current,
+              lastUpdated: Date.now()
+            }
+          });
+        });
+
+        getFID((metric) => {
+          metricsRef.current.fid = Math.round(metric.value);
+          actions.updatePreferences({
+            performanceMetrics: {
+              ...metricsRef.current,
+              lastUpdated: Date.now()
+            }
+          });
+        });
+
+        getFCP((metric) => {
+          metricsRef.current.fcp = Math.round(metric.value);
+          actions.updatePreferences({
+            performanceMetrics: {
+              ...metricsRef.current,
+              lastUpdated: Date.now()
+            }
+          });
+        });
+
+        getLCP((metric) => {
+          metricsRef.current.lcp = Math.round(metric.value);
+          actions.updatePreferences({
+            performanceMetrics: {
+              ...metricsRef.current,
+              lastUpdated: Date.now()
+            }
+          });
+        });
+
+        getTTFB((metric) => {
+          metricsRef.current.ttfb = Math.round(metric.value);
+          actions.updatePreferences({
+            performanceMetrics: {
+              ...metricsRef.current,
+              lastUpdated: Date.now()
+            }
+          });
+        });
+      }).catch(() => {
+        // Fallback to manual implementation
+        if ('PerformanceObserver' in window) {
+        try {
+          const lcpObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            const lastEntry = entries[entries.length - 1];
+            metricsRef.current.lcp = Math.round(lastEntry.startTime);
+            
+            // Track LCP in user preferences for analytics
+            actions.updatePreferences({
+              performanceMetrics: {
+                ...metricsRef.current,
+                lastUpdated: Date.now()
+              }
+            });
+          });
+          lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+          observerRef.current = lcpObserver;
+        } catch (e) {
+          console.warn('LCP observer not supported:', e);
+        }
+
+        // First Input Delay (FID)
+        try {
+          const fidObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            entries.forEach((entry) => {
+              metricsRef.current.fid = Math.round(entry.processingStart - entry.startTime);
+              
+              actions.updatePreferences({
+                performanceMetrics: {
+                  ...metricsRef.current,
+                  lastUpdated: Date.now()
+                }
+              });
+            });
+          });
+          fidObserver.observe({ entryTypes: ['first-input'] });
+        } catch (e) {
+          console.warn('FID observer not supported:', e);
+        }
+
+        // Cumulative Layout Shift (CLS)
+        try {
+          let clsValue = 0;
+          let clsEntries = [];
+          let sessionValue = 0;
+          let sessionEntries = [];
+
+          const clsObserver = new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+              if (!entry.hadRecentInput) {
+                const firstSessionEntry = sessionEntries[0];
+                const lastSessionEntry = sessionEntries[sessionEntries.length - 1];
+
+                if (sessionValue &&
+                    entry.startTime - lastSessionEntry.startTime < 1000 &&
+                    entry.startTime - firstSessionEntry.startTime < 5000) {
+                  sessionValue += entry.value;
+                  sessionEntries.push(entry);
+                } else {
+                  sessionValue = entry.value;
+                  sessionEntries = [entry];
+                }
+
+                if (sessionValue > clsValue) {
+                  clsValue = sessionValue;
+                  clsEntries = [...sessionEntries];
+                  metricsRef.current.cls = Math.round(clsValue * 1000) / 1000;
+                  
+                  actions.updatePreferences({
+                    performanceMetrics: {
+                      ...metricsRef.current,
+                      lastUpdated: Date.now()
+                    }
+                  });
+                }
+              }
+            }
+          });
+          clsObserver.observe({ entryTypes: ['layout-shift'] });
+        } catch (e) {
+          console.warn('CLS observer not supported:', e);
+        }
+
+          // Time to First Byte (TTFB)
+          try {
+            const navigationEntries = performance.getEntriesByType('navigation');
+            if (navigationEntries.length > 0) {
+              const navEntry = navigationEntries[0];
+              metricsRef.current.ttfb = Math.round(navEntry.responseStart - navEntry.requestStart);
+            }
+          } catch (e) {
+            console.warn('TTFB measurement not supported:', e);
+          }
+
+          // First Contentful Paint (FCP)
+          try {
+            const fcpObserver = new PerformanceObserver((list) => {
+              const entries = list.getEntries();
+              entries.forEach((entry) => {
+                if (entry.name === 'first-contentful-paint') {
+                  metricsRef.current.fcp = Math.round(entry.startTime);
+                  
+                  actions.updatePreferences({
+                    performanceMetrics: {
+                      ...metricsRef.current,
+                      lastUpdated: Date.now()
+                    }
+                  });
+                }
+              });
+            });
+            fcpObserver.observe({ entryTypes: ['paint'] });
+          } catch (e) {
+            console.warn('FCP observer not supported:', e);
+          }
+        }
+      });
+
+      // Track page load time
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+          metricsRef.current.pageLoadTime = loadTime;
+          
+          actions.updatePreferences({
+            performanceMetrics: {
+              ...metricsRef.current,
+              lastUpdated: Date.now()
+            }
+          });
+        }, 0);
+      });
+
+      // Track user engagement
+      let startTime = Date.now();
+      let isActive = true;
+
+      const trackEngagement = () => {
+        if (isActive) {
+          const sessionTime = Date.now() - startTime;
+          metricsRef.current.sessionTime = sessionTime;
+          
+          actions.updatePreferences({
+            performanceMetrics: {
+              ...metricsRef.current,
+              lastUpdated: Date.now()
+            }
+          });
+        }
+      };
+
+      // Track visibility changes
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          isActive = false;
+          trackEngagement();
+        } else {
+          isActive = true;
+          startTime = Date.now();
+        }
+      });
+
+      // Track engagement every 30 seconds
+      const engagementInterval = setInterval(trackEngagement, 30000);
+
+      // Track before page unload
+      window.addEventListener('beforeunload', trackEngagement);
+
+      return () => {
+        clearInterval(engagementInterval);
+        window.removeEventListener('beforeunload', trackEngagement);
+        document.removeEventListener('visibilitychange', () => {});
+        if (observerRef.current) {
+          observerRef.current.disconnect();
+        }
+      };
+    };
+
+    // Start tracking after a short delay to ensure page is loaded
+    const timeoutId = setTimeout(trackWebVitals, 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [actions]);
+
+  // Track scroll depth
+  useEffect(() => {
+    let maxScrollDepth = 0;
+
+    const trackScrollDepth = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+      
+      if (scrollPercent > maxScrollDepth) {
+        maxScrollDepth = scrollPercent;
+        metricsRef.current.maxScrollDepth = maxScrollDepth;
+        
+        actions.updatePreferences({
+          performanceMetrics: {
+            ...metricsRef.current,
+            lastUpdated: Date.now()
+          }
+        });
+      }
+    };
+
+    const throttledScrollTracker = throttle(trackScrollDepth, 1000);
+    window.addEventListener('scroll', throttledScrollTracker, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', throttledScrollTracker);
+    };
+  }, [actions]);
+
+  return null; // This component doesn't render anything
+}
+
+// Throttle function to limit how often a function can be called
+function throttle(func, limit) {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
