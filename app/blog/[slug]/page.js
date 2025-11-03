@@ -93,7 +93,7 @@ export default function BlogGuidePage({ params }) {
         { '@type': 'ListItem', position: 3, name: post.title, item: `${baseUrl}/blog/${post.slug}` }
       ]
     };
-    const faqItems = (post.sections?.faq?.length)
+    const faqItems = Array.isArray(post.sections?.faq)
       ? post.sections.faq.map((f) => ({ question: f.question || f.q, answer: f.answer || f.a }))
       : [];
     const faqJsonLd = faqItems.length ? generateFAQSchema(faqItems) : null;
@@ -132,34 +132,34 @@ export default function BlogGuidePage({ params }) {
               <li><a href="#why" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Why</a></li>
               <li><a href="#how" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">How</a></li>
               <li><a href="#to-whom" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">To Whom</a></li>
-              {post.sections?.possibleUses?.length ? (
+              {Array.isArray(post.sections?.possibleUses) && post.sections.possibleUses.length ? (
                 <li><a href="#uses" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Uses</a></li>
               ) : null}
-              {post.sections?.whoBenefits?.length ? (
+              {Array.isArray(post.sections?.whoBenefits) && post.sections.whoBenefits.length ? (
                 <li><a href="#who-benefits" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Who Benefits</a></li>
               ) : null}
-              {post.sections?.reasonsToUse?.length ? (
+              {Array.isArray(post.sections?.reasonsToUse) && post.sections.reasonsToUse.length ? (
                 <li><a href="#reasons" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Reasons</a></li>
               ) : null}
-              {post.sections?.seoBenefits?.length ? (
+              {Array.isArray(post.sections?.seoBenefits) && post.sections.seoBenefits.length ? (
                 <li><a href="#seo-benefits" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">SEO Benefits</a></li>
               ) : null}
-              {post.sections?.opportunities?.length ? (
+              {Array.isArray(post.sections?.opportunities) && post.sections.opportunities.length ? (
                 <li><a href="#opportunities" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Opportunities</a></li>
               ) : null}
-              {post.sections?.competition?.length ? (
+              {Array.isArray(post.sections?.competition) && post.sections.competition.length ? (
                 <li><a href="#competition" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Competition</a></li>
               ) : null}
-              {post.sections?.costConsiderations?.length ? (
+              {Array.isArray(post.sections?.costConsiderations) && post.sections.costConsiderations.length ? (
                 <li><a href="#cost" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Cost</a></li>
               ) : null}
-              {post.sections?.integrations?.length ? (
+              {Array.isArray(post.sections?.integrations) && post.sections.integrations.length ? (
                 <li><a href="#integrations" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Integrations</a></li>
               ) : null}
-              {post.sections?.relevantKeywords?.length ? (
+              {Array.isArray(post.sections?.relevantKeywords) && post.sections.relevantKeywords.length ? (
                 <li><a href="#keywords" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">Keywords</a></li>
               ) : null}
-              {post.sections?.faq?.length ? (
+              {Array.isArray(post.sections?.faq) && post.sections.faq.length ? (
                 <li><a href="#faq" className="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition">FAQ</a></li>
               ) : null}
             </ul>
@@ -250,7 +250,7 @@ export default function BlogGuidePage({ params }) {
             </section>
           ) : null}
 
-          {post.sections?.seoBenefits?.length ? (
+          {Array.isArray(post.sections?.seoBenefits) && post.sections.seoBenefits.length ? (
             <section id="seo-benefits" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">📈 SEO Benefits</h2>
               <ul className="list-disc pl-5 space-y-1 text-base">
@@ -261,7 +261,7 @@ export default function BlogGuidePage({ params }) {
             </section>
           ) : null}
 
-          {post.sections?.opportunities?.length ? (
+          {Array.isArray(post.sections?.opportunities) && post.sections.opportunities.length ? (
             <section id="opportunities" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">🚀 Opportunities</h2>
               <ul className="list-disc pl-5 space-y-1 text-base">
@@ -272,18 +272,23 @@ export default function BlogGuidePage({ params }) {
             </section>
           ) : null}
 
-          {post.sections?.competition?.length ? (
-            <section id="competition" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
-              <h2 className="text-xl font-semibold mb-2">🆚 Competition</h2>
-              <ul className="list-disc pl-5 space-y-1 text-base">
-                {post.sections.competition.map((c, i) => (
-                  <li key={i}>{c}</li>
-                ))}
-              </ul>
-            </section>
-          ) : null}
+          {(() => {
+            const comp = Array.isArray(post.sections?.competition)
+              ? post.sections.competition
+              : (post.sections?.competition ? [post.sections.competition] : []);
+            return comp.length ? (
+              <section id="competition" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
+                <h2 className="text-xl font-semibold mb-2">🆚 Competition</h2>
+                <ul className="list-disc pl-5 space-y-1 text-base">
+                  {comp.map((c, i) => (
+                    <li key={i}>{c}</li>
+                  ))}
+                </ul>
+              </section>
+            ) : null;
+          })()}
 
-          {post.sections?.costConsiderations?.length ? (
+          {Array.isArray(post.sections?.costConsiderations) && post.sections.costConsiderations.length ? (
             <section id="cost" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">💰 Cost Considerations</h2>
               <ul className="list-disc pl-5 space-y-1 text-base">
@@ -294,18 +299,20 @@ export default function BlogGuidePage({ params }) {
             </section>
           ) : null}
 
-          {post.sections?.integrations?.length ? (
+          {Array.isArray(post.sections?.integrations) && post.sections.integrations.length ? (
             <section id="integrations" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">🔗 Related Tools & Integrations</h2>
               <div className="flex flex-wrap gap-3">
                 {post.sections.integrations.map((tool, i) => (
-                  <Link key={i} href={`/tools/${tool.slug}`} className="text-brand-600">{tool.name}</Link>
+                  typeof tool === 'string'
+                    ? <span key={i} className="text-slate-700 dark:text-slate-200">{tool}</span>
+                    : <Link key={i} href={`/tools/${tool.slug}`} className="text-brand-600">{tool.name}</Link>
                 ))}
               </div>
             </section>
           ) : null}
 
-          {post.sections?.relevantKeywords?.length ? (
+          {Array.isArray(post.sections?.relevantKeywords) && post.sections.relevantKeywords.length ? (
             <section id="keywords" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">🏷️ Relevant Keywords</h2>
               <div className="flex flex-wrap gap-2">
@@ -316,7 +323,7 @@ export default function BlogGuidePage({ params }) {
             </section>
           ) : null}
 
-          {post.sections?.howDetailed?.length ? (
+          {Array.isArray(post.sections?.howDetailed) && post.sections.howDetailed.length ? (
             <section id="how-detailed" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">🧭 How (Detailed)</h2>
               <ol className="list-decimal pl-5 space-y-1 text-base">
@@ -327,7 +334,7 @@ export default function BlogGuidePage({ params }) {
             </section>
           ) : null}
 
-          {post.sections?.faq?.length ? (
+          {Array.isArray(post.sections?.faq) && post.sections.faq.length ? (
             <section id="faq" className="not-prose mt-6">
               <h3 className="text-lg font-semibold mb-3">❓ FAQ</h3>
               <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
