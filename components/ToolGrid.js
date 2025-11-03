@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState, memo, useRef, useCallback, useMemo } from 'react';
 import Link from 'next/link';
+import { useUserPreferences } from '../contexts/UserPreferencesContext';
 import {
   FiSearch,
   FiTag,
@@ -28,8 +29,12 @@ const categoryIconMap = {
 };
 
 // Tool card component for better performance
-const ToolCard = memo(({ tool, isFavorite, onToggleFavorite }) => {
+const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
   const Icon = categoryIconMap[tool.category] || FiTool;
+  
+  const handleToolClick = () => {
+    onToolClick(tool);
+  };
   
   return (
     <article
@@ -42,9 +47,12 @@ const ToolCard = memo(({ tool, isFavorite, onToggleFavorite }) => {
       {/* Full-card click target: open the tool */}
       <a
         href={`/tools/${tool.slug}`}
+        onClick={handleToolClick}
         aria-label={`Open tool: ${tool.name}`}
         className="absolute inset-0 z-10"
-      />
+      >
+        <span className="sr-only">Open tool: {tool.name}</span>
+      </a>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="card-icon-container">
@@ -92,7 +100,7 @@ const ToolCard = memo(({ tool, isFavorite, onToggleFavorite }) => {
 ToolCard.displayName = 'ToolCard';
 
 function ToolGrid({ tools }) {
-  const [favorites, setFavorites] = useState([]);
+  const { favorites, actions } = useUserPreferences();
   const [mounted, setMounted] = useState(false);
   const [visibleTools, setVisibleTools] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -125,12 +133,6 @@ function ToolGrid({ tools }) {
 
   useEffect(() => {
     setMounted(true);
-    try {
-      const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
-      setFavorites(favs);
-    } catch (e) {
-      setFavorites([]);
-    }
   }, []);
 
   useEffect(() => {
@@ -210,13 +212,12 @@ function ToolGrid({ tools }) {
 
   const toggleFavorite = useCallback((slug) => {
     if (!mounted) return;
-    
-    setFavorites((prev) => {
-      const next = prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug];
-      localStorage.setItem('favorites', JSON.stringify(next));
-      return next;
-    });
-  }, [mounted]);
+    actions.toggleFavorite(slug);
+  }, [mounted, actions]);
+
+  const handleToolClick = useCallback((tool) => {
+    actions.addToHistory(tool);
+  }, [actions]);
 
   return (
     <>
@@ -226,7 +227,8 @@ function ToolGrid({ tools }) {
             key={tool.slug ?? `tool-${idx}`} 
             tool={tool} 
             isFavorite={tool?.slug ? favorites.includes(tool.slug) : false} 
-            onToggleFavorite={toggleFavorite} 
+            onToggleFavorite={toggleFavorite}
+            onToolClick={handleToolClick}
           />
         ))}
       </div>

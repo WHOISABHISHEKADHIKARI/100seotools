@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import ShareActions from '../../../components/ShareActions';
+import StructuredData from '../../../components/StructuredData';
+import { generateArticleSchema, generateFAQSchema } from '../../../lib/schema';
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { getToolGuide } from '../../../lib/guides';
 import { getBlogPostBySlug, getAllBlogPosts } from '../../../lib/blog';
@@ -81,34 +83,7 @@ export default function BlogGuidePage({ params }) {
   const toCategorySlug = (cat = '') => cat.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
   if (post) {
-    const jsonLd = {
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: post.title,
-      description: post.description,
-      image: `${baseUrl}/og-image.png`,
-      isPartOf: {
-        '@type': 'Blog',
-        name: `${siteName} Blog`,
-        url: `${baseUrl}/blog`
-      },
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': `${baseUrl}/blog/${post.slug}`
-      },
-      author: { '@type': 'Person', name: post.author || siteName },
-      publisher: {
-        '@type': 'Organization',
-        name: siteName,
-        logo: {
-          '@type': 'ImageObject',
-          url: `${baseUrl}/icon.svg`
-        }
-      },
-      datePublished: post.datePublished,
-      dateModified: post.dateModified || post.datePublished,
-      keywords: (post.tags || []).join(', ')
-    };
+    const jsonLd = generateArticleSchema(post, baseUrl);
     const breadcrumbLd = {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
@@ -118,26 +93,17 @@ export default function BlogGuidePage({ params }) {
         { '@type': 'ListItem', position: 3, name: post.title, item: `${baseUrl}/blog/${post.slug}` }
       ]
     };
-    const faqJsonLd = (post.sections?.faq?.length)
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: post.sections.faq.map((f) => ({
-            '@type': 'Question',
-            name: f.q,
-            acceptedAnswer: { '@type': 'Answer', text: f.a }
-          }))
-        }
-      : null;
+    const faqItems = (post.sections?.faq?.length)
+      ? post.sections.faq.map((f) => ({ question: f.question || f.q, answer: f.answer || f.a }))
+      : [];
+    const faqJsonLd = faqItems.length ? generateFAQSchema(faqItems) : null;
     const shareUrl = `${baseUrl}/blog/${post.slug}`;
 
     return (
       <main id="main" className="container mx-auto px-4 py-8">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-        {faqJsonLd ? (
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-        ) : null}
+        <StructuredData data={jsonLd} />
+        <StructuredData data={breadcrumbLd} />
+        {faqJsonLd ? <StructuredData data={faqJsonLd} /> : null}
 
         <h1 className="text-2xl sm:text-3xl font-bold mb-2">{post.title}</h1>
         <div className="text-sm text-slate-600 dark:text-slate-300 mb-4 flex flex-wrap items-center gap-3">
@@ -515,7 +481,9 @@ export default function BlogGuidePage({ params }) {
           {allTools.filter((t) => t.category === tool.category).slice(0, 6).map((t) => (
             <div key={t.slug} className="card p-4 relative hover:shadow-md transition">
               {/* Full-card click target: open the tool */}
-              <a href={`/tools/${t.slug}`} aria-label={`Open tool: ${t.name}`} className="absolute inset-0 z-10" />
+              <a href={`/tools/${t.slug}`} aria-label={`Open tool: ${t.name}`} className="absolute inset-0 z-10">
+                <span className="sr-only">Open tool: {t.name}</span>
+              </a>
               <h3 className="font-medium">{t.name}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{t.category}</p>
               <div className="mt-2 flex items-center gap-4 text-sm">
@@ -536,7 +504,9 @@ export default function BlogGuidePage({ params }) {
           {allPosts.filter((p) => p.category === tool.category).slice(0, 6).map((p) => (
             <div key={p.slug} className="card p-4 relative hover:shadow-md transition">
               {/* Full-card click target: read the post */}
-              <a href={`/blog/${p.slug}`} aria-label={`Read post: ${p.title}`} className="absolute inset-0 z-10" />
+              <a href={`/blog/${p.slug}`} aria-label={`Read post: ${p.title}`} className="absolute inset-0 z-10">
+                <span className="sr-only">Read post: {p.title}</span>
+              </a>
               <h3 className="font-medium">{p.title}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{p.category}</p>
               <div className="mt-2 flex items-center gap-4 text-sm">

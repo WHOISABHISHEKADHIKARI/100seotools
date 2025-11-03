@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
+import { useUserPreferences } from '../contexts/UserPreferencesContext';
 import {
   FiSearch,
   FiX,
@@ -47,11 +48,11 @@ function useDebounce(value, delay = 300) {
 }
 
 export default function SearchFilter({ tools, onChange }) {
+  const { favorites, preferences, actions } = useUserPreferences();
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('All');
   const [sortBy, setSortBy] = useState('Name A-Z');
   const [favoritesOnly, setFavoritesOnly] = useState(false);
-  const [favorites, setFavorites] = useState([]);
   const [mounted, setMounted] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -63,28 +64,34 @@ export default function SearchFilter({ tools, onChange }) {
 
   useEffect(() => {
     setMounted(true);
-    // Persist filters if needed
-    const favOnly = localStorage.getItem('favoritesOnly');
-    if (favOnly) setFavoritesOnly(favOnly === 'true');
-  }, []);
+    // Initialize from user preferences only once on mount
+    if (preferences.showFavoritesOnly !== undefined) {
+      setFavoritesOnly(preferences.showFavoritesOnly);
+    }
+    if (preferences.defaultCategory) {
+      setCategory(preferences.defaultCategory);
+    }
+    if (preferences.defaultSortBy) {
+      setSortBy(preferences.defaultSortBy);
+    }
+  }, []); // Only run once on mount
 
   useEffect(() => {
     if (mounted) {
-      localStorage.setItem('favoritesOnly', String(favoritesOnly));
+      actions.updatePreferences({ 
+        showFavoritesOnly: favoritesOnly,
+        defaultCategory: category,
+        defaultSortBy: sortBy
+      });
     }
-  }, [favoritesOnly, mounted]);
+  }, [favoritesOnly, category, sortBy, mounted]);
 
+  // Track search queries when they change
   useEffect(() => {
-    if (!mounted) return;
-    
-    // Safely read favorites from localStorage on client
-    try {
-      const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
-      if (Array.isArray(favs)) setFavorites(favs);
-    } catch (_) {
-      setFavorites([]);
+    if (debouncedQuery && debouncedQuery.trim().length > 0) {
+      actions.addRecentSearch(debouncedQuery.trim());
     }
-  }, [mounted]);
+  }, [debouncedQuery]);
 
   // Show searching indicator when query changes but debounced query hasn't caught up
   useEffect(() => {
@@ -138,11 +145,16 @@ export default function SearchFilter({ tools, onChange }) {
     return [...nameMatches, ...categoryMatches];
   }, [query, tools]);
 
-  useEffect(() => {
+  // Memoize the onChange call to prevent infinite loops
+  const handleFilterChange = useCallback(() => {
     if (typeof onChange === 'function') {
       onChange(filteredTools);
     }
   }, [filteredTools, onChange]);
+
+  useEffect(() => {
+    handleFilterChange();
+  }, [handleFilterChange]);
 
   const clearQuery = useCallback(() => {
     setQuery('');

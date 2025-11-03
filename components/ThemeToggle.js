@@ -24,7 +24,7 @@ export default function ThemeToggle() {
   if (!mounted) {
     return (
       <button className="btn-secondary" aria-label="Toggle theme">
-        Dark Mode
+        <span className="opacity-0">Light Mode</span>
       </button>
     );
   }

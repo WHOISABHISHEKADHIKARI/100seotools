@@ -11,7 +11,7 @@ export default function PerformanceMonitor() {
     // Track Core Web Vitals
     const trackWebVitals = () => {
       // Use web-vitals mock library
-      import('../lib/web-vitals-mock').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      import('../lib/web-vitals-mock.mjs').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
         getCLS((metric) => {
           metricsRef.current.cls = Math.round(metric.value * 1000) / 1000;
           actions.updatePreferences({

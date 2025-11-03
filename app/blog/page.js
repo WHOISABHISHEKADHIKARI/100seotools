@@ -1,4 +1,5 @@
 import StructuredData from '../../components/StructuredData';
+import BlogSection from '../../components/BlogSection';
 import { getAllToolsMeta } from '../../tools';
 import { getAllBlogPosts } from '../../lib/blog';
 
@@ -231,7 +232,9 @@ export default function BlogPage() {
                 href={`/blog/${t.slug}`}
                 aria-label={`Read guide: ${t.name}`}
                 className="absolute inset-0 z-10"
-              />
+              >
+                <span className="sr-only">Read guide: {t.name}</span>
+              </a>
               <h3 className="font-medium">{t.name}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{t.category}</p>
               <div className="mt-2 flex items-center gap-4">
@@ -255,7 +258,9 @@ export default function BlogPage() {
                 href={`/blog/${p.slug}`}
                 aria-label={`Read post: ${p.title}`}
                 className="absolute inset-0 z-10"
-              />
+              >
+                <span className="sr-only">Read post: {p.title}</span>
+              </a>
               <h3 className="font-medium">{p.title}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{p.category}</p>
               <div className="mt-2 flex items-center gap-4">
@@ -264,6 +269,11 @@ export default function BlogPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Enhanced Blog Section with Latest Posts */}
+      <section className="mt-12">
+        <BlogSection showHeader={true} />
       </section>
     </article>
   );

@@ -2,6 +2,7 @@
 import ToolRunner from '../../../components/ToolRunner';
 import ToolLayout from '../../../components/ToolLayout';
 import StructuredData from '../../../components/StructuredData';
+import { generateSoftwareApplicationSchema, generateHowToSchema } from '../../../lib/schema';
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { FiLoader } from 'react-icons/fi';
 
@@ -82,43 +83,15 @@ export default function ToolPage({ params }) {
     ]
   };
   
-  const webPageLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebApplication',
-    name: tool.name,
-    description: tool.description,
-    url: `${baseUrl}/tools/${tool.slug}`,
-    applicationCategory: 'SEO Tool',
-    operatingSystem: 'Any',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD'
-    },
-    inLanguage: 'en-US',
-    isAccessibleForFree: true,
-    category: tool.category
-  };
-  
-  const softwareLd = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: tool.name,
-    description: tool.description,
-    applicationCategory: 'WebApplication',
-    operatingSystem: 'Web browser',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD'
-    }
-  };
+  // Use enhanced schema generators
+  const softwareLd = generateSoftwareApplicationSchema(tool, baseUrl);
+  const howToLd = generateHowToSchema(tool, baseUrl);
   
   return (
     <ToolLayout tool={tool} formFirst={true} relatedTools={relatedTools}>
       <StructuredData data={breadcrumbLd} />
-      <StructuredData data={webPageLd} />
       <StructuredData data={softwareLd} />
+      <StructuredData data={howToLd} />
       <ToolRunner tool={tool} />
     </ToolLayout>
   );

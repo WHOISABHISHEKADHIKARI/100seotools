@@ -13,7 +13,7 @@
 
 /* Improved focus styles for accessibility */
 *:focus-visible {
-  outline: 2px solid var(--brand-color);
+  outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
 
@@ -24,7 +24,7 @@ html {
 
 /* Improved button styles with visible feedback */
 .btn {
-  @apply inline-flex items-center gap-2 px-3 py-2 rounded-md bg-brand-500 text-white hover:bg-brand-600 transition-all;
+  @apply inline-flex items-center gap-2 px-3 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-all;
   position: relative;
   overflow: hidden;
   min-width: 44px;
@@ -86,7 +86,7 @@ html {
 }
 
 .input:focus {
-  @apply border-brand-500 dark:border-brand-500 ring-2 ring-brand-500/20 outline-none;
+  @apply border-blue-500 dark:border-blue-500 ring-2 ring-blue-500/20 outline-none;
 }
 
 /* Card styles with improved hover effects */
@@ -96,7 +96,7 @@ html {
 
 /* Minimal, modern interactive card behavior */
 .card-interactive {
-  @apply transition-all duration-200 ease-out hover:shadow-md hover:-translate-y-0.5 hover:border-gray-300 dark:hover:border-gray-700 focus-within:ring-2 focus-within:ring-brand-500/50;
+  @apply transition-all duration-200 ease-out hover:shadow-md hover:-translate-y-0.5 hover:border-gray-300 dark:hover:border-gray-700 focus-within:ring-2 focus-within:ring-blue-500/50;
 }
 
 /* Card icon container animation */

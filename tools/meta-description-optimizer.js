@@ -2,6 +2,6 @@ export default {
   "slug": "meta-description-optimizer",
   "name": "Meta Description Optimizer",
   "category": "On-Page Optimization",
-  "description": "Check length and quality.",
+  "description": "Optimize meta descriptions for better click-through rates and SEO. Check length, quality, and keyword usage to create compelling meta descriptions that improve search rankings.",
   "template": "metaDescriptionOptimizer"
 };

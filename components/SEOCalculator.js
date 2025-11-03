@@ -346,7 +346,9 @@ export default function SEOCalculator() {
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {relatedPosts.map((p) => (
             <div key={p.slug} className="card p-4 relative hover:shadow-md transition">
-              <a href={`/blog/${p.slug}`} aria-label={`Read guide: ${p.title}`} className="absolute inset-0 z-10" />
+              <a href={`/blog/${p.slug}`} aria-label={`Read guide: ${p.title}`} className="absolute inset-0 z-10">
+                <span className="sr-only">Read guide: {p.title}</span>
+              </a>
               <h4 className="font-medium relative z-20">{p.title}</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 relative z-20">{p.description?.slice(0, 120)}...</p>
               <div className="mt-2 relative z-20">

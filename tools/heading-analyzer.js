@@ -1,7 +1,7 @@
 export default {
   "slug": "heading-analyzer",
-  "name": "H1-H6 Heading Analyzer",
+  "name": "Heading Analyzer",
   "category": "On-Page Optimization",
-  "description": "Extract and list headings.",
+  "description": "Analyze and extract heading structure (H1-H6) from content. Optimize heading hierarchy for better SEO, improve content organization, and enhance user experience.",
   "template": "headingAnalyzer"
 };

@@ -1,5 +1,7 @@
-// Service Worker for 100 SEO Tools
-const CACHE_NAME = 'seo-tools-cache-v1';
+// Service Worker for 100 SEO Tools - Enhanced Performance Version
+const CACHE_NAME = 'seo-tools-cache-v2.0.0';
+const STATIC_CACHE_NAME = 'seo-tools-static-v2.0.0';
+const DYNAMIC_CACHE_NAME = 'seo-tools-dynamic-v2.0.0';
 const OFFLINE_URL = '/offline';
 
 // Assets to cache immediately on install
@@ -8,113 +10,187 @@ const PRECACHE_ASSETS = [
   '/offline',
   '/manifest.json',
   '/favicon.ico',
-  '/icon-192x192.png',
-  '/icon-512x512.png',
+  '/icon.svg',
   '/apple-touch-icon.png'
 ];
 
+// Cache size limits
+const MAX_CACHE_SIZE = 50; // Maximum number of items in dynamic cache
+const CACHE_EXPIRY_TIME = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
 // Install event - precache key assets
 self.addEventListener('install', (event) => {
+  console.log('Service Worker: Installing v2.0.0...');
   event.waitUntil(
-    caches.open(CACHE_NAME)
+    caches.open(STATIC_CACHE_NAME)
       .then((cache) => {
-        console.log('Opened cache');
+        console.log('Service Worker: Caching static assets');
         return cache.addAll(PRECACHE_ASSETS);
       })
-      .then(() => self.skipWaiting())
+      .then(() => {
+        console.log('Service Worker: Static assets cached successfully');
+        return self.skipWaiting();
+      })
+      .catch((error) => {
+        console.error('Service Worker: Failed to cache static assets', error);
+      })
   );
 });
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
+  console.log('Service Worker: Activating v2.0.0...');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
+          if (cacheName !== STATIC_CACHE_NAME && cacheName !== DYNAMIC_CACHE_NAME) {
+            console.log('Service Worker: Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
-    }).then(() => self.clients.claim())
+    }).then(() => {
+      console.log('Service Worker: Activated successfully');
+      return self.clients.claim();
+    })
   );
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - intelligent caching strategies
 self.addEventListener('fetch', (event) => {
-  // Skip cross-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) {
+  const { request } = event;
+  const url = new URL(request.url);
+
+  // Skip non-GET requests and cross-origin requests
+  if (request.method !== 'GET' || !request.url.startsWith(self.location.origin)) {
     return;
   }
 
-  // Skip non-GET requests
-  if (event.request.method !== 'GET') {
-    return;
+  // Handle different types of requests with appropriate strategies
+  if (request.destination === 'document' || request.headers.get('accept')?.includes('text/html')) {
+    // HTML pages - Network first with cache fallback
+    event.respondWith(networkFirstStrategy(request));
+  } else if (request.destination === 'image') {
+    // Images - Cache first with network fallback
+    event.respondWith(cacheFirstStrategy(request));
+  } else if (request.url.includes('/_next/static/') || request.url.includes('/static/')) {
+    // Static assets - Cache first (they have hashes for cache busting)
+    event.respondWith(cacheFirstStrategy(request));
+  } else if (request.url.includes('/api/')) {
+    // API requests - Network only (don't cache dynamic data)
+    event.respondWith(fetch(request));
+  } else {
+    // Other requests - Stale while revalidate
+    event.respondWith(staleWhileRevalidateStrategy(request));
   }
+});
 
-  // For HTML requests - network-first strategy with offline fallback
-  if (event.request.headers.get('accept').includes('text/html')) {
-    event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          // Cache a copy of the response
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
-          });
-          return response;
-        })
-        .catch(() => {
-          return caches.match(event.request)
-            .then((cachedResponse) => {
-              // Return cached response or offline page
-              return cachedResponse || caches.match(OFFLINE_URL);
-            });
-        })
-    );
-    return;
-  }
-
-  // For other requests - cache-first strategy
-  event.respondWith(
-    caches.match(event.request)
-      .then((cachedResponse) => {
-        if (cachedResponse) {
-          return cachedResponse;
+// Network first strategy (for HTML pages)
+async function networkFirstStrategy(request) {
+  try {
+    const networkResponse = await fetch(request);
+    if (networkResponse.ok) {
+      const cache = await caches.open(DYNAMIC_CACHE_NAME);
+      // Add timestamp for cache expiry
+      const responseWithTimestamp = new Response(networkResponse.body, {
+        status: networkResponse.status,
+        statusText: networkResponse.statusText,
+        headers: {
+          ...Object.fromEntries(networkResponse.headers.entries()),
+          'sw-cache-timestamp': Date.now().toString()
         }
-
-        // Not in cache - fetch from network
-        return fetch(event.request)
-          .then((response) => {
-            // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // Clone the response
-            const responseToCache = response.clone();
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          });
-      })
-  );
-});
-
-// Handle offline page
-self.addEventListener('fetch', (event) => {
-  if (event.request.mode === 'navigate' || 
-      (event.request.method === 'GET' && 
-       event.request.headers.get('accept').includes('text/html'))) {
-    event.respondWith(
-      fetch(event.request)
-        .catch(() => {
-          return caches.match(OFFLINE_URL);
-        })
-    );
+      });
+      cache.put(request, responseWithTimestamp.clone());
+      await limitCacheSize(DYNAMIC_CACHE_NAME, MAX_CACHE_SIZE);
+      return networkResponse;
+    }
+    throw new Error('Network response not ok');
+  } catch (error) {
+    console.log('Service Worker: Network failed, trying cache for:', request.url);
+    const cachedResponse = await caches.match(request);
+    if (cachedResponse && !isCacheExpired(cachedResponse)) {
+      return cachedResponse;
+    }
+    // Return offline page as fallback
+    return caches.match(OFFLINE_URL) || new Response('Offline', { status: 503 });
   }
-});
+}
+
+// Cache first strategy (for images and static assets)
+async function cacheFirstStrategy(request) {
+  const cachedResponse = await caches.match(request);
+  if (cachedResponse && !isCacheExpired(cachedResponse)) {
+    return cachedResponse;
+  }
+
+  try {
+    const networkResponse = await fetch(request);
+    if (networkResponse.ok) {
+      const cache = await caches.open(DYNAMIC_CACHE_NAME);
+      const responseWithTimestamp = new Response(networkResponse.body, {
+        status: networkResponse.status,
+        statusText: networkResponse.statusText,
+        headers: {
+          ...Object.fromEntries(networkResponse.headers.entries()),
+          'sw-cache-timestamp': Date.now().toString()
+        }
+      });
+      cache.put(request, responseWithTimestamp.clone());
+      await limitCacheSize(DYNAMIC_CACHE_NAME, MAX_CACHE_SIZE);
+      return networkResponse;
+    }
+    throw new Error('Network response not ok');
+  } catch (error) {
+    console.log('Service Worker: Failed to fetch:', request.url);
+    return cachedResponse || new Response('Resource not available offline', {
+      status: 503,
+      statusText: 'Service Unavailable'
+    });
+  }
+}
+
+// Stale while revalidate strategy
+async function staleWhileRevalidateStrategy(request) {
+  const cache = await caches.open(DYNAMIC_CACHE_NAME);
+  const cachedResponse = await cache.match(request);
+
+  const fetchPromise = fetch(request).then((networkResponse) => {
+    if (networkResponse.ok) {
+      const responseWithTimestamp = new Response(networkResponse.body, {
+        status: networkResponse.status,
+        statusText: networkResponse.statusText,
+        headers: {
+          ...Object.fromEntries(networkResponse.headers.entries()),
+          'sw-cache-timestamp': Date.now().toString()
+        }
+      });
+      cache.put(request, responseWithTimestamp.clone());
+      limitCacheSize(DYNAMIC_CACHE_NAME, MAX_CACHE_SIZE);
+    }
+    return networkResponse;
+  }).catch((error) => {
+    console.log('Service Worker: Network failed for:', request.url);
+    return cachedResponse;
+  });
+
+  return cachedResponse && !isCacheExpired(cachedResponse) ? cachedResponse : fetchPromise;
+}
+
+// Helper function to check if cache is expired
+function isCacheExpired(response) {
+  const timestamp = response.headers.get('sw-cache-timestamp');
+  if (!timestamp) return false;
+  return Date.now() - parseInt(timestamp) > CACHE_EXPIRY_TIME;
+}
+
+// Helper function to limit cache size
+async function limitCacheSize(cacheName, maxSize) {
+  const cache = await caches.open(cacheName);
+  const keys = await cache.keys();
+  if (keys.length > maxSize) {
+    // Remove oldest entries
+    const keysToDelete = keys.slice(0, keys.length - maxSize);
+    await Promise.all(keysToDelete.map(key => cache.delete(key)));
+  }
+}

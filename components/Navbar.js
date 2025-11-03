@@ -92,7 +92,6 @@ export default function Navbar() {
   
   return (
     <header className="sticky top-0 z-40 py-3 backdrop-blur bg-white/80 dark:bg-gray-950/80 border-b border-slate-200 dark:border-white/10">
-      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-500 focus:text-white focus:rounded focus:outline-none" aria-label="Skip to main content">Skip to content</a>
       <div className="flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2" aria-label="Go to homepage">
           <FiCompass aria-hidden="true" className="w-7 h-7 text-brand-500" />

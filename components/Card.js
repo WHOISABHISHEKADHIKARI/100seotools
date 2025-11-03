@@ -34,7 +34,9 @@ export default function Card({
           aria-label={title ? `Open: ${title}` : 'Open'} 
           className="absolute inset-0 z-10"
           tabIndex="-1" // Focus will be on the article element
-        />
+        >
+          <span className="sr-only">{title ? `Open: ${title}` : 'Open'}</span>
+        </a>
       )}
 
       {/* Card header with icon and meta */}

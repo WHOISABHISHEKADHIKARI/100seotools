@@ -1,10 +1,29 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import dynamic from 'next/dynamic';
-import ToolGrid from '../components/ToolGrid';
 import SearchFilter from '../components/SearchFilter';
 import StructuredData from '../components/StructuredData';
+import { generateWebsiteSchema } from '../lib/schema';
+import BlogSection from '../components/BlogSection';
 import { getAllToolsMeta } from '../tools';
+
+// Lazy load the ToolGrid component
+const ToolGrid = lazy(() => import('../components/ToolGrid'));
+
+// Loading component for ToolGrid
+function ToolGridSkeleton() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {Array.from({ length: 12 }).map((_, index) => (
+        <div key={index} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 animate-pulse">
+          <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
+          <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
+          <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 const SEOCalculator = dynamic(() => import('../components/SEOCalculator'), {
   ssr: false,
@@ -43,17 +62,7 @@ export default function HomePage() {
     <div className="space-y-8">
       {(() => {
         const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
-        const websiteLd = {
-          '@context': 'https://schema.org',
-          '@type': 'WebSite',
-          name: '100 SEO Tools',
-          url: `${baseUrl}/`,
-          inLanguage: 'en-US',
-          publisher: {
-            '@type': 'Organization',
-            name: 'Hashtag Solutions'
-          }
-        };
+        const websiteLd = generateWebsiteSchema(baseUrl);
         return <StructuredData data={websiteLd} />;
       })()}
       {/* Dynamically loaded SEO Calculator section at the very top */}
@@ -66,7 +75,12 @@ export default function HomePage() {
 
       <SearchFilter tools={tools} onChange={setFilteredTools} />
 
-      <ToolGrid tools={filteredTools} />
+      <Suspense fallback={<ToolGridSkeleton />}>
+        <ToolGrid tools={filteredTools} />
+      </Suspense>
+
+      {/* Blog Section */}
+      <BlogSection />
     </div>
   );
 }

@@ -89,7 +89,9 @@ export default function CategoryPage({ params }) {
           {items.map((t) => (
             <li key={t.slug} className="rounded-lg border border-slate-200 dark:border-white/10 p-4 relative">
               {/* Full-card click target: open the tool */}
-              <a href={`/tools/${t.slug}`} aria-label={`Open tool: ${t.name}`} className="absolute inset-0 z-10" />
+              <a href={`/tools/${t.slug}`} aria-label={`Open tool: ${t.name}`} className="absolute inset-0 z-10">
+                <span className="sr-only">Open tool: {t.name}</span>
+              </a>
               <h2 className="font-semibold text-lg mb-2 relative z-20">
                 <Link href={`/tools/${t.slug}`} className="hover:text-brand-600">{t.name}</Link>
               </h2>

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FiFacebook, FiInstagram, FiLinkedin, FiMail, FiPhone, FiArrowUpRight } from 'react-icons/fi';
+import { FiFacebook, FiInstagram, FiLinkedin, FiMail, FiPhone, FiArrowUpRight, FiGithub } from 'react-icons/fi';
 
 // Categories to surface in footer
 const categories = [
@@ -41,8 +41,9 @@ export default function Footer() {
             <a href="tel:+9779823405140" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/10 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-white dark:focus-visible:ring-offset-gray-900 px-3 py-2 text-sm transition-colors" aria-label="Call Hashtag Solutions">
               <FiPhone aria-hidden className="w-4 h-4" /> +977-9823405140
             </a>
-            <a href="https://hashtagweb.com.np/" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/10 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-white dark:focus-visible:ring-offset-gray-900 px-3 py-2 text-sm transition-colors" rel="noopener noreferrer" target="_blank" aria-label="Visit Hashtag Solutions website">
-              <FiArrowUpRight aria-hidden className="w-4 h-4" /> Website
+            <a href="https://github.com/hashtagsolutions" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/10 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-white dark:focus-visible:ring-offset-gray-900 px-3 py-2 text-sm transition-colors" rel="noopener noreferrer" target="_blank" aria-label="Visit Hashtag Solutions GitHub">
+              <FiGithub className="h-4 w-4" />
+              GitHub
             </a>
           </div>
           </div>
@@ -75,7 +76,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold">Follow</h3>
             <div className="mt-4 flex items-center gap-3">
-              <a href="https://www.facebook.com/hashtag" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/10 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-white dark:focus-visible:ring-offset-gray-900 px-3 py-2 text-sm transition-colors" rel="noopener noreferrer" target="_blank" aria-label="Facebook">
+              <a href="https://www.facebook.com/hashtagwebsolutionsnepal" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/10 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-white dark:focus-visible:ring-offset-gray-900 px-3 py-2 text-sm transition-colors" rel="noopener noreferrer" target="_blank" aria-label="Facebook">
                 <FiFacebook aria-hidden className="w-4 h-4" /> Facebook <FiArrowUpRight aria-hidden className="w-3 h-3" />
               </a>
               <a href="https://www.instagram.com/hashtag" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/10 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-white dark:focus-visible:ring-offset-gray-900 px-3 py-2 text-sm transition-colors" rel="noopener noreferrer" target="_blank" aria-label="Instagram">

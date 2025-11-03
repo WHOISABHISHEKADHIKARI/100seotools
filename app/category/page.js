@@ -61,7 +61,9 @@ export default function CategoryIndexPage() {
         {categories.map((c) => (
           <li key={c} className="rounded-lg border border-slate-200 dark:border-white/10 p-4 relative">
             {/* Full-card click target: open category */}
-            <a href={`/category/${slugify(c)}`} aria-label={`Open category: ${c}`} className="absolute inset-0 z-10" />
+            <a href={`/category/${slugify(c)}`} aria-label={`Open category: ${c}`} className="absolute inset-0 z-10">
+              <span className="sr-only">Open category: {c}</span>
+            </a>
             <h2 className="font-semibold text-lg mb-2 relative z-20">
               <Link href={`/category/${slugify(c)}`} className="hover:text-brand-600">{c}</Link>
             </h2>

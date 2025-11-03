@@ -33,7 +33,7 @@ export default function AboutPage() {
           all accessible instantly without logins.
         </p>
         <p>
-          Built by <a className="text-brand-600 hover:underline" href="https://hashtagweb.com.np/" target="_blank" rel="noopener noreferrer">Hashtag Solutions</a>.
+          Built by <a className="text-brand-600 hover:underline" href="https://github.com/hashtagsolutions" target="_blank" rel="noopener noreferrer">Hashtag Solutions</a>.
         </p>
       </section>
     </main>
