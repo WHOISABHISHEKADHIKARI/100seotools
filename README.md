@@ -2,6 +2,8 @@
 
 Free, no‑login, no‑card SEO tools built with Next.js 14 and Tailwind CSS. This project provides category pages, tool detail pages, blog guides, and an SEO‑friendly layout with JSON‑LD, canonical URLs, and a sitemap.
 
+> **Latest Update**: Fixed build issues and added global navigation layout.
+
 ## Features
 - 100+ tools with client‑side runners
 - Category landing pages with structured data
