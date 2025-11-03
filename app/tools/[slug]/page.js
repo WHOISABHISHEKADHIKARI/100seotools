@@ -5,6 +5,7 @@ import StructuredData from '../../../components/StructuredData';
 import { generateSoftwareApplicationSchema, generateHowToSchema } from '../../../lib/schema';
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { FiLoader } from 'react-icons/fi';
+import { notFound } from 'next/navigation';
 
 // Previously used dynamic import with ssr: false which can trigger
 // webpack factory errors during Fast Refresh in development on Windows.
@@ -56,12 +57,8 @@ export async function generateMetadata({ params }) {
 export default function ToolPage({ params }) {
   const tool = getToolBySlug(params.slug);
   if (!tool) {
-    return (
-      <div className="py-16 text-center">
-        <h2 className="text-xl font-semibold">Tool not found</h2>
-        <p className="text-gray-600 dark:text-gray-400">The requested tool does not exist.</p>
-      </div>
-    );
+    // Use Next.js App Router 404 handling to render app/not-found.js
+    return notFound();
   }
   
   // Get related tools based on category
@@ -95,4 +92,10 @@ export default function ToolPage({ params }) {
       <ToolRunner tool={tool} />
     </ToolLayout>
   );
+}
+
+// Ensure static generation of valid tool slugs to avoid dynamic runtime misses
+export function generateStaticParams() {
+  const tools = getAllToolsMeta();
+  return tools.map((t) => ({ slug: t.slug }));
 }
