@@ -15,7 +15,8 @@ const nextConfig = {
   
   // Experimental features for better performance
   experimental: {
-    optimizeCss: true,
+    // Disable optimizeCss to avoid missing optional 'critters' dependency in production build
+    optimizeCss: false,
     optimizePackageImports: ['react-icons'],
   },
   
