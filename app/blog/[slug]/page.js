@@ -150,6 +150,7 @@ export default function BlogGuidePage({ params, searchParams }) {
               <li key={p}>
                 <Link
                   href={{ pathname: `/blog/${post.slug}`, query: p > 1 ? { page: p } : {} }}
+                  prefetch={false}
                   className={`px-3 py-1.5 rounded-md border ${p === currentPage ? 'bg-slate-200 dark:bg-white/20' : 'bg-slate-100 dark:bg-white/10'} border-slate-200 dark:border-white/10`}
                 >
                   Page {p}
@@ -395,6 +396,7 @@ export default function BlogGuidePage({ params, searchParams }) {
               <li key={p}>
                 <Link
                   href={{ pathname: `/blog/${post.slug}`, query: p > 1 ? { page: p } : {} }}
+                  prefetch={false}
                   className={`px-3 py-1.5 rounded-md border ${p === currentPage ? 'bg-slate-200 dark:bg-white/20' : 'bg-slate-100 dark:bg-white/10'} border-slate-200 dark:border-white/10`}
                 >
                   Page {p}
@@ -411,13 +413,13 @@ export default function BlogGuidePage({ params, searchParams }) {
           return (
             <nav className="mt-10 flex flex-col sm:flex-row items-stretch gap-4" aria-label="Pagination">
               {prev ? (
-                <Link href={`/blog/${prev.slug}`} className="flex-1 rounded border border-slate-200 dark:border-white/10 p-4 hover:shadow-sm transition">
+                <Link href={`/blog/${prev.slug}`} prefetch={false} className="flex-1 rounded border border-slate-200 dark:border-white/10 p-4 hover:shadow-sm transition">
                   <span className="block text-xs text-slate-500">Previous</span>
                   <span className="block font-medium">{prev.title}</span>
                 </Link>
               ) : null}
               {next ? (
-                <Link href={`/blog/${next.slug}`} className="flex-1 rounded border border-slate-200 dark:border-white/10 p-4 hover:shadow-sm transition text-right">
+                <Link href={`/blog/${next.slug}`} prefetch={false} className="flex-1 rounded border border-slate-200 dark:border-white/10 p-4 hover:shadow-sm transition text-right">
                   <span className="block text-xs text-slate-500">Next</span>
                   <span className="block font-medium">{next.title}</span>
                 </Link>
