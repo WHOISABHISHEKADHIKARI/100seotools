@@ -11,12 +11,12 @@ const baseUrl = getBaseUrl();
 export const metadata = {
   title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
   description:
-    'Explore 100+ free SEO tools and guides for keyword research, on-page optimization, technical audits, backlinks, local SEO, AI writing, and performance — all in your browser.',
+    'Explore 100+ free SEO tools and guides for keywords, on-page, technical, backlinks, local SEO, AI, and performance — all in your browser.',
   alternates: { canonical: `${baseUrl}/blog` },
   openGraph: {
     title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
     description:
-      'Explore 100+ free SEO tools and guides for keyword research, on-page optimization, technical audits, backlinks, local SEO, AI writing, and performance — all in your browser.',
+      'Explore 100+ free SEO tools and guides for keywords, on-page, technical, backlinks, local SEO, AI, and performance — all in your browser.',
     url: `${baseUrl}/blog`,
     type: 'article',
   },
@@ -24,7 +24,7 @@ export const metadata = {
     card: 'summary',
     title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
     description:
-      'Explore 100+ free SEO tools and guides for keyword research, on-page optimization, technical audits, backlinks, local SEO, AI writing, and performance — all in your browser.',
+      'Explore 100+ free SEO tools and guides for keywords, on-page, technical, backlinks, local SEO, AI, and performance — all in your browser.',
   },
 };
 
