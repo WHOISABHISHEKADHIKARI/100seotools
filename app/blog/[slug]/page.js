@@ -27,8 +27,7 @@ export async function generateMetadata({ params, searchParams }) {
     const shareUrl = `${baseUrl}/blog/${post.slug}`;
     const title = `${post.title} | ${siteName}`;
     const description = post.description;
-    const pageNum = Number(searchParams?.page) || 1;
-    const url = `${baseUrl}/blog/${post.slug}${pageNum > 1 ? `?page=${pageNum}` : ''}`;
+    const url = `${baseUrl}/blog/${post.slug}`;
     return {
       title,
       description,
@@ -150,9 +149,10 @@ export default function BlogGuidePage({ params, searchParams }) {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
               <li key={p}>
                 <Link
-                  href={{ pathname: `/blog/${post.slug}`, query: p > 1 ? { page: p } : {} }}
+                  href={p > 1 ? `/blog/${post.slug}/p/${p}` : `/blog/${post.slug}`}
                   prefetch={false}
-                  className={`px-3 py-1.5 rounded-md border ${p === currentPage ? 'bg-slate-200 dark:bg-white/20' : 'bg-slate-100 dark:bg-white/10'} border-slate-200 dark:border-white/10`}
+                  aria-current={p === currentPage ? 'page' : undefined}
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium border ${p === currentPage ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border-slate-200 dark:border-white/10'}`}
                 >
                   Page {p}
                 </Link>
@@ -396,9 +396,10 @@ export default function BlogGuidePage({ params, searchParams }) {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
               <li key={p}>
                 <Link
-                  href={{ pathname: `/blog/${post.slug}`, query: p > 1 ? { page: p } : {} }}
+                  href={p > 1 ? `/blog/${post.slug}/p/${p}` : `/blog/${post.slug}`}
                   prefetch={false}
-                  className={`px-3 py-1.5 rounded-md border ${p === currentPage ? 'bg-slate-200 dark:bg-white/20' : 'bg-slate-100 dark:bg-white/10'} border-slate-200 dark:border-white/10`}
+                  aria-current={p === currentPage ? 'page' : undefined}
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium border ${p === currentPage ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border-slate-200 dark:border-white/10'}`}
                 >
                   Page {p}
                 </Link>

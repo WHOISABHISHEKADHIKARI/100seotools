@@ -11,12 +11,12 @@ const baseUrl = getBaseUrl();
 export const metadata = {
   title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
   description:
-    'Explore 100+ free SEO tools for keyword research, on-page optimization, technical checks, backlinks, local SEO, AI writing, and performance tracking — all in your browser.',
+    'Explore 100+ free SEO tools and guides for keyword research, on-page optimization, technical audits, backlinks, local SEO, AI writing, and performance — all in your browser.',
   alternates: { canonical: `${baseUrl}/blog` },
   openGraph: {
     title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
     description:
-      'Explore 100+ free SEO tools for keyword research, on-page optimization, technical checks, backlinks, local SEO, AI writing, and performance tracking — all in your browser.',
+      'Explore 100+ free SEO tools and guides for keyword research, on-page optimization, technical audits, backlinks, local SEO, AI writing, and performance — all in your browser.',
     url: `${baseUrl}/blog`,
     type: 'article',
   },
@@ -24,7 +24,7 @@ export const metadata = {
     card: 'summary',
     title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
     description:
-      'Explore 100+ free SEO tools for keyword research, on-page optimization, technical checks, backlinks, local SEO, AI writing, and performance tracking — all in your browser.',
+      'Explore 100+ free SEO tools and guides for keyword research, on-page optimization, technical audits, backlinks, local SEO, AI writing, and performance — all in your browser.',
   },
 };
 
@@ -74,11 +74,11 @@ export default function BlogPage({ searchParams }) {
           100 SEO Tools: The Ultimate Free, Browser-based Toolkit
         </h1>
         <p className="mt-2 text-gray-600 dark:text-gray-400">
-          Free, fast, and privacy-friendly. Run 100+ SEO helpers directly in your browser — no signups or APIs.
+          Free, fast, and privacy-friendly — the ultimate browser-based SEO toolkit. Run 100+ SEO helpers directly in your browser, no signups or APIs.
         </p>
         <div className="mt-4 flex justify-center gap-3">
           <Link href="/" prefetch={false} className="btn">Browse tools</Link>
-          <Link href={{ pathname: '/blog', query: { page: 1 } }} prefetch={false} className="btn-secondary">Read guides</Link>
+          <Link href="/blog" prefetch={false} className="btn-secondary">Read guides</Link>
         </div>
       </header>
 

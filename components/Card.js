@@ -21,6 +21,15 @@ export default function Card({
       aria-describedby={descId}
       tabIndex={interactive ? '0' : undefined}
       role={interactive ? 'button' : undefined}
+      onClick={interactive ? (e) => {
+        // Ignore clicks originating from interactive child elements
+        const target = e.target;
+        // If default was prevented or click is on a focusable control, do nothing
+        if (e.defaultPrevented) return;
+        const isInteractiveChild = target && typeof target.closest === 'function' && target.closest('a, button, input, textarea, select');
+        if (isInteractiveChild) return;
+        window.location.href = href;
+      } : undefined}
       onKeyDown={interactive ? (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();

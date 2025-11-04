@@ -39,8 +39,8 @@ export default function CardDemoClient() {
             href="/tools/keyword-suggestion-tool"
             iconColor="text-blue-500"
           >
-            <button className="btn-secondary p-1.5 text-xs"> <FiSearch /> </button>
-            <button className="btn text-xs py-1.5 ml-auto"> Open </button>
+            <button className="btn-secondary p-1.5 text-xs" onClick={(e) => e.stopPropagation()}> <FiSearch /> </button>
+            <button className="btn text-xs py-1.5 ml-auto" onClick={(e) => e.stopPropagation()}> Open </button>
           </Card>
 
           {/* Card with no icon */}

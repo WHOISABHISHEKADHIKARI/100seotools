@@ -86,7 +86,7 @@ function ToolCardGrid({ tools }) {
           >
             <button
               className="btn-secondary p-1.5 text-xs"
-              onClick={(e) => { e.preventDefault(); toggleFavorite(tool.slug); }}
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFavorite(tool.slug); }}
               aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
               aria-pressed={isFavorite}
             >
