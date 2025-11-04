@@ -112,6 +112,10 @@ function ToolGrid({ tools }) {
   const batchSize = 12; // Number of tools to load at once
   const cooldownMs = 600; // cooldown between auto-loads to prevent flicker
 
+  // Reserve space for loading skeleton to prevent layout shifts
+  const [skeletonHeight, setSkeletonHeight] = useState(0);
+  const gridRef = useRef(null);
+
   // Ensure unique tools by slug to prevent duplicate React keys and duplicate cards
   const uniqueTools = useMemo(() => {
     const seen = new Set();
@@ -133,6 +137,13 @@ function ToolGrid({ tools }) {
 
   useEffect(() => {
     setMounted(true);
+    // Measure grid item height for consistent skeleton sizing
+    if (gridRef.current && visibleTools.length > 0) {
+      const firstItem = gridRef.current.querySelector('article');
+      if (firstItem) {
+        setSkeletonHeight(firstItem.offsetHeight);
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -221,7 +232,7 @@ function ToolGrid({ tools }) {
 
   return (
     <>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div ref={gridRef} className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {visibleTools.map((tool, idx) => (
           <ToolCard 
             key={tool.slug ?? `tool-${idx}`} 
@@ -237,6 +248,7 @@ function ToolGrid({ tools }) {
         <div 
           ref={loadingRef} 
           className="flex justify-center items-center py-8"
+          style={{ minHeight: skeletonHeight > 0 ? `${skeletonHeight + 32}px` : 'auto' }}
           aria-live="polite"
         >
           {isLoading ? (

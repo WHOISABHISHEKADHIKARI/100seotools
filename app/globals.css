@@ -3,6 +3,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font loading fallbacks to prevent layout shifts */
+.font-loading-fallback {
+  font-display: swap;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* Prevent layout shifts during calculator transitions */
+.calculator-container {
+  contain: layout;
+  will-change: transform;
+}
+
+/* Smooth transitions for content changes */
+.content-transition {
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Reserve space for loading states */
+.loading-reserve {
+  min-height: 400px;
+  position: relative;
+}
+
 /* Custom base styles */
 :root {
   color-scheme: light dark;

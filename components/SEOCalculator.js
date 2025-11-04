@@ -3,11 +3,36 @@ import { useState, useMemo } from 'react';
 import StructuredData from './StructuredData';
 import { getAllBlogPosts } from '../lib/blog';
 
-const DynamicKeywordDensityCalculator = dynamic(() => import('./SEOCalculators/KeywordDensityCalculator'));
-const DynamicSeoRoiCalculator = dynamic(() => import('./SEOCalculators/SeoRoiCalculator'));
-const DynamicDomainAuthorityCalculator = dynamic(() => import('./SEOCalculators/DomainAuthorityCalculator'));
-const DynamicTrafficEstimatorCalculator = dynamic(() => import('./SEOCalculators/TrafficEstimatorCalculator'));
-const DynamicKeywordValueCpcCalculator = dynamic(() => import('./SEOCalculators/KeywordValueCpcCalculator'));
+// Skeleton loader for calculators to prevent layout shifts
+const CalculatorSkeleton = () => (
+  <div className="space-y-4 animate-pulse">
+    <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+    <div className="space-y-3">
+      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+      <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-5/6"></div>
+      <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+    </div>
+    <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
+  </div>
+);
+
+const DynamicKeywordDensityCalculator = dynamic(() => import('./SEOCalculators/KeywordDensityCalculator'), {
+  loading: () => <CalculatorSkeleton />
+});
+const DynamicSeoRoiCalculator = dynamic(() => import('./SEOCalculators/SeoRoiCalculator'), {
+  loading: () => <CalculatorSkeleton />
+});
+const DynamicDomainAuthorityCalculator = dynamic(() => import('./SEOCalculators/DomainAuthorityCalculator'), {
+  loading: () => <CalculatorSkeleton />
+});
+const DynamicTrafficEstimatorCalculator = dynamic(() => import('./SEOCalculators/TrafficEstimatorCalculator'), {
+  loading: () => <CalculatorSkeleton />
+});
+const DynamicKeywordValueCpcCalculator = dynamic(() => import('./SEOCalculators/KeywordValueCpcCalculator'), {
+  loading: () => <CalculatorSkeleton />
+});
 
 const tabs = [
   { key: 'density', label: 'Keyword Density' },
@@ -141,8 +166,8 @@ export default function SEOCalculator() {
         ))}
       </div>
 
-      {/* Panel */}
-      <div className={`card p-4 max-w-3xl mx-auto transition-opacity duration-200 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+      {/* Panel with fixed height to prevent layout shifts */}
+      <div className="card p-4 max-w-3xl mx-auto min-h-[400px] calculator-container content-transition">
         {active === 'density' && (
           <DynamicKeywordDensityCalculator
             inputs={inputs}
