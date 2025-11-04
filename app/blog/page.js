@@ -3,16 +3,18 @@ import BlogSection from '../../components/BlogSection';
 import { getAllToolsMeta } from '../../tools';
 import { getAllBlogPosts } from '../../lib/blog';
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+
 export const metadata = {
   title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
   description:
     'Explore 100+ free SEO tools for keyword research, on-page optimization, technical checks, backlinks, local SEO, AI writing, and performance tracking — all in your browser.',
-  alternates: { canonical: '/blog' },
+  alternates: { canonical: `${baseUrl}/blog` },
   openGraph: {
     title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
     description:
       'Explore 100+ free SEO tools for keyword research, on-page optimization, technical checks, backlinks, local SEO, AI writing, and performance tracking — all in your browser.',
-    url: '/blog',
+    url: `${baseUrl}/blog`,
     type: 'article',
   },
   twitter: {
@@ -24,7 +26,6 @@ export const metadata = {
 };
 
 export default function BlogPage() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const tools = getAllToolsMeta();
   const posts = getAllBlogPosts();
   const breadcrumbLd = {
