@@ -73,6 +73,32 @@ export default function HomePage() {
         <p className="text-gray-600 dark:text-gray-400">Free, fast, client-side — no login or card details required. 100+ modular tools for marketers, bloggers, agencies, and developers.</p>
       </section>
 
+      {/* Expanded introduction for better content depth (250+ words) */}
+      <section className="max-w-3xl mx-auto space-y-4 text-gray-700 dark:text-gray-300">
+        <p>
+          Welcome to 100 SEO Tools — a fast, privacy-friendly collection of browser-based utilities designed to
+          simplify everyday optimization tasks. Whether you’re planning a content strategy, checking technical
+          signals, or refining on-page elements, this toolkit helps you move quickly without installing software or
+          connecting accounts. Everything runs client-side, so inputs stay on your device and performance remains
+          smooth across modern browsers.
+        </p>
+        <p>
+          Explore practical helpers for keyword research, metadata generation, heading analysis, schema validation,
+          internal linking, local SEO, and more. Use AI-assisted tools to draft titles and descriptions, or leverage
+          utilities for word counts, slug formatting, redirects, and robots.txt checks. Each tool focuses on a single
+          job with clear inputs and immediate results, making it easy to test ideas, standardize outputs, and share
+          results with your team. You can browse by category, search by name, and favorite tools you rely on most.
+        </p>
+        <p>
+          The experience is tuned for speed: lightweight UI, minimal network requests, and thoughtful accessibility
+          features. Dark mode is available for low-light workflows. No sign-ups, paywalls, or rate limits — just
+          reliable utilities that help you ship better pages. If you’re new to SEO, start with the Meta Tag Generator,
+          Heading Analyzer, and Structured Data Validator. If you’re optimizing at scale, try the Keyword Clustering
+          Tool, Internal Linking Planner, and Local Schema Builder. As we iterate, we aim to keep the interface simple,
+          the results transparent, and the tools helpful for real-world publishing.
+        </p>
+      </section>
+
       <SearchFilter tools={tools} onChange={setFilteredTools} />
 
       <Suspense fallback={<ToolGridSkeleton />}>
