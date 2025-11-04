@@ -261,13 +261,11 @@ export default function BlogPage({ searchParams }) {
           <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/30 p-1 shadow-sm">
             {/* Prev */}
             <Link
-              href={{
-                pathname: '/blog',
-                query: {
-                  ...(currentPage > 1 ? { page: currentPage } : {}),
-                  ...(toolsPage > 2 ? { toolsPage: toolsPage - 1 } : {}),
-                },
-              }}
+              href={(() => {
+                if (toolsPage <= 1) return '/blog';
+                const tp = toolsPage - 1;
+                return currentPage > 1 ? `/blog/tp/${tp}/p/${currentPage}` : `/blog/tp/${tp}`;
+              })()}
               prefetch={false}
               aria-disabled={toolsPage === 1}
               className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${toolsPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
@@ -280,13 +278,10 @@ export default function BlogPage({ searchParams }) {
               {Array.from({ length: totalToolPages }, (_, i) => i + 1).map((p) => (
                 <li key={p}>
                   <Link
-                    href={{
-                      pathname: '/blog',
-                      query: {
-                        ...(currentPage > 1 ? { page: currentPage } : {}),
-                        ...(p > 1 ? { toolsPage: p } : {}),
-                      },
-                    }}
+                    href={(() => {
+                      if (p <= 1) return currentPage > 1 ? `/blog/p/${currentPage}` : '/blog';
+                      return currentPage > 1 ? `/blog/tp/${p}/p/${currentPage}` : `/blog/tp/${p}`;
+                    })()}
                     prefetch={false}
                     aria-current={p === toolsPage ? 'page' : undefined}
                     className={`px-3 py-1.5 rounded-md text-sm font-medium border ${p === toolsPage ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border-slate-200 dark:border-white/10'}`}
@@ -300,13 +295,11 @@ export default function BlogPage({ searchParams }) {
 
             {/* Next */}
             <Link
-              href={{
-                pathname: '/blog',
-                query: {
-                  ...(currentPage > 1 ? { page: currentPage } : {}),
-                  ...(toolsPage < totalToolPages ? { toolsPage: toolsPage + 1 } : { toolsPage: totalToolPages }),
-                },
-              }}
+              href={(() => {
+                const tp = Math.min(totalToolPages, toolsPage + 1);
+                if (tp === toolsPage) return currentPage > 1 ? `/blog/p/${currentPage}` : '/blog';
+                return currentPage > 1 ? `/blog/tp/${tp}/p/${currentPage}` : `/blog/tp/${tp}`;
+              })()}
               prefetch={false}
               aria-disabled={toolsPage === totalToolPages}
               className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${toolsPage === totalToolPages ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
@@ -339,13 +332,11 @@ export default function BlogPage({ searchParams }) {
           <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/30 p-1 shadow-sm">
             {/* Prev */}
             <Link
-              href={{
-                pathname: '/blog',
-                query: {
-                  ...(toolsPage > 1 ? { toolsPage } : {}),
-                  ...(currentPage > 2 ? { page: currentPage - 1 } : {}),
-                },
-              }}
+              href={(() => {
+                if (currentPage <= 1) return '/blog';
+                const cp = currentPage - 1;
+                return toolsPage > 1 ? `/blog/p/${cp}/tp/${toolsPage}` : (cp > 1 ? `/blog/p/${cp}` : '/blog');
+              })()}
               prefetch={false}
               aria-disabled={currentPage === 1}
               className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${currentPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
@@ -358,13 +349,10 @@ export default function BlogPage({ searchParams }) {
               {Array.from({ length: totalPostPages }, (_, i) => i + 1).map((p) => (
                 <li key={p}>
                   <Link
-                    href={{
-                      pathname: '/blog',
-                      query: {
-                        ...(toolsPage > 1 ? { toolsPage } : {}),
-                        ...(p > 1 ? { page: p } : {}),
-                      },
-                    }}
+                    href={(() => {
+                      if (p <= 1) return toolsPage > 1 ? `/blog/tp/${toolsPage}` : '/blog';
+                      return toolsPage > 1 ? `/blog/p/${p}/tp/${toolsPage}` : `/blog/p/${p}`;
+                    })()}
                     prefetch={false}
                     aria-current={p === currentPage ? 'page' : undefined}
                     className={`px-3 py-1.5 rounded-md text-sm font-medium border ${p === currentPage ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border-slate-200 dark:border-white/10'}`}
@@ -378,13 +366,11 @@ export default function BlogPage({ searchParams }) {
 
             {/* Next */}
             <Link
-              href={{
-                pathname: '/blog',
-                query: {
-                  ...(toolsPage > 1 ? { toolsPage } : {}),
-                  ...(currentPage < totalPostPages ? { page: currentPage + 1 } : { page: totalPostPages }),
-                },
-              }}
+              href={(() => {
+                const cp = Math.min(totalPostPages, currentPage + 1);
+                if (cp === currentPage) return toolsPage > 1 ? `/blog/tp/${toolsPage}` : '/blog';
+                return toolsPage > 1 ? `/blog/p/${cp}/tp/${toolsPage}` : `/blog/p/${cp}`;
+              })()}
               prefetch={false}
               aria-disabled={currentPage === totalPostPages}
               className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${currentPage === totalPostPages ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
