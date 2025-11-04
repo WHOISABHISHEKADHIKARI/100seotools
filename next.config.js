@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  trailingSlash: false,
   // Emit production client-side source maps for better debugging and Lighthouse insights
   productionBrowserSourceMaps: true,
   
@@ -31,16 +30,37 @@ const nextConfig = {
       config.optimization.splitChunks = {
         chunks: 'all',
         cacheGroups: {
+          // Next.js framework modules - highest priority
+          framework: {
+            name: 'framework',
+            test: /[/\\]node_modules[/\\](react|react-dom|next)[/\\]/,
+            chunks: 'all',
+            priority: 40,
+            enforce: true,
+          },
+          // Next.js internal shared modules - prevent duplication
+          nextShared: {
+            name: 'next-shared',
+            test: /[/\\]node_modules[/\\]next[/\\]dist[/\\]shared[/\\]/,
+            chunks: 'all',
+            priority: 30,
+            enforce: true,
+          },
+          // Vendor libraries - exclude Next.js internals (already handled by higher priority groups)
           vendor: {
-            test: /[\\/]node_modules[\\/]/,
+            test: /[/\\]node_modules[/\\](?!next[/\\])/,
             name: 'vendors',
             chunks: 'all',
+            priority: 20,
           },
+          // Common application code - lowest priority to avoid conflicts
           common: {
             name: 'common',
             minChunks: 2,
             chunks: 'all',
-            enforce: true,
+            priority: 10,
+            reuseExistingChunk: true,
+            enforce: false,
           },
         },
       };
@@ -93,7 +113,7 @@ const nextConfig = {
       {
         source: '/:path*.(png|jpg|jpeg|gif|webp|svg|ico|woff|woff2)',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }
+          { key: 'Cache-control', value: 'public, max-age=31536000, immutable' }
         ]
       },
       // Preload critical resources
