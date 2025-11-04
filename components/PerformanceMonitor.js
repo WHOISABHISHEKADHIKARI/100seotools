@@ -131,7 +131,6 @@ export default function PerformanceMonitor() {
                   clsValue = sessionValue;
                   clsEntries = [...sessionEntries];
                   metricsRef.current.cls = Math.round(clsValue * 1000) / 1000;
-                  
                   actions.updatePreferences({
                     performanceMetrics: {
                       ...metricsRef.current,

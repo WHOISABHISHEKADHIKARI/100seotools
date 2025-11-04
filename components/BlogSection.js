@@ -95,7 +95,7 @@ export default function BlogSection({ limit = 3, showHeader = true }) {
 
   if (loading) {
     return (
-      <section className="py-12">
+      <section className="py-12 min-h-[500px]">
         {showHeader && (
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">

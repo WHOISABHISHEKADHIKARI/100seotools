@@ -100,7 +100,7 @@ export default function HomePage() {
       </section>
 
       {/* Expanded introduction for better content depth (250+ words) */}
-      <section className="max-w-3xl mx-auto space-y-4 text-gray-700 dark:text-gray-300 min-h-[300px]">
+      <section className="max-w-3xl mx-auto space-y-4 text-gray-700 dark:text-gray-300 min-h-[400px]">
         <p className="font-loading-fallback">
           Welcome to 100 SEO Tools — a fast, privacy-friendly collection of browser-based utilities designed to
           simplify everyday optimization tasks. Whether you're planning a content strategy, checking technical

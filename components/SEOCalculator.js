@@ -7,14 +7,31 @@ import { getAllBlogPosts } from '../lib/blog';
 const CalculatorSkeleton = () => (
   <div className="space-y-4 animate-pulse">
     <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
-    <div className="space-y-3">
-      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
-      <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
-      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-5/6"></div>
-      <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+    <div className="grid sm:grid-cols-2 gap-4">
+      <div className="space-y-3">
+        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+        <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+      </div>
+      <div className="space-y-3">
+        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+        <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+      </div>
+      <div className="space-y-3">
+        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+        <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+      </div>
+      <div className="space-y-3">
+        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+        <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+      </div>
     </div>
-    <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
-    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
+    <div className="rounded border border-slate-200 dark:border-white/10 p-3 space-y-2">
+      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-2/3"></div>
+      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/3"></div>
+      <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
+    </div>
   </div>
 );
 
@@ -167,7 +184,7 @@ export default function SEOCalculator() {
       </div>
 
       {/* Panel with fixed height to prevent layout shifts */}
-      <div className="card p-4 max-w-3xl mx-auto min-h-[400px] calculator-container content-transition">
+      <div className="card p-4 max-w-3xl mx-auto min-h-[500px] calculator-container content-transition">
         {active === 'density' && (
           <DynamicKeywordDensityCalculator
             inputs={inputs}
