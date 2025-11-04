@@ -22,13 +22,19 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  font-size: 16px; /* Set base font size for readability */
+  line-height: 1.6; /* Improve line spacing */
+}
+
 /* Improved button styles with visible feedback */
 .btn {
-  @apply inline-flex items-center gap-2 px-3 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-all;
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-all;
   position: relative;
   overflow: hidden;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 48px; /* Ensure minimum tap target size */
+  min-height: 48px; /* Ensure minimum tap target size */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
 .btn:active {
@@ -65,11 +71,12 @@ html {
 }
 
 .btn-secondary {
-  @apply inline-flex items-center gap-2 px-3 py-2 rounded-md bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 transition-all;
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 transition-all;
   position: relative;
   overflow: hidden;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 48px; /* Ensure minimum tap target size */
+  min-height: 48px; /* Ensure minimum tap target size */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
 .btn-secondary:active {
@@ -78,7 +85,7 @@ html {
 
 /* Improved input styles */
 .input {
-  @apply w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm transition-all;
+  @apply w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-base transition-all; /* Use text-base for readability */
 }
 
 .input:hover {
@@ -110,13 +117,13 @@ html {
 
 /* Typography helpers for card content */
 .card-title {
-  @apply text-base font-medium text-gray-900 dark:text-gray-100;
+  @apply text-lg font-medium text-gray-900 dark:text-gray-100; /* Increased font size */
 }
 .card-desc {
-  @apply text-sm text-gray-600 dark:text-gray-400;
+  @apply text-base text-gray-600 dark:text-gray-400; /* Increased font size */
 }
 .card-meta {
-  @apply text-xs px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400;
+  @apply text-sm px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400; /* Increased font size */
 }
 
 /* Mobile responsiveness improvements */
@@ -125,10 +132,13 @@ html {
     @apply hover:shadow-sm hover:translate-y-0;
   }
   
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  p, .card-desc { font-size: 1rem; } /* Ensure p and card descriptions are readable */
+
   .btn, .btn-secondary {
-    @apply px-2.5 py-1.5 text-sm;
-    min-width: 44px;
-    min-height: 44px;
+    padding: 0.75rem 1rem; /* Larger padding for easier tapping */
   }
 }
 
@@ -170,4 +180,10 @@ html {
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-gray-400 dark:bg-gray-600;
   }
+}
+
+/* Ensure content does not exceed screen width */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
 }
