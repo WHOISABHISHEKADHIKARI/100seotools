@@ -1,4 +1,4 @@
-import BlogPage, { metadata as blogMetadata } from '../../../page';
+import BlogPage, { metadata as blogMetadata } from '../../../../page';
 
 export const metadata = blogMetadata;
 
