@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import StructuredData from '../../components/StructuredData';
 import BlogSection from '../../components/BlogSection';
 import { getAllToolsMeta } from '../../tools';
@@ -25,9 +26,14 @@ export const metadata = {
   },
 };
 
-export default function BlogPage() {
+export default function BlogPage({ searchParams }) {
   const tools = getAllToolsMeta();
   const posts = getAllBlogPosts();
+  const currentPage = Math.max(1, Number(searchParams?.page) || 1);
+  const postsPerPage = 24;
+  const totalPostPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
+  const pagedPosts = posts.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
+  const limitedTools = tools.slice(0, 24);
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -181,22 +187,22 @@ export default function BlogPage() {
       <section className="space-y-4">
         <h2 className="text-xl md:text-2xl font-semibold">Popular picks</h2>
         <div className="grid sm:grid-cols-2 gap-4">
-          <a href="/tools/meta-tag-generator" className="card p-4 hover:shadow-md transition" aria-label="Open Meta Tag Generator tool">
+          <Link href="/tools/meta-tag-generator" prefetch={false} className="card p-4 hover:shadow-md transition" aria-label="Open Meta Tag Generator tool">
             <p className="font-semibold">Meta Tag Generator</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">Create clean titles, meta descriptions, and tags.</p>
-          </a>
-          <a href="/tools/structured-data-validator" className="card p-4 hover:shadow-md transition" aria-label="Open Structured Data Validator tool">
+          </Link>
+          <Link href="/tools/structured-data-validator" prefetch={false} className="card p-4 hover:shadow-md transition" aria-label="Open Structured Data Validator tool">
             <p className="font-semibold">Structured Data Validator</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">Check JSON-LD and schema.org markup.</p>
-          </a>
-          <a href="/tools/keyword-clustering-tool" className="card p-4 hover:shadow-md transition" aria-label="Open Keyword Clustering Tool">
+          </Link>
+          <Link href="/tools/keyword-clustering-tool" prefetch={false} className="card p-4 hover:shadow-md transition" aria-label="Open Keyword Clustering Tool">
             <p className="font-semibold">Keyword Clustering Tool</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">Group keywords for topical relevance.</p>
-          </a>
-          <a href="/tools/robots-txt-validator" className="card p-4 hover:shadow-md transition" aria-label="Open robots.txt Validator">
+          </Link>
+          <Link href="/tools/robots-txt-validator" prefetch={false} className="card p-4 hover:shadow-md transition" aria-label="Open robots.txt Validator">
             <p className="font-semibold">robots.txt Validator</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">Verify crawl rules and syntax.</p>
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -226,22 +232,13 @@ export default function BlogPage() {
         <h2 className="text-xl md:text-2xl font-semibold">Tool Guides</h2>
         <p className="text-gray-700 dark:text-gray-300">Explore how to use each tool effectively. Read the guide or open the tool directly.</p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {tools.map((t) => (
-            <div key={t.slug} className="card p-4 relative hover:shadow-md transition" role="group" aria-labelledby={`tool-title-${t.slug}`}>
-              {/* Full-card click target for reading the guide */}
-              <a
-                href={`/blog/${t.slug}`}
-                aria-label={`Read guide: ${t.name}`}
-                className="absolute inset-0 z-10"
-              >
-                <span className="sr-only">Read guide: {t.name}</span>
-              </a>
+          {limitedTools.map((t) => (
+            <div key={t.slug} className="card p-4 hover:shadow-md transition" aria-labelledby={`tool-title-${t.slug}`}>
               <p id={`tool-title-${t.slug}`} className="font-medium">{t.name}</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">{t.category}</p>
               <div className="mt-2 flex items-center gap-4">
-                {/* Keep explicit link visible; overlay handles whitespace clicks */}
-                <a href={`/blog/${t.slug}`} className="relative z-20 text-brand-600 hover:underline text-sm">Read guide</a>
-                <a href={`/tools/${t.slug}`} className="relative z-20 text-brand-600 hover:underline text-sm">Open tool</a>
+                <Link href={`/blog/${t.slug}`} prefetch={false} className="text-brand-600 hover:underline text-sm">Guide: {t.name}</Link>
+                <Link href={`/tools/${t.slug}`} prefetch={false} className="text-brand-600 hover:underline text-sm">Open tool: {t.name}</Link>
               </div>
             </div>
           ))}
@@ -252,24 +249,34 @@ export default function BlogPage() {
         <h2 className="text-xl md:text-2xl font-semibold">SEO Mastery (100 Simple Guides)</h2>
         <p className="text-gray-700 dark:text-gray-300">Quick, actionable posts covering foundations, keyword research, on-page, technical, links, content, local, AI, SERP features, and tracking.</p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {posts.map((p) => (
-            <div key={p.slug} className="card p-4 relative hover:shadow-md transition">
-              {/* Full-card click target for reading the post */}
-              <a
-                href={`/blog/${p.slug}`}
-                aria-label={`Read post: ${p.title}`}
-                className="absolute inset-0 z-10"
-              >
-                <span className="sr-only">Read post: {p.title}</span>
-              </a>
-              <h3 className="font-medium">{p.title}</h3>
+          {pagedPosts.map((p) => (
+            <div key={p.slug} className="card p-4 hover:shadow-md transition">
+              <h3 className="font-medium">
+                <Link href={`/blog/${p.slug}`} prefetch={false} className="text-brand-600 hover:underline">
+                  {p.title}
+                </Link>
+              </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{p.category}</p>
-              <div className="mt-2 flex items-center gap-4">
-                <a href={`/blog/${p.slug}`} className="relative z-20 text-brand-600 hover:underline text-sm">Read post</a>
-              </div>
             </div>
           ))}
         </div>
+
+        {/* Pager for posts */}
+        <nav aria-label="Blog pages" className="not-prose mt-6">
+          <ul className="flex flex-wrap gap-2 text-sm">
+            {Array.from({ length: totalPostPages }, (_, i) => i + 1).map((p) => (
+              <li key={p}>
+                <Link
+                  href={{ pathname: '/blog', query: p > 1 ? { page: p } : {} }}
+                  prefetch={false}
+                  className={`px-3 py-1.5 rounded-md border ${p === currentPage ? 'bg-slate-200 dark:bg-white/20' : 'bg-slate-100 dark:bg-white/10'} border-slate-200 dark:border-white/10`}
+                >
+                  Page {p}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </section>
 
       {/* Enhanced Blog Section with Latest Posts */}
