@@ -108,5 +108,33 @@ export default function sitemap() {
     priority: 0.6
   }));
 
-  return [...entries, ...toolEntries, ...blogEntries, ...seoBlogEntries, ...categoryEntries];
+  // Paginated blog listing pages (posts)
+  const postsPerPage = 24;
+  const totalPostPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
+  const blogListingPages = Array.from({ length: totalPostPages - 1 }, (_, i) => i + 2).map((p) => ({
+    url: `${baseUrl}/blog/p/${p}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.6
+  }));
+
+  // Paginated tools subsection pages
+  const toolsPerPage = 12;
+  const totalToolPages = Math.max(1, Math.ceil(tools.length / toolsPerPage));
+  const toolsListingPages = Array.from({ length: totalToolPages - 1 }, (_, i) => i + 2).map((p) => ({
+    url: `${baseUrl}/blog/tp/${p}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.6
+  }));
+
+  return [
+    ...entries,
+    ...toolEntries,
+    ...blogEntries,
+    ...seoBlogEntries,
+    ...categoryEntries,
+    ...blogListingPages,
+    ...toolsListingPages,
+  ];
 }
