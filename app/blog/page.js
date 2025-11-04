@@ -181,20 +181,20 @@ export default function BlogPage() {
       <section className="space-y-4">
         <h2 className="text-xl md:text-2xl font-semibold">Popular picks</h2>
         <div className="grid sm:grid-cols-2 gap-4">
-          <a href="/tools/meta-tag-generator" className="card p-4 hover:shadow-md transition">
-            <h3 className="font-semibold">Meta Tag Generator</h3>
+          <a href="/tools/meta-tag-generator" className="card p-4 hover:shadow-md transition" aria-label="Open Meta Tag Generator tool">
+            <p className="font-semibold">Meta Tag Generator</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">Create clean titles, meta descriptions, and tags.</p>
           </a>
-          <a href="/tools/structured-data-validator" className="card p-4 hover:shadow-md transition">
-            <h3 className="font-semibold">Structured Data Validator</h3>
+          <a href="/tools/structured-data-validator" className="card p-4 hover:shadow-md transition" aria-label="Open Structured Data Validator tool">
+            <p className="font-semibold">Structured Data Validator</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">Check JSON-LD and schema.org markup.</p>
           </a>
-          <a href="/tools/keyword-clustering-tool" className="card p-4 hover:shadow-md transition">
-            <h3 className="font-semibold">Keyword Clustering Tool</h3>
+          <a href="/tools/keyword-clustering-tool" className="card p-4 hover:shadow-md transition" aria-label="Open Keyword Clustering Tool">
+            <p className="font-semibold">Keyword Clustering Tool</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">Group keywords for topical relevance.</p>
           </a>
-          <a href="/tools/robots-txt-validator" className="card p-4 hover:shadow-md transition">
-            <h3 className="font-semibold">robots.txt Validator</h3>
+          <a href="/tools/robots-txt-validator" className="card p-4 hover:shadow-md transition" aria-label="Open robots.txt Validator">
+            <p className="font-semibold">robots.txt Validator</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">Verify crawl rules and syntax.</p>
           </a>
         </div>
@@ -227,7 +227,7 @@ export default function BlogPage() {
         <p className="text-gray-700 dark:text-gray-300">Explore how to use each tool effectively. Read the guide or open the tool directly.</p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {tools.map((t) => (
-            <div key={t.slug} className="card p-4 relative hover:shadow-md transition">
+            <div key={t.slug} className="card p-4 relative hover:shadow-md transition" role="group" aria-labelledby={`tool-title-${t.slug}`}>
               {/* Full-card click target for reading the guide */}
               <a
                 href={`/blog/${t.slug}`}
@@ -236,7 +236,7 @@ export default function BlogPage() {
               >
                 <span className="sr-only">Read guide: {t.name}</span>
               </a>
-              <h3 className="font-medium">{t.name}</h3>
+              <p id={`tool-title-${t.slug}`} className="font-medium">{t.name}</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">{t.category}</p>
               <div className="mt-2 flex items-center gap-4">
                 {/* Keep explicit link visible; overlay handles whitespace clicks */}
