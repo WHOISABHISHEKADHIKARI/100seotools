@@ -3,6 +3,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Tap target improvements to prevent overflow and layout shifts */
+.tap-target {
+  @apply inline-flex items-center justify-center gap-1 px-3 py-2 rounded-md transition-all duration-200;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  border: 1px solid transparent;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.tap-target:hover {
+  @apply bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800;
+  transform: translateY(-1px);
+}
+
+.tap-target:active {
+  transform: translateY(0);
+}
+
+/* Prevent text overflow in tap targets */
+.tap-target span,
+.tap-target {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px; /* Reasonable max width for tool names */
+}
+
+/* Card content containment to prevent layout shifts */
+.card-content {
+  contain: layout style;
+  overflow: hidden;
+}
+
+/* Ensure proper text wrapping in tool cards */
+.tool-card-text {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
 /* Font loading fallbacks to prevent layout shifts */
 .font-loading-fallback {
   font-display: swap;

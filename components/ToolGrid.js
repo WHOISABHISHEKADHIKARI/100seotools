@@ -38,7 +38,7 @@ const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
   
   return (
     <article
-      className="card card-interactive p-4 flex flex-col gap-3 focus:outline-none focus:ring-2 focus:ring-brand-500 relative"
+      className="card card-interactive p-4 flex flex-col gap-3 focus:outline-none focus:ring-2 focus:ring-brand-500 relative overflow-hidden card-content"
       itemScope
       itemType="https://schema.org/SoftwareApplication"
       aria-labelledby={`tool-title-${tool.slug}`}
@@ -49,23 +49,23 @@ const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
         href={`/tools/${tool.slug}`}
         onClick={handleToolClick}
         aria-label={`Open tool: ${tool.name}`}
-        className="absolute inset-0 z-10"
+        className="absolute inset-0 z-10 hover:bg-transparent"
       >
         <span className="sr-only">Open tool: {tool.name}</span>
       </a>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between relative z-20">
         <div className="flex items-center gap-3">
           <div className="card-icon-container">
-            <Icon aria-hidden className="w-6 h-6 text-brand-500 relative z-20" />
+            <Icon aria-hidden className="w-6 h-6 text-brand-500" />
           </div>
-          <h3 id={`tool-title-${tool.slug}`} className="card-title relative z-20" itemProp="name">
+          <h3 id={`tool-title-${tool.slug}`} className="card-title tool-card-text" itemProp="name">
             <Link href={`/tools/${tool.slug}`} prefetch={false} className="hover:underline">
               {tool.name}
             </Link>
           </h3>
         </div>
         <button
-          className="btn-secondary flex items-center gap-1 relative z-20"
+          className="btn-secondary flex items-center gap-1 relative z-30"
           onClick={(e) => { e.preventDefault(); onToggleFavorite(tool.slug); }}
           aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
           aria-pressed={isFavorite}
@@ -74,20 +74,20 @@ const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
           <span className="sr-only">{isFavorite ? 'Favorited' : 'Not favorited'}</span>
         </button>
       </div>
-      <p id={`tool-desc-${tool.slug}`} className="card-desc relative z-20" itemProp="description">
+      <p id={`tool-desc-${tool.slug}`} className="card-desc tool-card-text" itemProp="description">
         {tool.description}
       </p>
-      <div className="flex items-center justify-between">
-        <span className="card-meta flex items-center gap-1 relative z-20">
+      <div className="flex items-center justify-between relative z-20">
+        <span className="card-meta flex items-center gap-1" itemProp="applicationCategory">
           <Icon aria-hidden className="w-3.5 h-3.5" />
-          <span itemProp="applicationCategory">{tool.category}</span>
+          {tool.category}
         </span>
-        <div className="flex items-center gap-3 relative z-20">
-          <Link href={`/tools/${tool.slug}`} prefetch={false} className="tap-target gap-1 text-brand-600 transition-gpu will-change-transform-opacity hover:opacity-85" itemProp="url" aria-label={`Open ${tool.name}`}>
-            Open <FiChevronRight aria-hidden className="w-4 h-4" />
+        <div className="flex items-center gap-3">
+          <Link href={`/tools/${tool.slug}`} prefetch={false} className="tap-target gap-1 text-brand-600" itemProp="url" aria-label={`Open ${tool.name}`}>
+            Open <FiChevronRight aria-hidden className="w-4 h-4 flex-shrink-0" />
           </Link>
-          <Link href={`/blog/${tool.slug}`} prefetch={false} className="tap-target text-sm text-accessibleGray-600 transition-gpu will-change-transform-opacity hover:opacity-85" aria-label={`Read guide for ${tool.name}`}>
-            Read Guide: {tool.name}
+          <Link href={`/blog/${tool.slug}`} prefetch={false} className="tap-target text-sm text-accessibleGray-600" aria-label={`Read guide for ${tool.name}`}>
+            Read Guide
           </Link>
         </div>
       </div>
