@@ -33,7 +33,10 @@ export default function BlogPage({ searchParams }) {
   const postsPerPage = 24;
   const totalPostPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
   const pagedPosts = posts.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
-  const limitedTools = tools.slice(0, 24);
+  const toolsPage = Math.max(1, Number(searchParams?.toolsPage) || 1);
+  const toolsPerPage = 12;
+  const totalToolPages = Math.max(1, Math.ceil(tools.length / toolsPerPage));
+  const pagedTools = tools.slice((toolsPage - 1) * toolsPerPage, toolsPage * toolsPerPage);
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -232,7 +235,7 @@ export default function BlogPage({ searchParams }) {
         <h2 className="text-xl md:text-2xl font-semibold">Tool Guides</h2>
         <p className="text-gray-700 dark:text-gray-300">Explore how to use each tool effectively. Read the guide or open the tool directly.</p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {limitedTools.map((t) => (
+          {pagedTools.map((t) => (
             <div key={t.slug} className="card p-4 hover:shadow-md transition" aria-labelledby={`tool-title-${t.slug}`}>
               <p id={`tool-title-${t.slug}`} className="font-medium">{t.name}</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">{t.category}</p>
@@ -243,6 +246,29 @@ export default function BlogPage({ searchParams }) {
             </div>
           ))}
         </div>
+
+        {/* Pager for tools */}
+        <nav aria-label="Tool pages" className="not-prose mt-6">
+          <ul className="flex flex-wrap gap-2 text-sm">
+            {Array.from({ length: totalToolPages }, (_, i) => i + 1).map((p) => (
+              <li key={p}>
+                <Link
+                  href={{
+                    pathname: '/blog',
+                    query: {
+                      ...(currentPage > 1 ? { page: currentPage } : {}),
+                      ...(p > 1 ? { toolsPage: p } : {}),
+                    },
+                  }}
+                  prefetch={false}
+                  className={`px-3 py-1.5 rounded-md border ${p === toolsPage ? 'bg-slate-200 dark:bg-white/20' : 'bg-slate-100 dark:bg-white/10'} border-slate-200 dark:border-white/10`}
+                >
+                  Tools Page {p}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </section>
 
       <section className="space-y-4">
