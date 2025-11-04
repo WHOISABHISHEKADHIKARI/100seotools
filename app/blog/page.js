@@ -268,6 +268,7 @@ export default function BlogPage({ searchParams }) {
               })()}
               prefetch={false}
               aria-disabled={toolsPage === 1}
+              aria-label={`Tools page ${Math.max(1, toolsPage - 1)}`}
               className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${toolsPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
             >
               ← Prev
@@ -302,6 +303,7 @@ export default function BlogPage({ searchParams }) {
               })()}
               prefetch={false}
               aria-disabled={toolsPage === totalToolPages}
+              aria-label={`Tools page ${Math.min(totalToolPages, toolsPage + 1)}`}
               className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${toolsPage === totalToolPages ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
             >
               Next →
@@ -339,6 +341,7 @@ export default function BlogPage({ searchParams }) {
               })()}
               prefetch={false}
               aria-disabled={currentPage === 1}
+              aria-label={`Blog page ${Math.max(1, currentPage - 1)}`}
               className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${currentPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
             >
               ← Prev
@@ -373,6 +376,7 @@ export default function BlogPage({ searchParams }) {
               })()}
               prefetch={false}
               aria-disabled={currentPage === totalPostPages}
+              aria-label={`Blog page ${Math.min(totalPostPages, currentPage + 1)}`}
               className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${currentPage === totalPostPages ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
             >
               Next →
