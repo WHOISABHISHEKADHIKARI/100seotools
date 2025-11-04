@@ -1,4 +1,5 @@
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+import { getBaseUrl } from '../lib/site';
+const baseUrl = getBaseUrl();
 
 export default function robots() {
   return {

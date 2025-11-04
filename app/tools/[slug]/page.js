@@ -6,6 +6,7 @@ import { generateSoftwareApplicationSchema, generateHowToSchema } from '../../..
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { FiLoader } from 'react-icons/fi';
 import { notFound } from 'next/navigation';
+import { getBaseUrl } from '../../../lib/site';
 
 // Previously used dynamic import with ssr: false which can trigger
 // webpack factory errors during Fast Refresh in development on Windows.
@@ -67,7 +68,7 @@ export default function ToolPage({ params }) {
     .filter(t => t.category === tool.category && t.slug !== tool.slug)
     .slice(0, 5);
   
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+const baseUrl = getBaseUrl();
   
   // Enhanced structured data for better AI crawler understanding
   const breadcrumbLd = {

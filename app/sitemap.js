@@ -1,7 +1,8 @@
 import { getAllToolsMeta } from '../tools';
 import { getAllBlogPosts } from '../lib/blog';
+import { getBaseUrl } from '../lib/site';
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+const baseUrl = getBaseUrl();
 
 export default function sitemap() {
   const now = new Date();

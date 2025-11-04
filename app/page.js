@@ -3,6 +3,7 @@ import { useState, useEffect, Suspense, lazy } from 'react';
 import dynamic from 'next/dynamic';
 import SearchFilter from '../components/SearchFilter';
 import StructuredData from '../components/StructuredData';
+import { getBaseUrl } from '../lib/site';
 import { generateWebsiteSchema } from '../lib/schema';
 import BlogSection from '../components/BlogSection';
 import { getAllToolsMeta } from '../tools';
@@ -61,7 +62,7 @@ export default function HomePage() {
   return (
     <div className="space-y-8">
       {(() => {
-        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+        const baseUrl = getBaseUrl();
         const websiteLd = generateWebsiteSchema(baseUrl);
         return <StructuredData data={websiteLd} />;
       })()}

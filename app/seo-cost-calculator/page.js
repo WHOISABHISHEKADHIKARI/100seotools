@@ -1,7 +1,8 @@
 import Link from 'next/link';
+import { getBaseUrl } from '../../lib/site';
 import ClientSEOCostCalculator from './ClientSEOCostCalculator';
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+const baseUrl = getBaseUrl();
 
 export const metadata = {
   title: 'SEO Cost Calculator – Estimate Monthly and Project Costs',

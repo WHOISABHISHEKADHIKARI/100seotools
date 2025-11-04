@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { getAllToolsMeta } from '../../../tools';
+import { getBaseUrl } from '../../../lib/site';
 
 const siteName = '100 SEO Tools';
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+const baseUrl = getBaseUrl();
 
 function slugify(str = '') {
   return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');

@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import Card from '../../components/Card';
 import StructuredData from '../../components/StructuredData';
 import BlogSection from '../../components/BlogSection';
 import { getAllToolsMeta } from '../../tools';
 import { getAllBlogPosts } from '../../lib/blog';
+import { getBaseUrl } from '../../lib/site';
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+const baseUrl = getBaseUrl();
 
 export const metadata = {
   title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
@@ -63,14 +65,21 @@ export default function BlogPage({ searchParams }) {
       <StructuredData data={breadcrumbLd} />
       <StructuredData data={articleLd} />
 
-      <header className="space-y-3 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold">
+      {/* Premium hero */}
+      <header className="text-center p-6 rounded-xl border border-slate-200 dark:border-white/10 bg-gradient-to-r from-slate-50/60 to-transparent dark:from-white/5">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black text-white text-xs">
+          <span>Premium</span>
+        </div>
+        <h1 className="mt-3 text-3xl md:text-4xl font-extrabold tracking-tight">
           100 SEO Tools: The Ultimate Free, Browser-based Toolkit
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Free, fast, and privacy-friendly. Run 100+ SEO helpers directly in your
-          browser — no signups or APIs.
+        <p className="mt-2 text-gray-600 dark:text-gray-400">
+          Free, fast, and privacy-friendly. Run 100+ SEO helpers directly in your browser — no signups or APIs.
         </p>
+        <div className="mt-4 flex justify-center gap-3">
+          <Link href="/" prefetch={false} className="btn">Browse tools</Link>
+          <Link href={{ pathname: '/blog', query: { page: 1 } }} prefetch={false} className="btn-secondary">Read guides</Link>
+        </div>
       </header>
 
       <section className="space-y-4">
@@ -236,38 +245,76 @@ export default function BlogPage({ searchParams }) {
         <p className="text-gray-700 dark:text-gray-300">Explore how to use each tool effectively. Read the guide or open the tool directly.</p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {pagedTools.map((t) => (
-            <div key={t.slug} className="card p-4 hover:shadow-md transition" aria-labelledby={`tool-title-${t.slug}`}>
-              <p id={`tool-title-${t.slug}`} className="font-medium">{t.name}</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t.category}</p>
-              <div className="mt-2 flex items-center gap-4">
-                <Link href={`/blog/${t.slug}`} prefetch={false} className="text-brand-600 hover:underline text-sm">Guide: {t.name}</Link>
-                <Link href={`/tools/${t.slug}`} prefetch={false} className="text-brand-600 hover:underline text-sm">Open tool: {t.name}</Link>
-              </div>
-            </div>
+            <Card
+              key={t.slug}
+              href={`/blog/${t.slug}`}
+              title={t.name}
+              description={t.description || t.category}
+              meta={t.category}
+              className="hover:shadow-md transition"
+            />
           ))}
         </div>
 
-        {/* Pager for tools */}
+        {/* Pager for tools - premium segmented control */}
         <nav aria-label="Tool pages" className="not-prose mt-6">
-          <ul className="flex flex-wrap gap-2 text-sm">
-            {Array.from({ length: totalToolPages }, (_, i) => i + 1).map((p) => (
-              <li key={p}>
-                <Link
-                  href={{
-                    pathname: '/blog',
-                    query: {
-                      ...(currentPage > 1 ? { page: currentPage } : {}),
-                      ...(p > 1 ? { toolsPage: p } : {}),
-                    },
-                  }}
-                  prefetch={false}
-                  className={`px-3 py-1.5 rounded-md border ${p === toolsPage ? 'bg-slate-200 dark:bg-white/20' : 'bg-slate-100 dark:bg-white/10'} border-slate-200 dark:border-white/10`}
-                >
-                  Tools Page {p}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/30 p-1 shadow-sm">
+            {/* Prev */}
+            <Link
+              href={{
+                pathname: '/blog',
+                query: {
+                  ...(currentPage > 1 ? { page: currentPage } : {}),
+                  ...(toolsPage > 2 ? { toolsPage: toolsPage - 1 } : {}),
+                },
+              }}
+              prefetch={false}
+              aria-disabled={toolsPage === 1}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${toolsPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
+            >
+              ← Prev
+            </Link>
+
+            {/* Pages */}
+            <ul className="flex flex-wrap gap-1">
+              {Array.from({ length: totalToolPages }, (_, i) => i + 1).map((p) => (
+                <li key={p}>
+                  <Link
+                    href={{
+                      pathname: '/blog',
+                      query: {
+                        ...(currentPage > 1 ? { page: currentPage } : {}),
+                        ...(p > 1 ? { toolsPage: p } : {}),
+                      },
+                    }}
+                    prefetch={false}
+                    aria-current={p === toolsPage ? 'page' : undefined}
+                    className={`px-3 py-1.5 rounded-md text-sm font-medium border ${p === toolsPage ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border-slate-200 dark:border-white/10'}`}
+                    aria-label={`Tools page ${p}`}
+                  >
+                    {p}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* Next */}
+            <Link
+              href={{
+                pathname: '/blog',
+                query: {
+                  ...(currentPage > 1 ? { page: currentPage } : {}),
+                  ...(toolsPage < totalToolPages ? { toolsPage: toolsPage + 1 } : { toolsPage: totalToolPages }),
+                },
+              }}
+              prefetch={false}
+              aria-disabled={toolsPage === totalToolPages}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${toolsPage === totalToolPages ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
+            >
+              Next →
+            </Link>
+          </div>
+          <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">Page {toolsPage} of {totalToolPages}</div>
         </nav>
       </section>
 
@@ -276,38 +323,82 @@ export default function BlogPage({ searchParams }) {
         <p className="text-gray-700 dark:text-gray-300">Quick, actionable posts covering foundations, keyword research, on-page, technical, links, content, local, AI, SERP features, and tracking.</p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {pagedPosts.map((p) => (
-            <div key={p.slug} className="card p-4 hover:shadow-md transition">
-              <h3 className="font-medium">
-                <Link href={`/blog/${p.slug}`} prefetch={false} className="text-brand-600 hover:underline">
-                  {p.title}
-                </Link>
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{p.category}</p>
-            </div>
+            <Card
+              key={p.slug}
+              href={`/blog/${p.slug}`}
+              title={p.title}
+              description={p.description}
+              meta={p.category}
+              className="hover:shadow-md transition"
+            />
           ))}
         </div>
 
-        {/* Pager for posts */}
+        {/* Pager for posts - premium segmented control */}
         <nav aria-label="Blog pages" className="not-prose mt-6">
-          <ul className="flex flex-wrap gap-2 text-sm">
-            {Array.from({ length: totalPostPages }, (_, i) => i + 1).map((p) => (
-              <li key={p}>
-                <Link
-                  href={{ pathname: '/blog', query: p > 1 ? { page: p } : {} }}
-                  prefetch={false}
-                  className={`px-3 py-1.5 rounded-md border ${p === currentPage ? 'bg-slate-200 dark:bg-white/20' : 'bg-slate-100 dark:bg-white/10'} border-slate-200 dark:border-white/10`}
-                >
-                  Page {p}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/30 p-1 shadow-sm">
+            {/* Prev */}
+            <Link
+              href={{
+                pathname: '/blog',
+                query: {
+                  ...(toolsPage > 1 ? { toolsPage } : {}),
+                  ...(currentPage > 2 ? { page: currentPage - 1 } : {}),
+                },
+              }}
+              prefetch={false}
+              aria-disabled={currentPage === 1}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${currentPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
+            >
+              ← Prev
+            </Link>
+
+            {/* Pages */}
+            <ul className="flex flex-wrap gap-1">
+              {Array.from({ length: totalPostPages }, (_, i) => i + 1).map((p) => (
+                <li key={p}>
+                  <Link
+                    href={{
+                      pathname: '/blog',
+                      query: {
+                        ...(toolsPage > 1 ? { toolsPage } : {}),
+                        ...(p > 1 ? { page: p } : {}),
+                      },
+                    }}
+                    prefetch={false}
+                    aria-current={p === currentPage ? 'page' : undefined}
+                    className={`px-3 py-1.5 rounded-md text-sm font-medium border ${p === currentPage ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border-slate-200 dark:border-white/10'}`}
+                    aria-label={`Blog page ${p}`}
+                  >
+                    {p}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* Next */}
+            <Link
+              href={{
+                pathname: '/blog',
+                query: {
+                  ...(toolsPage > 1 ? { toolsPage } : {}),
+                  ...(currentPage < totalPostPages ? { page: currentPage + 1 } : { page: totalPostPages }),
+                },
+              }}
+              prefetch={false}
+              aria-disabled={currentPage === totalPostPages}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${currentPage === totalPostPages ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
+            >
+              Next →
+            </Link>
+          </div>
+          <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">Page {currentPage} of {totalPostPages}</div>
         </nav>
       </section>
 
       {/* Enhanced Blog Section with Latest Posts */}
       <section className="mt-12">
-        <BlogSection showHeader={true} />
+        <BlogSection showHeader={true} limit={3} />
       </section>
     </article>
   );

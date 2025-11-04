@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getBaseUrl } from '../../../lib/site';
 import ShareActions from '../../../components/ShareActions';
 import StructuredData from '../../../components/StructuredData';
 import { generateArticleSchema, generateFAQSchema } from '../../../lib/schema';
@@ -7,7 +8,7 @@ import { getToolGuide } from '../../../lib/guides';
 import { getBlogPostBySlug, getAllBlogPosts } from '../../../lib/blog';
 
 const siteName = '100 SEO Tools';
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+const baseUrl = getBaseUrl();
 
 // Ensure static generation for better performance and crawl stability
 export const dynamic = 'force-static';

@@ -1,6 +1,7 @@
 import CardDemoClient from './CardDemoClient.jsx';
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://100tools.app';
+import { getBaseUrl } from '../../lib/site';
+const baseUrl = getBaseUrl();
 
 export const metadata = {
   title: 'Card UI Demo – Components Preview',

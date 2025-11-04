@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FiClock, FiUser, FiTag, FiArrowRight, FiBookOpen } from 'react-icons/fi';
+import Card from './Card';
+import { FiClock, FiTag, FiBookOpen, FiArrowRight } from 'react-icons/fi';
 
 export default function BlogSection({ limit = 3, showHeader = true }) {
   const [posts, setPosts] = useState([]);
@@ -137,13 +138,8 @@ export default function BlogSection({ limit = 3, showHeader = true }) {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {posts.map((post) => (
-          <article
-            key={post.slug}
-            className="card card-interactive p-6 flex flex-col h-full"
-            itemScope
-            itemType="https://schema.org/BlogPosting"
-          >
-            <div className="flex items-center gap-2 mb-3">
+          <div key={post.slug} className="space-y-2">
+            <div className="flex items-center gap-2">
               <span className={`px-2 py-1 text-xs font-medium rounded-full ${getCategoryColor(post.category)}`}>
                 {post.category}
               </span>
@@ -153,62 +149,24 @@ export default function BlogSection({ limit = 3, showHeader = true }) {
                 </span>
               )}
             </div>
-
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2" itemProp="headline">
-              <Link 
-                href={`/blog/${post.slug}`}
-                className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
-              >
-                {post.title}
-              </Link>
-            </h3>
-
-            <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow line-clamp-3" itemProp="description">
-              {post.description}
-            </p>
-
-            <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
-              <div className="flex items-center gap-4">
-                <span className="flex items-center gap-1">
-                  <FiClock className="w-4 h-4" />
-                  <time dateTime={post.publishDate} itemProp="datePublished">
-                    {formatDate(post.publishDate)}
-                  </time>
-                </span>
-                <span className="flex items-center gap-1">
-                  <FiBookOpen className="w-4 h-4" />
-                  {post.readTime}
-                </span>
-              </div>
+            <Card
+              href={`/blog/${post.slug}`}
+              title={post.title}
+              description={post.description}
+              meta={post.readTime}
+              className="p-6"
+            />
+            <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-3 px-1">
+              <span className="inline-flex items-center gap-1">
+                <FiClock className="w-3.5 h-3.5" />
+                <time dateTime={post.publishDate}>{formatDate(post.publishDate)}</time>
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <FiTag className="w-3.5 h-3.5" />
+                {post.tags.slice(0, 2).join(' • ')}
+              </span>
             </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex flex-wrap gap-1">
-                {post.tags.slice(0, 2).map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center gap-1 px-2 py-1 text-xs text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 rounded"
-                  >
-                    <FiTag className="w-3 h-3" />
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <Link
-                href={`/blog/${post.slug}`}
-                className="inline-flex items-center gap-1 text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium transition-colors"
-                aria-label={`Read more about ${post.title}`}
-              >
-                Read More
-                <FiArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-
-            {/* Schema.org metadata */}
-            <meta itemProp="author" content="100 SEO Tools" />
-            <meta itemProp="dateModified" content={post.publishDate} />
-            <meta itemProp="publisher" content="100 SEO Tools" />
-          </article>
+          </div>
         ))}
       </div>
 
