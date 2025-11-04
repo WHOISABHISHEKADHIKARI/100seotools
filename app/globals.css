@@ -3,7 +3,49 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Tap target improvements to prevent overflow and layout shifts */
+/* Enhanced card interactions for better UX */
+.card-interactive {
+  @apply transition-all duration-300 ease-out;
+  transform: translateY(0);
+}
+
+.card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-interactive:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Smooth transitions for all interactive elements */
+.btn,
+.btn-secondary,
+.tap-target {
+  @apply transition-all duration-200 ease-out;
+}
+
+/* Loading state improvements */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.dark .loading-skeleton {
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+  background-size: 200% 100%;
+}
 .tap-target {
   @apply inline-flex items-center justify-center gap-1 px-3 py-2 rounded-md transition-all duration-200;
   position: relative;
@@ -12,6 +54,9 @@
   border: 1px solid transparent;
   max-width: 100%;
   word-break: break-word;
+  min-height: 36px; /* Better touch target */
+  font-size: 0.875rem; /* Consistent sizing */
+  line-height: 1.25rem;
 }
 
 .tap-target:hover {
@@ -23,13 +68,23 @@
   transform: translateY(0);
 }
 
-/* Prevent text overflow in tap targets */
-.tap-target span,
-.tap-target {
+/* Improved text handling for tap targets */
+.tap-target span {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 150px; /* Reasonable max width for tool names */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Allow 2 lines instead of 1 */
+  -webkit-box-orient: vertical;
+  white-space: normal; /* Allow text wrapping */
+  max-width: 140px; /* Slightly smaller for better fit */
+  line-height: 1.2;
+}
+
+/* Special handling for the tap-target itself */
+.tap-target {
+  white-space: normal;
+  text-align: left;
+  align-items: flex-start; /* Better alignment for multi-line text */
 }
 
 /* Card content containment to prevent layout shifts */

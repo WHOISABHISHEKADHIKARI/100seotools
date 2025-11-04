@@ -16,10 +16,35 @@ function ToolGridSkeleton() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {Array.from({ length: 12 }).map((_, index) => (
-        <div key={index} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 animate-pulse">
-          <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
-          <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
-          <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+        <div key={index} className="card card-interactive p-5 flex flex-col gap-4">
+          {/* Header skeleton */}
+          <div className="flex items-start justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-lg loading-skeleton"></div>
+              <div className="flex-1 space-y-2">
+                <div className="h-5 loading-skeleton rounded w-3/4"></div>
+              </div>
+            </div>
+            <div className="w-8 h-8 rounded-full loading-skeleton"></div>
+          </div>
+          
+          {/* Description skeleton */}
+          <div className="space-y-2">
+            <div className="h-4 loading-skeleton rounded"></div>
+            <div className="h-4 loading-skeleton rounded w-5/6"></div>
+          </div>
+          
+          {/* Footer skeleton */}
+          <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800 mt-auto">
+            <div className="flex items-center gap-2">
+              <div className="w-3.5 h-3.5 rounded loading-skeleton"></div>
+              <div className="h-3 loading-skeleton rounded w-20"></div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="h-4 loading-skeleton rounded w-16"></div>
+              <div className="h-4 loading-skeleton rounded w-12"></div>
+            </div>
+          </div>
         </div>
       ))}
     </div>

@@ -38,7 +38,7 @@ const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
   
   return (
     <article
-      className="card card-interactive p-4 flex flex-col gap-3 focus:outline-none focus:ring-2 focus:ring-brand-500 relative overflow-hidden card-content"
+      className="card card-interactive p-5 flex flex-col gap-4 focus:outline-none focus:ring-2 focus:ring-brand-500 relative overflow-hidden card-content group"
       itemScope
       itemType="https://schema.org/SoftwareApplication"
       aria-labelledby={`tool-title-${tool.slug}`}
@@ -49,45 +49,55 @@ const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
         href={`/tools/${tool.slug}`}
         onClick={handleToolClick}
         aria-label={`Open tool: ${tool.name}`}
-        className="absolute inset-0 z-10 hover:bg-transparent"
+        className="absolute inset-0 z-10 hover:bg-transparent group-hover:scale-105 transition-transform duration-200"
       >
         <span className="sr-only">Open tool: {tool.name}</span>
       </a>
-      <div className="flex items-center justify-between relative z-20">
-        <div className="flex items-center gap-3">
-          <div className="card-icon-container">
+      
+      {/* Header with icon and favorite button */}
+      <div className="flex items-start justify-between relative z-20">
+        <div className="flex items-center gap-4">
+          <div className="card-icon-container flex-shrink-0 w-10 h-10 rounded-lg bg-gray-50 dark:bg-gray-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
             <Icon aria-hidden className="w-6 h-6 text-brand-500" />
           </div>
-          <h3 id={`tool-title-${tool.slug}`} className="card-title tool-card-text" itemProp="name">
-            <Link href={`/tools/${tool.slug}`} prefetch={false} className="hover:underline">
-              {tool.name}
-            </Link>
-          </h3>
+          <div className="flex-1 min-w-0">
+            <h3 id={`tool-title-${tool.slug}`} className="card-title text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-brand-600 transition-colors duration-200" itemProp="name">
+              <Link href={`/tools/${tool.slug}`} prefetch={false} className="hover:underline">
+                {tool.name}
+              </Link>
+            </h3>
+          </div>
         </div>
         <button
-          className="btn-secondary flex items-center gap-1 relative z-30"
+          className="btn-secondary flex items-center gap-2 relative z-30 p-2 rounded-full"
           onClick={(e) => { e.preventDefault(); onToggleFavorite(tool.slug); }}
           aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
           aria-pressed={isFavorite}
+          title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         >
-          <FiStar aria-hidden className={isFavorite ? 'text-yellow-500' : 'text-gray-400'} />
+          <FiStar aria-hidden className={`w-5 h-5 ${isFavorite ? 'text-yellow-500 fill-current' : 'text-gray-400'}`} />
           <span className="sr-only">{isFavorite ? 'Favorited' : 'Not favorited'}</span>
         </button>
       </div>
-      <p id={`tool-desc-${tool.slug}`} className="card-desc tool-card-text" itemProp="description">
+
+      {/* Description */}
+      <p id={`tool-desc-${tool.slug}`} className="card-desc text-sm text-gray-600 dark:text-gray-400 leading-relaxed" itemProp="description">
         {tool.description}
       </p>
-      <div className="flex items-center justify-between relative z-20">
-        <span className="card-meta flex items-center gap-1" itemProp="applicationCategory">
+
+      {/* Category and Actions */}
+      <div className="flex items-center justify-between relative z-20 mt-auto pt-3 border-t border-gray-100 dark:border-gray-800">
+        <span className="card-meta flex items-center gap-2 text-xs px-3 py-1.5 rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400" itemProp="applicationCategory">
           <Icon aria-hidden className="w-3.5 h-3.5" />
           {tool.category}
         </span>
-        <div className="flex items-center gap-3">
-          <Link href={`/tools/${tool.slug}`} prefetch={false} className="tap-target gap-1 text-brand-600" itemProp="url" aria-label={`Open ${tool.name}`}>
-            Open <FiChevronRight aria-hidden className="w-4 h-4 flex-shrink-0" />
+        <div className="flex items-center gap-2">
+          <Link href={`/tools/${tool.slug}`} prefetch={false} className="tap-target gap-2 text-brand-600 font-medium" itemProp="url" aria-label={`Open ${tool.name}`}>
+            <span>Open Tool</span>
+            <FiChevronRight aria-hidden className="w-4 h-4 flex-shrink-0" />
           </Link>
-          <Link href={`/blog/${tool.slug}`} prefetch={false} className="tap-target text-sm text-accessibleGray-600" aria-label={`Read guide for ${tool.name}`}>
-            Read Guide
+          <Link href={`/blog/${tool.slug}`} prefetch={false} className="tap-target text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300" aria-label={`Read guide for ${tool.name}`}>
+            <span>Guide</span>
           </Link>
         </div>
       </div>

@@ -1,4 +1,6 @@
 "use client";
+import { useState, useRef, useEffect } from 'react';
+
 export default function Card({
   href,
   title,
@@ -13,12 +15,47 @@ export default function Card({
   const interactive = Boolean(href);
   const titleId = title ? `card-title-${slugify(title)}` : undefined;
   const descId = description ? `card-desc-${slugify(title)}` : undefined;
+  const cardRef = useRef(null);
+  const [isFocused, setIsFocused] = useState(false);
+
+  // Focus management for keyboard navigation
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card || !interactive) return;
+
+    const handleFocus = () => setIsFocused(true);
+    const handleBlur = () => setIsFocused(false);
+
+    card.addEventListener('focus', handleFocus, true);
+    card.addEventListener('blur', handleBlur, true);
+
+    return () => {
+      card.removeEventListener('focus', handleFocus, true);
+      card.removeEventListener('blur', handleBlur, true);
+    };
+  }, [interactive]);
+
+  const handleKeyDown = (e) => {
+    if (!interactive) return;
+    
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (href) {
+        window.location.href = href;
+      }
+    }
+  };
 
   return (
     <article
-      className={`card ${interactive ? 'card-interactive relative' : ''} p-4 flex flex-col ${className}`}
+      ref={cardRef}
+      className={`card ${interactive ? 'card-interactive relative' : ''} ${isFocused ? 'ring-2 ring-brand-500 ring-offset-2' : ''} ${className}`}
       aria-labelledby={titleId}
       aria-describedby={descId}
+      tabIndex={interactive ? 0 : undefined}
+      role={interactive ? 'button' : undefined}
+      onKeyDown={handleKeyDown}
+      onClick={interactive ? () => href && (window.location.href = href) : undefined}
       // Remove incompatible ARIA role and keyboard handlers from non-interactive article
     >
       {/* Interactive overlay */}
@@ -27,7 +64,9 @@ export default function Card({
           href={href} 
           aria-label={title ? `Open: ${title}` : 'Open'} 
           className="absolute inset-0 z-10"
-          tabIndex="0"
+          tabIndex="-1"
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         >
           <span className="sr-only">{title ? `Open: ${title}` : 'Open'}</span>
         </a>
