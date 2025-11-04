@@ -5,6 +5,34 @@ export const metadata = {
   title: '100+ SEO Tools – Free, Fast, Client-side',
   description: 'All Your SEO Tools in One Place. 100+ browser-based tools for marketers, bloggers, and developers.',
   metadataBase: new URL(baseUrl),
+  // Open Graph tags
+  openGraph: {
+    title: '100+ SEO Tools – Free, Fast, Client-side',
+    description: 'All Your SEO Tools in One Place. 100+ browser-based tools for marketers, bloggers, and developers.',
+    url: baseUrl,
+    siteName: '100 SEO Tools',
+    images: [
+      {
+        url: `${baseUrl}/icon.svg`,
+        width: 1200,
+        height: 630,
+        alt: '100 SEO Tools Logo',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  // Twitter Card tags
+  twitter: {
+    card: 'summary_large_image',
+    title: '100+ SEO Tools – Free, Fast, Client-side',
+    description: 'All Your SEO Tools in One Place. 100+ browser-based tools for marketers, bloggers, and developers.',
+    images: [`${baseUrl}/icon.svg`],
+  },
+  // Canonical URL
+  alternates: {
+    canonical: baseUrl,
+  },
 };
 
 import './globals.css';
@@ -23,8 +51,25 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#0f172a" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="manifest" href="/manifest.json" />
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.register('/sw.js')
+                .then((registration) => {
+                  console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch((error) => {
+                  console.log('Service Worker registration failed:', error);
+                });
+            }
+          `
+        }} />
       </head>
       <body className="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+        {/* Skip to main content link for accessibility */}
+        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
+          Skip to main content
+        </a>
         <UserPreferencesProvider>
           {/* Global header */}
           <div className="max-w-7xl mx-auto px-4">

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
 // Defer non-critical client helpers to reduce initial JS
@@ -10,6 +10,20 @@ const UserPreferencesPanel = dynamic(() => import('./UserPreferencesPanel'), { s
 export default function ClientLayout() {
   const [showPreferences, setShowPreferences] = useState(false);
   const [activeTab, setActiveTab] = useState('general');
+
+  // Register service worker for performance optimization
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((registration) => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch((error) => {
+          console.log('Service Worker registration failed:', error);
+        });
+    }
+  }, []);
 
   const handleOpenPreferences = (tab = 'general') => {
     setActiveTab(tab);
