@@ -19,23 +19,7 @@ export default function Card({
       className={`card ${interactive ? 'card-interactive relative' : ''} p-4 flex flex-col ${className}`}
       aria-labelledby={titleId}
       aria-describedby={descId}
-      tabIndex={interactive ? '0' : undefined}
-      role={interactive ? 'button' : undefined}
-      onClick={interactive ? (e) => {
-        // Ignore clicks originating from interactive child elements
-        const target = e.target;
-        // If default was prevented or click is on a focusable control, do nothing
-        if (e.defaultPrevented) return;
-        const isInteractiveChild = target && typeof target.closest === 'function' && target.closest('a, button, input, textarea, select');
-        if (isInteractiveChild) return;
-        window.location.href = href;
-      } : undefined}
-      onKeyDown={interactive ? (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          window.location.href = href;
-        }
-      } : undefined}
+      // Remove incompatible ARIA role and keyboard handlers from non-interactive article
     >
       {/* Interactive overlay */}
       {interactive && (
@@ -43,7 +27,7 @@ export default function Card({
           href={href} 
           aria-label={title ? `Open: ${title}` : 'Open'} 
           className="absolute inset-0 z-10"
-          tabIndex="-1" // Focus will be on the article element
+          tabIndex="0"
         >
           <span className="sr-only">{title ? `Open: ${title}` : 'Open'}</span>
         </a>

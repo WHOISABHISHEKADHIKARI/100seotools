@@ -21,6 +21,56 @@ export default function SEOCalculator() {
   const [active, setActive] = useState('density');
   const [fade, setFade] = useState(true);
 
+  // Defaults aligned with each calculator's local defaults
+  const defaults = {
+    density: { totalWords: '', occurrences: '' },
+    roi: { visitors: '', convRate: '2', aov: '50', cost: '' },
+    authority: { backlinks: '', domains: '', ageYears: '', contentQuality: '5' },
+    traffic: { searchVolume: '', ctr: '3' },
+    cpc: { cpc: '', searchVolume: '', ctr: '3' },
+  };
+
+  // Centralized inputs state for all calculators
+  const [inputs, setInputs] = useState(defaults);
+
+  // Shared handlers passed to calculators
+  const updateInput = (section, field, value) => {
+    setInputs(prev => ({
+      ...prev,
+      [section]: { ...prev[section], [field]: value }
+    }));
+  };
+
+  const resetActive = (section) => {
+    setInputs(prev => ({
+      ...prev,
+      [section]: { ...defaults[section] }
+    }));
+  };
+
+  const copyResult = (text) => {
+    try {
+      if (navigator?.clipboard?.writeText) {
+        navigator.clipboard.writeText(text).catch(() => {});
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+    } catch {}
+  };
+
+  const proTips = {
+    density: 'Aim for natural usage; 0.5%–2% is usually safe.',
+    roi: 'Focus on conversion rate and AOV; they move ROI fastest.',
+    authority: 'Quality content and earned links grow authority sustainably.',
+    traffic: 'Optimize titles and meta to lift CTR quickly.',
+    cpc: 'Higher CTR keywords often have stronger commercial intent.',
+  };
+
   const relatedPosts = useMemo(() => {
     try {
       const all = getAllBlogPosts();
@@ -94,23 +144,53 @@ export default function SEOCalculator() {
       {/* Panel */}
       <div className={`card p-4 max-w-3xl mx-auto transition-opacity duration-200 ${fade ? 'opacity-100' : 'opacity-0'}`}>
         {active === 'density' && (
-          <DynamicKeywordDensityCalculator />
+          <DynamicKeywordDensityCalculator
+            inputs={inputs}
+            updateInput={updateInput}
+            resetActive={resetActive}
+            copyResult={copyResult}
+            proTip={proTips.density}
+          />
         )}
 
         {active === 'roi' && (
-          <DynamicSeoRoiCalculator />
+          <DynamicSeoRoiCalculator
+            inputs={inputs}
+            updateInput={updateInput}
+            resetActive={resetActive}
+            copyResult={copyResult}
+            proTip={proTips.roi}
+          />
         )}
 
         {active === 'authority' && (
-          <DynamicDomainAuthorityCalculator />
+          <DynamicDomainAuthorityCalculator
+            inputs={inputs}
+            updateInput={updateInput}
+            resetActive={resetActive}
+            copyResult={copyResult}
+            proTip={proTips.authority}
+          />
         )}
 
         {active === 'traffic' && (
-          <DynamicTrafficEstimatorCalculator />
+          <DynamicTrafficEstimatorCalculator
+            inputs={inputs}
+            updateInput={updateInput}
+            resetActive={resetActive}
+            copyResult={copyResult}
+            proTip={proTips.traffic}
+          />
         )}
 
         {active === 'cpc' && (
-          <DynamicKeywordValueCpcCalculator />
+          <DynamicKeywordValueCpcCalculator
+            inputs={inputs}
+            updateInput={updateInput}
+            resetActive={resetActive}
+            copyResult={copyResult}
+            proTip={proTips.cpc}
+          />
         )}
       </div>
 
@@ -126,7 +206,7 @@ export default function SEOCalculator() {
               <h4 className="font-medium relative z-20">{p.title}</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 relative z-20">{p.description?.slice(0, 120)}...</p>
               <div className="mt-2 relative z-20">
-                <a href={`/blog/${p.slug}`} className="text-brand-600 hover:underline text-sm">Read Guide</a>
+                <a href={`/blog/${p.slug}`} aria-label={`Read guide: ${p.title}`} className="tap-target text-sm text-brand-600 transition-gpu will-change-transform-opacity hover:opacity-85">Read Guide: {p.title}</a>
               </div>
             </div>
           ))}

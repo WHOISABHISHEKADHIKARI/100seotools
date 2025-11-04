@@ -97,7 +97,7 @@ export default function Footer() {
             <Link href="/sitemap.xml" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Sitemap</Link>
             <Link href="/robots.txt" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Robots</Link>
             <Link href="/privacy" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Privacy Policy</Link>
-            <Link href="/terms" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Terms of Service</Link>
+            <Link href="/terms" className="transition-gpu will-change-transform-opacity hover:opacity-85 focus-visible:underline">Terms of Service</Link>
           </div>
         </div>
       </div>

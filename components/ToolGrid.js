@@ -59,7 +59,7 @@ const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
             <Icon aria-hidden className="w-6 h-6 text-brand-500 relative z-20" />
           </div>
           <h3 id={`tool-title-${tool.slug}`} className="card-title relative z-20" itemProp="name">
-            <Link href={`/tools/${tool.slug}`} className="hover:underline">
+            <Link href={`/tools/${tool.slug}`} prefetch={false} className="hover:underline">
               {tool.name}
             </Link>
           </h3>
@@ -83,11 +83,11 @@ const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
           <span itemProp="applicationCategory">{tool.category}</span>
         </span>
         <div className="flex items-center gap-3 relative z-20">
-          <Link href={`/tools/${tool.slug}`} className="inline-flex items-center gap-1 text-brand-600 hover:underline" itemProp="url" aria-label={`Open ${tool.name}`}>
+          <Link href={`/tools/${tool.slug}`} prefetch={false} className="tap-target gap-1 text-brand-600 transition-gpu will-change-transform-opacity hover:opacity-85" itemProp="url" aria-label={`Open ${tool.name}`}>
             Open <FiChevronRight aria-hidden className="w-4 h-4" />
           </Link>
-          <Link href={`/blog/${tool.slug}`} className="text-sm text-gray-500 hover:underline" aria-label={`Read guide for ${tool.name}`}>
-            Read Guide
+          <Link href={`/blog/${tool.slug}`} prefetch={false} className="tap-target text-sm text-accessibleGray-600 transition-gpu will-change-transform-opacity hover:opacity-85" aria-label={`Read guide for ${tool.name}`}>
+            Read Guide: {tool.name}
           </Link>
         </div>
       </div>

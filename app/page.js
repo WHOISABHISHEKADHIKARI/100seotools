@@ -102,9 +102,13 @@ export default function HomePage() {
 
       <SearchFilter tools={tools} onChange={setFilteredTools} />
 
-      <Suspense fallback={<ToolGridSkeleton />}>
-        <ToolGrid tools={filteredTools} />
-      </Suspense>
+      {/* Tools section with accessible heading to ensure sequential order (h1 -> h2 -> h3) */}
+      <section aria-labelledby="tools-section-title">
+        <h2 id="tools-section-title" className="sr-only">Tools</h2>
+        <Suspense fallback={<ToolGridSkeleton />}>
+          <ToolGrid tools={filteredTools} />
+        </Suspense>
+      </section>
 
       {/* Blog Section */}
       <BlogSection />

@@ -14,7 +14,13 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
           </div>
           <div className="flex items-center gap-3">
             <span className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">{tool.category}</span>
-            <a href={`/blog/${tool.slug}`} className="text-sm text-brand-600 hover:underline">Read guide</a>
+            <a
+              href={`/blog/${tool.slug}`}
+              aria-label={`Read guide: ${tool.name}`}
+              className="tap-target text-sm text-brand-600 hover:opacity-85 transition-gpu will-change-transform-opacity"
+            >
+              Read Guide
+            </a>
           </div>
         </div>
       </div>

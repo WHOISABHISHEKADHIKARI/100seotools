@@ -2,6 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
+  // Emit production client-side source maps for better debugging and Lighthouse insights
+  productionBrowserSourceMaps: true,
   
   // Performance optimizations
   swcMinify: true,
@@ -13,15 +15,17 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
   },
   
-  // Experimental features for better performance
+  // Experimental features kept minimal to avoid build conflicts
   experimental: {
-    // Disable optimizeCss to avoid missing optional 'critters' dependency in production build
-    optimizeCss: true,
     optimizePackageImports: ['react-icons'],
   },
   
   // Bundle optimization
   webpack: (config, { dev, isServer }) => {
+    // Ensure source maps are generated for client builds in production
+    if (!dev && !isServer) {
+      config.devtool = 'source-map';
+    }
     // Optimize bundle size in production
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
@@ -41,6 +45,8 @@ const nextConfig = {
         },
       };
     }
+
+    // Remove invalid Critters injection: use Next.js defaults for CSS optimization
     return config;
   },
   
@@ -96,5 +102,15 @@ const nextConfig = {
     ];
   }
 };
+// Conditionally enable bundle analyzer without requiring it in normal dev/build
+let exportedConfig = nextConfig;
+if (process.env.ANALYZE === 'true') {
+  try {
+    const withBundleAnalyzer = require('@next/bundle-analyzer')({ enabled: true });
+    exportedConfig = withBundleAnalyzer(nextConfig);
+  } catch (e) {
+    // analyzer not installed; keep default config
+  }
+}
 
-module.exports = nextConfig;
+module.exports = exportedConfig;

@@ -112,8 +112,22 @@ async function networkFirstStrategy(request) {
     if (cachedResponse && !isCacheExpired(cachedResponse)) {
       return cachedResponse;
     }
-    // Return offline page as fallback
-    return caches.match(OFFLINE_URL) || new Response('Offline', { status: 503 });
+    // Return offline page as fallback with 200 and noindex to avoid SEO 5xx
+    const offline = await caches.match(OFFLINE_URL);
+    if (offline) {
+      const headers = new Headers(offline.headers);
+      headers.set('X-Robots-Tag', 'noindex, nofollow');
+      return new Response(offline.clone().body, {
+        status: 200,
+        statusText: 'OK',
+        headers
+      });
+    }
+    return new Response('Offline', {
+      status: 200,
+      statusText: 'OK',
+      headers: { 'X-Robots-Tag': 'noindex, nofollow' }
+    });
   }
 }
 
@@ -143,9 +157,12 @@ async function cacheFirstStrategy(request) {
     throw new Error('Network response not ok');
   } catch (error) {
     console.log('Service Worker: Failed to fetch:', request.url);
-    return cachedResponse || new Response('Resource not available offline', {
-      status: 503,
-      statusText: 'Service Unavailable'
+    // Avoid returning 5xx; use 200 with noindex for SEO safety
+    if (cachedResponse) return cachedResponse;
+    return new Response('Resource not available offline', {
+      status: 200,
+      statusText: 'OK',
+      headers: { 'X-Robots-Tag': 'noindex, nofollow' }
     });
   }
 }

@@ -1,6 +1,10 @@
+import { getBaseUrl } from '../lib/site';
+const baseUrl = getBaseUrl();
+
 export const metadata = {
   title: '100+ SEO Tools – Free, Fast, Client-side',
   description: 'All Your SEO Tools in One Place. 100+ browser-based tools for marketers, bloggers, and developers.',
+  metadataBase: new URL(baseUrl),
 };
 
 import './globals.css';

@@ -274,9 +274,8 @@ export default function SearchFilter({ tools, onChange }) {
                 onMouseDown={(e) => e.preventDefault()}
               >
                 {suggestions.map((s, idx) => (
-                  <button
+                  <div
                     key={`${s.type}:${s.text}:${s.slug || ''}`}
-                    type="button"
                     className={`flex items-center justify-between w-full text-left px-3 py-2 hover:bg-slate-50 dark:hover:bg-white/5 ${idx === activeSuggestionIndex ? 'bg-slate-50 dark:bg-white/10' : ''}`}
                     onClick={() => {
                       if (s.type === 'tool') {
@@ -287,8 +286,21 @@ export default function SearchFilter({ tools, onChange }) {
                       setShowSuggestions(false);
                       setActiveSuggestionIndex(-1);
                     }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        if (s.type === 'tool') {
+                          setQuery(s.text);
+                        } else if (s.type === 'category') {
+                          setCategory(s.text);
+                        }
+                        setShowSuggestions(false);
+                        setActiveSuggestionIndex(-1);
+                      }
+                    }}
                     role="option"
                     aria-selected={idx === activeSuggestionIndex}
+                    tabIndex={0}
                   >
                     <span className="text-sm">
                       {s.type === 'tool' ? s.text : `Category: ${s.text}`}
@@ -296,7 +308,7 @@ export default function SearchFilter({ tools, onChange }) {
                     {s.type === 'tool' && (
                       <span className="text-xs text-slate-500 dark:text-slate-400">{s.category}</span>
                     )}
-                  </button>
+                  </div>
                 ))}
               </div>
             )}

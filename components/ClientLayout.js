@@ -1,8 +1,11 @@
 "use client";
 import { useState } from 'react';
-import FloatingActionButton from './FloatingActionButton';
-import UserPreferencesPanel from './UserPreferencesPanel';
-import PerformanceMonitor from './PerformanceMonitor';
+import dynamic from 'next/dynamic';
+
+// Defer non-critical client helpers to reduce initial JS
+const PerformanceMonitor = dynamic(() => import('./PerformanceMonitor'), { ssr: false });
+const FloatingActionButton = dynamic(() => import('./FloatingActionButton'), { ssr: false });
+const UserPreferencesPanel = dynamic(() => import('./UserPreferencesPanel'), { ssr: false });
 
 export default function ClientLayout() {
   const [showPreferences, setShowPreferences] = useState(false);

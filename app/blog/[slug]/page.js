@@ -431,7 +431,7 @@ export default function BlogGuidePage({ params, searchParams }) {
         })()}
 
         <div className="mt-8 flex items-center gap-4">
-          <Link href="/blog" className="text-brand-600 hover:underline">Back to Blog</Link>
+          <Link href="/blog" prefetch={false} className="text-brand-600 hover:underline">Back to Blog</Link>
         </div>
       </main>
     );
@@ -443,7 +443,7 @@ export default function BlogGuidePage({ params, searchParams }) {
       <main id="main" className="container mx-auto px-4 py-8">
         <h1 className="text-2xl sm:text-3xl font-bold mb-4">Guide Not Found</h1>
         <p className="mb-4">We couldn’t find a guide for this tool.</p>
-        <Link href="/blog" className="text-brand-600 hover:underline">Back to Blog</Link>
+        <Link href="/blog" prefetch={false} className="text-brand-600 hover:underline">Back to Blog</Link>
       </main>
     );
   }
@@ -553,8 +553,8 @@ export default function BlogGuidePage({ params, searchParams }) {
               <h3 className="font-medium">{t.name}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{t.category}</p>
               <div className="mt-2 flex items-center gap-4 text-sm">
-                <Link href={`/tools/${t.slug}`} className="relative z-20 text-brand-600 hover:underline">Open tool</Link>
-                <Link href={`/blog/${t.slug}`} className="relative z-20 text-brand-600 hover:underline">Read guide</Link>
+                <Link href={`/tools/${t.slug}`} className="relative z-20 text-brand-600 hover:underline" aria-label={`Open tool: ${t.name}`}>Open tool</Link>
+                <Link href={`/blog/${t.slug}`} className="relative z-20 text-brand-600 hover:underline" aria-label={`Read guide for ${t.name}`}>Read Guide: {t.name}</Link>
               </div>
             </div>
           ))}
@@ -576,7 +576,7 @@ export default function BlogGuidePage({ params, searchParams }) {
               <h3 className="font-medium">{p.title}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{p.category}</p>
               <div className="mt-2 flex items-center gap-4 text-sm">
-                <Link href={`/blog/${p.slug}`} className="relative z-20 text-brand-600 hover:underline">Read post</Link>
+                <Link href={`/blog/${p.slug}`} className="relative z-20 text-brand-600 hover:underline" aria-label={`Read post: ${p.title}`}>Read Post: {p.title}</Link>
               </div>
             </div>
           ))}

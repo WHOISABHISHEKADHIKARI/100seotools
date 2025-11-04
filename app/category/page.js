@@ -66,11 +66,11 @@ export default function CategoryIndexPage() {
               <span className="sr-only">Open category: {c}</span>
             </a>
             <h2 className="font-semibold text-lg mb-2 relative z-20">
-              <Link href={`/category/${slugify(c)}`} className="hover:text-brand-600">{c}</Link>
+              <Link href={`/category/${slugify(c)}`} prefetch={false} className="hover:text-brand-600">{c}</Link>
             </h2>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-3 relative z-20">{counts[c]} tool{counts[c] !== 1 ? 's' : ''}</p>
             <div className="flex items-center gap-3 relative z-20">
-              <Link href={`/category/${slugify(c)}`} className="text-brand-600 hover:underline">Browse Tools</Link>
+              <Link href={`/category/${slugify(c)}`} prefetch={false} className="text-brand-600 hover:underline">Browse Tools</Link>
             </div>
           </li>
         ))}

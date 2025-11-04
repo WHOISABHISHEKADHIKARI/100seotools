@@ -83,7 +83,7 @@ export default function CategoryPage({ params }) {
       {items.length === 0 ? (
         <div className="rounded-lg border border-slate-200 dark:border-white/10 p-6">
           <p className="mb-2">No tools found for this category.</p>
-          <Link href="/" className="text-brand-600 hover:underline">Go back to all tools</Link>
+          <Link href="/" prefetch={false} className="text-brand-600 hover:underline">Go back to all tools</Link>
         </div>
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -94,12 +94,12 @@ export default function CategoryPage({ params }) {
                 <span className="sr-only">Open tool: {t.name}</span>
               </a>
               <h2 className="font-semibold text-lg mb-2 relative z-20">
-                <Link href={`/tools/${t.slug}`} className="hover:text-brand-600">{t.name}</Link>
+                <Link href={`/tools/${t.slug}`} prefetch={false} className="hover:text-brand-600">{t.name}</Link>
               </h2>
               <p className="text-sm text-slate-600 dark:text-slate-300 mb-3 relative z-20">{t.description}</p>
               <div className="flex items-center gap-3 relative z-20">
-                <Link href={`/tools/${t.slug}`} className="text-sm text-brand-600 hover:underline">Open Tool</Link>
-                <Link href={`/blog/${t.slug}`} className="text-sm text-slate-500 hover:underline">Read Guide</Link>
+                <Link href={`/tools/${t.slug}`} prefetch={false} className="text-sm text-brand-600 hover:underline" aria-label={`Open tool: ${t.name}`}>Open Tool</Link>
+                <Link href={`/blog/${t.slug}`} prefetch={false} className="text-sm text-slate-500 hover:underline" aria-label={`Read guide for ${t.name}`}>Read Guide: {t.name}</Link>
               </div>
             </li>
           ))}
