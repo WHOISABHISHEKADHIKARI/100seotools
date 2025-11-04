@@ -35,13 +35,13 @@ export default function Footer() {
             <h3 className="text-2xl font-bold">Hashtag Solutions</h3>
             <p className="mt-3 text-slate-600 dark:text-gray-400">Empowering businesses and individuals with web solutions, SEO tools, and digital growth strategies.</p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <a href="mailto:hashtagsolutionsocail@gmail.com" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/10 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-white dark:focus-visible:ring-offset-gray-900 px-3 py-2 text-sm transition-colors" aria-label="Email Hashtag Solutions">
+            <a href="mailto:hashtagsolutionsocail@gmail.com" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-3 py-2 text-sm transition-transform will-change-transform hover:scale-[1.01]" aria-label="Email Hashtag Solutions">
               <FiMail aria-hidden className="w-4 h-4" /> Email us
             </a>
-            <a href="tel:+9779823405140" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/10 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-white dark:focus-visible:ring-offset-gray-900 px-3 py-2 text-sm transition-colors" aria-label="Call Hashtag Solutions">
+            <a href="tel:+9779823405140" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-3 py-2 text-sm transition-transform will-change-transform hover:scale-[1.01]" aria-label="Call Hashtag Solutions">
               <FiPhone aria-hidden className="w-4 h-4" /> +977-9823405140
             </a>
-            <a href="https://github.com/hashtagsolutions" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/10 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-white dark:focus-visible:ring-offset-gray-900 px-3 py-2 text-sm transition-colors" rel="noopener noreferrer" target="_blank" aria-label="Visit Hashtag Solutions GitHub">
+            <a href="https://github.com/hashtagsolutions" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-3 py-2 text-sm transition-transform will-change-transform hover:scale-[1.01]" rel="noopener noreferrer" target="_blank" aria-label="Visit Hashtag Solutions GitHub">
               <FiGithub className="h-4 w-4" />
               GitHub
             </a>
@@ -52,9 +52,9 @@ export default function Footer() {
           <nav aria-label="Quick links">
             <h3 className="text-lg font-semibold">Quick Links</h3>
             <ul className="mt-4 space-y-2.5 text-slate-600 dark:text-gray-300">
-              <li><Link href="/" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Home</Link></li>
-              <li><Link href="/about" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">About Us</Link></li>
-              <li><Link href="/blog" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Blog</Link></li>
+              <li><Link href="/" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Home</Link></li>
+              <li><Link href="/about" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">About Us</Link></li>
+              <li><Link href="/blog" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Blog</Link></li>
             </ul>
           </nav>
 
@@ -64,7 +64,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5 text-slate-600 dark:text-gray-300">
               {categories.map((c) => (
                 <li key={c}>
-                  <Link href={`/category/${toSlug(c)}`} className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">
+                  <Link href={`/category/${toSlug(c)}`} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">
                     {c}
                   </Link>
                 </li>
@@ -76,13 +76,13 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold">Follow</h3>
             <div className="mt-4 flex items-center gap-3">
-              <a href="https://www.facebook.com/hashtagwebsolutionsnepal" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/10 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-white dark:focus-visible:ring-offset-gray-900 px-3 py-2 text-sm transition-colors" rel="noopener noreferrer" target="_blank" aria-label="Facebook">
+              <a href="https://www.facebook.com/hashtagwebsolutionsnepal" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-3 py-2 text-sm transition-transform will-change-transform hover:scale-[1.01]" rel="noopener noreferrer" target="_blank" aria-label="Facebook">
                 <FiFacebook aria-hidden className="w-4 h-4" /> Facebook <FiArrowUpRight aria-hidden className="w-3 h-3" />
               </a>
-              <a href="https://www.instagram.com/hashtag" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/10 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-white dark:focus-visible:ring-offset-gray-900 px-3 py-2 text-sm transition-colors" rel="noopener noreferrer" target="_blank" aria-label="Instagram">
+              <a href="https://www.instagram.com/hashtag" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-3 py-2 text-sm transition-transform will-change-transform hover:scale-[1.01]" rel="noopener noreferrer" target="_blank" aria-label="Instagram">
                 <FiInstagram aria-hidden className="w-4 h-4" /> Instagram <FiArrowUpRight aria-hidden className="w-3 h-3" />
               </a>
-              <a href="https://www.linkedin.com/company/hashtag" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/10 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus-visible:ring-white dark:focus-visible:ring-offset-gray-900 px-3 py-2 text-sm transition-colors" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/company/hashtag" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-3 py-2 text-sm transition-transform will-change-transform hover:scale-[1.01]" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn">
                 <FiLinkedin aria-hidden className="w-4 h-4" /> LinkedIn <FiArrowUpRight aria-hidden className="w-3 h-3" />
               </a>
             </div>
@@ -92,11 +92,11 @@ export default function Footer() {
         <div className="mt-12 border-t border-slate-200 dark:border-gray-800 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-slate-600 dark:text-gray-400">
           <p>© {year} Hashtag Solutions. Building digital solutions, one click at a time.</p>
           <div className="flex items-center gap-4">
-            <Link href="/" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Home</Link>
-            <Link href="/blog" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Blog</Link>
-            <Link href="/sitemap.xml" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Sitemap</Link>
-            <Link href="/robots.txt" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Robots</Link>
-            <Link href="/privacy" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Privacy Policy</Link>
+            <Link href="/" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Home</Link>
+            <Link href="/blog" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Blog</Link>
+            <Link href="/sitemap.xml" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Sitemap</Link>
+            <Link href="/robots.txt" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Robots</Link>
+            <Link href="/privacy" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Privacy Policy</Link>
             <Link href="/terms" className="transition-colors hover:text-slate-900 dark:hover:text-white focus-visible:underline">Terms of Service</Link>
           </div>
         </div>

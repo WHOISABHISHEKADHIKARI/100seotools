@@ -79,7 +79,7 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
                         <a 
                           key={slug} 
                           href={`/tools/${slug}`} 
-                          className="flex items-center p-3 rounded-lg border border-gray-200 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800 transition-colors"
+                          className="flex items-center p-3 rounded-lg border border-gray-200 dark:border-gray-700 transition-transform will-change-transform hover:scale-[1.01]"
                         >
                           <span className="font-medium">{name}</span>
                         </a>
@@ -95,7 +95,7 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
                         <a 
                           key={t.slug} 
                           href={`/tools/${t.slug}`} 
-                          className="flex items-center p-3 rounded-lg border border-gray-200 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800 transition-colors"
+                          className="flex items-center p-3 rounded-lg border border-gray-200 dark:border-gray-700 transition-transform will-change-transform hover:scale-[1.01]"
                         >
                           <span className="font-medium">{t.name}</span>
                         </a>
@@ -157,7 +157,7 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
                         <a 
                           key={slug} 
                           href={`/tools/${slug}`} 
-                          className="text-sm px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
+                          className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 transition-transform will-change-transform hover:scale-[1.01]"
                         >
                           {name}
                         </a>

@@ -118,7 +118,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
           <h2 className="text-xl font-semibold">User Preferences</h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            className="p-2 rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
             aria-label="Close preferences"
           >
             <FiX className="w-5 h-5" />
@@ -135,7 +135,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors ${
+                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-transform will-change-transform hover:scale-[1.01] ${
                       activeTab === tab.id
                         ? 'bg-brand-500 text-white'
                         : 'hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -295,7 +295,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                     />
                     <button
                       onClick={addCustomCategory}
-                      className="px-3 py-2 bg-brand-500 text-white rounded-lg hover:bg-brand-600 transition-colors"
+                      className="px-3 py-2 bg-brand-500 text-white rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
                     >
                       <FiPlus className="w-4 h-4" />
                     </button>
@@ -323,7 +323,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                 <div className="flex gap-2 pt-4">
                   <button
                     onClick={actions.resetPreferences}
-                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
                   >
                     <FiRefreshCw className="w-4 h-4 inline mr-2" />
                     Reset to Defaults
@@ -339,7 +339,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                   {favorites.length > 0 && (
                     <button
                       onClick={() => setShowConfirmClear('favorites')}
-                      className="px-3 py-1 text-red-600 hover:bg-red-50 dark:hover:bg-red-900 rounded transition-colors"
+                      className="px-3 py-1 text-red-600 rounded transition-transform will-change-transform hover:scale-[1.01]"
                     >
                       <FiTrash2 className="w-4 h-4 inline mr-1" />
                       Clear All
@@ -356,7 +356,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                         <span className="font-medium">{toolId}</span>
                         <button
                           onClick={() => actions.removeFavorite(toolId)}
-                          className="text-red-600 hover:text-red-800 transition-colors"
+                          className="text-red-600 transition-transform will-change-transform hover:scale-[1.01]"
                         >
                           <FiTrash2 className="w-4 h-4" />
                         </button>
@@ -374,7 +374,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                   {history.length > 0 && (
                     <button
                       onClick={() => setShowConfirmClear('history')}
-                      className="px-3 py-1 text-red-600 hover:bg-red-50 dark:hover:bg-red-900 rounded transition-colors"
+                      className="px-3 py-1 text-red-600 rounded transition-transform will-change-transform hover:scale-[1.01]"
                     >
                       <FiTrash2 className="w-4 h-4 inline mr-1" />
                       Clear All
@@ -394,7 +394,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                         </div>
                         <button
                           onClick={() => actions.removeFromHistory(item.id)}
-                          className="text-red-600 hover:text-red-800 transition-colors"
+                          className="text-red-600 transition-transform will-change-transform hover:scale-[1.01]"
                         >
                           <FiTrash2 className="w-4 h-4" />
                         </button>
@@ -412,7 +412,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                   {recentSearches.length > 0 && (
                     <button
                       onClick={() => setShowConfirmClear('searches')}
-                      className="px-3 py-1 text-red-600 hover:bg-red-50 dark:hover:bg-red-900 rounded transition-colors"
+                      className="px-3 py-1 text-red-600 rounded transition-transform will-change-transform hover:scale-[1.01]"
                     >
                       <FiTrash2 className="w-4 h-4 inline mr-1" />
                       Clear All
@@ -453,7 +453,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                         </div>
                         <button
                           onClick={() => actions.removeBookmark(bookmark.id)}
-                          className="text-red-600 hover:text-red-800 transition-colors"
+                          className="text-red-600 transition-transform will-change-transform hover:scale-[1.01]"
                         >
                           <FiTrash2 className="w-4 h-4" />
                         </button>
@@ -523,7 +523,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                 <div className="flex gap-4">
                   <button
                     onClick={handleExport}
-                    className="flex items-center gap-2 px-4 py-2 bg-brand-500 text-white rounded-lg hover:bg-brand-600 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-brand-500 text-white rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
                   >
                     <FiDownload className="w-4 h-4" />
                     Export Data
@@ -531,7 +531,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                   
                   <button
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
                   >
                     <FiUpload className="w-4 h-4" />
                     Import Data
@@ -568,13 +568,13 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
               <div className="flex gap-3 justify-end">
                 <button
                   onClick={() => setShowConfirmClear(null)}
-                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={() => handleClearConfirm(showConfirmClear)}
-                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
                 >
                   Clear All
                 </button>

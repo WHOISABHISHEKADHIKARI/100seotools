@@ -52,7 +52,7 @@ export default function HomePage() {
     return (
       <div className="space-y-8">
         <section className="text-center space-y-3 py-8">
-          <h1 className="text-2xl md:text-3xl font-bold">All Your SEO Tools in One Place</h1>
+          <p className="text-2xl md:text-3xl font-bold">All Your SEO Tools in One Place</p>
           <p className="text-gray-600 dark:text-gray-400">Loading tools...</p>
         </section>
       </div>
