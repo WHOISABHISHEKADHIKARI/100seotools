@@ -58,6 +58,26 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="manifest" href="/manifest.json" />
 
+        {/* Feature detection: load modern polyfills only when baseline features are missing */}
+        <script type="module" dangerouslySetInnerHTML={{__html: `
+          try {
+            const tests = [
+              () => Array.prototype.at && [1].at(0) === 1,
+              () => Array.prototype.flat && [[1]].flat().length === 1,
+              () => Array.prototype.flatMap,
+              () => Object.fromEntries && Object.fromEntries([["a",1]]).a === 1,
+              () => (Object.hasOwn ? Object.hasOwn({x:1}, "x") : Object.prototype.hasOwnProperty.call({x:1}, "x")),
+              () => ("".trimEnd && "".trimStart),
+            ];
+            const ok = tests.every(fn => { try { return !!fn(); } catch { return false; } });
+            if (!ok) {
+              import('/polyfills-modern.js').catch(()=>{});
+            }
+          } catch {}
+        `}} />
+        {/* Legacy browsers (no ESM support) always get legacy polyfills */}
+        <script noModule src="/polyfills-legacy.js"></script>
+
         <script src="/sw-register.js" defer></script>
       </head>
       <body className={`${inter.className} min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100`}>

@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "build:analyze": "ANALYZE=true next build",
     "generate:tools": "node scripts/generateTools.js",
     "validate": "node scripts/validate.js",
     "audit:contrast": "node scripts/contrastAudit.js",
