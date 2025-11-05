@@ -226,6 +226,52 @@ export default function PerformanceMonitor() {
         }, 0);
       });
 
+      // Real-time sampling and alerts: store snapshots every minute
+      const SAMPLE_KEY = 'perf_samples';
+      const ALERTS_KEY = 'perf_alerts';
+      const baselineKey = 'perf_baseline_tti';
+      const pushSample = () => {
+        try {
+          const sample = { ...metricsRef.current, ts: Date.now() };
+          const arr = JSON.parse(localStorage.getItem(SAMPLE_KEY) || '[]');
+          arr.push(sample);
+          localStorage.setItem(SAMPLE_KEY, JSON.stringify(arr.slice(-120)));
+
+          // Initialize TTI baseline using FCP+FID approximation
+          const ttiApprox = (sample.fcp || 0) + (sample.fid || 0);
+          if (!Number.isFinite(Number(localStorage.getItem(baselineKey))) && ttiApprox > 0) {
+            localStorage.setItem(baselineKey, String(ttiApprox));
+          }
+
+          // Threshold alerts
+          const alerts = JSON.parse(localStorage.getItem(ALERTS_KEY) || '[]');
+          const baselineTti = Number(localStorage.getItem(baselineKey)) || 0;
+          const newAlerts = [];
+          if (sample.cssLoadTime && sample.cssLoadTime > 250) {
+            newAlerts.push({ type: 'key_path_delay', value: sample.cssLoadTime, ts: sample.ts });
+          }
+          if (sample.fcp && sample.fcp > 100) {
+            newAlerts.push({ type: 'fcp_timeout', value: sample.fcp, ts: sample.ts });
+          }
+          if (baselineTti > 0 && ttiApprox > 0) {
+            const delta = Math.abs(ttiApprox - baselineTti) / baselineTti;
+            if (delta >= 0.15) {
+              newAlerts.push({ type: 'tti_degradation', value: ttiApprox, baseline: baselineTti, delta, ts: sample.ts });
+            }
+          }
+          if (newAlerts.length) {
+            localStorage.setItem(ALERTS_KEY, JSON.stringify([...alerts, ...newAlerts].slice(-200)));
+            for (const a of newAlerts) {
+              console.warn('[Perf Alert]', a.type, a);
+            }
+          }
+        } catch (e) {
+          // ignore storage errors
+        }
+      };
+
+      const samplingInterval = setInterval(pushSample, 60_000);
+
       // Track user engagement
       let startTime = Date.now();
       let isActive = true;
@@ -263,6 +309,7 @@ export default function PerformanceMonitor() {
 
       return () => {
         clearInterval(engagementInterval);
+        clearInterval(samplingInterval);
         window.removeEventListener('beforeunload', trackEngagement);
         document.removeEventListener('visibilitychange', () => {});
         if (observerRef.current) {

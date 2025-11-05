@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, Suspense, lazy } from 'react';
+import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import SearchFilter from '../components/SearchFilter';
 import StructuredData from '../components/StructuredData';
@@ -60,10 +61,28 @@ const SEOCalculator = dynamic(() => import('../components/SEOCalculator'), {
   )
 });
 
+// Mount children after first paint/idle to avoid impacting LCP
+function AfterFirstPaint({ children }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const run = () => setMounted(true);
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      // Give the browser a short idle window before mounting
+      window.requestIdleCallback(run, { timeout: 200 });
+    } else {
+      // Fallback – next tick
+      setTimeout(run, 0);
+    }
+  }, []);
+  if (!mounted) return null;
+  return children;
+}
+
 export default function HomePage() {
   const [tools, setTools] = useState([]);
   const [filteredTools, setFilteredTools] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     // Get tools on the client side to avoid hydration mismatch
@@ -72,6 +91,16 @@ export default function HomePage() {
     setFilteredTools(allTools);
     setIsLoaded(true);
   }, []);
+
+  // Predictive prefetch: prefetch likely first clicks to boost concurrency
+  useEffect(() => {
+    if (!isLoaded || !tools?.length) return;
+    const candidates = tools.slice(0, 5).map((t) => `/tools/${t.slug}`).filter(Boolean);
+    // Prefetch top 3 candidates concurrently
+    for (const href of candidates.slice(0, 3)) {
+      try { router.prefetch(href); } catch (_) {}
+    }
+  }, [isLoaded, tools, router]);
 
   if (!isLoaded) {
     return (
@@ -91,8 +120,10 @@ export default function HomePage() {
         const websiteLd = generateWebsiteSchema(baseUrl);
         return <StructuredData data={websiteLd} />;
       })()}
-      {/* Dynamically loaded SEO Calculator section at the very top */}
-      <SEOCalculator />
+      {/* Defer calculator mount until after first paint/idle to protect LCP */}
+      <AfterFirstPaint>
+        <SEOCalculator />
+      </AfterFirstPaint>
 
       <section className="text-center space-y-3 py-8">
         <h1 className="text-2xl md:text-3xl font-bold">All Your SEO Tools in One Place</h1>

@@ -2,8 +2,37 @@ module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
-    ...(process.env.NODE_ENV === 'production'
-      ? { cssnano: { preset: 'default' } }
+    // Enable cssnano in production for minification
+    ...(process.env.NODE_ENV === 'production' ? { cssnano: { preset: 'default' } } : {}),
+    // Optional: Enable PurgeCSS when explicitly turned on to deeply remove unused custom CSS
+    ...(process.env.ENABLE_PURGECSS === 'true'
+      ? {
+          '@fullhuman/postcss-purgecss': {
+            content: [
+              './app/**/*.{js,jsx,ts,tsx}',
+              './components/**/*.{js,jsx,ts,tsx}',
+              './pages/**/*.{js,jsx,ts,tsx}',
+              './tools/**/*.{js,jsx,ts,tsx}'
+            ],
+            defaultExtractor: (content) => content.match(/([A-Za-z0-9-_:/]+)/g) || [],
+            safelist: [
+              // Keep classes that are programmatically toggled or dynamic
+              'dark',
+              'card',
+              'card-interactive',
+              'card-content',
+              'tap-target',
+              'btn',
+              'btn-secondary',
+              'loading-skeleton',
+              'font-loading-fallback',
+              'calculator-container',
+              'content-transition',
+              'loading-reserve',
+              'tool-card-text'
+            ]
+          }
+        }
       : {})
   }
 };
