@@ -178,6 +178,36 @@ export default function PerformanceMonitor() {
           } catch (e) {
             console.warn('FCP observer not supported:', e);
           }
+
+          // CSS resource timing (baseline for blocking CSS impact)
+          try {
+            const resourceObserver = new PerformanceObserver((list) => {
+              const entries = list.getEntries();
+              const cssEntries = entries.filter((e) => {
+                return e.initiatorType === 'link' || (typeof e.name === 'string' && e.name.includes('.css'));
+              });
+
+              if (cssEntries.length) {
+                // Track the slowest CSS load as baseline
+                const slowest = cssEntries.reduce((max, e) => (e.duration > max.duration ? e : max), cssEntries[0]);
+                metricsRef.current.cssLoadTime = Math.round(slowest.duration);
+                metricsRef.current.cssEntry = slowest.name;
+
+                // Optional: log for A/B baseline comparison
+                console.log('[Perf] CSS loaded:', slowest.name, `${Math.round(slowest.duration)}ms`);
+
+                actions.updatePreferences({
+                  performanceMetrics: {
+                    ...metricsRef.current,
+                    lastUpdated: Date.now()
+                  }
+                });
+              }
+            });
+            resourceObserver.observe({ entryTypes: ['resource'] });
+          } catch (e) {
+            console.warn('Resource timing not supported:', e);
+          }
         }
       });
 

@@ -36,6 +36,8 @@ export const metadata = {
 };
 
 import './globals.css';
+import { Inter } from 'next/font/google';
+const inter = Inter({ subsets: ['latin'], display: 'swap', weight: ['400', '700'] });
 import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
 import ErrorBoundary from '../components/ErrorBoundary';
 import Navbar from '../components/Navbar';
@@ -46,14 +48,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" as="style" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" media="print" onLoad="this.media='all'" />
-        <noscript>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
-        </noscript>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#0f172a" />
@@ -62,7 +57,7 @@ export default function RootLayout({ children }) {
 
         <script src="/sw-register.js" defer></script>
       </head>
-      <body className="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+      <body className={`${inter.className} min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100`}>
         {/* Skip to main content link for accessibility */}
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
           Skip to main content
