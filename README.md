@@ -4,6 +4,16 @@ Free, no‑login, no‑card SEO tools built with Next.js 14 and Tailwind CSS. Th
 
 > **Latest Update**: Fixed build issues and added global navigation layout.
 
+## Performance: Selective Transpilation & Polyfills
+
+This project implements selective transpilation via modern `browserslist` targets and differential polyfill loading (module/nomodule + feature detection) to reduce bundle size and improve performance.
+
+- Targets: Chrome ≥90, Firefox ≥88, Safari ≥14, Edge ≥90
+- Docs: `docs/performance/selective-transpilation.md`
+- Analyzer: `npm run build:analyze` to inspect vendors/common chunks
+- Polyfills: minimal shims loaded only when baseline features are missing
+
+
 ## 依赖冲突解决：PostCSS 与 cssnano 工具链
 
 本项目在安装/构建过程中出现与 cssnano 工具链相关的 peer 依赖冲突警告：`postcss-calc@10.1.1` 要求 `postcss@^8.4.38`，而项目原本使用 `postcss@8.4.35`。
