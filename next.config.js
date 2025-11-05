@@ -104,7 +104,6 @@ const nextConfig = withBundleAnalyzer({
       },
     ];
   },
-  legacyBrowsers: true, // Enable legacy browser support for differential serving
 
 });
 

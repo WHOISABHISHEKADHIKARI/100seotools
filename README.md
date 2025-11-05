@@ -4,6 +4,41 @@ Free, no‑login, no‑card SEO tools built with Next.js 14 and Tailwind CSS. Th
 
 > **Latest Update**: Fixed build issues and added global navigation layout.
 
+## 依赖冲突解决：PostCSS 与 cssnano 工具链
+
+本项目在安装/构建过程中出现与 cssnano 工具链相关的 peer 依赖冲突警告：`postcss-calc@10.1.1` 要求 `postcss@^8.4.38`，而项目原本使用 `postcss@8.4.35`。
+
+### 原因分析
+- `cssnano@7.1.2` 依赖 `cssnano-preset-default@7.0.10`，该预设内部包含多个基于 PostCSS 的插件（如 `postcss-calc@10.1.1` 等）。
+- 这些子插件对 `postcss` 的版本要求更严格（多数要求 `^8.4.38`）。
+- 项目直接声明的 `postcss@8.4.35` 低于所需最小版本，导致 `npm ls` 报出 `invalid` 标记。
+
+### 依赖树确认
+使用 `npm ls postcss postcss-calc cssnano cssnano-preset-default` 验证：
+- `cssnano -> cssnano-preset-default@7.0.10 -> postcss-calc@10.1.1` 为冲突来源。
+- 多数子插件标记为 `invalid: "^8.4.38"`，确认需要提升 `postcss` 版本。
+
+### 解决方案与实施
+已选择并实施以下方案：
+- 将项目中的 `postcss` 从 `8.4.35` 升级为 `8.5.6`（兼容 `^8.4.38` 要求）。
+  - 命令：`npm install --save-dev postcss@8.5.6`
+  - 升级后再次执行 `npm ls ...`，所有 `invalid` 标记消失，依赖树一致。
+- 说明：`cssnano-preset-default@7.0.10` 为当前最新版本（`npm info cssnano-preset-default versions`），暂无更高版本可用来放宽要求。
+- 备选方案（不推荐长期使用）：`npm install --legacy-peer-deps` 暂时忽略 peer 依赖冲突，但会增加未来维护风险。
+
+### 兼容性评估
+- `tailwindcss@3.4.10` 与其相关的 PostCSS 插件（import、nested、load-config、js 等）均兼容 `postcss@8.5.6`。
+- `autoprefixer@10.4.20` 兼容 PostCSS 8.x 系列，工作正常。
+- `next@14.2.33` 内部依赖 `postcss@8.4.31`（子依赖），与顶层 `postcss@8.5.6` 并存不冲突，构建验证通过。
+
+### 验证与测试
+- 执行 `npm run build`：构建成功，无新的警告或错误（除 `next.config.js` 的 `legacyBrowsers` 提示）。
+- 如需进一步验证，可运行项目内的校验脚本：`npm run validate`。
+
+### 后续维护建议
+- 保持 `postcss` 在 `8.5.6` 或更高兼容版本，避免再次触发 cssnano 子插件的严格要求。
+- 定期检查 `cssnano` 与 `cssnano-preset-default` 的更新日志，以便在发布新版本时评估升级的必要性。
+
 ## Features
 - 100+ tools with client‑side runners
 - Category landing pages with structured data
