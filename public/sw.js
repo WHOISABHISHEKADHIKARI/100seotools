@@ -92,8 +92,8 @@ async function networkFirstStrategy(request) {
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
       const cache = await caches.open(DYNAMIC_CACHE_NAME);
-      // Add timestamp for cache expiry
-      const responseWithTimestamp = new Response(networkResponse.body, {
+      // Add timestamp for cache expiry using a cloned body to avoid locking
+      const responseWithTimestamp = new Response(networkResponse.clone().body, {
         status: networkResponse.status,
         statusText: networkResponse.statusText,
         headers: {
@@ -142,7 +142,7 @@ async function cacheFirstStrategy(request) {
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
       const cache = await caches.open(DYNAMIC_CACHE_NAME);
-      const responseWithTimestamp = new Response(networkResponse.body, {
+      const responseWithTimestamp = new Response(networkResponse.clone().body, {
         status: networkResponse.status,
         statusText: networkResponse.statusText,
         headers: {
@@ -174,7 +174,7 @@ async function staleWhileRevalidateStrategy(request) {
 
   const fetchPromise = fetch(request).then((networkResponse) => {
     if (networkResponse.ok) {
-      const responseWithTimestamp = new Response(networkResponse.body, {
+      const responseWithTimestamp = new Response(networkResponse.clone().body, {
         status: networkResponse.status,
         statusText: networkResponse.statusText,
         headers: {
