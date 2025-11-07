@@ -8,34 +8,18 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = withBundleAnalyzer({
   reactStrictMode: true,
   productionBrowserSourceMaps: true,
-  swcMinify: true,
+  // swcMinify: true, // removed – Next.js 13+ uses SWC by default
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   compress: true,
-  webpack(config, { isServer }) {
-    config.optimization.splitChunks = {
-      chunks: 'all',
-      minSize: 20000,
-      maxInitialRequests: 20,
-      maxAsyncRequests: 20,
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          priority: -10,
-          reuseExistingChunk: true,
-        },
-        common: {
-          name: 'common',
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
-    };
-    return config;
-  },
+  // Remove custom splitChunks override. Next.js 16 manages chunking internally
+  // and overriding optimization.splitChunks can break module execution in dev,
+  // triggering runtime errors like "Cannot read properties of undefined (reading 'call')".
+  // Keep the webpack hook only if you need other customizations.
+  // webpack(config) {
+  //   return config;
+  // },
   images: {
     remotePatterns: [
       {
@@ -52,14 +36,71 @@ const nextConfig = withBundleAnalyzer({
       },
     ],
   },
+  typedRoutes: true,
   experimental: {
-    typedRoutes: true,
     serverActions: {
       bodySizeLimit: '1mb',
     },
   },
+  // Silence Turbopack default error by explicitly declaring config
+  turbopack: {},
+  redirects: async () => {
+    return [
+      // Fix redirect chains by implementing direct 301 redirects
+      // HTTP to HTTPS redirects (avoid 308 status codes)
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'header',
+            key: 'x-forwarded-proto',
+            value: 'http',
+          },
+        ],
+        permanent: true, // 301 redirect
+        destination: 'https://www.100seotools.com/:path*',
+      },
+      // Non-www to www redirects (avoid 307 status codes)
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: '100seotools.com',
+          },
+        ],
+        permanent: true, // 301 redirect
+        destination: 'https://www.100seotools.com/:path*',
+      },
+    ];
+  },
   headers: async () => {
     return [
+      {
+        source: '/alternative/(.*)',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, follow',
+          },
+          {
+            key: 'Link',
+            value: '<https://www.100seotools.com/tools/keyword-density-checker>; rel="canonical"',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          },
+        ],
+      },
       {
         source: '/(.*)',
         headers: [
