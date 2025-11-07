@@ -35,6 +35,7 @@ export default function Card({
         shadow-sm
         hover:shadow-lg
         hover:-translate-y-0.5
+        active:scale-[0.99]
         transition-all
         duration-200
         ease-out
@@ -52,7 +53,7 @@ export default function Card({
       tabIndex={isLink ? 0 : undefined}
     >
       {/* Content Area */}
-      <div className="unified-card-content relative z-20 flex flex-col flex-1 p-6">
+      <div className={`unified-card-content relative ${isLink ? 'pointer-events-none' : ''} flex flex-col flex-1 p-6`}>
         {/* Header Section */}
         <div className="unified-card-header flex items-center justify-between mb-3">
           {/* Icon */}
@@ -119,7 +120,7 @@ export default function Card({
 
         {/* Action buttons or children */}
         {children && (
-          <div className="unified-card-actions relative z-20 flex items-center gap-2 mt-auto">
+          <div className="unified-card-actions relative z-[60] pointer-events-auto flex items-center gap-2 mt-auto">
             {children}
           </div>
         )}
@@ -135,7 +136,7 @@ export default function Card({
           prefetch={false}
           aria-labelledby={titleId}
           aria-describedby={descId}
-          className="absolute inset-0 z-10"
+          className="absolute inset-0 z-50"
         >
           <span className="sr-only">Open: {title}</span>
         </Link>

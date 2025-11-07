@@ -2,8 +2,9 @@
 import ToolRunner from '../../../components/ToolRunner';
 import ToolLayout from '../../../components/ToolLayout';
 import StructuredData from '../../../components/StructuredData';
-import { generateSoftwareApplicationSchema, generateHowToSchema } from '../../../lib/schema';
+import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSchema } from '../../../lib/schema';
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
+import { getToolGuide } from '../../../lib/guides';
 import { FiLoader } from 'react-icons/fi';
 import { notFound } from 'next/navigation';
 import { getBaseUrl, siteName } from '../../../lib/site';
@@ -68,7 +69,7 @@ export default async function ToolPage({ params }) {
   const allTools = getAllToolsMeta();
   const relatedTools = allTools
     .filter(t => t.category === tool.category && t.slug !== tool.slug)
-    .slice(0, 5);
+    .slice(0, 10);
 
 const baseUrl = getBaseUrl();
 
@@ -86,12 +87,15 @@ const baseUrl = getBaseUrl();
   // Use enhanced schema generators
   const softwareLd = generateSoftwareApplicationSchema(tool, baseUrl);
   const howToLd = generateHowToSchema(tool, baseUrl);
+  const guide = getToolGuide(tool);
+  const faqLd = Array.isArray(guide.faqs) && guide.faqs.length > 0 ? generateFAQSchema(guide.faqs, baseUrl) : null;
 
   return (
     <ToolLayout tool={tool} formFirst={true} relatedTools={relatedTools}>
       <StructuredData data={breadcrumbLd} />
       <StructuredData data={softwareLd} />
       <StructuredData data={howToLd} />
+      {faqLd && <StructuredData data={faqLd} />}
       <ToolRunner tool={tool} />
     </ToolLayout>
   );

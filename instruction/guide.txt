@@ -1,0 +1,77 @@
+ 
+TOOL: ${tool.name}
+URL: https://www.100seotools.com/tools/${tool.slug}
+PRIMARY KEYWORD: ${tool.keyword}
+SEARCH VOLUME: ${tool.volume.toLocaleString()}/month
+
+Write exactly 2,500 words following this structure:
+
+1. HERO SECTION
+- H1: "${tool.name} | Free AI SEO Tool by 100SEOTools"
+- Subheadline (10 words max)
+- One-sentence description
+- CTA button text
+
+2. INTRODUCTION (150 words)
+Explain what this tool is and why it's valuable.
+
+3. WHAT IT DOES (300 words)
+Clear explanation of functionality.
+
+4. WHY IT MATTERS FOR SEO (350 words)
+SEO benefits and impact on rankings/traffic.
+
+5. HOW TO USE IT (400 words)
+Step-by-step instructions:
+- Step 1: [specific action]
+- Step 2: [specific action]
+- Step 3: [specific action]
+- Step 4: [specific action]
+💡 Add pro tips for each step
+
+6. KEY FEATURES (300 words)
+List 6-8 features with benefits:
+✓ Feature 1: [benefit]
+✓ Feature 2: [benefit]
+[continue...]
+
+7. USE CASES (350 words)
+5 real-world scenarios where people use this tool.
+
+8. EXAMPLE RESULTS (200 words)
+Show sample outputs and how to interpret them.
+
+9. BEST PRACTICES (250 words)
+Expert tips for optimal results.
+
+10. RELATED TOOLS (200 words)
+Link to 8 related tools on 100SEOTools with descriptions.
+
+11. FAQS (500 words)
+Answer 8-12 questions:
+- How do I use ${tool.name}?
+- Is ${tool.name} free?
+- What makes this better than competitors?
+- Does it work on mobile?
+- How accurate is it?
+- [Add 3-7 more relevant questions]
+
+12. CALL TO ACTION (100 words)
+Compelling CTA with benefits.
+
+SEO REQUIREMENTS:
+- Main keyword "${tool.keyword}" used 25-30 times naturally
+- Include 10+ keyword variations
+- Meta Description (155 chars)
+- 8+ internal links to related tools
+- All content in clear, friendly tone
+- Flesch Reading Score 70+
+- Short paragraphs (2-3 sentences)
+
+SCHEMA MARKUP:
+Include JSON-LD for:
+1. SoftwareApplication schema
+2. FAQPage schema
+3. BreadcrumbList schema
+
+Make it helpful, engaging, and optimized for both users and search engines.`

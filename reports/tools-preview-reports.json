@@ -1,0 +1,3504 @@
+[
+  {
+    "identification": {
+      "name": "301 Redirect Generator",
+      "id": "redirect-301-generator",
+      "location": "https://www.100seotools.com/tools/redirect-301-generator",
+      "category": "SEO Tools",
+      "description": "Free online tool to generate SEO-friendly 301 redirect codes for Apache, Nginx, PHP, HTML, and JavaScript. Supports bulk processing, real-time validation, circular detection, and multi-format exports."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/redirect-301-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "AI Article Length Optimizer",
+      "id": "ai-article-length-optimizer",
+      "location": "https://www.100seotools.com/tools/ai-article-length-optimizer",
+      "category": "AI-Powered SEO",
+      "description": "Optimize length suggestions."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ai-article-length-optimizer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "AI Blog Intro Writer",
+      "id": "ai-blog-intro-writer",
+      "location": "https://www.100seotools.com/tools/ai-blog-intro-writer",
+      "category": "AI-Powered SEO",
+      "description": "Intro paragraph ideas."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ai-blog-intro-writer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "AI Competitor Title Rewriter",
+      "id": "ai-competitor-title-rewriter",
+      "location": "https://www.100seotools.com/tools/ai-competitor-title-rewriter",
+      "category": "AI-Powered SEO",
+      "description": "Rewrite titles (heuristic)."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ai-competitor-title-rewriter.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "AI Content Detector",
+      "id": "ai-content-detector",
+      "location": "https://www.100seotools.com/tools/ai-content-detector",
+      "category": "AI Tools",
+      "description": "Detect AI-generated content and check if text was written by ChatGPT, GPT-4, or other AI models."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ai-content-detector.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "AI Content Improver",
+      "id": "ai-content-improver",
+      "location": "https://www.100seotools.com/tools/ai-content-improver",
+      "category": "AI-Powered SEO",
+      "description": "Improve content (heuristic)."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ai-content-improver.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "AI FAQ Creator",
+      "id": "ai-faq-creator",
+      "location": "https://www.100seotools.com/tools/ai-faq-creator",
+      "category": "AI-Powered SEO",
+      "description": "FAQ list from topic."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ai-faq-creator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "AI Keyword Explainer",
+      "id": "ai-keyword-explainer",
+      "location": "https://www.100seotools.com/tools/ai-keyword-explainer",
+      "category": "AI-Powered SEO",
+      "description": "Explain keywords (heuristic)."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ai-keyword-explainer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "AI Meta Tag Writer",
+      "id": "ai-meta-tag-writer",
+      "location": "https://www.100seotools.com/tools/ai-meta-tag-writer",
+      "category": "AI Tools",
+      "description": "Generate AI-powered meta titles and descriptions optimized for SEO. Create compelling meta tags that improve click-through rates and search engine rankings using advanced AI algorithms."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ai-meta-tag-writer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "AI Schema Generator",
+      "id": "ai-schema-generator",
+      "location": "https://www.100seotools.com/tools/ai-schema-generator",
+      "category": "AI-Powered SEO",
+      "description": "Generate schema."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ai-schema-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "AI Snippet Generator",
+      "id": "ai-snippet-generator",
+      "location": "https://www.100seotools.com/tools/ai-snippet-generator",
+      "category": "AI-Powered SEO",
+      "description": "Snippet-like summary."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ai-snippet-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Anchor Text Analyzer",
+      "id": "anchor-text-analyzer",
+      "location": "https://www.100seotools.com/tools/anchor-text-analyzer",
+      "category": "Backlink & Link-Building",
+      "description": "Analyze anchor text distribution."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/anchor-text-analyzer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Backlink Tracking Template Generator",
+      "id": "backlink-tracking-template-generator",
+      "location": "https://www.100seotools.com/tools/backlink-tracking-template-generator",
+      "category": "Backlink & Link-Building",
+      "description": "Generate tracking template."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/backlink-tracking-template-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Blog Title Generator",
+      "id": "blog-title-generator",
+      "location": "https://www.100seotools.com/tools/blog-title-generator",
+      "category": "Content Creation",
+      "description": "Generate engaging blog titles and headlines that drive clicks and improve SEO. Create compelling, keyword-optimized titles that boost content performance and search rankings."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/blog-title-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Bounce Rate Estimator",
+      "id": "bounce-rate-estimator",
+      "location": "https://www.100seotools.com/tools/bounce-rate-estimator",
+      "category": "SEO Performance",
+      "description": "Heuristic bounce rate."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/bounce-rate-estimator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Broken Link Finder",
+      "id": "broken-link-finder",
+      "location": "https://www.100seotools.com/tools/broken-link-finder",
+      "category": "Technical SEO",
+      "description": "Extract and list links from HTML."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/broken-link-finder.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Canonical Tag Checker",
+      "id": "canonical-tag-checker",
+      "location": "https://www.100seotools.com/tools/canonical-tag-checker",
+      "category": "Technical SEO",
+      "description": "Check and validate canonical tag implementation to prevent duplicate content issues. Ensure proper canonical URL setup for better search engine indexing and SEO performance."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/canonical-tag-checker.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Canonical URL Builder",
+      "id": "canonical-url-builder",
+      "location": "https://www.100seotools.com/tools/canonical-url-builder",
+      "category": "SEO Utility",
+      "description": "Build canonical URLs."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/canonical-url-builder.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Competitor Backlink Idea Generator",
+      "id": "competitor-backlink-idea-generator",
+      "location": "https://www.100seotools.com/tools/competitor-backlink-idea-generator",
+      "category": "Competitor Analysis",
+      "description": "Backlink ideas from inputs."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/competitor-backlink-idea-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Competitor Gap Analyzer",
+      "id": "competitor-gap-analyzer",
+      "location": "https://www.100seotools.com/tools/competitor-gap-analyzer",
+      "category": "Competitor Analysis",
+      "description": "Identify gaps."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/competitor-gap-analyzer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Competitor Keyword Overlap Checker",
+      "id": "competitor-keyword-overlap-checker",
+      "location": "https://www.100seotools.com/tools/competitor-keyword-overlap-checker",
+      "category": "Competitor Analysis",
+      "description": "Gain a deeper understanding of your competitive landscape with our Competitor Keyword Overlap Checker. This tool allows you to see which keywords your competitors are targeting, revealing their SEO strategy and helping you identify new opportunities. To use the tool, simply enter your domain and the domains of your competitors. The tool will analyze the keyword rankings of each site and show you the overlap, highlighting the keywords that multiple competitors are targeting. Use this information to refine your own keyword strategy, identify gaps in your competitors' strategies, and discover new content ideas. It’s an invaluable tool for any SEO looking to gain a competitive edge."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/competitor-keyword-overlap-checker.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Competitor Summary Report Creator",
+      "id": "competitor-summary-report-creator",
+      "location": "https://www.100seotools.com/tools/competitor-summary-report-creator",
+      "category": "Competitor Analysis",
+      "description": "Create summary report."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/competitor-summary-report-creator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Content Freshness Checker",
+      "id": "content-freshness-checker",
+      "location": "https://www.100seotools.com/tools/content-freshness-checker",
+      "category": "SEO Utility",
+      "description": "Estimate content freshness."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/content-freshness-checker.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Content Gap Finder",
+      "id": "content-gap-finder",
+      "location": "https://www.100seotools.com/tools/content-gap-finder",
+      "category": "Content SEO",
+      "description": "Find content gaps."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/content-gap-finder.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Content Length Comparator",
+      "id": "content-length-comparator",
+      "location": "https://www.100seotools.com/tools/content-length-comparator",
+      "category": "Competitor Analysis",
+      "description": "Compare content length."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/content-length-comparator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "CTR Predictor",
+      "id": "ctr-predictor",
+      "location": "https://www.100seotools.com/tools/ctr-predictor",
+      "category": "SEO Performance",
+      "description": "Heuristic CTR estimate."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ctr-predictor.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Domain Authority Simulator",
+      "id": "domain-authority-simulator",
+      "location": "https://www.100seotools.com/tools/domain-authority-simulator",
+      "category": "Backlink & Link-Building",
+      "description": "Heuristic DA score."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/domain-authority-simulator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Domain Comparison Report Tool",
+      "id": "domain-comparison-report-tool",
+      "location": "https://www.100seotools.com/tools/domain-comparison-report-tool",
+      "category": "Competitor Analysis",
+      "description": "Compare domain attributes."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/domain-comparison-report-tool.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Duplicate Content Checker",
+      "id": "duplicate-content-checker",
+      "location": "https://www.100seotools.com/tools/duplicate-content-checker",
+      "category": "On-Page Optimization",
+      "description": "Compare two texts for overlap."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/duplicate-content-checker.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "FAQ Generator",
+      "id": "faq-generator",
+      "location": "https://www.100seotools.com/tools/faq-generator",
+      "category": "Content SEO",
+      "description": "Generate FAQs from topic."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/faq-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Featured Snippet Optimizer",
+      "id": "featured-snippet-optimizer",
+      "location": "https://www.100seotools.com/tools/featured-snippet-optimizer",
+      "category": "Content SEO",
+      "description": "Optimize for snippet."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/featured-snippet-optimizer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Free AI Content Outline Generator",
+      "id": "ai-content-outline-generator",
+      "location": "https://www.100seotools.com/tools/ai-content-outline-generator",
+      "category": "Content Creation",
+      "description": "Create comprehensive, SEO-optimized content outlines using advanced AI technology. Generate detailed blog post structures with strategic headings, subheadings, key topics, and keyword integration. Perfect for content marketers, bloggers, and SEO professionals who need structured, search-friendly content plans that drive organic traffic."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ai-content-outline-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Free Backlink Idea Generator",
+      "id": "backlink-idea-generator",
+      "location": "https://www.100seotools.com/tools/backlink-idea-generator",
+      "category": "Link Building",
+      "description": "Discover high-quality backlink opportunities and creative link building strategies for your website. Generate targeted ideas for guest posting, resource page links, broken link building, and partnership opportunities. Essential tool for SEO professionals and marketers looking to build authoritative backlinks and improve domain authority."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/backlink-idea-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Free Keyword Suggestion Tool",
+      "id": "keyword-suggestion-tool",
+      "location": "https://www.100seotools.com/tools/keyword-suggestion-tool",
+      "category": "Keyword Research",
+      "description": "Unlock a wealth of keyword opportunities with our free Keyword Suggestion Tool, an essential asset for any SEO professional, content creator, or digital marketer. This powerful tool helps you move beyond basic keywords to discover high-volume search terms, untapped long-tail keywords, and related phrases that your audience is actively searching for. By integrating these keywords, you can significantly enhance your content's relevance and authority. To use the tool, simply enter a seed keyword and click 'Generate.' Within seconds, you'll receive a comprehensive list of suggestions. Analyze the results to identify low-competition, high-intent keywords, and export them to fuel your content strategy, PPC campaigns, and overall SEO efforts, driving more organic traffic and improving your search engine rankings."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/keyword-suggestion-tool.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Free Local SEO Audit Checklist",
+      "id": "local-seo-audit-checklist",
+      "location": "https://www.100seotools.com/tools/local-seo-audit-checklist",
+      "category": "Local SEO",
+      "description": "Comprehensive local SEO audit checklist to optimize your business for local search results. Review Google My Business optimization, local citations, customer reviews, on-page local SEO factors, and technical elements. Perfect for local businesses, agencies, and marketers looking to dominate local search rankings and attract nearby customers."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/local-seo-audit-checklist.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Free Meta Tag Generator",
+      "id": "meta-tag-generator",
+      "location": "https://www.100seotools.com/tools/meta-tag-generator",
+      "category": "On-Page Optimization",
+      "description": "Create SEO-optimized meta tags including title tags, meta descriptions, keywords, and Open Graph tags for better search engine rankings and social media sharing. Generate perfect HTML meta tags that comply with Google guidelines, improve click-through rates, and boost your website's visibility in search results."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/meta-tag-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Free Robots.txt Generator",
+      "id": "robots-txt-creator",
+      "location": "https://www.100seotools.com/tools/robots-txt-creator",
+      "category": "Technical SEO",
+      "description": "Create and generate SEO-optimized robots.txt files to control how search engine bots crawl your website. Build proper robots.txt directives, set crawl delays, specify sitemaps, and guide search engines to improve indexing efficiency. Essential for technical SEO, preventing duplicate content issues, and optimizing crawl budget."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/robots-txt-creator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Free Schema Markup Generator",
+      "id": "schema-markup-generator",
+      "location": "https://www.100seotools.com/tools/schema-markup-generator",
+      "category": "Technical SEO",
+      "description": "Generate JSON-LD structured data and schema markup to help search engines better understand your content and display rich snippets in search results. Create schema for articles, products, reviews, events, organizations, and more. Essential for improving SERP appearance, click-through rates, and overall SEO performance."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/schema-markup-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Free SEO Health Score Calculator",
+      "id": "seo-health-score-calculator",
+      "location": "https://www.100seotools.com/tools/seo-health-score-calculator",
+      "category": "SEO Analysis",
+      "description": "Analyze your website's overall SEO performance with our comprehensive health score calculator. Get detailed insights into on-page optimization, technical SEO issues, content quality, and mobile-friendliness. Receive actionable recommendations to improve your search engine rankings and fix critical SEO problems."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/seo-health-score-calculator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Free XML Sitemap Generator",
+      "id": "sitemap-generator",
+      "location": "https://www.100seotools.com/tools/sitemap-generator",
+      "category": "Technical SEO",
+      "description": "Generate comprehensive XML sitemaps to help search engines discover, crawl, and index your website pages more efficiently. Create properly formatted sitemaps with priority settings, change frequencies, and last modification dates. Essential for technical SEO, improving indexing speed, and ensuring all important pages are found by Google and other search engines."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/sitemap-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Geo Keyword Expansion Tool",
+      "id": "geo-keyword-expansion-tool",
+      "location": "https://www.100seotools.com/tools/geo-keyword-expansion-tool",
+      "category": "Local SEO",
+      "description": "Geo keyword expansions."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/geo-keyword-expansion-tool.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Google My Business Optimization Helper",
+      "id": "gmb-optimization-helper",
+      "location": "https://www.100seotools.com/tools/gmb-optimization-helper",
+      "category": "Local SEO",
+      "description": "GMB optimization tips."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/gmb-optimization-helper.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Guest Posting Opportunity Finder",
+      "id": "guest-posting-opportunity-finder",
+      "location": "https://www.100seotools.com/tools/guest-posting-opportunity-finder",
+      "category": "Backlink & Link-Building",
+      "description": "Suggest guest post targets."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/guest-posting-opportunity-finder.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Heading Analyzer",
+      "id": "heading-analyzer",
+      "location": "https://www.100seotools.com/tools/heading-analyzer",
+      "category": "On-Page Optimization",
+      "description": "Analyze and extract heading structure (H1-H6) from content. Optimize heading hierarchy for better SEO, improve content organization, and enhance user experience."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/heading-analyzer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Headline Analyzer",
+      "id": "headline-analyzer",
+      "location": "https://www.100seotools.com/tools/headline-analyzer",
+      "category": "Content SEO",
+      "description": "Analyze headline strength."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/headline-analyzer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Hreflang Tag Generator",
+      "id": "hreflang-tag-generator",
+      "location": "https://www.100seotools.com/tools/hreflang-tag-generator",
+      "category": "Local SEO",
+      "description": "Generate hreflang tags."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/hreflang-tag-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "HTTP Status Code Tester",
+      "id": "http-status-code-tester",
+      "location": "https://www.100seotools.com/tools/http-status-code-tester",
+      "category": "Technical SEO",
+      "description": "Explain common HTTP statuses."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/http-status-code-tester.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Image Alt Tag Generator",
+      "id": "image-alt-tag-generator",
+      "location": "https://www.100seotools.com/tools/image-alt-tag-generator",
+      "category": "On-Page Optimization",
+      "description": "Generate descriptive alt tags for images to improve accessibility and SEO. Create optimized alt text that helps search engines understand image content and boosts rankings."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/image-alt-tag-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Impression-to-Click Ratio Calculator",
+      "id": "impression-to-click-ratio-calculator",
+      "location": "https://www.100seotools.com/tools/impression-to-click-ratio-calculator",
+      "category": "SEO Performance",
+      "description": "Calculate IC ratio."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/impression-to-click-ratio-calculator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Internal Link Suggestion Tool",
+      "id": "internal-link-suggestion-tool",
+      "location": "https://www.100seotools.com/tools/internal-link-suggestion-tool",
+      "category": "On-Page Optimization",
+      "description": "Suggest internal link anchors."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/internal-link-suggestion-tool.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Internal Linking Planner",
+      "id": "internal-linking-planner",
+      "location": "https://www.100seotools.com/tools/internal-linking-planner",
+      "category": "Backlink & Link-Building",
+      "description": "Plan internal links."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/internal-linking-planner.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Keyword Clustering Tool",
+      "id": "keyword-clustering-tool",
+      "location": "https://www.100seotools.com/tools/keyword-clustering-tool",
+      "category": "Keyword Research",
+      "description": "Transform your keyword lists into a powerful, organized content strategy with our Keyword Clustering Tool. Instead of targeting individual keywords, this tool groups them by semantic relevance and search intent, allowing you to build topic clusters and content silos. This approach signals to search engines that you are an authority on a particular topic, boosting your rankings across a group of related keywords. To use it, simply upload your keyword list. The tool will analyze the terms and group them into clusters. Use these clusters to plan your content, with each cluster representing a pillar page and its related sub-pages. This structured approach not only improves your SEO but also creates a more logical and user-friendly site architecture, guiding visitors through your content seamlessly."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/keyword-clustering-tool.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Keyword Comparison Tool",
+      "id": "keyword-comparison-tool",
+      "location": "https://www.100seotools.com/tools/keyword-comparison-tool",
+      "category": "Keyword Research",
+      "description": "Make smarter keyword choices with our Keyword Comparison Tool. This tool allows you to compare multiple keywords side-by-side, analyzing key metrics to help you decide which terms to target. To use the tool, simply enter two or more keywords. It will provide a comparative analysis, showing you the relative strengths and weaknesses of each. Use this data to prioritize your keyword list, choose the best primary and secondary keywords for your content, and refine your overall SEO strategy. Whether you're a content creator, marketer, or business owner, this tool will help you make more informed, data-driven decisions to improve your search rankings and drive more traffic."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/keyword-comparison-tool.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Keyword Density Checker",
+      "id": "keyword-density-checker",
+      "location": "https://www.100seotools.com/tools/keyword-density-checker",
+      "category": "Keyword Research",
+      "description": "Maintain the perfect keyword balance with our Keyword Density Checker, a crucial tool for any content creator or SEO strategist. Keyword density—the percentage of times a keyword appears in your text—is a key on-page SEO factor. Too low, and search engines may not recognize your content's relevance; too high, and you risk penalties for keyword stuffing. Our tool makes it easy to strike the right balance. Simply paste your text into the analyzer, enter your target keyword, and receive an instant density score. Use this data to refine your content, ensuring it’s optimized for search engines while remaining natural and readable for your audience. This helps improve your rankings, avoid penalties, and deliver a better user experience."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/keyword-density-checker.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Keyword Difficulty Estimator",
+      "id": "keyword-difficulty-estimator",
+      "location": "https://www.100seotools.com/tools/keyword-difficulty-estimator",
+      "category": "Keyword Research",
+      "description": "Prioritize your SEO efforts with our Keyword Difficulty Estimator. This tool provides a score that estimates how difficult it will be to rank on the first page of Google for a particular keyword. A lower score means less competition, giving you a better chance to rank quickly. To use the tool, enter a keyword and get an instant difficulty score based on the strength of the current top-ranking pages. Use this data to identify low-competition keywords, focus your content strategy on achievable targets, and avoid wasting resources on highly competitive terms. It's an essential tool for any SEO, from beginners to experts, looking to make data-driven decisions."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/keyword-difficulty-estimator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Keyword Expansion Tool",
+      "id": "keyword-expansion-tool",
+      "location": "https://www.100seotools.com/tools/keyword-expansion-tool",
+      "category": "Keyword Research",
+      "description": "Broaden your keyword horizons with our Keyword Expansion Tool. This tool takes your seed keywords and generates a comprehensive list of related and long-tail keywords, helping you uncover new content opportunities and reach a wider audience. To use the tool, simply enter a seed keyword. The tool will then provide you with a list of expanded keywords, including variations, synonyms, and related terms. Use this expanded list to create more in-depth content, target a wider range of search queries, and improve your overall SEO performance. It’s an essential tool for any content creator or marketer looking to expand their reach and attract more organic traffic."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/keyword-expansion-tool.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Keyword Gap Finder",
+      "id": "keyword-gap-finder",
+      "location": "https://www.100seotools.com/tools/keyword-gap-finder",
+      "category": "Keyword Research",
+      "description": "Discover the keywords that your competitors are ranking for, but you aren't, with our Keyword Gap Finder. This powerful tool allows you to compare your keyword profile with that of your competitors, revealing valuable opportunities to capture more organic traffic. To use the tool, simply enter your domain and the domains of your competitors. The tool will analyze the keyword rankings of each site and identify the gaps where your competitors have a presence and you don't. Use this information to inform your content strategy, create new content that targets these gaps, and ultimately steal traffic from your competitors. It’s a must-have tool for any serious SEO looking to dominate their niche."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/keyword-gap-finder.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Keyword Intent Identifier",
+      "id": "keyword-intent-identifier",
+      "location": "https://www.100seotools.com/tools/keyword-intent-identifier",
+      "category": "Keyword Research",
+      "description": "Go beyond just keywords and understand the 'why' behind every search with our Keyword Intent Identifier. This powerful tool helps you classify keywords into four main categories of user intent: informational (know), navigational (go), commercial (investigate), and transactional (buy). By understanding the intent behind a search, you can create content that perfectly matches the user's needs, leading to higher engagement and conversion rates. To use the tool, simply enter a keyword or a list of keywords. It will analyze the language and provide an intent classification for each. Use this insight to tailor your content—create blog posts for informational queries, landing pages for commercial ones, and product pages for transactional searches—for a more effective and user-centric SEO strategy."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/keyword-intent-identifier.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Keyword Placement Highlighter",
+      "id": "keyword-placement-highlighter",
+      "location": "https://www.100seotools.com/tools/keyword-placement-highlighter",
+      "category": "Content SEO",
+      "description": "Highlight keywords in text."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/keyword-placement-highlighter.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Keyword ROI Calculator",
+      "id": "keyword-roi-calculator",
+      "location": "https://www.100seotools.com/tools/keyword-roi-calculator",
+      "category": "SEO Performance",
+      "description": "Estimate ROI."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/keyword-roi-calculator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Keyword Share Estimator",
+      "id": "keyword-share-estimator",
+      "location": "https://www.100seotools.com/tools/keyword-share-estimator",
+      "category": "Competitor Analysis",
+      "description": "Estimate share."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/keyword-share-estimator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Link Relevance Evaluator",
+      "id": "link-relevance-evaluator",
+      "location": "https://www.100seotools.com/tools/link-relevance-evaluator",
+      "category": "Backlink & Link-Building",
+      "description": "Heuristic link relevance."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/link-relevance-evaluator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Link Source Categorizer",
+      "id": "link-source-categorizer",
+      "location": "https://www.100seotools.com/tools/link-source-categorizer",
+      "category": "Backlink & Link-Building",
+      "description": "Categorize sources."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/link-source-categorizer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Link Toxicity Checker",
+      "id": "link-toxicity-checker",
+      "location": "https://www.100seotools.com/tools/link-toxicity-checker",
+      "category": "Backlink & Link-Building",
+      "description": "Heuristic toxicity score."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/link-toxicity-checker.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Local Citation Finder",
+      "id": "local-citation-finder",
+      "location": "https://www.100seotools.com/tools/local-citation-finder",
+      "category": "Local SEO",
+      "description": "Find citation ideas."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/local-citation-finder.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Local Keyword Generator",
+      "id": "local-keyword-generator",
+      "location": "https://www.100seotools.com/tools/local-keyword-generator",
+      "category": "Local SEO",
+      "description": "Generate local keywords."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/local-keyword-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Local Schema Builder",
+      "id": "local-schema-builder",
+      "location": "https://www.100seotools.com/tools/local-schema-builder",
+      "category": "Local SEO",
+      "description": "LocalBusiness schema."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/local-schema-builder.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Location-Based Content Idea Generator",
+      "id": "location-based-content-idea-generator",
+      "location": "https://www.100seotools.com/tools/location-based-content-idea-generator",
+      "category": "Local SEO",
+      "description": "Content ideas by location."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/location-based-content-idea-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Long-Tail Keyword Generator",
+      "id": "long-tail-keyword-generator",
+      "location": "https://www.100seotools.com/tools/long-tail-keyword-generator",
+      "category": "Keyword Research",
+      "description": "Supercharge your SEO strategy with our Long-Tail Keyword Generator, designed to uncover highly specific, low-competition keywords that high-intent customers use. While broad keywords are competitive, long-tail keywords (3-5+ words) offer a direct path to users ready to convert. This tool is invaluable for niche marketers, local businesses, and content creators aiming for targeted traffic. To get started, enter a core topic or head term, and our generator will produce a list of relevant long-tail variations. Use these phrases to create blog posts, FAQ sections, and product pages that address specific user needs. By optimizing for long-tail keywords, you can attract a more qualified audience, face less competition in SERPs, and achieve a higher return on your content investment."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/long-tail-keyword-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Meta Description Optimizer",
+      "id": "meta-description-optimizer",
+      "location": "https://www.100seotools.com/tools/meta-description-optimizer",
+      "category": "On-Page Optimization",
+      "description": "Optimize meta descriptions for better click-through rates and SEO. Check length, quality, and keyword usage to create compelling meta descriptions that improve search rankings."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/meta-description-optimizer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Meta Description Writer",
+      "id": "meta-description-writer",
+      "location": "https://www.100seotools.com/tools/meta-description-writer",
+      "category": "Content SEO",
+      "description": "Write meta descriptions."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/meta-description-writer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Meta Tag Comparison Tool",
+      "id": "meta-tag-comparison-tool",
+      "location": "https://www.100seotools.com/tools/meta-tag-comparison-tool",
+      "category": "Competitor Analysis",
+      "description": "Compare meta tags."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/meta-tag-comparison-tool.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Mobile-Friendly Test",
+      "id": "mobile-friendly-test",
+      "location": "https://www.100seotools.com/tools/mobile-friendly-test",
+      "category": "Technical SEO",
+      "description": "Viewport tag detection."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/mobile-friendly-test.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "NAP Consistency Checker",
+      "id": "nap-consistency-checker",
+      "location": "https://www.100seotools.com/tools/nap-consistency-checker",
+      "category": "Local SEO",
+      "description": "Check NAP consistency (basic)."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/nap-consistency-checker.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "OG (Open Graph) Tag Generator",
+      "id": "og-tag-generator",
+      "location": "https://www.100seotools.com/tools/og-tag-generator",
+      "category": "SEO Utility",
+      "description": "Generate basic OG tags."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/og-tag-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "On-Page SEO Audit Checker",
+      "id": "on-page-seo-audit-checker",
+      "location": "https://www.100seotools.com/tools/on-page-seo-audit-checker",
+      "category": "On-Page Optimization",
+      "description": "Basic on-page checks."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/on-page-seo-audit-checker.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Organic Growth Forecast Tool",
+      "id": "organic-growth-forecast-tool",
+      "location": "https://www.100seotools.com/tools/organic-growth-forecast-tool",
+      "category": "SEO Performance",
+      "description": "Simple growth forecast."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/organic-growth-forecast-tool.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Outreach Email Template Generator",
+      "id": "outreach-email-template-generator",
+      "location": "https://www.100seotools.com/tools/outreach-email-template-generator",
+      "category": "Backlink & Link-Building",
+      "description": "Email template ideas."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/outreach-email-template-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Page Speed Score Simulator",
+      "id": "page-speed-score-simulator",
+      "location": "https://www.100seotools.com/tools/page-speed-score-simulator",
+      "category": "Technical SEO",
+      "description": "Heuristic page speed hints."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/page-speed-score-simulator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Paragraph Keyword Optimizer",
+      "id": "paragraph-keyword-optimizer",
+      "location": "https://www.100seotools.com/tools/paragraph-keyword-optimizer",
+      "category": "Content SEO",
+      "description": "Suggest keyword placements."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/paragraph-keyword-optimizer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Product Description Generator",
+      "id": "product-description-generator",
+      "location": "https://www.100seotools.com/tools/product-description-generator",
+      "category": "Content SEO",
+      "description": "Generate product copy."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/product-description-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Ranking Opportunity Finder",
+      "id": "ranking-opportunity-finder",
+      "location": "https://www.100seotools.com/tools/ranking-opportunity-finder",
+      "category": "Competitor Analysis",
+      "description": "Find ranking opportunities."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ranking-opportunity-finder.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Ranking Progress Tracker",
+      "id": "ranking-progress-tracker",
+      "location": "https://www.100seotools.com/tools/ranking-progress-tracker",
+      "category": "SEO Performance",
+      "description": "Track ranking progress."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/ranking-progress-tracker.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Readability Enhancer",
+      "id": "readability-enhancer",
+      "location": "https://www.100seotools.com/tools/readability-enhancer",
+      "category": "Content SEO",
+      "description": "Suggest readability improvements."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/readability-enhancer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Readability Score Calculator",
+      "id": "readability-score-calculator",
+      "location": "https://www.100seotools.com/tools/readability-score-calculator",
+      "category": "Content Optimization",
+      "description": "Calculate Flesch reading ease score and analyze content readability. Improve content accessibility, user engagement, and SEO by optimizing text complexity and readability."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/readability-score-calculator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Redirect Checker",
+      "id": "redirect-checker",
+      "location": "https://www.100seotools.com/tools/redirect-checker",
+      "category": "Technical SEO",
+      "description": "Map and list redirects."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/redirect-checker.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Reverse Image Search",
+      "id": "reverse-image-search",
+      "location": "https://www.100seotools.com/tools/reverse-image-search",
+      "category": "Image Tools",
+      "description": "Find the source and similar images using reverse image search across multiple search engines."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/reverse-image-search.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Review Response Generator",
+      "id": "review-response-generator",
+      "location": "https://www.100seotools.com/tools/review-response-generator",
+      "category": "Local SEO",
+      "description": "Generate responses."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/review-response-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Robots.txt Validator",
+      "id": "robots-txt-validator",
+      "location": "https://www.100seotools.com/tools/robots-txt-validator",
+      "category": "Technical SEO",
+      "description": "Validate robots.txt directives."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/robots-txt-validator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Search Preview Simulator",
+      "id": "search-preview-simulator",
+      "location": "https://www.100seotools.com/tools/search-preview-simulator",
+      "category": "SEO Utility",
+      "description": "Optimize your search appearance with our Search Preview Simulator. This tool allows you to see how your web page will look in Google's search results, helping you craft the perfect title and meta description to maximize click-through rates. To use the tool, simply enter your title, meta description, and URL. The simulator will generate a real-time preview of your search snippet, allowing you to experiment with different variations and see the impact on your listing. Use this tool to ensure your snippets are compelling, informative, and within Google's recommended length limits. It’s an essential tool for any SEO or content creator looking to improve their organic click-through rates."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/search-preview-simulator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "SEO Checklist Generator",
+      "id": "seo-checklist-generator",
+      "location": "https://www.100seotools.com/tools/seo-checklist-generator",
+      "category": "SEO Utility",
+      "description": "Generate checklist."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/seo-checklist-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Site Comparison Report Generator",
+      "id": "site-comparison-report-generator",
+      "location": "https://www.100seotools.com/tools/site-comparison-report-generator",
+      "category": "SEO Performance",
+      "description": "Benchmark your website against the competition with our Site Comparison Report Generator. This tool allows you to compare the SEO performance of multiple websites, providing a detailed report that highlights key differences and opportunities. To use the tool, simply enter your domain and the domains of your competitors. The generator will create a comprehensive report comparing traffic estimates, keyword rankings, backlink profiles, and more. Use this data to understand your competitive landscape, identify areas where you can improve, and track your progress over time. It’s an essential tool for any business looking to gain a competitive edge in the digital marketplace."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/site-comparison-report-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Structured Data Validator",
+      "id": "structured-data-validator",
+      "location": "https://www.100seotools.com/tools/structured-data-validator",
+      "category": "Technical SEO",
+      "description": "Validate JSON-LD structured data and catch missing required properties, syntax issues, and type mismatches. Supports Article, FAQ, HowTo, Product, LocalBusiness, and SoftwareApplication schemas. Get actionable fix tips aligned with Google’s guidelines to improve rich result eligibility, increase click-through rates, and reinforce technical SEO across your site."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/structured-data-validator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Text Translator",
+      "id": "text-translator",
+      "location": "https://www.100seotools.com/tools/text-translator",
+      "category": "Translation Tools",
+      "description": "Break down language barriers with our Text Translator. This powerful tool allows you to translate text to and from over 100 languages, making it easy to communicate with a global audience. To use the tool, simply paste your text into the input box, select the source and target languages, and click the translate button. The tool will instantly provide you with an accurate translation, which you can then copy and paste as needed. Whether you’re a business owner looking to expand into new markets, a student studying a foreign language, or simply someone who wants to communicate with people from other cultures, our Text Translator is the perfect tool for you."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/text-translator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Text-to-HTML Converter",
+      "id": "text-to-html-converter",
+      "location": "https://www.100seotools.com/tools/text-to-html-converter",
+      "category": "SEO Utility",
+      "description": "Quickly and easily convert plain text into HTML with our Text-to-HTML Converter. This tool is perfect for web developers, content creators, and anyone who needs to format text for the web. To use the tool, simply paste your plain text into the input box. The converter will instantly generate the corresponding HTML code, which you can then copy and paste into your website or application. This tool is a great time-saver, eliminating the need to manually write HTML tags. It’s a simple yet powerful tool that can help you streamline your workflow and get your content online faster."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/text-to-html-converter.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Title & Meta Length Counter",
+      "id": "title-meta-length-counter",
+      "location": "https://www.100seotools.com/tools/title-meta-length-counter",
+      "category": "Technical SEO",
+      "description": "Ensure your titles and meta descriptions are optimized for search engines with our Title & Meta Length Counter. This tool helps you stay within the recommended character limits to avoid truncation in search results and maximize your click-through rates. To use the tool, simply paste your title and meta description into the respective fields. The counter will instantly show you the character count, helping you craft concise and compelling copy that fits within the ideal range. It’s a simple yet essential tool for any SEO, content creator, or marketer who wants to improve their on-page SEO and attract more organic traffic."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/title-meta-length-counter.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Tone of Voice Analyzer",
+      "id": "tone-of-voice-analyzer",
+      "location": "https://www.100seotools.com/tools/tone-of-voice-analyzer",
+      "category": "Competitor Analysis",
+      "description": "Understand how your competitors communicate with their audience with our Tone of Voice Analyzer. This tool analyzes the tone of voice of any given text, helping you to understand the emotional sentiment behind the words. To use the tool, simply paste a block of text into the input box. The analyzer will then provide you with a breakdown of the tone, highlighting key emotional indicators. Use this information to analyze your competitors' content, refine your own brand voice, and create content that resonates with your target audience. It’s a valuable tool for any marketer, content creator, or brand strategist looking to build a stronger connection with their audience."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/tone-of-voice-analyzer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Traffic Potential Calculator",
+      "id": "traffic-potential-calculator",
+      "location": "https://www.100seotools.com/tools/traffic-potential-calculator",
+      "category": "SEO Performance",
+      "description": "Make informed decisions about your SEO strategy with our Traffic Potential Calculator. This tool helps you estimate the potential traffic you could receive from a specific keyword or for your website as a whole. To use the tool, simply enter a keyword or your domain. The calculator will then provide you with an estimate of the potential traffic, based on search volume and other factors. Use this information to prioritize your keyword targeting, forecast the impact of your SEO efforts, and set realistic goals for your business. It’s an essential tool for any SEO or marketer who wants to make data-driven decisions and maximize their return on investment."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/traffic-potential-calculator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Trending Keyword Visualizer",
+      "id": "trending-keyword-visualizer",
+      "location": "https://www.100seotools.com/tools/trending-keyword-visualizer",
+      "category": "Keyword Research",
+      "description": "Stay ahead of the curve with our Trending Keyword Visualizer. This tool helps you identify and capitalize on emerging trends and popular keywords in your niche. By understanding what topics are gaining traction, you can create timely and relevant content that captures a wave of user interest. To use the tool, simply enter a topic or keyword. It will generate a visual representation of related trending terms, showing you what's popular right now. Use this information to inform your content calendar, create reactive content, and position your brand as a thought leader. It’s an essential tool for marketers, journalists, and content creators who want to stay relevant and capture audience attention."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/trending-keyword-visualizer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "URL Slug Generator",
+      "id": "url-slug-generator",
+      "location": "https://www.100seotools.com/tools/url-slug-generator",
+      "category": "Technical SEO",
+      "description": "Create clean, readable, and SEO-friendly URL slugs with our URL Slug Generator. This tool helps you convert your page titles or any other text into a URL-friendly format, improving both your search engine rankings and user experience. To use the tool, simply enter your text into the input box. The generator will instantly create a URL slug that is optimized for SEO, with stop words removed and characters converted to lowercase. Use this tool to create custom URLs for your blog posts, product pages, and other content, ensuring that your URLs are both user-friendly and search engine-friendly."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/url-slug-generator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Visibility Index Calculator",
+      "id": "visibility-index-calculator",
+      "location": "https://www.100seotools.com/tools/visibility-index-calculator",
+      "category": "SEO Performance",
+      "description": "Track your SEO performance and measure your website’s visibility in search results with our Visibility Index Calculator. This tool provides a single metric that represents your overall SEO performance, making it easy to track your progress over time. To use the tool, simply enter your domain. The calculator will then analyze your keyword rankings and search volume to calculate your visibility index. Use this information to benchmark your performance against competitors, identify areas for improvement, and demonstrate the value of your SEO efforts. It’s an essential tool for any SEO or marketer who wants to track their performance and make data-driven decisions."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/visibility-index-calculator.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "Word Count & Structure Checker",
+      "id": "word-count-structure-checker",
+      "location": "https://www.100seotools.com/tools/word-count-structure-checker",
+      "category": "On-Page Optimization",
+      "description": "Optimize your content for both SEO and readability with our Word Count & Structure Checker. This tool provides a detailed analysis of your content's length and structure, helping you create content that is both engaging and easy to read. To use the tool, simply paste your text into the input box. The checker will then analyze your content and provide you with a detailed report, including your word count, sentence count, and paragraph count. Use this information to ensure that your content is the right length for your target audience and that it is well-structured and easy to read. It’s an essential tool for any content creator or SEO who wants to create high-quality content that ranks well in search results."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/word-count-structure-checker.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  },
+  {
+    "identification": {
+      "name": "XML Sitemap Visualizer",
+      "id": "xml-sitemap-visualizer",
+      "location": "https://www.100seotools.com/tools/xml-sitemap-visualizer",
+      "category": "Technical SEO",
+      "description": "Understand your website’s structure and identify any issues with your sitemap with our XML Sitemap Visualizer. This tool provides a visual representation of your sitemap, making it easy to see how your pages are organized and how they are linked together. To use the tool, simply enter the URL of your sitemap. The visualizer will then generate a visual representation of your sitemap, which you can use to identify any broken links, redirect chains, or other issues. It’s an essential tool for any SEO or webmaster who wants to ensure that their sitemap is properly configured and that their website is easy for search engines to crawl and index."
+    },
+    "operationalStatus": {
+      "status": "online",
+      "rendering": "static-app-router"
+    },
+    "pricing": {
+      "priceUSD": 0,
+      "billing": "free",
+      "usage": "in-browser, no login required"
+    },
+    "trafficVolume": {
+      "pageViews": null,
+      "uniqueVisitors": null,
+      "sources": null,
+      "notes": "Analytics not instrumented in repo"
+    },
+    "historicalPerformance": {
+      "uptime": null,
+      "errorRate": null,
+      "responseTimesMs": null,
+      "notes": "No historical metrics available in repo"
+    },
+    "visuals": {
+      "screenshot": "https://www.100seotools.com/screenshots/xml-sitemap-visualizer.png",
+      "ogImage": "https://www.100seotools.com/og-image.jpg"
+    }
+  }
+]

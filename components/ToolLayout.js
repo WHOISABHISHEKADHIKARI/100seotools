@@ -10,7 +10,7 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
       <div className="card p-6">
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-xl font-semibold">{tool.name}</h1>
+            <h1 className="text-xl font-semibold">{`${tool.name} | Free AI SEO Tool by 100SEOTools`}</h1>
             <p className="text-gray-600 dark:text-gray-400">{tool.description}</p>
           </div>
           <div className="flex items-center gap-3">
@@ -24,6 +24,10 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
             </a>
           </div>
         </div>
+        <div className="mt-3 flex items-center justify-between">
+          <p className="text-sm text-gray-700 dark:text-gray-300">Generate and optimize with fast, helpful outputs</p>
+          <a href="#tool-form" className="btn" aria-label="Jump to the form to generate your output">Start Generating</a>
+        </div>
       </div>
 
       {/* Form first layout */}
@@ -35,6 +39,20 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
 
           {guide && (
             <div className="card p-6 space-y-6">
+              <section aria-labelledby="intro-heading" className="space-y-2">
+                <h2 id="intro-heading" className="text-xl font-semibold">Introduction</h2>
+                <p className="text-gray-700 dark:text-gray-300">{guide.introduction}</p>
+              </section>
+
+              <section aria-labelledby="what-heading" className="space-y-2">
+                <h2 id="what-heading" className="text-xl font-semibold">What It Does</h2>
+                <p className="text-gray-700 dark:text-gray-300">{guide.whatItDoes}</p>
+              </section>
+
+              <section aria-labelledby="seo-heading" className="space-y-2">
+                <h2 id="seo-heading" className="text-xl font-semibold">Why It Matters for SEO</h2>
+                <p className="text-gray-700 dark:text-gray-300">{guide.whyItMattersSEO}</p>
+              </section>
               <h2 className="text-xl font-semibold mb-2">Tool Information</h2>
 
               <div>
@@ -45,6 +63,13 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
               <div>
                 <h3 className="text-lg font-medium mb-2">How to use</h3>
                 <p className="text-gray-700 dark:text-gray-300">{guide.howToUse}</p>
+                {Array.isArray(guide.howToSteps) && guide.howToSteps.length > 0 && (
+                  <ul className="list-disc pl-5 mt-2 space-y-1 text-gray-700 dark:text-gray-300">
+                    {guide.howToSteps.map((s, idx) => (
+                      <li key={idx}><span className="font-medium">{s.step}:</span> {s.tip}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
 
               <div>
@@ -69,6 +94,35 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
                   <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
                     {guide.useCases.map((useCase, index) => (
                       <li key={index}>{useCase}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {Array.isArray(guide.features) && guide.features.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-medium mb-2">Key Features</h3>
+                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                    {guide.features.map((feat, index) => (
+                      <li key={index}>{feat}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {guide.exampleResults && (
+                <div>
+                  <h3 className="text-lg font-medium mb-2">Example Results</h3>
+                  <p className="text-gray-700 dark:text-gray-300">{guide.exampleResults}</p>
+                </div>
+              )}
+
+              {Array.isArray(guide.bestPractices) && guide.bestPractices.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-medium mb-2">Best Practices</h3>
+                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                    {guide.bestPractices.map((bp, index) => (
+                      <li key={index}>{bp}</li>
                     ))}
                   </ul>
                 </div>
@@ -130,6 +184,13 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
                       </div>
                     </div>
                   ))}
+                </div>
+              )}
+
+              {guide.cta && (
+                <div className="pt-2">
+                  <a href="#tool-form" className="btn" aria-label="Jump to the form">Start Now</a>
+                  <p className="text-gray-700 dark:text-gray-300 mt-2">{guide.cta}</p>
                 </div>
               )}
             </div>

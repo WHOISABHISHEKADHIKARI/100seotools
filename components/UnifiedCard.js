@@ -54,7 +54,7 @@ function UnifiedCard({
         border-gray-200
         dark:border-gray-700
         shadow-sm
-        ${interactive ? 'hover:shadow-lg hover:-translate-y-0.5 hover:scale-[1.01]' : ''}
+        ${interactive ? 'hover:shadow-lg hover:-translate-y-0.5 hover:scale-[1.01] active:scale-[0.99]' : ''}
         transition-transform
         duration-300
         ease-out
@@ -85,7 +85,7 @@ function UnifiedCard({
       )}
 
       {/* Content Area */}
-      <div className="unified-card-content relative z-20 flex flex-col flex-1 p-6">
+      <div className={`unified-card-content relative ${isLink && interactive ? 'pointer-events-none' : ''} flex flex-col flex-1 p-6`}>
         {/* Header Section */}
         <div className="unified-card-header flex items-center justify-between mb-3">
           {/* Category Meta */}
@@ -219,7 +219,7 @@ function UnifiedCard({
 
             {/* Action buttons or children */}
             {children && (
-              <div className="unified-card-actions relative z-20 flex items-center gap-2">
+              <div className="unified-card-actions relative z-[60] pointer-events-auto flex items-center gap-2">
                 {children}
               </div>
             )}
@@ -237,7 +237,7 @@ function UnifiedCard({
           prefetch={false}
           aria-labelledby={titleId}
           aria-describedby={descId}
-          className="absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
+          className="absolute inset-0 z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
         >
           <span className="sr-only">Open: {title}</span>
         </Link>

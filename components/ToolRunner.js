@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useState } from 'react';
 import { getTemplateDefinition, runTemplate } from '../lib/templates';
-import { copyToClipboard, downloadText } from '../lib/utils';
+import { copyToClipboardWithHistory, normalizePastedContent, downloadAllFormats } from '../lib/utils';
 
 export default function ToolRunner({ tool }) {
   const def = useMemo(() => getTemplateDefinition(tool.template), [tool.template]);
@@ -15,6 +15,16 @@ export default function ToolRunner({ tool }) {
   const [output, setOutput] = useState('');
 
   const onChange = (name, value) => setInputs((prev) => ({ ...prev, [name]: value }));
+  const onPaste = (e, name) => {
+    try {
+      const pasted = e.clipboardData?.getData('text/html') || e.clipboardData?.getData('text/plain') || '';
+      if (pasted) {
+        e.preventDefault();
+        const normalized = normalizePastedContent(pasted);
+        onChange(name, normalized);
+      }
+    } catch {}
+  };
   const analyze = () => setOutput(runTemplate(tool.template, inputs));
 
   return (
@@ -25,9 +35,9 @@ export default function ToolRunner({ tool }) {
             <div key={f.name}>
               <label className="block text-sm mb-1" htmlFor={`field-${f.name}`}>{f.label}</label>
               {f.type === 'textarea' ? (
-                <textarea id={`field-${f.name}`} className="input h-36" value={inputs[f.name]} onChange={(e) => onChange(f.name, e.target.value)} placeholder={f.placeholder || ''} aria-label={f.label} />
+                <textarea id={`field-${f.name}`} className="input h-36" value={inputs[f.name]} onChange={(e) => onChange(f.name, e.target.value)} onPaste={(e) => onPaste(e, f.name)} placeholder={f.placeholder || ''} aria-label={f.label} title={f.placeholder || f.label} />
               ) : (
-                <input id={`field-${f.name}`} className="input" type={f.type || 'text'} value={inputs[f.name]} onChange={(e) => onChange(f.name, e.target.value)} placeholder={f.placeholder || ''} aria-label={f.label} />
+                <input id={`field-${f.name}`} className="input" type={f.type || 'text'} value={inputs[f.name]} onChange={(e) => onChange(f.name, e.target.value)} onPaste={(e) => onPaste(e, f.name)} placeholder={f.placeholder || ''} aria-label={f.label} title={f.placeholder || f.label} />
               )}
             </div>
           ))}
@@ -37,8 +47,8 @@ export default function ToolRunner({ tool }) {
           <label className="block text-sm mb-1">Output</label>
           <pre className="input h-64 whitespace-pre-wrap overflow-auto" aria-live="polite">{output || 'No output yet. Enter inputs and click the button.'}</pre>
           <div className="flex gap-3">
-            <button className="btn-secondary" onClick={() => copyToClipboard(output)} aria-label="Copy output">Copy</button>
-            <button className="btn-secondary" onClick={() => downloadText(`${tool.slug}.txt`, output)} aria-label="Download output">Download</button>
+            <button className="btn-secondary" onClick={() => copyToClipboardWithHistory(output, tool.slug)} aria-label="Copy output">Copy</button>
+            <button className="btn-secondary" onClick={() => downloadAllFormats(tool.slug, output, inputs, { metrics: { length: (output || '').length } })} aria-label="Download output">Download</button>
           </div>
         </div>
       </div>
