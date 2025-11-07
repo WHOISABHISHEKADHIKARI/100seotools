@@ -348,7 +348,7 @@ English serves as the world's lingua franca, making it essential for:
 
 ### 1. Idiomatic Expressions
 **Challenge**: Phrases that don't translate literally
-**Solution**: 
+**Solution**:
 - Research equivalent expressions in English
 - Explain the concept rather than translate words
 - Use context to convey meaning

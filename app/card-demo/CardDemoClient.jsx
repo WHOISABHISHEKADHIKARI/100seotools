@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from 'react';
 import ToolCardGrid from '../../components/ToolCardGrid';
-import Card from '../../components/Card';
+import UnifiedCard from '../../components/UnifiedCard';
+import IconButton from '../../components/IconButton';
 import { getAllToolsMeta } from '../../tools';
 import { FiTool, FiSearch, FiTag } from 'react-icons/fi';
 
@@ -21,7 +22,7 @@ export default function CardDemoClient() {
         <h2 className="text-xl font-semibold mb-4">Individual Card Examples</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {/* Basic card */}
-          <Card
+          <UnifiedCard
             title="Meta Tag Generator"
             description="Create SEO-ready meta tags in seconds for better search visibility."
             icon={FiTag}
@@ -31,7 +32,7 @@ export default function CardDemoClient() {
           />
 
           {/* Card with custom actions */}
-          <Card
+          <UnifiedCard
             title="Keyword Research Tool"
             description="Find high-value keywords for your content strategy."
             icon={FiSearch}
@@ -39,12 +40,17 @@ export default function CardDemoClient() {
             href="/tools/keyword-suggestion-tool"
             iconColor="text-blue-500"
           >
-            <button className="btn-secondary p-1.5 text-xs" onClick={(e) => e.stopPropagation()}> <FiSearch /> </button>
+            <IconButton
+              icon={FiSearch}
+              label="Search"
+              size="md"
+              onClick={(e) => e.stopPropagation()}
+            />
             <button className="btn text-xs py-1.5 ml-auto" onClick={(e) => e.stopPropagation()}> Open </button>
-          </Card>
+          </UnifiedCard>
 
           {/* Card with no icon */}
-          <Card
+          <UnifiedCard
             title="Backlink Analyzer"
             description="Analyze your backlink profile and find opportunities for improvement."
             meta="Backlink & Link-Building"
@@ -52,7 +58,7 @@ export default function CardDemoClient() {
           />
 
           {/* Non-interactive card */}
-          <Card
+          <UnifiedCard
             title="Information Card"
             description="This card is not interactive and serves as an information display only."
             icon={FiTool}

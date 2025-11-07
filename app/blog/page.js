@@ -1,12 +1,25 @@
 import Link from 'next/link';
-import Card from '../../components/Card';
+import UnifiedCard from '../../components/UnifiedCard';
 import StructuredData from '../../components/StructuredData';
 import BlogSection from '../../components/BlogSection';
+import dynamicImport from 'next/dynamic';
+const BlogCard = dynamicImport(() => import('../../components/BlogCard'), {
+  loading: () => (
+    <div
+      className="h-48 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/10 animate-pulse"
+      aria-hidden="true"
+    />
+  )
+});
 import { getAllToolsMeta } from '../../tools';
 import { getAllBlogPosts } from '../../lib/blog';
 import { getBaseUrl } from '../../lib/site';
 
 const baseUrl = getBaseUrl();
+
+// Prefer static rendering to reduce RSC prefetch churn and aborted requests
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Cache and revalidate every hour
 
 export const metadata = {
   title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
@@ -28,7 +41,7 @@ export const metadata = {
   },
 };
 
-export default function BlogPage({ searchParams }) {
+export default async function BlogPage({ searchParams }) {
   const tools = getAllToolsMeta();
   const posts = getAllBlogPosts();
   const currentPage = Math.max(1, Number(searchParams?.page) || 1);
@@ -244,15 +257,20 @@ export default function BlogPage({ searchParams }) {
         <h2 className="text-xl md:text-2xl font-semibold">Tool Guides</h2>
         <p className="text-gray-700 dark:text-gray-300">Explore how to use each tool effectively. Read the guide or open the tool directly.</p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {pagedTools.map((t) => (
-            <Card
-              key={t.slug}
-              href={`/blog/${t.slug}`}
-              title={t.name}
-              description={t.description || t.category}
-              meta={t.category}
-              className="hover:shadow-md transition"
-            />
+          {pagedTools.map((t, index) => (
+          <BlogCard
+            key={t.slug}
+            href={`/tools/${t.slug}`}
+            title={t.name}
+            description={t.description || t.category}
+            category={t.category}
+            readTime="5 min read"
+            author="100 SEO Tools"
+            publishedAt={new Date().toISOString()}
+            priority={index < 3}
+            showImage={false}
+            className="hover:shadow-md transition"
+          />
           ))}
         </div>
 
@@ -269,7 +287,7 @@ export default function BlogPage({ searchParams }) {
               prefetch={false}
               aria-disabled={toolsPage === 1}
               aria-label={`Tools page ${Math.max(1, toolsPage - 1)}`}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${toolsPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${toolsPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 dark:text-brand-300 hover:bg-slate-50 dark:hover:bg-white/10'}`}
             >
               ← Prev
             </Link>
@@ -304,7 +322,7 @@ export default function BlogPage({ searchParams }) {
               prefetch={false}
               aria-disabled={toolsPage === totalToolPages}
               aria-label={`Tools page ${Math.min(totalToolPages, toolsPage + 1)}`}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${toolsPage === totalToolPages ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${toolsPage === totalToolPages ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 dark:text-brand-300 hover:bg-slate-50 dark:hover:bg-white/10'}`}
             >
               Next →
             </Link>
@@ -317,13 +335,18 @@ export default function BlogPage({ searchParams }) {
         <h2 className="text-xl md:text-2xl font-semibold">SEO Mastery (100 Simple Guides)</h2>
         <p className="text-gray-700 dark:text-gray-300">Quick, actionable posts covering foundations, keyword research, on-page, technical, links, content, local, AI, SERP features, and tracking.</p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {pagedPosts.map((p) => (
-            <Card
+          {pagedPosts.map((p, index) => (
+            <BlogCard
               key={p.slug}
               href={`/blog/${p.slug}`}
               title={p.title}
               description={p.description}
-              meta={p.category}
+              category={p.category}
+              readTime={`${p.readTimeMinutes || 5} min read`}
+              author={typeof p.author === 'string' ? p.author : p.author?.name || '100 SEO Tools'}
+              publishedAt={p.datePublished}
+              priority={index < 3}
+              showImage={false}
               className="hover:shadow-md transition"
             />
           ))}
@@ -342,7 +365,7 @@ export default function BlogPage({ searchParams }) {
               prefetch={false}
               aria-disabled={currentPage === 1}
               aria-label={`Blog page ${Math.max(1, currentPage - 1)}`}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${currentPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${currentPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 dark:text-brand-300 hover:bg-slate-50 dark:hover:bg-white/10'}`}
             >
               ← Prev
             </Link>
@@ -377,7 +400,7 @@ export default function BlogPage({ searchParams }) {
               prefetch={false}
               aria-disabled={currentPage === totalPostPages}
               aria-label={`Blog page ${Math.min(totalPostPages, currentPage + 1)}`}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${currentPage === totalPostPages ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 hover:bg-slate-50 dark:hover:bg-white/10'}`}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${currentPage === totalPostPages ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 dark:text-brand-300 hover:bg-slate-50 dark:hover:bg-white/10'}`}
             >
               Next →
             </Link>

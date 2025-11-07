@@ -85,7 +85,7 @@ export default function FloatingActionButton({ onOpenPreferences }) {
   ];
 
   return (
-    <div 
+    <div
       ref={fabRef}
       className="fixed bottom-6 right-6 z-40 flex flex-col-reverse items-end gap-3"
     >
@@ -101,7 +101,7 @@ export default function FloatingActionButton({ onOpenPreferences }) {
                   onMouseEnter={() => setShowTooltip(action.id)}
                   onMouseLeave={() => setShowTooltip(null)}
                   className={`w-12 h-12 rounded-full ${action.color} text-white shadow-lg transition-all duration-200 hover:scale-110 flex items-center justify-center`}
-                  style={{ 
+                  style={{
                     animationDelay: `${index * 50}ms`,
                     animation: 'fadeInUp 0.3s ease-out forwards'
                   }}
@@ -109,7 +109,7 @@ export default function FloatingActionButton({ onOpenPreferences }) {
                 >
                   <Icon className="w-5 h-5" />
                 </button>
-                
+
                 {/* Tooltip */}
                 {showTooltip === action.id && (
                   <div className="absolute right-14 top-1/2 transform -translate-y-1/2 bg-gray-900 text-white text-sm px-3 py-1 rounded-lg whitespace-nowrap shadow-lg">
@@ -140,7 +140,7 @@ export default function FloatingActionButton({ onOpenPreferences }) {
 
       {/* Backdrop for mobile */}
       {isExpanded && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-20 -z-10 md:hidden"
           onClick={() => setIsExpanded(false)}
         />

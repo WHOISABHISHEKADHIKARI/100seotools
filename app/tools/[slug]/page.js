@@ -6,7 +6,7 @@ import { generateSoftwareApplicationSchema, generateHowToSchema } from '../../..
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { FiLoader } from 'react-icons/fi';
 import { notFound } from 'next/navigation';
-import { getBaseUrl } from '../../../lib/site';
+import { getBaseUrl, siteName } from '../../../lib/site';
 
 // Previously used dynamic import with ssr: false which can trigger
 // webpack factory errors during Fast Refresh in development on Windows.
@@ -14,27 +14,28 @@ import { getBaseUrl } from '../../../lib/site';
 // correctly without a dynamic boundary.
 
 export async function generateMetadata({ params }) {
-  const tool = getToolBySlug(params.slug);
+  const { slug } = await params;
+  const tool = getToolBySlug(slug);
   if (!tool) {
-    return { title: 'Tool not found' };
+    notFound();
   }
-  
+
   // Enhanced metadata for better SEO
   const toolName = tool.name;
   const toolDescription = tool.description;
   const toolCategory = tool.category;
-  
+
   return {
     title: `${toolName} – Free SEO Tool | 100 SEO Tools`,
     description: `${toolDescription} Use this free ${toolCategory.toLowerCase()} tool online without login. Part of 100+ free SEO tools for marketers and developers.`,
-    alternates: { canonical: `/tools/${tool.slug}` },
+    alternates: { canonical: `${getBaseUrl()}/tools/${tool.slug}` },
     keywords: `${tool.slug.replace(/-/g, ' ')}, ${toolCategory.toLowerCase()}, seo tools, free seo tools`,
     openGraph: {
       title: `${toolName} – Free Online SEO Tool`,
       description: toolDescription,
       url: `/tools/${tool.slug}`,
       type: 'website',
-      siteName: '100 SEO Tools',
+      siteName,
       locale: 'en_US',
       images: [
         {
@@ -55,21 +56,22 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function ToolPage({ params }) {
-  const tool = getToolBySlug(params.slug);
+export default async function ToolPage({ params }) {
+  const { slug } = await params;
+  const tool = getToolBySlug(slug);
   if (!tool) {
     // Use Next.js App Router 404 handling to render app/not-found.js
-    return notFound();
+    notFound();
   }
-  
+
   // Get related tools based on category
   const allTools = getAllToolsMeta();
   const relatedTools = allTools
     .filter(t => t.category === tool.category && t.slug !== tool.slug)
     .slice(0, 5);
-  
+
 const baseUrl = getBaseUrl();
-  
+
   // Enhanced structured data for better AI crawler understanding
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -80,11 +82,11 @@ const baseUrl = getBaseUrl();
       { '@type': 'ListItem', position: 3, name: tool.name, item: `${baseUrl}/tools/${tool.slug}` }
     ]
   };
-  
+
   // Use enhanced schema generators
   const softwareLd = generateSoftwareApplicationSchema(tool, baseUrl);
   const howToLd = generateHowToSchema(tool, baseUrl);
-  
+
   return (
     <ToolLayout tool={tool} formFirst={true} relatedTools={relatedTools}>
       <StructuredData data={breadcrumbLd} />
@@ -100,3 +102,6 @@ export function generateStaticParams() {
   const tools = getAllToolsMeta();
   return tools.map((t) => ({ slug: t.slug }));
 }
+// Ensure unknown slugs return 404 and page is treated as static
+export const dynamicParams = false;
+export const dynamic = 'force-static';

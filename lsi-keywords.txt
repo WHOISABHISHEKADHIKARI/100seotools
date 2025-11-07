@@ -1,0 +1,73 @@
+LSI Keywords and Related Terms for SEO Tools
+
+**Core SEO Concepts:**
+- Search engine optimization
+- On-page SEO
+- Off-page SEO
+- Technical SEO
+- SEO audit
+- Keyword research
+- Link building
+- SERP analysis
+- SEO ranking factors
+- Google algorithm updates
+
+**Keyword Research:**
+- Long-tail keywords
+- Keyword difficulty
+- Search volume
+- Keyword suggestions
+- Keyword analysis
+- Competitor keywords
+- Keyword tracking
+- Keyword density
+- LSI keywords
+- Keyword clustering
+
+**Content Optimization:**
+- Content marketing
+- Readability score
+- Duplicate content
+- Content gap analysis
+- SEO-friendly content
+- Content audit
+- Title tag optimization
+- Meta description optimization
+- Image SEO
+- Schema markup
+
+**Technical SEO:**
+- Website speed
+- Mobile-friendliness
+- Crawlability
+- Indexability
+- XML sitemap
+- Robots.txt
+- Canonical URLs
+- Hreflang tags
+- Structured data
+- Site architecture
+
+**Link Building:**
+- Backlink analysis
+- Link profile
+- Anchor text
+- Domain authority
+- Page authority
+- Guest posting
+- Broken link building
+- Link outreach
+- Link reclamation
+- Toxic backlinks
+
+**Analytics and Reporting:**
+- Google Analytics
+- Google Search Console
+- SEO performance tracking
+- SEO reporting
+- ROI calculation
+- Traffic analysis
+- Conversion tracking
+- SEO metrics
+- Rank tracking
+- Competitor analysis

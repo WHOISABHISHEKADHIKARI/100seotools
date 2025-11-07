@@ -26,15 +26,17 @@ async function runAxe(page) {
 }
 
 async function audit() {
-  const baseUrl = process.env.AUDIT_BASE_URL || 'http://0.0.0.0:3002';
+  const baseUrl = process.env.AUDIT_BASE_URL || 'http://localhost:3004';
   const pagesToTest = [
     '/',
+    '/blog',
+    '/tools/meta-tag-generator',
+    '/category/keyword-research',
     '/about',
   ];
 
   const browser = await puppeteer.launch({
     headless: true,
-    executablePath: 'C:\\Users\\AbhishekAdhikari\\.cache\\puppeteer\\chrome\\win64-142.0.7444.59\\chrome-win64\\chrome.exe', // Adjust this path as needed
     args: ['--disable-web-security', '--disable-site-isolation-trials'],
   });
   const results = [];
@@ -46,14 +48,21 @@ async function audit() {
 
     for (const route of pagesToTest) {
       const url = baseUrl + route;
-      console.log(`\n[Contrast Audit] Preparing to visit: ${url}`); // Added log
-      await new Promise(r => setTimeout(r, 20000)); // Increased delay to 20 seconds
+      console.log(`\n[Contrast Audit] Preparing to visit: ${url}`);
+      await new Promise(r => setTimeout(r, 1000)); // small delay
       console.log(`\n[Contrast Audit] Visiting: ${url}`);
-      await page.goto(url, { waitUntil: 'domcontentloaded' });
+      // Retry navigation once if it fails quickly (e.g., dev server starting)
+      try {
+        await page.goto(url, { waitUntil: 'domcontentloaded' });
+      } catch (err) {
+        console.warn(`[Contrast Audit] First navigation failed, retrying: ${err}`);
+        await new Promise(r => setTimeout(r, 1500));
+        await page.goto(url, { waitUntil: 'domcontentloaded' });
+      }
       console.log(`[Contrast Audit] Successfully navigated to: ${url}`);
 
       // Small wait to ensure fonts/styles have applied
-      await new Promise(r => setTimeout(r, 10000)); // Give the page some time to render
+      await new Promise(r => setTimeout(r, 1500));
 
       const axeResult = await runAxe(page);
       const violations = axeResult.violations || [];

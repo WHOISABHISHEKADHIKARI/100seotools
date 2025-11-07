@@ -32,7 +32,7 @@ export default function BackToTop() {
     try {
       // Try smooth scrolling first
       window.scrollTo({ top: 0, behavior: "smooth" });
-      
+
       // Announce to screen readers
       const announcer = document.getElementById('back-to-top-announcer');
       if (announcer) {
@@ -57,10 +57,10 @@ export default function BackToTop() {
 
   return (
     <>
-      <div 
-        id="back-to-top-announcer" 
-        className="sr-only" 
-        aria-live="polite" 
+      <div
+        id="back-to-top-announcer"
+        className="sr-only"
+        aria-live="polite"
         aria-atomic="true"
       ></div>
       <button

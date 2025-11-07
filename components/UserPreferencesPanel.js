@@ -154,7 +154,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
             {activeTab === 'preferences' && (
               <div className="space-y-6">
                 <h3 className="text-lg font-semibold">General Preferences</h3>
-                
+
                 {/* Theme */}
                 <div className="space-y-2">
                   <label className="block text-sm font-medium">Theme</label>
@@ -239,7 +239,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                       className="rounded"
                     />
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <label className="text-sm font-medium">Show descriptions</label>
                     <input
@@ -249,7 +249,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                       className="rounded"
                     />
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <label className="text-sm font-medium">Compact mode</label>
                     <input
@@ -259,7 +259,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                       className="rounded"
                     />
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <label className="text-sm font-medium">Enable notifications</label>
                     <input
@@ -269,7 +269,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                       className="rounded"
                     />
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <label className="text-sm font-medium">Enable analytics</label>
                     <input
@@ -346,7 +346,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                     </button>
                   )}
                 </div>
-                
+
                 {favorites.length === 0 ? (
                   <p className="text-gray-500 text-center py-8">No favorites yet. Start adding tools to your favorites!</p>
                 ) : (
@@ -381,7 +381,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                     </button>
                   )}
                 </div>
-                
+
                 {history.length === 0 ? (
                   <p className="text-gray-500 text-center py-8">No history yet. Your recently used tools will appear here.</p>
                 ) : (
@@ -419,7 +419,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                     </button>
                   )}
                 </div>
-                
+
                 {recentSearches.length === 0 ? (
                   <p className="text-gray-500 text-center py-8">No recent searches. Your search history will appear here.</p>
                 ) : (
@@ -440,7 +440,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
             {activeTab === 'bookmarks' && (
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold">Bookmarks ({bookmarks.length})</h3>
-                
+
                 {bookmarks.length === 0 ? (
                   <p className="text-gray-500 text-center py-8">No bookmarks yet. Save useful links for quick access!</p>
                 ) : (
@@ -467,11 +467,11 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
             {activeTab === 'export' && (
               <div className="space-y-6">
                 <h3 className="text-lg font-semibold">Export/Import Data</h3>
-                
+
                 {/* Export Settings */}
                 <div className="space-y-4">
                   <h4 className="font-medium">Export Settings</h4>
-                  
+
                   <div className="space-y-2">
                     <label className="block text-sm font-medium">Export Format</label>
                     <select
@@ -484,7 +484,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                       <option value="txt">Text</option>
                     </select>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <label className="block text-sm font-medium">Include in Export</label>
                     <div className="space-y-2">
@@ -518,7 +518,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Export/Import Actions */}
                 <div className="flex gap-4">
                   <button
@@ -528,7 +528,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                     <FiDownload className="w-4 h-4" />
                     Export Data
                   </button>
-                  
+
                   <button
                     onClick={() => fileInputRef.current?.click()}
                     className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
@@ -536,7 +536,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                     <FiUpload className="w-4 h-4" />
                     Import Data
                   </button>
-                  
+
                   <input
                     ref={fileInputRef}
                     type="file"
@@ -545,10 +545,10 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                     className="hidden"
                   />
                 </div>
-                
+
                 <div className="p-4 bg-yellow-50 dark:bg-yellow-900 rounded-lg">
                   <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                    <strong>Note:</strong> Importing data will merge with your existing data. 
+                    <strong>Note:</strong> Importing data will merge with your existing data.
                     Consider exporting your current data as a backup before importing.
                   </p>
                 </div>

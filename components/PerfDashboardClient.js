@@ -54,8 +54,8 @@ export default function PerfDashboardClient() {
 
       <section>
         <h2 className="text-xl font-semibold mb-2">Recent Samples ({samples.length})</h2>
-        <div className="rounded-lg border border-slate-200 dark:border-white/10 p-4 overflow-x-auto">
-          <table className="w-full text-sm">
+        <div className="rounded-lg border border-slate-200 dark:border-white/10 p-4 overflow-x-auto table-container">
+          <table className="table-responsive w-full text-sm">
             <thead>
               <tr className="text-left">
                 <th className="p-2">Time</th>
@@ -69,7 +69,7 @@ export default function PerfDashboardClient() {
             </thead>
             <tbody>
               {samples.slice(-30).map((s, i) => (
-                <tr key={i} className="border-t border-slate-100 dark:border-slate-800">
+                <tr key={s?.ts ? `s-${s.ts}` : `s-${i}`} className="border-t border-slate-100 dark:border-slate-800">
                   <td className="p-2">{formatTs(s.ts)}</td>
                   <td className="p-2">{s.lcp ?? '—'}</td>
                   <td className="p-2">{s.fcp ?? '—'}</td>
@@ -88,7 +88,7 @@ export default function PerfDashboardClient() {
         <h2 className="text-xl font-semibold mb-2">Alerts ({alerts.length})</h2>
         <div className="space-y-2">
           {alerts.slice(-20).reverse().map((a, i) => (
-            <div key={i} className="p-3 rounded-md border border-amber-200 dark:border-amber-700 bg-amber-50 dark:bg-amber-900/20">
+            <div key={a?.ts ? `a-${a.ts}-${a.type || 'alert'}` : `a-${i}`} className="p-3 rounded-md border border-amber-200 dark:border-amber-700 bg-amber-50 dark:bg-amber-900/20">
               <div className="font-semibold">{a.type}</div>
               <div className="text-sm">value: {a.value} ms {a.baseline ? `baseline: ${a.baseline} ms` : ''} {a.delta ? `(Δ ${(a.delta * 100).toFixed(1)}%)` : ''}</div>
               <div className="text-xs text-slate-600 dark:text-slate-300">{formatTs(a.ts)}</div>

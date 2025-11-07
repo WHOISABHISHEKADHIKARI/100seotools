@@ -1,0 +1,26 @@
+Internal Linking Strategy
+
+**1. Link from Tool Pages to Related Tool Pages:**
+
+*   **Description:** On each tool page, include a section that links to other related tools. For example, on the Keyword Suggestion Tool page, you could link to the Keyword Density Checker and the Keyword Rank Checker.
+*   **Anchor Text:** Use descriptive anchor text that accurately reflects the content of the linked page. For example, instead of using "click here," use "check your keyword density."
+
+**2. Link from Blog Posts to Tool Pages:**
+
+*   **Description:** If you have a blog, write blog posts that are related to your tools and then link to the tools from within the blog posts. For example, you could write a blog post about "how to do keyword research" and then link to your Keyword Suggestion Tool.
+*   **Anchor Text:** Use a variety of anchor text, including exact match, partial match, and branded anchor text.
+
+**3. Link from Category Pages to Tool Pages:**
+
+*   **Description:** On each category page, include a list of all the tools within that category. This will help users easily find the tools they are looking for and will also help to distribute link equity throughout the website.
+*   **Anchor Text:** Use the tool name as the anchor text.
+
+**4. Link from the Homepage to Key Tool Pages:**
+
+*   **Description:** On the homepage, include links to your most popular or important tool pages. This will help to drive traffic to these pages and will also help to improve their search engine rankings.
+*   **Anchor Text:** Use a combination of branded and keyword-rich anchor text.
+
+**5. Use a "Related Tools" Widget:**
+
+*   **Description:** Use a widget that automatically displays a list of related tools on each tool page. This is a great way to encourage users to explore other tools on your website.
+*   **Anchor Text:** Use the tool name as the anchor text.

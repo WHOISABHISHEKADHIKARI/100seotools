@@ -1,5 +1,6 @@
 "use client";
-import { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
+import { useMemo } from 'react';
 
 export default function Card({
   href,
@@ -12,103 +13,138 @@ export default function Card({
   iconColor = 'text-brand-500',
   iconLabel,
 }) {
-  const interactive = Boolean(href);
+  const isLink = useMemo(() => typeof href === 'string' && href.trim().length > 0, [href]);
   const titleId = title ? `card-title-${slugify(title)}` : undefined;
   const descId = description ? `card-desc-${slugify(title)}` : undefined;
-  const cardRef = useRef(null);
-  const [isFocused, setIsFocused] = useState(false);
 
-  // Focus management for keyboard navigation
-  useEffect(() => {
-    const card = cardRef.current;
-    if (!card || !interactive) return;
-
-    const handleFocus = () => setIsFocused(true);
-    const handleBlur = () => setIsFocused(false);
-
-    card.addEventListener('focus', handleFocus, true);
-    card.addEventListener('blur', handleBlur, true);
-
-    return () => {
-      card.removeEventListener('focus', handleFocus, true);
-      card.removeEventListener('blur', handleBlur, true);
-    };
-  }, [interactive]);
-
-  const handleKeyDown = (e) => {
-    if (!interactive) return;
-    
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      if (href) {
-        window.location.href = href;
-      }
-    }
-  };
-
-  return (
+  const content = (
     <article
-      ref={cardRef}
-      className={`card ${interactive ? 'card-interactive relative' : ''} ${isFocused ? 'ring-2 ring-brand-500 ring-offset-2' : ''} ${className}`}
+      className={`
+        unified-card
+        group
+        relative
+        flex
+        flex-col
+        h-full
+        bg-white
+        dark:bg-gray-800
+        rounded-xl
+        border
+        border-gray-200
+        dark:border-gray-700
+        shadow-sm
+        hover:shadow-lg
+        hover:-translate-y-0.5
+        transition-all
+        duration-200
+        ease-out
+        overflow-hidden
+        focus-within:ring-2
+        focus-within:ring-brand-500
+        focus-within:ring-offset-2
+        focus-within:ring-offset-white
+        dark:focus-within:ring-offset-gray-900
+        ${className}
+      `}
       aria-labelledby={titleId}
       aria-describedby={descId}
-      tabIndex={interactive ? 0 : undefined}
-      role={interactive ? 'button' : undefined}
-      onKeyDown={handleKeyDown}
-      onClick={interactive ? () => href && (window.location.href = href) : undefined}
-      // Remove incompatible ARIA role and keyboard handlers from non-interactive article
+      role="article"
+      tabIndex={isLink ? 0 : undefined}
     >
-      {/* Interactive overlay */}
-      {interactive && (
-        <a 
-          href={href} 
-          aria-label={title ? `Open: ${title}` : 'Open'} 
-          className="absolute inset-0 z-10"
-          tabIndex="-1"
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-        >
-          <span className="sr-only">{title ? `Open: ${title}` : 'Open'}</span>
-        </a>
-      )}
-
-      {/* Card header with icon and meta */}
-      <div className="flex items-start justify-between mb-2 relative z-20">
-        <div className="flex items-center gap-2.5">
+      {/* Content Area */}
+      <div className="unified-card-content relative z-20 flex flex-col flex-1 p-6">
+        {/* Header Section */}
+        <div className="unified-card-header flex items-center justify-between mb-3">
+          {/* Icon */}
           {Icon && (
-            <div 
-              className="card-icon-container flex-shrink-0 w-8 h-8 rounded-md bg-gray-50 dark:bg-gray-800 flex items-center justify-center"
+            <div
+              className="unified-card-icon flex-shrink-0 w-8 h-8 rounded-md bg-gray-50 dark:bg-gray-800 flex items-center justify-center will-change-transform transition-transform group-hover:scale-105"
               aria-hidden={!iconLabel}
               aria-label={iconLabel}
-              role={iconLabel ? "img" : undefined}
+              role={iconLabel ? 'img' : undefined}
             >
               <Icon aria-hidden="true" className={`w-4.5 h-4.5 ${iconColor}`} />
             </div>
           )}
-          {title && (
-            <h3 id={titleId} className="card-title leading-tight">
-              {title}
-            </h3>
+
+          {/* Meta Information */}
+          {meta && (
+            <div className="unified-card-meta text-sm text-gray-500 dark:text-gray-400">
+              <span>{meta}</span>
+            </div>
           )}
         </div>
-        {meta && (
-          <span className="card-meta flex-shrink-0">{meta}</span>
+
+        {/* Title Section */}
+        {title && (
+          <h3
+            id={titleId}
+            className="
+              unified-card-title
+              text-xl
+              font-semibold
+              leading-tight
+              text-gray-900
+              dark:text-gray-50
+              mb-2
+              group-hover:text-brand-600
+              dark:group-hover:text-brand-400
+              transition-colors
+              duration-200
+              line-clamp-2
+            "
+          >
+            {title}
+          </h3>
+        )}
+
+        {/* Description Section */}
+        {description && (
+          <p
+            id={descId}
+            className="
+              unified-card-description
+              text-gray-600
+              dark:text-gray-300
+              text-sm
+              leading-relaxed
+              mb-4
+              line-clamp-3
+              flex-1
+            "
+          >
+            {description}
+          </p>
+        )}
+
+        {/* Action buttons or children */}
+        {children && (
+          <div className="unified-card-actions relative z-20 flex items-center gap-2 mt-auto">
+            {children}
+          </div>
         )}
       </div>
-
-      {/* Description with proper spacing */}
-      {description && (
-        <p id={descId} className="card-desc relative z-20 mb-3 line-clamp-2">{description}</p>
-      )}
-
-      {/* Action buttons with proper spacing */}
-      {children && (
-        <div className="relative z-20 flex items-center gap-2 mt-auto">
-          {children}
-        </div>
-      )}
     </article>
   );
+
+  if (isLink) {
+    return (
+      <div className="relative block group">
+        <Link
+          href={href}
+          prefetch={false}
+          aria-labelledby={titleId}
+          aria-describedby={descId}
+          className="absolute inset-0 z-10"
+        >
+          <span className="sr-only">Open: {title}</span>
+        </Link>
+        {content}
+      </div>
+    );
+  }
+
+  return content;
 }
 
 function slugify(str) {

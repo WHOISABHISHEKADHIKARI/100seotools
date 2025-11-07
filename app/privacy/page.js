@@ -1,7 +1,11 @@
+import { getBaseUrl } from '../../lib/site';
+
+const baseUrl = getBaseUrl();
+
 export const metadata = {
   title: 'Privacy Policy – 100 SEO Tools',
   description: 'Learn how 100 SEO Tools handles data, privacy, and cookies. We are browser-based and do not store personal data.',
-  alternates: { canonical: '/privacy' },
+  alternates: { canonical: `${baseUrl}/privacy` },
   robots: { index: true, follow: true },
 };
 

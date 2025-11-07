@@ -10,7 +10,7 @@ export default function WebVitals() {
       function sendToAnalytics(metric) {
         // Log to console in development, send to analytics in production
         console.log('Web Vital:', metric);
-        
+
         // You can send to Google Analytics, other analytics services, or your own endpoint
         if (typeof gtag !== 'undefined') {
           gtag('event', metric.name, {

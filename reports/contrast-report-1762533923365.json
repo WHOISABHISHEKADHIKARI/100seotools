@@ -1,0 +1,25 @@
+{
+  "baseUrl": "http://127.0.0.1:3004",
+  "results": [
+    {
+      "route": "/",
+      "violations": []
+    },
+    {
+      "route": "/blog",
+      "violations": []
+    },
+    {
+      "route": "/tools/meta-tag-generator",
+      "violations": []
+    },
+    {
+      "route": "/category/keyword-research",
+      "violations": []
+    },
+    {
+      "route": "/about",
+      "violations": []
+    }
+  ]
+}

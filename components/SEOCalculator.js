@@ -242,13 +242,24 @@ export default function SEOCalculator() {
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {relatedPosts.map((p) => (
             <div key={p.slug} className="card p-4 relative hover:shadow-md transition">
+              {/* Overlay link to make entire card clickable without nesting inner anchors */}
               <a href={`/blog/${p.slug}`} aria-label={`Read guide: ${p.title}`} className="absolute inset-0 z-10">
                 <span className="sr-only">Read guide: {p.title}</span>
               </a>
               <h4 className="font-medium relative z-20">{p.title}</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 relative z-20">{p.description?.slice(0, 120)}...</p>
               <div className="mt-2 relative z-20">
-                <a href={`/blog/${p.slug}`} aria-label={`Read guide: ${p.title}`} className="tap-target text-sm text-brand-600 transition-gpu will-change-transform-opacity hover:opacity-85">Read Guide: {p.title}</a>
+                {/* Inner call-to-action as a non-anchor to avoid nested <a> */}
+                <span
+                  role="link"
+                  tabIndex={0}
+                  onClick={() => { window.location.href = `/blog/${p.slug}`; }}
+                  onKeyDown={(e) => { if (e.key === 'Enter') window.location.href = `/blog/${p.slug}`; }}
+                  aria-label={`Read guide: ${p.title}`}
+                  className="tap-target cursor-pointer text-sm text-brand-600 transition-gpu will-change-transform-opacity hover:opacity-85"
+                >
+                  Read Guide: {p.title}
+                </span>
               </div>
             </div>
           ))}

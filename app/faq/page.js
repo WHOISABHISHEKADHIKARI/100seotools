@@ -1,15 +1,18 @@
 import StructuredData from '../../components/StructuredData';
+import { getBaseUrl } from '../../lib/site';
+
+const baseUrl = getBaseUrl();
 
 export const metadata = {
   title: 'FAQ – 100 SEO Tools',
   description:
     'Answers to common questions about 100 SEO Tools: pricing, privacy, features, favorites, guides, and support.',
-  alternates: { canonical: '/faq' },
+  alternates: { canonical: `${baseUrl}/faq` },
   openGraph: {
     title: 'FAQ – 100 SEO Tools',
     description:
       'Answers to common questions about 100 SEO Tools: pricing, privacy, features, favorites, guides, and support.',
-    url: '/faq',
+    url: `${baseUrl}/faq`,
     type: 'website',
   },
   twitter: {
@@ -57,7 +60,6 @@ const faqs = [
 ];
 
 export default function FAQPage() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const faqLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Pre-commit hook to enforce whitespace standards
+# - Audits whitespace and fixes common issues
+# - Re-adds updated files to the commit
+
+npm run lint:whitespace || exit 1
+npm run fix:whitespace || exit 1
+
+# Stage changes made by fix step
+git add -A

@@ -1,16 +1,17 @@
 "use client";
-import { useState, useEffect, Suspense, lazy } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import SearchFilter from '../components/SearchFilter';
 import StructuredData from '../components/StructuredData';
 import { getBaseUrl } from '../lib/site';
 import { generateWebsiteSchema } from '../lib/schema';
-import BlogSection from '../components/BlogSection';
 import { getAllToolsMeta } from '../tools';
 
-// Lazy load the ToolGrid component
-const ToolGrid = lazy(() => import('../components/ToolGrid'));
+// Lazy load the ToolGrid component; avoid client-only fallback to prevent SSR mismatch
+const ToolGrid = dynamic(() => import('../components/ToolGrid'), { ssr: false, loading: () => null });
+
+// Defer BlogSection to idle to trim initial JS on homepage
+const BlogSection = dynamic(() => import('../components/BlogSection'), { ssr: false, loading: () => null });
 
 // Loading component for ToolGrid
 function ToolGridSkeleton() {
@@ -28,13 +29,13 @@ function ToolGridSkeleton() {
             </div>
             <div className="w-8 h-8 rounded-full loading-skeleton"></div>
           </div>
-          
+
           {/* Description skeleton */}
           <div className="space-y-2">
             <div className="h-4 loading-skeleton rounded"></div>
             <div className="h-4 loading-skeleton rounded w-5/6"></div>
           </div>
-          
+
           {/* Footer skeleton */}
           <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800 mt-auto">
             <div className="flex items-center gap-2">
@@ -82,7 +83,7 @@ export default function HomePage() {
   const [tools, setTools] = useState([]);
   const [filteredTools, setFilteredTools] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const router = useRouter();
+  const [isIdle, setIsIdle] = useState(false);
 
   useEffect(() => {
     // Get tools on the client side to avoid hydration mismatch
@@ -92,15 +93,19 @@ export default function HomePage() {
     setIsLoaded(true);
   }, []);
 
-  // Predictive prefetch: prefetch likely first clicks to boost concurrency
+  // Removed predictive prefetch to avoid navigation races and ERR_ABORTED in dev
+
+  // Gate non-critical homepage content behind idle time
   useEffect(() => {
-    if (!isLoaded || !tools?.length) return;
-    const candidates = tools.slice(0, 5).map((t) => `/tools/${t.slug}`).filter(Boolean);
-    // Prefetch top 3 candidates concurrently
-    for (const href of candidates.slice(0, 3)) {
-      try { router.prefetch(href); } catch (_) {}
+    const onIdle = () => setIsIdle(true);
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      const id = window.requestIdleCallback(onIdle, { timeout: 2000 });
+      return () => window.cancelIdleCallback && window.cancelIdleCallback(id);
+    } else {
+      const t = setTimeout(onIdle, 2000);
+      return () => clearTimeout(t);
     }
-  }, [isLoaded, tools, router]);
+  }, []);
 
   if (!isLoaded) {
     return (
@@ -126,33 +131,20 @@ export default function HomePage() {
       </AfterFirstPaint>
 
       <section className="text-center space-y-3 py-8">
-        <h1 className="text-2xl md:text-3xl font-bold">All Your SEO Tools in One Place</h1>
-        <p className="text-gray-600 dark:text-gray-400">Free, fast, client-side — no login or card details required. 100+ modular tools for marketers, bloggers, agencies, and developers.</p>
+        <h1 className="text-2xl md:text-3xl font-bold">The Ultimate Suite of Free SEO Tools</h1>
+        <p className="text-gray-600 dark:text-gray-400">Your complete collection of 100+ free, fast, and client-side SEO tools online. No login, no subscriptions—just powerful utilities for marketers, bloggers, and developers.</p>
       </section>
 
       {/* Expanded introduction for better content depth (250+ words) */}
       <section className="max-w-3xl mx-auto space-y-4 text-gray-700 dark:text-gray-300 min-h-[400px]">
         <p className="font-loading-fallback">
-          Welcome to 100 SEO Tools — a fast, privacy-friendly collection of browser-based utilities designed to
-          simplify everyday optimization tasks. Whether you're planning a content strategy, checking technical
-          signals, or refining on-page elements, this toolkit helps you move quickly without installing software or
-          connecting accounts. Everything runs client-side, so inputs stay on your device and performance remains
-          smooth across modern browsers.
+          Welcome to 100 SEO Tools — your destination for a comprehensive collection of browser-based utilities designed to streamline your optimization workflow. Our suite of **free SEO tools** helps you tackle everything from content strategy to technical analysis without installing software or connecting accounts. Whether you're a seasoned digital marketer or just starting, you'll find the right **SEO tools** to get the job done. Everything runs client-side, ensuring your data stays private and performance remains fast.
         </p>
         <p className="font-loading-fallback">
-          Explore practical helpers for keyword research, metadata generation, heading analysis, schema validation,
-          internal linking, local SEO, and more. Use AI-assisted tools to draft titles and descriptions, or leverage
-          utilities for word counts, slug formatting, redirects, and robots.txt checks. Each tool focuses on a single
-          job with clear inputs and immediate results, making it easy to test ideas, standardize outputs, and share
-          results with your team. You can browse by category, search by name, and favorite tools you rely on most.
+          Dive into our practical helpers, including a powerful **keyword research tool** that helps you uncover valuable opportunities and assess **keyword difficulty**. Perform in-depth **competitor analysis SEO** to gain an edge, or run a complete technical **SEO audit tool** to identify and fix issues. Our toolkit also features a reliable **backlink checker** and an intuitive **rank tracker** to monitor your progress. From metadata generation to schema validation and internal linking, our **seo tools online** are built for efficiency. Each tool delivers immediate results, making it easy to test ideas, standardize outputs, and collaborate with your team. We believe these are some of the **best seo tools 2025** will have to offer.
         </p>
         <p className="font-loading-fallback">
-          The experience is tuned for speed: lightweight UI, minimal network requests, and thoughtful accessibility
-          features. Dark mode is available for low-light workflows. No sign-ups, paywalls, or rate limits — just
-          reliable utilities that help you ship better pages. If you're new to SEO, start with the Meta Tag Generator,
-          Heading Analyzer, and Structured Data Validator. If you're optimizing at scale, try the Keyword Clustering
-          Tool, Internal Linking Planner, and Local Schema Builder. As we iterate, we aim to keep the interface simple,
-          the results transparent, and the tools helpful for real-world publishing.
+          The experience is tuned for speed, with a lightweight UI and thoughtful accessibility features. No sign-ups or paywalls—just reliable utilities that help you publish better content. New to SEO? Start with our Meta Tag Generator and Heading Analyzer. Optimizing at scale? Try the Keyword Clustering Tool and Local Schema Builder. We are constantly iterating to keep the interface simple, the results transparent, and our tools genuinely helpful for real-world publishing.
         </p>
       </section>
 
@@ -161,13 +153,11 @@ export default function HomePage() {
       {/* Tools section with accessible heading to ensure sequential order (h1 -> h2 -> h3) */}
       <section aria-labelledby="tools-section-title">
         <h2 id="tools-section-title" className="sr-only">Tools</h2>
-        <Suspense fallback={<ToolGridSkeleton />}>
-          <ToolGrid tools={filteredTools} />
-        </Suspense>
+        <ToolGrid tools={filteredTools} />
       </section>
 
       {/* Blog Section */}
-      <BlogSection />
+      {isIdle ? <BlogSection /> : null}
     </div>
   );
 }

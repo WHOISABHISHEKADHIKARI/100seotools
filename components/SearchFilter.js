@@ -58,7 +58,7 @@ export default function SearchFilter({ tools, onChange }) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const inputRef = useRef(null);
-  
+
   // Use debounced query for filtering
   const debouncedQuery = useDebounce(query, 300);
 
@@ -78,7 +78,7 @@ export default function SearchFilter({ tools, onChange }) {
 
   useEffect(() => {
     if (mounted) {
-      actions.updatePreferences({ 
+      actions.updatePreferences({
         showFavoritesOnly: favoritesOnly,
         defaultCategory: category,
         defaultSortBy: sortBy
@@ -367,7 +367,7 @@ export default function SearchFilter({ tools, onChange }) {
           <span className="hidden md:inline">Reset</span>
         </button>
       </div>
-      
+
       {hasActiveFilters && (
         <div className="flex flex-wrap items-center gap-2 text-sm" aria-live="polite">
           <span className="text-gray-600 dark:text-gray-400">Active filters:</span>
@@ -403,12 +403,12 @@ export default function SearchFilter({ tools, onChange }) {
           )}
         </div>
       )}
-      
+
       {filteredCount === 0 && (
         <div className="py-8 text-center" aria-live="assertive">
           <p className="text-lg font-medium">No tools found</p>
           <p className="text-gray-600 dark:text-gray-400 mt-2">Try adjusting your search or filters</p>
-          <button 
+          <button
             onClick={clearFilters}
             className="btn mt-4"
             aria-label="Clear all filters"

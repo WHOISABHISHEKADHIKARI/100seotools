@@ -1,0 +1,1179 @@
+{
+  "baseUrl": "http://127.0.0.1:3004",
+  "results": [
+    {
+      "route": "/",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"card p-4 relative hover:shadow-md transition\">",
+                      "target": [
+                        ".hover\\:shadow-md.p-4.card:nth-child(1)"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span role=\"link\" tabindex=\"0\" aria-label=\"Read guide: SEO Basics: Complete SEO Guide 0 - Boost Rankings Fast\" class=\"tap-target cursor-pointer text-sm text-brand-600 transition-gpu will-change-transform-opacity hover:opacity-85\">",
+              "target": [
+                ".hover\\:shadow-md.p-4.card:nth-child(1) > .mt-2.z-20.relative > .tap-target.cursor-pointer[role=\"link\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"card p-4 relative hover:shadow-md transition\">",
+                      "target": [
+                        ".hover\\:shadow-md.p-4.card:nth-child(2)"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span role=\"link\" tabindex=\"0\" aria-label=\"Read guide: SEO Basics: Complete SEO Guide 1 - Boost Rankings Fast\" class=\"tap-target cursor-pointer text-sm text-brand-600 transition-gpu will-change-transform-opacity hover:opacity-85\">",
+              "target": [
+                ".hover\\:shadow-md.p-4.card:nth-child(2) > .mt-2.z-20.relative > .tap-target.cursor-pointer[role=\"link\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"card p-4 relative hover:shadow-md transition\">",
+                      "target": [
+                        ".hover\\:shadow-md.p-4.card:nth-child(3)"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span role=\"link\" tabindex=\"0\" aria-label=\"Read guide: SEO Basics: Complete SEO Guide 2 - Boost Rankings Fast\" class=\"tap-target cursor-pointer text-sm text-brand-600 transition-gpu will-change-transform-opacity hover:opacity-85\">",
+              "target": [
+                ".hover\\:shadow-md.p-4.card:nth-child(3) > .mt-2.z-20.relative > .tap-target.cursor-pointer[role=\"link\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#6b7280",
+                    "bgColor": "#1f2937",
+                    "contrastRatio": 3.03,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article id=\"unified-card-301-red...\" class=\"\n        unified-car...\" aria-labelledby=\"card-title-301-redir...\" aria-describedby=\"card-desc-301-redire...\" role=\"article\" tabindex=\"0\">",
+                      "target": [
+                        "#unified-card-301-redirect-generator"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"text-xs text-gray-500 hover:underline\" href=\"/blog/redirect-301-generator\">Guide</a>",
+              "target": [
+                ".hover\\:underline.text-gray-500[href$=\"redirect-301-generator\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/redirect-301-generator\">",
+                      "target": [
+                        ".py-1\\.5.ml-auto[href$=\"redirect-301-generator\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/redirect-301-generator\">",
+              "target": [
+                ".py-1\\.5.ml-auto[href$=\"redirect-301-generator\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#6b7280",
+                    "bgColor": "#1f2937",
+                    "contrastRatio": 3.03,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article id=\"unified-card-ai-arti...\" class=\"\n        unified-car...\" aria-labelledby=\"card-title-ai-articl...\" aria-describedby=\"card-desc-ai-article...\" role=\"article\" tabindex=\"0\">",
+                      "target": [
+                        "#unified-card-ai-article-length-optimizer"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"text-xs text-gray-500 hover:underline\" href=\"/blog/ai-article-length-optimizer\">Guide</a>",
+              "target": [
+                "#unified-card-ai-article-length-optimizer > .unified-card-content.p-6.flex-1 > .unified-card-footer.mt-auto.pt-4 > .unified-card-actions.gap-2.z-20 > .hover\\:underline.text-gray-500.text-xs"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-article-length-optimizer\">",
+                      "target": [
+                        "#unified-card-ai-article-length-optimizer > .unified-card-content.p-6.flex-1 > .unified-card-footer.mt-auto.pt-4 > .unified-card-actions.gap-2.z-20 > .py-1\\.5.ml-auto.btn"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-article-length-optimizer\">",
+              "target": [
+                "#unified-card-ai-article-length-optimizer > .unified-card-content.p-6.flex-1 > .unified-card-footer.mt-auto.pt-4 > .unified-card-actions.gap-2.z-20 > .py-1\\.5.ml-auto.btn"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#6b7280",
+                    "bgColor": "#1f2937",
+                    "contrastRatio": 3.03,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article id=\"unified-card-ai-blog...\" class=\"\n        unified-car...\" aria-labelledby=\"card-title-ai-blog-i...\" aria-describedby=\"card-desc-ai-blog-in...\" role=\"article\" tabindex=\"0\">",
+                      "target": [
+                        "#unified-card-ai-blog-intro-writer"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"text-xs text-gray-500 hover:underline\" href=\"/blog/ai-blog-intro-writer\">Guide</a>",
+              "target": [
+                ".hover\\:underline.text-gray-500[href$=\"ai-blog-intro-writer\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-blog-intro-writer\">",
+                      "target": [
+                        ".py-1\\.5.ml-auto[href$=\"ai-blog-intro-writer\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-blog-intro-writer\">",
+              "target": [
+                ".py-1\\.5.ml-auto[href$=\"ai-blog-intro-writer\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#6b7280",
+                    "bgColor": "#1f2937",
+                    "contrastRatio": 3.03,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article id=\"unified-card-ai-comp...\" class=\"\n        unified-car...\" aria-labelledby=\"card-title-ai-compet...\" aria-describedby=\"card-desc-ai-competi...\" role=\"article\" tabindex=\"0\">",
+                      "target": [
+                        "#unified-card-ai-competitor-title-rewriter"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"text-xs text-gray-500 hover:underline\" href=\"/blog/ai-competitor-title-rewriter\">Guide</a>",
+              "target": [
+                "#unified-card-ai-competitor-title-rewriter > .unified-card-content.p-6.flex-1 > .unified-card-footer.mt-auto.pt-4 > .unified-card-actions.gap-2.z-20 > .hover\\:underline.text-gray-500.text-xs"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-competitor-title-rewriter\">",
+                      "target": [
+                        "#unified-card-ai-competitor-title-rewriter > .unified-card-content.p-6.flex-1 > .unified-card-footer.mt-auto.pt-4 > .unified-card-actions.gap-2.z-20 > .py-1\\.5.ml-auto.btn"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-competitor-title-rewriter\">",
+              "target": [
+                "#unified-card-ai-competitor-title-rewriter > .unified-card-content.p-6.flex-1 > .unified-card-footer.mt-auto.pt-4 > .unified-card-actions.gap-2.z-20 > .py-1\\.5.ml-auto.btn"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#6b7280",
+                    "bgColor": "#1f2937",
+                    "contrastRatio": 3.03,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article id=\"unified-card-ai-cont...\" class=\"\n        unified-car...\" aria-labelledby=\"card-title-ai-conten...\" aria-describedby=\"card-desc-ai-content...\" role=\"article\" tabindex=\"0\">",
+                      "target": [
+                        "#unified-card-ai-content-detector"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"text-xs text-gray-500 hover:underline\" href=\"/blog/ai-content-detector\">Guide</a>",
+              "target": [
+                ".hover\\:underline.text-gray-500[href$=\"ai-content-detector\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-content-detector\">",
+                      "target": [
+                        ".py-1\\.5.ml-auto[href$=\"ai-content-detector\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-content-detector\">",
+              "target": [
+                ".py-1\\.5.ml-auto[href$=\"ai-content-detector\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#6b7280",
+                    "bgColor": "#1f2937",
+                    "contrastRatio": 3.03,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article id=\"unified-card-ai-cont...\" class=\"\n        unified-car...\" aria-labelledby=\"card-title-ai-conten...\" aria-describedby=\"card-desc-ai-content...\" role=\"article\" tabindex=\"0\">",
+                      "target": [
+                        "#unified-card-ai-content-improver"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"text-xs text-gray-500 hover:underline\" href=\"/blog/ai-content-improver\">Guide</a>",
+              "target": [
+                ".hover\\:underline.text-gray-500[href$=\"ai-content-improver\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-content-improver\">",
+                      "target": [
+                        ".py-1\\.5.ml-auto[href$=\"ai-content-improver\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-content-improver\">",
+              "target": [
+                ".py-1\\.5.ml-auto[href$=\"ai-content-improver\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#6b7280",
+                    "bgColor": "#1f2937",
+                    "contrastRatio": 3.03,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article id=\"unified-card-ai-faq-...\" class=\"\n        unified-car...\" aria-labelledby=\"card-title-ai-faq-cr...\" aria-describedby=\"card-desc-ai-faq-cre...\" role=\"article\" tabindex=\"0\">",
+                      "target": [
+                        "#unified-card-ai-faq-creator"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"text-xs text-gray-500 hover:underline\" href=\"/blog/ai-faq-creator\">Guide</a>",
+              "target": [
+                ".hover\\:underline.text-gray-500[href$=\"ai-faq-creator\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-faq-creator\">",
+                      "target": [
+                        ".py-1\\.5.ml-auto[href$=\"ai-faq-creator\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-faq-creator\">",
+              "target": [
+                ".py-1\\.5.ml-auto[href$=\"ai-faq-creator\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#6b7280",
+                    "bgColor": "#1f2937",
+                    "contrastRatio": 3.03,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article id=\"unified-card-ai-keyw...\" class=\"\n        unified-car...\" aria-labelledby=\"card-title-ai-keywor...\" aria-describedby=\"card-desc-ai-keyword...\" role=\"article\" tabindex=\"0\">",
+                      "target": [
+                        "#unified-card-ai-keyword-explainer"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"text-xs text-gray-500 hover:underline\" href=\"/blog/ai-keyword-explainer\">Guide</a>",
+              "target": [
+                ".hover\\:underline.text-gray-500[href$=\"ai-keyword-explainer\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-keyword-explainer\">",
+                      "target": [
+                        ".py-1\\.5.ml-auto[href$=\"ai-keyword-explainer\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-keyword-explainer\">",
+              "target": [
+                ".py-1\\.5.ml-auto[href$=\"ai-keyword-explainer\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#6b7280",
+                    "bgColor": "#1f2937",
+                    "contrastRatio": 3.03,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article id=\"unified-card-ai-meta...\" class=\"\n        unified-car...\" aria-labelledby=\"card-title-ai-meta-t...\" aria-describedby=\"card-desc-ai-meta-ta...\" role=\"article\" tabindex=\"0\">",
+                      "target": [
+                        "#unified-card-ai-meta-tag-writer"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"text-xs text-gray-500 hover:underline\" href=\"/blog/ai-meta-tag-writer\">Guide</a>",
+              "target": [
+                ".hover\\:underline.text-gray-500[href$=\"ai-meta-tag-writer\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-meta-tag-writer\">",
+                      "target": [
+                        ".py-1\\.5.ml-auto[href$=\"ai-meta-tag-writer\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-meta-tag-writer\">",
+              "target": [
+                ".py-1\\.5.ml-auto[href$=\"ai-meta-tag-writer\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#6b7280",
+                    "bgColor": "#1f2937",
+                    "contrastRatio": 3.03,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article id=\"unified-card-ai-sche...\" class=\"\n        unified-car...\" aria-labelledby=\"card-title-ai-schema...\" aria-describedby=\"card-desc-ai-schema-...\" role=\"article\" tabindex=\"0\">",
+                      "target": [
+                        "#unified-card-ai-schema-generator"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"text-xs text-gray-500 hover:underline\" href=\"/blog/ai-schema-generator\">Guide</a>",
+              "target": [
+                ".hover\\:underline.text-gray-500[href$=\"ai-schema-generator\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-schema-generator\">",
+                      "target": [
+                        ".py-1\\.5.ml-auto[href$=\"ai-schema-generator\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-schema-generator\">",
+              "target": [
+                ".py-1\\.5.ml-auto[href$=\"ai-schema-generator\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#6b7280",
+                    "bgColor": "#1f2937",
+                    "contrastRatio": 3.03,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article id=\"unified-card-ai-snip...\" class=\"\n        unified-car...\" aria-labelledby=\"card-title-ai-snippe...\" aria-describedby=\"card-desc-ai-snippet...\" role=\"article\" tabindex=\"0\">",
+                      "target": [
+                        "#unified-card-ai-snippet-generator"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"text-xs text-gray-500 hover:underline\" href=\"/blog/ai-snippet-generator\">Guide</a>",
+              "target": [
+                ".hover\\:underline.text-gray-500[href$=\"ai-snippet-generator\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-snippet-generator\">",
+                      "target": [
+                        ".py-1\\.5.ml-auto[href$=\"ai-snippet-generator\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/ai-snippet-generator\">",
+              "target": [
+                ".py-1\\.5.ml-auto[href$=\"ai-snippet-generator\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#6b7280",
+                    "bgColor": "#1f2937",
+                    "contrastRatio": 3.03,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article id=\"unified-card-anchor-...\" class=\"\n        unified-car...\" aria-labelledby=\"card-title-anchor-te...\" aria-describedby=\"card-desc-anchor-tex...\" role=\"article\" tabindex=\"0\">",
+                      "target": [
+                        "#unified-card-anchor-text-analyzer"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"text-xs text-gray-500 hover:underline\" href=\"/blog/anchor-text-analyzer\">Guide</a>",
+              "target": [
+                ".hover\\:underline.text-gray-500[href$=\"anchor-text-analyzer\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.03 (foreground color: #6b7280, background color: #1f2937, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/anchor-text-analyzer\">",
+                      "target": [
+                        ".py-1\\.5.ml-auto[href$=\"anchor-text-analyzer\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn text-xs py-1.5 ml-auto\" href=\"/tools/anchor-text-analyzer\">",
+              "target": [
+                ".py-1\\.5.ml-auto[href$=\"anchor-text-analyzer\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "12.0pt (16px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"btn\" aria-label=\"Load more tools\">Load more tools</button>",
+                      "target": [
+                        "button[aria-label=\"Load more tools\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"btn\" aria-label=\"Load more tools\">Load more tools</button>",
+              "target": [
+                "button[aria-label=\"Load more tools\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/blog",
+      "violations": []
+    },
+    {
+      "route": "/tools/meta-tag-generator",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"card p-6\">",
+                      "target": [
+                        ".card.p-6:nth-child(1)"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a href=\"/blog/meta-tag-generator\" aria-label=\"Read guide: Free Meta Tag Generator\" class=\"tap-target text-sm text-brand-600 hover:opacity-85 transition-gpu will-change-transform-opacity\">Read Guide</a>",
+              "target": [
+                ".tap-target"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "12.0pt (16px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"btn\" aria-label=\"Generate\">Generate</button>",
+                      "target": [
+                        ".btn"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"btn\" aria-label=\"Generate\">Generate</button>",
+              "target": [
+                ".btn"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/category/keyword-research",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "12.0pt (16px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn\" href=\"/\">Go Home</a>",
+                      "target": [
+                        ".btn[href=\"/\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn\" href=\"/\">Go Home</a>",
+              "target": [
+                ".btn[href=\"/\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "12.0pt (16px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn\" href=\"/category/keyword-research\">Browse Tools</a>",
+                      "target": [
+                        ".btn[href$=\"keyword-research\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn\" href=\"/category/keyword-research\">Browse Tools</a>",
+              "target": [
+                ".btn[href$=\"keyword-research\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "violations": []
+    }
+  ]
+}

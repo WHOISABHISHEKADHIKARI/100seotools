@@ -1,0 +1,34 @@
+Category Landing Page Design
+
+**1. Headline:**
+
+*   **Description:** A clear and concise headline that accurately reflects the content of the page. The headline should include the category name and a benefit-oriented statement.
+*   **Example:** Keyword Research Tools | Find Profitable Keywords for Your Business
+
+**2. Introduction:**
+
+*   **Description:** A brief introduction that explains what the category is and why it's important for SEO. The introduction should also highlight the benefits of using the tools in that category.
+
+**3. Tool Grid:**
+
+*   **Description:** A grid of all the tools within the category. Each tool in the grid should have its own card with the following information:
+    *   **Tool Name:** The name of the tool.
+    *   **Tool Icon:** A unique icon for each tool.
+    *   **Tool Description:** A brief description of what the tool does.
+    *   **CTA:** A clear call-to-action button, such as "Use Tool" or "Learn More."
+
+**4. Featured Tool:**
+
+*   **Description:** A section that highlights the most popular or important tool in the category. This section should include a more detailed description of the tool, as well as a video or screenshot of the tool in action.
+
+**5. Related Blog Posts:**
+
+*   **Description:** A section that links to related blog posts. This is a great way to provide users with more information about the category and to drive traffic to your blog.
+
+**6. FAQ Section:**
+
+*   **Description:** A section that answers frequently asked questions about the category. This is a great way to address common user concerns and to improve the user experience.
+
+**7. Social Proof:**
+
+*   **Description:** A section that includes testimonials, reviews, or case studies from satisfied users. This is a great way to build trust and credibility.

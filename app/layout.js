@@ -1,4 +1,4 @@
-import { getBaseUrl } from '../lib/site';
+import { getBaseUrl, siteName } from '../lib/site';
 const baseUrl = getBaseUrl();
 
 export const metadata = {
@@ -10,7 +10,7 @@ export const metadata = {
     title: '100+ SEO Tools – Free, Fast, Client-side',
     description: 'All Your SEO Tools in One Place. 100+ browser-based tools for marketers, bloggers, and developers.',
     url: baseUrl,
-    siteName: '100 SEO Tools',
+    siteName,
     images: [
       {
         url: `${baseUrl}/icon.svg`,
@@ -37,12 +37,22 @@ export const metadata = {
 
 import './globals.css';
 import { Inter } from 'next/font/google';
+import { initPerformanceMonitoring } from '@/lib/performance-monitor';
+
 const inter = Inter({ subsets: ['latin'], display: 'swap', weight: ['400', '700'] });
-import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
+
+// Initialize performance monitoring
+if (typeof window !== 'undefined') {
+  initPerformanceMonitoring();
+}
 import ErrorBoundary from '../components/ErrorBoundary';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import StructuredData from '../components/StructuredData';
+import PerformanceDashboard from '../components/PerformanceDashboard';
+import BrowserCompatibilityTest from '../components/BrowserCompatibilityTest';
 import ClientLayout from '../components/ClientLayout';
+import ClientRoot from '../components/ClientRoot';
 
 export default function RootLayout({ children }) {
   return (
@@ -58,9 +68,17 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="manifest" href="/manifest.json" />
 
-        {/* Feature detection: load modern polyfills only when baseline features are missing */}
+        {/* Minimal critical inline CSS to avoid flash of wrong colors before Tailwind loads */}
+        <style dangerouslySetInnerHTML={{__html: `
+          html{color-scheme:light dark}
+          body{background-color:#ffffff;color:#111827}
+          @media (prefers-color-scheme: dark){body{background-color:#0b1020;color:#f3f4f6}}
+        `}} />
+
+        {/* Feature detection for conditional polyfill loading */}
         <script type="module" dangerouslySetInnerHTML={{__html: `
-          try {
+          // Baseline ES6+ feature detection
+          function checkBaselineFeatures() {
             const tests = [
               () => Array.prototype.at && [1].at(0) === 1,
               () => Array.prototype.flat && [[1]].flat().length === 1,
@@ -69,23 +87,59 @@ export default function RootLayout({ children }) {
               () => (Object.hasOwn ? Object.hasOwn({x:1}, "x") : Object.prototype.hasOwnProperty.call({x:1}, "x")),
               () => ("".trimEnd && "".trimStart),
             ];
-            const ok = tests.every(fn => { try { return !!fn(); } catch { return false; } });
-            if (!ok) {
-              import('/polyfills-modern.js').catch(()=>{});
+
+            try {
+              return tests.every(fn => {
+                try {
+                  return !!fn();
+                } catch {
+                  return false;
+                }
+              });
+            } catch {
+              return false;
             }
-          } catch {}
+          }
+
+          // Load polyfills only if baseline features are missing
+          if (!checkBaselineFeatures()) {
+            import('/polyfills-modern.js').catch(()=>{
+              console.warn('Failed to load modern polyfills');
+            });
+          }
         `}} />
-        {/* Legacy browsers (no ESM support) always get legacy polyfills */}
+
+        {/* Legacy polyfills for browsers without ESM support */}
         <script noModule src="/polyfills-legacy.js"></script>
 
-        <script src="/sw-register.js" defer></script>
+        <script dangerouslySetInnerHTML={{__html: `
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+              navigator.serviceWorker.getRegistration()
+                .then((reg) => {
+                  if (!reg) {
+                    navigator.serviceWorker.register('/sw.js')
+                      .then((registration) => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                      })
+                      .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                      });
+                  }
+                })
+                .catch(() => {
+                  navigator.serviceWorker.register('/sw.js').catch(()=>{});
+                });
+            });
+          }
+        `}} />
       </head>
       <body className={`${inter.className} min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100`}>
         {/* Skip to main content link for accessibility */}
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
           Skip to main content
         </a>
-        <UserPreferencesProvider>
+        <ClientRoot>
           {/* Global header */}
           <div className="max-w-7xl mx-auto px-4">
             <Navbar />
@@ -103,7 +157,9 @@ export default function RootLayout({ children }) {
 
           {/* Global footer */}
           <Footer />
-        </UserPreferencesProvider>
+        <PerformanceDashboard />
+        <BrowserCompatibilityTest />
+        </ClientRoot>
       </body>
     </html>
   );

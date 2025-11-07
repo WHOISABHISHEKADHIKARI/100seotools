@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import { getAllToolsMeta } from '../../tools';
-import { getBaseUrl } from '../../lib/site';
+import { getBaseUrl, siteName } from '../../lib/site';
 
-const siteName = '100 SEO Tools';
 const baseUrl = getBaseUrl();
 
 function slugify(str = '') {

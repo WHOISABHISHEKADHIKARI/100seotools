@@ -6,13 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "prepare": "husky",
     "build:analyze": "ANALYZE=true next build",
     "generate:tools": "node scripts/generateTools.js",
     "validate": "node scripts/validate.js",
     "audit:contrast": "node scripts/contrastAudit.js",
     "lint:links": "node scripts/checkExternalLinks.js",
     "lint:canon": "node scripts/lintCanonical.js",
-    "lint:anchors": "node scripts/lintAnchors.js"
+    "lint:anchors": "node scripts/lintAnchors.js",
+    "lint:whitespace": "node scripts/whitespaceAudit.js",
+    "fix:whitespace": "node scripts/whitespaceAudit.js --fix",
+    "crawl:final": "node scripts/headlessCrawler.js"
   },
   "browserslist": {
     "production": [
@@ -28,7 +32,9 @@
     ]
   },
   "dependencies": {
-    "next": "^14.2.33",
+    "lucide-react": "^0.552.0",
+    "next": "^16.0.1",
+    "puppeteer-core": "^24.29.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^5.5.0",
@@ -40,6 +46,7 @@
     "axe-core": "^4.11.0",
     "critters": "^0.0.7",
     "cssnano": "^7.1.2",
+    "husky": "^9.1.7",
     "postcss": "^8.5.6",
     "puppeteer": "^24.28.0",
     "tailwindcss": "3.4.10",

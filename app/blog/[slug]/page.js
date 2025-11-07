@@ -1,17 +1,20 @@
 import Link from 'next/link';
-import { getBaseUrl } from '../../../lib/site';
+import { getBaseUrl, siteName } from '../../../lib/site';
+
 import ShareActions from '../../../components/ShareActions';
 import StructuredData from '../../../components/StructuredData';
+import GeneratedConfigSection from '../../../components/GeneratedConfigSection';
 import { generateArticleSchema, generateFAQSchema } from '../../../lib/schema';
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
+import { notFound } from 'next/navigation';
 import { getToolGuide } from '../../../lib/guides';
 import { getBlogPostBySlug, getAllBlogPosts } from '../../../lib/blog';
+import { slugify } from '../../../lib/utils';
 
-const siteName = '100 SEO Tools';
-const baseUrl = getBaseUrl();
 
 // Ensure static generation for better performance and crawl stability
 export const dynamic = 'force-static';
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   const posts = getAllBlogPosts();
@@ -21,8 +24,12 @@ export function generateStaticParams() {
   return [...postParams, ...toolParams];
 }
 
-export async function generateMetadata({ params, searchParams }) {
-  const post = getBlogPostBySlug(params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+  const baseUrl = getBaseUrl();
+  const post = getBlogPostBySlug(slug);
+  const tool = getToolBySlug(slug);
+
   if (post) {
     const shareUrl = `${baseUrl}/blog/${post.slug}`;
     const title = `${post.title} | ${siteName}`;
@@ -48,7 +55,6 @@ export async function generateMetadata({ params, searchParams }) {
       }
     };
   }
-  const tool = getToolBySlug(params.slug);
   if (tool) {
     const title = `How to Use ${tool.name} – Guide | ${siteName}`;
     const description = `Step-by-step guide to using the ${tool.name} for ${tool.category}. Learn purpose, usage, outputs, and benefits.`;
@@ -73,15 +79,16 @@ export async function generateMetadata({ params, searchParams }) {
       }
     };
   }
-  return { title: `Guide Not Found | ${siteName}`, robots: { index: false, follow: false } };
+  // No post or tool guide found → set proper 404
+  notFound();
 }
 
-export default function BlogGuidePage({ params, searchParams }) {
-  const post = getBlogPostBySlug(params.slug);
-  const allPosts = getAllBlogPosts();
+export default async function BlogGuidePage({ params, searchParams }) {
+  const { slug } = params;
+  const post = getBlogPostBySlug(slug);
+  const baseUrl = getBaseUrl();
   const allTools = getAllToolsMeta();
-
-  const toCategorySlug = (cat = '') => cat.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  const allPosts = getAllBlogPosts();
 
   if (post) {
     const jsonLd = generateArticleSchema(post, baseUrl);
@@ -222,6 +229,11 @@ export default function BlogGuidePage({ params, searchParams }) {
                 <span className="font-semibold">💡 Pro tip:</span> Write concise titles and meta descriptions; keep pages fast and accessible.
               </div>
             </section>
+          ) : null}
+
+          {/* Generated Config section (if present for this post) */}
+          {post.sections?.generatedConfig && showSection('how') ? (
+            <GeneratedConfigSection title="Generated Config" config={post.sections.generatedConfig} language="json" />
           ) : null}
 
           {post.sections?.how?.length && showSection('how') ? (
@@ -437,15 +449,9 @@ export default function BlogGuidePage({ params, searchParams }) {
     );
   }
 
-  const tool = getToolBySlug(params.slug);
+  const tool = getToolBySlug(slug);
   if (!tool) {
-    return (
-      <main id="main" className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-4">Guide Not Found</h1>
-        <p className="mb-4">We couldn’t find a guide for this tool.</p>
-        <Link href="/blog" prefetch={false} className="text-brand-600 hover:underline">Back to Blog</Link>
-      </main>
-    );
+    return notFound();
   }
 
   const guide = getToolGuide(tool);
@@ -543,49 +549,55 @@ export default function BlogGuidePage({ params, searchParams }) {
 
       <section className="mt-10">
         <h2 className="text-xl font-semibold mb-3">Recommended Tools</h2>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {allTools.filter((t) => t.category === tool.category).slice(0, 6).map((t) => (
-            <div key={t.slug} className="card p-4 relative hover:shadow-md transition">
-              {/* Full-card click target: open the tool */}
-              <a href={`/tools/${t.slug}`} aria-label={`Open tool: ${t.name}`} className="absolute inset-0 z-10">
-                <span className="sr-only">Open tool: {t.name}</span>
-              </a>
-              <h3 className="font-medium">{t.name}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t.category}</p>
-              <div className="mt-2 flex items-center gap-4 text-sm">
-                <Link href={`/tools/${t.slug}`} className="relative z-20 text-brand-600 hover:underline" aria-label={`Open tool: ${t.name}`}>Open tool</Link>
-                <Link href={`/blog/${t.slug}`} className="relative z-20 text-brand-600 hover:underline" aria-label={`Read guide for ${t.name}`}>Read Guide: {t.name}</Link>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {allTools
+            .filter((t) => t && t.slug && t.category === tool.category)
+            .slice(0, 6)
+            .map((t) => (
+              <div key={t.slug} className="card p-4 relative hover:shadow-md transition will-change-transform">
+                {/* Full-card click target: open the tool */}
+                <Link href={`/tools/${t.slug}`} prefetch={false} aria-label={`Open tool: ${t.name}`} className="absolute inset-0 z-10">
+                  <span className="sr-only">Open tool: {t.name}</span>
+                </Link>
+                <h3 className="font-medium">{t.name}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{t.category}</p>
+                <div className="mt-2 flex items-center gap-4 text-sm">
+                  <Link href={`/tools/${t.slug}`} prefetch={false} className="relative z-20 text-brand-600 hover:underline" aria-label={`Open tool: ${t.name}`}>Open tool</Link>
+                  <Link href={`/blog/${t.slug}`} prefetch={false} className="relative z-20 text-brand-600 hover:underline" aria-label={`Read guide for ${t.name}`}>Read Guide: {t.name}</Link>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
         <div className="mt-4">
-          <Link href={`/category/${toCategorySlug(tool.category)}`} className="text-slate-500 hover:underline text-sm">More in {tool.category}</Link>
+          <Link href={`/category/${slugify(tool.category)}`} className="text-slate-500 hover:underline text-sm">More in {tool.category}</Link>
         </div>
       </section>
 
       <section className="mt-10">
         <h2 className="text-xl font-semibold mb-3">Related Guides</h2>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {allPosts.filter((p) => p.category === tool.category).slice(0, 6).map((p) => (
-            <div key={p.slug} className="card p-4 relative hover:shadow-md transition">
-              {/* Full-card click target: read the post */}
-              <a href={`/blog/${p.slug}`} aria-label={`Read post: ${p.title}`} className="absolute inset-0 z-10">
-                <span className="sr-only">Read post: {p.title}</span>
-              </a>
-              <h3 className="font-medium">{p.title}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{p.category}</p>
-              <div className="mt-2 flex items-center gap-4 text-sm">
-                <Link href={`/blog/${p.slug}`} className="relative z-20 text-brand-600 hover:underline" aria-label={`Read post: ${p.title}`}>Read Post: {p.title}</Link>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {allPosts
+            .filter((p) => p && p.slug && p.category === tool.category)
+            .slice(0, 6)
+            .map((p) => (
+              <div key={p.slug} className="card p-4 relative hover:shadow-md transition will-change-transform">
+                {/* Full-card click target: read the post */}
+                <Link href={`/blog/${p.slug}`} prefetch={false} aria-label={`Read post: ${p.title}`} className="absolute inset-0 z-10">
+                  <span className="sr-only">Read post: {p.title}</span>
+                </Link>
+                <h3 className="font-medium">{p.title}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{p.category}</p>
+                <div className="mt-2 flex items-center gap-4 text-sm">
+                  <Link href={`/blog/${p.slug}`} prefetch={false} className="relative z-20 text-brand-600 hover:underline" aria-label={`Read post: ${p.title}`}>Read Post: {p.title}</Link>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </section>
 
       <div className="mt-8 flex items-center gap-4">
         <Link href={`/tools/${tool.slug}`} className="text-brand-600 hover:underline">Open {tool.name}</Link>
-        <Link href={`/category/${toCategorySlug(tool.category)}`} className="text-slate-500 hover:underline">More in {tool.category}</Link>
+        <Link href={`/category/${slugify(tool.category)}`} className="text-slate-500 hover:underline">More in {tool.category}</Link>
       </div>
     </main>
   );

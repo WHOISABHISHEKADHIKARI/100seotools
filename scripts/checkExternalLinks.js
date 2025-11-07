@@ -11,6 +11,13 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const TARGET_DIRS = [path.join(ROOT, 'app'), path.join(ROOT, 'components')];
 const HTTP_REGEX = /(href|src)=["'](https?:\/\/[^"']+)["']/gi;
+const HEAD_BLOCKERS = [
+  'facebook.com',
+  'www.facebook.com',
+  'm.facebook.com',
+  'instagram.com',
+  'www.instagram.com'
+];
 
 function walk(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -44,7 +51,14 @@ function collectExternalUrls() {
 async function checkUrl(url, signal) {
   try {
     const res = await fetch(url, { method: 'HEAD', redirect: 'follow', signal });
-    return { url, ok: res.ok, status: res.status, finalUrl: res.url };
+    if (res.ok) return { url, ok: true, status: res.status, finalUrl: res.url, method: 'HEAD' };
+    // Fallback for providers that reject HEAD
+    const hostname = new URL(url).hostname;
+    if (HEAD_BLOCKERS.includes(hostname) || res.status >= 400) {
+      const resGet = await fetch(url, { method: 'GET', redirect: 'follow', signal, headers: { 'Accept': 'text/html' } });
+      return { url, ok: resGet.ok, status: resGet.status, finalUrl: resGet.url, method: 'GET' };
+    }
+    return { url, ok: false, status: res.status, finalUrl: res.url, method: 'HEAD' };
   } catch (err) {
     return { url, ok: false, status: 0, error: String(err.message || err) };
   }
@@ -53,6 +67,7 @@ async function checkUrl(url, signal) {
 async function main() {
   const urls = collectExternalUrls();
   console.log(`Found ${urls.length} external URLs to check...`);
+  urls.forEach(u => console.log(`- checking: ${u}`));
 
   const controller = new AbortController();
   const { signal } = controller;
@@ -67,15 +82,29 @@ async function main() {
     }
   }
 
-  const failures = results.filter((r) => !r.ok);
+  const ignorable = results.filter((r) => {
+    try {
+      const host = new URL(r.url).hostname;
+      return HEAD_BLOCKERS.includes(host) && r.status >= 400;
+    } catch {
+      return false;
+    }
+  });
+  const failures = results.filter((r) => !r.ok && !ignorable.includes(r));
   if (failures.length) {
     console.log(`\nBroken external links (${failures.length}):`);
     for (const f of failures) {
-      console.log(`- ${f.url} -> status: ${f.status}${f.error ? ` error: ${f.error}` : ''}`);
+      console.log(`- ${f.url} -> status: ${f.status}${f.method ? ` via ${f.method}` : ''}${f.error ? ` error: ${f.error}` : ''}`);
     }
     process.exitCode = 1;
   } else {
     console.log('\nAll external links responded OK');
+  }
+  if (ignorable.length) {
+    console.log(`\nIgnored known HEAD/GET blockers (${ignorable.length}):`);
+    for (const ig of ignorable) {
+      console.log(`- ${ig.url} -> status: ${ig.status}${ig.method ? ` via ${ig.method}` : ''}`);
+    }
   }
 }
 

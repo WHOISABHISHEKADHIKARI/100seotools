@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "origin": "http://localhost:3004",
+    "crawledCount": 1,
+    "maxPages": 500,
+    "robots": {
+      "disallow": [
+        "/api"
+      ],
+      "allow": [
+        "/",
+        "/",
+        "/",
+        "/"
+      ],
+      "sitemap": [
+        "http://localhost:3004/sitemap.xml"
+      ]
+    },
+    "avg200ms": 0,
+    "avg404ms": 0,
+    "generatedAt": "2025-11-07T11:51:57.408Z"
+  },
+  "pages": [
+    {
+      "url": "http://localhost:3004/",
+      "status": 0,
+      "ms": 485,
+      "contentType": "",
+      "parent": null,
+      "depth": 0,
+      "blockedByRobots": false,
+      "ignoredByCrawler": false,
+      "error": "TypeError: page.waitForTimeout is not a function"
+    }
+  ],
+  "notFound": [],
+  "errorHandling": [
+    {
+      "url": "http://localhost:3004/non-existent",
+      "status": 0,
+      "ms": 169,
+      "has404Marker": false,
+      "hasNoIndexMeta": true,
+      "headers": {},
+      "screenshot": "C:\\Users\\AbhishekAdhikari\\Learn\\100SeoTools\\reports\\crawl\\screenshots\\error-test-%2Fnon-existent.png"
+    },
+    {
+      "url": "http://localhost:3004/blog/non-existent",
+      "status": 0,
+      "ms": 254,
+      "has404Marker": false,
+      "hasNoIndexMeta": true,
+      "headers": {},
+      "screenshot": "C:\\Users\\AbhishekAdhikari\\Learn\\100SeoTools\\reports\\crawl\\screenshots\\error-test-%2Fblog%2Fnon-existent.png"
+    },
+    {
+      "url": "http://localhost:3004/blog/non-existent/p/2",
+      "status": 0,
+      "ms": 216,
+      "has404Marker": false,
+      "hasNoIndexMeta": true,
+      "headers": {},
+      "screenshot": "C:\\Users\\AbhishekAdhikari\\Learn\\100SeoTools\\reports\\crawl\\screenshots\\error-test-%2Fblog%2Fnon-existent%2Fp%2F2.png"
+    },
+    {
+      "url": "http://localhost:3004/category/non-existent",
+      "status": 0,
+      "ms": 247,
+      "has404Marker": false,
+      "hasNoIndexMeta": false,
+      "headers": {},
+      "screenshot": "C:\\Users\\AbhishekAdhikari\\Learn\\100SeoTools\\reports\\crawl\\screenshots\\error-test-%2Fcategory%2Fnon-existent.png"
+    },
+    {
+      "url": "http://localhost:3004/tools/non-existent",
+      "status": 0,
+      "ms": 208,
+      "has404Marker": false,
+      "hasNoIndexMeta": true,
+      "headers": {},
+      "screenshot": "C:\\Users\\AbhishekAdhikari\\Learn\\100SeoTools\\reports\\crawl\\screenshots\\error-test-%2Ftools%2Fnon-existent.png"
+    },
+    {
+      "url": "http://localhost:3004/tools/robots-txt-validator/non-existent",
+      "status": 0,
+      "ms": 235,
+      "has404Marker": false,
+      "hasNoIndexMeta": true,
+      "headers": {},
+      "screenshot": "C:\\Users\\AbhishekAdhikari\\Learn\\100SeoTools\\reports\\crawl\\screenshots\\error-test-%2Ftools%2Frobots-txt-validator%2Fnon-existent.png"
+    },
+    {
+      "url": "http://localhost:3004/blog",
+      "status": 0,
+      "ms": 297,
+      "has404Marker": false,
+      "hasNoIndexMeta": false,
+      "headers": {},
+      "screenshot": "C:\\Users\\AbhishekAdhikari\\Learn\\100SeoTools\\reports\\crawl\\screenshots\\error-test-%2Fblog.png"
+    },
+    {
+      "url": "http://localhost:3004/category",
+      "status": 0,
+      "ms": 177,
+      "has404Marker": false,
+      "hasNoIndexMeta": false,
+      "headers": {},
+      "screenshot": "C:\\Users\\AbhishekAdhikari\\Learn\\100SeoTools\\reports\\crawl\\screenshots\\error-test-%2Fcategory.png"
+    }
+  ]
+}

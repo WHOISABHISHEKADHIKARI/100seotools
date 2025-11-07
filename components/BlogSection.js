@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Card from './Card';
+import UnifiedCard from './UnifiedCard';
 import { FiClock, FiTag, FiBookOpen, FiArrowRight } from 'react-icons/fi';
 
 export default function BlogSection({ limit = 3, showHeader = true }) {
@@ -93,19 +93,30 @@ export default function BlogSection({ limit = 3, showHeader = true }) {
     return colors[category] || 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
   };
 
-  if (loading) {
-    return (
-      <section className="py-12 min-h-[500px]">
-        {showHeader && (
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Latest SEO Guides
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              In-depth guides and tutorials to help you master SEO tools and techniques
-            </p>
-          </div>
-        )}
+  const headingText = 'Latest SEO Guides';
+
+  return (
+    <section
+      id="blog-section"
+      role="region"
+      className="py-12"
+      aria-labelledby={showHeader ? 'blog-section-title' : undefined}
+      aria-label={!showHeader ? headingText : undefined}
+      data-ready={loading ? 'false' : 'true'}
+      data-testid="blog-section"
+    >
+      {showHeader ? (
+        <div className="text-center mb-8">
+          <h2 id="blog-section-title" className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            {headingText}
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            In-depth guides and tutorials to help you master SEO tools and techniques
+          </p>
+        </div>
+      ) : null}
+
+      {loading ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(limit || 3)].map((_, i) => (
             <div key={i} className="card p-6 animate-pulse">
@@ -119,68 +130,56 @@ export default function BlogSection({ limit = 3, showHeader = true }) {
             </div>
           ))}
         </div>
-      </section>
-    );
-  }
-
-  return (
-    <section className="py-12" aria-labelledby="blog-section-title">
-      {showHeader && (
-        <div className="text-center mb-8">
-          <h2 id="blog-section-title" className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Latest SEO Guides
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            In-depth guides and tutorials to help you master SEO tools and techniques
-          </p>
-        </div>
-      )}
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        {posts.map((post) => (
-          <div key={post.slug} className="space-y-2">
-            <div className="flex items-center gap-2">
-              <span className={`px-2 py-1 text-xs font-medium rounded-full ${getCategoryColor(post.category)}`}>
-                {post.category}
-              </span>
-              {post.featured && (
-                <span className="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
-                  Featured
-                </span>
-              )}
-            </div>
-            <Card
-              href={`/blog/${post.slug}`}
-              title={post.title}
-              description={post.description}
-              meta={post.readTime}
-              className="p-6"
-            />
-            <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-3 px-1">
-              <span className="inline-flex items-center gap-1">
-                <FiClock className="w-3.5 h-3.5" />
-                <time dateTime={post.publishDate}>{formatDate(post.publishDate)}</time>
-              </span>
-              <span className="inline-flex items-center gap-1">
-                <FiTag className="w-3.5 h-3.5" />
-                {post.tags.slice(0, 2).join(' • ')}
-              </span>
-            </div>
+      ) : (
+        <>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {posts.length > 0 ? (
+              posts.map((post) => (
+                <div key={post.slug} className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${getCategoryColor(post.category)}`}>
+                      {post.category}
+                    </span>
+                    {post.featured && (
+                      <span className="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                        Featured
+                      </span>
+                    )}
+                  </div>
+                  <UnifiedCard
+                    href={`/blog/${post.slug}`}
+                    title={post.title}
+                    description={post.description}
+                    meta={post.readTime}
+                    className="p-6"
+                  />
+                  <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-3 px-1">
+                    <span className="inline-flex items-center gap-1">
+                      <FiClock className="w-3.5 h-3.5" />
+                      <time dateTime={post.publishDate}>{formatDate(post.publishDate)}</time>
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <FiTag className="w-3.5 h-3.5" />
+                      {post.tags.slice(0, 2).join(' • ')}
+                    </span>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-full text-center text-sm text-gray-500 dark:text-gray-400">No posts available.</div>
+            )}
           </div>
-        ))}
-      </div>
 
-      {showHeader && (
-        <div className="text-center">
-          <Link
-            href="/blog"
-            className="btn btn-outline inline-flex items-center gap-2"
-          >
-            <FiBookOpen className="w-5 h-5" />
-            View All Guides
-            <FiArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
+          {showHeader ? (
+            <div className="text-center">
+              <Link href="/blog" className="btn btn-outline inline-flex items-center gap-2">
+                <FiBookOpen className="w-5 h-5" />
+                View All Guides
+                <FiArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          ) : null}
+        </>
       )}
     </section>
   );

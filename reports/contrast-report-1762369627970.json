@@ -1,0 +1,647 @@
+{
+  "baseUrl": "http://localhost:3001",
+  "results": [
+    {
+      "route": "/",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "12.0pt (16px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"btn\">Reset</button>",
+                      "target": [
+                        ".mt-3.gap-2.items-center > .btn"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"btn\">Reset</button>",
+              "target": [
+                ".mt-3.gap-2.items-center > .btn"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"card p-4 relative hover:shadow-md transition\">",
+                      "target": [
+                        ".p-4.hover\\:shadow-md.transition:nth-child(1)"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a href=\"/blog/seo-basics-0\" aria-label=\"Read guide: SEO Basics: Complete SEO Guide 0 - Boost Rankings Fast\" class=\"tap-target text-sm text-brand-600 transition-gpu will-change-transform-opacity hover:opacity-85\">Read Guide: SEO Basics: Complete SEO Guide 0 - Boost Rankings Fast</a>",
+              "target": [
+                ".transition-gpu.will-change-transform-opacity[href$=\"seo-basics-0\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"card p-4 relative hover:shadow-md transition\">",
+                      "target": [
+                        ".p-4.hover\\:shadow-md.transition:nth-child(2)"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a href=\"/blog/seo-basics-1\" aria-label=\"Read guide: SEO Basics: Complete SEO Guide 1 - Boost Rankings Fast\" class=\"tap-target text-sm text-brand-600 transition-gpu will-change-transform-opacity hover:opacity-85\">Read Guide: SEO Basics: Complete SEO Guide 1 - Boost Rankings Fast</a>",
+              "target": [
+                ".transition-gpu.will-change-transform-opacity[href$=\"seo-basics-1\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"card p-4 relative hover:shadow-md transition\">",
+                      "target": [
+                        ".p-4.hover\\:shadow-md.transition:nth-child(3)"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a href=\"/blog/seo-basics-2\" aria-label=\"Read guide: SEO Basics: Complete SEO Guide 2 - Boost Rankings Fast\" class=\"tap-target text-sm text-brand-600 transition-gpu will-change-transform-opacity hover:opacity-85\">Read Guide: SEO Basics: Complete SEO Guide 2 - Boost Rankings Fast</a>",
+              "target": [
+                ".transition-gpu.will-change-transform-opacity[href$=\"seo-basics-2\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article class=\"card card-interactiv...\" itemscope=\"\" itemtype=\"https://schema.org/S...\" aria-labelledby=\"tool-title-redirect-...\" aria-describedby=\"tool-desc-redirect-3...\">",
+                      "target": [
+                        ".p-5.overflow-hidden.card-content:nth-child(1)"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Open Tool</span>",
+              "target": [
+                "a[aria-label=\"Open 301 Redirect Generator\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article class=\"card card-interactiv...\" itemscope=\"\" itemtype=\"https://schema.org/S...\" aria-labelledby=\"tool-title-ai-articl...\" aria-describedby=\"tool-desc-ai-article...\">",
+                      "target": [
+                        ".p-5.overflow-hidden.card-content:nth-child(2)"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Open Tool</span>",
+              "target": [
+                ".p-5.overflow-hidden.card-content:nth-child(2) > .mt-auto.pt-3.border-gray-100 > .gap-2.items-center.flex:nth-child(2) > .text-brand-600.font-medium[itemprop=\"url\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article class=\"card card-interactiv...\" itemscope=\"\" itemtype=\"https://schema.org/S...\" aria-labelledby=\"tool-title-ai-blog-i...\" aria-describedby=\"tool-desc-ai-blog-in...\">",
+                      "target": [
+                        "article[aria-describedby=\"tool-desc-ai-blog-intro-writer\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Open Tool</span>",
+              "target": [
+                "a[aria-label=\"Open AI Blog Intro Writer\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article class=\"card card-interactiv...\" itemscope=\"\" itemtype=\"https://schema.org/S...\" aria-labelledby=\"tool-title-ai-compet...\" aria-describedby=\"tool-desc-ai-competi...\">",
+                      "target": [
+                        ".p-5.overflow-hidden.card-content:nth-child(4)"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Open Tool</span>",
+              "target": [
+                ".p-5.overflow-hidden.card-content:nth-child(4) > .mt-auto.pt-3.border-gray-100 > .gap-2.items-center.flex:nth-child(2) > .text-brand-600.font-medium[itemprop=\"url\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article class=\"card card-interactiv...\" itemscope=\"\" itemtype=\"https://schema.org/S...\" aria-labelledby=\"tool-title-ai-conten...\" aria-describedby=\"tool-desc-ai-content...\">",
+                      "target": [
+                        "article[aria-labelledby=\"tool-title-ai-content-detector\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Open Tool</span>",
+              "target": [
+                "a[aria-label=\"Open AI Content Detector\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article class=\"card card-interactiv...\" itemscope=\"\" itemtype=\"https://schema.org/S...\" aria-labelledby=\"tool-title-ai-conten...\" aria-describedby=\"tool-desc-ai-content...\">",
+                      "target": [
+                        "article[aria-labelledby=\"tool-title-ai-content-improver\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Open Tool</span>",
+              "target": [
+                "a[aria-label=\"Open AI Content Improver\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article class=\"card card-interactiv...\" itemscope=\"\" itemtype=\"https://schema.org/S...\" aria-labelledby=\"tool-title-ai-faq-cr...\" aria-describedby=\"tool-desc-ai-faq-cre...\">",
+                      "target": [
+                        "article[aria-labelledby=\"tool-title-ai-faq-creator\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Open Tool</span>",
+              "target": [
+                "a[aria-label=\"Open AI FAQ Creator\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article class=\"card card-interactiv...\" itemscope=\"\" itemtype=\"https://schema.org/S...\" aria-labelledby=\"tool-title-ai-keywor...\" aria-describedby=\"tool-desc-ai-keyword...\">",
+                      "target": [
+                        "article[aria-describedby=\"tool-desc-ai-keyword-explainer\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Open Tool</span>",
+              "target": [
+                "a[aria-label=\"Open AI Keyword Explainer\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article class=\"card card-interactiv...\" itemscope=\"\" itemtype=\"https://schema.org/S...\" aria-labelledby=\"tool-title-ai-meta-t...\" aria-describedby=\"tool-desc-ai-meta-ta...\">",
+                      "target": [
+                        "article[aria-labelledby=\"tool-title-ai-meta-tag-writer\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Open Tool</span>",
+              "target": [
+                "a[aria-label=\"Open AI Meta Tag Writer\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article class=\"card card-interactiv...\" itemscope=\"\" itemtype=\"https://schema.org/S...\" aria-labelledby=\"tool-title-ai-schema...\" aria-describedby=\"tool-desc-ai-schema-...\">",
+                      "target": [
+                        "article[aria-labelledby=\"tool-title-ai-schema-generator\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Open Tool</span>",
+              "target": [
+                "a[aria-label=\"Open AI Schema Generator\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article class=\"card card-interactiv...\" itemscope=\"\" itemtype=\"https://schema.org/S...\" aria-labelledby=\"tool-title-ai-snippe...\" aria-describedby=\"tool-desc-ai-snippet...\">",
+                      "target": [
+                        "article[aria-describedby=\"tool-desc-ai-snippet-generator\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Open Tool</span>",
+              "target": [
+                "a[aria-label=\"Open AI Snippet Generator\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#0284c7",
+                    "bgColor": "#111827",
+                    "contrastRatio": 4.33,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<article class=\"card card-interactiv...\" itemscope=\"\" itemtype=\"https://schema.org/S...\" aria-labelledby=\"tool-title-anchor-te...\" aria-describedby=\"tool-desc-anchor-tex...\">",
+                      "target": [
+                        "article[aria-describedby=\"tool-desc-anchor-text-analyzer\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Open Tool</span>",
+              "target": [
+                "a[aria-label=\"Open Anchor Text Analyzer\"] > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.33 (foreground color: #0284c7, background color: #111827, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "12.0pt (16px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<button class=\"btn\" aria-label=\"Load more tools\">Load more tools</button>",
+                      "target": [
+                        "button[aria-label=\"Load more tools\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<button class=\"btn\" aria-label=\"Load more tools\">Load more tools</button>",
+              "target": [
+                "button[aria-label=\"Load more tools\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#ffffff",
+                    "bgColor": "#3b82f6",
+                    "contrastRatio": 3.67,
+                    "fontSize": "12.0pt (16px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<a class=\"btn btn-outline inline-flex items-center gap-2\" href=\"/blog\">",
+                      "target": [
+                        ".btn-outline"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"btn btn-outline inline-flex items-center gap-2\" href=\"/blog\">",
+              "target": [
+                ".btn-outline"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "violations": []
+    }
+  ]
+}

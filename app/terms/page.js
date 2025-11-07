@@ -1,7 +1,11 @@
+import { getBaseUrl } from '../../lib/site';
+
+const baseUrl = getBaseUrl();
+
 export const metadata = {
   title: 'Terms of Service – 100 SEO Tools',
   description: 'Read the terms governing your use of 100 SEO Tools. Client-side utilities provided as-is without warranties.',
-  alternates: { canonical: '/terms' },
+  alternates: { canonical: `${baseUrl}/terms` },
   robots: { index: true, follow: true },
 };
 

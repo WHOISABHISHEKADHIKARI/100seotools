@@ -1,0 +1,228 @@
+{
+  "sourceFile": "C:\\Users\\AbhishekAdhikari\\Learn\\100SeoTools\\instruction\\301prompt",
+  "generatedAt": "2025-11-05T18:56:04.855Z",
+  "summary": {
+    "totalBlocks": 41,
+    "totalFields": 15,
+    "sections": {
+      "singleRedirect": 2,
+      "bulkRedirect": 2,
+      "domainRedirect": 4,
+      "configPanel": 7,
+      "misc": 0,
+      "errors": 0
+    }
+  },
+  "validationRules": {
+    "urlPattern": "^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$",
+    "domainPattern": "^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$",
+    "pathPattern": "^[a-zA-Z0-9\\/_-\\.]*$"
+  },
+  "validationCompileErrors": {
+    "pathPatternError": "Invalid regular expression: /^[a-zA-Z0-9\\/_-\\.]*$/: Range out of order in character class"
+  },
+  "sections": {
+    "singleRedirect": [
+      {
+        "kind": "input",
+        "id": "oldUrl",
+        "type": "text",
+        "accept": null,
+        "expectedType": "string:url_or_path",
+        "validators": [
+          "urlPattern",
+          "pathPattern"
+        ]
+      },
+      {
+        "kind": "input",
+        "id": "newUrl",
+        "type": "text",
+        "accept": null,
+        "expectedType": "string:url_or_path",
+        "validators": [
+          "urlPattern",
+          "pathPattern"
+        ]
+      }
+    ],
+    "bulkRedirect": [
+      {
+        "kind": "input",
+        "id": "csvUpload",
+        "type": "file",
+        "accept": ".csv,.xlsx",
+        "expectedType": "file:csv_xlsx",
+        "validators": []
+      },
+      {
+        "kind": "textarea",
+        "id": "bulkInput",
+        "rows": "10",
+        "expectedType": "string:csv_text",
+        "validators": []
+      }
+    ],
+    "domainRedirect": [
+      {
+        "kind": "input",
+        "id": "oldDomain",
+        "type": "text",
+        "accept": null,
+        "expectedType": "string:domain",
+        "validators": [
+          "domainPattern"
+        ]
+      },
+      {
+        "kind": "input",
+        "id": "newDomain",
+        "type": "text",
+        "accept": null,
+        "expectedType": "string:domain",
+        "validators": [
+          "domainPattern"
+        ]
+      },
+      {
+        "kind": "input",
+        "id": "forceHttps",
+        "type": "checkbox",
+        "accept": null,
+        "expectedType": "boolean",
+        "validators": []
+      },
+      {
+        "kind": "select",
+        "id": "wwwPreference",
+        "options": [
+          {
+            "value": "keep",
+            "label": "Keep WWW as is"
+          },
+          {
+            "value": "add",
+            "label": "Add WWW"
+          },
+          {
+            "value": "remove",
+            "label": "Remove WWW"
+          }
+        ],
+        "expectedType": "enum",
+        "validators": [
+          "keep",
+          "add",
+          "remove"
+        ]
+      }
+    ],
+    "configPanel": [
+      {
+        "kind": "input",
+        "id": "caseSensitive",
+        "type": "checkbox",
+        "accept": null,
+        "expectedType": "boolean",
+        "validators": []
+      },
+      {
+        "kind": "input",
+        "id": "exactMatch",
+        "type": "checkbox",
+        "accept": null,
+        "expectedType": "boolean",
+        "validators": []
+      },
+      {
+        "kind": "input",
+        "id": "preserveQuery",
+        "type": "checkbox",
+        "accept": null,
+        "expectedType": "boolean",
+        "validators": []
+      },
+      {
+        "kind": "input",
+        "id": "trailingSlash",
+        "type": "checkbox",
+        "accept": null,
+        "expectedType": "boolean",
+        "validators": []
+      },
+      {
+        "kind": "input",
+        "id": "addComments",
+        "type": "checkbox",
+        "accept": null,
+        "expectedType": "boolean",
+        "validators": []
+      },
+      {
+        "kind": "select",
+        "id": "serverType",
+        "options": [
+          {
+            "value": "apache",
+            "label": "Apache (.htaccess)"
+          },
+          {
+            "value": "nginx",
+            "label": "Nginx"
+          },
+          {
+            "value": "php",
+            "label": "PHP"
+          },
+          {
+            "value": "html",
+            "label": "HTML Meta Refresh"
+          },
+          {
+            "value": "javascript",
+            "label": "JavaScript"
+          }
+        ],
+        "expectedType": "enum",
+        "validators": [
+          "apache",
+          "nginx",
+          "php",
+          "html",
+          "javascript"
+        ]
+      },
+      {
+        "kind": "select",
+        "id": "redirectType",
+        "options": [
+          {
+            "value": "301",
+            "label": "301 Permanent"
+          },
+          {
+            "value": "302",
+            "label": "302 Temporary"
+          },
+          {
+            "value": "307",
+            "label": "307 Temporary (HTTP 1.1)"
+          },
+          {
+            "value": "308",
+            "label": "308 Permanent (HTTP 1.1)"
+          }
+        ],
+        "expectedType": "enum:number",
+        "validators": [
+          "301",
+          "302",
+          "307",
+          "308"
+        ]
+      }
+    ],
+    "misc": [],
+    "errors": []
+  }
+}

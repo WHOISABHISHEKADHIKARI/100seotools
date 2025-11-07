@@ -131,7 +131,7 @@ export function generateHowToSchema(tool, baseUrl) {
         "name": "Web Browser"
       },
       {
-        "@type": "HowToSupply", 
+        "@type": "HowToSupply",
         "name": "Internet Connection"
       }
     ],

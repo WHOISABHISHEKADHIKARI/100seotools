@@ -1,0 +1,226 @@
+{
+  "meta": {
+    "origin": "http://localhost:3004",
+    "crawledCount": 1,
+    "maxPages": 200,
+    "robots": {
+      "disallow": [],
+      "allow": [],
+      "sitemap": []
+    },
+    "avg200ms": 84,
+    "avg404ms": 0,
+    "generatedAt": "2025-11-07T16:45:36.257Z"
+  },
+  "pages": [
+    {
+      "url": "http://localhost:3004/",
+      "status": 200,
+      "ms": 84,
+      "contentType": "text/html; charset=utf-8",
+      "parent": null,
+      "depth": 0,
+      "blockedByRobots": false,
+      "ignoredByCrawler": false,
+      "error": null
+    }
+  ],
+  "notFound": [],
+  "errorHandling": [
+    {
+      "url": "http://localhost:3004/non-existent",
+      "status": 404,
+      "ms": 99,
+      "has404Marker": true,
+      "hasNoIndexMeta": true,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io https://ui-avatars.com; font-src 'self'; connect-src 'self' https://cdn.sanity.io; media-src 'self';",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Fri, 07 Nov 2025 16:45:33 GMT",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-powered-by": "Next.js"
+      }
+    },
+    {
+      "url": "http://localhost:3004/blog/non-existent",
+      "status": 404,
+      "ms": 176,
+      "has404Marker": true,
+      "hasNoIndexMeta": true,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io https://ui-avatars.com; font-src 'self'; connect-src 'self' https://cdn.sanity.io; media-src 'self';",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Fri, 07 Nov 2025 16:45:33 GMT",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-powered-by": "Next.js"
+      }
+    },
+    {
+      "url": "http://localhost:3004/blog/non-existent/p/2",
+      "status": 200,
+      "ms": 1241,
+      "has404Marker": true,
+      "hasNoIndexMeta": true,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io https://ui-avatars.com; font-src 'self'; connect-src 'self' https://cdn.sanity.io; media-src 'self';",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Fri, 07 Nov 2025 16:45:35 GMT",
+        "keep-alive": "timeout=5",
+        "link": "</_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-powered-by": "Next.js"
+      }
+    },
+    {
+      "url": "http://localhost:3004/category/non-existent",
+      "status": 404,
+      "ms": 196,
+      "has404Marker": true,
+      "hasNoIndexMeta": true,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io https://ui-avatars.com; font-src 'self'; connect-src 'self' https://cdn.sanity.io; media-src 'self';",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Fri, 07 Nov 2025 16:45:35 GMT",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-powered-by": "Next.js"
+      }
+    },
+    {
+      "url": "http://localhost:3004/tools/non-existent",
+      "status": 404,
+      "ms": 122,
+      "has404Marker": true,
+      "hasNoIndexMeta": true,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io https://ui-avatars.com; font-src 'self'; connect-src 'self' https://cdn.sanity.io; media-src 'self';",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Fri, 07 Nov 2025 16:45:35 GMT",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-powered-by": "Next.js"
+      }
+    },
+    {
+      "url": "http://localhost:3004/tools/robots-txt-validator/non-existent",
+      "status": 404,
+      "ms": 99,
+      "has404Marker": true,
+      "hasNoIndexMeta": true,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io https://ui-avatars.com; font-src 'self'; connect-src 'self' https://cdn.sanity.io; media-src 'self';",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Fri, 07 Nov 2025 16:45:35 GMT",
+        "keep-alive": "timeout=5",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-powered-by": "Next.js"
+      }
+    },
+    {
+      "url": "http://localhost:3004/blog",
+      "status": 200,
+      "ms": 199,
+      "has404Marker": true,
+      "hasNoIndexMeta": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io https://ui-avatars.com; font-src 'self'; connect-src 'self' https://cdn.sanity.io; media-src 'self';",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Fri, 07 Nov 2025 16:45:35 GMT",
+        "keep-alive": "timeout=5",
+        "link": "</_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-powered-by": "Next.js"
+      }
+    },
+    {
+      "url": "http://localhost:3004/category",
+      "status": 200,
+      "ms": 470,
+      "has404Marker": true,
+      "hasNoIndexMeta": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io https://ui-avatars.com; font-src 'self'; connect-src 'self' https://cdn.sanity.io; media-src 'self';",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Fri, 07 Nov 2025 16:45:36 GMT",
+        "keep-alive": "timeout=5",
+        "link": "</_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "origin-when-cross-origin",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-powered-by": "Next.js"
+      }
+    }
+  ]
+}

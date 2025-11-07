@@ -6,6 +6,7 @@ export default function PerformanceMonitor() {
   const { actions } = useUserPreferences();
   const metricsRef = useRef({});
   const observerRef = useRef(null);
+  const observersRef = useRef([]);
 
   useEffect(() => {
     // Track Core Web Vitals
@@ -69,7 +70,7 @@ export default function PerformanceMonitor() {
             const entries = list.getEntries();
             const lastEntry = entries[entries.length - 1];
             metricsRef.current.lcp = Math.round(lastEntry.startTime);
-            
+
             // Track LCP in user preferences for analytics
             actions.updatePreferences({
               performanceMetrics: {
@@ -80,6 +81,7 @@ export default function PerformanceMonitor() {
           });
           lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
           observerRef.current = lcpObserver;
+          observersRef.current.push(lcpObserver);
         } catch (e) {
           console.warn('LCP observer not supported:', e);
         }
@@ -90,7 +92,7 @@ export default function PerformanceMonitor() {
             const entries = list.getEntries();
             entries.forEach((entry) => {
               metricsRef.current.fid = Math.round(entry.processingStart - entry.startTime);
-              
+
               actions.updatePreferences({
                 performanceMetrics: {
                   ...metricsRef.current,
@@ -100,6 +102,7 @@ export default function PerformanceMonitor() {
             });
           });
           fidObserver.observe({ entryTypes: ['first-input'] });
+          observersRef.current.push(fidObserver);
         } catch (e) {
           console.warn('FID observer not supported:', e);
         }
@@ -142,6 +145,7 @@ export default function PerformanceMonitor() {
             }
           });
           clsObserver.observe({ entryTypes: ['layout-shift'] });
+          observersRef.current.push(clsObserver);
         } catch (e) {
           console.warn('CLS observer not supported:', e);
         }
@@ -164,7 +168,7 @@ export default function PerformanceMonitor() {
               entries.forEach((entry) => {
                 if (entry.name === 'first-contentful-paint') {
                   metricsRef.current.fcp = Math.round(entry.startTime);
-                  
+
                   actions.updatePreferences({
                     performanceMetrics: {
                       ...metricsRef.current,
@@ -175,6 +179,7 @@ export default function PerformanceMonitor() {
               });
             });
             fcpObserver.observe({ entryTypes: ['paint'] });
+            observersRef.current.push(fcpObserver);
           } catch (e) {
             console.warn('FCP observer not supported:', e);
           }
@@ -205,6 +210,7 @@ export default function PerformanceMonitor() {
               }
             });
             resourceObserver.observe({ entryTypes: ['resource'] });
+            observersRef.current.push(resourceObserver);
           } catch (e) {
             console.warn('Resource timing not supported:', e);
           }
@@ -212,11 +218,11 @@ export default function PerformanceMonitor() {
       });
 
       // Track page load time
-      window.addEventListener('load', () => {
+      const loadHandler = () => {
         setTimeout(() => {
           const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
           metricsRef.current.pageLoadTime = loadTime;
-          
+
           actions.updatePreferences({
             performanceMetrics: {
               ...metricsRef.current,
@@ -224,7 +230,8 @@ export default function PerformanceMonitor() {
             }
           });
         }, 0);
-      });
+      };
+      window.addEventListener('load', loadHandler);
 
       // Real-time sampling and alerts: store snapshots every minute
       const SAMPLE_KEY = 'perf_samples';
@@ -280,7 +287,7 @@ export default function PerformanceMonitor() {
         if (isActive) {
           const sessionTime = Date.now() - startTime;
           metricsRef.current.sessionTime = sessionTime;
-          
+
           actions.updatePreferences({
             performanceMetrics: {
               ...metricsRef.current,
@@ -291,7 +298,7 @@ export default function PerformanceMonitor() {
       };
 
       // Track visibility changes
-      document.addEventListener('visibilitychange', () => {
+      const handleVisibilityChange = () => {
         if (document.hidden) {
           isActive = false;
           trackEngagement();
@@ -299,7 +306,8 @@ export default function PerformanceMonitor() {
           isActive = true;
           startTime = Date.now();
         }
-      });
+      };
+      document.addEventListener('visibilitychange', handleVisibilityChange);
 
       // Track engagement every 30 seconds
       const engagementInterval = setInterval(trackEngagement, 30000);
@@ -310,10 +318,17 @@ export default function PerformanceMonitor() {
       return () => {
         clearInterval(engagementInterval);
         clearInterval(samplingInterval);
+        window.removeEventListener('load', loadHandler);
         window.removeEventListener('beforeunload', trackEngagement);
-        document.removeEventListener('visibilitychange', () => {});
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
         if (observerRef.current) {
-          observerRef.current.disconnect();
+          try { observerRef.current.disconnect(); } catch {}
+        }
+        if (Array.isArray(observersRef.current)) {
+          for (const obs of observersRef.current) {
+            try { obs.disconnect(); } catch {}
+          }
+          observersRef.current = [];
         }
       };
     };
@@ -334,11 +349,11 @@ export default function PerformanceMonitor() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = Math.round((scrollTop / docHeight) * 100);
-      
+
       if (scrollPercent > maxScrollDepth) {
         maxScrollDepth = scrollPercent;
         metricsRef.current.maxScrollDepth = maxScrollDepth;
-        
+
         actions.updatePreferences({
           performanceMetrics: {
             ...metricsRef.current,

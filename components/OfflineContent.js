@@ -4,16 +4,16 @@ export default function OfflineContent() {
   return (
     <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
       <div className="mb-8">
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width="64" 
-          height="64" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="2" 
-          strokeLinecap="round" 
-          strokeLinejoin="round" 
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="64"
+          height="64"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           className="text-gray-400 dark:text-gray-500"
           aria-hidden="true"
         >
@@ -30,8 +30,8 @@ export default function OfflineContent() {
       <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md">
         It looks like you're currently offline. Please check your internet connection and try again.
       </p>
-      <button 
-        onClick={() => window.location.reload()} 
+      <button
+        onClick={() => window.location.reload()}
         className="btn"
         aria-label="Retry connection"
       >

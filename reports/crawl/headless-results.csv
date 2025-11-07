@@ -1,0 +1,2 @@
+url,status,ms,contentType,parent,depth,blockedByRobots,ignoredByCrawler,error
+http://localhost:3004/,0,485,,,0,false,false,TypeError: page.waitForTimeout is not a function

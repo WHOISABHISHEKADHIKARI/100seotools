@@ -1,0 +1,51 @@
+Category Page Content Outlines
+
+**Keyword Research Tools**
+
+*   **H1:** Free Keyword Research Tools
+*   **Introduction:** A brief introduction to keyword research and its importance.
+*   **Tool Grid:** A grid of all the keyword research tools with a short description of each.
+*   **Why is Keyword Research Important?:** A section that explains the benefits of keyword research.
+*   **How to Use Our Keyword Research Tools:** A section that provides a step-by-step guide on how to use the keyword research tools.
+*   **FAQ:** A section that answers common questions about keyword research.
+*   **CTA:** A call to action to try the keyword research tools.
+
+**Content Optimization Tools**
+
+*   **H1:** Free Content Optimization Tools
+*   **Introduction:** A brief introduction to content optimization and its importance.
+*   **Tool Grid:** A grid of all the content optimization tools with a short description of each.
+*   **Why is Content Optimization Important?:** A section that explains the benefits of content optimization.
+*   **How to Use Our Content Optimization Tools:** A section that provides a step-by-step guide on how to use the content optimization tools.
+*   **FAQ:** A section that answers common questions about content optimization.
+*   **CTA:** A call to action to try the content optimization tools.
+
+**Technical SEO Tools**
+
+*   **H1:** Free Technical SEO Tools
+*   **Introduction:** A brief introduction to technical SEO and its importance.
+*   **Tool Grid:** A grid of all the technical SEO tools with a short description of each.
+*   **Why is Technical SEO Important?:** A section that explains the benefits of technical SEO.
+*   **How to Use Our Technical SEO Tools:** A section that provides a step-by-step guide on how to use the technical SEO tools.
+*   **FAQ:** A section that answers common questions about technical SEO.
+*   **CTA:** A call to action to try the technical SEO tools.
+
+**Link Building Tools**
+
+*   **H1:** Free Link Building Tools
+*   **Introduction:** A brief introduction to link building and its importance.
+*   **Tool Grid:** A grid of all the link building tools with a short description of each.
+*   **Why is Link Building Important?:** A section that explains the benefits of link building.
+*   **How to Use Our Link Building Tools:** A section that provides a step-by-step guide on how to use the link building tools.
+*   **FAQ:** A section that answers common questions about link building.
+*   **CTA:** A call to action to try the link building tools.
+
+**Rank Tracking & Analytics Tools**
+
+*   **H1:** Free Rank Tracking & Analytics Tools
+*   **Introduction:** A brief introduction to rank tracking and analytics and its importance.
+*   **Tool Grid:** A grid of all the rank tracking and analytics tools with a short description of each.
+*   **Why is Rank Tracking & Analytics Important?:** A section that explains the benefits of rank tracking and analytics.
+*   **How to Use Our Rank Tracking & Analytics Tools:** A section that provides a step-by-step guide on how to use the rank tracking and analytics tools.
+*   **FAQ:** A section that answers common questions about rank tracking and analytics.
+*   **CTA:** A call to action to try the rank tracking and analytics tools.

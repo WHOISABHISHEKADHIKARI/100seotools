@@ -1,7 +1,9 @@
 "use client";
 import React, { useEffect, useState, memo, useRef, useCallback, useMemo } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useUserPreferences } from '../contexts/UserPreferencesContext';
+import UnifiedCard from '@/components/UnifiedCard';
 import {
   FiSearch,
   FiTag,
@@ -30,80 +32,60 @@ const categoryIconMap = {
 
 // Tool card component for better performance
 const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
-  const Icon = categoryIconMap[tool.category] || FiTool;
-  
+  const router = useRouter();
+  const hasSlug = Boolean(tool?.slug);
+  const safeName = tool?.name ?? 'Untitled Tool';
+  const Icon = categoryIconMap[tool?.category] || FiTool;
+
   const handleToolClick = () => {
     onToolClick(tool);
   };
-  
+
   return (
-    <article
-      className="card card-interactive p-5 flex flex-col gap-4 focus:outline-none focus:ring-2 focus:ring-brand-500 relative overflow-hidden card-content group"
-      itemScope
-      itemType="https://schema.org/SoftwareApplication"
-      aria-labelledby={`tool-title-${tool.slug}`}
-      aria-describedby={`tool-desc-${tool.slug}`}
+    <UnifiedCard
+      href={hasSlug ? `/tools/${tool.slug}` : undefined}
+      title={safeName}
+      description={tool.description}
+      icon={Icon}
+      meta={tool.category}
+      iconColor="text-brand-500"
+      variant="tool"
+      className="h-full"
     >
-      {/* Full-card click target: open the tool */}
-      <a
-        href={`/tools/${tool.slug}`}
-        onClick={handleToolClick}
-        aria-label={`Open tool: ${tool.name}`}
-        className="absolute inset-0 z-10 hover:bg-transparent group-hover:scale-105 transition-transform duration-200"
+      <button
+        className="btn-secondary p-1.5 text-xs"
+        onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (tool?.slug) onToggleFavorite(tool.slug); }}
+        aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+        aria-pressed={isFavorite}
+        title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       >
-        <span className="sr-only">Open tool: {tool.name}</span>
-      </a>
-      
-      {/* Header with icon and favorite button */}
-      <div className="flex items-start justify-between relative z-20">
-        <div className="flex items-center gap-4">
-          <div className="card-icon-container flex-shrink-0 w-10 h-10 rounded-lg bg-gray-50 dark:bg-gray-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-            <Icon aria-hidden className="w-6 h-6 text-brand-500" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 id={`tool-title-${tool.slug}`} className="card-title text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-brand-600 transition-colors duration-200" itemProp="name">
-              <Link href={`/tools/${tool.slug}`} prefetch={false} className="hover:underline">
-                {tool.name}
-              </Link>
-            </h3>
-          </div>
-        </div>
-        <button
-          className="btn-secondary flex items-center gap-2 relative z-30 p-2 rounded-full"
-          onClick={(e) => { e.preventDefault(); onToggleFavorite(tool.slug); }}
-          aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-          aria-pressed={isFavorite}
-          title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+        <FiStar aria-hidden className={isFavorite ? 'text-yellow-500 fill-current' : 'text-gray-400'} />
+      </button>
+      {hasSlug ? (
+        <Link
+          href={`/blog/${tool.slug}`}
+          prefetch={false}
+          className="text-xs text-gray-500 hover:underline"
+          onClick={(e) => { e.stopPropagation(); }}
         >
-          <FiStar aria-hidden className={`w-5 h-5 ${isFavorite ? 'text-yellow-500 fill-current' : 'text-gray-400'}`} />
-          <span className="sr-only">{isFavorite ? 'Favorited' : 'Not favorited'}</span>
-        </button>
-      </div>
-
-      {/* Description */}
-      <p id={`tool-desc-${tool.slug}`} className="card-desc text-sm text-gray-600 dark:text-gray-400 leading-relaxed" itemProp="description">
-        {tool.description}
-      </p>
-
-      {/* Category and Actions */}
-      <div className="flex items-center justify-between relative z-20 mt-auto pt-3 border-t border-gray-100 dark:border-gray-800">
-        <span className="card-meta flex items-center gap-2 text-xs px-3 py-1.5 rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400" itemProp="applicationCategory">
-          <Icon aria-hidden className="w-3.5 h-3.5" />
-          {tool.category}
-        </span>
-        <div className="flex items-center gap-2">
-          <Link href={`/tools/${tool.slug}`} prefetch={false} className="tap-target gap-2 text-brand-600 font-medium" itemProp="url" aria-label={`Open ${tool.name}`}>
-            <span>Open Tool</span>
-            <FiChevronRight aria-hidden className="w-4 h-4 flex-shrink-0" />
-          </Link>
-          <Link href={`/blog/${tool.slug}`} prefetch={false} className="tap-target text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300" aria-label={`Read guide for ${tool.name}`}>
-            <span>Guide</span>
-          </Link>
-        </div>
-      </div>
-      <meta itemProp="operatingSystem" content="Web browser" />
-      <meta itemProp="offers" content="Free" />
-    </article>
+          Guide
+        </Link>
+      ) : (
+        <span className="text-xs text-gray-400 dark:text-gray-500">Guide</span>
+      )}
+      {hasSlug ? (
+        <Link
+          href={`/tools/${tool.slug}`}
+          prefetch={false}
+          className="btn text-xs py-1.5 ml-auto"
+          onClick={(e) => { e.stopPropagation(); }}
+        >
+          Open <FiChevronRight className="w-3.5 h-3.5" />
+        </Link>
+      ) : (
+        <span className="text-xs text-gray-400 dark:text-gray-500">Open <FiChevronRight className="w-3.5 h-3.5" /></span>
+      )}
+    </UnifiedCard>
   );
 });
 
@@ -144,6 +126,9 @@ function ToolGrid({ tools }) {
     }
     return result;
   }, [tools]);
+
+  // Generate stable keys for tools to avoid index-based keys
+  const getStableKey = useCallback((tool) => tool?.slug ?? `ns-${uniqueTools.indexOf(tool)}`,[uniqueTools]);
 
   useEffect(() => {
     setMounted(true);
@@ -242,21 +227,21 @@ function ToolGrid({ tools }) {
 
   return (
     <>
-      <div ref={gridRef} className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {visibleTools.map((tool, idx) => (
-          <ToolCard 
-            key={tool.slug ?? `tool-${idx}`} 
-            tool={tool} 
-            isFavorite={tool?.slug ? favorites.includes(tool.slug) : false} 
+      <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {visibleTools.map((tool) => (
+          <ToolCard
+            key={getStableKey(tool)}
+            tool={tool}
+            isFavorite={tool?.slug ? favorites.includes(tool.slug) : false}
             onToggleFavorite={toggleFavorite}
             onToolClick={handleToolClick}
           />
         ))}
       </div>
-      
+
       {visibleTools.length < uniqueTools.length && (
-        <div 
-          ref={loadingRef} 
+        <div
+          ref={loadingRef}
           className="flex justify-center items-center py-8"
           style={{ minHeight: skeletonHeight > 0 ? `${skeletonHeight + 32}px` : 'auto' }}
           aria-live="polite"
@@ -267,7 +252,7 @@ function ToolGrid({ tools }) {
               <span>Loading more tools...</span>
             </div>
           ) : (
-            <button 
+            <button
               onClick={loadMoreTools}
               className="btn"
               aria-label="Load more tools"

@@ -38,14 +38,23 @@ export default function Navbar() {
   const dropdownRef = useRef(null);
   const calcDropdownRef = useRef(null);
   const mobileMenuRef = useRef(null);
-  
+
   const calculators = [
     { name: 'SEO Calculator', href: '/seo-calculator' },
     { name: 'SEO Cost Calculator', href: '/seo-cost-calculator' }
   ];
-  
+
   useEffect(() => setMounted(true), []);
-  
+
+  // Close mobile menus when route changes (ensures menu closes after navigation)
+  useEffect(() => {
+    if (mobileOpen || mobileCatsOpen || mobileCalcOpen) {
+      setMobileOpen(false);
+      setMobileCatsOpen(false);
+      setMobileCalcOpen(false);
+    }
+  }, [pathname]);
+
   // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
@@ -59,21 +68,21 @@ export default function Navbar() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [open, openCalc]);
-  
+
   // Close mobile menu when clicking outside
   useEffect(() => {
     if (!mobileOpen) return;
-    
+
     function handleClickOutside(event) {
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
         setMobileOpen(false);
       }
     }
-    
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [mobileOpen]);
-  
+
   // Handle escape key press
   useEffect(() => {
     function handleEscapeKey(event) {
@@ -85,11 +94,11 @@ export default function Navbar() {
         if (mobileCalcOpen) setMobileCalcOpen(false);
       }
     }
-    
+
     document.addEventListener('keydown', handleEscapeKey);
     return () => document.removeEventListener('keydown', handleEscapeKey);
   }, [open, openCalc, mobileOpen, mobileCatsOpen, mobileCalcOpen]);
-  
+
   return (
     <header className="sticky top-0 z-40 py-3 backdrop-blur bg-white/80 dark:bg-gray-950/80 border-b border-slate-200 dark:border-white/10">
       <div className="flex items-center justify-between">
@@ -129,6 +138,7 @@ export default function Navbar() {
             <Link
               href="/"
               aria-current={pathname === '/' ? 'page' : undefined}
+              prefetch={false}
               className={`text-sm hover:text-brand-600 focus:outline-none focus:underline ${pathname === '/' ? 'text-brand-600 font-medium' : ''}`}
             >Home</Link>
           </li>
@@ -136,6 +146,7 @@ export default function Navbar() {
             <Link
               href="/blog"
               aria-current={pathname?.startsWith('/blog') ? 'page' : undefined}
+              prefetch={false}
               className={`text-sm hover:text-brand-600 focus:outline-none focus:underline ${pathname?.startsWith('/blog') ? 'text-brand-600 font-medium' : ''}`}
             >Blog</Link>
           </li>
@@ -143,6 +154,7 @@ export default function Navbar() {
             <Link
               href="/sitemap.xml"
               aria-current={pathname === '/sitemap.xml' ? 'page' : undefined}
+              prefetch={false}
               className={`text-sm hover:text-brand-600 focus:outline-none focus:underline ${pathname === '/sitemap.xml' ? 'text-brand-600 font-medium' : ''}`}
             >Sitemap</Link>
           </li>
@@ -174,6 +186,7 @@ export default function Navbar() {
                     <li key={c}>
                       <Link
                         href={`/category/${toSlug(c)}`}
+                        prefetch={false}
                         className="block px-3 py-2 hover:bg-slate-50 hover:text-brand-600 dark:hover:bg-gray-800 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800"
                         role="menuitem"
                         onClick={() => setOpen(false)}

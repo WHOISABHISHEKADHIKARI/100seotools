@@ -12,23 +12,25 @@ module.exports = {
       colors: {
         brand: {
           // Accessible brand palette (AA compliant on light/dark backgrounds)
-          50: '#eef5ff',
-          100: '#d9e9ff',
-          200: '#b7d4ff',
-          300: '#86b6ff',
-          400: '#4f94ff',
-          500: '#1f6fff',
-          600: '#1e40af', // passes 4.5:1 vs white for text links
-          700: '#1e3a8a', // strong contrast for buttons/borders
-          800: '#173174',
-          900: '#13274f'
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#0ea5e9',
+          600: '#0284c7',
+          700: '#0369a1',
+          800: '#075985',
+          900: '#0c4a6e',
+          950: '#082f49',
         },
         // Darker gray steps for small text contrast (>=4.5:1)
         accessibleGray: {
-          400: '#64748b',
-          500: '#475569',
-          600: '#374151',
-          700: '#1f2937'
+          400: '#52525b',
+          500: '#3f3f46',
+          600: '#27272a',
+          700: '#18181b',
+          800: '#020617',
         }
       }
     }

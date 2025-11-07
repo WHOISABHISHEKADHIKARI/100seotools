@@ -53,8 +53,8 @@ export default function Footer() {
             <h3 className="text-lg font-semibold">Quick Links</h3>
             <ul className="mt-4 space-y-2.5 text-slate-600 dark:text-gray-300">
               <li><Link href="/" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Home</Link></li>
-              <li><Link href="/about" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">About Us</Link></li>
-              <li><Link href="/blog" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Blog</Link></li>
+              <li><Link href="/about" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">About Us</Link></li>
+              <li><Link href="/blog" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Blog</Link></li>
             </ul>
           </nav>
 
@@ -64,7 +64,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5 text-slate-600 dark:text-gray-300">
               {categories.map((c) => (
                 <li key={c}>
-                  <Link href={`/category/${toSlug(c)}`} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">
+                  <Link href={`/category/${toSlug(c)}`} prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">
                     {c}
                   </Link>
                 </li>
@@ -76,7 +76,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold">Follow</h3>
             <div className="mt-4 flex items-center gap-3">
-              <a href="https://www.facebook.com/hashtagwebsolutionsnepal" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-3 py-2 text-sm transition-transform will-change-transform hover:scale-[1.01]" rel="noopener noreferrer" target="_blank" aria-label="Facebook">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.100seotools.com%2F" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-3 py-2 text-sm transition-transform will-change-transform hover:scale-[1.01]" rel="noopener noreferrer" target="_blank" aria-label="Facebook" data-external="true">
                 <FiFacebook aria-hidden className="w-4 h-4" /> Facebook <FiArrowUpRight aria-hidden className="w-3 h-3" />
               </a>
               <a href="https://www.instagram.com/hashtag" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-3 py-2 text-sm transition-transform will-change-transform hover:scale-[1.01]" rel="noopener noreferrer" target="_blank" aria-label="Instagram">
@@ -92,12 +92,12 @@ export default function Footer() {
         <div className="mt-12 border-t border-slate-200 dark:border-gray-800 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-slate-600 dark:text-gray-400">
           <p>© {year} Hashtag Solutions. Building digital solutions, one click at a time.</p>
           <div className="flex items-center gap-4">
-            <Link href="/" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Home</Link>
-            <Link href="/blog" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Blog</Link>
-            <Link href="/sitemap.xml" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Sitemap</Link>
-            <Link href="/robots.txt" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Robots</Link>
-            <Link href="/privacy" className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Privacy Policy</Link>
-            <Link href="/terms" className="transition-gpu will-change-transform-opacity hover:opacity-85 focus-visible:underline">Terms of Service</Link>
+            <Link href="/" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Home</Link>
+            <Link href="/blog" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Blog</Link>
+            <Link href="/sitemap.xml" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Sitemap</Link>
+            <Link href="/robots.txt" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Robots</Link>
+            <Link href="/privacy" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Privacy Policy</Link>
+            <Link href="/terms" prefetch={false} className="transition-gpu will-change-transform-opacity hover:opacity-85 focus-visible:underline">Terms of Service</Link>
           </div>
         </div>
       </div>

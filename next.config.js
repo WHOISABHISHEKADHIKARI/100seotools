@@ -8,43 +8,60 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = withBundleAnalyzer({
   reactStrictMode: true,
   productionBrowserSourceMaps: true,
-  // swcMinify: true, // removed – Next.js 13+ uses SWC by default
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   compress: true,
-  // Remove custom splitChunks override. Next.js 16 manages chunking internally
-  // and overriding optimization.splitChunks can break module execution in dev,
-  // triggering runtime errors like "Cannot read properties of undefined (reading 'call')".
-  // Keep the webpack hook only if you need other customizations.
-  // webpack(config) {
-  //   return config;
-  // },
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.sanity.io',
-      },
-    ],
-  },
-  typedRoutes: true,
+  // Keep experimental flags minimal and valid. Place swcOptions here.
   experimental: {
     serverActions: {
       bodySizeLimit: '1mb',
     },
   },
+  // Remove custom splitChunks override. Next.js 16 manages chunking internally
+  // and overriding optimization.splitChunks can break module execution in dev,
+  // triggering runtime errors like "Cannot read properties of undefined (reading 'call')".
+
+  // Keep the webpack hook only for safe customizations.
+  webpack(config, { isServer }) {
+    if (!isServer) {
+      // Avoid bundling Next's built-in polyfills; we load our own
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'next/dist/build/polyfills/polyfill-module.js': false,
+        'next/dist/build/polyfills/polyfill-nomodule.js': false,
+      };
+      // Do NOT override splitChunks; Next.js manages it. This prevents dev runtime errors.
+    }
+    return config;
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+        pathname: '/**',
+      },
+    ],
+  },
+  typedRoutes: true,
   // Silence Turbopack default error by explicitly declaring config
   turbopack: {},
   redirects: async () => {
+    // Only apply domain/http->https redirects in production
+    if (process.env.NODE_ENV !== 'production') {
+      return [];
+    }
     return [
       // Fix redirect chains by implementing direct 301 redirects
       // HTTP to HTTPS redirects (avoid 308 status codes)
@@ -106,7 +123,7 @@ const nextConfig = withBundleAnalyzer({
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com https://res.cloudinary.com https://cdn.sanity.io; font-src 'self'; connect-src 'self' https://cdn.sanity.io; media-src 'self';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io https://ui-avatars.com; font-src 'self'; connect-src 'self' https://cdn.sanity.io; media-src 'self';",
           },
           {
             key: 'X-Frame-Options',
@@ -128,11 +145,18 @@ const nextConfig = withBundleAnalyzer({
             key: 'Strict-Transport-Security',
             value: 'max-age=31536000; includeSubDomains; preload',
           },
+          // Do NOT set a global X-Robots-Tag. Robots should be controlled per route/status.
+        ]
+      },
+      // Scope robots header to alternative paths only; avoid conflicting directives on 404s
+      {
+        source: '/404',
+        headers: [
           {
             key: 'X-Robots-Tag',
-            value: 'all',
+            value: 'noindex, nofollow',
           },
-        ]
+        ],
       },
       {
         source: '/_next/static/(.*)',
