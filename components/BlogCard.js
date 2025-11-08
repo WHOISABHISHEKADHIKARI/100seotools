@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useMemo, memo } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 function BlogCard({
@@ -24,6 +25,7 @@ function BlogCard({
   imagePosition = 'top', // 'top', 'bottom', 'left', 'right'
   imageSize = 'medium', // 'small', 'medium', 'large'
 }) {
+  const router = useRouter();
   const isLink = useMemo(() => typeof href === 'string' && href.trim().length > 0, [href]);
   const cardId = useMemo(() => `blog-card-${slugify(title)}`, [title]);
   const titleId = useMemo(() => `blog-title-${slugify(title)}`, [title]);
@@ -100,6 +102,21 @@ function BlogCard({
       aria-describedby={descId}
       role="article"
       tabIndex={isLink ? 0 : undefined}
+      onClick={(e) => {
+        if (!isLink) return;
+        // Fallback navigation if overlay link fails
+        if (!e.defaultPrevented && typeof href === 'string') {
+          router.push(href);
+        }
+      }}
+      onKeyDown={(e) => {
+        if (!isLink) return;
+        const key = e.key;
+        if (key === 'Enter' || key === ' ') {
+          e.preventDefault();
+          router.push(href);
+        }
+      }}
     >
       {/* Image Section (optional) */}
       {showImage && (
@@ -120,7 +137,7 @@ function BlogCard({
 
       {/* Content Section */}
       <div className={`
-        blog-card-content flex flex-col flex-1 p-5
+        blog-card-content relative ${isLink ? 'pointer-events-none' : ''} flex flex-col flex-1 p-5
         ${layout === 'horizontal' ? 'justify-center' : ''}
       `}>
         {/* Header Section */}
@@ -250,7 +267,7 @@ function BlogCard({
         <Link
           href={href}
           prefetch={false}
-          className="absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
+          className="absolute inset-0 z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
           aria-label={`Read: ${title || 'blog'}`}
         >
           <span className="sr-only">Read: {title}</span>

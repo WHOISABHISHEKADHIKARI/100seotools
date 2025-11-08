@@ -25,7 +25,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  // Next.js 16: params may be a Promise. Await to safely access slug.
+  const { slug } = await params;
   const baseUrl = getBaseUrl();
   const post = getBlogPostBySlug(slug);
   const tool = getToolBySlug(slug);
@@ -84,7 +85,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogGuidePage({ params, searchParams }) {
-  const { slug } = params;
+  // Unwrap params if it's a Promise (Next.js 16 typed routes)
+  const { slug } = await params;
   const post = getBlogPostBySlug(slug);
   const baseUrl = getBaseUrl();
   const allTools = getAllToolsMeta();
