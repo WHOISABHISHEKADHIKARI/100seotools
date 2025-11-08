@@ -52,6 +52,8 @@ export const metadata = {
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { initPerformanceMonitoring } from '@/lib/performance-monitor';
+import Script from 'next/script';
+const isProd = process.env.NODE_ENV === 'production';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', weight: ['400', '700'] });
 
@@ -72,14 +74,23 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D7DVGLKNXN"></script>
-        <script dangerouslySetInnerHTML={{__html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-D7DVGLKNXN');
-        `}} />
+        {/* Google Analytics (gtag) — load only in production to avoid dev errors */}
+        {isProd && (
+          <>
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=G-D7DVGLKNXN"
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-D7DVGLKNXN');
+              `}
+            </Script>
+          </>
+        )}
         <link rel="preconnect" href="https://www.100seotools.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.100seotools.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />

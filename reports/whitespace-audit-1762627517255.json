@@ -1,0 +1,32 @@
+{
+  "mode": "dry",
+  "totalIssues": 4,
+  "report": [
+    {
+      "file": "C:\\Users\\AbhishekAdhikari\\Learn\\100SeoTools\\app\\layout.js",
+      "issues": [
+        {
+          "type": "trailing_spaces",
+          "index": 86
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\AbhishekAdhikari\\Learn\\100SeoTools\\app\\page.js",
+      "issues": [
+        {
+          "type": "trailing_spaces",
+          "index": 99
+        },
+        {
+          "type": "trailing_spaces",
+          "index": 100
+        },
+        {
+          "type": "trailing_spaces",
+          "index": 160
+        }
+      ]
+    }
+  ]
+}

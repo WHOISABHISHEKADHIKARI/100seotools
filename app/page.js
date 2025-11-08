@@ -6,52 +6,15 @@ import StructuredData from '../components/StructuredData';
 import { getBaseUrl } from '../lib/site';
 import { generateWebsiteSchema } from '../lib/schema';
 import { getAllToolsMeta } from '../tools';
+import BlogGrid from '../components/BlogGrid';
+import PageLinksGrid from '../components/PageLinksGrid';
 
 // Lazy load the ToolGrid component; avoid client-only fallback to prevent SSR mismatch
 const ToolGrid = dynamic(() => import('../components/ToolGrid'), { ssr: false, loading: () => null });
 
-// Defer BlogSection to idle to trim initial JS on homepage
-const BlogSection = dynamic(() => import('../components/BlogSection'), { ssr: false, loading: () => null });
+// (Deprecated here) BlogSection was used previously; replaced by BlogGrid directly below Tools.
 
-// Loading component for ToolGrid
-function ToolGridSkeleton() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {Array.from({ length: 12 }).map((_, index) => (
-        <div key={index} className="card card-interactive p-5 flex flex-col gap-4">
-          {/* Header skeleton */}
-          <div className="flex items-start justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-lg loading-skeleton"></div>
-              <div className="flex-1 space-y-2">
-                <div className="h-5 loading-skeleton rounded w-3/4"></div>
-              </div>
-            </div>
-            <div className="w-8 h-8 rounded-full loading-skeleton"></div>
-          </div>
-
-          {/* Description skeleton */}
-          <div className="space-y-2">
-            <div className="h-4 loading-skeleton rounded"></div>
-            <div className="h-4 loading-skeleton rounded w-5/6"></div>
-          </div>
-
-          {/* Footer skeleton */}
-          <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800 mt-auto">
-            <div className="flex items-center gap-2">
-              <div className="w-3.5 h-3.5 rounded loading-skeleton"></div>
-              <div className="h-3 loading-skeleton rounded w-20"></div>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-4 loading-skeleton rounded w-16"></div>
-              <div className="h-4 loading-skeleton rounded w-12"></div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
+// Loading skeleton removed: ToolGrid now defers loading without a heavy placeholder
 
 const SEOCalculator = dynamic(() => import('../components/SEOCalculator'), {
   ssr: false,
@@ -109,8 +72,8 @@ export default function HomePage() {
 
   if (!isLoaded) {
     return (
-      <div className="space-y-8">
-        <section className="text-center space-y-3 py-8">
+      <div className="space-y-8 max-w-7xl mx-auto px-4">
+        <section className="text-center space-y-4 py-10">
           <p className="text-2xl md:text-3xl font-bold">All Your SEO Tools in One Place</p>
           <p className="text-gray-600 dark:text-gray-400">Loading tools...</p>
         </section>
@@ -119,24 +82,60 @@ export default function HomePage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-12 max-w-7xl mx-auto px-4">
       {(() => {
         const baseUrl = getBaseUrl();
         const websiteLd = generateWebsiteSchema(baseUrl);
         return <StructuredData data={websiteLd} />;
       })()}
-      {/* Defer calculator mount until after first paint/idle to protect LCP */}
-      <AfterFirstPaint>
-        <SEOCalculator />
-      </AfterFirstPaint>
+      {/* Tools section placed at the very top */}
+      <section id="tools" aria-labelledby="tools-section-title" className="space-y-6">
+        <div className="sticky top-0 z-40 supports-[backdrop-filter]:backdrop-blur bg-white/95 dark:bg-gray-950/95 border-b border-gray-100 dark:border-gray-800 shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 py-3 flex items-start justify-between gap-4">
+            <div className="space-y-2">
+              <h2 id="tools-section-title" className="text-2xl md:text-3xl font-bold tracking-tight">
+                The Ultimate Suite of Free SEO Tools
+              </h2>
+              <p className="text-sm md:text-base text-slate-700 dark:text-slate-300 max-w-3xl">
+                100+ free, fast, client‑side tools for marketers, bloggers, developers, agencies, and SMBs — no login, no subscriptions.
+                Inspired by <span className="font-semibold">Small SEO Tools</span>, refined for speed, accuracy, and crawler accessibility.
+                Explore the best <span className="font-semibold">Free SEO Tools</span> to audit pages, generate metadata, validate schema, analyze headings, and more.
+              </p>
+            </div>
+            <a href="#calculator" className="shrink-0 text-sm text-blue-700 dark:text-blue-400 hover:underline">Go to Calculator</a>
+          </div>
+        </div>
+        <div className="pt-2">
+          <SearchFilter tools={tools} onChange={setFilteredTools} />
+        </div>
+        <ToolGrid tools={filteredTools} />
+      </section>
 
-      <section className="text-center space-y-3 py-8">
-        <h1 className="text-2xl md:text-3xl font-bold">The Ultimate Suite of Free SEO Tools</h1>
-        <p className="text-gray-600 dark:text-gray-400">Your complete collection of 100+ free, fast, and client-side SEO tools online. No login, no subscriptions—just powerful utilities for marketers, bloggers, and developers.</p>
+      {/* Blog section positioned directly below Tools */}
+      <section id="blog" className="space-y-6">
+        <BlogGrid />
+      </section>
+
+      {/* Hero with clear CTAs; now placed after Tools */}
+      <section className="text-center space-y-5 py-10">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
+          100% Free SEO Tools — Fast, Accurate, Search‑Optimized
+        </h1>
+        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          A comprehensive suite of top‑performing, search‑friendly tools built for real‑world SEO. Completely free, client‑side, and tuned for speed—no logins, no subscriptions.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <a href="#tools" className="btn transition-all duration-200 hover:scale-[1.02]">
+            Explore Tools
+          </a>
+          <a href="#calculator" className="btn btn-outline transition-all duration-200 hover:scale-[1.02]">
+            Try Calculator
+          </a>
+        </div>
       </section>
 
       {/* Expanded introduction for better content depth (250+ words) */}
-      <section className="max-w-3xl mx-auto space-y-4 text-gray-700 dark:text-gray-300 min-h-[400px]">
+      <section className="max-w-3xl mx-auto space-y-4 text-gray-700 dark:text-gray-300">
         <p className="font-loading-fallback">
           Welcome to 100 SEO Tools — your destination for a comprehensive collection of browser-based utilities designed to streamline your optimization workflow. Our suite of **free SEO tools** helps you tackle everything from content strategy to technical analysis without installing software or connecting accounts. Whether you're a seasoned digital marketer or just starting, you'll find the right **SEO tools** to get the job done. Everything runs client-side, ensuring your data stays private and performance remains fast.
         </p>
@@ -148,16 +147,26 @@ export default function HomePage() {
         </p>
       </section>
 
-      <SearchFilter tools={tools} onChange={setFilteredTools} />
-
-      {/* Tools section with accessible heading to ensure sequential order (h1 -> h2 -> h3) */}
-      <section aria-labelledby="tools-section-title">
-        <h2 id="tools-section-title" className="sr-only">Tools</h2>
-        <ToolGrid tools={filteredTools} />
+      {/* Calculator section deferred to protect LCP but visually near top */}
+      <section id="calculator" className="space-y-4">
+        <h2 className="text-2xl md:text-3xl font-semibold">SEO Calculator</h2>
+        <AfterFirstPaint>
+          <div className="calculator-container content-transition">
+            <SEOCalculator />
+          </div>
+        </AfterFirstPaint>
       </section>
 
-      {/* Blog Section */}
-      {isIdle ? <BlogSection /> : null}
+      {/* (Removed) Old BlogSection deferred to idle; replaced by BlogGrid above */}
+
+      {/* Pages section: clear visual separation, below current content */}
+      <section id="pages" aria-labelledby="pages-section-title" className="space-y-4 pt-8 border-t border-gray-100 dark:border-gray-800">
+        <div className="flex items-center justify-between">
+          <h2 id="pages-section-title" className="text-2xl md:text-3xl font-semibold">Explore Pages</h2>
+          <a href="#tools" className="text-sm text-blue-700 dark:text-blue-400 hover:underline">Back to Tools</a>
+        </div>
+        <PageLinksGrid />
+      </section>
     </div>
   );
 }

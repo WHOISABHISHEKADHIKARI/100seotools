@@ -12,7 +12,7 @@ const BlogCard = dynamicImport(() => import('../../components/BlogCard'), {
   )
 });
 import { getAllToolsMeta } from '../../tools';
-import { getAllBlogPosts } from '../../lib/blog';
+import { getAllBlogPostsPublished } from '../../lib/blog-data';
 import { getBaseUrl } from '../../lib/site';
 
 const baseUrl = getBaseUrl();
@@ -43,7 +43,7 @@ export const metadata = {
 
 export default async function BlogPage({ searchParams }) {
   const tools = getAllToolsMeta();
-  const posts = getAllBlogPosts();
+  const posts = await getAllBlogPostsPublished();
   const currentPage = Math.max(1, Number(searchParams?.page) || 1);
   const postsPerPage = 24;
   const totalPostPages = Math.max(1, Math.ceil(posts.length / postsPerPage));

@@ -1,10 +1,10 @@
 import { getAllToolsMeta } from '../tools';
-import { getAllBlogPosts } from '../lib/blog';
+import { getAllBlogPostsPublished } from '../lib/blog-data';
 import { getBaseUrl } from '../lib/site';
 
 const baseUrl = getBaseUrl();
 
-export default function sitemap() {
+export default async function sitemap() {
   const now = new Date();
   const entries = [
     // Homepage
@@ -37,6 +37,18 @@ export default function sitemap() {
     changeFrequency: 'monthly',
     priority: 0.6
   });
+  entries.push({
+    url: `${baseUrl}/privacy`,
+    lastModified: now,
+    changeFrequency: 'yearly',
+    priority: 0.3
+  });
+  entries.push({
+    url: `${baseUrl}/terms`,
+    lastModified: now,
+    changeFrequency: 'yearly',
+    priority: 0.3
+  });
   // Category index
   entries.push({
     url: `${baseUrl}/category`,
@@ -44,13 +56,7 @@ export default function sitemap() {
     changeFrequency: 'weekly',
     priority: 0.7
   });
-  // Demo and offline utility pages
-  entries.push({
-    url: `${baseUrl}/card-demo`,
-    lastModified: now,
-    changeFrequency: 'monthly',
-    priority: 0.3
-  });
+  // Offline utility page
   entries.push({
     url: `${baseUrl}/offline`,
     lastModified: now,
@@ -75,7 +81,8 @@ export default function sitemap() {
   });
 
   const tools = getAllToolsMeta();
-  const posts = getAllBlogPosts();
+  const posts = await getAllBlogPostsPublished();
+  // posts provided above via published facade
   const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   const categories = Array.from(new Set(tools.map((t) => t.category).filter(Boolean)));
   const toolEntries = tools.map((t) => ({

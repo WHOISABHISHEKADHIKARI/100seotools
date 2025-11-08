@@ -215,11 +215,7 @@ pre[class*="language-"], code[class*="language-"] {
   transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
-/* Reserve space for loading states */
-.loading-reserve {
-  min-height: 400px;
-  position: relative;
-}
+/* Removed unused loading-reserve utility */
 
 /* Custom base styles */
 :root {
@@ -386,10 +382,7 @@ body {
   color: #d1d5db !important; /* gray-300 on dark bg ensures >=4.5:1 at 12px */
 }
 
-/* Loading animations */
-.loading-skeleton {
-  @apply bg-gray-200 dark:bg-gray-800 animate-pulse rounded;
-}
+/* Removed unused loading-skeleton animation utility */
 
 /* Error state styles */
 .error-container {

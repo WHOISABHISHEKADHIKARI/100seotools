@@ -20,16 +20,13 @@ module.exports = {
               'dark',
               'card',
               'card-interactive',
-              'card-content',
               'tap-target',
               'btn',
               'btn-secondary',
-              'loading-skeleton',
               'font-loading-fallback',
               'calculator-container',
               'content-transition',
-              'loading-reserve',
-              'tool-card-text'
+              // Removed unused: 'card-content', 'loading-skeleton', 'loading-reserve', 'tool-card-text'
             ]
           }
         }

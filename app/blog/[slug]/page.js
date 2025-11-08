@@ -8,13 +8,14 @@ import { generateArticleSchema, generateFAQSchema } from '../../../lib/schema';
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { notFound } from 'next/navigation';
 import { getToolGuide } from '../../../lib/guides';
-import { getBlogPostBySlug, getAllBlogPosts } from '../../../lib/blog';
+import { getAllBlogPosts } from '../../../lib/blog';
+import { getBlogPostPublishedBySlug } from '../../../lib/blog-data';
 import { slugify } from '../../../lib/utils';
 
 
 // Ensure static generation for better performance and crawl stability
 export const dynamic = 'force-static';
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   const posts = getAllBlogPosts();
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }) {
   // Next.js 16: params may be a Promise. Await to safely access slug.
   const { slug } = await params;
   const baseUrl = getBaseUrl();
-  const post = getBlogPostBySlug(slug);
+  const post = await getBlogPostPublishedBySlug(slug);
   const tool = getToolBySlug(slug);
 
   if (post) {
@@ -87,7 +88,7 @@ export async function generateMetadata({ params }) {
 export default async function BlogGuidePage({ params, searchParams }) {
   // Unwrap params if it's a Promise (Next.js 16 typed routes)
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = await getBlogPostPublishedBySlug(slug);
   const baseUrl = getBaseUrl();
   const allTools = getAllToolsMeta();
   const allPosts = getAllBlogPosts();
