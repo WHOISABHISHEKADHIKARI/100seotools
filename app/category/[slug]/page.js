@@ -3,6 +3,7 @@ import { getAllBlogPosts } from '../../../lib/blog';
 import { getAllToolsMeta } from '../../../tools';
 import { notFound } from 'next/navigation';
 import { getBaseUrl, siteName } from '../../../lib/site';
+import CategoryClient from '../../../components/CategoryClient';
 
 const baseUrl = getBaseUrl();
 
@@ -29,7 +30,7 @@ export const dynamicParams = false;
 
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const tools = getAllToolsMeta();
   const catName = categories.find((c) => slugify(c) === slug) || slug;
   const items = tools.filter((t) => t.category && slugify(t.category) === slug);
@@ -60,8 +61,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function CategoryPage({ params }) {
-  const { slug } = params;
+export default async function CategoryPage({ params, searchParams }) {
+  const { slug } = await params;
   const tools = getAllToolsMeta();
   const catName = categories.find((c) => slugify(c) === slug) || slug;
   const items = tools.filter((t) => t.category && slugify(t.category) === slug);
@@ -69,7 +70,13 @@ export default async function CategoryPage({ params }) {
     notFound();
   }
   const featuredTool = items.length > 0 ? items[0] : null;
-  const blogPosts = getAllBlogPosts().slice(0, 3);
+  // Filter blog posts by category or tags matching this slug
+  const allPosts = getAllBlogPosts();
+  const blogPosts = allPosts.filter((p) => {
+    const matchesCategory = p.category && slugify(p.category) === slug;
+    const matchesTag = Array.isArray(p.tags) && p.tags.some((t) => slugify(t) === slug);
+    return matchesCategory || matchesTag;
+  });
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -89,6 +96,19 @@ export default async function CategoryPage({ params }) {
         { '@type': 'ListItem', position: 2, name: 'Categories', item: `${baseUrl}/` },
         { '@type': 'ListItem', position: 3, name: catName, item: `${baseUrl}/category/${slug}` }
       ]
+    },
+    hasPart: {
+      '@type': 'ItemList',
+      itemListElement: blogPosts.slice(0, 12).map((p, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'Article',
+          headline: p.title,
+          description: p.description,
+          url: `${baseUrl}/blog/${p.slug}`
+        }
+      }))
     }
   };
 
@@ -114,38 +134,8 @@ export default async function CategoryPage({ params }) {
             </div>
           )}
 
-          {/* Tool Grid */}
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-            {items.map((t) => (
-              <li key={t.slug} className="rounded-lg border border-slate-200 dark:border-white/10 p-4 hover:shadow-md transition will-change-transform">
-                {/* Remove overlay anchor to avoid nested <a> with inner links */}
-                <h2 className="font-semibold text-lg mb-2">
-                  <Link href={`/tools/${t.slug}`} prefetch={false} className="hover:text-brand-600">{t.name}</Link>
-                </h2>
-                <p className="text-sm text-slate-600 dark:text-slate-300 mb-3">{t.description}</p>
-                <div className="flex items-center gap-3">
-                  <Link href={`/tools/${t.slug}`} prefetch={false} className="text-sm text-brand-600 hover:underline" aria-label={`Open tool: ${t.name}`}>Open Tool</Link>
-                  <Link href={`/blog/${t.slug}`} prefetch={false} className="text-sm text-slate-500 hover:underline" aria-label={`Read guide for ${t.name}`}>Read Guide</Link>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          {/* Related Blog Posts */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-4">Related Blog Posts</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {blogPosts.map((post) => (
-                <div key={post.slug} className="rounded-lg border border-slate-200 dark:border-white/10 p-6 hover:shadow-md transition">
-                  <h3 className="font-semibold text-xl mb-2">
-                    <Link href={`/blog/${post.slug}`} prefetch={false} className="hover:text-brand-600">{post.title}</Link>
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-300 mb-4">{post.description}</p>
-                  <Link href={`/blog/${post.slug}`} prefetch={false} className="text-brand-600 hover:underline">Read More</Link>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Client-side filtering, search, and pagination for tools and articles */}
+          <CategoryClient items={items} catName={catName} slug={slug} initialPage={searchParams?.page || 1} relatedPosts={blogPosts} />
 
           {/* FAQ Section */}
           <div className="mb-8">

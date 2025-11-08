@@ -23,17 +23,22 @@ export async function generateMetadata({ params }) {
 
   // Enhanced metadata for better SEO
   const toolName = tool.name;
-  const toolDescription = tool.description;
+  const toolDescription = tool.metaDescription || tool.description;
   const toolCategory = tool.category;
+  const title = tool.metaTitle || `${toolName} – Free SEO Tool | 100 SEO Tools`;
+  const description = (toolDescription || '').slice(0, 155);
+  const keywords = Array.isArray(tool.keywords) && tool.keywords.length > 0
+    ? tool.keywords.join(', ')
+    : `${tool.slug.replace(/-/g, ' ')}, ${toolCategory.toLowerCase()}, seo tools, free seo tools`;
 
   return {
-    title: `${toolName} – Free SEO Tool | 100 SEO Tools`,
-    description: `${toolDescription} Use this free ${toolCategory.toLowerCase()} tool online without login. Part of 100+ free SEO tools for marketers and developers.`,
+    title,
+    description,
     alternates: { canonical: `${getBaseUrl()}/tools/${tool.slug}` },
-    keywords: `${tool.slug.replace(/-/g, ' ')}, ${toolCategory.toLowerCase()}, seo tools, free seo tools`,
+    keywords,
     openGraph: {
-      title: `${toolName} – Free Online SEO Tool`,
-      description: toolDescription,
+      title: title.replace(' | 100 SEO Tools', ' – Free Online SEO Tool'),
+      description,
       url: `/tools/${tool.slug}`,
       type: 'website',
       siteName,
@@ -49,8 +54,8 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${toolName} – Free SEO Tool`,
-      description: toolDescription,
+      title,
+      description,
       site: '@100seotools',
       creator: '@100seotools'
     }

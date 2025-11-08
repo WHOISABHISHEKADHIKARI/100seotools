@@ -128,6 +128,144 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
                 </div>
               )}
 
+              {/* Installation & Setup */}
+              {guide.installationSetup && (
+                <div>
+                  <h3 className="text-lg font-medium mb-2">Installation and Setup</h3>
+                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                    <li><span className="font-medium">Access:</span> {guide.installationSetup.access}</li>
+                    <li><span className="font-medium">Supported devices:</span> {guide.installationSetup.devices}</li>
+                    <li><span className="font-medium">Requirements:</span> {guide.installationSetup.requirements}</li>
+                    <li><span className="font-medium">Optional:</span> {guide.installationSetup.optional}</li>
+                  </ul>
+                </div>
+              )}
+
+              {/* Core Functionality */}
+              {guide.coreFunctionality && (
+                <div>
+                  <h3 className="text-lg font-medium mb-2">Core Functionality</h3>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    <div>
+                      <p className="font-medium">Inputs</p>
+                      <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                        {Array.isArray(guide.coreFunctionality.inputs) && guide.coreFunctionality.inputs.map((it, i) => (
+                          <li key={i}>{it}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="font-medium">Outputs</p>
+                      <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                        {Array.isArray(guide.coreFunctionality.outputs) && guide.coreFunctionality.outputs.map((it, i) => (
+                          <li key={i}>{it}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <p className="mt-2 text-gray-700 dark:text-gray-300"><span className="font-medium">Processing:</span> {guide.coreFunctionality.processing}</p>
+                  {Array.isArray(guide.coreFunctionality.actions) && guide.coreFunctionality.actions.length > 0 && (
+                    <p className="mt-1 text-gray-700 dark:text-gray-300"><span className="font-medium">Actions:</span> {guide.coreFunctionality.actions.join(', ')}</p>
+                  )}
+                </div>
+              )}
+
+              {/* Advanced Features & Configuration */}
+              {guide.advancedFeatures && (
+                <div>
+                  <h3 className="text-lg font-medium mb-2">Advanced Features & Configuration</h3>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    <div>
+                      <p className="font-medium">Settings</p>
+                      <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                        {Array.isArray(guide.advancedFeatures.settings) && guide.advancedFeatures.settings.map((s, i) => (
+                          <li key={i}>{s}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="font-medium">Integrations</p>
+                      <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                        {Array.isArray(guide.advancedFeatures.integrations) && guide.advancedFeatures.integrations.map((s, i) => (
+                          <li key={i}>{s}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <p className="mt-2 text-gray-700 dark:text-gray-300"><span className="font-medium">Performance:</span> {guide.advancedFeatures.performance}</p>
+                  <p className="mt-1 text-gray-700 dark:text-gray-300"><span className="font-medium">Accessibility:</span> {guide.advancedFeatures.accessibility}</p>
+                </div>
+              )}
+
+              {/* Troubleshooting */}
+              {Array.isArray(guide.troubleshooting) && guide.troubleshooting.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-medium mb-2">Troubleshooting</h3>
+                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                    {guide.troubleshooting.map((t, i) => (
+                      <li key={i}>{t}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Contact & Support */}
+              {guide.contactSupport && (
+                <div>
+                  <h3 className="text-lg font-medium mb-2">Contact and Support</h3>
+                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                    <li><span className="font-medium">Email:</span> {guide.contactSupport.email}</li>
+                    <li><span className="font-medium">Feedback:</span> {guide.contactSupport.feedback}</li>
+                    <li><span className="font-medium">Updates:</span> {guide.contactSupport.updates}</li>
+                  </ul>
+                </div>
+              )}
+
+              {/* SEO Requirements */}
+              {guide.seoRequirements && (
+                <div>
+                  <h3 className="text-lg font-medium mb-2">SEO Requirements</h3>
+                  <p className="text-gray-700 dark:text-gray-300"><span className="font-medium">Primary keyword:</span> {guide.seoRequirements.primaryKeyword}</p>
+                  {Array.isArray(guide.seoRequirements.keywordVariations) && guide.seoRequirements.keywordVariations.length > 0 && (
+                    <div className="mt-1">
+                      <p className="font-medium">Keyword variations</p>
+                      <div className="flex flex-wrap gap-2 mt-1">
+                        {guide.seoRequirements.keywordVariations.map((kw, i) => (
+                          <span key={i} className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">{kw}</span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <p className="mt-2 text-gray-700 dark:text-gray-300"><span className="font-medium">Meta Description (≤155 chars):</span> {guide.seoRequirements.metaDescription}</p>
+                  <p className="mt-1 text-gray-700 dark:text-gray-300"><span className="font-medium">Internal links:</span> {guide.seoRequirements.internalLinksHint}</p>
+                  <p className="mt-1 text-gray-700 dark:text-gray-300"><span className="font-medium">Tone:</span> {guide.seoRequirements.tone}</p>
+                </div>
+              )}
+
+              {/* Schema Markup types used */}
+              {Array.isArray(guide.schemaSections) && guide.schemaSections.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-medium mb-2">Schema Markup (JSON‑LD)</h3>
+                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                    {guide.schemaSections.map((s, i) => (
+                      <li key={i}>{s}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Quality & Accessibility */}
+              {Array.isArray(guide.qualityAccessibility) && guide.qualityAccessibility.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-medium mb-2">Quality & Accessibility</h3>
+                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                    {guide.qualityAccessibility.map((q, i) => (
+                      <li key={i}>{q}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               {/* Related tools section */}
               <div>
                 <h3 className="text-lg font-medium mb-3">Related Tools</h3>
@@ -257,6 +395,15 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
                       </div>
                     </div>
                   ))}
+                </div>
+              )}
+
+              {/* Quick SEO requirements */}
+              {guide.seoRequirements && (
+                <div>
+                  <h2 className="text-lg font-medium mb-2">SEO Requirements</h2>
+                  <p className="text-gray-700 dark:text-gray-300"><span className="font-medium">Primary keyword:</span> {guide.seoRequirements.primaryKeyword}</p>
+                  <p className="text-gray-700 dark:text-gray-300"><span className="font-medium">Meta Description:</span> {guide.seoRequirements.metaDescription}</p>
                 </div>
               )}
             </div>

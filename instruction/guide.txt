@@ -1,77 +1,144 @@
- 
 TOOL: ${tool.name}
 URL: https://www.100seotools.com/tools/${tool.slug}
 PRIMARY KEYWORD: ${tool.keyword}
 SEARCH VOLUME: ${tool.volume.toLocaleString()}/month
 
-Write exactly 2,500 words following this structure:
+Author high-quality, website-ready documentation using this standardized template. Keep placeholders intact and replace with actual tool details. Write approximately 3,000 words (2,800–3,200) to fully cover functionality, usage, and SEO guidance.
 
-1. HERO SECTION
+TABLE OF CONTENTS
+1. Hero Section
+2. Introduction
+3. What It Does
+4. Why It Matters for SEO
+5. How to Use It
+6. Key Features
+7. Use Cases
+8. Example Results
+9. Best Practices
+10. Related Tools
+11. FAQs
+12. Call to Action
+13. Installation and Setup
+14. Core Functionality
+15. Advanced Features & Configuration
+16. Troubleshooting
+17. Contact and Support
+18. SEO Requirements
+19. Schema Markup (JSON-LD)
+20. Quality & Accessibility
+
+1) HERO SECTION
 - H1: "${tool.name} | Free AI SEO Tool by 100SEOTools"
-- Subheadline (10 words max)
-- One-sentence description
-- CTA button text
+- Subheadline: 10 words max, benefit-led
+- One-sentence description: clear value proposition
+- CTA button text: action-oriented (e.g., "Start Using ${tool.name}")
 
-2. INTRODUCTION (150 words)
-Explain what this tool is and why it's valuable.
+2) INTRODUCTION (~150 words)
+- Explain what the tool does, who it’s for, and why it’s valuable
+- Emphasize outcomes (time saved, accuracy improved, SEO impact)
 
-3. WHAT IT DOES (300 words)
-Clear explanation of functionality.
+3) WHAT IT DOES (~300 words)
+- Describe core functionality: inputs → processing → outputs
+- Clarify supported formats, options, and typical constraints
 
-4. WHY IT MATTERS FOR SEO (350 words)
-SEO benefits and impact on rankings/traffic.
+4) WHY IT MATTERS FOR SEO (~350 words)
+- Link functionality to SEO benefits (rankings, CTR, crawlability, indexing)
+- Include measurable outcomes or practical scenarios where impact is visible
 
-5. HOW TO USE IT (400 words)
-Step-by-step instructions:
-- Step 1: [specific action]
-- Step 2: [specific action]
-- Step 3: [specific action]
-- Step 4: [specific action]
-💡 Add pro tips for each step
+5) HOW TO USE IT (~400 words)
+- Step-by-step instructions:
+  - Step 1: [specific action]
+  - Step 2: [specific action]
+  - Step 3: [specific action]
+  - Step 4: [specific action]
+- Pro Tips: Add one short tip per step to improve results
 
-6. KEY FEATURES (300 words)
-List 6-8 features with benefits:
-✓ Feature 1: [benefit]
-✓ Feature 2: [benefit]
-[continue...]
+6) KEY FEATURES (~300 words)
+- List 6–8 features; each with a benefit-focused description
+  ✓ Feature 1: [benefit]
+  ✓ Feature 2: [benefit]
+  ✓ Feature 3: [benefit]
+  ✓ Feature 4: [benefit]
+  ✓ Feature 5: [benefit]
+  ✓ Feature 6: [benefit]
+  ✓ Feature 7: [benefit]
+  ✓ Feature 8: [benefit]
 
-7. USE CASES (350 words)
-5 real-world scenarios where people use this tool.
+7) USE CASES (~350 words)
+- Provide 5 real-world scenarios: who uses it, why, expected impact
 
-8. EXAMPLE RESULTS (200 words)
-Show sample outputs and how to interpret them.
+8) EXAMPLE RESULTS (~200 words)
+- Show sample inputs/outputs and how to interpret critical fields
+- Include brief JSON or code example where helpful
 
-9. BEST PRACTICES (250 words)
-Expert tips for optimal results.
+9) BEST PRACTICES (~250 words)
+- Expert guidance: input quality, keyword variants, content patterns, accessibility
+- Internal linking, structured data, and performance considerations
 
-10. RELATED TOOLS (200 words)
-Link to 8 related tools on 100SEOTools with descriptions.
+10) RELATED TOOLS (~200 words)
+- Link to 8 related tools on 100SEOTools with 1–2 line descriptions
 
-11. FAQS (500 words)
-Answer 8-12 questions:
-- How do I use ${tool.name}?
-- Is ${tool.name} free?
-- What makes this better than competitors?
-- Does it work on mobile?
-- How accurate is it?
-- [Add 3-7 more relevant questions]
+11) FAQs (~500 words)
+- Answer 8–12 questions concisely:
+  - How do I use ${tool.name}?
+  - Is ${tool.name} free?
+  - What makes this better than competitors?
+  - Does it work on mobile?
+  - How accurate is it?
+  - Can I export or share results?
+  - Does it support multiple languages?
+  - How often is data updated?
+  - [Add 2–4 more relevant questions]
 
-12. CALL TO ACTION (100 words)
-Compelling CTA with benefits.
+12) CALL TO ACTION (~100 words)
+- Compelling CTA reinforcing benefits and ease-of-use
+- Encourage immediate usage or share/collaboration
 
-SEO REQUIREMENTS:
-- Main keyword "${tool.keyword}" used 25-30 times naturally
-- Include 10+ keyword variations
-- Meta Description (155 chars)
-- 8+ internal links to related tools
-- All content in clear, friendly tone
-- Flesch Reading Score 70+
-- Short paragraphs (2-3 sentences)
+13) INSTALLATION AND SETUP
+- End users: No installation required; access via the URL above
+- Supported devices: Desktop, tablet, mobile (responsive layout)
+- Requirements: Modern browser; enable JavaScript for interactive features
+- Optional: Sign in or save preferences where supported
 
-SCHEMA MARKUP:
-Include JSON-LD for:
-1. SoftwareApplication schema
-2. FAQPage schema
-3. BreadcrumbList schema
+14) CORE FUNCTIONALITY
+- Inputs: Describe accepted formats and fields (text, URLs, keywords)
+- Processing: Explain how the tool analyzes or generates results
+- Outputs: List metrics, recommendations, and export options
+- Actions: Copy, download, share, paginate, filter, or favorite where applicable
 
-Make it helpful, engaging, and optimized for both users and search engines.`
+15) ADVANCED FEATURES & CONFIGURATION
+- Settings: Detail advanced toggles, thresholds, and filters
+- Integrations: Link or export formats (JSON, CSV, HTML) if available
+- Performance: Tips to handle large inputs, rate limits, or batching
+- Accessibility: Keyboard navigation, focus states, and high-contrast themes
+
+16) TROUBLESHOOTING
+- Empty results: Verify inputs; clear filters; try simpler queries
+- Slow performance: Reduce input size; check network; try again later
+- Export issues: Validate file format; re-run; report if persistent
+- Unexpected behavior: Refresh the page; clear cache; retry with default settings
+
+17) CONTACT AND SUPPORT
+- Email: support@100seotools.com
+- Feedback: Use site contact form or repository issue tracker
+- Updates: Check tool page notes for version changes and improvements
+
+SEO REQUIREMENTS
+- Use the main keyword "${tool.keyword}" 25–30 times naturally (no stuffing)
+- Include 10+ keyword variations aligned to user intent
+- Write a Meta Description ≤155 characters summarizing core value
+- Add ≥8 internal links to relevant tools or category pages
+- Friendly, clear tone; Flesch Reading Ease ≥70; short paragraphs (2–3 sentences)
+
+SCHEMA MARKUP (JSON-LD)
+- Include the following, customized per tool:
+  1. SoftwareApplication
+  2. FAQPage
+  3. BreadcrumbList
+
+QUALITY & ACCESSIBILITY
+- Use H1 for page title, H2/H3 for sections/subsections
+- Keep link/button text accessible with sufficient color contrast
+- Maintain consistent terminology: Tool, Feature, Input, Output, Results, Settings
+
+Make it helpful, engaging, and optimized for both users and search engines.

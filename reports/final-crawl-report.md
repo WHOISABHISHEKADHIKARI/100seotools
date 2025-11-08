@@ -1,7 +1,7 @@
 # Final Crawl Verification Report
 
-- Base URL: http://127.0.0.1:3004
-- Timestamp: 2025-11-07T16:49:19.425Z
+- Base URL: http://localhost:3006
+- Timestamp: 2025-11-08T07:51:44.742Z
 
 **HTTP Status Checks**
 - Route /: page.goto=200, HEAD=200 (expected 200)
@@ -51,18 +51,19 @@
 - /category/keyword-research @ mobile-360x640: status 200, horizontal overflow: false
 
 **Performance (ms from navigation start)**
-- /: DCL=286 | Load=806 | FP=1376
-- /blog: DCL=591 | Load=3056 | FP=652
-- /tools/meta-tag-generator: DCL=418 | Load=1364 | FP=536
-- /category/keyword-research: DCL=289 | Load=292 | FP=372
-- /blog/non-existent-post-12345: DCL=257 | Load=257 | FP=308
-- /tools/non-existent-tool-12345: DCL=268 | Load=268 | FP=308
-- /category/non-existent-category-12345: DCL=173 | Load=173 | FP=204
+- /: DCL=76 | Load=213 | FP=1148
+- /blog: DCL=700 | Load=1051 | FP=1540
+- /tools/meta-tag-generator: DCL=57 | Load=564 | FP=620
+- /category/keyword-research: DCL=84 | Load=514 | FP=556
+- /blog/non-existent-post-12345: DCL=33 | Load=33 | FP=76
+- /tools/non-existent-tool-12345: DCL=65 | Load=66 | FP=96
+- /category/non-existent-category-12345: DCL=30 | Load=30 | FP=80
 
 **Accessibility (color-contrast)**
 - /: violations=0
 - /blog: violations=0
 - /tools/meta-tag-generator: violations=0
-- /category/keyword-research: violations=0
+- /category/keyword-research: violations=1
+  - color-contrast: Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds
 
 Summary: All checks completed. Use these results to update the audit report and error log.
