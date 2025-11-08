@@ -5,6 +5,20 @@ export const metadata = {
   title: '100+ SEO Tools – Free, Fast, Client-side',
   description: 'All Your SEO Tools in One Place. 100+ browser-based tools for marketers, bloggers, and developers.',
   metadataBase: new URL(baseUrl),
+  // Icons / Favicons
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon-light.svg', type: 'image/svg+xml', media: '(prefers-color-scheme: light)' },
+      { url: '/icon-dark.svg', type: 'image/svg+xml', media: '(prefers-color-scheme: dark)' },
+    ],
+    shortcut: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    other: [
+      { rel: 'mask-icon', url: '/icon.svg', color: '#0f172a' },
+    ],
+  },
   // Open Graph tags
   openGraph: {
     title: '100+ SEO Tools – Free, Fast, Client-side',
@@ -66,6 +80,10 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#0f172a" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/icon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
+        <link rel="icon" href="/icon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
+        <link rel="shortcut icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="mask-icon" href="/icon.svg" color="#0f172a" />
         <link rel="manifest" href="/manifest.json" />
 
         {/* Minimal critical inline CSS to avoid flash of wrong colors before Tailwind loads */}

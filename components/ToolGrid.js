@@ -62,26 +62,26 @@ const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
         <FiStar aria-hidden className={isFavorite ? 'text-yellow-500 fill-current' : 'text-gray-400'} />
       </button>
       {hasSlug ? (
-        <Link
-          href={`/blog/${tool.slug}`}
-          prefetch={false}
-          className="text-xs text-gray-500 hover:underline"
-          onClick={(e) => { e.stopPropagation(); }}
+        <button
+          type="button"
+          className="text-xs text-gray-500 hover:underline bg-transparent border-0 p-0 cursor-pointer"
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); router.push(`/blog/${tool.slug}`); }}
+          aria-label={`Open guide for ${safeName}`}
         >
           Guide
-        </Link>
+        </button>
       ) : (
         <span className="text-xs text-gray-400 dark:text-gray-500">Guide</span>
       )}
       {hasSlug ? (
-        <Link
-          href={`/tools/${tool.slug}`}
-          prefetch={false}
+        <button
+          type="button"
           className="btn text-xs py-1.5 ml-auto"
-          onClick={(e) => { e.stopPropagation(); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); router.push(`/tools/${tool.slug}`); }}
+          aria-label={`Open tool ${safeName}`}
         >
           Open <FiChevronRight className="w-3.5 h-3.5" />
-        </Link>
+        </button>
       ) : (
         <span className="text-xs text-gray-400 dark:text-gray-500">Open <FiChevronRight className="w-3.5 h-3.5" /></span>
       )}
