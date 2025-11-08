@@ -72,6 +72,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D7DVGLKNXN"></script>
+        <script dangerouslySetInnerHTML={{__html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-D7DVGLKNXN');
+        `}} />
         <link rel="preconnect" href="https://www.100seotools.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.100seotools.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
