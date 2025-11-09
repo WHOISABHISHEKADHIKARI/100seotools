@@ -64,6 +64,14 @@ export default async function sitemap() {
     priority: 0.1
   });
 
+  // Static blog articles
+  entries.push({
+    url: `${baseUrl}/blog/latest-ai-based-tips-and-tricks-for-fast-web-crawling`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  });
+
   // SEO Calculator page
   entries.push({
     url: `${baseUrl}/seo-calculator`,

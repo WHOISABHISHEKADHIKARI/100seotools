@@ -105,7 +105,8 @@ async function networkFirstStrategy(request) {
       await limitCacheSize(DYNAMIC_CACHE_NAME, MAX_CACHE_SIZE);
       return networkResponse;
     }
-    throw new Error('Network response not ok');
+    // For non-OK responses (e.g., 404/410/500), return the actual response
+    return networkResponse;
   } catch (error) {
     console.log('Service Worker: Network failed, trying cache for:', request.url);
     const cachedResponse = await caches.match(request);
@@ -154,7 +155,8 @@ async function cacheFirstStrategy(request) {
       await limitCacheSize(DYNAMIC_CACHE_NAME, MAX_CACHE_SIZE);
       return networkResponse;
     }
-    throw new Error('Network response not ok');
+    // If not OK (e.g., 404), return the actual response instead of offline fallback
+    return networkResponse;
   } catch (error) {
     console.log('Service Worker: Failed to fetch:', request.url);
     // Avoid returning 5xx; use 200 with noindex for SEO safety
