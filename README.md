@@ -154,9 +154,23 @@ Cause: Next.js dev overlay cancels in‑flight prefetches during HMR.
 
 Fix: Avoid explicit `prefetch` props on `Link`. This project already removed those where applicable.
 
+### Next.js proxy migration (middleware deprecation)
+- The legacy `middleware.js` file convention has been renamed to `proxy.js` in Next.js.
+- We have migrated to `proxy.js` and renamed `export function middleware` to `export function proxy`.
+- Existing `config.matcher` remains unchanged.
+- Reference: https://nextjs.org/docs/messages/middleware-to-proxy
+- Verify locally: `npm.cmd run build` should complete without the deprecation warning.
+
 ## Deployment
 - Vercel: push to a Git repo and import the project. Ensure `NEXT_PUBLIC_SITE_URL` is set in Project → Settings → Environment Variables.
 - Self‑hosted Node: run `npm.cmd run build` and `npm.cmd run start` behind a reverse proxy (Nginx/Caddy) with HTTPS.
+
+### Analytics configuration
+- Set `NEXT_PUBLIC_GA_ID` to enable Google Analytics (gtag) loading in production.
+- Set `NEXT_PUBLIC_DISABLE_ANALYTICS=true` to disable GA (useful for local prod testing).
+- Example (PowerShell):
+  - `setx NEXT_PUBLIC_GA_ID G-XXXXXXX` (persist), or `setx NEXT_PUBLIC_DISABLE_ANALYTICS true`
+  - One‑off start: `$env:NEXT_PUBLIC_DISABLE_ANALYTICS='true'; $env:PORT=3004; npm.cmd run start`
 
 ## Contributing
 - Fork and create a feature branch

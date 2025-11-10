@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import { getBaseUrl } from './lib/site';
 
-export function middleware(request) {
+// Next.js has renamed the middleware file/function to "proxy".
+// This function implements the same behavior under the new convention.
+export function proxy(request) {
   const { pathname } = request.nextUrl;
   const response = NextResponse.next();
   

@@ -54,6 +54,9 @@ import { Inter } from 'next/font/google';
 import { initPerformanceMonitoring } from '@/lib/performance-monitor';
 import Script from 'next/script';
 const isProd = process.env.NODE_ENV === 'production';
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const analyticsDisabled = process.env.NEXT_PUBLIC_DISABLE_ANALYTICS === 'true';
+const enableAnalytics = isProd && !analyticsDisabled && GA_ID;
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', weight: ['400', '700'] });
 
@@ -74,11 +77,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Google Analytics (gtag) — load only in production to avoid dev errors */}
-        {isProd && (
+        {/* Google Analytics (gtag) — load only when GA_ID is set and analytics not disabled */}
+        {enableAnalytics && (
           <>
             <Script
-              src="https://www.googletagmanager.com/gtag/js?id=G-D7DVGLKNXN"
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
               strategy="afterInteractive"
             />
             <Script id="ga-init" strategy="afterInteractive">
@@ -86,7 +89,7 @@ export default function RootLayout({ children }) {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', 'G-D7DVGLKNXN');
+                gtag('config', '${GA_ID}');
               `}
             </Script>
           </>

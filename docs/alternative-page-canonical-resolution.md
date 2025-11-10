@@ -50,7 +50,7 @@ export const metadata = {
 
 ### 2. HTTP Headers Implementation
 **Files:** 
-- `middleware.js` - Custom middleware for dynamic header handling
+- `proxy.js` - App-level proxy (formerly middleware) for dynamic header handling
 - `next.config.js` - Static headers configuration
 
 **Headers Configured:**
@@ -59,9 +59,9 @@ export const metadata = {
 - ✅ Cache control headers to prevent caching of alternative versions
 - ✅ Security headers maintained for all pages
 
-**Middleware Implementation:**
+**Proxy Implementation:**
 ```javascript
-export function middleware(request) {
+export function proxy(request) {
   const { pathname } = request.nextUrl;
   const response = NextResponse.next();
   

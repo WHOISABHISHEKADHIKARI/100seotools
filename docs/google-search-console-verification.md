@@ -11,7 +11,7 @@ This guide provides step-by-step instructions for verifying the canonical implem
 - [ ] Meta robots set to `noindex, follow`
 - [ ] HTTP headers configured (X-Robots-Tag, Link)
 - [ ] Next.js configuration updated with headers
-- [ ] Middleware implemented for dynamic header handling
+ - [ ] Proxy implemented for dynamic header handling (formerly middleware)
 
 ### ✅ Local Testing Complete
 - [ ] Run verification script: `node scripts/verifyCanonical.js`
