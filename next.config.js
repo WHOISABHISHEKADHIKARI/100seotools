@@ -58,36 +58,25 @@ const nextConfig = withBundleAnalyzer({
   // Silence Turbopack default error by explicitly declaring config
   turbopack: {},
   redirects: async () => {
-    // Only apply domain/http->https redirects in production
     if (process.env.NODE_ENV !== 'production') {
       return [];
     }
     return [
-      // Fix redirect chains by implementing direct 301 redirects
-      // HTTP to HTTPS redirects (avoid 308 status codes)
       {
         source: '/:path*',
         has: [
-          {
-            type: 'header',
-            key: 'x-forwarded-proto',
-            value: 'http',
-          },
+          { type: 'header', key: 'x-forwarded-proto', value: 'http' },
         ],
-        permanent: true, // 301 redirect
         destination: 'https://www.100seotools.com/:path*',
+        statusCode: 301,
       },
-      // Non-www to www redirects (avoid 307 status codes)
       {
         source: '/:path*',
         has: [
-          {
-            type: 'host',
-            value: '100seotools.com',
-          },
+          { type: 'host', value: '100seotools.com' },
         ],
-        permanent: true, // 301 redirect
         destination: 'https://www.100seotools.com/:path*',
+        statusCode: 301,
       },
     ];
   },

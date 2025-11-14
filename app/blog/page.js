@@ -280,9 +280,12 @@ export default async function BlogPage({ searchParams }) {
             {/* Prev */}
             <Link
               href={(() => {
-                if (toolsPage <= 1) return '/blog';
-                const tp = toolsPage - 1;
-                return currentPage > 1 ? `/blog/tp/${tp}/p/${currentPage}` : `/blog/tp/${tp}`;
+                const tp = Math.max(1, toolsPage - 1);
+                const qp = new URLSearchParams();
+                if (currentPage > 1) qp.set('page', String(currentPage));
+                if (tp > 1) qp.set('toolsPage', String(tp));
+                const qs = qp.toString();
+                return qs ? `/blog?${qs}` : '/blog';
               })()}
               prefetch={false}
               aria-disabled={toolsPage === 1}
@@ -298,8 +301,11 @@ export default async function BlogPage({ searchParams }) {
                 <li key={p}>
                   <Link
                     href={(() => {
-                      if (p <= 1) return currentPage > 1 ? `/blog/p/${currentPage}` : '/blog';
-                      return currentPage > 1 ? `/blog/tp/${p}/p/${currentPage}` : `/blog/tp/${p}`;
+                      const qp = new URLSearchParams();
+                      if (currentPage > 1) qp.set('page', String(currentPage));
+                      if (p > 1) qp.set('toolsPage', String(p));
+                      const qs = qp.toString();
+                      return qs ? `/blog?${qs}` : '/blog';
                     })()}
                     prefetch={false}
                     aria-current={p === toolsPage ? 'page' : undefined}
@@ -316,8 +322,11 @@ export default async function BlogPage({ searchParams }) {
             <Link
               href={(() => {
                 const tp = Math.min(totalToolPages, toolsPage + 1);
-                if (tp === toolsPage) return currentPage > 1 ? `/blog/p/${currentPage}` : '/blog';
-                return currentPage > 1 ? `/blog/tp/${tp}/p/${currentPage}` : `/blog/tp/${tp}`;
+                const qp = new URLSearchParams();
+                if (currentPage > 1) qp.set('page', String(currentPage));
+                if (tp > 1) qp.set('toolsPage', String(tp));
+                const qs = qp.toString();
+                return qs ? `/blog?${qs}` : '/blog';
               })()}
               prefetch={false}
               aria-disabled={toolsPage === totalToolPages}
@@ -358,9 +367,12 @@ export default async function BlogPage({ searchParams }) {
             {/* Prev */}
             <Link
               href={(() => {
-                if (currentPage <= 1) return '/blog';
-                const cp = currentPage - 1;
-                return toolsPage > 1 ? `/blog/p/${cp}/tp/${toolsPage}` : (cp > 1 ? `/blog/p/${cp}` : '/blog');
+                const cp = Math.max(1, currentPage - 1);
+                const qp = new URLSearchParams();
+                if (cp > 1) qp.set('page', String(cp));
+                if (toolsPage > 1) qp.set('toolsPage', String(toolsPage));
+                const qs = qp.toString();
+                return qs ? `/blog?${qs}` : '/blog';
               })()}
               prefetch={false}
               aria-disabled={currentPage === 1}
@@ -376,8 +388,11 @@ export default async function BlogPage({ searchParams }) {
                 <li key={p}>
                   <Link
                     href={(() => {
-                      if (p <= 1) return toolsPage > 1 ? `/blog/tp/${toolsPage}` : '/blog';
-                      return toolsPage > 1 ? `/blog/p/${p}/tp/${toolsPage}` : `/blog/p/${p}`;
+                      const qp = new URLSearchParams();
+                      if (p > 1) qp.set('page', String(p));
+                      if (toolsPage > 1) qp.set('toolsPage', String(toolsPage));
+                      const qs = qp.toString();
+                      return qs ? `/blog?${qs}` : '/blog';
                     })()}
                     prefetch={false}
                     aria-current={p === currentPage ? 'page' : undefined}
@@ -394,8 +409,11 @@ export default async function BlogPage({ searchParams }) {
             <Link
               href={(() => {
                 const cp = Math.min(totalPostPages, currentPage + 1);
-                if (cp === currentPage) return toolsPage > 1 ? `/blog/tp/${toolsPage}` : '/blog';
-                return toolsPage > 1 ? `/blog/p/${cp}/tp/${toolsPage}` : `/blog/p/${cp}`;
+                const qp = new URLSearchParams();
+                if (cp > 1) qp.set('page', String(cp));
+                if (toolsPage > 1) qp.set('toolsPage', String(toolsPage));
+                const qs = qp.toString();
+                return qs ? `/blog?${qs}` : '/blog';
               })()}
               prefetch={false}
               aria-disabled={currentPage === totalPostPages}

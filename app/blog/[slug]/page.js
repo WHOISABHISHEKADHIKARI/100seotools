@@ -109,8 +109,8 @@ export default async function BlogGuidePage({ params, searchParams }) {
       : [];
     const faqJsonLd = faqItems.length ? generateFAQSchema(faqItems) : null;
     const shareUrl = `${baseUrl}/blog/${post.slug}`;
-    const currentPage = Math.max(1, Number(searchParams?.page) || 1);
     const totalPages = 5;
+    const currentPage = Math.min(totalPages, Math.max(1, Number(searchParams?.page) || 1));
     const sectionPages = {
       description: 1,
       intro: 1,
@@ -131,6 +131,8 @@ export default async function BlogGuidePage({ params, searchParams }) {
       faq: 5,
     };
     const showSection = (id) => sectionPages[id] === currentPage;
+
+    export const buildGuidePageHref = (slug, p) => (p > 1 ? `/blog/${slug}?page=${p}` : `/blog/${slug}`);
 
     return (
       <main id="main" className="container mx-auto px-4 py-8">
@@ -159,7 +161,7 @@ export default async function BlogGuidePage({ params, searchParams }) {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
               <li key={p}>
                 <Link
-                  href={p > 1 ? `/blog/${post.slug}/p/${p}` : `/blog/${post.slug}`}
+                  href={buildGuidePageHref(post.slug, p)}
                   prefetch={false}
                   aria-current={p === currentPage ? 'page' : undefined}
                   className={`px-3 py-1.5 rounded-md text-sm font-medium border ${p === currentPage ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border-slate-200 dark:border-white/10'}`}
@@ -411,7 +413,7 @@ export default async function BlogGuidePage({ params, searchParams }) {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
               <li key={p}>
                 <Link
-                  href={p > 1 ? `/blog/${post.slug}/p/${p}` : `/blog/${post.slug}`}
+                  href={buildGuidePageHref(post.slug, p)}
                   prefetch={false}
                   aria-current={p === currentPage ? 'page' : undefined}
                   className={`px-3 py-1.5 rounded-md text-sm font-medium border ${p === currentPage ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border-slate-200 dark:border-white/10'}`}
