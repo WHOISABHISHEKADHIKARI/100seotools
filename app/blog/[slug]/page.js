@@ -17,6 +17,8 @@ import { slugify } from '../../../lib/utils';
 export const dynamic = 'force-static';
 export const dynamicParams = true;
 
+export const buildGuidePageHref = (slug, p) => (p > 1 ? `/blog/${slug}?page=${p}` : `/blog/${slug}`);
+
 export function generateStaticParams() {
   const posts = getAllBlogPosts();
   const tools = getAllToolsMeta();
@@ -131,8 +133,6 @@ export default async function BlogGuidePage({ params, searchParams }) {
       faq: 5,
     };
     const showSection = (id) => sectionPages[id] === currentPage;
-
-    export const buildGuidePageHref = (slug, p) => (p > 1 ? `/blog/${slug}?page=${p}` : `/blog/${slug}`);
 
     return (
       <main id="main" className="container mx-auto px-4 py-8">
