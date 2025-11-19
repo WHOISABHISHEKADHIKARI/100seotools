@@ -241,6 +241,13 @@ body {
   line-height: 1.6; /* Improve line spacing */
 }
 
+*, *::before, *::after { box-sizing: border-box; }
+html, body { max-width: 100%; overflow-x: hidden; }
+img, video, canvas, svg { max-width: 100%; height: auto; }
+.unified-card, .article-card { width: 100%; }
+.unified-card-title, .unified-card-description, .article-card-title, .article-card-description { overflow-wrap: anywhere; word-break: break-word; }
+@supports (min-height: 100svh) { .min-h-screen { min-height: 100svh; } }
+
 /* Improved button styles with visible feedback */
 .btn {
   @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-blue-700 text-white hover:bg-blue-800 transition-all;

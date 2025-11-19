@@ -58,17 +58,25 @@ const nextConfig = withBundleAnalyzer({
   // Silence Turbopack default error by explicitly declaring config
   turbopack: {},
   redirects: async () => {
+    const common = [
+      {
+        source: '/blog/:slug/p/:page',
+        destination: '/blog/:slug',
+        permanent: true,
+      },
+    ];
     if (process.env.NODE_ENV !== 'production') {
-      return [];
+      return common;
     }
     return [
+      ...common,
       {
         source: '/:path*',
         has: [
           { type: 'header', key: 'x-forwarded-proto', value: 'http' },
         ],
         destination: 'https://www.100seotools.com/:path*',
-        statusCode: 301,
+        permanent: true,
       },
       {
         source: '/:path*',
@@ -76,7 +84,7 @@ const nextConfig = withBundleAnalyzer({
           { type: 'host', value: '100seotools.com' },
         ],
         destination: 'https://www.100seotools.com/:path*',
-        statusCode: 301,
+        permanent: true,
       },
     ];
   },

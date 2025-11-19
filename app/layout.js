@@ -2,8 +2,8 @@ import { getBaseUrl, siteName } from '../lib/site';
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-  title: '100+ SEO Tools – Free, Fast, Client-side',
-  description: 'All Your SEO Tools in One Place. 100+ browser-based tools for marketers, bloggers, and developers.',
+  title: '100+ Free SEO Tools for 2025 — Fast, No Login',
+  description: 'Use 100+ free, browser-based SEO tools for keyword research, on-page audits, technical checks, and content optimization. Fast, no login. Built for marketers and developers.',
   metadataBase: new URL(baseUrl),
   // Icons / Favicons
   icons: {
@@ -21,8 +21,8 @@ export const metadata = {
   },
   // Open Graph tags
   openGraph: {
-    title: '100+ SEO Tools – Free, Fast, Client-side',
-    description: 'All Your SEO Tools in One Place. 100+ browser-based tools for marketers, bloggers, and developers.',
+    title: '100+ Free SEO Tools for 2025 — Fast, No Login',
+    description: 'Use 100+ free, browser-based SEO tools for keyword research, on-page audits, technical checks, and content optimization. Fast, no login. Built for marketers and developers.',
     url: baseUrl,
     siteName,
     images: [
@@ -39,9 +39,9 @@ export const metadata = {
   // Twitter Card tags
   twitter: {
     card: 'summary_large_image',
-    title: '100+ SEO Tools – Free, Fast, Client-side',
-    description: 'All Your SEO Tools in One Place. 100+ browser-based tools for marketers, bloggers, and developers.',
-    images: [`${baseUrl}/icon.svg`],
+    title: '100+ Free SEO Tools for 2025 — Fast, No Login',
+    description: 'Use 100+ free, browser-based SEO tools for keyword research, on-page audits, technical checks, and content optimization. Fast, no login. Built for marketers and developers.',
+    images: [`${baseUrl}/og-image.jpg`],
   },
   // Canonical URL
   alternates: {
@@ -99,7 +99,7 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" content="#0f172a" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="icon" href="/icon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />

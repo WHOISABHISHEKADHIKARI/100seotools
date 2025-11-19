@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { performance } from 'node:perf_hooks';
 import tls from 'node:tls';
@@ -162,6 +162,45 @@ function extractContentInventory(html) {
   const videos = Array.from(html.matchAll(/<video\b[^>]*src=["']([^"']+)["'][^>]*>|<source\b[^>]*src=["']([^"']+)["'][^>]*>/gi)).map(m => m[1] || m[2]).filter(Boolean);
   const audios = Array.from(html.matchAll(/<audio\b[^>]*src=["']([^"']+)["'][^>]*>|<source\b[^>]*src=["']([^"']+)["'][^>]*>/gi)).map(m => m[1] || m[2]).filter(Boolean);
   return { imageCount: images.length, images, imagesMissingAlt: Math.max(0, imgNoAlt), videoCount: videos.length, videos, audioCount: audios.length, audios };
+}
+
+function parseCountriesCsv(text) {
+  const lines = String(text).split(/\r?\n/).filter(l => l && !/^\s*$/.test(l));
+  const rows = [];
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (i === 0 && /^country\s*,/i.test(line)) continue;
+    const parts = line.split(',').map(s => s.trim());
+    if (parts.length < 5) continue;
+    const country = parts[0];
+    const clicks = Number(parts[1]) || 0;
+    const impressions = Number(parts[2]) || 0;
+    const ctr = Number(String(parts[3]).replace('%','')) || 0;
+    const position = Number(parts[4]) || 0;
+    rows.push({ country, clicks, impressions, ctr, position });
+  }
+  return rows;
+}
+
+function summarizeCountries(rows) {
+  const total = rows.length;
+  const withClicks = rows.filter(r => r.clicks > 0).length;
+  const topClicks = rows.slice().sort((a,b)=>b.clicks-a.clicks).slice(0,5);
+  const topImpr = rows.slice().sort((a,b)=>b.impressions-a.impressions).slice(0,5);
+  const ctrCandidates = rows.filter(r => r.impressions >= 10).slice().sort((a,b)=>b.ctr-a.ctr).slice(0,5);
+  const zeroBig = ['United States','United Kingdom','Canada','Germany','Australia'].filter(n => rows.some(r => r.country===n && r.clicks===0));
+  const lines = [];
+  lines.push(`Countries total: ${total}`);
+  lines.push(`Countries with clicks: ${withClicks}`);
+  lines.push(`Top by clicks: ${topClicks.map(r=>`${r.country}(${r.clicks})`).join(', ')}`);
+  lines.push(`Top by impressions: ${topImpr.map(r=>`${r.country}(${r.impressions})`).join(', ')}`);
+  if (ctrCandidates.length) {
+    lines.push(`Highest CTR (>=10 impressions): ${ctrCandidates.map(r=>`${r.country}(${r.ctr}%)`).join(', ')}`);
+  }
+  if (zeroBig.length) {
+    lines.push(`Zero clicks in major markets: ${zeroBig.join(', ')}`);
+  }
+  return lines;
 }
 
 async function checkSSL(hostname) {
@@ -358,6 +397,16 @@ async function run() {
   if (errors.length) {
     await writeFile(path.join(SUBFOLDERS.Errors, `ScanErrors_${stampName}.csv`), 'url,error\n' + errors.map(e => `${escapeCsv(e.url)},${escapeCsv(e.error)}`).join('\n'), 'utf8');
   }
+
+  try {
+    const countriesFile = path.join(REPORTS_ROOT, 'Countries.csv');
+    const raw = await readFile(countriesFile, 'utf8');
+    const rows = parseCountriesCsv(raw);
+    if (rows.length) {
+      const summary = summarizeCountries(rows);
+      await writePdf(path.join(SUBFOLDERS.Summary, `Countries_${stampName}.pdf`), 'Country Traffic Summary', summary);
+    }
+  } catch {}
 }
 
 function avg(pagesMap, statusCode) {

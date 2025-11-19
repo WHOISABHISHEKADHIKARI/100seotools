@@ -16,7 +16,12 @@ const categories = [
   'On-Page Optimization',
   'Technical SEO',
   'Backlink & Link-Building',
+  'Backlink & Link Building',
   'Content SEO',
+  'Content Optimization',
+  'Content Creation',
+  'SEO Tools',
+  'Image Tools',
   'SEO Performance',
   'Local SEO',
   'Competitor Analysis',
@@ -26,7 +31,7 @@ const categories = [
 
 // Prefer static generation to stabilize RSC fetch behavior
 export const dynamic = 'force-static';
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 
 export async function generateMetadata({ params }) {
@@ -34,10 +39,7 @@ export async function generateMetadata({ params }) {
   const tools = getAllToolsMeta();
   const catName = categories.find((c) => slugify(c) === slug) || slug;
   const items = tools.filter((t) => t.category && slugify(t.category) === slug);
-  // If category is unknown or has no tools, return proper 404
-  if (!categories.find((c) => slugify(c) === slug) || items.length === 0) {
-    notFound();
-  }
+  // Do not return 404; render category page even if no items to avoid unintended noindex
   const title = `${catName} Tools | ${siteName}`;
   const description = `Explore ${catName} tools to improve your SEO. Browse curated utilities, analyzers, and generators tailored to ${catName}.`;
   const url = `${getBaseUrl()}/category/${slug}`;
@@ -45,6 +47,7 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
+    robots: { index: true, follow: true },
     alternates: { canonical: url },
     openGraph: {
       title,
@@ -66,9 +69,6 @@ export default async function CategoryPage({ params, searchParams }) {
   const tools = getAllToolsMeta();
   const catName = categories.find((c) => slugify(c) === slug) || slug;
   const items = tools.filter((t) => t.category && slugify(t.category) === slug);
-  if (items.length === 0) {
-    notFound();
-  }
   const featuredTool = items.length > 0 ? items[0] : null;
   // Filter blog posts by category or tags matching this slug
   const allPosts = getAllBlogPosts();

@@ -17,7 +17,6 @@ import { slugify } from '../../../lib/utils';
 export const dynamic = 'force-static';
 export const dynamicParams = true;
 
-export const buildGuidePageHref = (slug, p) => (p > 1 ? `/blog/${slug}?page=${p}` : `/blog/${slug}`);
 
 export function generateStaticParams() {
   const posts = getAllBlogPosts();
@@ -42,6 +41,7 @@ export async function generateMetadata({ params }) {
     return {
       title,
       description,
+      robots: { index: true, follow: true },
       alternates: { canonical: url },
       openGraph: {
         title,
@@ -66,6 +66,7 @@ export async function generateMetadata({ params }) {
     return {
       title,
       description,
+      robots: { index: true, follow: true },
       alternates: { canonical: url },
       openGraph: {
         title,
@@ -111,28 +112,6 @@ export default async function BlogGuidePage({ params, searchParams }) {
       : [];
     const faqJsonLd = faqItems.length ? generateFAQSchema(faqItems) : null;
     const shareUrl = `${baseUrl}/blog/${post.slug}`;
-    const totalPages = 5;
-    const currentPage = Math.min(totalPages, Math.max(1, Number(searchParams?.page) || 1));
-    const sectionPages = {
-      description: 1,
-      intro: 1,
-      what: 1,
-      why: 1,
-      how: 1,
-      toWhom: 1,
-      possibleUses: 2,
-      whoBenefits: 2,
-      reasonsToUse: 2,
-      seoBenefits: 3,
-      opportunities: 3,
-      competition: 3,
-      costConsiderations: 4,
-      integrations: 4,
-      relevantKeywords: 4,
-      howDetailed: 5,
-      faq: 5,
-    };
-    const showSection = (id) => sectionPages[id] === currentPage;
 
     return (
       <main id="main" className="container mx-auto px-4 py-8">
@@ -155,28 +134,12 @@ export default async function BlogGuidePage({ params, searchParams }) {
           </div>
         ) : null}
 
-        {/* Pager (top) */}
-        <nav aria-label="Article pages" className="not-prose mb-6">
-          <ul className="flex flex-wrap gap-2 text-sm">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-              <li key={p}>
-                <Link
-                  href={buildGuidePageHref(post.slug, p)}
-                  prefetch={false}
-                  aria-current={p === currentPage ? 'page' : undefined}
-                  className={`px-3 py-1.5 rounded-md text-sm font-medium border ${p === currentPage ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border-slate-200 dark:border-white/10'}`}
-                >
-                  Page {p}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+
 
         {/* Enhanced, visually-scannable content with quick links, callouts, and tool cards */}
         <article className="prose prose-slate dark:prose-invert max-w-3xl leading-relaxed mb-10 space-y-6">
-          {showSection('description') ? <p>{post.description}</p> : null}
-          {post.sections?.intro && showSection('intro') ? <p>{post.sections.intro}</p> : null}
+          {post.description ? <p>{post.description}</p> : null}
+          {post.sections?.intro ? <p>{post.sections.intro}</p> : null}
 
           {/* Quick Links */}
           <nav aria-label="Quick links" className="not-prose mb-6">
@@ -218,14 +181,14 @@ export default async function BlogGuidePage({ params, searchParams }) {
             </ul>
           </nav>
 
-          {post.sections?.what && showSection('what') ? (
+          {post.sections?.what ? (
             <section id="what" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mb-6">
               <h2 className="text-xl font-semibold mb-2">🔍 What</h2>
               <p className="text-base"><strong>SEO basics</strong>: {post.sections.what}</p>
             </section>
           ) : null}
 
-          {post.sections?.why && showSection('why') ? (
+          {post.sections?.why ? (
             <section id="why" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mb-6">
               <h2 className="text-xl font-semibold mb-2">🎯 Why</h2>
               <p className="text-base">{post.sections.why}</p>
@@ -237,15 +200,15 @@ export default async function BlogGuidePage({ params, searchParams }) {
           ) : null}
 
           {/* Generated Config section (if present for this post) */}
-          {post.sections?.generatedConfig && showSection('how') ? (
+          {post.sections?.generatedConfig ? (
             <GeneratedConfigSection title="Generated Config" config={post.sections.generatedConfig} language="json" />
           ) : null}
 
-          {post.sections?.how?.length && showSection('how') ? (
+          {post.sections?.how?.length ? (
             <section id="how" className="not-prose">
               <h2 className="text-xl font-semibold mb-2">⚙️ How</h2>
               <ul className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
-                {post.sections.how.slice(0,3).map((h, i) => (
+                {post.sections.how.map((h, i) => (
                   <li key={i} className="rounded-lg border border-slate-200 dark:border-white/10 p-4 bg-white dark:bg-slate-900/40">
                     <div className="font-medium mb-1">{h.label}</div>
                     <p className="text-base mb-2">{h.text}</p>
@@ -268,14 +231,14 @@ export default async function BlogGuidePage({ params, searchParams }) {
             </section>
           ) : null}
 
-          {post.sections?.toWhom && showSection('toWhom') ? (
+          {post.sections?.toWhom ? (
             <section id="to-whom" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">👥 To Whom</h2>
               <p className="text-base">{post.sections.toWhom}</p>
             </section>
           ) : null}
 
-          {post.sections?.possibleUses?.length && showSection('possibleUses') ? (
+          {post.sections?.possibleUses?.length ? (
             <section id="uses" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">📌 Possible Uses</h2>
               <ul className="list-disc pl-5 space-y-1 text-base">
@@ -286,7 +249,7 @@ export default async function BlogGuidePage({ params, searchParams }) {
             </section>
           ) : null}
 
-          {post.sections?.whoBenefits?.length && showSection('whoBenefits') ? (
+          {post.sections?.whoBenefits?.length ? (
             <section id="who-benefits" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">👤 Who Can Benefit</h2>
               <div className="flex flex-wrap gap-2">
@@ -297,7 +260,7 @@ export default async function BlogGuidePage({ params, searchParams }) {
             </section>
           ) : null}
 
-          {post.sections?.reasonsToUse?.length && showSection('reasonsToUse') ? (
+          {post.sections?.reasonsToUse?.length ? (
             <section id="reasons" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">✅ Reasons to Use</h2>
               <ul className="list-disc pl-5 space-y-1 text-base">
@@ -308,7 +271,7 @@ export default async function BlogGuidePage({ params, searchParams }) {
             </section>
           ) : null}
 
-          {Array.isArray(post.sections?.seoBenefits) && post.sections.seoBenefits.length && showSection('seoBenefits') ? (
+          {Array.isArray(post.sections?.seoBenefits) && post.sections.seoBenefits.length ? (
             <section id="seo-benefits" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">📈 SEO Benefits</h2>
               <ul className="list-disc pl-5 space-y-1 text-base">
@@ -319,7 +282,7 @@ export default async function BlogGuidePage({ params, searchParams }) {
             </section>
           ) : null}
 
-          {Array.isArray(post.sections?.opportunities) && post.sections.opportunities.length && showSection('opportunities') ? (
+          {Array.isArray(post.sections?.opportunities) && post.sections.opportunities.length ? (
             <section id="opportunities" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">🚀 Opportunities</h2>
               <ul className="list-disc pl-5 space-y-1 text-base">
@@ -334,7 +297,7 @@ export default async function BlogGuidePage({ params, searchParams }) {
             const comp = Array.isArray(post.sections?.competition)
               ? post.sections.competition
               : (post.sections?.competition ? [post.sections.competition] : []);
-            return comp.length && showSection('competition') ? (
+            return comp.length ? (
               <section id="competition" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
                 <h2 className="text-xl font-semibold mb-2">🆚 Competition</h2>
                 <ul className="list-disc pl-5 space-y-1 text-base">
@@ -346,7 +309,7 @@ export default async function BlogGuidePage({ params, searchParams }) {
             ) : null;
           })()}
 
-          {Array.isArray(post.sections?.costConsiderations) && post.sections.costConsiderations.length && showSection('costConsiderations') ? (
+          {Array.isArray(post.sections?.costConsiderations) && post.sections.costConsiderations.length ? (
             <section id="cost" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">💰 Cost Considerations</h2>
               <ul className="list-disc pl-5 space-y-1 text-base">
@@ -357,7 +320,7 @@ export default async function BlogGuidePage({ params, searchParams }) {
             </section>
           ) : null}
 
-          {Array.isArray(post.sections?.integrations) && post.sections.integrations.length && showSection('integrations') ? (
+          {Array.isArray(post.sections?.integrations) && post.sections.integrations.length ? (
             <section id="integrations" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">🔗 Related Tools & Integrations</h2>
               <div className="flex flex-wrap gap-3">
@@ -370,7 +333,7 @@ export default async function BlogGuidePage({ params, searchParams }) {
             </section>
           ) : null}
 
-          {Array.isArray(post.sections?.relevantKeywords) && post.sections.relevantKeywords.length && showSection('relevantKeywords') ? (
+          {Array.isArray(post.sections?.relevantKeywords) && post.sections.relevantKeywords.length ? (
             <section id="keywords" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">🏷️ Relevant Keywords</h2>
               <div className="flex flex-wrap gap-2">
@@ -381,7 +344,7 @@ export default async function BlogGuidePage({ params, searchParams }) {
             </section>
           ) : null}
 
-          {Array.isArray(post.sections?.howDetailed) && post.sections.howDetailed.length && showSection('howDetailed') ? (
+          {Array.isArray(post.sections?.howDetailed) && post.sections.howDetailed.length ? (
             <section id="how-detailed" className="not-prose rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-5 mt-4">
               <h2 className="text-xl font-semibold mb-2">🧭 How (Detailed)</h2>
               <ol className="list-decimal pl-5 space-y-1 text-base">
@@ -392,11 +355,11 @@ export default async function BlogGuidePage({ params, searchParams }) {
             </section>
           ) : null}
 
-          {Array.isArray(post.sections?.faq) && post.sections.faq.length && showSection('faq') ? (
+          {Array.isArray(post.sections?.faq) && post.sections.faq.length ? (
             <section id="faq" className="not-prose mt-6">
               <h3 className="text-lg font-semibold mb-3">❓ FAQ</h3>
               <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
-                {post.sections.faq.slice(0,7).map((f, i) => (
+                {post.sections.faq.map((f, i) => (
                   <div key={i} className="rounded border border-slate-200 dark:border-white/10 p-4">
                     <p className="text-base font-medium mb-1">{f.q}</p>
                     <p className="text-base">{f.a}</p>
@@ -406,46 +369,6 @@ export default async function BlogGuidePage({ params, searchParams }) {
             </section>
           ) : null}
         </article>
-
-        {/* Pager (bottom) */}
-        <nav aria-label="Article pages" className="not-prose mb-10">
-          <ul className="flex flex-wrap gap-2 text-sm">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-              <li key={p}>
-                <Link
-                  href={buildGuidePageHref(post.slug, p)}
-                  prefetch={false}
-                  aria-current={p === currentPage ? 'page' : undefined}
-                  className={`px-3 py-1.5 rounded-md text-sm font-medium border ${p === currentPage ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border-slate-200 dark:border-white/10'}`}
-                >
-                  Page {p}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {(() => {
-          const idx = allPosts.findIndex((p) => p.slug === post.slug);
-          const prev = idx > 0 ? allPosts[idx - 1] : null;
-          const next = idx >= 0 && idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
-          return (
-            <nav className="mt-10 flex flex-col sm:flex-row items-stretch gap-4" aria-label="Pagination">
-              {prev ? (
-                <Link href={`/blog/${prev.slug}`} prefetch={false} className="flex-1 rounded border border-slate-200 dark:border-white/10 p-4 hover:shadow-sm transition">
-                  <span className="block text-xs text-slate-500">Previous</span>
-                  <span className="block font-medium">{prev.title}</span>
-                </Link>
-              ) : null}
-              {next ? (
-                <Link href={`/blog/${next.slug}`} prefetch={false} className="flex-1 rounded border border-slate-200 dark:border-white/10 p-4 hover:shadow-sm transition text-right">
-                  <span className="block text-xs text-slate-500">Next</span>
-                  <span className="block font-medium">{next.title}</span>
-                </Link>
-              ) : null}
-            </nav>
-          );
-        })()}
 
         <div className="mt-8 flex items-center gap-4">
           <Link href="/blog" prefetch={false} className="text-brand-600 hover:underline">Back to Blog</Link>
