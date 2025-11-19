@@ -67,12 +67,13 @@ export default function BlogGrid({ limit = 12 }) {
                 key={href}
                 className="relative group rounded-lg border border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow"
               >
-                {/* Overlay link for whole-card click */}
                 <a
                   href={href}
                   className="absolute inset-0 z-10"
                   aria-label={title}
-                />
+                >
+                  <span className="sr-only">{title}</span>
+                </a>
 
                 {/* Featured image with 16:9 aspect ratio */}
                 <div className="relative rounded-t-lg overflow-hidden">
