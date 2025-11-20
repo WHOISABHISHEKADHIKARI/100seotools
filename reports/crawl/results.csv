@@ -1,2 +1,4 @@
 url,status,ms,contentType,parent,depth,blockedByRobots,ignoredByCrawler,error
-http://localhost:3004/,200,84,text/html; charset=utf-8,,0,false,false,
+http://localhost:3000/,200,89,text/html; charset=utf-8,,0,false,false,
+http://localhost:3000/icon-light.svg,200,10,image/svg+xml,http://localhost:3000/,1,false,false,
+http://localhost:3000/icon-dark.svg,200,9,image/svg+xml,http://localhost:3000/,1,false,false,

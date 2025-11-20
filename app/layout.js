@@ -152,27 +152,29 @@ export default function RootLayout({ children }) {
         {/* Legacy polyfills for browsers without ESM support */}
         <script noModule src="/polyfills-legacy.js"></script>
 
-        <script dangerouslySetInnerHTML={{__html: `
-          if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-              navigator.serviceWorker.getRegistration()
-                .then((reg) => {
-                  if (!reg) {
-                    navigator.serviceWorker.register('/sw.js')
-                      .then((registration) => {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                      })
-                      .catch((error) => {
-                        console.log('Service Worker registration failed:', error);
-                      });
-                  }
-                })
-                .catch(() => {
-                  navigator.serviceWorker.register('/sw.js').catch(()=>{});
-                });
-            });
-          }
-        `}} />
+        {isProd && (
+          <script dangerouslySetInnerHTML={{__html: `
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', () => {
+                navigator.serviceWorker.getRegistration()
+                  .then((reg) => {
+                    if (!reg) {
+                      navigator.serviceWorker.register('/sw.js')
+                        .then((registration) => {
+                          console.log('Service Worker registered with scope:', registration.scope);
+                        })
+                        .catch((error) => {
+                          console.log('Service Worker registration failed:', error);
+                        });
+                    }
+                  })
+                  .catch(() => {
+                    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+                  });
+              });
+            }
+          `}} />
+        )}
       </head>
       <body className={`${inter.className} min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100`}>
         {/* Skip to main content link for accessibility */}

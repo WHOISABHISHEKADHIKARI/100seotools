@@ -59,6 +59,9 @@ export default function BrowserCompatibilityTest() {
   return (
     <div className="fixed bottom-4 left-4 z-50">
       <button
+        type="button"
+        aria-label="Toggle browser compatibility panel"
+        aria-expanded={isVisible ? 'true' : 'false'}
         onClick={() => setIsVisible(!isVisible)}
         className="bg-purple-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-purple-700 transition-colors flex items-center space-x-2"
       >

@@ -6,22 +6,27 @@ import { getBaseUrl } from './lib/site';
 export function proxy(request) {
   const { pathname } = request.nextUrl;
   const response = NextResponse.next();
-  
+
+  // Canonicalize non-www to www in production
+  const host = request.headers.get('host') || '';
+  const isLocal = /localhost|127\.0\.0\.1/.test(host);
+  if (!isLocal && host === '100seotools.com') {
+    const url = new URL(request.url);
+    url.host = 'www.100seotools.com';
+    url.protocol = 'https:';
+    return NextResponse.redirect(url, 308);
+  }
+
   // Special handling for alternative pages to prevent indexing
   if (pathname.startsWith('/alternative')) {
-    // Set X-Robots-Tag header for alternative pages
     response.headers.set('X-Robots-Tag', 'noindex, follow');
-    
-    // Set canonical link header pointing to primary version
     const primaryUrl = `${getBaseUrl()}/tools/keyword-density-checker`;
     response.headers.set('Link', `<${primaryUrl}>; rel="canonical"`);
-    
-    // Add cache control to prevent caching of alternative versions
     response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
     response.headers.set('Pragma', 'no-cache');
     response.headers.set('Expires', '0');
   }
-  
+
   return response;
 }
 

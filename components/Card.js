@@ -1,5 +1,5 @@
 "use client";
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 
 export default function Card({
@@ -129,17 +129,20 @@ export default function Card({
   );
 
   if (isLink) {
+    const router = useRouter();
+    const onKey = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); router.push(href); } };
     return (
       <div className="relative block group">
-        <Link
-          href={href}
-          prefetch={false}
+        <button
+          type="button"
           aria-labelledby={titleId}
           aria-describedby={descId}
           className="absolute inset-0 z-50"
+          onClick={() => router.push(href)}
+          onKeyDown={onKey}
         >
           <span className="sr-only">Open: {title}</span>
-        </Link>
+        </button>
         {content}
       </div>
     );

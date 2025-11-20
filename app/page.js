@@ -74,8 +74,9 @@ export default function HomePage() {
     return (
       <div className="space-y-8 max-w-7xl mx-auto px-4">
         <section className="text-center space-y-4 py-10">
-          <p className="text-2xl md:text-3xl font-bold">All Your SEO Tools in One Place</p>
+          <h1 className="text-3xl md:text-4xl font-bold">100 SEO Tools: Free, Fast, Crawl‑Friendly</h1>
           <p className="text-gray-600 dark:text-gray-400">Loading tools...</p>
+          <p className="text-sm text-slate-700 dark:text-slate-300 max-w-2xl mx-auto">Explore keyword research, on‑page optimization, technical validation, and performance tracking — all free and browser‑based.</p>
         </section>
       </div>
     );
@@ -86,7 +87,25 @@ export default function HomePage() {
       {(() => {
         const baseUrl = getBaseUrl();
         const websiteLd = generateWebsiteSchema(baseUrl);
-        return <StructuredData data={websiteLd} />;
+        const webPageLd = {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "100 SEO Tools",
+          "description": "Free SEO tools list for keyword research, on‑page optimization, technical SEO, and performance tracking",
+          "url": baseUrl,
+          "keywords": [
+            "100 SEO tools",
+            "free SEO tools list",
+            "SEO tool comparison",
+            "best SEO tools for 2024"
+          ]
+        };
+        return (
+          <>
+            <StructuredData data={websiteLd} />
+            <StructuredData data={webPageLd} />
+          </>
+        );
       })()}
       {/* Tools section placed at the very top */}
       <section id="tools" aria-labelledby="tools-section-title" className="space-y-6">
@@ -94,12 +113,10 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 py-3 flex items-start justify-between gap-4">
             <div className="space-y-2">
               <h2 id="tools-section-title" className="text-2xl md:text-3xl font-bold tracking-tight">
-                The Ultimate Suite of Free SEO Tools
+                100 SEO Tools — Free, Fast, Search‑Optimized
               </h2>
               <p className="text-sm md:text-base text-slate-700 dark:text-slate-300 max-w-3xl">
-                100+ free, fast, client‑side tools for marketers, bloggers, developers, agencies, and SMBs — no login, no subscriptions.
-                Inspired by <span className="font-semibold">Small SEO Tools</span>, refined for speed, accuracy, and crawler accessibility.
-                Explore the best <span className="font-semibold">Free SEO Tools</span> to audit pages, generate metadata, validate schema, analyze headings, and more.
+                Explore 100+ free SEO tools built for real‑world workflows. Audit pages, generate clean metadata, validate <a href="/tools/schema-markup-generator" className="font-semibold hover:underline">JSON‑LD</a>, analyze headings, and compare outputs. This <span className="font-semibold">free SEO tools list</span> prioritizes speed, accessibility, and crawlability. See our <a href="/blog/free-seo-tools-list-2024" className="hover:underline">Free SEO Tools list</a> and the <a href="/blog/100-free-seo-tools-ultimate-list" className="hover:underline">100 SEO Tools ultimate guide</a>.
               </p>
             </div>
             <a href="#calculator" className="shrink-0 text-sm text-blue-700 dark:text-blue-400 hover:underline">Go to Calculator</a>
@@ -119,10 +136,10 @@ export default function HomePage() {
       {/* Hero with clear CTAs; now placed after Tools */}
       <section className="text-center space-y-5 py-10">
         <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-          100% Free SEO Tools — Fast, Accurate, Search‑Optimized
+          100 SEO Tools: Free, Accurate, and Ready for 2024–2025
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          A comprehensive suite of top‑performing, search‑friendly tools built for real‑world SEO. Completely free, client‑side, and tuned for speed—no logins, no subscriptions.
+          A comprehensive suite of top‑performing, search‑friendly tools. Run <span className="font-semibold">SEO tool comparison</span> checks, build schema, and ship updates faster. Everything is free, client‑side, and tuned for speed — no logins.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <a href="#tools" className="btn transition-all duration-200 hover:scale-[1.02]">
@@ -137,13 +154,13 @@ export default function HomePage() {
       {/* Expanded introduction for better content depth (250+ words) */}
       <section className="max-w-3xl mx-auto space-y-4 text-gray-700 dark:text-gray-300">
         <p className="font-loading-fallback">
-          Welcome to 100 SEO Tools — your destination for a comprehensive collection of browser-based utilities designed to streamline your optimization workflow. Our suite of **free SEO tools** helps you tackle everything from content strategy to technical analysis without installing software or connecting accounts. Whether you're a seasoned digital marketer or just starting, you'll find the right **SEO tools** to get the job done. Everything runs client-side, ensuring your data stays private and performance remains fast.
+          Welcome to <a href="/" className="hover:underline">100 SEO Tools</a> — a comprehensive, browser‑based toolkit for modern optimization. This curated <strong>free SEO tools list</strong> covers keyword research, on‑page improvements, technical validation, and performance checks. Use it to run quick audits, compare outputs, and publish with confidence.
         </p>
         <p className="font-loading-fallback">
-          Dive into our practical helpers, including a powerful **keyword research tool** that helps you uncover valuable opportunities and assess **keyword difficulty**. Perform in-depth **competitor analysis SEO** to gain an edge, or run a complete technical **SEO audit tool** to identify and fix issues. Our toolkit also features a reliable **backlink checker** and an intuitive **rank tracker** to monitor your progress. From metadata generation to schema validation and internal linking, our **seo tools online** are built for efficiency. Each tool delivers immediate results, making it easy to test ideas, standardize outputs, and collaborate with your team. We believe these are some of the **best seo tools 2025** will have to offer.
+          Explore keyword ideas, analyze intent, and structure content using headings, schema, and internal links. For technical SEO, validate <a href="/tools/structured-data-validator" className="hover:underline">structured data</a> and check <a href="/tools/robots-txt-validator" className="hover:underline">robots.txt</a>. For market insight, perform <strong>SEO tool comparison</strong> and benchmark against top pages. See the <a href="/blog/100-free-seo-tools-ultimate-list" className="hover:underline">100 SEO Tools ultimate list</a>.
         </p>
         <p className="font-loading-fallback">
-          The experience is tuned for speed, with a lightweight UI and thoughtful accessibility features. No sign-ups or paywalls—just reliable utilities that help you publish better content. New to SEO? Start with our Meta Tag Generator and Heading Analyzer. Optimizing at scale? Try the Keyword Clustering Tool and Local Schema Builder. We are constantly iterating to keep the interface simple, the results transparent, and our tools genuinely helpful for real-world publishing.
+          The experience prioritizes E‑E‑A‑T: accurate outputs, transparent processing, and practical guidance. Start with Meta Tag Generator and Heading Analyzer. For 2024, try our <strong>best SEO tools</strong> lineup to improve clarity, speed, and discoverability.
         </p>
       </section>
 

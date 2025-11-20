@@ -4,7 +4,7 @@ import { getBaseUrl, siteName } from '../../../lib/site';
 import ShareActions from '../../../components/ShareActions';
 import StructuredData from '../../../components/StructuredData';
 import GeneratedConfigSection from '../../../components/GeneratedConfigSection';
-import { generateArticleSchema, generateFAQSchema } from '../../../lib/schema';
+import { generateArticleSchema, generateFAQSchema, generateHowToSchema } from '../../../lib/schema';
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { notFound } from 'next/navigation';
 import { getToolGuide } from '../../../lib/guides';
@@ -111,6 +111,17 @@ export default async function BlogGuidePage({ params, searchParams }) {
       ? post.sections.faq.map((f) => ({ question: f.question || f.q, answer: f.answer || f.a }))
       : [];
     const faqJsonLd = faqItems.length ? generateFAQSchema(faqItems) : null;
+    const steps = Array.isArray(post.sections?.howDetailed) && post.sections.howDetailed.length ? post.sections.howDetailed : (Array.isArray(post.steps) ? post.steps : []);
+    const howToJsonLd = steps.length ? {
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: `How to apply ${post.title}`,
+      description: 'Step-by-step tutorial derived from the guide sections',
+      totalTime: 'PT10M',
+      supply: [{ '@type': 'HowToSupply', name: 'Web Browser' }],
+      tool: [{ '@type': 'HowToTool', name: 'Keyword Clustering Tool', url: `${baseUrl}/tools/keyword-clustering-tool` }],
+      step: steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s, text: s }))
+    } : null;
     const shareUrl = `${baseUrl}/blog/${post.slug}`;
 
     return (
@@ -118,6 +129,7 @@ export default async function BlogGuidePage({ params, searchParams }) {
         <StructuredData data={jsonLd} />
         <StructuredData data={breadcrumbLd} />
         {faqJsonLd ? <StructuredData data={faqJsonLd} /> : null}
+        {howToJsonLd ? <StructuredData data={howToJsonLd} /> : null}
 
         <h1 className="text-2xl sm:text-3xl font-bold mb-2">{post.title}</h1>
         <div className="text-sm text-slate-600 dark:text-slate-300 mb-4 flex flex-wrap items-center gap-3">
@@ -132,6 +144,15 @@ export default async function BlogGuidePage({ params, searchParams }) {
               <span key={i} className="px-2 py-1 rounded bg-slate-100 dark:bg-white/10 text-xs text-slate-700 dark:text-slate-200">{tag}</span>
             ))}
           </div>
+        ) : null}
+
+        {post.slug === 'keyword-clustering-tool' ? (
+          <p className="text-sm text-slate-700 dark:text-slate-300 mb-6">
+            Explore tools and references: <a href="/tools/keyword-clustering-tool" className="text-brand-600 hover:underline">keyword clustering tool</a> •{' '}
+            <a href="/tools/keyword-intent-identifier" className="text-brand-600 hover:underline">semantic keyword grouping</a> •{' '}
+            <a href="/tools/competitor-keyword-overlap-checker" className="text-brand-600 hover:underline">AI keyword clustering</a> •{' '}
+            <a href="/tools/internal-linking-planner" className="text-brand-600 hover:underline">internal linking planner</a>
+          </p>
         ) : null}
 
 
@@ -384,28 +405,26 @@ export default async function BlogGuidePage({ params, searchParams }) {
 
   const guide = getToolGuide(tool);
   const shareUrlTool = `${baseUrl}/blog/${tool.slug}`;
-  const jsonLd = {
-    '@context': 'https://schema.org',
+  const articleNode = {
     '@type': 'Article',
     headline: `How to Use ${tool.name}`,
     about: tool.category,
-    isPartOf: {
-      '@type': 'Blog',
-      name: `${siteName} Guides`,
-      url: `${baseUrl}/blog`
-    },
+    isPartOf: { '@type': 'Blog', name: `${siteName} Guides`, url: `${baseUrl}/blog` },
     mainEntityOfPage: `${baseUrl}/blog/${tool.slug}`,
     author: { '@type': 'Organization', name: siteName },
-    publisher: { '@type': 'Organization', name: siteName },
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
-        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` },
-        { '@type': 'ListItem', position: 3, name: tool.name, item: `${baseUrl}/blog/${tool.slug}` }
-      ]
-    }
+    publisher: { '@type': 'Organization', name: siteName }
   };
+  const breadcrumbNode = {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` },
+      { '@type': 'ListItem', position: 3, name: tool.name, item: `${baseUrl}/blog/${tool.slug}` }
+    ]
+  };
+  const faqNode = Array.isArray(guide.faqs) && guide.faqs.length ? generateFAQSchema(guide.faqs) : null;
+  const howToNode = generateHowToSchema(tool, baseUrl);
+  const jsonLd = { '@context': 'https://schema.org', '@graph': [articleNode, breadcrumbNode, ...(faqNode ? [faqNode] : []), howToNode] };
 
   return (
     <main id="main" className="container mx-auto px-4 py-8">
@@ -414,6 +433,14 @@ export default async function BlogGuidePage({ params, searchParams }) {
       <h1 className="text-2xl sm:text-3xl font-bold mb-3">How to Use {tool.name}</h1>
       <p className="text-slate-600 dark:text-slate-300 mb-6">Category: {tool.category}</p>
       <div className="mb-6"><ShareActions url={shareUrlTool} title={`How to Use ${tool.name}`} /></div>
+
+      <p className="text-sm text-slate-700 dark:text-slate-300 mb-4">
+        <a href="/" className="text-brand-600 hover:underline">Homepage</a> •
+        {' '}
+        <a href="/category" className="text-brand-600 hover:underline">SEO Tools Categories</a> •
+        {' '}
+        <a href={`/tools/${tool.slug}`} className="text-brand-600 hover:underline">Open {tool.name}</a>
+      </p>
 
       <nav aria-label="Table of contents" className="rounded border border-slate-200 dark:border-white/10 p-4 mb-6">
         <ul className="grid sm:grid-cols-2 gap-2 text-sm">

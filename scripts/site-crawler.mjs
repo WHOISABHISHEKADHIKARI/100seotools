@@ -132,6 +132,21 @@ async function crawl() {
   const pages = new Map(); // url -> record
   const childrenMap = new Map(); // parentUrl -> Set(children)
   const notFoundStats = new Map(); // url -> { count, referrers: Set }
+  const noindexPages = new Map(); // url -> reason (meta or header)
+  const canonicals = new Map(); // url -> canonicalHref
+
+  // Seed queue with sitemap entries if available in robots
+  const sitemapUrls = Array.isArray(robots.sitemap) ? robots.sitemap : [];
+  for (const sm of sitemapUrls) {
+    try {
+      const res = await fetchWithTiming(sm);
+      const xml = res.text || '';
+      const locs = [...xml.matchAll(/<loc>(.*?)<\/loc>/gi)].map((m) => m[1]).map(normalizeUrl).filter(Boolean);
+      for (const u of locs) {
+        queue.push({ url: u, parent: sm, depth: 1 });
+      }
+    } catch {}
+  }
 
   while (queue.length && pages.size < MAX_PAGES) {
     const { url, parent, depth } = queue.shift();
@@ -169,7 +184,27 @@ async function crawl() {
       notFoundStats.set(url, stat);
     }
 
-    // Enqueue discovered links from HTML pages
+    // Parse meta robots and canonical from HTML
+    if (result.text && String(result.contentType).includes('text/html')) {
+      const html = result.text;
+      const hasNoindexMeta = /<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(html);
+      const canonicalMatch = html.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i);
+      if (hasNoindexMeta) {
+        noindexPages.set(url, 'meta');
+      }
+      const xr = String(result.headers?.['x-robots-tag'] || result.headers?.['X-Robots-Tag'] || '').toLowerCase();
+      if (xr.includes('noindex')) {
+        noindexPages.set(url, noindexPages.get(url) ? noindexPages.get(url) + '+header' : 'header');
+      }
+      if (canonicalMatch && canonicalMatch[1]) {
+        try {
+          const cHref = new URL(canonicalMatch[1], url).toString();
+          canonicals.set(url, cHref);
+        } catch {}
+      }
+    }
+
+    // Enqueue discovered links from HTML pages when not blocked/ignored
     if (result.text && String(result.contentType).includes('text/html') && !blocked && !isIgnored) {
       const links = extractLinks(result.text, url);
       for (const link of links) {
@@ -236,11 +271,27 @@ async function crawl() {
     pages: allPages,
     notFound: notFoundList,
     errorHandling,
+    noindex: Array.from(noindexPages.entries()).map(([url, reason]) => ({ url, reason })),
+    canonicals: Array.from(canonicals.entries()).map(([url, canonical]) => ({ url, canonical })),
   });
 
   await writeJson(path.join(OUTPUT_DIR, 'sitemap.json'), sitemap);
   await writeCsv(path.join(OUTPUT_DIR, 'results.csv'), allPages);
   await writeJson(path.join(OUTPUT_DIR, '404-details.json'), { notFound: notFoundList });
+  await writeJson(path.join(OUTPUT_DIR, 'indexing-health.json'), {
+    meta: { origin: ORIGIN, generatedAt: new Date().toISOString() },
+    counts: {
+      total: allPages.length,
+      notFound: notFoundList.length,
+      noindex: noindexPages.size,
+      canonicals: canonicals.size,
+    },
+    sample: {
+      notFound: notFoundList.slice(0, 10),
+      noindex: Array.from(noindexPages.entries()).slice(0, 10).map(([url, reason]) => ({ url, reason })),
+      canonicals: Array.from(canonicals.entries()).slice(0, 10).map(([url, canonical]) => ({ url, canonical })),
+    }
+  });
 
   console.log(`Crawl completed. Pages: ${allPages.length}. Outputs in ${OUTPUT_DIR}`);
 }

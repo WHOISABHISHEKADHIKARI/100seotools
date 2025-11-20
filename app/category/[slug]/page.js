@@ -119,6 +119,31 @@ export default async function CategoryPage({ params, searchParams }) {
       <p className="text-slate-600 dark:text-slate-300 mb-6">
         Browse curated tools related to {catName}. Click a tool to open its page and run it in your browser.
       </p>
+      {slug === 'on-page-optimization' && (
+        <div className="mb-6 text-sm text-slate-700 dark:text-slate-300">
+          <p>
+            Run quick checks to improve clarity and CTR. Use the{' '}
+            <a href="/tools/on-page-seo-audit-checker" className="text-brand-600 hover:underline">on‑page SEO audit checker</a>{' '}and read the{' '}
+            <a href="/blog/on-page-seo-audit-checker-how-to-use" className="text-brand-600 hover:underline">pillar how‑to guide</a>{' '}plus the{' '}
+            <a href="/blog/on-page-seo-audit-checker-features-benefits-keywords" className="text-brand-600 hover:underline">features and benefits overview</a>.
+          </p>
+        </div>
+      )}
+      {slug === 'keyword-research' && (
+        <div className="mb-6 text-sm text-slate-700 dark:text-slate-300">
+          <p>
+            Strengthen topical coverage with themed clusters and intent mapping. Explore the{' '}
+            <a href="/tools/keyword-clustering-tool" className="text-brand-600 hover:underline">best free keyword clustering tool</a>{' '}to group queries, compare coverage with{' '}
+            <a href="/tools/competitor-keyword-overlap-checker" className="text-brand-600 hover:underline">AI keyword clustering benchmarks</a>{' '}and use{' '}
+            <a href="/tools/keyword-intent-identifier" className="text-brand-600 hover:underline">semantic keyword grouping tool</a>{' '}to label intent.
+          </p>
+          <p>
+            Generate ideas fast with the{' '}
+            <a href="/tools/keyword-suggestion-tool" className="text-brand-600 hover:underline">keyword suggest tool</a>{' '}and the{' '}
+            <a href="/blog/keyword-suggestion-tool" className="text-brand-600 hover:underline">keyword ideas guide</a>. Use these to seed clusters and plan internal links.
+          </p>
+        </div>
+      )}
       <>
           {/* Featured Tool */}
           {featuredTool && (

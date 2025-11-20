@@ -2,6 +2,7 @@
   "name": "100-seo-tools",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -16,7 +17,12 @@
     "lint:anchors": "node scripts/lintAnchors.js",
     "lint:whitespace": "node scripts/whitespaceAudit.js",
     "fix:whitespace": "node scripts/whitespaceAudit.js --fix",
-    "crawl:final": "node scripts/headlessCrawler.js"
+    "crawl:final": "node scripts/headlessCrawler.js",
+    "audit:indexing": "node scripts/site-crawler.mjs",
+    "test:schema": "node tests/schema-validation.test.mjs",
+    "test:accessibility": "node tests/accessibility-axe.test.mjs",
+    "test:seo": "node tests/seo-performance.test.mjs",
+    "test:microdata": "node tests/microdata-errors.test.mjs"
   },
   "browserslist": {
     "production": [

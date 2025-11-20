@@ -1,5 +1,5 @@
 "use client";
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useMemo, memo } from 'react';
 
@@ -230,17 +230,20 @@ function UnifiedCard({
   );
 
   if (isLink && interactive) {
+    const router = useRouter();
+    const onKey = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); router.push(href); } };
     return (
       <div className="relative block group cursor-pointer">
-        <Link
-          href={href}
-          prefetch={false}
+        <button
+          type="button"
           aria-labelledby={titleId}
           aria-describedby={descId}
           className="absolute inset-0 z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
+          onClick={() => router.push(href)}
+          onKeyDown={onKey}
         >
           <span className="sr-only">Open: {title}</span>
-        </Link>
+        </button>
         {cardContent}
       </div>
     );
