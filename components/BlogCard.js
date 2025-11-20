@@ -261,17 +261,21 @@ function BlogCard({
   );
 
   if (isLink) {
-    // Overlay link pattern to avoid nested anchors
     return (
-      <div className="relative group cursor-pointer">
-        <Link
-          href={href}
-          prefetch={false}
-          className="absolute inset-0 z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
-          aria-label={`Read: ${title || 'blog'}`}
-        >
-          <span className="sr-only">Read: {title}</span>
-        </Link>
+      <div
+        className="relative group cursor-pointer"
+        aria-label={`Read: ${title || 'blog'}`}
+        role="link"
+        tabIndex={0}
+        onClick={() => router.push(href)}
+        onKeyDown={(e) => {
+          const key = e.key;
+          if (key === 'Enter' || key === ' ') {
+            e.preventDefault();
+            router.push(href);
+          }
+        }}
+      >
         <div className="relative z-20">
           {cardContent}
         </div>

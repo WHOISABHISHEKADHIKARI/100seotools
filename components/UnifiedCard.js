@@ -68,7 +68,7 @@ function UnifiedCard({
       aria-labelledby={titleId}
       aria-describedby={descId}
       role="article"
-      tabIndex={isLink && interactive ? 0 : undefined}
+      tabIndex={isLink && interactive ? -1 : undefined}
     >
       {/* Visual Header - Optional Image */}
       {image && (
@@ -85,7 +85,7 @@ function UnifiedCard({
       )}
 
       {/* Content Area */}
-      <div className={`unified-card-content relative ${isLink && interactive ? 'pointer-events-none' : ''} flex flex-col flex-1 p-6`}>
+      <div className={`unified-card-content relative flex flex-col flex-1 p-6`}>
         {/* Header Section */}
         <div className="unified-card-header flex items-center justify-between mb-3">
           {/* Category Meta */}
@@ -233,17 +233,15 @@ function UnifiedCard({
     const router = useRouter();
     const onKey = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); router.push(href); } };
     return (
-      <div className="relative block group cursor-pointer">
-        <button
-          type="button"
-          aria-labelledby={titleId}
-          aria-describedby={descId}
-          className="absolute inset-0 z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
-          onClick={() => router.push(href)}
-          onKeyDown={onKey}
-        >
-          <span className="sr-only">Open: {title}</span>
-        </button>
+      <div
+        className="relative block group cursor-pointer"
+        aria-labelledby={titleId}
+        aria-describedby={descId}
+        role="link"
+        tabIndex={0}
+        onClick={() => router.push(href)}
+        onKeyDown={onKey}
+      >
         {cardContent}
       </div>
     );

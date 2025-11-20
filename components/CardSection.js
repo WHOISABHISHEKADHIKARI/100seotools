@@ -39,17 +39,9 @@ export default function CardSection({
 
             return (
               <div key={key} className="relative group">
-                {href && (
-                  <a
-                    href={href}
-                    className="absolute inset-0 z-40"
-                    aria-label={item.title || 'Open'}
-                  >
-                    <span className="sr-only">Open: {item.title}</span>
-                  </a>
-                )}
                 {/* Use UnifiedCard for consistent design and interactions */}
                 <UnifiedCard
+                  href={href}
                   title={item.title}
                   description={item.description}
                   category={item.category}
@@ -69,4 +61,3 @@ export default function CardSection({
     </section>
   );
 }
-

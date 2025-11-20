@@ -68,8 +68,6 @@ import ErrorBoundary from '../components/ErrorBoundary';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import StructuredData from '../components/StructuredData';
-import PerformanceDashboard from '../components/PerformanceDashboard';
-import BrowserCompatibilityTest from '../components/BrowserCompatibilityTest';
 import ClientLayout from '../components/ClientLayout';
 import ClientRoot from '../components/ClientRoot';
 
@@ -199,8 +197,7 @@ export default function RootLayout({ children }) {
 
           {/* Global footer */}
           <Footer />
-        <PerformanceDashboard />
-        <BrowserCompatibilityTest />
+
         </ClientRoot>
       </body>
     </html>
