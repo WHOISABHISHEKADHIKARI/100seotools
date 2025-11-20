@@ -1,9 +1,0 @@
-{
-  "baseUrl": "http://localhost:3000",
-  "results": [
-    {
-      "route": "/",
-      "violations": []
-    }
-  ]
-}
