@@ -132,17 +132,15 @@ export default function Card({
     const router = useRouter();
     const onKey = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); router.push(href); } };
     return (
-      <div className="relative block group">
-        <button
-          type="button"
-          aria-labelledby={titleId}
-          aria-describedby={descId}
-          className="absolute inset-0 z-50"
-          onClick={() => router.push(href)}
-          onKeyDown={onKey}
-        >
-          <span className="sr-only">Open: {title}</span>
-        </button>
+      <div
+        className="relative block group cursor-pointer"
+        aria-labelledby={titleId}
+        aria-describedby={descId}
+        role="link"
+        tabIndex={0}
+        onClick={() => router.push(href)}
+        onKeyDown={onKey}
+      >
         {content}
       </div>
     );

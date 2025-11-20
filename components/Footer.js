@@ -94,7 +94,6 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <Link href="/" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Home</Link>
             <Link href="/blog" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Blog</Link>
-            <Link href="/sitemap.xml" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Sitemap</Link>
             <Link href="/robots.txt" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Robots</Link>
             <Link href="/privacy" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus-visible:underline">Privacy Policy</Link>
             <Link href="/terms" prefetch={false} className="transition-gpu will-change-transform-opacity hover:opacity-85 focus-visible:underline">Terms of Service</Link>

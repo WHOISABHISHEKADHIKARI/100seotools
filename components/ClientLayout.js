@@ -1,11 +1,10 @@
 "use client";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
 // Defer non-critical client helpers to reduce initial JS
-const PerformanceMonitor = dynamic(() => import('./PerformanceMonitor'), { ssr: false });
-const FloatingActionButton = dynamic(() => import('./FloatingActionButton'), { ssr: false });
-const UserPreferencesPanel = dynamic(() => import('./UserPreferencesPanel'), { ssr: false });
+const PerformanceMonitor = dynamic(() => import('./PerformanceMonitor'), { ssr: false, loading: () => null });
+const UserPreferencesPanel = dynamic(() => import('./UserPreferencesPanel'), { ssr: false, loading: () => null });
 
 export default function ClientLayout() {
   const [showPreferences, setShowPreferences] = useState(false);
@@ -46,17 +45,28 @@ export default function ClientLayout() {
     setShowPreferences(false);
   };
 
+  class ErrorBoundary extends React.Component {
+    constructor(props) { super(props); this.state = { hasError: false }; }
+    static getDerivedStateFromError() { return { hasError: true }; }
+    render() { if (this.state.hasError) { return null; } return this.props.children; }
+  }
+
   return (
     <>
-      {isIdle ? <PerformanceMonitor /> : null}
-      {isIdle ? <FloatingActionButton onOpenPreferences={handleOpenPreferences} /> : null}
       {isIdle ? (
-        <UserPreferencesPanel
-          isOpen={showPreferences}
-          onClose={handleClosePreferences}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
+        <ErrorBoundary>
+          <PerformanceMonitor />
+        </ErrorBoundary>
+      ) : null}
+      {isIdle ? (
+        <ErrorBoundary>
+          <UserPreferencesPanel
+            isOpen={showPreferences}
+            onClose={handleClosePreferences}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
+        </ErrorBoundary>
       ) : null}
     </>
   );

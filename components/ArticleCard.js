@@ -1,6 +1,6 @@
 "use client";
-import Link from 'next/link';
 import { useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 export default function ArticleCard({
@@ -21,6 +21,7 @@ export default function ArticleCard({
   imageQuery,
   imageClassName = '',
 }) {
+  const router = useRouter();
   const isLink = useMemo(() => typeof href === 'string' && href.trim().length > 0, [href]);
   const cardId = useMemo(() => `article-card-${slugify(title)}`, [title]);
   const titleId = useMemo(() => `article-title-${slugify(title)}`, [title]);
@@ -247,17 +248,15 @@ export default function ArticleCard({
   );
 
   if (isLink) {
-    // Overlay Link Pattern to avoid nested <a> tags within card content
     return (
-      <div className="relative group">
-        <Link
-          href={href}
-          prefetch={false}
-          className="absolute inset-0 z-10"
-          aria-label={`Read article: ${title}`}
-        >
-          <span className="sr-only">Read article: {title}</span>
-        </Link>
+      <div
+        className="relative group"
+        aria-label={`Read article: ${title}`}
+        role="link"
+        tabIndex={0}
+        onClick={() => router.push(href)}
+        onKeyDown={(e) => { const k = e.key; if (k === 'Enter' || k === ' ') { e.preventDefault(); router.push(href); } }}
+      >
         <div className="relative z-20">
           {cardContent}
         </div>

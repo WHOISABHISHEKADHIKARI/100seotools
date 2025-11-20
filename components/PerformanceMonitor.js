@@ -7,6 +7,23 @@ export default function PerformanceMonitor() {
   const metricsRef = useRef({});
   const observerRef = useRef(null);
   const observersRef = useRef([]);
+  const scheduleRef = useRef(null);
+
+  const scheduleUpdate = () => {
+    if (scheduleRef.current) {
+      try { clearTimeout(scheduleRef.current); } catch {}
+    }
+    scheduleRef.current = setTimeout(() => {
+      try {
+        actions.updatePreferences({
+          performanceMetrics: {
+            ...metricsRef.current,
+            lastUpdated: Date.now()
+          }
+        });
+      } catch {}
+    }, 0);
+  };
 
   useEffect(() => {
     // Track Core Web Vitals
@@ -15,52 +32,27 @@ export default function PerformanceMonitor() {
       import('../lib/web-vitals-mock.mjs').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
         getCLS((metric) => {
           metricsRef.current.cls = Math.round(metric.value * 1000) / 1000;
-          actions.updatePreferences({
-            performanceMetrics: {
-              ...metricsRef.current,
-              lastUpdated: Date.now()
-            }
-          });
+          scheduleUpdate();
         });
 
         getFID((metric) => {
           metricsRef.current.fid = Math.round(metric.value);
-          actions.updatePreferences({
-            performanceMetrics: {
-              ...metricsRef.current,
-              lastUpdated: Date.now()
-            }
-          });
+          scheduleUpdate();
         });
 
         getFCP((metric) => {
           metricsRef.current.fcp = Math.round(metric.value);
-          actions.updatePreferences({
-            performanceMetrics: {
-              ...metricsRef.current,
-              lastUpdated: Date.now()
-            }
-          });
+          scheduleUpdate();
         });
 
         getLCP((metric) => {
           metricsRef.current.lcp = Math.round(metric.value);
-          actions.updatePreferences({
-            performanceMetrics: {
-              ...metricsRef.current,
-              lastUpdated: Date.now()
-            }
-          });
+          scheduleUpdate();
         });
 
         getTTFB((metric) => {
           metricsRef.current.ttfb = Math.round(metric.value);
-          actions.updatePreferences({
-            performanceMetrics: {
-              ...metricsRef.current,
-              lastUpdated: Date.now()
-            }
-          });
+          scheduleUpdate();
         });
       }).catch(() => {
         // Fallback to manual implementation
@@ -70,14 +62,7 @@ export default function PerformanceMonitor() {
             const entries = list.getEntries();
             const lastEntry = entries[entries.length - 1];
             metricsRef.current.lcp = Math.round(lastEntry.startTime);
-
-            // Track LCP in user preferences for analytics
-            actions.updatePreferences({
-              performanceMetrics: {
-                ...metricsRef.current,
-                lastUpdated: Date.now()
-              }
-            });
+            scheduleUpdate();
           });
           lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
           observerRef.current = lcpObserver;
@@ -92,13 +77,7 @@ export default function PerformanceMonitor() {
             const entries = list.getEntries();
             entries.forEach((entry) => {
               metricsRef.current.fid = Math.round(entry.processingStart - entry.startTime);
-
-              actions.updatePreferences({
-                performanceMetrics: {
-                  ...metricsRef.current,
-                  lastUpdated: Date.now()
-                }
-              });
+              scheduleUpdate();
             });
           });
           fidObserver.observe({ entryTypes: ['first-input'] });
@@ -134,12 +113,7 @@ export default function PerformanceMonitor() {
                   clsValue = sessionValue;
                   clsEntries = [...sessionEntries];
                   metricsRef.current.cls = Math.round(clsValue * 1000) / 1000;
-                  actions.updatePreferences({
-                    performanceMetrics: {
-                      ...metricsRef.current,
-                      lastUpdated: Date.now()
-                    }
-                  });
+                  scheduleUpdate();
                 }
               }
             }
@@ -200,13 +174,7 @@ export default function PerformanceMonitor() {
 
                 // Optional: log for A/B baseline comparison
                 console.log('[Perf] CSS loaded:', slowest.name, `${Math.round(slowest.duration)}ms`);
-
-                actions.updatePreferences({
-                  performanceMetrics: {
-                    ...metricsRef.current,
-                    lastUpdated: Date.now()
-                  }
-                });
+                scheduleUpdate();
               }
             });
             resourceObserver.observe({ entryTypes: ['resource'] });
@@ -223,12 +191,7 @@ export default function PerformanceMonitor() {
           const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
           metricsRef.current.pageLoadTime = loadTime;
 
-          actions.updatePreferences({
-            performanceMetrics: {
-              ...metricsRef.current,
-              lastUpdated: Date.now()
-            }
-          });
+          scheduleUpdate();
         }, 0);
       };
       window.addEventListener('load', loadHandler);
@@ -288,12 +251,7 @@ export default function PerformanceMonitor() {
           const sessionTime = Date.now() - startTime;
           metricsRef.current.sessionTime = sessionTime;
 
-          actions.updatePreferences({
-            performanceMetrics: {
-              ...metricsRef.current,
-              lastUpdated: Date.now()
-            }
-          });
+          scheduleUpdate();
         }
       };
 

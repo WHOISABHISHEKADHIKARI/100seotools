@@ -67,13 +67,16 @@ export default function BlogGrid({ limit = 12 }) {
                 key={href}
                 className="relative group rounded-lg border border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow"
               >
-                <a
-                  href={href}
-                  className="absolute inset-0 z-10"
+                <div
+                  className="absolute inset-0 z-10 cursor-pointer"
                   aria-label={title}
+                  role="link"
+                  tabIndex={0}
+                  onClick={() => router.push(href)}
+                  onKeyDown={(e) => { const k = e.key; if (k === 'Enter' || k === ' ') { e.preventDefault(); router.push(href); } }}
                 >
                   <span className="sr-only">{title}</span>
-                </a>
+                </div>
 
                 {/* Featured image with 16:9 aspect ratio */}
                 <div className="relative rounded-t-lg overflow-hidden">

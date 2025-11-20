@@ -150,14 +150,6 @@ export default function Navbar() {
               className={`text-sm hover:text-brand-600 focus:outline-none focus:underline ${pathname?.startsWith('/blog') ? 'text-brand-600 font-medium' : ''}`}
             >Blog</Link>
           </li>
-          <li>
-            <Link
-              href="/sitemap.xml"
-              aria-current={pathname === '/sitemap.xml' ? 'page' : undefined}
-              prefetch={false}
-              className={`text-sm hover:text-brand-600 focus:outline-none focus:underline ${pathname === '/sitemap.xml' ? 'text-brand-600 font-medium' : ''}`}
-            >Sitemap</Link>
-          </li>
           <li className="relative" ref={dropdownRef}>
             <button
               type="button"
@@ -257,9 +249,6 @@ export default function Navbar() {
             </li>
             <li>
               <Link href="/blog" aria-current={pathname?.startsWith('/blog') ? 'page' : undefined} className="block px-2 py-1 hover:text-brand-600 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800 rounded" onClick={() => setMobileOpen(false)}>Blog</Link>
-            </li>
-            <li>
-              <Link href="/sitemap.xml" aria-current={pathname === '/sitemap.xml' ? 'page' : undefined} className="block px-2 py-1 hover:text-brand-600 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800 rounded" onClick={() => setMobileOpen(false)}>Sitemap</Link>
             </li>
             <li>
               <button
