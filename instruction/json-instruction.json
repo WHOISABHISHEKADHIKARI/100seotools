@@ -1,0 +1,216 @@
+{
+  "entries": [
+    {
+      "keyword": "free headline analyzer tool",
+      "intent": "Users want a free, practical tool to analyze and improve headlines for SEO and CTR using criteria like emotional value, power words, readability, structure, length, and keyword placement, plus steps and examples to optimize.",
+      "rewritten_content": "Use the free Headline Analyzer to score and improve titles for clarity, relevance, and clicks. Enter a headline and optional primary keyword to see a score breakdown across emotional value, power words, readability, structure, length, and keyword placement. Fix issues by moving the keyword earlier, reducing fluff, balancing emotion with specificity, tightening length (≈50–60 chars), and clarifying the promise. Iterate with 2–3 variations, compare scores, and pick the version that best matches search intent and page content.",
+      "semantic_keywords_added": [
+        "headline analyzer free",
+        "SEO headline analyzer",
+        "headline score checker",
+        "title analyzer tool",
+        "headline optimization tool",
+        "emotional value score",
+        "power words",
+        "readability score",
+        "headline length checker",
+        "keyword placement in titles"
+      ],
+      "internal_links_added": [
+        "Homepage (/)",
+        "Category: Content SEO (/category/content-seo)",
+        "Tool: Blog Title Generator (/tools/blog-title-generator)",
+        "Tool: Meta Description Writer (/tools/meta-description-writer)",
+        "Tool: Heading Analyzer (/tools/heading-analyzer)",
+        "Tool: Search Preview Simulator (/tools/search-preview-simulator)",
+        "Tool: SEO Content Checker (/tools/seo-content-checker)"
+      ],
+      "schema_json_ld": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://www.100seotools.com/tools/headline-analyzer",
+            "url": "https://www.100seotools.com/tools/headline-analyzer",
+            "name": "Free Headline Analyzer Tool — Score and Improve Titles",
+            "description": "Analyze headline score, emotional value, power words, readability, structure, length, and keyword placement to improve CTR and SEO.",
+            "isPartOf": { "@id": "https://www.100seotools.com/" }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Headline Analyzer",
+            "description": "Free online tool to analyze and optimize headlines for SEO and CTR.",
+            "applicationCategory": "WebApplication",
+            "operatingSystem": "Web browser",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "url": "https://www.100seotools.com/tools/headline-analyzer"
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              { "@type": "Question", "name": "What does a headline analyzer do?", "acceptedAnswer": { "@type": "Answer", "text": "It scores headline strength and highlights improvements across emotional value, power words, readability, structure, length, and keyword placement." } },
+              { "@type": "Question", "name": "What is the ideal headline length?", "acceptedAnswer": { "@type": "Answer", "text": "Aim for ≈50–60 characters. Keep the promise clear, avoid hype, and match the page content." } },
+              { "@type": "Question", "name": "Where should keywords go in titles?", "acceptedAnswer": { "@type": "Answer", "text": "Place the primary keyword early when natural—usually in the first half—without sacrificing clarity." } },
+              { "@type": "Question", "name": "How do I use power words responsibly?", "acceptedAnswer": { "@type": "Answer", "text": "Use sparingly and only when relevant. Focus on concrete benefits and specificity rather than clickbait." } }
+            ]
+          },
+          {
+            "@type": "HowTo",
+            "name": "How to improve a headline with the analyzer",
+            "step": [
+              { "@type": "HowToStep", "name": "Open the Headline Analyzer" },
+              { "@type": "HowToStep", "name": "Enter your headline and optional primary keyword" },
+              { "@type": "HowToStep", "name": "Review the score breakdown and flagged issues" },
+              { "@type": "HowToStep", "name": "Iterate with 2–3 headline variations" },
+              { "@type": "HowToStep", "name": "Choose the best version and implement" }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.100seotools.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.100seotools.com/tools" },
+              { "@type": "ListItem", "position": 3, "name": "Headline Analyzer", "item": "https://www.100seotools.com/tools/headline-analyzer" }
+            ]
+          }
+        ]
+      },
+      "faq": [
+        { "q": "What does a headline analyzer do?", "a": "It scores headline strength and shows how to improve emotional value, power words, readability, structure, length, and keyword placement." },
+        { "q": "What is a good headline length?", "a": "≈50–60 characters is a reliable target. Prioritize clarity and relevance." },
+        { "q": "Should I always use power words?", "a": "Use them selectively; specificity and truthfulness outperform hype." },
+        { "q": "How do I place keywords?", "a": "Early placement when natural; avoid stuffing and keep the promise clear." }
+      ],
+      "examples_added": [
+        "Baseline: ‘Best Headline Ever!!! Free!!!’ → Improved: ‘Free Headline Analyzer — Improve SEO Title Score and CTR’",
+        "Keyword early: ‘Improve Your Titles with Our Tool’ → ‘Headline Analyzer — Improve SEO Titles and CTR’",
+        "Readability: Remove filler, balance emotion with specifics, keep phrasing tight"
+      ],
+      "steps_added": [
+        "Open the Headline Analyzer",
+        "Enter headline and optional primary keyword",
+        "Review score breakdown and flagged issues",
+        "Iterate with 2–3 headline variations",
+        "Implement the best version and measure CTR"
+      ],
+      "notes": "Clean JSON-LD; UI unchanged; content rewritten only; aligns with query ‘free headline analyzer tool’ and related variations."
+    },
+    {
+      "keyword": "check onpage seo",
+      "intent": "Users want a clear, practical workflow to check on‑page SEO for a URL and apply fixes that improve rankings, CTR, and crawlability. They expect a checklist of elements (titles, meta descriptions, headings, keyword placement, content quality, internal links, images, schema, indexability, and page experience), concrete steps, examples, and FAQs.",
+      "rewritten_content": "Run an on‑page SEO check to confirm your page matches intent, is easy to scan, and signals quality to search engines. Start by collecting baseline signals (title, meta description, headings, canonical, robots, indexability, schema). Then fix clarity and relevance: craft a descriptive title with the primary keyword near the beginning, write a benefit‑focused meta description (≤155 chars), and ensure a single H1 with structured H2/H3 sections. Improve keyword placement naturally in the opening paragraph, headings, and alt text; avoid stuffing. Strengthen content depth with examples, data, and internal links to related resources. Optimize images (compressed, descriptive alt, width/height set), add clean JSON‑LD for Article, HowTo, and FAQPage, and verify canonical, robots, and indexation. Finally, test mobile experience, Core Web Vitals, and re‑run the audit to confirm improvements.",
+      "semantic_keywords_added": [
+        "check on‑page SEO",
+        "onpage seo check",
+        "SEO on‑page check",
+        "website SEO check",
+        "on‑page audit",
+        "meta tags audit",
+        "heading structure",
+        "keyword placement",
+        "internal linking",
+        "schema markup",
+        "indexability"
+      ],
+      "internal_links_added": [
+        "Homepage (/)",
+        "Category: On‑Page Optimization (/category/on-page-optimization)",
+        "Tool: On‑Page SEO Audit Checker (/tools/on-page-seo-audit-checker)",
+        "Tool: Meta Tag Generator (/tools/meta-tag-generator)",
+        "Tool: Heading Analyzer (/tools/heading-analyzer)",
+        "Tool: Structured Data Validator (/tools/structured-data-validator)",
+        "Tool: Internal Linking Planner (/tools/internal-linking-planner)"
+      ],
+      "schema_json_ld": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://www.100seotools.com/blog/on-page-seo-audit-checker-how-to-use",
+            "url": "https://www.100seotools.com/blog/on-page-seo-audit-checker-how-to-use",
+            "name": "Check On‑Page SEO: Step‑by‑Step Onpage SEO Check",
+            "description": "How to check on‑page SEO: analyze titles, meta, headings, keyword placement, internal links, schema, indexability, and performance.",
+            "isPartOf": { "@id": "https://www.100seotools.com/" }
+          },
+          {
+            "@type": "Article",
+            "headline": "Check On‑Page SEO: Step‑by‑Step Onpage SEO Check — Samples, Fixes, FAQs",
+            "description": "Practical guide to running an on‑page SEO check and fixing common issues across metadata, headings, content, links, images, schema, and indexation.",
+            "isPartOf": { "@id": "https://www.100seotools.com/blog/on-page-seo-audit-checker-how-to-use" },
+            "mainEntityOfPage": { "@id": "https://www.100seotools.com/blog/on-page-seo-audit-checker-how-to-use" },
+            "author": { "@type": "Organization", "name": "100 SEO Tools" }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do I check on‑page SEO?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Open the tool, enter your URL, collect baseline signals (title, meta, headings, canonical, robots, schema), fix issues, add internal links, validate indexation, and re‑run to confirm improvements."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What should I analyze in an on‑page SEO check?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Titles, meta descriptions, H1–H3 structure, keyword placement, content depth, internal links, images and alt text, JSON‑LD, canonical, robots, indexability, and mobile performance."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is ‘check onpage seo’ different from ‘check on‑page SEO’?",
+                "acceptedAnswer": { "@type": "Answer", "text": "They refer to the same workflow. Use either phrasing naturally based on user language." }
+              }
+            ]
+          },
+          {
+            "@type": "HowTo",
+            "name": "How to run an on‑page SEO check",
+            "step": [
+              { "@type": "HowToStep", "name": "Open the tool and enter your URL" },
+              { "@type": "HowToStep", "name": "Collect baseline signals (title, meta, H1–H3, canonical, robots, schema)" },
+              { "@type": "HowToStep", "name": "Fix metadata and heading structure" },
+              { "@type": "HowToStep", "name": "Improve keyword placement and content depth" },
+              { "@type": "HowToStep", "name": "Add internal links and optimize images" },
+              { "@type": "HowToStep", "name": "Validate JSON‑LD, canonical, and indexation" },
+              { "@type": "HowToStep", "name": "Test mobile performance and re‑run the audit" }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.100seotools.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.100seotools.com/blog" },
+              { "@type": "ListItem", "position": 3, "name": "Check On‑Page SEO Guide", "item": "https://www.100seotools.com/blog/on-page-seo-audit-checker-how-to-use" }
+            ]
+          }
+        ]
+      },
+      "faq": [
+        { "q": "How do I check on‑page SEO?", "a": "Open the tool, enter your URL, collect baseline signals, fix metadata and headings, add internal links, validate schema and indexation, capture screenshots, then re‑run to confirm improvements." },
+        { "q": "What elements should I analyze?", "a": "Titles, meta descriptions, H1–H3 structure, keyword placement, content depth, internal links, images and alt text, JSON‑LD, canonical, robots, indexability, mobile and Core Web Vitals." },
+        { "q": "Do I need schema?", "a": "Yes—use clean JSON‑LD for Article, FAQPage, and HowTo to improve semantic signals and rich results eligibility." },
+        { "q": "How often should I re‑audit?", "a": "After major content changes, and at least quarterly. Re‑run after fixes to confirm improvements." }
+      ],
+      "examples_added": [
+        "Title fix: ‘Guide to Internal Links’ → ‘Internal Linking Guide: How to Improve SEO with Smart Anchors’",
+        "Meta fix: Add benefit‑focused copy with primary keyword and call‑to‑action",
+        "Heading fix: Single H1, descriptive H2/H3 with keywords naturally",
+        "Image fix: Compressed JPG/WEBP with descriptive alt text and dimensions"
+      ],
+      "steps_added": [
+        "Open the on‑page SEO tool and enter your URL",
+        "Run baseline check: title, meta, H1–H3, canonical, robots, schema",
+        "Fix metadata and heading hierarchy",
+        "Improve keyword placement in intro, headings, and alt text",
+        "Add 3–5 internal links with descriptive anchors",
+        "Validate JSON‑LD, canonical, and indexability",
+        "Test mobile performance and Core Web Vitals; re‑run audit"
+      ],
+      "notes": "Output follows universal rules: UI unchanged, text only; JSON‑LD is clean (no HTML fragments); semantic depth improved; internal links suggested; aligns with search intent for ‘check onpage seo’."
+    }
+  ]
+}

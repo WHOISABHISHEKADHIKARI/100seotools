@@ -204,10 +204,8 @@ export default function SearchFilter({ tools, onChange }) {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-3 items-center">
         <div className="md:col-span-6">
           <div className="relative">
-            {isSearching ? (
+            {isSearching && (
               <FiLoader aria-hidden className="pointer-events-none w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 animate-spin" />
-            ) : (
-              <FiSearch aria-hidden className="pointer-events-none w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             )}
             <input
               id="tool-search"

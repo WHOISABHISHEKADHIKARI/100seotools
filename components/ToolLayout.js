@@ -6,7 +6,9 @@ import path from 'node:path';
 
 function getInstructionEntry(slug) {
   try {
-    const file = path.resolve(process.cwd(), 'tools', 'json instruction');
+    const primary = path.resolve(process.cwd(), 'instruction', 'json-instruction.json');
+    const fallback = path.resolve(process.cwd(), 'tools', 'json instruction');
+    const file = fs.existsSync(primary) ? primary : fallback;
     const text = fs.readFileSync(file, 'utf8');
     const obj = JSON.parse(text);
     const entries = Array.isArray(obj.entries) ? obj.entries : [];
@@ -598,7 +600,9 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
         <p>This tool is provided free of charge and requires no login. All processing happens in your browser - no data is sent to our servers.</p>
         <p className="mt-1">Last updated: {new Date().toLocaleDateString()}</p>
       </div>
+      {override && override.schema_json_ld && (
+        <StructuredData data={override.schema_json_ld} />
+      )}
     </div>
-    {override && override.schema_json_ld && (<StructuredData data={override.schema_json_ld} />)}
   );
 }

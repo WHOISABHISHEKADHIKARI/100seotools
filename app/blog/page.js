@@ -35,7 +35,9 @@ export default async function BlogPage() {
   const posts = await getAllBlogPostsPublished();
   let instructionEntries = [];
   try {
-    const file = path.resolve(process.cwd(), 'tools', 'json instruction');
+    const primary = path.resolve(process.cwd(), 'instruction', 'json-instruction.json');
+    const fallback = path.resolve(process.cwd(), 'tools', 'json instruction');
+    const file = fs.existsSync(primary) ? primary : fallback;
     const text = fs.readFileSync(file, 'utf8');
     const json = JSON.parse(text);
     const entries = Array.isArray(json.entries) ? json.entries : [];
