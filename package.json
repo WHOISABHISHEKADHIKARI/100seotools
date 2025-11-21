@@ -10,7 +10,7 @@
     "prepare": "husky",
     "build:analyze": "ANALYZE=true next build",
     "generate:tools": "node scripts/generateTools.js",
-    "validate": "node scripts/validate.js",
+    "validate": "node scripts/validate.cjs",
     "audit:contrast": "node scripts/contrastAudit.js",
     "lint:links": "node scripts/checkExternalLinks.js",
     "lint:canon": "node scripts/lintCanonical.js",

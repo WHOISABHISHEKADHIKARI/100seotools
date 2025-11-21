@@ -1,19 +1,9 @@
 import Link from 'next/link';
-import UnifiedCard from '../../components/UnifiedCard';
 import StructuredData from '../../components/StructuredData';
-import BlogSection from '../../components/BlogSection';
-import dynamicImport from 'next/dynamic';
-const BlogCard = dynamicImport(() => import('../../components/BlogCard'), {
-  loading: () => (
-    <div
-      className="h-48 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/10 animate-pulse"
-      aria-hidden="true"
-    />
-  )
-});
-import { getAllToolsMeta } from '../../tools';
 import { getAllBlogPostsPublished } from '../../lib/blog-data';
 import { getBaseUrl } from '../../lib/site';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const baseUrl = getBaseUrl();
 
@@ -41,17 +31,26 @@ export const metadata = {
   },
 };
 
-export default async function BlogPage({ searchParams }) {
-  const tools = getAllToolsMeta();
+export default async function BlogPage() {
   const posts = await getAllBlogPostsPublished();
-  const currentPage = Math.max(1, Number(searchParams?.page) || 1);
-  const postsPerPage = 24;
-  const totalPostPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
-  const pagedPosts = posts.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
-  const toolsPage = Math.max(1, Number(searchParams?.toolsPage) || 1);
-  const toolsPerPage = 12;
-  const totalToolPages = Math.max(1, Math.ceil(tools.length / toolsPerPage));
-  const pagedTools = tools.slice((toolsPage - 1) * toolsPerPage, toolsPage * toolsPerPage);
+  let instructionEntries = [];
+  try {
+    const file = path.resolve(process.cwd(), 'tools', 'json instruction');
+    const text = fs.readFileSync(file, 'utf8');
+    const json = JSON.parse(text);
+    const entries = Array.isArray(json.entries) ? json.entries : [];
+    instructionEntries = entries.filter((e) => {
+      try {
+        const g = e.schema_json_ld && e.schema_json_ld['@graph'];
+        if (!Array.isArray(g)) return false;
+        const wp = g.find((n) => n && n['@type'] === 'WebPage');
+        const u = wp && (wp.url || wp['@id']);
+        return typeof u === 'string' && /\/blog\//.test(u);
+      } catch {
+        return false;
+      }
+    });
+  } catch {}
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -60,23 +59,69 @@ export default async function BlogPage({ searchParams }) {
       { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` }
     ]
   };
-  const articleLd = {
+  const collectionLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
-    description:
-      'Explore 100+ free SEO tools for keyword research, on-page optimization, technical checks, backlinks, local SEO, AI writing, and performance tracking — all in your browser.',
-    datePublished: new Date().toISOString(),
-    author: { '@type': 'Organization', name: '100 SEO Tools' },
-    publisher: { '@type': 'Organization', name: '100 SEO Tools' },
-    mainEntityOfPage: `${baseUrl}/blog`,
-    url: `${baseUrl}/blog`,
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        name: '100 SEO Tools Blog',
+        description:
+          'All SEO guides merged into one page with anchors for faster discovery and better crawlability.',
+        url: `${baseUrl}/blog`,
+        isPartOf: `${baseUrl}/`,
+      },
+      breadcrumbLd,
+      ...posts.flatMap((p) => {
+        const anchor = `${baseUrl}/blog#${p.slug}`;
+        const nodes = [
+          {
+            '@type': 'Article',
+            headline: p.title,
+            description: p.description,
+            datePublished: p.datePublished,
+            author: { '@type': 'Organization', name: '100 SEO Tools' },
+            publisher: { '@type': 'Organization', name: '100 SEO Tools' },
+            url: anchor,
+            mainEntityOfPage: anchor,
+            inLanguage: 'en-US',
+            wordCount: p.wordCount || 1200,
+            articleSection: p.category || 'SEO Guides',
+            keywords: Array.isArray(p.tags) ? p.tags.join(', ') : undefined,
+          }
+        ];
+        if (Array.isArray(p.sections?.faq) && p.sections.faq.length > 0) {
+          nodes.push({
+            '@type': 'FAQPage',
+            url: anchor,
+            isPartOf: anchor,
+            mainEntity: p.sections.faq.map((f) => ({
+              '@type': 'Question',
+              name: f.q,
+              acceptedAnswer: { '@type': 'Answer', text: f.a }
+            }))
+          });
+        }
+        if (Array.isArray(p.sections?.howDetailed) && p.sections.howDetailed.length > 0) {
+          nodes.push({
+            '@type': 'HowTo',
+            url: anchor,
+            isPartOf: anchor,
+            name: p.title,
+            description: p.description,
+            step: p.sections.howDetailed.map((s) => ({ '@type': 'HowToStep', text: s }))
+          });
+        }
+        return nodes;
+      })
+    ]
   };
 
   return (
     <article className="max-w-3xl mx-auto py-10 space-y-10">
-      <StructuredData data={breadcrumbLd} />
-      <StructuredData data={articleLd} />
+      <StructuredData data={collectionLd} />
+      {instructionEntries.map((e, i) => (
+        <StructuredData key={`instr-${i}`} data={e.schema_json_ld} />
+      ))}
 
       {/* Premium hero */}
       <header className="text-center p-6 rounded-xl border border-slate-200 dark:border-white/10 bg-gradient-to-r from-slate-50/60 to-transparent dark:from-white/5">
@@ -253,183 +298,74 @@ export default async function BlogPage({ searchParams }) {
         </p>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-xl md:text-2xl font-semibold">Tool Guides</h2>
-        <p className="text-gray-700 dark:text-gray-300">Explore how to use each tool effectively. Read the guide or open the tool directly.</p>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {pagedTools.map((t, index) => (
-          <BlogCard
-            key={t.slug}
-            href={`/tools/${t.slug}`}
-            title={t.name}
-            description={t.description || t.category}
-            category={t.category}
-            readTime="5 min read"
-            author="100 SEO Tools"
-            publishedAt={new Date().toISOString()}
-            priority={index < 3}
-            showImage={false}
-            className="hover:shadow-md transition"
-          />
-          ))}
-        </div>
-
-        {/* Pager for tools - premium segmented control */}
-        <nav aria-label="Tool pages" className="not-prose mt-6">
-          <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/30 p-1 shadow-sm">
-            {/* Prev */}
-            <Link
-              href={(() => {
-                const tp = Math.max(1, toolsPage - 1);
-                const qp = new URLSearchParams();
-                if (currentPage > 1) qp.set('page', String(currentPage));
-                if (tp > 1) qp.set('toolsPage', String(tp));
-                const qs = qp.toString();
-                return qs ? `/blog?${qs}` : '/blog';
-              })()}
-              prefetch={false}
-              aria-disabled={toolsPage === 1}
-              aria-label={`Tools page ${Math.max(1, toolsPage - 1)}`}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${toolsPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 dark:text-brand-300 hover:bg-slate-50 dark:hover:bg-white/10'}`}
-            >
-              ← Prev
-            </Link>
-
-            {/* Pages */}
-            <ul className="flex flex-wrap gap-1">
-              {Array.from({ length: totalToolPages }, (_, i) => i + 1).map((p) => (
-                <li key={p}>
-                  <Link
-                    href={(() => {
-                      const qp = new URLSearchParams();
-                      if (currentPage > 1) qp.set('page', String(currentPage));
-                      if (p > 1) qp.set('toolsPage', String(p));
-                      const qs = qp.toString();
-                      return qs ? `/blog?${qs}` : '/blog';
-                    })()}
-                    prefetch={false}
-                    aria-current={p === toolsPage ? 'page' : undefined}
-                    className={`px-3 py-1.5 rounded-md text-sm font-medium border ${p === toolsPage ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border-slate-200 dark:border-white/10'}`}
-                    aria-label={`Tools page ${p}`}
-                  >
-                    {p}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            {/* Next */}
-            <Link
-              href={(() => {
-                const tp = Math.min(totalToolPages, toolsPage + 1);
-                const qp = new URLSearchParams();
-                if (currentPage > 1) qp.set('page', String(currentPage));
-                if (tp > 1) qp.set('toolsPage', String(tp));
-                const qs = qp.toString();
-                return qs ? `/blog?${qs}` : '/blog';
-              })()}
-              prefetch={false}
-              aria-disabled={toolsPage === totalToolPages}
-              aria-label={`Tools page ${Math.min(totalToolPages, toolsPage + 1)}`}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${toolsPage === totalToolPages ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 dark:text-brand-300 hover:bg-slate-50 dark:hover:bg-white/10'}`}
-            >
-              Next →
-            </Link>
-          </div>
-          <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">Page {toolsPage} of {totalToolPages}</div>
+      {/* Table of contents for all blog posts (anchors) */}
+      <section className="space-y-3">
+        <h2 className="text-xl md:text-2xl font-semibold">All Guides</h2>
+        <p className="text-gray-700 dark:text-gray-300">Jump to any guide below. All content is merged into this one page for faster crawling and lower click depth.</p>
+        <nav aria-label="Table of contents">
+          <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+            {posts.map((p) => (
+              <li key={p.slug}>
+                <a className="text-brand-600 hover:underline" href={`#${p.slug}`}>{p.title}</a>
+              </li>
+            ))}
+          </ul>
         </nav>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-xl md:text-2xl font-semibold">SEO Mastery (100 Simple Guides)</h2>
-        <p className="text-gray-700 dark:text-gray-300">Quick, actionable posts covering foundations, keyword research, on-page, technical, links, content, local, AI, SERP features, and tracking.</p>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {pagedPosts.map((p, index) => (
-            <BlogCard
-              key={p.slug}
-              href={`/blog/${p.slug}`}
-              title={p.title}
-              description={p.description}
-              category={p.category}
-              readTime={`${p.readTimeMinutes || 5} min read`}
-              author={typeof p.author === 'string' ? p.author : p.author?.name || '100 SEO Tools'}
-              publishedAt={p.datePublished}
-              priority={index < 3}
-              showImage={false}
-              className="hover:shadow-md transition"
-            />
-          ))}
-        </div>
+      {/* Merged one‑pager sections for all posts */}
+      {posts.map((p) => (
+        <section key={p.slug} id={p.slug} className="space-y-3 scroll-mt-20">
+          <h2 className="text-xl md:text-2xl font-semibold">{p.title}</h2>
+          <p className="text-gray-700 dark:text-gray-300">{p.description}</p>
+          <div className="text-xs text-slate-500 dark:text-slate-400">Category: {p.category} · {new Date(p.datePublished).toLocaleDateString()} · {p.readTimeMinutes || 8} min read</div>
+          <details className="group open:space-y-2">
+            <summary className="cursor-pointer text-brand-600 hover:underline">Expand</summary>
+            {p.sections?.intro && (<p className="text-gray-700 dark:text-gray-300">{p.sections.intro}</p>)}
+            {Array.isArray(p.sections?.how) && p.sections.how.length > 0 && (
+              <div>
+                <h3 className="text-lg font-medium">How</h3>
+                <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                  {p.sections.how.map((h, i) => (
+                    <li key={i}><a href={h.slug ? `/tools/${h.slug}` : '#'} className="text-brand-600 hover:underline">{h.label || h.text}</a></li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {Array.isArray(p.sections?.howDetailed) && p.sections.howDetailed.length > 0 && (
+              <div>
+                <h3 className="text-lg font-medium">Steps</h3>
+                <ol className="list-decimal pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                  {p.sections.howDetailed.map((s, i) => (<li key={i}>{s}</li>))}
+                </ol>
+              </div>
+            )}
+            {Array.isArray(p.sections?.tips) && p.sections.tips.length > 0 && (
+              <div>
+                <h3 className="text-lg font-medium">Tips</h3>
+                <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                  {p.sections.tips.map((t, i) => (<li key={i}>{t}</li>))}
+                </ul>
+              </div>
+            )}
+            {Array.isArray(p.sections?.faq) && p.sections.faq.length > 0 && (
+              <div>
+                <h3 className="text-lg font-medium">FAQ</h3>
+                <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+                  {p.sections.faq.map((f, i) => (
+                    <li key={i}><span className="font-medium">Q:</span> {f.q} <br /><span className="font-medium">A:</span> {f.a}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </details>
+          <div className="mt-2"><a href="#top" className="text-sm text-brand-600 hover:underline">Back to top</a></div>
+        </section>
+      ))}
 
-        {/* Pager for posts - premium segmented control */}
-        <nav aria-label="Blog pages" className="not-prose mt-6">
-          <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/30 p-1 shadow-sm">
-            {/* Prev */}
-            <Link
-              href={(() => {
-                const cp = Math.max(1, currentPage - 1);
-                const qp = new URLSearchParams();
-                if (cp > 1) qp.set('page', String(cp));
-                if (toolsPage > 1) qp.set('toolsPage', String(toolsPage));
-                const qs = qp.toString();
-                return qs ? `/blog?${qs}` : '/blog';
-              })()}
-              prefetch={false}
-              aria-disabled={currentPage === 1}
-              aria-label={`Blog page ${Math.max(1, currentPage - 1)}`}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${currentPage === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 dark:text-brand-300 hover:bg-slate-50 dark:hover:bg-white/10'}`}
-            >
-              ← Prev
-            </Link>
-
-            {/* Pages */}
-            <ul className="flex flex-wrap gap-1">
-              {Array.from({ length: totalPostPages }, (_, i) => i + 1).map((p) => (
-                <li key={p}>
-                  <Link
-                    href={(() => {
-                      const qp = new URLSearchParams();
-                      if (p > 1) qp.set('page', String(p));
-                      if (toolsPage > 1) qp.set('toolsPage', String(toolsPage));
-                      const qs = qp.toString();
-                      return qs ? `/blog?${qs}` : '/blog';
-                    })()}
-                    prefetch={false}
-                    aria-current={p === currentPage ? 'page' : undefined}
-                    className={`px-3 py-1.5 rounded-md text-sm font-medium border ${p === currentPage ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border-slate-200 dark:border-white/10'}`}
-                    aria-label={`Blog page ${p}`}
-                  >
-                    {p}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            {/* Next */}
-            <Link
-              href={(() => {
-                const cp = Math.min(totalPostPages, currentPage + 1);
-                const qp = new URLSearchParams();
-                if (cp > 1) qp.set('page', String(cp));
-                if (toolsPage > 1) qp.set('toolsPage', String(toolsPage));
-                const qs = qp.toString();
-                return qs ? `/blog?${qs}` : '/blog';
-              })()}
-              prefetch={false}
-              aria-disabled={currentPage === totalPostPages}
-              aria-label={`Blog page ${Math.min(totalPostPages, currentPage + 1)}`}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium border border-transparent ${currentPage === totalPostPages ? 'text-slate-400 cursor-not-allowed' : 'text-brand-700 dark:text-brand-300 hover:bg-slate-50 dark:hover:bg-white/10'}`}
-            >
-              Next →
-            </Link>
-          </div>
-          <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">Page {currentPage} of {totalPostPages}</div>
-        </nav>
-      </section>
-
-      {/* Enhanced Blog Section with Latest Posts */}
+      {/* Footer note */}
       <section className="mt-12">
-        <BlogSection showHeader={true} limit={3} />
+        <p className="text-sm text-gray-600 dark:text-gray-400">All guides are merged into this single page. Old blog URLs redirect to these anchors.</p>
       </section>
     </article>
   );

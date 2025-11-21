@@ -13,15 +13,20 @@ export default function ToolRunner({ tool }) {
     return init;
   });
   const [output, setOutput] = useState('');
+  const [pasteFeedback, setPasteFeedback] = useState({ field: null, ts: 0 });
 
   const onChange = (name, value) => setInputs((prev) => ({ ...prev, [name]: value }));
   const onPaste = (e, name) => {
     try {
-      const pasted = e.clipboardData?.getData('text/html') || e.clipboardData?.getData('text/plain') || '';
-      if (pasted) {
+      const plain = e.clipboardData?.getData('text/plain') || '';
+      const html = e.clipboardData?.getData('text/html') || '';
+      const src = plain || html || '';
+      if (src) {
         e.preventDefault();
-        const normalized = normalizePastedContent(pasted);
+        const normalized = normalizePastedContent(src);
         onChange(name, normalized);
+        setPasteFeedback({ field: name, ts: Date.now() });
+        setTimeout(() => setPasteFeedback((p) => (p.field === name ? { field: null, ts: 0 } : p)), 2000);
       }
     } catch {}
   };
@@ -33,7 +38,12 @@ export default function ToolRunner({ tool }) {
         <div className="space-y-3">
           {def.fields.map((f) => (
             <div key={f.name}>
-              <label className="block text-sm mb-1" htmlFor={`field-${f.name}`}>{f.label}</label>
+              <label className="block text-sm mb-1" htmlFor={`field-${f.name}`}>
+                {f.label}
+                {pasteFeedback.field === f.name ? (
+                  <span role="status" aria-live="polite" className="ml-2 text-xs text-slate-500">Pasted as plain text</span>
+                ) : null}
+              </label>
               {f.type === 'textarea' ? (
                 <textarea id={`field-${f.name}`} className="input h-36" value={inputs[f.name]} onChange={(e) => onChange(f.name, e.target.value)} onPaste={(e) => onPaste(e, f.name)} placeholder={f.placeholder || ''} aria-label={f.label} title={f.placeholder || f.label} />
               ) : (

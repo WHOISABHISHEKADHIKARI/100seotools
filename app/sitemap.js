@@ -94,21 +94,9 @@ export default async function sitemap() {
     priority: 0.8
   }));
 
-  // Blog guides per tool
-  const blogEntries = tools.map((t) => ({
-    url: `${baseUrl}/blog/${t.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly',
-    priority: 0.6
-  }));
-
-  // Generic SEO blog posts
-  const seoBlogEntries = posts.map((p) => ({
-    url: `${baseUrl}/blog/${p.slug}`,
-    lastModified: p.datePublished ? new Date(p.datePublished) : now,
-    changeFrequency: 'monthly',
-    priority: 0.5
-  }));
+  // Blog guides now merged into the single /blog page; avoid per‑post URLs in sitemap
+  const blogEntries = [];
+  const seoBlogEntries = [];
 
   const categoryEntries = categories.map((cat) => ({
     url: `${baseUrl}/category/${slugify(cat)}`,

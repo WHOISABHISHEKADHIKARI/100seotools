@@ -1,9 +1,36 @@
 import { getToolGuide } from '../lib/guides';
 import UnifiedCard from './UnifiedCard';
+import StructuredData from './StructuredData';
+import fs from 'node:fs';
+import path from 'node:path';
+
+function getInstructionEntry(slug) {
+  try {
+    const file = path.resolve(process.cwd(), 'tools', 'json instruction');
+    const text = fs.readFileSync(file, 'utf8');
+    const obj = JSON.parse(text);
+    const entries = Array.isArray(obj.entries) ? obj.entries : [];
+    const match = entries.find((e) => {
+      try {
+        const g = e.schema_json_ld && e.schema_json_ld['@graph'];
+        if (!Array.isArray(g)) return false;
+        const wp = g.find((n) => n && n['@type'] === 'WebPage');
+        const u = wp && (wp.url || wp['@id']);
+        return typeof u === 'string' && /\/tools\//.test(u) && u.endsWith(`/tools/${slug}`);
+      } catch {
+        return false;
+      }
+    });
+    return match || null;
+  } catch {
+    return null;
+  }
+}
 
 export default function ToolLayout({ tool, children, formFirst = false, relatedTools = [] }) {
   // Generate guidance content for any tool via generic generator
   const guide = getToolGuide(tool);
+  const override = getInstructionEntry(tool.slug);
 
   return (
     <div className="space-y-6">
@@ -46,6 +73,77 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
             <a href="/tools/xml-sitemap-visualizer" className="hover:underline">XML Sitemap Visualizer</a>,{' '}
             <a href="/blog/free-seo-tools-list-2024" className="hover:underline">Free SEO Tools list</a>,{' '}
             <a href="/blog/100-free-seo-tools-ultimate-list" className="hover:underline">100 SEO Tools ultimate guide</a>
+          </div>
+        )}
+        {tool.slug === 'seo-content-checker' && (
+          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
+            <span className="font-medium">Further reading:</span>{' '}
+            <a href="/" className="hover:underline">Homepage</a>,{' '}
+            <a href="/category/content-seo" className="hover:underline">Content SEO tools</a>,{' '}
+            <a href="/tools/keyword-density-checker" className="hover:underline">Keyword Density Checker</a>,{' '}
+            <a href="/tools/readability-score-calculator" className="hover:underline">Readability Score Calculator</a>,{' '}
+            <a href="/tools/heading-analyzer" className="hover:underline">Heading Analyzer</a>,{' '}
+            <a href="/tools/meta-tag-generator" className="hover:underline">Meta Tag Generator</a>,{' '}
+            <a href="/blog/seo-content-checker-how-to-use" className="hover:underline">SEO Content Checker: How to Use</a>
+          </div>
+        )}
+        {tool.slug === 'meta-tag-generator' && (
+          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
+            <span className="font-medium">Further reading:</span>{' '}
+            <a href="/" className="hover:underline">Homepage</a>,{' '}
+            <a href="/category/on-page-optimization" className="hover:underline">On‑Page Optimization tools</a>,{' '}
+            <a href="/tools/meta-description-optimizer" className="hover:underline">Meta Description Generator</a>,{' '}
+            <a href="/tools/heading-analyzer" className="hover:underline">Heading Analyzer</a>,{' '}
+            <a href="/tools/structured-data-validator" className="hover:underline">Structured Data Validator</a>,{' '}
+            <a href="/blog/meta-tag-generator" className="hover:underline">Meta Tag Generator guide</a>
+          </div>
+        )}
+        {tool.slug === 'competitor-gap-analyzer' && (
+          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
+            <span className="font-medium">Further reading:</span>{' '}
+            <a href="/" className="hover:underline">Homepage</a>,{' '}
+            <a href="/category/competitor-analysis" className="hover:underline">Competitor Analysis tools</a>,{' '}
+            <a href="/tools/keyword-gap-finder" className="hover:underline">Keyword Gap Finder</a>,{' '}
+            <a href="/tools/competitor-keyword-overlap-checker" className="hover:underline">Competitor Keyword Overlap Checker</a>,{' '}
+            <a href="/tools/keyword-clustering-tool" className="hover:underline">Keyword Clustering Tool</a>,{' '}
+            <a href="/tools/internal-linking-planner" className="hover:underline">Internal Linking Planner</a>
+          </div>
+        )}
+        {tool.slug === 'on-page-seo-audit-checker' && (
+          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
+            <span className="font-medium">Further reading:</span>{' '}
+            <a href="/" className="hover:underline">Homepage</a>,{' '}
+            <a href="/category/on-page-optimization" className="hover:underline">On‑Page Optimization tools</a>,{' '}
+            <a href="/tools/meta-tag-generator" className="hover:underline">Meta Tag Generator</a>,{' '}
+            <a href="/tools/heading-analyzer" className="hover:underline">Heading Analyzer</a>,{' '}
+            <a href="/tools/structured-data-validator" className="hover:underline">Structured Data Validator</a>,{' '}
+            <a href="/tools/internal-linking-planner" className="hover:underline">Internal Linking Planner</a>,{' '}
+            <a href="/tools/seo-content-checker" className="hover:underline">SEO Content Checker</a>
+          </div>
+        )}
+        {tool.slug === 'local-seo-audit-checklist' && (
+          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
+            <span className="font-medium">Further reading:</span>{' '}
+            <a href="/" className="hover:underline">Homepage</a>,{' '}
+            <a href="/category/local-seo" className="hover:underline">Local SEO tools</a>,{' '}
+            <a href="/tools/local-citation-finder" className="hover:underline">Local Citation Finder</a>,{' '}
+            <a href="/tools/nap-consistency-checker" className="hover:underline">NAP Consistency Checker</a>,{' '}
+            <a href="/tools/local-schema-builder" className="hover:underline">Local Schema Builder</a>,{' '}
+            <a href="/tools/structured-data-validator" className="hover:underline">Structured Data Validator</a>,{' '}
+            <a href="/tools/on-page-seo-audit-checker" className="hover:underline">On‑Page SEO Audit Checker</a>
+          </div>
+        )}
+        {tool.slug === 'text-to-html-converter' && (
+          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
+            <span className="font-medium">Further reading:</span>{' '}
+            <a href="/" className="hover:underline">Homepage</a>,{' '}
+            <a href="/category/seo-utility" className="hover:underline">SEO Utility tools</a>,{' '}
+            <a href="/tools/structured-data-validator" className="hover:underline">Structured Data Validator</a>,{' '}
+            <a href="/tools/schema-markup-generator" className="hover:underline">Schema Markup Generator</a>,{' '}
+            <a href="/tools/heading-analyzer" className="hover:underline">Heading Analyzer</a>,{' '}
+            <a href="/tools/meta-tag-generator" className="hover:underline">Meta Tag Generator</a>,{' '}
+            <a href="/tools/url-slug-generator" className="hover:underline">URL Slug Generator</a>,{' '}
+            <a href="/tools/og-tag-generator" className="hover:underline">OG Tag Generator</a>
           </div>
         )}
         {tool.slug === 'keyword-suggestion-tool' && (
@@ -501,5 +599,6 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
         <p className="mt-1">Last updated: {new Date().toLocaleDateString()}</p>
       </div>
     </div>
+    {override && override.schema_json_ld && (<StructuredData data={override.schema_json_ld} />)}
   );
 }

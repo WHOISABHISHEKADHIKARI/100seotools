@@ -38,11 +38,12 @@ const nextConfig = withBundleAnalyzer({
   turbopack: {},
   redirects: async () => {
     const common = [
-      { source: '/blog/:slug/p/:page', destination: '/blog/:slug', permanent: true },
+      { source: '/blog/:slug/p/:page', destination: '/blog#:slug', permanent: true },
+      { source: '/blog/:slug/p', destination: '/blog#:slug', permanent: true },
+      { source: '/blog/:slug', destination: '/blog#:slug', permanent: true },
       { source: '/blog/p/:page', destination: '/blog', permanent: true },
       { source: '/category/:slug/p/:page', destination: '/category/:slug', permanent: true },
       { source: '/tools/:slug/p/:page', destination: '/tools/:slug', permanent: true },
-      { source: '/blog/:slug/p', destination: '/blog/:slug', permanent: true },
     ];
     if (process.env.NODE_ENV !== 'production') return common;
     return [
