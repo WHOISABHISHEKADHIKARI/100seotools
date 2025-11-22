@@ -61,10 +61,16 @@ export default function CategoryIndexPage() {
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {categories.map((c) => (
           <li key={c} className="rounded-lg border border-slate-200 dark:border-white/10 p-4 relative">
-            {/* Full-card click target: open category */}
-            <a href={`/category/${slugify(c)}`} aria-label={`Open category: ${c}`} className="absolute inset-0 z-10">
+            <div
+              role="link"
+              tabIndex={0}
+              aria-label={`Open category: ${c}`}
+              className="absolute inset-0 z-10 cursor-pointer"
+              onClick={() => { window.location.href = `/category/${slugify(c)}`; }}
+              onKeyDown={(e) => { const k = e.key; if (k === 'Enter' || k === ' ') { e.preventDefault(); window.location.href = `/category/${slugify(c)}`; } }}
+            >
               <span className="sr-only">Open category: {c}</span>
-            </a>
+            </div>
             <h2 className="font-semibold text-lg mb-2 relative z-20">
               <Link href={`/category/${slugify(c)}`} prefetch={false} className="hover:text-brand-600">{c}</Link>
             </h2>
