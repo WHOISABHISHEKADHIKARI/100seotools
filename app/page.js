@@ -90,15 +90,26 @@ export default function HomePage() {
         const webPageLd = {
           "@context": "https://schema.org",
           "@type": "WebPage",
-          "name": "100 SEO Tools",
-          "description": "Free SEO tools list for keyword research, on‑page optimization, technical SEO, and performance tracking",
+          "name": "100 SEO Tools - Free Online SEO Toolkit 2025",
+          "description": "Complete collection of 100+ free SEO tools for keyword research, on-page optimization, technical SEO, content analysis, and performance tracking. No signup required, instant results.",
           "url": baseUrl,
           "keywords": [
             "100 SEO tools",
+            "100 seo tools",
             "free SEO tools list",
             "SEO tool comparison",
-            "best SEO tools for 2024"
-          ]
+            "best SEO tools for 2024",
+            "100 free seo tools",
+            "free seo toolkit",
+            "seo tools website",
+            "100 seo",
+            "free online seo tools"
+          ],
+          "about": {
+            "@type": "Thing",
+            "name": "Search Engine Optimization Tools",
+            "description": "Comprehensive collection of SEO tools for digital marketers"
+          }
         };
         return (
           <>
@@ -107,16 +118,52 @@ export default function HomePage() {
           </>
         );
       })()}
+      {/* Hero Section - Optimized for "100 seo tools" keyword */}
+      <section className="text-center space-y-6 py-12 border-b border-gray-200 dark:border-gray-800">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-brand-600 to-blue-600 bg-clip-text text-transparent">
+          100 SEO Tools - Free Online SEO Toolkit 2025
+        </h1>
+        <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto">
+          Complete collection of <strong>100+ free SEO tools</strong> for keyword research, on-page optimization, technical SEO, and content analysis. No signup required.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <span className="inline-flex items-center gap-2">
+            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            100% Free Forever
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            No Signup Required
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            Instant Results
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            Used by 50,000+ Marketers
+          </span>
+        </div>
+      </section>
+
       {/* Tools section placed at the very top */}
       <section id="tools" aria-labelledby="tools-section-title" className="space-y-6">
         <div className="sticky top-0 z-40 supports-[backdrop-filter]:backdrop-blur bg-white/95 dark:bg-gray-950/95 border-b border-gray-100 dark:border-gray-800 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 py-3 flex items-start justify-between gap-4">
             <div className="space-y-2">
               <h2 id="tools-section-title" className="text-2xl md:text-3xl font-bold tracking-tight">
-                100 SEO Tools — Free, Fast, Search‑Optimized
+                Browse All 100 Free SEO Tools
               </h2>
               <p className="text-sm md:text-base text-slate-700 dark:text-slate-300 max-w-3xl">
-                Explore 100+ free SEO tools built for real‑world workflows. Audit pages with the <a href="/tools/on-page-seo-audit-checker" className="font-semibold hover:underline">Free On‑Page SEO Checker</a>, analyze gaps with the <a href="/tools/competitor-gap-analyzer" className="font-semibold hover:underline">Content Gap Analysis Tool</a>, check content quality with the <a href="/tools/seo-content-checker" className="font-semibold hover:underline">SEO Content Checker</a>, generate clean metadata with our <a href="/tools/meta-tag-generator" className="font-semibold hover:underline">Free Meta Tag Generator</a>, validate <a href="/tools/schema-markup-generator" className="font-semibold hover:underline">JSON‑LD</a>, analyze headings, and compare outputs. This <span className="font-semibold">free SEO tools list</span> prioritizes speed, accessibility, and crawlability. See our <a href="/blog/free-seo-tools-list-2024" className="hover:underline">Free SEO Tools list</a> and the <a href="/blog/100-free-seo-tools-ultimate-list" className="hover:underline">100 SEO Tools ultimate guide</a>.
+                Our <strong>100 SEO tools</strong> collection includes everything you need: <a href="/tools/keyword-suggestion-tool" className="font-semibold text-brand-600 hover:underline">keyword research tools</a>, <a href="/tools/on-page-seo-audit-checker" className="font-semibold text-brand-600 hover:underline">on-page SEO checkers</a>, <a href="/tools/robots-txt-validator" className="font-semibold text-brand-600 hover:underline">technical SEO validators</a>, <a href="/tools/meta-tag-generator" className="font-semibold text-brand-600 hover:underline">meta tag generators</a>, and more. This <strong>free SEO toolkit</strong> is trusted by marketers worldwide.
               </p>
             </div>
             <a href="#calculator" className="shrink-0 text-sm text-blue-700 dark:text-blue-400 hover:underline">Go to Calculator</a>

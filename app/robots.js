@@ -16,6 +16,7 @@ export default function robots() {
           '/500',
           '/502',
           '/offline',
+          '/alternative',
           '/card-demo',
           '/blog/*/p/',
           '/blog/*/p/*',

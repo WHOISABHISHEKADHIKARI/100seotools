@@ -54,7 +54,7 @@ export default async function sitemap() {
     url: `${baseUrl}/category`,
     lastModified: now,
     changeFrequency: 'weekly',
-    priority: 0.7
+    priority: 0.75
   });
   // Exclude offline and error utility pages from sitemap
 
@@ -99,7 +99,7 @@ export default async function sitemap() {
     url: `${baseUrl}/blog/${p.slug}`,
     lastModified: new Date(p.datePublished || now),
     changeFrequency: 'monthly',
-    priority: 0.5
+    priority: 0.6
   }));
   const seoBlogEntries = [];
 
@@ -107,7 +107,7 @@ export default async function sitemap() {
     url: `${baseUrl}/category/${slugify(cat)}`,
     lastModified: now,
     changeFrequency: 'monthly',
-    priority: 0.6
+    priority: 0.75
   }));
 
   // Exclude paginated listing pages from sitemap; canonical remains /blog

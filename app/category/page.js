@@ -1,6 +1,8 @@
+'use client';
 import Link from 'next/link';
 import { getAllToolsMeta } from '../../tools';
 import { getBaseUrl, siteName } from '../../lib/site';
+import { useRouter } from 'next/navigation';
 
 const baseUrl = getBaseUrl();
 
@@ -8,21 +10,8 @@ function slugify(str = '') {
   return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
-export async function generateMetadata() {
-  const title = `All Categories | ${siteName}`;
-  const description = 'Browse all SEO tool categories. Jump into keyword research, on-page optimization, technical SEO, and more.';
-  const url = `${baseUrl}/category`;
-  return {
-    title,
-    description,
-    robots: { index: true, follow: true },
-    alternates: { canonical: url },
-    openGraph: { title, description, url, siteName, type: 'website' },
-    twitter: { card: 'summary', title, description }
-  };
-}
-
 export default function CategoryIndexPage() {
+  const router = useRouter();
   const tools = getAllToolsMeta();
   const categories = Array.from(new Set(tools.map((t) => t.category).filter(Boolean)));
   const counts = categories.reduce((acc, c) => {
@@ -53,6 +42,17 @@ export default function CategoryIndexPage() {
     }
   };
 
+  const handleCategoryClick = (category) => {
+    router.push(`/category/${slugify(category)}`);
+  };
+
+  const handleKeyDown = (e, category) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCategoryClick(category);
+    }
+  };
+
   return (
     <main id="main" className="container mx-auto px-4 py-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -60,23 +60,26 @@ export default function CategoryIndexPage() {
       <p className="text-slate-600 dark:text-slate-300 mb-6">Pick a category to explore related SEO tools and guides.</p>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {categories.map((c) => (
-          <li key={c} className="rounded-lg border border-slate-200 dark:border-white/10 p-4 relative">
-            <div
-              role="link"
-              tabIndex={0}
-              aria-label={`Open category: ${c}`}
-              className="absolute inset-0 z-10 cursor-pointer"
-              onClick={() => { window.location.href = `/category/${slugify(c)}`; }}
-              onKeyDown={(e) => { const k = e.key; if (k === 'Enter' || k === ' ') { e.preventDefault(); window.location.href = `/category/${slugify(c)}`; } }}
-            >
-              <span className="sr-only">Open category: {c}</span>
-            </div>
-            <h2 className="font-semibold text-lg mb-2 relative z-20">
-              <Link href={`/category/${slugify(c)}`} prefetch={false} className="hover:text-brand-600">{c}</Link>
+          <li
+            key={c}
+            className="rounded-lg border border-slate-200 dark:border-white/10 p-4 hover:border-brand-500 hover:shadow-md transition-all duration-200 cursor-pointer group"
+            onClick={() => handleCategoryClick(c)}
+            onKeyDown={(e) => handleKeyDown(e, c)}
+            tabIndex={0}
+            role="button"
+            aria-label={`Open ${c} category with ${counts[c]} tool${counts[c] !== 1 ? 's' : ''}`}
+          >
+            <h2 className="font-semibold text-lg mb-2 group-hover:text-brand-600 transition-colors">
+              {c}
             </h2>
-            <p className="text-sm text-slate-600 dark:text-slate-300 mb-3 relative z-20">{counts[c]} tool{counts[c] !== 1 ? 's' : ''}</p>
-            <div className="flex items-center gap-3 relative z-20">
-              <Link href={`/category/${slugify(c)}`} prefetch={false} className="text-brand-600 hover:underline">Browse Tools</Link>
+            <p className="text-sm text-slate-600 dark:text-slate-300 mb-3">
+              {counts[c]} tool{counts[c] !== 1 ? 's' : ''}
+            </p>
+            <div className="flex items-center gap-2 text-brand-600 text-sm font-medium group-hover:gap-3 transition-all">
+              <span>Browse Tools</span>
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </div>
           </li>
         ))}
