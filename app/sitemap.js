@@ -95,7 +95,12 @@ export default async function sitemap() {
   }));
 
   // Blog guides now merged into the single /blog page; avoid per‑post URLs in sitemap
-  const blogEntries = [];
+  const blogEntries = posts.map((p) => ({
+    url: `${baseUrl}/blog/${p.slug}`,
+    lastModified: new Date(p.datePublished || now),
+    changeFrequency: 'monthly',
+    priority: 0.5
+  }));
   const seoBlogEntries = [];
 
   const categoryEntries = categories.map((cat) => ({

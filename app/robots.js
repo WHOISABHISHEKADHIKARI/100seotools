@@ -19,7 +19,8 @@ export default function robots() {
           '/card-demo',
           '/blog/*/p/',
           '/blog/*/p/*',
-          '/blog/p/'
+          '/blog/p/',
+          '/blog/tp/'
         ],
         // Explicitly allow essential static assets for rendering
         // Note: Google supports wildcard patterns (* and $)

@@ -10,11 +10,16 @@ export function proxy(request) {
   // Canonicalize non-www to www in production
   const host = request.headers.get('host') || '';
   const isLocal = /localhost|127\.0\.0\.1/.test(host);
-  if (!isLocal && host === '100seotools.com') {
+  if (!isLocal) {
     const url = new URL(request.url);
-    url.host = 'www.100seotools.com';
-    url.protocol = 'https:';
-    return NextResponse.redirect(url, 308);
+    const isHttp = url.protocol === 'http:';
+    const isBare = host === '100seotools.com';
+    const isOurDomain = /(^|\.)100seotools\.com$/i.test(host);
+    if (isBare || isHttp && isOurDomain) {
+      url.host = 'www.100seotools.com';
+      url.protocol = 'https:';
+      return NextResponse.redirect(url, 308);
+    }
   }
 
   // Special handling for alternative pages to prevent indexing
@@ -25,6 +30,27 @@ export function proxy(request) {
     response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
     response.headers.set('Pragma', 'no-cache');
     response.headers.set('Expires', '0');
+  }
+
+  // Legacy blog pagination redirect: /blog/<slug>/p/<n> -> /blog/<slug>?page=<n>
+  const blogPaginateMatch = pathname.match(/^\/blog\/(.+?)\/p\/(\d+)$/);
+  if (blogPaginateMatch) {
+    const slug = blogPaginateMatch[1];
+    const url = new URL(request.url);
+    url.pathname = `/blog/${slug}`;
+    url.search = '';
+    return NextResponse.redirect(url, 308);
+  }
+
+  // Normalize blog query pagination: /blog/<slug>?page=<n> -> /blog/<slug>
+  // This removes duplicate variants and lets the canonical path serve content.
+  const blogWithQueryMatch = pathname.match(/^\/blog\/([^\/]+)$/);
+  if (blogWithQueryMatch) {
+    const url = new URL(request.url);
+    if (url.searchParams.has('page')) {
+      url.search = '';
+      return NextResponse.redirect(url, 308);
+    }
   }
 
   return response;

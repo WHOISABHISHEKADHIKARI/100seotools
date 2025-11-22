@@ -1,18 +1,11 @@
-// Remove dynamic import to improve HMR stability on Windows
 import ToolRunner from '../../../components/ToolRunner';
 import ToolLayout from '../../../components/ToolLayout';
 import StructuredData from '../../../components/StructuredData';
 import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSchema } from '../../../lib/schema';
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { getToolGuide } from '../../../lib/guides';
-import { FiLoader } from 'react-icons/fi';
 import { notFound } from 'next/navigation';
 import { getBaseUrl, siteName } from '../../../lib/site';
-
-// Previously used dynamic import with ssr: false which can trigger
-// webpack factory errors during Fast Refresh in development on Windows.
-// Import ToolRunner normally; it's a client component and will hydrate
-// correctly without a dynamic boundary.
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -36,10 +29,11 @@ export async function generateMetadata({ params }) {
     description,
     alternates: { canonical: `${getBaseUrl()}/tools/${tool.slug}` },
     keywords,
+    robots: { index: true, follow: true },
     openGraph: {
       title: title.replace(' | 100 SEO Tools', ' – Free Online SEO Tool'),
       description,
-      url: `/tools/${tool.slug}`,
+      url: `${getBaseUrl()}/tools/${tool.slug}`,
       type: 'website',
       siteName,
       locale: 'en_US',
