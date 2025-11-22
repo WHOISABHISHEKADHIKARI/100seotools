@@ -242,10 +242,16 @@ export default function SEOCalculator() {
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {relatedPosts.map((p) => (
             <div key={p.slug} className="card p-4 relative hover:shadow-md transition">
-              {/* Overlay link to make entire card clickable without nesting inner anchors */}
-              <a href={`/blog/${p.slug}`} aria-label={`Read guide: ${p.title}`} className="absolute inset-0 z-10">
+              <div
+                role="link"
+                tabIndex={0}
+                aria-label={`Read guide: ${p.title}`}
+                className="absolute inset-0 z-10 cursor-pointer"
+                onClick={() => { window.location.href = `/blog/${p.slug}`; }}
+                onKeyDown={(e) => { const k = e.key; if (k === 'Enter' || k === ' ') { e.preventDefault(); window.location.href = `/blog/${p.slug}`; } }}
+              >
                 <span className="sr-only">Read guide: {p.title}</span>
-              </a>
+              </div>
               <h4 className="font-medium relative z-20">{p.title}</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 relative z-20">{p.description?.slice(0, 120)}...</p>
               <div className="mt-2 relative z-20">

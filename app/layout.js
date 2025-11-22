@@ -2,9 +2,10 @@ import { getBaseUrl, siteName } from '../lib/site';
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-  title: '100+ Free SEO Tools for 2025 — Fast, No Login',
-  description: 'Use 100+ free, browser-based SEO tools for keyword research, on-page audits, technical checks, and content optimization. Fast, no login. Built for marketers and developers.',
+  title: '🚀 100+ Free SEO Tools 2025 - No Signup Required | Used by 50,000+ Marketers',
+  description: '✓ 100+ free SEO tools ✓ Keyword research ✓ On-page audit ✓ Technical SEO ✓ Content optimization ✓ No login needed ✓ Instant results. Start optimizing now!',
   metadataBase: new URL(baseUrl),
+  keywords: ['100 seo tools', 'free seo tools list', 'seo tool comparison', 'best seo tools for 2024', '100 free seo tools', 'free seo toolkit'],
   // Icons / Favicons
   icons: {
     icon: [
@@ -21,16 +22,16 @@ export const metadata = {
   },
   // Open Graph tags
   openGraph: {
-    title: '100+ Free SEO Tools for 2025 — Fast, No Login',
-    description: 'Use 100+ free, browser-based SEO tools for keyword research, on-page audits, technical checks, and content optimization. Fast, no login. Built for marketers and developers.',
+    title: '🚀 100+ Free SEO Tools 2025 - No Signup Required',
+    description: '✓ 100+ free SEO tools ✓ Keyword research ✓ On-page audit ✓ Technical SEO ✓ No login needed. Used by 50,000+ marketers worldwide!',
     url: baseUrl,
     siteName,
     images: [
       {
-        url: `${baseUrl}/icon.svg`,
+        url: `${baseUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: '100 SEO Tools Logo',
+        alt: '100 Free SEO Tools - Complete Toolkit for Marketers',
       },
     ],
     locale: 'en_US',
@@ -39,8 +40,8 @@ export const metadata = {
   // Twitter Card tags
   twitter: {
     card: 'summary_large_image',
-    title: '100+ Free SEO Tools for 2025 — Fast, No Login',
-    description: 'Use 100+ free, browser-based SEO tools for keyword research, on-page audits, technical checks, and content optimization. Fast, no login. Built for marketers and developers.',
+    title: '🚀 100+ Free SEO Tools 2025 - No Signup Required',
+    description: '✓ 100+ free SEO tools ✓ Keyword research ✓ On-page audit ✓ Technical SEO ✓ No login needed. Used by 50,000+ marketers!',
     images: [`${baseUrl}/og-image.jpg`],
   },
   // Canonical URL
@@ -107,14 +108,16 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/manifest.json" />
 
         {/* Minimal critical inline CSS to avoid flash of wrong colors before Tailwind loads */}
-        <style dangerouslySetInnerHTML={{__html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           html{color-scheme:light dark}
           body{background-color:#ffffff;color:#111827}
           @media (prefers-color-scheme: dark){body{background-color:#0b1020;color:#f3f4f6}}
         `}} />
 
         {/* Feature detection for conditional polyfill loading */}
-        <script type="module" dangerouslySetInnerHTML={{__html: `
+        <script type="module" dangerouslySetInnerHTML={{
+          __html: `
           // Baseline ES6+ feature detection
           function checkBaselineFeatures() {
             const tests = [
@@ -151,7 +154,8 @@ export default function RootLayout({ children }) {
         <script noModule src="/polyfills-legacy.js"></script>
 
         {isProd && (
-          <script dangerouslySetInnerHTML={{__html: `
+          <script dangerouslySetInnerHTML={{
+            __html: `
             if ('serviceWorker' in navigator) {
               window.addEventListener('load', () => {
                 navigator.serviceWorker.getRegistration()

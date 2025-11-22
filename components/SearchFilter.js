@@ -402,17 +402,28 @@ export default function SearchFilter({ tools, onChange }) {
         </div>
       )}
 
-      {filteredCount === 0 && (
-        <div className="py-8 text-center" aria-live="assertive">
-          <p className="text-lg font-medium">No tools found</p>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">Try adjusting your search or filters</p>
-          <button
-            onClick={clearFilters}
-            className="btn mt-4"
-            aria-label="Clear all filters"
-          >
-            Clear all filters
-          </button>
+      {filteredCount === 0 && hasActiveFilters && (
+        <div className="py-4" aria-live="assertive">
+          <div className="text-center py-8">
+            <FiSearch className="w-12 h-12 text-gray-400 dark:text-gray-600 mx-auto mb-4" aria-hidden="true" />
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+              No tools found
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              {debouncedQuery
+                ? `No results for "${debouncedQuery}". Try adjusting your search or filters.`
+                : 'No tools match your current filters. Try adjusting your selection.'
+              }
+            </p>
+            <button
+              onClick={clearFilters}
+              className="btn"
+              aria-label="Clear all filters"
+            >
+              <FiRefreshCw className="w-4 h-4 mr-2" aria-hidden />
+              Clear all filters
+            </button>
+          </div>
         </div>
       )}
     </div>

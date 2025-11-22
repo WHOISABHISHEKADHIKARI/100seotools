@@ -16,10 +16,12 @@ export default function robots() {
           '/500',
           '/502',
           '/offline',
+          '/alternative',
           '/card-demo',
           '/blog/*/p/',
           '/blog/*/p/*',
-          '/blog/p/'
+          '/blog/p/',
+          '/blog/tp/'
         ],
         // Explicitly allow essential static assets for rendering
         // Note: Google supports wildcard patterns (* and $)

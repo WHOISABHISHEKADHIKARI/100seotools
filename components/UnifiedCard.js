@@ -195,7 +195,7 @@ function UnifiedCard({
 
         {/* Footer Section */}
         {(author || formattedDate || children) && (
-          <div className="unified-card-footer relative z-20 flex items-center justify-between mt-auto pt-4 border-t border-gray-100 dark:border-gray-700">
+          <div className={`unified-card-footer relative z-20 flex items-center ${author || formattedDate ? 'justify-between' : 'justify-end'} mt-auto pt-4 border-t border-gray-100 dark:border-gray-700`}>
             {/* Author Info */}
             {author && (
               <div className="unified-card-author flex items-center gap-3">
@@ -219,7 +219,7 @@ function UnifiedCard({
 
             {/* Action buttons or children */}
             {children && (
-              <div className="unified-card-actions relative z-[60] pointer-events-auto flex items-center gap-2">
+              <div className="unified-card-actions relative z-[60] pointer-events-auto flex items-center gap-2 flex-wrap sm:flex-nowrap">
                 {children}
               </div>
             )}

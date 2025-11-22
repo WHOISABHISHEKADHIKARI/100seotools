@@ -53,7 +53,7 @@ const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
       className="h-full"
     >
       <button
-        className="btn-secondary p-1.5 text-xs"
+        className="btn-secondary h-8 w-8 p-0 grid place-items-center"
         onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (tool?.slug) onToggleFavorite(tool.slug); }}
         aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         aria-pressed={isFavorite}
@@ -64,26 +64,26 @@ const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
       {hasSlug ? (
         <button
           type="button"
-          className="text-xs text-gray-500 hover:underline bg-transparent border-0 p-0 cursor-pointer"
+          className="btn-secondary text-xs px-2.5 py-1.5"
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); router.push(`/blog/${tool.slug}`); }}
           aria-label={`Open guide for ${safeName}`}
         >
           Guide
         </button>
       ) : (
-        <span className="text-xs text-gray-400 dark:text-gray-500">Guide</span>
+        <span className="btn-secondary opacity-50 cursor-not-allowed text-xs px-2.5 py-1.5">Guide</span>
       )}
       {hasSlug ? (
         <button
           type="button"
-          className="btn text-xs py-1.5 ml-auto"
+          className="btn text-xs px-3 py-1.5 ml-auto"
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); router.push(`/tools/${tool.slug}`); }}
           aria-label={`Open tool ${safeName}`}
         >
           Open <FiChevronRight className="w-3.5 h-3.5" />
         </button>
       ) : (
-        <span className="text-xs text-gray-400 dark:text-gray-500">Open <FiChevronRight className="w-3.5 h-3.5" /></span>
+        <span className="btn opacity-50 cursor-not-allowed text-xs px-3 py-1.5">Open <FiChevronRight className="w-3.5 h-3.5" /></span>
       )}
     </UnifiedCard>
   );
