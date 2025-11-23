@@ -10,20 +10,8 @@ const baseUrl = getBaseUrl();
 export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
 
-// Pre-generate high-priority posts at build time
-export async function generateStaticParams() {
-  // Only pre-build the most important posts to keep build times reasonable
-  const priorityPosts = [
-    '100-free-seo-tools-ultimate-list',
-    'seo-basics',
-    'seo-basics-0',
-    'keyword-clustering-tool',
-    'keyword-suggestion-tool',
-    'keyword-density-checker-guide'
-  ];
-
-  return priorityPosts.map(slug => ({ slug }));
-}
+// All blog posts are rendered dynamically on-demand
+// No static pre-generation needed for 810+ posts
 
 export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
