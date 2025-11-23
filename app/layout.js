@@ -71,6 +71,7 @@ import Footer from '../components/Footer';
 import StructuredData from '../components/StructuredData';
 import ClientLayout from '../components/ClientLayout';
 import ClientRoot from '../components/ClientRoot';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export default function RootLayout({ children }) {
   return (
@@ -201,6 +202,9 @@ export default function RootLayout({ children }) {
 
           {/* Global footer */}
           <Footer />
+
+          {/* Vercel Speed Insights */}
+          <SpeedInsights />
 
         </ClientRoot>
       </body>
