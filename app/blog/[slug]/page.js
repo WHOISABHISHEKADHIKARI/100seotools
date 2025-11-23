@@ -6,10 +6,9 @@ import { notFound, redirect } from 'next/navigation';
 const baseUrl = getBaseUrl();
 
 // Enable dynamic rendering for blog posts to prevent 404s
-// The blog system generates 600+ posts dynamically, so we use ISR
-export const dynamic = 'auto';
+// The blog system generates 810+ posts dynamically, so we use dynamic rendering
+export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
-export const revalidate = 3600; // Cache for 1 hour
 
 // Pre-generate high-priority posts at build time
 export async function generateStaticParams() {
