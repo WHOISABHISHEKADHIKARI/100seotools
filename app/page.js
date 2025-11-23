@@ -214,7 +214,7 @@ export default function HomePage() {
           100 SEO Tools - Free Online SEO Toolkit 2026
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto">
-          Complete collection of <strong>100+ free SEO tools</strong> for keyword research, on-page optimization, technical SEO, and content analysis. No signup required.
+          <strong>100 SEO tools</strong> - complete free collection for keyword research, on-page optimization, technical SEO, content analysis, and performance tracking. All tools are 100% free, require no signup, and provide instant results. Save $1,200+/year vs paid alternatives.
         </p>
         <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
           <span className="inline-flex items-center gap-2">
@@ -389,6 +389,71 @@ export default function HomePage() {
           </a>
           <a href="#calculator" className="btn btn-outline transition-all duration-200 hover:scale-[1.02]">
             Try Calculator
+          </a>
+        </div>
+      </section>
+
+      {/* 100 SEO Tools Comparison - Targeting main keyword (Position 38.5 → Top 10) */}
+      <section className="max-w-5xl mx-auto space-y-6 py-10 border-t border-gray-200 dark:border-gray-800">
+        <div className="text-center space-y-3">
+          <h2 className="text-2xl md:text-3xl font-bold">Why Choose Our 100 SEO Tools?</h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300">
+            Compare our <strong>100 free SEO tools</strong> against expensive paid alternatives and see why 50,000+ marketers trust us.
+          </p>
+        </div>
+
+        {/* Comparison Table */}
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-sm md:text-base">
+            <thead>
+              <tr className="border-b-2 border-gray-300 dark:border-gray-700">
+                <th className="text-left p-3 md:p-4">Feature</th>
+                <th className="text-center p-3 md:p-4 bg-brand-50 dark:bg-brand-900/20">
+                  <div className="font-bold text-brand-600 dark:text-brand-400">100 SEO Tools</div>
+                  <div className="text-xs md:text-sm font-normal">Free Forever</div>
+                </th>
+                <th className="text-center p-3 md:p-4">Ahrefs</th>
+                <th className="text-center p-3 md:p-4">SEMrush</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-200 dark:border-gray-700">
+                <td className="p-3 md:p-4">Tools Included</td>
+                <td className="text-center p-3 md:p-4 bg-brand-50 dark:bg-brand-900/20 font-semibold">100+</td>
+                <td className="text-center p-3 md:p-4">50+</td>
+                <td className="text-center p-3 md:p-4">55+</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700">
+                <td className="p-3 md:p-4">Monthly Cost</td>
+                <td className="text-center p-3 md:p-4 bg-brand-50 dark:bg-brand-900/20 font-semibold text-green-600 dark:text-green-400">$0</td>
+                <td className="text-center p-3 md:p-4">$99-999</td>
+                <td className="text-center p-3 md:p-4">$119-449</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700">
+                <td className="p-3 md:p-4">Annual Savings</td>
+                <td className="text-center p-3 md:p-4 bg-brand-50 dark:bg-brand-900/20 font-semibold text-green-600 dark:text-green-400">$1,200+</td>
+                <td className="text-center p-3 md:p-4">-</td>
+                <td className="text-center p-3 md:p-4">-</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700">
+                <td className="p-3 md:p-4">Signup Required</td>
+                <td className="text-center p-3 md:p-4 bg-brand-50 dark:bg-brand-900/20 font-semibold text-green-600 dark:text-green-400">No</td>
+                <td className="text-center p-3 md:p-4 text-red-600 dark:text-red-400">Yes</td>
+                <td className="text-center p-3 md:p-4 text-red-600 dark:text-red-400">Yes</td>
+              </tr>
+              <tr>
+                <td className="p-3 md:p-4">Instant Results</td>
+                <td className="text-center p-3 md:p-4 bg-brand-50 dark:bg-brand-900/20 font-semibold text-green-600 dark:text-green-400">✓</td>
+                <td className="text-center p-3 md:p-4">✓</td>
+                <td className="text-center p-3 md:p-4">✓</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="text-center pt-4">
+          <a href="#tools" className="btn">
+            Explore All 100 Free SEO Tools →
           </a>
         </div>
       </section>

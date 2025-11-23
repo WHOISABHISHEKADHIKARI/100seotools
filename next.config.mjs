@@ -42,6 +42,17 @@ const nextConfig = withBundleAnalyzer({
       { source: '/blog/tp/:page', destination: '/blog', permanent: true },
       { source: '/category/:slug/p/:page', destination: '/category/:slug', permanent: true },
       { source: '/tools/:slug/p/:page', destination: '/tools/:slug', permanent: true },
+
+      // SEO keyword variant redirects for better rankings
+      // On-page SEO checker variants (currently ranking 94-102)
+      { source: '/on-page-checker', destination: '/tools/on-page-seo-audit-checker', permanent: true },
+      { source: '/onpage-checker', destination: '/tools/on-page-seo-audit-checker', permanent: true },
+      { source: '/on-page-seo-checker', destination: '/tools/on-page-seo-audit-checker', permanent: true },
+      { source: '/onpage-seo-checker', destination: '/tools/on-page-seo-audit-checker', permanent: true },
+
+      // Robots.txt validator variants
+      { source: '/robot-txt-validator', destination: '/tools/robots-txt-validator', permanent: true },
+      { source: '/robotstxt-validator', destination: '/tools/robots-txt-validator', permanent: true },
     ];
     if (process.env.NODE_ENV !== 'production') return common;
     return [
