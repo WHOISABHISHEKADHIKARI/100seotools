@@ -2,15 +2,27 @@ export default {
   "slug": "robots-txt-validator",
   "name": "Robots.txt Validator",
   "category": "Technical SEO",
-  "metaTitle": "Robots.txt Validator – Free robots.txt checker | 100 SEO Tools",
-  "metaDescription": "Validate robots.txt directives (User-agent, Allow, Disallow, Sitemap). Paste robots.txt to check syntax, find issues, and improve crawl control.",
-  "description": "Ensure your robots.txt is clean, valid, and effective. Paste your robots.txt content to instantly validate directive syntax (User-agent, Allow, Disallow, Sitemap), highlight unrecognized lines, and catch common mistakes that break crawl control. Use this free robots.txt validator to keep important pages indexable while protecting sensitive paths.",
+  "metaTitle": "Free Robots.txt Validator & Checker Tool | Test robots.txt 2026",
+  "metaDescription": "Free robots.txt validator - check syntax, validate directives (User-agent, Allow, Disallow, Sitemap), find errors, and test crawl rules. Instant validation with clear error messages. Used by 15,000+ webmasters.",
+  "description": "Validate your robots.txt file instantly with our free robots.txt validator. Check syntax, test User-agent directives, validate Allow/Disallow rules, verify Sitemap declarations, and catch common mistakes that block search engines. Our robots txt validator highlights errors, provides clear explanations, and helps you maintain perfect crawl control. Paste your robots.txt content and get instant validation results.",
   "keywords": [
     "robots.txt validator",
+    "robots txt validator",
     "robot.txt validator",
+    "robot txt validator",
+    "robotstxt validator",
     "robots.txt checker",
+    "robots txt checker",
     "check robots.txt",
+    "check robots txt",
     "validate robots.txt",
+    "validate robots txt",
+    "robots.txt validation",
+    "robots txt validation",
+    "robots.txt tester",
+    "test robots.txt",
+    "robots.txt syntax checker",
+    "free robots.txt validator",
     "disallow allow sitemap",
     "technical seo",
     "crawlability",
@@ -20,16 +32,22 @@ export default {
   "features": [
     "Validate User-agent, Allow, Disallow, and Sitemap directives",
     "Highlight unrecognized or malformed lines",
+    "Detect syntax errors and typos",
+    "Test crawl rules for specific user agents",
     "Plain-text paste with safe normalization",
-    "Fast client-side validation",
-    "Helpful output ready to copy or download"
+    "Fast client-side validation (no server upload)",
+    "Helpful output ready to copy or download",
+    "Common mistakes detection and fixes"
   ],
   "benefits": [
     "Prevent crawl-control mistakes",
     "Keep important pages indexable",
     "Improve technical SEO hygiene",
     "Detect typos and invalid directives quickly",
-    "Share clear validation results with teams"
+    "Share clear validation results with teams",
+    "Avoid blocking search engines accidentally",
+    "Fix robots.txt errors before deployment",
+    "Ensure proper sitemap declaration"
   ],
   "template": "robotsTxtValidator"
 };

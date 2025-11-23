@@ -21,7 +21,14 @@ export default function robots() {
           '/blog/*/p/',
           '/blog/*/p/*',
           '/blog/p/',
-          '/blog/tp/'
+          '/blog/p/*',      // Block all /blog/p/N pagination
+          '/blog/tp/',
+          '/blog/tp/*',     // Block all /blog/tp/N pagination
+          '*/p/1',          // Block page 1 duplicates
+          '*/p/2',
+          '*/p/3',
+          '*/p/4',
+          '*/p/5'
         ],
         // Explicitly allow essential static assets for rendering
         // Note: Google supports wildcard patterns (* and $)

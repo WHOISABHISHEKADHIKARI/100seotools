@@ -30,6 +30,12 @@ export function middleware(request) {
         response.headers.set('Expires', '0');
     }
 
+    // Block pagination pages from indexing (critical SEO fix)
+    // Pagination pages like /blog/p/11 were ranking at position 1.5, competing with main content
+    if (pathname.match(/\/(p|tp)\/\d+$/)) {
+        response.headers.set('X-Robots-Tag', 'noindex, follow');
+    }
+
     // Legacy blog pagination redirect: /blog/<slug>/p/<n> -> /blog/<slug>?page=<n>
     const blogPaginateMatch = pathname.match(/^\/blog\/(.+?)\/p\/(\d+)$/);
     if (blogPaginateMatch) {
