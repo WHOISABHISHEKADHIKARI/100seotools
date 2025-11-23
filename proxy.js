@@ -53,6 +53,25 @@ export function proxy(request) {
     }
   }
 
+  // Add security headers
+  // Force HTTPS for 1 year (HSTS)
+  response.headers.set(
+    'Strict-Transport-Security',
+    'max-age=31536000; includeSubDomains; preload'
+  );
+
+  // Prevent clickjacking
+  response.headers.set('X-Frame-Options', 'DENY');
+
+  // Prevent MIME sniffing
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+
+  // Referrer policy
+  response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
+
+  // XSS protection
+  response.headers.set('X-XSS-Protection', '1; mode=block');
+
   return response;
 }
 
