@@ -75,8 +75,98 @@ export default function HomePage() {
       <div className="space-y-8 max-w-7xl mx-auto px-4">
         <section className="text-center space-y-4 py-10">
           <h1 className="text-3xl md:text-4xl font-bold">100 SEO Tools: Free, Fast, Crawl‑Friendly</h1>
-          <p className="text-gray-600 dark:text-gray-400">Loading tools...</p>
-          <p className="text-sm text-slate-700 dark:text-slate-300 max-w-2xl mx-auto">Explore keyword research, on‑page optimization, technical validation, and performance tracking — all free and browser‑based.</p>
+          <p className="text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+            Complete collection of 100+ free SEO tools for keyword research, on‑page optimization,
+            technical validation, and performance tracking — all free and browser‑based.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-400 mt-6">
+            <span className="inline-flex items-center gap-2">
+              <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              100% Free Forever
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              No Signup Required
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              Instant Results
+            </span>
+          </div>
+        </section>
+
+        {/* Static tool categories for SEO */}
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
+          <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <h2 className="text-xl font-semibold mb-3">🔍 Keyword Research</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Discover profitable keywords with our keyword suggestion tool, long-tail generator,
+              clustering tool, and difficulty checker.
+            </p>
+          </div>
+          <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <h2 className="text-xl font-semibold mb-3">📊 On-Page SEO</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Optimize your pages with meta tag generator, SEO audit checker, heading analyzer,
+              and keyword density tools.
+            </p>
+          </div>
+          <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <h2 className="text-xl font-semibold mb-3">⚙️ Technical SEO</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Validate robots.txt, generate sitemaps, check structured data, and ensure your
+              site is technically sound.
+            </p>
+          </div>
+          <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <h2 className="text-xl font-semibold mb-3">📝 Content Tools</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Check readability, detect AI content, find duplicate content, and optimize your
+              writing for search engines.
+            </p>
+          </div>
+          <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <h2 className="text-xl font-semibold mb-3">🔗 Link Building</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Analyze backlinks, find broken links, check anchor text, and discover guest post
+              opportunities.
+            </p>
+          </div>
+          <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <h2 className="text-xl font-semibold mb-3">📍 Local SEO</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Check NAP consistency, find local citations, optimize Google Business Profile,
+              and dominate local search.
+            </p>
+          </div>
+        </section>
+
+        <section className="text-center py-8 border-t border-gray-200 dark:border-gray-700">
+          <h2 className="text-2xl font-bold mb-4">Why Choose 100 SEO Tools?</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div>
+              <p className="text-4xl font-bold text-brand-600 mb-2">100+</p>
+              <p className="text-gray-600 dark:text-gray-400">Free SEO Tools</p>
+            </div>
+            <div>
+              <p className="text-4xl font-bold text-brand-600 mb-2">50K+</p>
+              <p className="text-gray-600 dark:text-gray-400">Active Users</p>
+            </div>
+            <div>
+              <p className="text-4xl font-bold text-brand-600 mb-2">100%</p>
+              <p className="text-gray-600 dark:text-gray-400">Free Forever</p>
+            </div>
+            <div>
+              <p className="text-4xl font-bold text-brand-600 mb-2">0</p>
+              <p className="text-gray-600 dark:text-gray-400">Signup Required</p>
+            </div>
+          </div>
         </section>
       </div>
     );
