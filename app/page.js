@@ -154,6 +154,111 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Static content for crawlers (no JavaScript required) */}
+      <noscript>
+        <section className="space-y-8 py-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold">100+ Free SEO Tools - No Signup Required</h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              Complete collection of free SEO tools for keyword research, on-page optimization,
+              technical SEO, content analysis, and performance tracking. All tools are 100% free,
+              require no signup, and provide instant results.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div className="p-6 border border-gray-200 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">🔍 Keyword Research Tools</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>• Keyword Suggestion Tool</li>
+                <li>• Long-Tail Keyword Generator</li>
+                <li>• Keyword Clustering Tool</li>
+                <li>• Keyword Difficulty Checker</li>
+                <li>• Keyword Intent Identifier</li>
+              </ul>
+            </div>
+
+            <div className="p-6 border border-gray-200 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">📊 On-Page SEO Tools</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>• On-Page SEO Audit Checker</li>
+                <li>• Meta Tag Generator</li>
+                <li>• Meta Description Optimizer</li>
+                <li>• Heading Analyzer</li>
+                <li>• Keyword Density Checker</li>
+              </ul>
+            </div>
+
+            <div className="p-6 border border-gray-200 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">⚙️ Technical SEO Tools</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>• Robots.txt Validator</li>
+                <li>• Sitemap Generator</li>
+                <li>• Structured Data Validator</li>
+                <li>• Canonical Tag Checker</li>
+                <li>• SSL Certificate Checker</li>
+              </ul>
+            </div>
+
+            <div className="p-6 border border-gray-200 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">📝 Content Tools</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>• SEO Content Checker</li>
+                <li>• Readability Score Calculator</li>
+                <li>• AI Content Detector</li>
+                <li>• Duplicate Content Checker</li>
+                <li>• Word Counter</li>
+              </ul>
+            </div>
+
+            <div className="p-6 border border-gray-200 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">🔗 Link Building Tools</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>• Backlink Analyzer</li>
+                <li>• Broken Link Finder</li>
+                <li>• Anchor Text Analyzer</li>
+                <li>• Link Building Outreach</li>
+                <li>• Guest Post Finder</li>
+              </ul>
+            </div>
+
+            <div className="p-6 border border-gray-200 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">📍 Local SEO Tools</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>• NAP Consistency Checker</li>
+                <li>• Local Citation Finder</li>
+                <li>• GMB Optimization Helper</li>
+                <li>• Local Keyword Generator</li>
+                <li>• Review Response Generator</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="text-center py-8 border-t border-gray-200">
+            <p className="text-lg font-semibold mb-4">Why Choose 100 SEO Tools?</p>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-center">
+              <div>
+                <p className="font-bold text-2xl text-brand-600">100+</p>
+                <p className="text-sm text-gray-600">Free SEO Tools</p>
+              </div>
+              <div>
+                <p className="font-bold text-2xl text-brand-600">50,000+</p>
+                <p className="text-sm text-gray-600">Active Users</p>
+              </div>
+              <div>
+                <p className="font-bold text-2xl text-brand-600">100%</p>
+                <p className="text-sm text-gray-600">Free Forever</p>
+              </div>
+              <div>
+                <p className="font-bold text-2xl text-brand-600">0</p>
+                <p className="text-sm text-gray-600">Signup Required</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </noscript>
+
+
       {/* Tools section placed at the very top */}
       <section id="tools" aria-labelledby="tools-section-title" className="space-y-6">
         <div className="sticky top-0 z-40 supports-[backdrop-filter]:backdrop-blur bg-white/95 dark:bg-gray-950/95 border-b border-gray-100 dark:border-gray-800 shadow-sm">
