@@ -4,40 +4,7 @@ const baseUrl = getBaseUrl();
 export default function robots() {
   return {
     rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        // Block sensitive, error, and duplicate-content endpoints
-        disallow: [
-          '/api',
-          '/404',
-          '/410',
-          '/429',
-          '/500',
-          '/502',
-          '/offline',
-          '/alternative',
-          '/card-demo',
-          '/blog/*/p/',
-          '/blog/*/p/*',
-          '/blog/p/',
-          '/blog/p/*',      // Block all /blog/p/N pagination
-          '/blog/tp/',
-          '/blog/tp/*',     // Block all /blog/tp/N pagination
-          '*/p/1',          // Block page 1 duplicates
-          '*/p/2',
-          '*/p/3',
-          '*/p/4',
-          '*/p/5'
-        ],
-        // Explicitly allow essential static assets for rendering
-        // Note: Google supports wildcard patterns (* and $)
-        // These lines improve clarity for non-Google bots too
-        crawlDelay: 5,
-      },
-      { userAgent: 'GPTBot', allow: '/' },
-      { userAgent: 'CCBot', allow: '/' },
-      { userAgent: 'Google-Extended', allow: '/' }
+      { userAgent: '*', allow: '/' }
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
     host: baseUrl,
