@@ -59,13 +59,19 @@ export async function generateMetadata({ params, searchParams }) {
   };
 }
 
-export default async function BlogGuidePage({ params, searchParams }) {
+export default async function Page({ params, searchParams }) {
   const { slug } = await params;
   const page = Number((await searchParams)?.page || 1);
   const post = await getBlogPostPublishedBySlug(slug);
   if (!post) {
     notFound();
   }
+
+  // Get all posts for navigation
+  const allPosts = await getAllBlogPostsPublished();
+  const currentIndex = allPosts.findIndex(p => p.slug === slug);
+  const previousPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+  const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
 
   const anchorUrl = `${baseUrl}/blog#${post.slug}`;
 
@@ -110,7 +116,17 @@ export default async function BlogGuidePage({ params, searchParams }) {
       <header className="space-y-2">
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{post.title}</h1>
         <p className="text-gray-700 dark:text-gray-300">{post.description}</p>
-        <div className="text-xs text-slate-500 dark:text-slate-400">{new Date(post.datePublished).toLocaleDateString()} · {post.readTimeMinutes || 6} min read</div>
+        <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+          <span>{new Date(post.datePublished).toLocaleDateString()}</span>
+          <span>·</span>
+          <span>{post.readTimeMinutes || 6} min read</span>
+          {post.category && (
+            <>
+              <span>·</span>
+              <span className="px-2 py-0.5 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300">{post.category}</span>
+            </>
+          )}
+        </div>
       </header>
 
       <div className="rounded-md bg-slate-50 dark:bg-white/5 p-4 border border-slate-200 dark:border-white/10">
@@ -165,6 +181,72 @@ export default async function BlogGuidePage({ params, searchParams }) {
           </div>
         )}
       </section>
+
+      {/* Next/Previous Navigation */}
+      <nav className="border-t border-slate-200 dark:border-white/10 pt-8 mt-12" aria-label="Blog post navigation">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {previousPost ? (
+            <a
+              href={`/blog/${previousPost.slug}`}
+              className="group p-4 rounded-lg border border-slate-200 dark:border-white/10 hover:border-brand-500 dark:hover:border-brand-500 hover:shadow-md transition-all"
+            >
+              <div className="text-xs text-slate-500 dark:text-slate-400 mb-1 flex items-center gap-1">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Previous
+              </div>
+              <div className="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 line-clamp-2">
+                {previousPost.title}
+              </div>
+              {previousPost.category && (
+                <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{previousPost.category}</div>
+              )}
+            </a>
+          ) : (
+            <div className="p-4 rounded-lg border border-slate-200 dark:border-white/10 opacity-50">
+              <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">No previous post</div>
+            </div>
+          )}
+
+          {nextPost ? (
+            <a
+              href={`/blog/${nextPost.slug}`}
+              className="group p-4 rounded-lg border border-slate-200 dark:border-white/10 hover:border-brand-500 dark:hover:border-brand-500 hover:shadow-md transition-all text-right"
+            >
+              <div className="text-xs text-slate-500 dark:text-slate-400 mb-1 flex items-center justify-end gap-1">
+                Next
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+              <div className="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 line-clamp-2">
+                {nextPost.title}
+              </div>
+              {nextPost.category && (
+                <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{nextPost.category}</div>
+              )}
+            </a>
+          ) : (
+            <div className="p-4 rounded-lg border border-slate-200 dark:border-white/10 opacity-50 text-right">
+              <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">No next post</div>
+            </div>
+          )}
+        </div>
+
+        {/* Back to all posts */}
+        <div className="mt-6 text-center">
+          <a
+            href="/blog"
+            className="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            View All Blog Posts
+          </a>
+        </div>
+      </nav>
     </article>
   );
 }
