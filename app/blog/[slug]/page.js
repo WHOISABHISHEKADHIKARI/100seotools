@@ -5,12 +5,25 @@ import { notFound, redirect } from 'next/navigation';
 
 const baseUrl = getBaseUrl();
 
-export const dynamic = 'force-static';
-export const dynamicParams = false;
+// Enable dynamic rendering for blog posts to prevent 404s
+// The blog system generates 600+ posts dynamically, so we use ISR
+export const dynamic = 'auto';
+export const dynamicParams = true;
+export const revalidate = 3600; // Cache for 1 hour
 
+// Pre-generate high-priority posts at build time
 export async function generateStaticParams() {
-  const posts = await getAllBlogPostsPublished();
-  return posts.map((p) => ({ slug: p.slug }));
+  // Only pre-build the most important posts to keep build times reasonable
+  const priorityPosts = [
+    '100-free-seo-tools-ultimate-list',
+    'seo-basics',
+    'seo-basics-0',
+    'keyword-clustering-tool',
+    'keyword-suggestion-tool',
+    'keyword-density-checker-guide'
+  ];
+
+  return priorityPosts.map(slug => ({ slug }));
 }
 
 export async function generateMetadata({ params, searchParams }) {
