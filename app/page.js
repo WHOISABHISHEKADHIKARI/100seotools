@@ -180,7 +180,7 @@ export default function HomePage() {
         const webPageLd = {
           "@context": "https://schema.org",
           "@type": "WebPage",
-          "name": "100 SEO Tools - Free Online SEO Toolkit 2025",
+          "name": "100 SEO Tools - Free Online SEO Toolkit 2026",
           "description": "Complete collection of 100+ free SEO tools for keyword research, on-page optimization, technical SEO, content analysis, and performance tracking. No signup required, instant results.",
           "url": baseUrl,
           "keywords": [
@@ -211,7 +211,7 @@ export default function HomePage() {
       {/* Hero Section - Optimized for "100 seo tools" keyword */}
       <section className="text-center space-y-6 py-12 border-b border-gray-200 dark:border-gray-800">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-brand-600 to-blue-600 bg-clip-text text-transparent">
-          100 SEO Tools - Free Online SEO Toolkit 2025
+          100 SEO Tools - Free Online SEO Toolkit 2026
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto">
           Complete collection of <strong>100+ free SEO tools</strong> for keyword research, on-page optimization, technical SEO, and content analysis. No signup required.
@@ -378,7 +378,7 @@ export default function HomePage() {
       {/* Hero with clear CTAs; now placed after Tools */}
       <section className="text-center space-y-5 py-10">
         <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-          100 SEO Tools: Free, Accurate, and Ready for 2024–2025
+          100 SEO Tools: Free, Accurate, and Ready for 2025–2026
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           A comprehensive suite of top‑performing, search‑friendly tools. Run <span className="font-semibold">SEO tool comparison</span> checks, build schema, and ship updates faster. Everything is free, client‑side, and tuned for speed — no logins.
@@ -402,7 +402,7 @@ export default function HomePage() {
           Explore keyword ideas, analyze intent, and structure content using headings, schema, and internal links. For technical SEO, validate <a href="/tools/structured-data-validator" className="hover:underline">structured data</a> and check <a href="/tools/robots-txt-validator" className="hover:underline">robots.txt</a>. For market insight, perform <strong>SEO tool comparison</strong> and benchmark against top pages. See the <a href="/blog/100-free-seo-tools-ultimate-list" className="hover:underline">100 SEO Tools ultimate list</a>.
         </p>
         <p className="font-loading-fallback">
-          The experience prioritizes E‑E‑A‑T: accurate outputs, transparent processing, and practical guidance. Start with Meta Tag Generator and Heading Analyzer. For 2024, try our <strong>best SEO tools</strong> lineup to improve clarity, speed, and discoverability.
+          The experience prioritizes E‑E‑A‑T: accurate outputs, transparent processing, and practical guidance. Start with Meta Tag Generator and Heading Analyzer. For 2025, try our <strong>best SEO tools</strong> lineup to improve clarity, speed, and discoverability.
         </p>
       </section>
 
