@@ -35,6 +35,9 @@ const nextConfig = withBundleAnalyzer({
       { protocol: 'https', hostname: 'ui-avatars.com', pathname: '/**' },
     ],
   },
+  // Explicitly enable webpack by silencing the turbopack error, or just let it be.
+  // The error suggests setting an empty turbopack config to silence it.
+  turbopack: {},
   typedRoutes: true,
   redirects: async () => {
     const common = [
