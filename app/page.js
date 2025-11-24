@@ -209,7 +209,7 @@ export default function HomePage() {
         );
       })()}
       {/* Hero Section - Optimized for "100 seo tools" keyword */}
-      <section className="text-center space-y-6 py-12 border-b border-gray-200 dark:border-gray-800">
+      <section className="text-center space-y-6 py-12 border-b border-gray-200 dark:border-gray-800 min-h-[300px] flex flex-col justify-center">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-brand-600 to-blue-600 bg-clip-text text-transparent">
           100 SEO Tools - Free Online SEO Toolkit 2026
         </h1>
@@ -377,9 +377,9 @@ export default function HomePage() {
 
       {/* Hero with clear CTAs; now placed after Tools */}
       <section className="text-center space-y-5 py-10">
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
           100 SEO Tools: Free, Accurate, and Ready for 2025–2026
-        </h1>
+        </h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           A comprehensive suite of top‑performing, search‑friendly tools. Run <span className="font-semibold">SEO tool comparison</span> checks, build schema, and ship updates faster. Everything is free, client‑side, and tuned for speed — no logins.
         </p>

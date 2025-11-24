@@ -7,7 +7,6 @@ export async function GET() {
 # Prevents AI model training
 
 User-Agent: *
-Content-signal: search=yes,ai-input=yes,ai-train=no
 Allow: /
 
 # Allow Google AI

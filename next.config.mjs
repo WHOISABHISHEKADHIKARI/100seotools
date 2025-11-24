@@ -17,6 +17,7 @@ const nextConfig = withBundleAnalyzer({
       bodySizeLimit: '1mb',
     },
   },
+  transpilePackages: [],
   webpack(config, { isServer }) {
     if (!isServer) {
       config.resolve.alias = {
@@ -35,13 +36,23 @@ const nextConfig = withBundleAnalyzer({
     ],
   },
   typedRoutes: true,
-  turbopack: {},
   redirects: async () => {
     const common = [
       { source: '/blog/p/:page', destination: '/blog', permanent: true },
       { source: '/blog/tp/:page', destination: '/blog', permanent: true },
       { source: '/category/:slug/p/:page', destination: '/category/:slug', permanent: true },
       { source: '/tools/:slug/p/:page', destination: '/tools/:slug', permanent: true },
+
+      // Legacy blog pagination redirect: /blog/<slug>/p/<n> -> /blog/<slug>
+      { source: '/blog/:slug/p/:page', destination: '/blog/:slug', permanent: true },
+
+      // Normalize blog query pagination: /blog/<slug>?page=<n> -> /blog/<slug>
+      {
+        source: '/blog/:slug',
+        has: [{ type: 'query', key: 'page' }],
+        destination: '/blog/:slug',
+        permanent: true,
+      },
 
       // SEO keyword variant redirects for better rankings
       // On-page SEO checker variants (currently ranking 94-102)
@@ -82,10 +93,19 @@ const nextConfig = withBundleAnalyzer({
         { key: 'Expires', value: '0' },
       ],
     },
+    // Block pagination pages from indexing (critical SEO fix)
+    {
+      source: '/(p|tp)/:page',
+      headers: [{ key: 'X-Robots-Tag', value: 'noindex, follow' }],
+    },
+    {
+      source: '/(.*)/(p|tp)/:page',
+      headers: [{ key: 'X-Robots-Tag', value: 'noindex, follow' }],
+    },
     {
       source: '/(.*)',
       headers: [
-        { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://static.cloudflareinsights.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io https://ui-avatars.com; font-src 'self'; connect-src 'self' https://cdn.sanity.io https://www.google-analytics.com https://static.cloudflareinsights.com; media-src 'self';" },
+        { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://static.cloudflareinsights.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io https://ui-avatars.com; font-src 'self'; connect-src 'self' https://cdn.sanity.io https://www.google-analytics.com https://static.cloudflareinsights.com; media-src 'self'; require-trusted-types-for 'script';" },
         { key: 'X-Frame-Options', value: 'DENY' },
         { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
         { key: 'X-Content-Type-Options', value: 'nosniff' },

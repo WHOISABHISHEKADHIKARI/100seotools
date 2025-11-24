@@ -128,7 +128,7 @@ function ToolGrid({ tools }) {
   }, [tools]);
 
   // Generate stable keys for tools to avoid index-based keys
-  const getStableKey = useCallback((tool) => tool?.slug ?? `ns-${uniqueTools.indexOf(tool)}`,[uniqueTools]);
+  const getStableKey = useCallback((tool) => tool?.slug ?? `ns-${uniqueTools.indexOf(tool)}`, [uniqueTools]);
 
   useEffect(() => {
     setMounted(true);
@@ -189,31 +189,28 @@ function ToolGrid({ tools }) {
     lastLoadAtRef.current = Date.now();
     // Pause observing while we append the next batch to avoid double-trigger
     if (observerRef.current && loadingRef.current) {
-      try { observerRef.current.unobserve(loadingRef.current); } catch (_) {}
+      try { observerRef.current.unobserve(loadingRef.current); } catch (_) { }
     }
     // Simulate loading delay for better UX
-    loadTimeoutRef.current = setTimeout(() => {
-      const startIndex = visibleTools.length;
-      const nextBatch = uniqueTools.slice(startIndex, startIndex + batchSize);
-      // Merge and de-duplicate by slug to avoid duplicate key warnings
-      setVisibleTools((prev) => {
-        const merged = [...prev, ...nextBatch];
-        const seen = new Set();
-        return merged.filter((t) => {
-          const key = t?.slug ?? `idx-${uniqueTools.indexOf(t)}`;
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
+    const startIndex = visibleTools.length;
+    const nextBatch = uniqueTools.slice(startIndex, startIndex + batchSize);
+    // Merge and de-duplicate by slug to avoid duplicate key warnings
+    setVisibleTools((prev) => {
+      const merged = [...prev, ...nextBatch];
+      const seen = new Set();
+      return merged.filter((t) => {
+        const key = t?.slug ?? `idx-${uniqueTools.indexOf(t)}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
       });
-      setIsLoading(false);
-      isLoadingRef.current = false;
-      loadTimeoutRef.current = null;
-      // Resume observing after batch is appended
-      if (observerRef.current && loadingRef.current) {
-        try { observerRef.current.observe(loadingRef.current); } catch (_) {}
-      }
-    }, 300);
+    });
+    setIsLoading(false);
+    isLoadingRef.current = false;
+    // Resume observing after batch is appended
+    if (observerRef.current && loadingRef.current) {
+      try { observerRef.current.observe(loadingRef.current); } catch (_) { }
+    }
   }, [visibleTools, uniqueTools]);
 
   const toggleFavorite = useCallback((slug) => {
@@ -243,7 +240,7 @@ function ToolGrid({ tools }) {
         <div
           ref={loadingRef}
           className="flex justify-center items-center py-8"
-          style={{ minHeight: skeletonHeight > 0 ? `${skeletonHeight + 32}px` : 'auto' }}
+          style={{ minHeight: skeletonHeight > 0 ? `${skeletonHeight + 32}px` : '80px' }}
           aria-live="polite"
         >
           {isLoading ? (

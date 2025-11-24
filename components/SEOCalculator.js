@@ -93,7 +93,7 @@ export default function SEOCalculator() {
   const copyResult = (text) => {
     try {
       if (navigator?.clipboard?.writeText) {
-        navigator.clipboard.writeText(text).catch(() => {});
+        navigator.clipboard.writeText(text).catch(() => { });
       } else {
         const ta = document.createElement('textarea');
         ta.value = text;
@@ -102,7 +102,7 @@ export default function SEOCalculator() {
         document.execCommand('copy');
         document.body.removeChild(ta);
       }
-    } catch {}
+    } catch { }
   };
 
   const proTips = {
@@ -117,7 +117,7 @@ export default function SEOCalculator() {
     try {
       const all = getAllBlogPosts();
       return all.filter(p => p.slug.startsWith('seo-basics-simple-guide-') || p.slug.startsWith('seo-basics-'))
-                .slice(0, 3);
+        .slice(0, 3);
     } catch {
       return [];
     }
@@ -152,7 +152,7 @@ export default function SEOCalculator() {
       <div className="text-center space-y-2">
         <h2 id="seo-calculator-heading" className="text-2xl md:text-3xl font-bold">SEO Calculator</h2>
         <p className="text-gray-700 dark:text-gray-300">
-          Switch tabs to run quick, client-side calculations. Learn more in our <a href="/blog" className="text-brand-600 hover:underline">Blog</a> or explore all <a href="/tools" className="text-brand-600 hover:underline">Tools</a>.
+          Switch tabs to run quick, client-side calculations. Learn more in our <a href="/blog" className="text-blue-700 dark:text-blue-400 hover:underline">Blog</a> or explore all <a href="/tools" className="text-blue-700 dark:text-blue-400 hover:underline">Tools</a>.
         </p>
       </div>
 
