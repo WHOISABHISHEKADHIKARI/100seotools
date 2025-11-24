@@ -26,12 +26,14 @@ async function tryGoto(page, urls) {
   const page = await browser.newPage()
   const usedUrl = await tryGoto(page, candidates)
   console.log(`Testing URL: ${usedUrl}`)
-  const title = await page.title()
-  const metaDesc = await page.$('meta[name="description"]')
-  const canonical = await page.$('link[rel="canonical"]')
-  const h1 = await page.$('h1')
-  const internalLinks = await page.$$eval('a[href^="/"]', (els) => els.length)
-  if (!title || !metaDesc || !canonical || !h1) {
+  await page.waitForFunction(() => document.readyState === 'complete').catch(()=>{})
+  await page.waitForSelector('h1', { timeout: 15000 }).catch(()=>{})
+  const title = await page.evaluate(() => document.title || '')
+  const hasMetaDesc = await page.evaluate(() => !!document.querySelector('meta[name="description"]'))
+  const hasCanonical = await page.evaluate(() => !!document.querySelector('link[rel="canonical"]'))
+  const hasH1 = await page.evaluate(() => !!document.querySelector('h1'))
+  const internalLinks = await page.evaluate(() => Array.from(document.querySelectorAll('a[href^="/"]')).length)
+  if (!title || !hasMetaDesc || !hasCanonical || !hasH1) {
     console.log('Missing core SEO elements')
     process.exitCode = 1
   } else {

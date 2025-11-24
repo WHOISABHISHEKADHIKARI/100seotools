@@ -116,43 +116,7 @@ export default function RootLayout({ children }) {
           @media (prefers-color-scheme: dark){body{background-color:#0b1020;color:#f3f4f6}}
         `}} />
 
-        {/* Feature detection for conditional polyfill loading */}
-        <script type="module" dangerouslySetInnerHTML={{
-          __html: `
-          // Baseline ES6+ feature detection
-          function checkBaselineFeatures() {
-            const tests = [
-              () => Array.prototype.at && [1].at(0) === 1,
-              () => Array.prototype.flat && [[1]].flat().length === 1,
-              () => Array.prototype.flatMap,
-              () => Object.fromEntries && Object.fromEntries([["a",1]]).a === 1,
-              () => (Object.hasOwn ? Object.hasOwn({x:1}, "x") : Object.prototype.hasOwnProperty.call({x:1}, "x")),
-              () => ("".trimEnd && "".trimStart),
-            ];
 
-            try {
-              return tests.every(fn => {
-                try {
-                  return !!fn();
-                } catch {
-                  return false;
-                }
-              });
-            } catch {
-              return false;
-            }
-          }
-
-          // Load polyfills only if baseline features are missing
-          if (!checkBaselineFeatures()) {
-            import('/polyfills-modern.js').catch(()=>{
-              console.warn('Failed to load modern polyfills');
-            });
-          }
-        `}} />
-
-        {/* Legacy polyfills for browsers without ESM support */}
-        <script noModule src="/polyfills-legacy.js"></script>
 
         {isProd && (
           <script dangerouslySetInnerHTML={{

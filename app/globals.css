@@ -250,7 +250,7 @@ img, video, canvas, svg { max-width: 100%; height: auto; }
 
 /* Improved button styles with visible feedback */
 .btn {
-  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-blue-700 text-white hover:bg-blue-800 transition-all;
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-blue-700 text-white hover:bg-blue-800 transition-colors duration-200;
   position: relative;
   overflow: hidden;
   min-width: 48px; /* Ensure minimum tap target size */
@@ -292,7 +292,7 @@ img, video, canvas, svg { max-width: 100%; height: auto; }
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900;
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900;
   position: relative;
   overflow: hidden;
   min-width: 48px; /* Ensure minimum tap target size */

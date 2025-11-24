@@ -2,8 +2,8 @@ export default {
   "slug": "on-page-seo-audit-checker",
   "name": "On-Page SEO Audit Checker",
   "category": "On-Page Optimization",
-  "metaTitle": "Free On-Page SEO Checker Tool | Complete Website Audit 2026",
-  "metaDescription": "Free on-page SEO checker - analyze titles, meta descriptions, headings, keywords, content quality, internal links, schema markup, and technical elements. Get instant audit results with actionable fixes. Used by 10,000+ marketers.",
+  "metaTitle": "Free On-Page SEO Audit Checker | Complete Website Audit 2026",
+  "metaDescription": "Free on-page SEO audit checker — analyze titles, meta descriptions, headings, keywords, content quality, internal links, schema markup, and technical elements. Get instant audit results with actionable fixes. Used by 10,000+ marketers.",
   "description": "Run a comprehensive on-page SEO check to optimize your content and technical signals. Our free on-page checker validates titles and meta descriptions, reviews H1–H3 hierarchy, analyzes keyword placement and density, audits internal links and anchors, checks image alt text, and verifies canonical tags and JSON-LD schema. Get instant results with clear recommendations to improve your rankings.",
   "keywords": [
     "on page seo checker",
@@ -16,6 +16,8 @@ export default {
     "free on-page seo checker",
     "on page seo audit",
     "on-page seo audit",
+    "seo audit checker",
+    "website seo audit checker",
     "how to check on page seo",
     "on page seo check",
     "on-page seo check",
@@ -51,5 +53,5 @@ export default {
     "Optimize for featured snippets",
     "Increase organic traffic"
   ],
-  "template": "headingAnalyzer"
+  "template": "seoContentChecker"
 };

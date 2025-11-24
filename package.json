@@ -26,10 +26,10 @@
   },
   "browserslist": {
     "production": [
-      "Chrome >= 90",
-      "Firefox >= 88",
-      "Safari >= 14",
-      "Edge >= 90"
+      "Chrome >= 92",
+      "Firefox >= 90",
+      "Safari >= 15.4",
+      "Edge >= 92"
     ],
     "development": [
       "last 1 chrome version",
@@ -41,7 +41,6 @@
     "@vercel/speed-insights": "^1.2.0",
     "docx": "^9.0.3",
     "jspdf": "^2.5.2",
-    "lucide-react": "^0.552.0",
     "next": "^16.0.1",
     "puppeteer-core": "^24.29.1",
     "react": "18.2.0",
