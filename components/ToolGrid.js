@@ -14,9 +14,10 @@ import {
   FiCpu,
   FiTool,
   FiStar,
+
   FiChevronRight
 } from 'react-icons/fi';
-
+//hello boss
 const categoryIconMap = {
   'Keyword Research': FiSearch,
   'On-Page Optimization': FiTag,
