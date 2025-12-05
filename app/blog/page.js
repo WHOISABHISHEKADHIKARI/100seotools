@@ -52,7 +52,7 @@ export default async function BlogPage() {
         return false;
       }
     });
-  } catch {}
+  } catch { }
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -329,7 +329,7 @@ export default async function BlogPage() {
                 <h3 className="text-lg font-medium">How</h3>
                 <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
                   {p.sections.how.map((h, i) => (
-                    <li key={i}><a href={h.slug ? `/tools/${h.slug}` : '#'} className="text-brand-600 hover:underline">{h.label || h.text}</a></li>
+                    <li key={`${p.slug}-how-${i}`}><a href={h.slug ? `/tools/${h.slug}` : '#'} className="text-brand-600 hover:underline">{h.label || h.text}</a></li>
                   ))}
                 </ul>
               </div>
@@ -338,7 +338,7 @@ export default async function BlogPage() {
               <div>
                 <h3 className="text-lg font-medium">Steps</h3>
                 <ol className="list-decimal pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                  {p.sections.howDetailed.map((s, i) => (<li key={i}>{s}</li>))}
+                  {p.sections.howDetailed.map((s, i) => (<li key={`${p.slug}-step-${i}`}>{s}</li>))}
                 </ol>
               </div>
             )}
@@ -346,7 +346,7 @@ export default async function BlogPage() {
               <div>
                 <h3 className="text-lg font-medium">Tips</h3>
                 <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                  {p.sections.tips.map((t, i) => (<li key={i}>{t}</li>))}
+                  {p.sections.tips.map((t, i) => (<li key={`${p.slug}-tip-${i}`}>{t}</li>))}
                 </ul>
               </div>
             )}
@@ -355,7 +355,7 @@ export default async function BlogPage() {
                 <h3 className="text-lg font-medium">FAQ</h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   {p.sections.faq.map((f, i) => (
-                    <li key={i}><span className="font-medium">Q:</span> {f.q} <br /><span className="font-medium">A:</span> {f.a}</li>
+                    <li key={`${p.slug}-faq-${i}`}><span className="font-medium">Q:</span> {f.q} <br /><span className="font-medium">A:</span> {f.a}</li>
                   ))}
                 </ul>
               </div>

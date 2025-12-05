@@ -34,18 +34,18 @@ export default function Footer() {
           <div>
             <h3 className="text-xl md:text-2xl xl:text-3xl font-bold">Hashtag Solutions</h3>
             <p className="mt-3 text-slate-600 dark:text-gray-400 break-words">Empowering businesses and individuals with web solutions, SEO tools, and digital growth strategies.</p>
-          <div className="mt-6 flex flex-wrap items-center gap-2 md:gap-3 xl:gap-4">
-            <a href="mailto:hashtagsolutionsocail@gmail.com" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" aria-label="Email Hashtag Solutions">
-              <FiMail aria-hidden className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6" /> Email us
-            </a>
-            <a href="tel:+9779823405140" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" aria-label="Call Hashtag Solutions">
-              <FiPhone aria-hidden className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6" /> +977-9823405140
-            </a>
-            <a href="https://github.com/hashtagsolutions" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" rel="noopener noreferrer" target="_blank" aria-label="Visit Hashtag Solutions GitHub">
-              <FiGithub className="h-4 w-4 md:w-5 md:h-5 xl:w-6 xl:h-6" />
-              GitHub
-            </a>
-          </div>
+            <div className="mt-6 flex flex-wrap items-center gap-2 md:gap-3 xl:gap-4">
+              <a href="mailto:hashtagsolutionsocail@gmail.com" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" aria-label="Email Hashtag Solutions">
+                <FiMail aria-hidden className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6" /> Email us
+              </a>
+              <a href="tel:+9779823405140" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" aria-label="Call Hashtag Solutions">
+                <FiPhone aria-hidden className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6" /> +977-9823405140
+              </a>
+              <a href="https://github.com/hashtagsolutions" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" rel="noopener noreferrer" target="_blank" aria-label="Visit Hashtag Solutions GitHub">
+                <FiGithub className="h-4 w-4 md:w-5 md:h-5 xl:w-6 xl:h-6" />
+                GitHub
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -55,6 +55,8 @@ export default function Footer() {
               <li><Link href="/" className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Home</Link></li>
               <li><Link href="/about" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">About Us</Link></li>
               <li><Link href="/blog" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Blog</Link></li>
+              <li><Link href="/contact" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Contact</Link></li>
+              <li><Link href="/faq" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">FAQ</Link></li>
             </ul>
           </nav>
 
@@ -94,6 +96,7 @@ export default function Footer() {
           <div className="flex items-center flex-wrap gap-3 md:gap-4 min-w-0">
             <Link href="/" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Home</Link>
             <Link href="/blog" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Blog</Link>
+            <Link href="/contact" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Contact</Link>
             <Link href="/robots.txt" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Robots</Link>
             <Link href="/privacy" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Privacy Policy</Link>
             <Link href="/terms" prefetch={false} className="transition-gpu will-change-transform-opacity hover:opacity-85 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Terms of Service</Link>

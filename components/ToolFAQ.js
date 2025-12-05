@@ -74,7 +74,10 @@ export default function ToolFAQ({ faqs, toolName }) {
                         or explore our{' '}
                         <a href="/category" className="text-brand-600 hover:underline">
                             other free SEO tools
-                        </a>.
+                        </a>. Have questions?{' '}
+                        <a href="/contact" className="text-brand-600 hover:underline">
+                            Contact us
+                        </a> for support.
                     </p>
                 </div>
             </section>
