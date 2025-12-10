@@ -3,5 +3,6 @@ export default {
   "name": "Domain Comparison Report Tool",
   "category": "Competitor Analysis",
   "description": "Compare domain attributes.",
-  "template": "schemaMarkupGenerator"
+  "template": "domainComparisonReportTool",
+  "api": true
 };

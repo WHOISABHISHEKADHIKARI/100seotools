@@ -3,5 +3,6 @@ export default {
   "name": "Geo Keyword Expansion Tool",
   "category": "Local SEO",
   "description": "Geo keyword expansions.",
-  "template": "longTailKeywords"
+  "template": "geoKeywordExpansionTool",
+  "api": true
 };

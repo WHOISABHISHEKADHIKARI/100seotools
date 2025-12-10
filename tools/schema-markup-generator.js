@@ -21,5 +21,6 @@ export default {
     "Enhance local SEO with business schema",
     "Boost overall SEO performance and visibility"
   ],
-  "template": "schemaMarkupGenerator"
+  "template": "schemaMarkupGenerator",
+  "api": true
 };

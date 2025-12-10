@@ -1,6 +1,8 @@
 export default {
   "slug": "keyword-comparison-tool",
   "name": "Keyword Comparison Tool",
+  "template": "keywordComparisonTool",
+  "api": true,
   "category": "Keyword Research",
   "metaTitle": "Keyword Comparison Tool | Compare Keyword Metrics",
   "metaDescription": "Compare multiple keywords at once. Our Keyword Comparison Tool helps you analyze keyword metrics side-by-side to make informed decisions for your SEO strategy.",

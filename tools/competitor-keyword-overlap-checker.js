@@ -18,5 +18,6 @@ export default {
     "Gain a competitive edge",
     "Improve your search rankings"
   ],
-  "template": "duplicateContentChecker"
+  "template": "competitorGapAnalyzer",
+  "api": true
 };

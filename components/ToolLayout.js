@@ -193,12 +193,12 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
               </section>
 
               <section aria-labelledby="what-heading" className="space-y-2">
-                <h2 id="what-heading" className="text-xl font-semibold">What It Does</h2>
+                <h2 id="what-heading" className="text-xl font-semibold">Why This Tool Is Needed</h2>
                 <p className="text-gray-700 dark:text-gray-300">{guide.whatItDoes}</p>
               </section>
 
               <section aria-labelledby="seo-heading" className="space-y-2">
-                <h2 id="seo-heading" className="text-xl font-semibold">Why It Matters for SEO</h2>
+                <h2 id="seo-heading" className="text-xl font-semibold">Role of This Tool in SEO</h2>
                 <p className="text-gray-700 dark:text-gray-300">{guide.whyItMattersSEO}</p>
               </section>
               <h2 className="text-xl font-semibold mb-2">Tool Information</h2>
@@ -261,7 +261,7 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
               {guide.exampleResults && (
                 <div>
                   <h3 className="text-lg font-medium mb-2">Example Results</h3>
-                  <p className="text-gray-700 dark:text-gray-300">{guide.exampleResults}</p>
+                  <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{guide.exampleResults}</p>
                 </div>
               )}
 
@@ -426,6 +426,21 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
                 </div>
               )}
 
+              {/* Frequency Asked Questions */}
+              {Array.isArray(guide.faqs) && guide.faqs.length > 0 && (
+                <section aria-labelledby="faq-heading" className="space-y-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+                  <h2 id="faq-heading" className="text-xl font-semibold">Frequently Asked Questions</h2>
+                  <div className="space-y-4">
+                    {guide.faqs.map((faq, idx) => (
+                      <div key={idx} className="space-y-1">
+                        <h3 className="font-medium text-gray-900 dark:text-gray-100">{faq.q}</h3>
+                        <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{faq.a}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
               {/* Related tools section */}
               <div>
                 <h3 className="text-lg font-medium mb-3">Related Tools</h3>
@@ -569,29 +584,29 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
             </div>
           )}
 
+          <div className="card p-6">
+            {children}
+          </div>
+          {tool.slug === 'content-freshness-checker' && (
             <div className="card p-6">
-              {children}
+              <h2 className="text-lg font-medium mb-2">Further Reading</h2>
+              <div className="flex flex-wrap gap-2">
+                <a href="/" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Homepage</a>
+                <a href="/category" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">SEO Tools Categories</a>
+                <a href="/blog/content-freshness-checker" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Content Freshness Checker guide</a>
+              </div>
             </div>
-            {tool.slug === 'content-freshness-checker' && (
-              <div className="card p-6">
-                <h2 className="text-lg font-medium mb-2">Further Reading</h2>
-                <div className="flex flex-wrap gap-2">
-                  <a href="/" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Homepage</a>
-                  <a href="/category" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">SEO Tools Categories</a>
-                  <a href="/blog/content-freshness-checker" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Content Freshness Checker guide</a>
-                </div>
+          )}
+          {tool.slug === 'ai-schema-generator' && (
+            <div className="card p-6">
+              <h2 className="text-lg font-medium mb-2">Further Reading</h2>
+              <div className="flex flex-wrap gap-2">
+                <a href="/blog/free-seo-tools-list-2024" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Free SEO Tools list</a>
+                <a href="/blog/100-free-seo-tools-ultimate-list" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">100 SEO Tools ultimate guide</a>
+                <a href="/" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Homepage</a>
               </div>
-            )}
-            {tool.slug === 'ai-schema-generator' && (
-              <div className="card p-6">
-                <h2 className="text-lg font-medium mb-2">Further Reading</h2>
-                <div className="flex flex-wrap gap-2">
-                  <a href="/blog/free-seo-tools-list-2024" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Free SEO Tools list</a>
-                  <a href="/blog/100-free-seo-tools-ultimate-list" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">100 SEO Tools ultimate guide</a>
-                  <a href="/" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Homepage</a>
-                </div>
-              </div>
-            )}
+            </div>
+          )}
         </>
       )}
 

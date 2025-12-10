@@ -40,5 +40,6 @@ export default {
     "sitemap-generator"
   ],
   "guideUrl": "/blog/redirect-best-practices-guide",
-  "template": "redirectChecker"
+  "template": "redirectChecker",
+  "api": true
 };

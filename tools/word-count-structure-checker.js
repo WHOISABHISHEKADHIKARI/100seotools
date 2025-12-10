@@ -18,5 +18,6 @@ export default {
     "Increase your organic traffic",
     "Improve your on-page SEO"
   ],
-  "template": "readabilityScore"
+  "template": "readabilityScore",
+  "api": true
 };

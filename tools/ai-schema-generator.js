@@ -21,5 +21,6 @@ export default {
     "Faster editorial QA and consistent implementation",
     "No HTML fragments in JSON‑LD for clean validation"
   ],
-  "template": "schemaMarkupGenerator"
+  "template": "aiSchemaGenerator",
+  "api": true
 };

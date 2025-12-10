@@ -3,5 +3,6 @@ export default {
   "name": "Organic Growth Forecast Tool",
   "category": "SEO Performance",
   "description": "Simple growth forecast.",
-  "template": "titleMetaLengthCounter"
+  "template": "organicGrowthForecast",
+  "api": true
 };

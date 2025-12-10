@@ -18,5 +18,6 @@ export default {
     "Improve your on-page SEO",
     "Increase your click-through rates"
   ],
-  "template": "urlSlugGenerator"
+  "template": "urlSlugGenerator",
+  "api": true
 };

@@ -3,5 +3,6 @@ export default {
   "name": "Domain Authority Simulator",
   "category": "Backlink & Link-Building",
   "description": "Heuristic DA score.",
-  "template": "titleMetaLengthCounter"
+  "template": "domainAuthoritySimulator",
+  "api": true
 };

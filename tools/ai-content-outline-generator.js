@@ -21,5 +21,6 @@ export default {
     "Increase organic search visibility",
     "Generate more engaging and comprehensive content"
   ],
-  "template": "aiContentOutline"
+  "template": "aiContentOutlineGenerator",
+  "api": true
 };

@@ -25,5 +25,6 @@ export default {
     "Generate SEO-friendly HTML",
     "Avoid unsafe HTML injection"
   ],
-  "template": "textToHtmlConverter"
+  "template": "textToHtmlConverter",
+  "api": true
 };

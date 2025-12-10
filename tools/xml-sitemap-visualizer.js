@@ -18,5 +18,6 @@ export default {
     "Improve your search engine rankings",
     "Increase your organic traffic"
   ],
-  "template": "xmlSitemapVisualizer"
+  "template": "xmlSitemapVisualizer",
+  "api": true
 };

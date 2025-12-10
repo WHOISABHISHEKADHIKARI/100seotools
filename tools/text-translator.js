@@ -18,5 +18,6 @@ export default {
     "Learn a new language",
     "Break down language barriers"
   ],
-  "template": "textTranslator"
+  "template": "textTranslator",
+  "api": true
 };

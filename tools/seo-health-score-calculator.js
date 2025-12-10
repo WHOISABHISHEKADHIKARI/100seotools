@@ -21,5 +21,6 @@ export default {
     "Improve search engine rankings",
     "Enhance website performance and user experience"
   ],
-  "template": "seoHealthScore"
+  "template": "seoHealthScore",
+  "api": true
 };

@@ -3,5 +3,6 @@ export default {
   "name": "AI Article Length Optimizer",
   "category": "AI-Powered SEO",
   "description": "Optimize length suggestions.",
-  "template": "aiArticleLengthOptimizer"
+  "template": "aiArticleLengthOptimizer",
+  "api": true
 };

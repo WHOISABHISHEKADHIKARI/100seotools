@@ -3,5 +3,6 @@ export default {
   "name": "Canonical URL Builder",
   "category": "SEO Utility",
   "description": "Build canonical URLs.",
-  "template": "metaTagGenerator"
+  "template": "metaTagGenerator",
+  "api": true
 };

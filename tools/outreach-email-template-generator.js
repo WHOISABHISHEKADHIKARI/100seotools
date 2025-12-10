@@ -3,5 +3,6 @@ export default {
   "name": "Outreach Email Template Generator",
   "category": "Backlink & Link-Building",
   "description": "Email template ideas.",
-  "template": "longTailKeywords"
+  "template": "outreachEmailTemplate",
+  "api": true
 };

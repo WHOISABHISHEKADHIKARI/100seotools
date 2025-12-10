@@ -18,5 +18,6 @@ export default {
     "Increase traffic to your website",
     "Enhance your on-page SEO"
   ],
-  "template": "searchPreviewSimulator"
+  "template": "searchPreviewSimulator",
+  "api": true
 };

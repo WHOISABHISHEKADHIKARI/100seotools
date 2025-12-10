@@ -3,5 +3,6 @@ export default {
   "name": "Backlink Tracking Template Generator",
   "category": "Backlink & Link-Building",
   "description": "Generate tracking template.",
-  "template": "schemaMarkupGenerator"
+  "template": "backlinkTrackingTemplate",
+  "api": true
 };

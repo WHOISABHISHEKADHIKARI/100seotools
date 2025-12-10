@@ -1,7 +1,7 @@
 export default {
   "slug": "meta-tag-generator",
   "name": "Free Meta Tag Generator",
-  "category": "On-Page Optimization", 
+  "category": "On-Page Optimization",
   "metaTitle": "Free Meta Tag Generator | Create SEO Meta Tags Instantly",
   "metaDescription": "Generate clean SEO meta tags (title, description, canonical, OG, Twitter). Free meta tag generator for fast, crawl-safe metadata with smart length checks.",
   "description": "Create clean, crawl‑safe meta tags in seconds. This free Meta Tag Generator produces sanitized <title>, meta description, optional canonical, Open Graph, and Twitter tags. Inputs are normalized to plain text, attributes are escaped, and output includes helpful length guidance (50–60 chars for titles, 120–160 for descriptions). Copy outputs directly into your CMS or theme templates to improve CTR, sharing previews, and crawl consistency without risking HTML injection.",
@@ -30,10 +30,11 @@ export default {
   ],
   "benefits": [
     "Improve search engine rankings",
-    "Increase click-through rates from search results", 
+    "Increase click-through rates from search results",
     "Enhance social media sharing appearance",
     "Boost website visibility and traffic",
     "Comply with SEO best practices and guidelines"
   ],
-  "template": "metaTagGenerator"
+  "template": "metaTagGenerator",
+  "api": true
 };

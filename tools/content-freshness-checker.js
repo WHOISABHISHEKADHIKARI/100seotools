@@ -34,5 +34,6 @@ export default {
     "Speed up editorial workflows with prioritized fixes",
     "Strengthen internal links to hubs and related tools"
   ],
-  "template": "contentFreshnessChecker"
+  "template": "contentFreshnessChecker",
+  "api": true
 };

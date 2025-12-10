@@ -18,5 +18,6 @@ export default {
     "Improve your chances of ranking on the first page",
     "Gain a competitive edge in your niche"
   ],
-  "template": "keywordSuggestions"
+  "template": "keywordSuggestions",
+  "api": true
 };

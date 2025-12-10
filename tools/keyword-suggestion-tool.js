@@ -42,5 +42,6 @@ export default {
     "Speed up research with clean outputs",
     "Strengthen semantic coverage for topical authority"
   ],
-  "template": "keywordSuggestions"
+  "template": "keywordSuggestions",
+  "api": true
 };

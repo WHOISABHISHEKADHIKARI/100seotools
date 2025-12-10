@@ -3,5 +3,6 @@ export default {
   "name": "Blog Title Generator",
   "category": "Content Creation",
   "description": "Generate engaging blog titles and headlines that drive clicks and improve SEO. Create compelling, keyword-optimized titles that boost content performance and search rankings.",
-  "template": "blogTitleGenerator"
+  "template": "blogTitleGenerator",
+  "api": true
 };

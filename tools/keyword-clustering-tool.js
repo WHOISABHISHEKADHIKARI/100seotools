@@ -55,5 +55,6 @@ export default {
     "Improve content strategy",
     "Boost organic rankings with better structure"
   ],
-  "template": "keywordSuggestions"
+  "template": "keywordSuggestions",
+  "api": true
 };

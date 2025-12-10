@@ -40,5 +40,6 @@ export default {
     "heading-analyzer"
   ],
   "guideUrl": "/blog/mobile-seo-complete-guide",
-  "template": "mobileFriendlyTest"
+  "template": "mobileFriendlyTest",
+  "api": true
 };

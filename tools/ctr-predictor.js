@@ -40,5 +40,6 @@ export default {
     "headline-analyzer"
   ],
   "guideUrl": "/blog/ctr-optimization-complete-guide",
-  "template": "ctrPredictor"
+  "template": "ctrPredictor",
+  "api": true
 };

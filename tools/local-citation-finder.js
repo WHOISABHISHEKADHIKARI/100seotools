@@ -41,5 +41,6 @@ export default {
     "local-schema-builder"
   ],
   "guideUrl": "/blog/local-citation-building-guide",
-  "template": "localCitationFinder"
+  "template": "localCitationFinder",
+  "api": true
 };

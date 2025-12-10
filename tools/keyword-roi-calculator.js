@@ -3,5 +3,6 @@ export default {
   "name": "Keyword ROI Calculator",
   "category": "SEO Performance",
   "description": "Estimate ROI.",
-  "template": "titleMetaLengthCounter"
+  "template": "keywordRoiCalculator",
+  "api": true
 };

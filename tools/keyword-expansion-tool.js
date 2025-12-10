@@ -18,5 +18,6 @@ export default {
     "Attract more organic traffic",
     "Expand your reach"
   ],
-  "template": "longTailKeywords"
+  "template": "longTailKeywords",
+  "api": true
 };

@@ -40,5 +40,6 @@ export default {
     "ai-content-outline-generator"
   ],
   "guideUrl": "/blog/faq-schema-complete-guide",
-  "template": "faqGenerator"
+  "template": "faqGenerator",
+  "api": true
 };

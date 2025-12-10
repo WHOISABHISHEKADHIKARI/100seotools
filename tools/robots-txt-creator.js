@@ -21,5 +21,6 @@ export default {
     "Optimize crawl budget for important content",
     "Ensure proper technical SEO implementation"
   ],
-  "template": "robotsTxtCreator"
+  "template": "robotsTxtCreator",
+  "api": true
 };

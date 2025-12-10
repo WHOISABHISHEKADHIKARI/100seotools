@@ -40,5 +40,6 @@ export default {
     "structured-data-validator"
   ],
   "guideUrl": "/blog/hreflang-tags-complete-guide",
-  "template": "hreflangTagGenerator"
+  "template": "hreflangTagGenerator",
+  "api": true
 };

@@ -40,5 +40,6 @@ export default {
     "ai-content-detector"
   ],
   "guideUrl": "/blog/duplicate-content-seo-guide",
-  "template": "duplicateContentChecker"
+  "template": "duplicateContentChecker",
+  "api": true
 };

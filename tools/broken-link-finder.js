@@ -40,5 +40,6 @@ export default {
     "sitemap-generator"
   ],
   "guideUrl": "/blog/broken-link-fixing-guide",
-  "template": "brokenLinkFinder"
+  "template": "brokenLinkFinder",
+  "api": true
 };

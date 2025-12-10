@@ -18,5 +18,6 @@ export default {
     "Improve your content strategy",
     "Dominate your niche"
   ],
-  "template": "duplicateContentChecker"
+  "template": "duplicateContentChecker",
+  "api": true
 };

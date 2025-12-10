@@ -3,5 +3,6 @@ export default {
   "name": "OG (Open Graph) Tag Generator",
   "category": "SEO Utility",
   "description": "Generate basic OG tags.",
-  "template": "ogTagGenerator"
+  "template": "ogTagGenerator",
+  "api": true
 };

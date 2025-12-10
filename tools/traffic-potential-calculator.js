@@ -18,5 +18,6 @@ export default {
     "Make data-driven decisions",
     "Maximize your return on investment"
   ],
-  "template": "titleMetaLengthCounter"
+  "template": "trafficPotentialCalculator",
+  "api": true
 };

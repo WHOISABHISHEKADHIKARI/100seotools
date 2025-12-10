@@ -3,5 +3,6 @@ export default {
   "name": "Link Source Categorizer",
   "category": "Backlink & Link-Building",
   "description": "Categorize sources.",
-  "template": "duplicateContentChecker"
+  "template": "linkSourceCategorizer",
+  "api": true
 };

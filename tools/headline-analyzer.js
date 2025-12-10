@@ -28,5 +28,6 @@ export default {
     "Balance keyword use with readability",
     "Fast, copy‑ready insights with no login"
   ],
-  "template": "titleMetaLengthCounter"
+  "template": "headlineAnalyzer",
+  "api": true
 };

@@ -18,5 +18,6 @@ export default {
     "Increase your visibility in search results",
     "Enhance your website’s user experience"
   ],
-  "template": "titleMetaLengthCounter"
+  "template": "titleMetaLengthCounter",
+  "api": true
 };

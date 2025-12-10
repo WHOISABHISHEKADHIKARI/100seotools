@@ -18,5 +18,6 @@ export default {
     "Improve your brand\'s communication strategy",
     "Increase engagement with your content"
   ],
-  "template": "readabilityScore"
+  "template": "toneOfVoiceAnalyzer",
+  "api": true
 };

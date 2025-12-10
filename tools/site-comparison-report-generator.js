@@ -18,5 +18,6 @@ export default {
     "Improve your SEO strategy",
     "Increase your online visibility"
   ],
-  "template": "schemaMarkupGenerator"
+  "template": "siteComparisonReportGenerator",
+  "api": true
 };

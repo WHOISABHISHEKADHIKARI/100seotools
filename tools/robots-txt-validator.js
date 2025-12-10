@@ -49,5 +49,6 @@ export default {
     "Fix robots.txt errors before deployment",
     "Ensure proper sitemap declaration"
   ],
-  "template": "robotsTxtValidator"
+  "template": "robotsTxtValidator",
+  "api": true
 };

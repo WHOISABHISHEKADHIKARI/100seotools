@@ -21,5 +21,6 @@ export default {
     "Build consistent local citations across directories",
     "Enhance local online reputation and reviews"
   ],
-  "template": "localSeoAudit"
+  "template": "localSeoAuditChecklist",
+  "api": true
 };

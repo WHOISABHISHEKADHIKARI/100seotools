@@ -41,5 +41,6 @@ export default {
     "local-schema-builder"
   ],
   "guideUrl": "/blog/nap-consistency-complete-guide",
-  "template": "napConsistencyChecker"
+  "template": "napConsistencyChecker",
+  "api": true
 };

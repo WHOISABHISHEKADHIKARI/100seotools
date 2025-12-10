@@ -40,5 +40,6 @@ export default {
     "competitor-backlink-idea-generator"
   ],
   "guideUrl": "/blog/anchor-text-optimization-guide",
-  "template": "anchorTextAnalyzer"
+  "template": "anchorTextAnalyzer",
+  "api": true
 };

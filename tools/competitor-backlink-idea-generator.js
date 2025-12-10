@@ -3,5 +3,6 @@ export default {
   "name": "Competitor Backlink Idea Generator",
   "category": "Competitor Analysis",
   "description": "Backlink ideas from inputs.",
-  "template": "keywordSuggestions"
+  "template": "competitorBacklinkIdeaGenerator",
+  "api": true
 };

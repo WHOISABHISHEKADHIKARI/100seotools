@@ -3,5 +3,6 @@ export default {
   "name": "Ranking Progress Tracker",
   "category": "SEO Performance",
   "description": "Track ranking progress.",
-  "template": "schemaMarkupGenerator"
+  "template": "rankingProgressTracker",
+  "api": true
 };

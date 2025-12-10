@@ -20,6 +20,7 @@ export default function ToolRunner({ tool }) {
   const [fieldErrors, setFieldErrors] = useState({});
   const [isProcessing, setIsProcessing] = useState(false);
   const [pasteFeedback, setPasteFeedback] = useState({ field: null, ts: 0 });
+  const [isCopied, setIsCopied] = useState(false);
 
   const onChange = (name, value) => {
     const field = def.fields.find(f => f.name === name);
@@ -125,14 +126,43 @@ export default function ToolRunner({ tool }) {
         return;
       }
 
-      // Run template with timeout
-      const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Processing timeout - operation took too long')), 10000)
-      );
+      let result;
 
-      const resultPromise = Promise.resolve(runTemplate(tool.template, inputs));
+      // Check if tool should run server-side via API
+      if (tool.api) {
+        const response = await fetch(`/api/${tool.slug}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(inputs),
+        });
 
-      const result = await Promise.race([resultPromise, timeoutPromise]);
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.error || data.message || 'Failed to process request');
+        }
+
+        // Format result if it's an object, or use directly if string
+        if (typeof data.result === 'object') {
+          // If the API returns a complex object, we might need a way to format it.
+          // For now, let's assume the API returns a formatted string OR we JSON stringify it
+          // UNLESS the template has a specific formatter.
+          // Simple approach: JSON.stringify pretty print
+          result = typeof data.result === 'string' ? data.result : JSON.stringify(data.result, null, 2);
+        } else {
+          result = data.result;
+        }
+      } else {
+        // Run client-side template with timeout
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Processing timeout - operation took too long')), 10000)
+        );
+
+        const resultPromise = Promise.resolve(runTemplate(tool.template, inputs));
+        result = await Promise.race([resultPromise, timeoutPromise]);
+      }
 
       setOutput(result || 'No output generated');
     } catch (error) {
@@ -238,12 +268,16 @@ export default function ToolRunner({ tool }) {
           </pre>
           <div className="flex gap-3">
             <button
-              className="btn-secondary flex-1"
-              onClick={() => copyToClipboardWithHistory(output, tool.slug)}
+              className="btn-secondary flex-1 transition-all duration-200"
+              onClick={() => {
+                copyToClipboardWithHistory(output, tool.slug);
+                setIsCopied(true);
+                setTimeout(() => setIsCopied(false), 2000);
+              }}
               disabled={!output || isProcessing}
-              aria-label="Copy output to clipboard"
+              aria-label={isCopied ? "Copied to clipboard" : "Copy output to clipboard"}
             >
-              📋 Copy
+              {isCopied ? "✅ Copied!" : "📋 Copy"}
             </button>
             <button
               className="btn-secondary flex-1"

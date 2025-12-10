@@ -40,5 +40,6 @@ export default {
     "local-schema-builder"
   ],
   "guideUrl": "/blog/local-keyword-research-guide",
-  "template": "localKeywordGenerator"
+  "template": "localKeywordGenerator",
+  "api": true
 };

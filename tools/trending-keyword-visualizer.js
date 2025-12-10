@@ -18,5 +18,6 @@ export default {
     "Stay ahead of your competitors",
     "Drive traffic from trending searches"
   ],
-  "template": "keywordSuggestions"
+  "template": "keywordSuggestions",
+  "api": true
 };

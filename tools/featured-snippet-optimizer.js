@@ -40,5 +40,6 @@ export default {
     "keyword-intent-identifier"
   ],
   "guideUrl": "/blog/featured-snippet-optimization-complete-guide",
-  "template": "featuredSnippetOptimizer"
+  "template": "featuredSnippetOptimizer",
+  "api": true
 };

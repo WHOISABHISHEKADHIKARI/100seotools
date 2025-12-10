@@ -31,5 +31,6 @@ export default {
     "Strengthen internal links and anchors",
     "Improve keyword placement and readability"
   ],
-  "template": "duplicateContentChecker"
+  "template": "competitorGapAnalyzer",
+  "api": true
 };

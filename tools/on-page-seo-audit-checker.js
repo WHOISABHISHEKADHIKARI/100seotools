@@ -53,5 +53,6 @@ export default {
     "Optimize for featured snippets",
     "Increase organic traffic"
   ],
-  "template": "seoContentChecker"
+  "template": "onPageSeoAuditChecker",
+  "api": true
 };

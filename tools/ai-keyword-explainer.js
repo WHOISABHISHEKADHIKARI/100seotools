@@ -3,5 +3,6 @@ export default {
   "name": "AI Keyword Explainer",
   "category": "AI-Powered SEO",
   "description": "Explain keywords (heuristic).",
-  "template": "keywordSuggestions"
+  "template": "aiKeywordExplainer",
+  "api": true
 };

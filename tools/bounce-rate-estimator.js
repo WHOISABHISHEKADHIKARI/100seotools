@@ -26,5 +26,6 @@ export default {
     "Improve engagement and session depth",
     "Support SEO performance decisions"
   ],
-  "template": "titleMetaLengthCounter"
+  "template": "bounceRateEstimator",
+  "api": true
 };

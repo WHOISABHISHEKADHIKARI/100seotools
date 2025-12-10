@@ -18,5 +18,6 @@ export default {
     "Improve your search engine rankings",
     "Increase your online visibility"
   ],
-  "template": "titleMetaLengthCounter"
+  "template": "visibilityIndexCalculator",
+  "api": true
 };

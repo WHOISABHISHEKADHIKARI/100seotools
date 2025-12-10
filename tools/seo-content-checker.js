@@ -32,5 +32,6 @@ export default {
     "Reduce keyword stuffing risks",
     "Publish clearer, more readable pages"
   ],
-  "template": "seoContentChecker"
+  "template": "seoContentChecker",
+  "api": true
 };

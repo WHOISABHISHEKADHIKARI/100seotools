@@ -21,5 +21,6 @@ export default {
     "Ensure important pages get crawled first",
     "Comply with search engine guidelines"
   ],
-  "template": "xmlSitemapVisualizer"
+  "template": "sitemapGenerator",
+  "api": true
 };

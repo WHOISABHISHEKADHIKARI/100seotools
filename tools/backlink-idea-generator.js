@@ -21,5 +21,6 @@ export default {
     "Save time on manual link prospecting",
     "Increase organic traffic through better SEO"
   ],
-  "template": "backlinkIdeas"
+  "template": "backlinkIdeaGenerator",
+  "api": true
 };

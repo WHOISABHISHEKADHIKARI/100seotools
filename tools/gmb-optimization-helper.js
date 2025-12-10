@@ -40,5 +40,6 @@ export default {
     "local-schema-builder"
   ],
   "guideUrl": "/blog/gmb-optimization-complete-guide",
-  "template": "gmbOptimizationHelper"
+  "template": "gmbOptimizationHelper",
+  "api": true
 };
