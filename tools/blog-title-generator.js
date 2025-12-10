@@ -3,6 +3,6 @@ export default {
   "name": "Blog Title Generator",
   "category": "Content SEO",
   "description": "Generate blog title ideas.",
-  "template": "longTailKeywords",
+  "template": "blogTitleGenerator",
   "api": true
 };

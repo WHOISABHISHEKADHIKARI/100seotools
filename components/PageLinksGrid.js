@@ -23,11 +23,6 @@ const pages = [
     description: 'Explore curated categories: metadata, schema, headings, links, crawling, and more.'
   },
   {
-    href: '/seo-calculator',
-    title: 'SEO Calculator',
-    description: 'Estimate impact with quick scenarios. 100% client‑side and fast.'
-  },
-  {
     href: '/privacy',
     title: 'Privacy Policy',
     description: 'We do not store your inputs. Tools run in your browser.'

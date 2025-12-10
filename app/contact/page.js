@@ -91,7 +91,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-                    <h2 className="text-xl font-semibold mb-3">⏱️ Response Time</h2>
+                    <h2 className="text-xl font-semibold mb-3">Response Time</h2>
                     <p className="text-gray-600 dark:text-gray-400">
                         We typically respond to all inquiries within 24-48 hours during business days. For urgent matters, please mention it in your subject line.
                     </p>
@@ -117,8 +117,8 @@ export default function ContactPage() {
                 <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
                     {status.message && (
                         <div className={`mb-6 p-4 rounded-md flex items-start gap-3 ${status.type === 'success'
-                                ? 'success-container'
-                                : 'error-container'
+                            ? 'success-container'
+                            : 'error-container'
                             }`}>
                             {status.type === 'success' ? (
                                 <FiCheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />

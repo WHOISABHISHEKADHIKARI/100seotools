@@ -3,6 +3,6 @@ export default {
   "name": "Readability Enhancer",
   "category": "Content SEO",
   "description": "Suggest readability improvements.",
-  "template": "readabilityScore",
+  "template": "readabilityEnhancer",
   "api": true
 };

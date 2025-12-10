@@ -3,6 +3,6 @@ export default {
   "name": "Guest Posting Opportunity Finder",
   "category": "Backlink & Link-Building",
   "description": "Suggest guest post targets.",
-  "template": "keywordSuggestions",
+  "template": "guestPostingOpportunityFinder",
   "api": true
 };

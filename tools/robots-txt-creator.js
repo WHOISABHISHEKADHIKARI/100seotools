@@ -3,6 +3,6 @@ export default {
   "name": "Robots.txt Creator",
   "category": "SEO Utility",
   "description": "Create robots.txt.",
-  "template": "robotsTxtValidator",
+  "template": "robotsTxtCreator",
   "api": true
 };

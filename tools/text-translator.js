@@ -3,6 +3,6 @@ export default {
   "name": "Text Translator",
   "category": "SEO Utility",
   "description": "Translate text.",
-  "template": "readabilityScore",
+  "template": "textTranslator",
   "api": true
 };

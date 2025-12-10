@@ -3,6 +3,6 @@ export default {
   "name": "Google My Business Optimization Helper",
   "category": "Local SEO",
   "description": "GMB optimization tips.",
-  "template": "keywordSuggestions",
+  "template": "gmbOptimizationHelper",
   "api": true
 };

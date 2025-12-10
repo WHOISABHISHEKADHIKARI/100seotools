@@ -3,6 +3,6 @@ export default {
   "name": "Tone of Voice Analyzer",
   "category": "Competitor Analysis",
   "description": "Basic tone analysis.",
-  "template": "readabilityScore",
+  "template": "toneOfVoiceAnalyzer",
   "api": true
 };

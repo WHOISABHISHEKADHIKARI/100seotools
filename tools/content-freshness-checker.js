@@ -3,6 +3,6 @@ export default {
   "name": "Content Freshness Checker",
   "category": "SEO Utility",
   "description": "Estimate content freshness.",
-  "template": "titleMetaLengthCounter",
+  "template": "contentFreshnessChecker",
   "api": true
 };

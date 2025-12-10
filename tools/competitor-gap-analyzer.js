@@ -3,6 +3,6 @@ export default {
   "name": "Competitor Gap Analyzer",
   "category": "Competitor Analysis",
   "description": "Identify gaps.",
-  "template": "duplicateContentChecker",
+  "template": "competitorGapAnalyzer",
   "api": true
 };

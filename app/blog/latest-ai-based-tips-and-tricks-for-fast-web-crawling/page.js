@@ -135,7 +135,7 @@ export default async function Page() {
           <p>
             Internal links: <a href="/tools/robots-txt-creator" className="hover:underline">robots.txt creator</a> ·{' '}
             <a href="/tools/redirect-checker" className="hover:underline">redirect checker</a> ·{' '}
-            <a href="/blog/free-seo-tools-list-2024" className="hover:underline">free SEO tools list</a>
+            <a href="/blog" className="hover:underline">all SEO guides</a>
           </p>
         </section>
 
@@ -158,7 +158,7 @@ export default async function Page() {
         <aside aria-labelledby="related-articles-heading" className="mt-8 p-4 rounded-lg bg-slate-50 dark:bg-white/5">
           <h2 id="related-articles-heading" className="text-xl">Related Articles</h2>
           <ul className="space-y-2">
-            <li><a href="/blog/free-seo-tools-list-2024" className="hover:underline">150+ Free SEO Tools: The Complete 2024 Resource Guide</a></li>
+            <li><a href="/blog/seo-basics" className="hover:underline">SEO Basics: Complete 2026 Guide</a></li>
             <li><a href="/blog/ai-content-detection-guide-2024" className="hover:underline">AI Content Detection: Complete 2024 Guide</a></li>
           </ul>
         </aside>

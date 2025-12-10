@@ -3,6 +3,6 @@ export default {
   "name": "Internal Link Suggestion Tool",
   "category": "On-Page Optimization",
   "description": "Suggest internal link anchors.",
-  "template": "keywordSuggestions",
+  "template": "internalLinkSuggestionTool",
   "api": true
 };

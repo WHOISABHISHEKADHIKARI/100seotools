@@ -73,8 +73,8 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
             <a href="/tools/schema-markup-generator" className="hover:underline">Schema Markup Generator</a>,{' '}
             <a href="/tools/structured-data-validator" className="hover:underline">Structured Data Validator</a>,{' '}
             <a href="/tools/xml-sitemap-visualizer" className="hover:underline">XML Sitemap Visualizer</a>,{' '}
-            <a href="/blog/free-seo-tools-list-2024" className="hover:underline">Free SEO Tools list</a>,{' '}
-            <a href="/blog/100-free-seo-tools-ultimate-list" className="hover:underline">100 SEO Tools ultimate guide</a>
+            <a href="/blog" className="hover:underline">All SEO Guides</a>,{' '}
+            <a href="/blog/seo-basics" className="hover:underline">SEO Basics Guide</a>
           </div>
         )}
         {tool.slug === 'seo-content-checker' && (
@@ -86,7 +86,7 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
             <a href="/tools/readability-score-calculator" className="hover:underline">Readability Score Calculator</a>,{' '}
             <a href="/tools/heading-analyzer" className="hover:underline">Heading Analyzer</a>,{' '}
             <a href="/tools/meta-tag-generator" className="hover:underline">Meta Tag Generator</a>,{' '}
-            <a href="/blog/seo-content-checker-how-to-use" className="hover:underline">SEO Content Checker: How to Use</a>
+            <a href="/tools/seo-content-checker" className="hover:underline">SEO Content Checker Tool</a>
           </div>
         )}
         {tool.slug === 'meta-tag-generator' && (
@@ -158,9 +158,9 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
             <a href="/tools/keyword-intent-identifier" className="hover:underline">Keyword Intent Identifier</a>,{' '}
             <a href="/tools/competitor-keyword-overlap-checker" className="hover:underline">Competitor Keyword Overlap Checker</a>,{' '}
             <a href="/tools/keyword-gap-finder" className="hover:underline">Keyword Gap Finder</a>,{' '}
-            <a href="/blog/keyword-suggestion-tool" className="hover:underline">Keyword suggest tool guide</a>,{' '}
-            <a href="/blog/keyword-suggestion-tool-popular-search-terms" className="hover:underline">Popular search terms</a>,{' '}
-            <a href="/blog/keyword-suggestion-tool-how-to-use" className="hover:underline">Keyword ideas generator: how to use</a>
+            <a href="/blog" className="hover:underline">All SEO Guides</a>,{' '}
+            <a href="/tools/long-tail-keyword-generator" className="hover:underline">Long-Tail Keywords</a>,{' '}
+            <a href="/tools/keyword-density-checker" className="hover:underline">Keyword Density Checker</a>
           </div>
         )}
         {tool.slug === 'keyword-clustering-tool' && (
@@ -601,14 +601,17 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
             <div className="card p-6">
               <h2 className="text-lg font-medium mb-2">Further Reading</h2>
               <div className="flex flex-wrap gap-2">
-                <a href="/blog/free-seo-tools-list-2024" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Free SEO Tools list</a>
-                <a href="/blog/100-free-seo-tools-ultimate-list" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">100 SEO Tools ultimate guide</a>
+                <a href="/blog" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">All SEO Guides</a>
+                <a href="/blog/seo-basics" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">SEO Basics Guide</a>
                 <a href="/" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Homepage</a>
               </div>
             </div>
           )}
         </>
       )}
+
+
+
 
       {/* Professional footer with additional information */}
       <div className="text-sm text-gray-500 dark:text-gray-400 px-2">

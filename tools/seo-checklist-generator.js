@@ -3,6 +3,6 @@ export default {
   "name": "SEO Checklist Generator",
   "category": "SEO Utility",
   "description": "Generate checklist.",
-  "template": "schemaMarkupGenerator",
+  "template": "seoChecklistGenerator",
   "api": true
 };

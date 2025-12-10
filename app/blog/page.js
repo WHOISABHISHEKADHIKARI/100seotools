@@ -2,57 +2,44 @@ import Link from 'next/link';
 import StructuredData from '../../components/StructuredData';
 import { getAllBlogPostsPublished } from '../../lib/blog-data';
 import { getBaseUrl } from '../../lib/site';
-import fs from 'node:fs';
-import path from 'node:path';
+import BlogGrid from './BlogGrid';
 
 const baseUrl = getBaseUrl();
 
-// Prefer static rendering to reduce RSC prefetch churn and aborted requests
-export const dynamic = 'force-static';
-export const revalidate = 3600; // Cache and revalidate every hour
-
 export const metadata = {
-  title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
-  description:
-    'Explore 100+ free SEO tools and guides for keywords, on-page, technical, backlinks, local SEO, AI, and performance — all in your browser.',
+  title: 'SEO Blog - Free Guides & Tutorials 2026 | 100 SEO Tools',
+  description: 'Master SEO with 130+ comprehensive guides on keyword research, on-page optimization, technical SEO, link building, local SEO, and AI-powered strategies. Updated for 2026.',
+  keywords: ['seo blog', 'seo guides', 'seo tutorials', 'keyword research guide', 'technical seo', 'on-page seo', 'link building', 'seo 2026', 'free seo guides'],
   alternates: { canonical: `${baseUrl}/blog` },
   openGraph: {
-    title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
-    description:
-      'Explore 100+ free SEO tools and guides for keywords, on-page, technical, backlinks, local SEO, AI, and performance — all in your browser.',
+    title: 'SEO Blog - 130+ Free Guides & Tutorials 2026',
+    description: 'Comprehensive SEO guides covering keyword research, on-page optimization, technical SEO, link building, and AI strategies. Free and updated for 2026.',
     url: `${baseUrl}/blog`,
-    type: 'article',
+    type: 'website',
+    siteName: '100 SEO Tools'
   },
   twitter: {
-    card: 'summary',
-    title: '100 SEO Tools: The Ultimate Free, Browser-based Toolkit',
-    description:
-      'Explore 100+ free SEO tools and guides for keywords, on-page, technical, backlinks, local SEO, AI, and performance — all in your browser.',
+    card: 'summary_large_image',
+    title: 'SEO Blog - 130+ Free Guides & Tutorials 2026',
+    description: 'Master SEO with comprehensive guides on keyword research, technical SEO, link building, and more. Free and updated for 2026.'
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
 export default async function BlogPage() {
   const posts = await getAllBlogPostsPublished();
-  let instructionEntries = [];
-  try {
-    const primary = path.resolve(process.cwd(), 'instruction', 'json-instruction.json');
-    const fallback = path.resolve(process.cwd(), 'tools', 'json instruction');
-    const file = fs.existsSync(primary) ? primary : fallback;
-    const text = fs.readFileSync(file, 'utf8');
-    const json = JSON.parse(text);
-    const entries = Array.isArray(json.entries) ? json.entries : [];
-    instructionEntries = entries.filter((e) => {
-      try {
-        const g = e.schema_json_ld && e.schema_json_ld['@graph'];
-        if (!Array.isArray(g)) return false;
-        const wp = g.find((n) => n && n['@type'] === 'WebPage');
-        const u = wp && (wp.url || wp['@id']);
-        return typeof u === 'string' && /\/blog\//.test(u);
-      } catch {
-        return false;
-      }
-    });
-  } catch { }
+  const categories = ['All', ...new Set(posts.map(p => p.category).filter(Boolean))];
+
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -61,314 +48,145 @@ export default async function BlogPage() {
       { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` }
     ]
   };
+
   const collectionLd = {
     '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'CollectionPage',
-        name: '100 SEO Tools Blog',
-        description:
-          'All SEO guides merged into one page with anchors for faster discovery and better crawlability.',
-        url: `${baseUrl}/blog`,
-        isPartOf: `${baseUrl}/`,
-      },
-      breadcrumbLd,
-      ...posts.flatMap((p) => {
-        const anchor = `${baseUrl}/blog#${p.slug}`;
-        const nodes = [
-          {
-            '@type': 'Article',
-            headline: p.title,
-            description: p.description,
-            datePublished: p.datePublished,
-            author: { '@type': 'Organization', name: '100 SEO Tools' },
-            publisher: { '@type': 'Organization', name: '100 SEO Tools' },
-            url: anchor,
-            mainEntityOfPage: anchor,
-            inLanguage: 'en-US',
-            wordCount: p.wordCount || 1200,
-            articleSection: p.category || 'SEO Guides',
-            keywords: Array.isArray(p.tags) ? p.tags.join(', ') : undefined,
-          }
-        ];
-        if (Array.isArray(p.sections?.faq) && p.sections.faq.length > 0) {
-          nodes.push({
-            '@type': 'FAQPage',
-            url: anchor,
-            isPartOf: anchor,
-            mainEntity: p.sections.faq.map((f) => ({
-              '@type': 'Question',
-              name: f.q,
-              acceptedAnswer: { '@type': 'Answer', text: f.a }
-            }))
-          });
-        }
-        if (Array.isArray(p.sections?.howDetailed) && p.sections.howDetailed.length > 0) {
-          nodes.push({
-            '@type': 'HowTo',
-            url: anchor,
-            isPartOf: anchor,
-            name: p.title,
-            description: p.description,
-            step: p.sections.howDetailed.map((s) => ({ '@type': 'HowToStep', text: s }))
-          });
-        }
-        return nodes;
-      })
-    ]
+    '@type': 'Blog',
+    name: '100 SEO Tools Blog - Free SEO Guides & Tutorials 2026',
+    description: 'Comprehensive SEO guides, tutorials, and best practices. Learn keyword research, on-page optimization, technical SEO, link building, and AI-powered SEO strategies.',
+    url: `${baseUrl}/blog`,
+    publisher: {
+      '@type': 'Organization',
+      name: '100 SEO Tools',
+      url: baseUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/logo.png`
+      }
+    },
+    blogPost: posts.slice(0, 10).map(p => ({
+      '@type': 'BlogPosting',
+      headline: p.title,
+      description: p.description,
+      datePublished: p.datePublished,
+      author: { '@type': 'Organization', name: '100 SEO Tools' },
+      url: `${baseUrl}/blog/${p.slug}`,
+      articleSection: p.category
+    }))
   };
 
   return (
-    <article className="max-w-3xl mx-auto py-10 space-y-10">
+    <>
+      <StructuredData data={breadcrumbLd} />
       <StructuredData data={collectionLd} />
-      {instructionEntries.map((e, i) => (
-        <StructuredData key={`instr-${i}`} data={e.schema_json_ld} />
-      ))}
 
-      {/* Premium hero */}
-      <header className="text-center p-6 rounded-xl border border-slate-200 dark:border-white/10 bg-gradient-to-r from-slate-50/60 to-transparent dark:from-white/5">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black text-white text-xs">
-          <span>Premium</span>
-        </div>
-        <h1 className="mt-3 text-3xl md:text-4xl font-extrabold tracking-tight">
-          100 SEO Tools: The Ultimate Free, Browser-based Toolkit
-        </h1>
-        <p className="mt-2 text-gray-600 dark:text-gray-400">
-          Free, fast, and privacy-friendly — the ultimate browser-based SEO toolkit. Run 100+ SEO helpers directly in your browser, no signups or APIs.
-        </p>
-        <div className="mt-4 flex justify-center gap-3">
-          <Link href="/" prefetch={false} className="btn">Browse tools</Link>
-          <Link href="/blog" prefetch={false} className="btn-secondary">Read guides</Link>
-        </div>
-      </header>
+      <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-950">
+        {/* Hero Section */}
+        <section className="text-center space-y-6 py-12 md:py-16">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm mb-4">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
+              </svg>
+              <span className="font-medium">{posts.length}+ SEO Guides</span>
+            </div>
 
-      <section className="space-y-4">
-        <h2 className="text-xl md:text-2xl font-semibold">What is 100 SEO Tools?</h2>
-        <p className="text-gray-700 dark:text-gray-300">
-          100 SEO Tools is an all-in-one, browser-based toolkit designed for digital
-          marketers, developers, business owners, and bloggers. It includes keyword
-          research utilities, on-page optimizers, technical validators, link tools,
-          local SEO helpers, AI writing assistants, and tracking calculators — all
-          accessible instantly without logins.
-        </p>
-      </section>
+            <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
+              SEO Guides & Tutorials
+            </h1>
 
-      <section className="space-y-3">
-        <h2 className="text-xl md:text-2xl font-semibold">How it helps your SEO</h2>
-        <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-          <li>
-            Keyword Research: try{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/keyword-suggestion-tool">
-              Keyword Suggestion
-            </a>{' '}
-            or{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/long-tail-keyword-generator">
-              Long-tail Generator
-            </a>
-            .
-          </li>
-          <li>
-            On-Page Optimization: use{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/meta-tag-generator">
-              Meta Tag Generator
-            </a>{' '}
-            and{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/heading-analyzer">
-              Heading Analyzer
-            </a>
-            .
-          </li>
-          <li>
-            Technical SEO: validate{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/robots-txt-validator">
-              robots.txt
-            </a>{' '}
-            and{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/structured-data-validator">
-              structured data
-            </a>
-            .
-          </li>
-          <li>
-            Backlinks & Outreach: generate{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/outreach-email-template-generator">
-              outreach templates
-            </a>{' '}
-            and explore{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/backlink-idea-generator">
-              backlink ideas
-            </a>
-            .
-          </li>
-          <li>
-            Local SEO: build{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/local-schema-builder">
-              local schema
-            </a>{' '}
-            and check{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/nap-consistency-checker">
-              NAP consistency
-            </a>
-            .
-          </li>
-          <li>
-            AI SEO Writing: draft{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/ai-meta-tag-writer">
-              meta tags
-            </a>{' '}
-            and{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/ai-content-outline-generator">
-              outlines
-            </a>
-            .
-          </li>
-          <li>
-            Performance Tracking: estimate{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/traffic-potential-calculator">
-              traffic potential
-            </a>{' '}
-            and monitor{' '}
-            <a className="text-brand-600 hover:underline" href="/tools/ranking-progress-tracker">
-              ranking progress
-            </a>
-            .
-          </li>
-        </ul>
-      </section>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mt-4">
+              Master SEO with comprehensive guides on keyword research, on-page optimization, technical SEO, link building, and AI-powered strategies.
+            </p>
 
-      <section className="space-y-3">
-        <h2 className="text-xl md:text-2xl font-semibold">Who it’s for</h2>
-        <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-          <li>Marketers and SEOs: quick audits and content tweaks without heavy suites.</li>
-          <li>Developers: fast technical checks with client-side utilities.</li>
-          <li>Business owners: explore opportunities and validate optimizations.</li>
-          <li>Bloggers: speed up ideation, formatting, and on-page optimization.</li>
-        </ul>
-      </section>
-
-      <section className="space-y-3">
-        <h2 className="text-xl md:text-2xl font-semibold">How to use</h2>
-        <ol className="list-decimal pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-          <li>Browse all tools on the homepage.</li>
-          <li>Open a tool, paste your inputs, and generate results instantly.</li>
-          <li>Copy or download outputs to apply in your workflow.</li>
-          <li>Mark favorites with the star for quick access later.</li>
-        </ol>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-xl md:text-2xl font-semibold">Popular picks</h2>
-        <div className="grid sm:grid-cols-2 gap-4">
-          <Link href="/tools/meta-tag-generator" prefetch={false} className="card p-4 hover:shadow-md transition" aria-label="Open Meta Tag Generator tool">
-            <p className="font-semibold">Meta Tag Generator</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Create clean titles, meta descriptions, and tags.</p>
-          </Link>
-          <Link href="/tools/structured-data-validator" prefetch={false} className="card p-4 hover:shadow-md transition" aria-label="Open Structured Data Validator tool">
-            <p className="font-semibold">Structured Data Validator</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Check JSON-LD and schema.org markup.</p>
-          </Link>
-          <Link href="/tools/keyword-clustering-tool" prefetch={false} className="card p-4 hover:shadow-md transition" aria-label="Open Keyword Clustering Tool">
-            <p className="font-semibold">Keyword Clustering Tool</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Group keywords for topical relevance.</p>
-          </Link>
-          <Link href="/tools/robots-txt-validator" prefetch={false} className="card p-4 hover:shadow-md transition" aria-label="Open robots.txt Validator">
-            <p className="font-semibold">robots.txt Validator</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Verify crawl rules and syntax.</p>
-          </Link>
-        </div>
-      </section>
-
-      <section className="space-y-3">
-        <h2 className="text-xl md:text-2xl font-semibold">SEO benefits</h2>
-        <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-          <li>Faster iterations: reduce dependency on heavy SaaS for simple tasks.</li>
-          <li>Better coverage: cover keyword, on-page, technical, and link work.</li>
-          <li>Team-friendly: share links, run tools anywhere, no signups.</li>
-          <li>Privacy-first: runs in your browser, no data stored server-side.</li>
-        </ul>
-      </section>
-
-      <section className="space-y-3">
-        <h2 className="text-xl md:text-2xl font-semibold">Get started</h2>
-        <p className="text-gray-700 dark:text-gray-300">
-          Head to the{' '}
-          <a className="text-brand-600 hover:underline" href="/">
-            homepage
-          </a>{' '}
-          and try a few tools. Bookmark your favorites and integrate outputs into your
-          content and dev workflows.
-        </p>
-      </section>
-
-      {/* Table of contents for all blog posts (anchors) */}
-      <section className="space-y-3">
-        <h2 className="text-xl md:text-2xl font-semibold">All Guides</h2>
-        <p className="text-gray-700 dark:text-gray-300">Jump to any guide below. All content is merged into this one page for faster crawling and lower click depth.</p>
-        <nav aria-label="Table of contents">
-          <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-            {posts.map((p) => (
-              <li key={p.slug}>
-                <a className="text-brand-600 hover:underline" href={`#${p.slug}`}>{p.title}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </section>
-
-      {/* Merged one‑pager sections for all posts */}
-      {posts.map((p) => (
-        <section key={p.slug} id={p.slug} className="space-y-3 scroll-mt-20">
-          <h2 className="text-xl md:text-2xl font-semibold">{p.title}</h2>
-          <p className="text-gray-700 dark:text-gray-300">{p.description}</p>
-          <div className="text-xs text-slate-500 dark:text-slate-400">Category: {p.category} · {new Date(p.datePublished).toLocaleDateString()} · {p.readTimeMinutes || 8} min read</div>
-          <details className="group open:space-y-2">
-            <summary className="cursor-pointer text-brand-600 hover:underline">Expand</summary>
-            {p.sections?.intro && (<p className="text-gray-700 dark:text-gray-300">{p.sections.intro}</p>)}
-            {Array.isArray(p.sections?.how) && p.sections.how.length > 0 && (
-              <div>
-                <h3 className="text-lg font-medium">How</h3>
-                <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                  {p.sections.how.map((h, i) => (
-                    <li key={`${p.slug}-how-${i}`}><a href={h.slug ? `/tools/${h.slug}` : '#'} className="text-brand-600 hover:underline">{h.label || h.text}</a></li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {Array.isArray(p.sections?.howDetailed) && p.sections.howDetailed.length > 0 && (
-              <div>
-                <h3 className="text-lg font-medium">Steps</h3>
-                <ol className="list-decimal pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                  {p.sections.howDetailed.map((s, i) => (<li key={`${p.slug}-step-${i}`}>{s}</li>))}
-                </ol>
-              </div>
-            )}
-            {Array.isArray(p.sections?.tips) && p.sections.tips.length > 0 && (
-              <div>
-                <h3 className="text-lg font-medium">Tips</h3>
-                <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                  {p.sections.tips.map((t, i) => (<li key={`${p.slug}-tip-${i}`}>{t}</li>))}
-                </ul>
-              </div>
-            )}
-            {Array.isArray(p.sections?.faq) && p.sections.faq.length > 0 && (
-              <div>
-                <h3 className="text-lg font-medium">FAQ</h3>
-                <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-                  {p.sections.faq.map((f, i) => (
-                    <li key={`${p.slug}-faq-${i}`}><span className="font-medium">Q:</span> {f.q} <br /><span className="font-medium">A:</span> {f.a}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </details>
-          <div className="mt-2"><a href="#top" className="text-sm text-brand-600 hover:underline">Back to top</a></div>
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-400 mt-6">
+              <span className="inline-flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Free Forever
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Updated 2026
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Expert Insights
+              </span>
+            </div>
+          </div>
         </section>
-      ))}
 
-      {/* Footer note */}
-      <section className="mt-12">
-        <p className="text-sm text-gray-600 dark:text-gray-400">All guides are merged into this single page. Old blog URLs redirect to these anchors.</p>
-      </section>
-    </article>
+        {/* Blog Grid Component (Client-side filtering) */}
+        <BlogGrid initialPosts={posts} initialCategories={categories} />
+
+        {/* CTA Section */}
+        <section className="max-w-4xl mx-auto px-4 py-12">
+          <div className="card p-8 md:p-12 text-center space-y-6">
+            <h2 className="text-2xl md:text-3xl font-bold">
+              Ready to Boost Your SEO?
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              Try our 100+ free SEO tools to optimize your website and improve rankings.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 pt-4">
+              <Link href="/" className="btn">
+                Browse All Tools
+              </Link>
+              <Link href="/author" className="btn-secondary">
+                About the Creator
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* SEO Footer */}
+        <section className="max-w-7xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-800">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="font-bold text-lg mb-3">Popular Categories</h3>
+              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+                {categories.filter(c => c !== 'All').slice(0, 5).map(cat => (
+                  <li key={cat}>
+                    <Link href={`/blog?category=${encodeURIComponent(cat)}`} className="hover:text-brand-600 dark:hover:text-brand-400 transition">
+                      {cat}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-3">Quick Links</h3>
+              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+                <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400 transition">All Tools</Link></li>
+                <li><Link href="/blog/seo-basics" className="hover:text-brand-600 dark:hover:text-brand-400 transition">SEO Basics</Link></li>
+                <li><Link href="/author" className="hover:text-brand-600 dark:hover:text-brand-400 transition">About</Link></li>
+                <li><Link href="/sitemap.xml" className="hover:text-brand-600 dark:hover:text-brand-400 transition">Sitemap</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-3">Latest Guides</h3>
+              <ul className="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                {posts.slice(0, 5).map(post => (
+                  <li key={post.slug}>
+                    <Link href={`/blog/${post.slug}`} className="hover:text-brand-600 dark:hover:text-brand-400 transition line-clamp-1">
+                      {post.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }

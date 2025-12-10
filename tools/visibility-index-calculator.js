@@ -3,6 +3,6 @@ export default {
   "name": "Visibility Index Calculator",
   "category": "SEO Performance",
   "description": "Simple visibility index.",
-  "template": "titleMetaLengthCounter",
+  "template": "visibilityIndexCalculator",
   "api": true
 };

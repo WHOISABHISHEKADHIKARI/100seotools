@@ -3,6 +3,6 @@ export default {
   "name": "Bounce Rate Estimator",
   "category": "SEO Performance",
   "description": "Heuristic bounce rate.",
-  "template": "titleMetaLengthCounter",
+  "template": "bounceRateEstimator",
   "api": true
 };

@@ -3,6 +3,6 @@ export default {
   "name": "301 Redirect Generator",
   "category": "SEO Utility",
   "description": "Generate 301 redirect mapping.",
-  "template": "schemaMarkupGenerator",
+  "template": "redirect301Generator",
   "api": true
 };

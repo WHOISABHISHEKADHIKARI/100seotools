@@ -3,6 +3,6 @@ export default {
   "name": "Reverse Image Search",
   "category": "SEO Utility",
   "description": "Find image sources.",
-  "template": "keywordSuggestions",
+  "template": "reverseImageSearch",
   "api": true
 };

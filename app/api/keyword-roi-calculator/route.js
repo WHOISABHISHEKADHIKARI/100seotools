@@ -8,7 +8,11 @@ export async function POST(request) {
         const cvr = parseFloat(conversion_rate) / 100 || 0;
         const ltv = parseFloat(value) || 0;
 
-        if (cost === 0 || ltv === 0) return NextResponse.json({ success: false, error: 'Cost and Value must be > 0' }, { status: 400 });
+        if (!cpc && cpc !== 0) return NextResponse.json({ success: false, error: 'Cost Per Click is required' }, { status: 400 });
+        if (!conversion_rate && conversion_rate !== 0) return NextResponse.json({ success: false, error: 'Conversion Rate is required' }, { status: 400 });
+        if (!value && value !== 0) return NextResponse.json({ success: false, error: 'Customer Value is required' }, { status: 400 });
+
+        if (cost <= 0) return NextResponse.json({ success: false, error: 'CPC must be greater than 0' }, { status: 400 });
 
         // Per 100 clicks simulation
         const clicks = 100;

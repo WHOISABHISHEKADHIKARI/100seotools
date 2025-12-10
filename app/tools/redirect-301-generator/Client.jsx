@@ -190,7 +190,7 @@ function generateJavaScript(rules) {
     const d = normalizePath(destination);
     if (!rawS || !d) continue;
     let key = rawS;
-    try { if (rawS.startsWith("http")) { key = new URL(rawS).pathname; } } catch {}
+    try { if (rawS.startsWith("http")) { key = new URL(rawS).pathname; } } catch { }
     lines.push(`  map['${key}'] = '${d}';`);
   }
   lines.push("  var cur = window.location.pathname;");
@@ -323,8 +323,9 @@ export default function Redirect301GeneratorClient() {
         <h2 id="input-section" className="text-xl font-semibold">Redirect Rules</h2>
         <p className="text-sm text-accessibleGray-600 dark:text-slate-300">Add source and destination pairs. Status defaults to 301.</p>
 
-        <div className="mt-4 overflow-x-auto table-container">
-          <table className="min-w-full text-sm table-responsive">
+        {/* Desktop table view */}
+        <div className="mt-4 hidden md:block overflow-x-auto">
+          <table className="min-w-full text-sm">
             <thead>
               <tr className="text-left border-b border-accessibleGray-200 dark:border-white/10">
                 <th className="py-2 pr-4">Source URL or Path</th>
@@ -337,9 +338,9 @@ export default function Redirect301GeneratorClient() {
               {rules.map((rule, idx) => (
                 <tr key={idx} className="border-b border-accessibleGray-200 dark:border-white/10">
                   <td className="py-2 pr-4">
-                    <label className="sr-only" htmlFor={`src-${idx}`}>Source</label>
+                    <label className="sr-only" htmlFor={`src-desktop-${idx}`}>Source</label>
                     <input
-                      id={`src-${idx}`}
+                      id={`src-desktop-${idx}`}
                       className="w-full border border-accessibleGray-300 dark:border-white/10 rounded px-2 py-1 bg-white/80 dark:bg-slate-900/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
                       placeholder="/old-path or https://example.com/old"
                       value={rule.source}
@@ -349,9 +350,9 @@ export default function Redirect301GeneratorClient() {
                     />
                   </td>
                   <td className="py-2 pr-4">
-                    <label className="sr-only" htmlFor={`dst-${idx}`}>Destination</label>
+                    <label className="sr-only" htmlFor={`dst-desktop-${idx}`}>Destination</label>
                     <input
-                      id={`dst-${idx}`}
+                      id={`dst-desktop-${idx}`}
                       className="w-full border border-accessibleGray-300 dark:border-white/10 rounded px-2 py-1 bg-white/80 dark:bg-slate-900/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
                       placeholder="/new-path or https://example.com/new"
                       value={rule.destination}
@@ -361,9 +362,9 @@ export default function Redirect301GeneratorClient() {
                     />
                   </td>
                   <td className="py-2 pr-4">
-                    <label className="sr-only" htmlFor={`status-${idx}`}>Status</label>
+                    <label className="sr-only" htmlFor={`status-desktop-${idx}`}>Status</label>
                     <select
-                      id={`status-${idx}`}
+                      id={`status-desktop-${idx}`}
                       className="border border-accessibleGray-300 dark:border-white/10 rounded px-2 py-1 bg-white/80 dark:bg-slate-900/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
                       value={rule.status}
                       onChange={(e) => onRuleChange(idx, "status", e.target.value)}
@@ -388,11 +389,68 @@ export default function Redirect301GeneratorClient() {
           </table>
         </div>
 
-        <div className="mt-3 flex gap-3">
-          <button className="px-3 py-1 rounded bg-brand-600 text-white hover:bg-brand-700 transition-gpu will-change-transform-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2" onClick={addRow}>Add Row</button>
-          <button className="px-3 py-1 rounded border border-accessibleGray-200 dark:border-white/10 bg-white/80 dark:bg-slate-900/40 text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-white/10 transition-gpu will-change-transform-opacity" onClick={clearAll}>Reset</button>
+        {/* Mobile card view */}
+        <div className="mt-4 md:hidden space-y-4">
+          {rules.map((rule, idx) => (
+            <div key={idx} className="p-4 border border-accessibleGray-200 dark:border-white/10 rounded-lg bg-white/80 dark:bg-slate-900/40">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-medium text-slate-600 dark:text-slate-300">Rule {idx + 1}</span>
+                <button
+                  className="text-red-700 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                  onClick={() => removeRow(idx)}
+                  aria-label={`Remove rule ${idx + 1}`}
+                >
+                  Remove
+                </button>
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <label htmlFor={`src-mobile-${idx}`} className="block text-sm font-medium mb-1">Source URL or Path</label>
+                  <input
+                    id={`src-mobile-${idx}`}
+                    className="w-full border border-accessibleGray-300 dark:border-white/10 rounded px-3 py-2 bg-white dark:bg-slate-900/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                    placeholder="/old-path"
+                    value={rule.source}
+                    onChange={(e) => onRuleChange(idx, "source", e.target.value)}
+                    inputMode="url"
+                    aria-invalid={!rule.source || (!isValidUrl(rule.source) && !rule.source.startsWith("/"))}
+                  />
+                </div>
+                <div>
+                  <label htmlFor={`dst-mobile-${idx}`} className="block text-sm font-medium mb-1">Destination URL or Path</label>
+                  <input
+                    id={`dst-mobile-${idx}`}
+                    className="w-full border border-accessibleGray-300 dark:border-white/10 rounded px-3 py-2 bg-white dark:bg-slate-900/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                    placeholder="/new-path"
+                    value={rule.destination}
+                    onChange={(e) => onRuleChange(idx, "destination", e.target.value)}
+                    inputMode="url"
+                    aria-invalid={!rule.destination || (!isValidUrl(rule.destination) && !rule.destination.startsWith("/"))}
+                  />
+                </div>
+                <div>
+                  <label htmlFor={`status-mobile-${idx}`} className="block text-sm font-medium mb-1">Status Code</label>
+                  <select
+                    id={`status-mobile-${idx}`}
+                    className="w-full border border-accessibleGray-300 dark:border-white/10 rounded px-3 py-2 bg-white dark:bg-slate-900/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                    value={rule.status}
+                    onChange={(e) => onRuleChange(idx, "status", e.target.value)}
+                  >
+                    <option value="301">301 (Permanent)</option>
+                    <option value="308">308 (Permanent)</option>
+                    <option value="302">302 (Temporary)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-3">
+          <button className="px-4 py-2 rounded bg-brand-600 text-white hover:bg-brand-700 transition-gpu will-change-transform-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2" onClick={addRow}>Add Row</button>
+          <button className="px-4 py-2 rounded border border-accessibleGray-200 dark:border-white/10 bg-white/80 dark:bg-slate-900/40 text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-white/10 transition-gpu will-change-transform-opacity" onClick={clearAll}>Reset</button>
           <label className="inline-flex items-center gap-2 cursor-pointer">
-            <span className="px-3 py-1 rounded border border-accessibleGray-200 dark:border-white/10 bg-white/80 dark:bg-slate-900/40 hover:bg-slate-50 dark:hover:bg-white/10 transition-gpu will-change-transform-opacity">Upload CSV</span>
+            <span className="px-4 py-2 rounded border border-accessibleGray-200 dark:border-white/10 bg-white/80 dark:bg-slate-900/40 hover:bg-slate-50 dark:hover:bg-white/10 transition-gpu will-change-transform-opacity">Upload CSV</span>
             <input
               type="file"
               accept="text/csv,.csv"
@@ -429,9 +487,9 @@ export default function Redirect301GeneratorClient() {
 
       <section className="mt-8" aria-labelledby="visual-section">
         <h2 id="visual-section" className="text-xl font-semibold">Redirect Flow Diagram</h2>
-        <p className="text-sm text-accessibleGray-600 dark:text-slate-300">Visualize chains and potential loops. Red highlights indicate cycles.</p>
+        <p id="visual-desc" className="text-sm text-accessibleGray-600 dark:text-slate-300">Visualize chains and potential loops. Red highlights indicate cycles.</p>
         <div className="mt-3 border border-accessibleGray-200 dark:border-white/10 rounded p-3 overflow-auto" style={{ maxHeight: 360 }}>
-          <svg width="100%" height={chains.length * 80 + 40} role="img" aria-label="Redirect flow visualization">
+          <svg width="100%" height={chains.length * 80 + 40} role="img" aria-labelledby="visual-section" aria-describedby="visual-desc">
             {chains.map((chain, row) => {
               const yBase = 40 + row * 80;
               return (

@@ -3,6 +3,6 @@ export default {
   "name": "Anchor Text Analyzer",
   "category": "Backlink & Link-Building",
   "description": "Analyze anchor text distribution.",
-  "template": "keywordDensity",
+  "template": "anchorTextAnalyzer",
   "api": true
 };

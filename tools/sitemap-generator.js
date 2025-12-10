@@ -3,6 +3,6 @@ export default {
   "name": "Sitemap Generator",
   "category": "SEO Utility",
   "description": "Create simple XML sitemap.",
-  "template": "xmlSitemapVisualizer",
+  "template": "sitemapGenerator",
   "api": true
 };

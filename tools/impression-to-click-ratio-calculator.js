@@ -3,6 +3,6 @@ export default {
   "name": "Impression-to-Click Ratio Calculator",
   "category": "SEO Performance",
   "description": "Calculate IC ratio.",
-  "template": "titleMetaLengthCounter",
+  "template": "impressionToClickRatioCalculator",
   "api": true
 };

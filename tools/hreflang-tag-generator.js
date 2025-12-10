@@ -3,6 +3,6 @@ export default {
   "name": "Hreflang Tag Generator",
   "category": "Local SEO",
   "description": "Generate hreflang tags.",
-  "template": "ogTagGenerator",
+  "template": "hreflangTagGenerator",
   "api": true
 };

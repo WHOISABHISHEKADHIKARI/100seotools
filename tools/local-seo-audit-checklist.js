@@ -3,6 +3,6 @@ export default {
   "name": "Local SEO Audit Checklist",
   "category": "Local SEO",
   "description": "Checklist generation.",
-  "template": "schemaMarkupGenerator",
+  "template": "localSeoAuditChecklist",
   "api": true
 };

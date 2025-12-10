@@ -152,7 +152,7 @@ export default function Page() {
 
         <section aria-labelledby="video-heading" className="mt-8">
           <h2 id="video-heading">Video: Reverse Image Search Workflow</h2>
-          <div className="relative" style={{paddingTop: '56.25%'}}>
+          <div className="relative" style={{ paddingTop: '56.25%' }}>
             <iframe
               title="Reverse image search workflow overview"
               src="https://www.youtube-nocookie.com/embed/RIS_Workflow_Overview?rel=0"
@@ -197,7 +197,7 @@ export default function Page() {
           <h2 id="related-articles-heading" className="text-xl">Related Articles</h2>
           <ul className="space-y-2">
             <li><a href="/blog/ai-content-detection-guide-2024" className="hover:underline">AI Content Detection: Identify machine-generated text</a></li>
-            <li><a href="/blog/free-seo-tools-list-2024" className="hover:underline">150+ Free SEO Tools: Build your toolkit</a></li>
+            <li><a href="/blog/seo-basics" className="hover:underline">SEO Basics: Build your SEO toolkit</a></li>
           </ul>
         </aside>
 

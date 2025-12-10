@@ -3,6 +3,6 @@ export default {
   "name": "AI Content Outline Generator",
   "category": "AI-Powered SEO",
   "description": "Outline from topic (heuristic).",
-  "template": "longTailKeywords",
+  "template": "aiContentOutlineGenerator",
   "api": true
 };

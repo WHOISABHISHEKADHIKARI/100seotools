@@ -49,14 +49,14 @@ export default function LatestSEOGuidesPage() {
       alt: 'Reverse image search tutorial hero image'
     },
     {
-      title: '150+ Free SEO Tools: The Complete 2024 Resource Guide',
-      description: 'Discover the most comprehensive collection of free SEO tools for keyword research, technical SEO audits, and content optimization in 2024.',
-      url: '/blog/free-seo-tools-list-2024',
+      title: 'SEO Basics 2026: Complete Beginner\'s Guide to Search Engine Optimization',
+      description: 'Master SEO fundamentals with our comprehensive 2026 guide. Learn on-page optimization, technical SEO, link building, keyword research, and content strategy.',
+      url: '/blog/seo-basics',
       published: '2024-01-13',
-      tags: ['SEO Tools', 'Free Resources', 'Digital Marketing'],
-      readTime: 10,
-      image: '/blog-images/free-seo-tools-list-2024.png',
-      alt: 'Free SEO tools guide hero image'
+      tags: ['SEO Basics', 'Free Resources', 'Digital Marketing'],
+      readTime: 20,
+      image: '/blog-images/seo-basics-guide.png',
+      alt: 'SEO Basics guide hero image'
     }
   ];
 

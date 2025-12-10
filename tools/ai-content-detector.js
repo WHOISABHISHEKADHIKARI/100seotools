@@ -3,6 +3,6 @@ export default {
   "name": "AI Content Detector",
   "category": "AI-Powered SEO",
   "description": "Detect AI content.",
-  "template": "keywordDensity",
+  "template": "aiContentDetector",
   "api": true
 };

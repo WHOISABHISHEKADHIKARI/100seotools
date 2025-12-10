@@ -3,6 +3,6 @@ export default {
   "name": "Image Alt Tag Generator",
   "category": "On-Page Optimization",
   "description": "Generate alt tag ideas.",
-  "template": "keywordSuggestions",
+  "template": "imageAltTagGenerator",
   "api": true
 };

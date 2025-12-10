@@ -15,9 +15,14 @@ export async function POST(request) {
         }
 
         // 1. Fetch the page HTML
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
         const response = await fetch(targetUrl, {
-            headers: { 'User-Agent': '100SEOTools-Crawler/1.0' }
+            headers: { 'User-Agent': '100SEOTools-Crawler/1.0' },
+            signal: controller.signal
         });
+        clearTimeout(timeoutId);
 
         if (!response.ok) {
             // Return 200 but explain failure in result, so tool doesn't "crash"

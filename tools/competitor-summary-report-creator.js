@@ -3,6 +3,6 @@ export default {
   "name": "Competitor Summary Report Creator",
   "category": "Competitor Analysis",
   "description": "Create summary report.",
-  "template": "schemaMarkupGenerator",
+  "template": "competitorSummaryReport",
   "api": true
 };

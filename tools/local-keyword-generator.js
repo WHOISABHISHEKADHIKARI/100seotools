@@ -3,6 +3,6 @@ export default {
   "name": "Local Keyword Generator",
   "category": "Local SEO",
   "description": "Generate local keywords.",
-  "template": "longTailKeywords",
+  "template": "localKeywordGenerator",
   "api": true
 };

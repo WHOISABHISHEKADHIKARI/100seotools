@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import StructuredData from '../../../components/StructuredData';
 import { getAllBlogPostsPublished, getBlogPostPublishedBySlug } from '../../../lib/blog-data';
 import { getBaseUrl, siteName } from '../../../lib/site';
@@ -68,8 +69,26 @@ export default async function Page({ params, searchParams }) {
     headline: post.title,
     description: post.description,
     datePublished: post.datePublished,
-    author: { '@type': 'Organization', name: siteName },
-    publisher: { '@type': 'Organization', name: siteName },
+    author: {
+      '@type': 'Person',
+      name: 'Abhishek Adhikari',
+      url: `${baseUrl}/author`,
+      jobTitle: 'SEO Expert & Full-Stack Developer',
+      sameAs: [
+        'https://github.com/WHOISABHISHEKADHIKARI',
+        'https://hashtagweb.com.np/team/abhisek-adhikari/',
+        'https://krishihimalaya.com/',
+      ]
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteName,
+      url: baseUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/logo.png`
+      }
+    },
     url: `${baseUrl}/blog/${post.slug}`,
     mainEntityOfPage: `${baseUrl}/blog/${post.slug}`,
     inLanguage: 'en-US',
@@ -113,6 +132,26 @@ export default async function Page({ params, searchParams }) {
               <span className="px-2 py-0.5 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300">{post.category}</span>
             </>
           )}
+        </div>
+        {/* Author Byline */}
+        <div className="flex items-center gap-3 py-4 border-y border-slate-200 dark:border-white/10">
+          <Image
+            src="/author.png"
+            alt="Abhishek Adhikari"
+            width={48}
+            height={48}
+            className="rounded-full border-2 border-brand-500"
+          />
+          <div>
+            <div className="font-semibold text-gray-900 dark:text-gray-100">
+              <a href="/author" className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                Abhishek Adhikari
+              </a>
+            </div>
+            <div className="text-xs text-gray-600 dark:text-gray-400">
+              SEO Expert & Full-Stack Developer
+            </div>
+          </div>
         </div>
       </header>
 
@@ -168,6 +207,8 @@ export default async function Page({ params, searchParams }) {
           </div>
         )}
       </section>
+
+
 
       {/* Next/Previous Navigation */}
       <nav className="border-t border-slate-200 dark:border-white/10 pt-8 mt-12" aria-label="Blog post navigation">

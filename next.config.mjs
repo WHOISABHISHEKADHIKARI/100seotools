@@ -67,6 +67,16 @@ const nextConfig = withBundleAnalyzer({
       // Robots.txt validator variants
       { source: '/robot-txt-validator', destination: '/tools/robots-txt-validator', permanent: true },
       { source: '/robotstxt-validator', destination: '/tools/robots-txt-validator', permanent: true },
+
+      // Redirect old/removed blog URLs to valid pages (prevent 404s from external links)
+      { source: '/blog/free-seo-tools-list-2024', destination: '/blog', permanent: true },
+      { source: '/blog/100-free-seo-tools-ultimate-list', destination: '/blog/seo-basics', permanent: true },
+      { source: '/blog/seo-content-checker-how-to-use', destination: '/tools/seo-content-checker', permanent: true },
+      { source: '/blog/keyword-suggestion-tool', destination: '/tools/keyword-suggestion-tool', permanent: true },
+      { source: '/blog/keyword-suggestion-tool-how-to-use', destination: '/tools/keyword-suggestion-tool', permanent: true },
+      { source: '/blog/keyword-suggestion-tool-popular-search-terms', destination: '/tools/keyword-suggestion-tool', permanent: true },
+      { source: '/blog/meta-tag-generator', destination: '/tools/meta-tag-generator', permanent: true },
+      { source: '/blog/keyword-clustering-tool', destination: '/tools/keyword-clustering-tool', permanent: true },
     ];
     if (process.env.NODE_ENV !== 'production') return common;
     return [

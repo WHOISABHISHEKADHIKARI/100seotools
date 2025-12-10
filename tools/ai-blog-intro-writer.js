@@ -3,6 +3,6 @@ export default {
   "name": "AI Blog Intro Writer",
   "category": "AI-Powered SEO",
   "description": "Intro paragraph ideas.",
-  "template": "longTailKeywords",
+  "template": "aiBlogIntroWriter",
   "api": true
 };

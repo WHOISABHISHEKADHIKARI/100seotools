@@ -175,7 +175,7 @@ export default function Page() {
 
         <section aria-labelledby="video-heading" className="mt-8">
           <h2 id="video-heading">Video: Editorial Checks for AI-Assisted Drafts</h2>
-          <div className="relative" style={{paddingTop: '56.25%'}}>
+          <div className="relative" style={{ paddingTop: '56.25%' }}>
             <iframe
               title="Editorial checks for AI-assisted drafts"
               src="https://www.youtube-nocookie.com/embed/6N0h9b_Editorial?rel=0"
@@ -239,7 +239,7 @@ export default function Page() {
           <h2 id="related-articles-heading" className="text-xl">Related Articles</h2>
           <ul className="space-y-2">
             <li><a href="/blog/reverse-image-search-guide" className="hover:underline">Reverse Image Search: Verify original sources</a></li>
-            <li><a href="/blog/free-seo-tools-list-2024" className="hover:underline">150+ Free SEO Tools: Optimize research and audits</a></li>
+            <li><a href="/blog/seo-basics" className="hover:underline">SEO Basics: Complete Guide for Beginners</a></li>
           </ul>
         </aside>
 

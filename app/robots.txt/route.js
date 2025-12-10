@@ -1,54 +1,71 @@
 import { getBaseUrl } from '../../lib/site';
 
+/**
+ * Dynamic robots.txt generator
+ * SEO + AI friendly configuration
+ */
 export async function GET() {
     const baseUrl = getBaseUrl();
-    const robotsTxt = `# SEO + AI Friendly Robots.txt
-# Allows search engines + AI assistants to access content
-# Prevents AI model training
 
+    const robotsTxt = `# 100SEOTools Robots.txt
+# SEO + AI Friendly Configuration
+# Last updated: ${new Date().toISOString().split('T')[0]}
+
+# Default: Allow all crawlers
 User-Agent: *
 Allow: /
 
-# Allow Google AI
-User-agent: Google-Extended
-Allow: /
+# Block pagination and duplicate content
+Disallow: /*/p/
+Disallow: /*/tp/
+Disallow: /*?page=
+Disallow: /api/
+Disallow: /_next/
 
-# Allow GPT-based crawlers
+# Block error pages
+Disallow: /404
+Disallow: /500
+
+# AI Crawlers - Allow for visibility
 User-agent: GPTBot
 Allow: /
 
-# Allow Claude
+User-agent: Google-Extended
+Allow: /
+
 User-agent: ClaudeBot
 Allow: /
 
-# Allow Apple AI
 User-agent: Applebot-Extended
 Allow: /
 
-# Allow Meta's AI systems
-User-agent: meta-externalagent
-Allow: /
-
-# Allow Perplexity
 User-agent: PerplexityBot
 Allow: /
 
-# Allow ByteDance's bot (optional — TikTok SEO benefit)
-User-agent: Bytespider
+User-agent: meta-externalagent
 Allow: /
 
-# Block only non-essential or harmful bots
+# Block harmful/training-only bots
 User-agent: CCBot
 Disallow: /
 
 User-agent: Amazonbot
 Disallow: /
 
-Sitemap: ${baseUrl}/sitemap.xml`;
+User-agent: anthropic-ai
+Disallow: /
+
+# Sitemap locations (segmented for better crawling)
+Sitemap: ${baseUrl}/sitemap.xml
+Sitemap: ${baseUrl}/sitemap-tools/sitemap.xml
+Sitemap: ${baseUrl}/sitemap-blog/sitemap.xml
+Sitemap: ${baseUrl}/sitemap-guides/sitemap.xml
+`;
 
     return new Response(robotsTxt, {
         headers: {
             'Content-Type': 'text/plain',
+            'Cache-Control': 'public, max-age=86400',
         },
     });
 }

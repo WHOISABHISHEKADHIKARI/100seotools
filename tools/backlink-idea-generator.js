@@ -3,6 +3,6 @@ export default {
   "name": "Backlink Idea Generator",
   "category": "Backlink & Link-Building",
   "description": "Suggest backlink ideas.",
-  "template": "keywordSuggestions",
+  "template": "backlinkIdeaGenerator",
   "api": true
 };

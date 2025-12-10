@@ -3,6 +3,6 @@ export default {
   "name": "AI FAQ Creator",
   "category": "AI-Powered SEO",
   "description": "FAQ list from topic.",
-  "template": "longTailKeywords",
+  "template": "aiFaqCreator",
   "api": true
 };

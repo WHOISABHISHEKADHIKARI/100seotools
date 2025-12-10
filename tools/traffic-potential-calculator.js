@@ -3,6 +3,6 @@ export default {
   "name": "Traffic Potential Calculator",
   "category": "SEO Performance",
   "description": "Estimate traffic potential.",
-  "template": "titleMetaLengthCounter",
+  "template": "trafficPotentialCalculator",
   "api": true
 };

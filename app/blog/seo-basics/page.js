@@ -11,9 +11,9 @@ export const dynamic = 'force-static';
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-    title: 'SEO Basics 2025: Complete Beginner\'s Guide to Search Engine Optimization',
+    title: 'SEO Basics 2026: Complete Beginner\'s Guide to Search Engine Optimization',
     description:
-        'Master SEO fundamentals with our comprehensive 2025 guide. Learn on-page optimization, technical SEO, link building, keyword research, and content strategy. Free tools included.',
+        'Master SEO fundamentals with our comprehensive 2026 guide. Learn on-page optimization, technical SEO, link building, keyword research, and content strategy. Free tools included.',
     keywords: [
         'seo basics',
         'seo basics 2021',
@@ -22,11 +22,11 @@ export const metadata = {
         'search engine optimization basics',
         'seo for beginners',
         'how to do seo',
-        'seo guide 2025'
+        'seo guide 2026'
     ],
     alternates: { canonical: `${baseUrl}/blog/seo-basics` },
     openGraph: {
-        title: 'SEO Basics 2025: Complete Beginner\'s Guide',
+        title: 'SEO Basics 2026: Complete Beginner\'s Guide',
         description:
             'Master search engine optimization with our comprehensive guide covering on-page SEO, technical optimization, link building, and content strategy.',
         type: 'article',
@@ -35,19 +35,19 @@ export const metadata = {
             url: `${baseUrl}/og-seo-basics.jpg`,
             width: 1200,
             height: 630,
-            alt: 'SEO Basics 2025 Guide'
+            alt: 'SEO Basics 2026 Guide'
         }]
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'SEO Basics 2025: Complete Beginner\'s Guide',
+        title: 'SEO Basics 2026: Complete Beginner\'s Guide',
         description:
             'Master SEO fundamentals with our comprehensive guide. Learn on-page, technical, and off-page optimization.',
     },
 };
 
 export default function SEOBasicsPage() {
-    const publishedDate = '2025-11-22';
+    const publishedDate = '2026-11-22';
     const modifiedDate = new Date().toISOString();
 
     const articleLd = {
@@ -154,7 +154,7 @@ export default function SEOBasicsPage() {
                     </div>
 
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-gray-900 via-brand-600 to-gray-900 dark:from-gray-100 dark:via-brand-400 dark:to-gray-100 bg-clip-text text-transparent">
-                        SEO Basics 2025: Complete Beginner's Guide
+                        SEO Basics 2026: Complete Beginner's Guide
                     </h1>
 
                     <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto">
@@ -192,7 +192,7 @@ export default function SEOBasicsPage() {
                     </h2>
                     <nav className="space-y-2">
                         <a href="#what-is-seo" className="block text-brand-600 dark:text-brand-400 hover:underline">1. What is SEO?</a>
-                        <a href="#why-seo-matters" className="block text-brand-600 dark:text-brand-400 hover:underline">2. Why SEO Matters in 2025</a>
+                        <a href="#why-seo-matters" className="block text-brand-600 dark:text-brand-400 hover:underline">2. Why SEO Matters in 2026</a>
                         <a href="#how-search-engines-work" className="block text-brand-600 dark:text-brand-400 hover:underline">3. How Search Engines Work</a>
                         <a href="#keyword-research" className="block text-brand-600 dark:text-brand-400 hover:underline">4. Keyword Research Fundamentals</a>
                         <a href="#on-page-seo" className="block text-brand-600 dark:text-brand-400 hover:underline">5. On-Page SEO Optimization</a>
@@ -212,7 +212,7 @@ export default function SEOBasicsPage() {
                     {/* Introduction */}
                     <div className="p-6 mb-8 bg-brand-50 dark:bg-brand-900/20 rounded-xl border-l-4 border-brand-600">
                         <p className="text-lg leading-relaxed mb-0">
-                            <strong>Welcome to the complete SEO basics guide for 2025!</strong> Whether you're a complete beginner or looking to refresh your knowledge, this comprehensive guide will teach you everything you need to know about search engine optimization. We'll cover proven strategies, best practices, and provide free tools to help you succeed.
+                            <strong>Welcome to the complete SEO basics guide for 2026!</strong> Whether you're a complete beginner or looking to refresh your knowledge, this comprehensive guide will teach you everything you need to know about search engine optimization. We'll cover proven strategies, best practices, and provide free tools to help you succeed.
                         </p>
                     </div>
 
@@ -230,7 +230,7 @@ export default function SEOBasicsPage() {
                     {recentPosts.length > 0 && (
                         <div className="mt-16">
                             <CardSection
-                                title="📚 Related SEO Articles"
+                                title="Related SEO Articles"
                                 description="Continue your SEO journey with these helpful guides and tutorials"
                                 items={recentPosts}
                                 variant="article"

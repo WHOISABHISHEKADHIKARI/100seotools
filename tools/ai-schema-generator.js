@@ -3,6 +3,6 @@ export default {
   "name": "AI Schema Generator",
   "category": "AI-Powered SEO",
   "description": "Generate schema.",
-  "template": "schemaMarkupGenerator",
+  "template": "aiSchemaGenerator",
   "api": true
 };

@@ -3,6 +3,6 @@ export default {
   "name": "Structured Data Validator",
   "category": "Technical SEO",
   "description": "Check JSON-LD validity.",
-  "template": "schemaMarkupGenerator",
+  "template": "structuredDataValidator",
   "api": true
 };

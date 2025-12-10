@@ -2,7 +2,7 @@ import { getBaseUrl, siteName } from '../lib/site';
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-  title: '🚀 100+ Free SEO Tools 2025 - No Signup Required | Used by 50,000+ Marketers',
+  title: '100+ Free SEO Tools  - No Signup Required | Used by 50,000+ Marketers',
   description: '✓ 100+ free SEO tools ✓ Keyword research ✓ On-page audit ✓ Technical SEO ✓ Content optimization ✓ No login needed ✓ Instant results. Start optimizing now!',
   metadataBase: new URL(baseUrl),
   keywords: ['100 seo tools', 'free seo tools list', 'seo tool comparison', 'best seo tools for 2024', '100 free seo tools', 'free seo toolkit'],
@@ -22,7 +22,7 @@ export const metadata = {
   },
   // Open Graph tags
   openGraph: {
-    title: '🚀 100+ Free SEO Tools 2025 - No Signup Required',
+    title: '100+ Free SEO Tools  - No Signup Required',
     description: '✓ 100+ free SEO tools ✓ Keyword research ✓ On-page audit ✓ Technical SEO ✓ No login needed. Used by 50,000+ marketers worldwide!',
     url: baseUrl,
     siteName,
@@ -40,7 +40,7 @@ export const metadata = {
   // Twitter Card tags
   twitter: {
     card: 'summary_large_image',
-    title: '🚀 100+ Free SEO Tools 2025 - No Signup Required',
+    title: '100+ Free SEO Tools  - No Signup Required',
     description: '✓ 100+ free SEO tools ✓ Keyword research ✓ On-page audit ✓ Technical SEO ✓ No login needed. Used by 50,000+ marketers!',
     images: [`${baseUrl}/og-image.jpg`],
   },
@@ -72,6 +72,7 @@ import StructuredData from '../components/StructuredData';
 import ClientLayout from '../components/ClientLayout';
 import ClientRoot from '../components/ClientRoot';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { generateWebsiteSchema } from '../lib/schema';
 
 export default function RootLayout({ children }) {
   return (
@@ -143,7 +144,20 @@ export default function RootLayout({ children }) {
           `}} />
         )}
       </head>
-      <body className={`${inter.className} min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100`}>
+      <body suppressHydrationWarning className={`${inter.className} min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100`}>
+        {/* Global WebSite + Organization Schema for SEO */}
+        <StructuredData data={generateWebsiteSchema(baseUrl)} />
+        <StructuredData data={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "100 SEO Tools",
+          "url": baseUrl,
+          "logo": `${baseUrl}/logo.png`,
+          "sameAs": [
+            "https://github.com/WHOISABHISHEKADHIKARI"
+          ],
+          "description": "Free SEO tools collection for keyword research, on-page optimization, technical SEO, and performance tracking"
+        }} />
         {/* Skip to main content link for accessibility */}
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
           Skip to main content

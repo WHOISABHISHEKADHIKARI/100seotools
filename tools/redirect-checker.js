@@ -3,6 +3,6 @@ export default {
   "name": "Redirect Checker",
   "category": "Technical SEO",
   "description": "Map and list redirects.",
-  "template": "duplicateContentChecker",
+  "template": "redirectChecker",
   "api": true
 };

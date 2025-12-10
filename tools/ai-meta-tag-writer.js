@@ -3,6 +3,6 @@ export default {
   "name": "AI Meta Tag Writer",
   "category": "AI-Powered SEO",
   "description": "Meta tags from inputs.",
-  "template": "metaTagGenerator",
+  "template": "aiMetaTagWriter",
   "api": true
 };

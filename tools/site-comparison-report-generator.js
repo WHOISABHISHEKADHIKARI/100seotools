@@ -3,6 +3,6 @@ export default {
   "name": "Site Comparison Report Generator",
   "category": "SEO Performance",
   "description": "Generate comparison report.",
-  "template": "schemaMarkupGenerator",
+  "template": "siteComparisonReportGenerator",
   "api": true
 };

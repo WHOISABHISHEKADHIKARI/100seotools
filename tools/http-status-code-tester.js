@@ -3,6 +3,6 @@ export default {
   "name": "HTTP Status Code Tester",
   "category": "Technical SEO",
   "description": "Explain common HTTP statuses.",
-  "template": "titleMetaLengthCounter",
+  "template": "httpStatusCodeTester",
   "api": true
 };

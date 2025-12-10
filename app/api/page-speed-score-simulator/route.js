@@ -26,6 +26,10 @@ export async function POST(request) {
         mobileScore = Math.floor(mobileScore + (Math.random() * 10 - 5));
         desktopScore = Math.floor(desktopScore + (Math.random() * 10 - 5));
 
+        // Clamp scores to 0-100 range
+        mobileScore = Math.max(0, Math.min(100, mobileScore));
+        desktopScore = Math.max(0, Math.min(100, desktopScore));
+
         const metrics = [
             { name: "First Contentful Paint", val: (1 + Math.random()).toFixed(1) + 's' },
             { name: "Largest Contentful Paint", val: (2 + Math.random()).toFixed(1) + 's' },

@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { getTemplateDefinition, runTemplate } from '../lib/templates';
 import { copyToClipboardWithHistory, normalizePastedContent, downloadAllFormats } from '../lib/utils';
 import { sanitizeInput, validateURL, checkInputSize } from '../lib/security';
@@ -22,55 +22,84 @@ export default function ToolRunner({ tool }) {
   const [pasteFeedback, setPasteFeedback] = useState({ field: null, ts: 0 });
   const [isCopied, setIsCopied] = useState(false);
 
+  // Debounced validation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // Validate all fields based on current inputs
+      const newErrors = {};
+      def.fields.forEach(field => {
+        const value = inputs[field.name];
+
+        // If empty, do not show validation errors during passive typing/debounce.
+        // Errors will still be caught when clicking the action button.
+        if (!value) return;
+
+        // Use the existing validateField logic, but we need to re-implement it or import it?
+        // Actually, we can just use the logic that was in onChange, adapted for bulk check.
+        // Better: use validateField from lib/validation if possible, but the inline logic had some specific tweaks?
+        // The inline logic in previous onChange was specific. Let's replicate the important parts here.
+
+        let error = null;
+
+        // Size check
+        const sizeCheck = checkInputSize(value, field.maxBytes || 1000000);
+        if (!sizeCheck.valid) {
+          error = sizeCheck.error;
+        }
+
+        // Length check
+        if (!error) {
+          const maxLength = field.maxLength || (field.type === 'textarea' ? 50000 : 5000);
+          if (value && value.length > maxLength) {
+            error = `Maximum ${maxLength} characters`;
+          }
+        }
+
+        // Type validations
+        if (!error && value && field.type === 'number') {
+          const num = parseFloat(value);
+          if (isNaN(num)) error = 'Must be a number';
+          else if (field.min !== undefined && num < field.min) error = `Minimum value: ${field.min}`;
+          else if (field.max !== undefined && num > field.max) error = `Maximum value: ${field.max}`;
+        }
+
+        if (!error && value && field.type === 'url') {
+          if (!validateURL(value)) error = 'Must be a valid URL (http:// or https://)';
+        }
+
+        if (error) {
+          newErrors[field.name] = error;
+        }
+      });
+
+      // Update errors state. We merge with existing or replace?
+      // Existing behavior cleared errors on change.
+      // Here we replace the relevant field errors.
+      setFieldErrors(prev => {
+        // Create a new object to avoid stale closures issues if we used a loop?
+        // Actually, we calculated errors for ALL fields above.
+        // So we can technically replace the whole object if we assume we validate everything.
+        // But maybe we only want to validate dirty fields?
+        // The prompt implies "while the user is typing... only after stops... run validation".
+        // Validating everything that has content is safest.
+        return newErrors;
+      });
+
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [inputs, def.fields]);
+
   const onChange = (name, value) => {
     const field = def.fields.find(f => f.name === name);
     if (!field) return;
 
-    // Clear previous errors
-    setError('');
+    // Clear specific error immediately to avoid "stuck" errors while typing fix
     setFieldErrors(prev => ({ ...prev, [name]: null }));
 
-    // Size check
-    const sizeCheck = checkInputSize(value, field.maxBytes || 1000000);
-    if (!sizeCheck.valid) {
-      setFieldErrors(prev => ({ ...prev, [name]: sizeCheck.error }));
-      return;
-    }
-
-    // Length check
-    const maxLength = field.maxLength || (field.type === 'textarea' ? 50000 : 5000);
-    if (value.length > maxLength) {
-      setFieldErrors(prev => ({
-        ...prev,
-        [name]: `Maximum ${maxLength} characters`
-      }));
-      return;
-    }
-
-    // Type-specific validation
-    if (field.type === 'number' && value) {
-      const num = parseFloat(value);
-      if (isNaN(num)) {
-        setFieldErrors(prev => ({ ...prev, [name]: 'Must be a number' }));
-        return;
-      }
-      if (field.min !== undefined && num < field.min) {
-        setFieldErrors(prev => ({ ...prev, [name]: `Minimum value: ${field.min}` }));
-        return;
-      }
-      if (field.max !== undefined && num > field.max) {
-        setFieldErrors(prev => ({ ...prev, [name]: `Maximum value: ${field.max}` }));
-        return;
-      }
-    }
-
-    // URL validation
-    if (field.type === 'url' && value && !validateURL(value)) {
-      setFieldErrors(prev => ({ ...prev, [name]: 'Must be a valid URL (http:// or https://)' }));
-      return;
-    }
-
-    // Sanitize and update
+    // Sanitize and update immediately
+    // We keep sanitization as it modifies the input value itself, not just checking it.
+    // Use 'text' type for sanitization if not specified to prevent XSS in state
     const sanitized = sanitizeInput(value, field.type || 'text');
     setInputs((prev) => ({ ...prev, [name]: sanitized }));
   };
@@ -120,7 +149,6 @@ export default function ToolRunner({ tool }) {
       // Validate all fields
       const validation = validateAllFields(inputs, def.fields);
       if (!validation.valid) {
-        setError(validation.errorMessages.join('. '));
         setFieldErrors(validation.errors);
         setIsProcessing(false);
         return;

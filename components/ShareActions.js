@@ -55,7 +55,7 @@ export default function ShareActions({ url = '', title = '' }) {
         <span>{copied ? 'Copied!' : 'Copy link'}</span>
       </button>
       <button onClick={onWebShare} className={iconBtn} aria-label="Share">
-        <span role="img" aria-hidden>🔗</span>
+        <span role="img" aria-hidden></span>
         <span>Share</span>
       </button>
       <a href={shareLinks.twitter} target="_blank" rel="noopener noreferrer" className={iconBtn} aria-label="Share on Twitter">
@@ -63,7 +63,7 @@ export default function ShareActions({ url = '', title = '' }) {
         <span>Twitter</span>
       </a>
       <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" className={iconBtn} aria-label="Share on LinkedIn">
-        <span role="img" aria-hidden>🔗</span>
+        <span role="img" aria-hidden></span>
         <span>LinkedIn</span>
       </a>
       <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer" className={iconBtn} aria-label="Share on Facebook">

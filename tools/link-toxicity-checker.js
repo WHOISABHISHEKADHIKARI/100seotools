@@ -3,6 +3,6 @@ export default {
   "name": "Link Toxicity Checker",
   "category": "Backlink & Link-Building",
   "description": "Heuristic toxicity score.",
-  "template": "titleMetaLengthCounter",
+  "template": "linkToxicityChecker",
   "api": true
 };

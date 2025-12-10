@@ -3,6 +3,6 @@ export default {
   "name": "Mobile-Friendly Test",
   "category": "Technical SEO",
   "description": "Viewport tag detection.",
-  "template": "headingAnalyzer",
+  "template": "mobileFriendlyTest",
   "api": true
 };

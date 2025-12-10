@@ -3,6 +3,6 @@ export default {
   "name": "Local Citation Finder",
   "category": "Local SEO",
   "description": "Find citation ideas.",
-  "template": "keywordSuggestions",
+  "template": "localCitationFinder",
   "api": true
 };

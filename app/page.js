@@ -104,42 +104,42 @@ export default function HomePage() {
         {/* Static tool categories for SEO */}
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
           <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-            <h2 className="text-xl font-semibold mb-3">🔍 Keyword Research</h2>
+            <h2 className="text-xl font-semibold mb-3">Keyword Research</h2>
             <p className="text-gray-600 dark:text-gray-400">
               Discover profitable keywords with our keyword suggestion tool, long-tail generator,
               clustering tool, and difficulty checker.
             </p>
           </div>
           <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-            <h2 className="text-xl font-semibold mb-3">📊 On-Page SEO</h2>
+            <h2 className="text-xl font-semibold mb-3">On-Page SEO</h2>
             <p className="text-gray-600 dark:text-gray-400">
               Optimize your pages with meta tag generator, SEO audit checker, heading analyzer,
               and keyword density tools.
             </p>
           </div>
           <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-            <h2 className="text-xl font-semibold mb-3">⚙️ Technical SEO</h2>
+            <h2 className="text-xl font-semibold mb-3">Technical SEO</h2>
             <p className="text-gray-600 dark:text-gray-400">
               Validate robots.txt, generate sitemaps, check structured data, and ensure your
               site is technically sound.
             </p>
           </div>
           <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-            <h2 className="text-xl font-semibold mb-3">📝 Content Tools</h2>
+            <h2 className="text-xl font-semibold mb-3">Content Tools</h2>
             <p className="text-gray-600 dark:text-gray-400">
               Check readability, detect AI content, find duplicate content, and optimize your
               writing for search engines.
             </p>
           </div>
           <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-            <h2 className="text-xl font-semibold mb-3">🔗 Link Building</h2>
+            <h2 className="text-xl font-semibold mb-3">Link Building</h2>
             <p className="text-gray-600 dark:text-gray-400">
               Analyze backlinks, find broken links, check anchor text, and discover guest post
               opportunities.
             </p>
           </div>
           <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-            <h2 className="text-xl font-semibold mb-3">📍 Local SEO</h2>
+            <h2 className="text-xl font-semibold mb-3">Local SEO</h2>
             <p className="text-gray-600 dark:text-gray-400">
               Check NAP consistency, find local citations, optimize Google Business Profile,
               and dominate local search.
@@ -258,7 +258,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <div className="p-6 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3">🔍 Keyword Research Tools</h3>
+              <h3 className="text-xl font-semibold mb-3">Keyword Research Tools</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• Keyword Suggestion Tool</li>
                 <li>• Long-Tail Keyword Generator</li>
@@ -269,7 +269,7 @@ export default function HomePage() {
             </div>
 
             <div className="p-6 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3">📊 On-Page SEO Tools</h3>
+              <h3 className="text-xl font-semibold mb-3">On-Page SEO Tools</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• On-Page SEO Audit Checker</li>
                 <li>• Meta Tag Generator</li>
@@ -280,7 +280,7 @@ export default function HomePage() {
             </div>
 
             <div className="p-6 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3">⚙️ Technical SEO Tools</h3>
+              <h3 className="text-xl font-semibold mb-3">Technical SEO Tools</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• Robots.txt Validator</li>
                 <li>• Sitemap Generator</li>
@@ -291,7 +291,7 @@ export default function HomePage() {
             </div>
 
             <div className="p-6 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3">📝 Content Tools</h3>
+              <h3 className="text-xl font-semibold mb-3">Content Tools</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• SEO Content Checker</li>
                 <li>• Readability Score Calculator</li>
@@ -302,7 +302,7 @@ export default function HomePage() {
             </div>
 
             <div className="p-6 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3">🔗 Link Building Tools</h3>
+              <h3 className="text-xl font-semibold mb-3">Link Building Tools</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• Backlink Analyzer</li>
                 <li>• Broken Link Finder</li>
@@ -313,7 +313,7 @@ export default function HomePage() {
             </div>
 
             <div className="p-6 border border-gray-200 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3">📍 Local SEO Tools</h3>
+              <h3 className="text-xl font-semibold mb-3">Local SEO Tools</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• NAP Consistency Checker</li>
                 <li>• Local Citation Finder</li>
@@ -378,7 +378,7 @@ export default function HomePage() {
       {/* Hero with clear CTAs; now placed after Tools */}
       <section className="text-center space-y-5 py-10">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-          100 SEO Tools: Free, Accurate, and Ready for 2025–2026
+          100 SEO Tools: Free, Accurate, and Ready for 2026–2027
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           A comprehensive suite of top‑performing, search‑friendly tools. Run <span className="font-semibold">SEO tool comparison</span> checks, build schema, and ship updates faster. Everything is free, client‑side, and tuned for speed — no logins.
@@ -464,10 +464,10 @@ export default function HomePage() {
           Welcome to <a href="/" className="hover:underline">100 SEO Tools</a> — a comprehensive, browser‑based toolkit for modern optimization. This curated <strong>free SEO tools list</strong> covers keyword research, on‑page improvements, technical validation, and performance checks. Use it to run quick audits, compare outputs, and publish with confidence.
         </p>
         <p className="font-loading-fallback">
-          Explore keyword ideas, analyze intent, and structure content using headings, schema, and internal links. For technical SEO, validate <a href="/tools/structured-data-validator" className="hover:underline">structured data</a> and check <a href="/tools/robots-txt-validator" className="hover:underline">robots.txt</a>. For market insight, perform <strong>SEO tool comparison</strong> and benchmark against top pages. See the <a href="/blog/100-free-seo-tools-ultimate-list" className="hover:underline">100 SEO Tools ultimate list</a>.
+          Explore keyword ideas, analyze intent, and structure content using headings, schema, and internal links. For technical SEO, validate <a href="/tools/structured-data-validator" className="hover:underline">structured data</a> and check <a href="/tools/robots-txt-validator" className="hover:underline">robots.txt</a>. For market insight, perform <strong>SEO tool comparison</strong> and benchmark against top pages. See our <a href="/blog/seo-basics" className="hover:underline">SEO Basics Guide</a>.
         </p>
         <p className="font-loading-fallback">
-          The experience prioritizes E‑E‑A‑T: accurate outputs, transparent processing, and practical guidance. Start with Meta Tag Generator and Heading Analyzer. For 2025, try our <strong>best SEO tools</strong> lineup to improve clarity, speed, and discoverability.
+          The experience prioritizes E‑E‑A‑T: accurate outputs, transparent processing, and practical guidance. Start with Meta Tag Generator and Heading Analyzer. For 2026, try our <strong>best SEO tools</strong> lineup to improve clarity, speed, and discoverability.
         </p>
       </section>
 

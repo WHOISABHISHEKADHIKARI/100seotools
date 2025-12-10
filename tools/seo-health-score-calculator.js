@@ -3,6 +3,6 @@ export default {
   "name": "SEO Health Score Calculator",
   "category": "SEO Performance",
   "description": "Heuristic health score.",
-  "template": "titleMetaLengthCounter",
+  "template": "seoHealthScore",
   "api": true
 };

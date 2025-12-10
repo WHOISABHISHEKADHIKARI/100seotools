@@ -3,6 +3,6 @@ export default {
   "name": "Canonical Tag Checker",
   "category": "Technical SEO",
   "description": "Check canonical tag presence.",
-  "template": "metaTagGenerator",
+  "template": "canonicalTagChecker",
   "api": true
 };

@@ -3,6 +3,6 @@ export default {
   "name": "Internal Linking Planner",
   "category": "Backlink & Link-Building",
   "description": "Plan internal links.",
-  "template": "keywordSuggestions",
+  "template": "internalLinkingPlanner",
   "api": true
 };

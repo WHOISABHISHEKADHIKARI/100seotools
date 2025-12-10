@@ -3,6 +3,6 @@ export default {
   "name": "CTR Predictor",
   "category": "SEO Performance",
   "description": "Heuristic CTR estimate.",
-  "template": "titleMetaLengthCounter",
+  "template": "ctrPredictor",
   "api": true
 };

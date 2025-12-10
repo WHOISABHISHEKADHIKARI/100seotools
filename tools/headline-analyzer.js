@@ -3,6 +3,6 @@ export default {
   "name": "Headline Analyzer",
   "category": "Content SEO",
   "description": "Analyze headline strength.",
-  "template": "titleMetaLengthCounter",
+  "template": "headlineAnalyzer",
   "api": true
 };

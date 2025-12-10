@@ -3,6 +3,6 @@ export default {
   "name": "Featured Snippet Optimizer",
   "category": "Content SEO",
   "description": "Optimize for snippet.",
-  "template": "metaTagGenerator",
+  "template": "featuredSnippetOptimizer",
   "api": true
 };

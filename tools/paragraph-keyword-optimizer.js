@@ -3,6 +3,6 @@ export default {
   "name": "Paragraph Keyword Optimizer",
   "category": "Content SEO",
   "description": "Suggest keyword placements.",
-  "template": "keywordSuggestions",
+  "template": "paragraphKeywordOptimizer",
   "api": true
 };
