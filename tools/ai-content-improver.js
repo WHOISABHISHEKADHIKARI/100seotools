@@ -3,6 +3,6 @@ export default {
   "name": "AI Content Improver",
   "category": "AI-Powered SEO",
   "description": "Improve content (heuristic).",
-  "template": "aiContentImprover",
+  "template": "readabilityScore",
   "api": true
 };

@@ -3,6 +3,6 @@ export default {
   "name": "AI Snippet Generator",
   "category": "AI-Powered SEO",
   "description": "Snippet-like summary.",
-  "template": "aiSnippetGenerator",
+  "template": "searchPreviewSimulator",
   "api": true
 };

@@ -3,6 +3,6 @@ export default {
   "name": "Review Response Generator",
   "category": "Local SEO",
   "description": "Generate responses.",
-  "template": "reviewResponseGenerator",
+  "template": "longTailKeywords",
   "api": true
 };

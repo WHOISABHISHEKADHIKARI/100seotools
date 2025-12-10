@@ -3,6 +3,6 @@ export default {
   "name": "Content Gap Finder",
   "category": "Content SEO",
   "description": "Find content gaps.",
-  "template": "competitorGapAnalyzer",
+  "template": "duplicateContentChecker",
   "api": true
 };

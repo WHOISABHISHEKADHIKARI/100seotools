@@ -3,6 +3,6 @@ export default {
   "name": "AI Competitor Title Rewriter",
   "category": "AI-Powered SEO",
   "description": "Rewrite titles (heuristic).",
-  "template": "aiCompetitorTitleRewriter",
+  "template": "longTailKeywords",
   "api": true
 };

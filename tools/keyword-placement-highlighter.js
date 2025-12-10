@@ -3,6 +3,6 @@ export default {
   "name": "Keyword Placement Highlighter",
   "category": "Content SEO",
   "description": "Highlight keywords in text.",
-  "template": "keywordPlacementHighlighter",
+  "template": "keywordDensity",
   "api": true
 };

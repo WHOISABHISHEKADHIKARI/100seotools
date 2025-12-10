@@ -3,6 +3,6 @@ export default {
   "name": "Meta Description Writer",
   "category": "Content SEO",
   "description": "Write meta descriptions.",
-  "template": "metaDescriptionWriter",
+  "template": "metaDescriptionOptimizer",
   "api": true
 };

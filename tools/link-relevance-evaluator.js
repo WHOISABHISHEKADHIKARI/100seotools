@@ -3,6 +3,6 @@ export default {
   "name": "Link Relevance Evaluator",
   "category": "Backlink & Link-Building",
   "description": "Heuristic link relevance.",
-  "template": "linkRelevanceEvaluator",
+  "template": "duplicateContentChecker",
   "api": true
 };

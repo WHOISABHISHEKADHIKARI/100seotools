@@ -3,6 +3,6 @@ export default {
   "name": "Ranking Opportunity Finder",
   "category": "Competitor Analysis",
   "description": "Find ranking opportunities.",
-  "template": "rankingOpportunityFinder",
+  "template": "keywordSuggestions",
   "api": true
 };

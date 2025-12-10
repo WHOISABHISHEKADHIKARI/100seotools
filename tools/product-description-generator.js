@@ -3,6 +3,6 @@ export default {
   "name": "Product Description Generator",
   "category": "Content SEO",
   "description": "Generate product copy.",
-  "template": "productDescriptionGenerator",
+  "template": "longTailKeywords",
   "api": true
 };

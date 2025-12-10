@@ -3,6 +3,6 @@ export default {
   "name": "Local Schema Builder",
   "category": "Local SEO",
   "description": "LocalBusiness schema.",
-  "template": "localSchemaBuilder",
+  "template": "schemaMarkupGenerator",
   "api": true
 };

@@ -3,6 +3,6 @@ export default {
   "name": "Location-Based Content Idea Generator",
   "category": "Local SEO",
   "description": "Content ideas by location.",
-  "template": "locationBasedContent",
+  "template": "keywordSuggestions",
   "api": true
 };

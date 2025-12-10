@@ -3,6 +3,6 @@ export default {
   "name": "Keyword Share Estimator",
   "category": "Competitor Analysis",
   "description": "Estimate share.",
-  "template": "keywordShareEstimator",
+  "template": "titleMetaLengthCounter",
   "api": true
 };

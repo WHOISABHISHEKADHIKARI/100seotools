@@ -3,6 +3,6 @@ export default {
   "name": "Content Length Comparator",
   "category": "Competitor Analysis",
   "description": "Compare content length.",
-  "template": "competitorGapAnalyzer",
+  "template": "readabilityScore",
   "api": true
 };

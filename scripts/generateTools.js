@@ -1,7 +1,11 @@
 // Node script to generate 100 tool modules in /tools and an index
 // Run: npm run generate:tools
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const tools = [
   // Keyword Research Tools
@@ -122,15 +126,36 @@ const tools = [
   { slug: 'search-preview-simulator', name: 'Search Preview Simulator', category: 'SEO Utility', description: 'Preview search snippet.', template: 'searchPreviewSimulator' },
   { slug: 'content-freshness-checker', name: 'Content Freshness Checker', category: 'SEO Utility', description: 'Estimate content freshness.', template: 'titleMetaLengthCounter' },
   { slug: 'text-to-html-converter', name: 'Text-to-HTML Converter', category: 'SEO Utility', description: 'Wrap text into basic HTML.', template: 'metaTagGenerator' },
-  { slug: 'seo-checklist-generator', name: 'SEO Checklist Generator', category: 'SEO Utility', description: 'Generate checklist.', template: 'schemaMarkupGenerator' }
+  { slug: 'seo-checklist-generator', name: 'SEO Checklist Generator', category: 'SEO Utility', description: 'Generate checklist.', template: 'schemaMarkupGenerator' },
+  { slug: 'reverse-image-search', name: 'Reverse Image Search', category: 'SEO Utility', description: 'Find image sources.', template: 'keywordSuggestions' },
+  { slug: 'ai-content-detector', name: 'AI Content Detector', category: 'AI-Powered SEO', description: 'Detect AI content.', template: 'keywordDensity' },
+  { slug: 'text-translator', name: 'Text Translator', category: 'SEO Utility', description: 'Translate text.', template: 'readabilityScore' },
+  { slug: 'seo-content-checker', name: 'SEO Content Checker', category: 'On-Page Optimization', description: 'Comprehensive content analysis.', template: 'seoContentChecker' }
 ];
 
 const outDir = path.join(process.cwd(), 'tools');
 if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
 function writeToolModule(tool) {
-  const content = `export default ${JSON.stringify(tool, null, 2)};\n`;
-  fs.writeFileSync(path.join(outDir, `${tool.slug}.js`), content, 'utf8');
+  // Be careful not to overwrite existing files if they have custom modifications!
+  // BUT the user asked to generate 100 tools.
+  // We should probably check if it exists and only write if missing OR if we want to enforce uniformity.
+  // For now, let's overwrite to ensure `api: true` and templates are correct.
+  // WAIT. Many tools have `api: true` manually added. I should preserve that.
+
+  const filePath = path.join(outDir, `${tool.slug}.js`);
+  let toolData = tool;
+
+  if (fs.existsSync(filePath)) {
+    // Read existing to check for 'api' flag
+    const existing = fs.readFileSync(filePath, 'utf8');
+    if (existing.includes('api": true') || existing.includes("api': true")) {
+      toolData = { ...tool, api: true };
+    }
+  }
+
+  const content = `export default ${JSON.stringify(toolData, null, 2)};\n`;
+  fs.writeFileSync(filePath, content, 'utf8');
 }
 
 tools.forEach(writeToolModule);

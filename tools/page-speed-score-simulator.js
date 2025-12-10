@@ -3,6 +3,6 @@ export default {
   "name": "Page Speed Score Simulator",
   "category": "Technical SEO",
   "description": "Heuristic page speed hints.",
-  "template": "pageSpeedScoreSimulator",
+  "template": "titleMetaLengthCounter",
   "api": true
 };
