@@ -16,7 +16,8 @@ export default function sitemap() {
     { path: '/blog', priority: 0.8, changeFreq: 'daily' },
     { path: '/category', priority: 0.75, changeFreq: 'weekly' },
     { path: '/about', priority: 0.6, changeFreq: 'monthly' },
-    { path: '/author', priority: 0.6, changeFreq: 'monthly' },
+
+
     { path: '/contact', priority: 0.6, changeFreq: 'monthly' },
     { path: '/privacy', priority: 0.3, changeFreq: 'yearly' },
     { path: '/terms', priority: 0.3, changeFreq: 'yearly' },

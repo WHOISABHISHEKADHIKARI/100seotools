@@ -60,6 +60,7 @@ Sitemap: ${baseUrl}/sitemap.xml
 Sitemap: ${baseUrl}/sitemap-tools/sitemap.xml
 Sitemap: ${baseUrl}/sitemap-blog/sitemap.xml
 Sitemap: ${baseUrl}/sitemap-guides/sitemap.xml
+Sitemap: ${baseUrl}/sitemap-author/sitemap.xml
 `;
 
     return new Response(robotsTxt, {
