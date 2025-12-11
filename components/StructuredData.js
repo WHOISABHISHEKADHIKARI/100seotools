@@ -205,10 +205,10 @@ export function generateFAQSchema(faqs) {
     "@type": "FAQPage",
     "mainEntity": faqs.map(faq => ({
       "@type": "Question",
-      "name": faq.question,
+      "name": faq.question || faq.q,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.answer
+        "text": faq.answer || faq.a
       }
     }))
   };

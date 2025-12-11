@@ -395,7 +395,7 @@ export default function AuthorPage() {
                             </div>
                             <div className="flex items-center gap-3">
                                 <span className="text-brand-600 dark:text-brand-400 font-semibold">Website:</span>
-                                <a href="https://100seotools.com" className="hover:underline" itemProp="url">100seotools.com</a>
+                                <Link href="/" className="hover:underline" itemProp="url">100seotools.com</Link>
                             </div>
                         </div>
                     </section>

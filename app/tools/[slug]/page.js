@@ -70,7 +70,7 @@ export default async function ToolPage({ params }) {
     .filter(t => t.category === tool.category && t.slug !== tool.slug)
     .slice(0, 10);
 
-const baseUrl = getBaseUrl();
+  const baseUrl = getBaseUrl();
 
   // Enhanced structured data for better AI crawler understanding
   const breadcrumbLd = {
@@ -90,11 +90,12 @@ const baseUrl = getBaseUrl();
   const faqLd = Array.isArray(guide.faqs) && guide.faqs.length > 0 ? generateFAQSchema(guide.faqs, baseUrl) : null;
 
   return (
-    <ToolLayout tool={tool} formFirst={true} relatedTools={relatedTools}>
-      <StructuredData data={breadcrumbLd} />
-      <StructuredData data={softwareLd} />
-      <StructuredData data={howToLd} />
-      {faqLd && <StructuredData data={faqLd} />}
+    <ToolLayout
+      tool={tool}
+      formFirst={true}
+      relatedTools={relatedTools}
+      extraSchema={[breadcrumbLd, softwareLd, howToLd, faqLd].filter(Boolean)}
+    >
       <ToolRunner tool={tool} />
     </ToolLayout>
   );

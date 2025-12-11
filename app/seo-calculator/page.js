@@ -104,18 +104,18 @@ export default function SEOCalculatorPage() {
         <section>
           <h2>Related Tools and Guides</h2>
           <p>
-            <a href="/" className="text-brand-600 hover:underline">Homepage</a> ·{' '}
-            <a href="/category/seo-performance" className="text-brand-600 hover:underline">SEO Performance</a> ·{' '}
-            <a href="/category/keyword-research" className="text-brand-600 hover:underline">Keyword Research</a> ·{' '}
-            <a href="/category/on-page-optimization" className="text-brand-600 hover:underline">On‑Page Optimization</a>
+            <Link href="/" className="text-brand-600 hover:underline">Homepage</Link> ·{' '}
+            <Link href="/category/seo-performance" className="text-brand-600 hover:underline">SEO Performance</Link> ·{' '}
+            <Link href="/category/keyword-research" className="text-brand-600 hover:underline">Keyword Research</Link> ·{' '}
+            <Link href="/category/on-page-optimization" className="text-brand-600 hover:underline">On‑Page Optimization</Link>
           </p>
           <p>
-            <a href="/tools/traffic-potential-calculator" className="text-brand-600 hover:underline">Traffic Potential Calculator</a> ·{' '}
-            <a href="/tools/keyword-roi-calculator" className="text-brand-600 hover:underline">Keyword ROI Calculator</a> ·{' '}
-            <a href="/tools/ctr-predictor" className="text-brand-600 hover:underline">CTR Predictor</a> ·{' '}
-            <a href="/tools/visibility-index-calculator" className="text-brand-600 hover:underline">Visibility Index Calculator</a> ·{' '}
-            <a href="/tools/ranking-progress-tracker" className="text-brand-600 hover:underline">Ranking Progress Tracker</a> ·{' '}
-            <a href="/tools/on-page-seo-audit-checker" className="text-brand-600 hover:underline">On‑Page SEO Audit Checker</a>
+            <Link href="/tools/traffic-potential-calculator" className="text-brand-600 hover:underline">Traffic Potential Calculator</Link> ·{' '}
+            <Link href="/tools/keyword-roi-calculator" className="text-brand-600 hover:underline">Keyword ROI Calculator</Link> ·{' '}
+            <Link href="/tools/ctr-predictor" className="text-brand-600 hover:underline">CTR Predictor</Link> ·{' '}
+            <Link href="/tools/visibility-index-calculator" className="text-brand-600 hover:underline">Visibility Index Calculator</Link> ·{' '}
+            <Link href="/tools/ranking-progress-tracker" className="text-brand-600 hover:underline">Ranking Progress Tracker</Link> ·{' '}
+            <Link href="/tools/on-page-seo-audit-checker" className="text-brand-600 hover:underline">On‑Page SEO Audit Checker</Link>
           </p>
         </section>
       </article>

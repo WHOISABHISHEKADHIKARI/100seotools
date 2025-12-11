@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import SearchFilter from '../components/SearchFilter';
 import StructuredData from '../components/StructuredData';
@@ -174,40 +175,7 @@ export default function HomePage() {
 
   return (
     <div className="space-y-12 max-w-7xl mx-auto px-4">
-      {(() => {
-        const baseUrl = getBaseUrl();
-        const websiteLd = generateWebsiteSchema(baseUrl);
-        const webPageLd = {
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": "100 SEO Tools - Free Online SEO Toolkit 2026",
-          "description": "Complete collection of 100+ free SEO tools for keyword research, on-page optimization, technical SEO, content analysis, and performance tracking. No signup required, instant results.",
-          "url": baseUrl,
-          "keywords": [
-            "100 SEO tools",
-            "100 seo tools",
-            "free SEO tools list",
-            "SEO tool comparison",
-            "best SEO tools for 2024",
-            "100 free seo tools",
-            "free seo toolkit",
-            "seo tools website",
-            "100 seo",
-            "free online seo tools"
-          ],
-          "about": {
-            "@type": "Thing",
-            "name": "Search Engine Optimization Tools",
-            "description": "Comprehensive collection of SEO tools for digital marketers"
-          }
-        };
-        return (
-          <>
-            <StructuredData data={websiteLd} />
-            <StructuredData data={webPageLd} />
-          </>
-        );
-      })()}
+
       {/* Hero Section - Optimized for "100 seo tools" keyword */}
       <section className="text-center space-y-6 py-12 border-b border-gray-200 dark:border-gray-800 min-h-[300px] flex flex-col justify-center">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-brand-600 to-blue-600 bg-clip-text text-transparent">
@@ -358,10 +326,10 @@ export default function HomePage() {
                 Browse All 100 Free SEO Tools
               </h2>
               <p className="text-sm md:text-base text-slate-700 dark:text-slate-300 max-w-3xl">
-                Our <strong>100 SEO tools</strong> collection includes everything you need: <a href="/tools/keyword-suggestion-tool" className="font-semibold text-brand-600 hover:underline">keyword research tools</a>, <a href="/tools/on-page-seo-audit-checker" className="font-semibold text-brand-600 hover:underline">on-page SEO checkers</a>, <a href="/tools/robots-txt-validator" className="font-semibold text-brand-600 hover:underline">technical SEO validators</a>, <a href="/tools/meta-tag-generator" className="font-semibold text-brand-600 hover:underline">meta tag generators</a>, and more. This <strong>free SEO toolkit</strong> is trusted by marketers worldwide.
+                Our <strong>100 SEO tools</strong> collection includes everything you need: <Link href="/tools/keyword-suggestion-tool" className="font-semibold text-brand-600 hover:underline">keyword research tools</Link>, <Link href="/tools/on-page-seo-audit-checker" className="font-semibold text-brand-600 hover:underline">on-page SEO checkers</Link>, <Link href="/tools/robots-txt-validator" className="font-semibold text-brand-600 hover:underline">technical SEO validators</Link>, <Link href="/tools/meta-tag-generator" className="font-semibold text-brand-600 hover:underline">meta tag generators</Link>, and more. This <strong>free SEO toolkit</strong> is trusted by marketers worldwide.
               </p>
             </div>
-            <a href="#calculator" className="shrink-0 text-sm text-blue-700 dark:text-blue-400 hover:underline">Go to Calculator</a>
+            <Link href="#calculator" className="shrink-0 text-sm text-blue-700 dark:text-blue-400 hover:underline">Go to Calculator</Link>
           </div>
         </div>
         <div className="pt-2">
@@ -384,12 +352,12 @@ export default function HomePage() {
           A comprehensive suite of top‑performing, search‑friendly tools. Run <span className="font-semibold">SEO tool comparison</span> checks, build schema, and ship updates faster. Everything is free, client‑side, and tuned for speed — no logins.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
-          <a href="#tools" className="btn transition-all duration-200 hover:scale-[1.02]">
+          <Link href="#tools" className="btn transition-all duration-200 hover:scale-[1.02]">
             Explore Tools
-          </a>
-          <a href="#calculator" className="btn btn-outline transition-all duration-200 hover:scale-[1.02]">
+          </Link>
+          <Link href="#calculator" className="btn btn-outline transition-all duration-200 hover:scale-[1.02]">
             Try Calculator
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -452,19 +420,19 @@ export default function HomePage() {
         </div>
 
         <div className="text-center pt-4">
-          <a href="#tools" className="btn">
+          <Link href="#tools" className="btn">
             Explore All 100 Free SEO Tools →
-          </a>
+          </Link>
         </div>
       </section>
 
       {/* Expanded introduction for better content depth (250+ words) */}
       <section className="max-w-3xl mx-auto space-y-4 text-gray-700 dark:text-gray-300">
         <p className="font-loading-fallback">
-          Welcome to <a href="/" className="hover:underline">100 SEO Tools</a> — a comprehensive, browser‑based toolkit for modern optimization. This curated <strong>free SEO tools list</strong> covers keyword research, on‑page improvements, technical validation, and performance checks. Use it to run quick audits, compare outputs, and publish with confidence.
+          Welcome to <Link href="/" className="hover:underline">100 SEO Tools</Link> — a comprehensive, browser‑based toolkit for modern optimization. This curated <strong>free SEO tools list</strong> covers keyword research, on‑page improvements, technical validation, and performance checks. Use it to run quick audits, compare outputs, and publish with confidence.
         </p>
         <p className="font-loading-fallback">
-          Explore keyword ideas, analyze intent, and structure content using headings, schema, and internal links. For technical SEO, validate <a href="/tools/structured-data-validator" className="hover:underline">structured data</a> and check <a href="/tools/robots-txt-validator" className="hover:underline">robots.txt</a>. For market insight, perform <strong>SEO tool comparison</strong> and benchmark against top pages. See our <a href="/blog/seo-basics" className="hover:underline">SEO Basics Guide</a>.
+          Explore keyword ideas, analyze intent, and structure content using headings, schema, and internal links. For technical SEO, validate <Link href="/tools/structured-data-validator" className="hover:underline">structured data</Link> and check <Link href="/tools/robots-txt-validator" className="hover:underline">robots.txt</Link>. For market insight, perform <strong>SEO tool comparison</strong> and benchmark against top pages. See our <Link href="/blog/seo-basics" className="hover:underline">SEO Basics Guide</Link>.
         </p>
         <p className="font-loading-fallback">
           The experience prioritizes E‑E‑A‑T: accurate outputs, transparent processing, and practical guidance. Start with Meta Tag Generator and Heading Analyzer. For 2026, try our <strong>best SEO tools</strong> lineup to improve clarity, speed, and discoverability.
@@ -487,10 +455,45 @@ export default function HomePage() {
       <section id="pages" aria-labelledby="pages-section-title" className="space-y-4 pt-8 border-t border-gray-100 dark:border-gray-800">
         <div className="flex items-center justify-between">
           <h2 id="pages-section-title" className="text-2xl md:text-3xl font-semibold">Explore Pages</h2>
-          <a href="#tools" className="text-sm text-blue-700 dark:text-blue-400 hover:underline">Back to Tools</a>
+          <Link href="#tools" className="text-sm text-blue-700 dark:text-blue-400 hover:underline">Back to Tools</Link>
         </div>
         <PageLinksGrid />
       </section>
+
+      {(() => {
+        const baseUrl = getBaseUrl();
+        const websiteLd = generateWebsiteSchema(baseUrl);
+        const webPageLd = {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "100 SEO Tools - Free Online SEO Toolkit 2026",
+          "description": "Complete collection of 100+ free SEO tools for keyword research, on-page optimization, technical SEO, content analysis, and performance tracking. No signup required, instant results.",
+          "url": baseUrl,
+          "keywords": [
+            "100 SEO tools",
+            "100 seo tools",
+            "free SEO tools list",
+            "SEO tool comparison",
+            "best SEO tools for 2024",
+            "100 free seo tools",
+            "free seo toolkit",
+            "seo tools website",
+            "100 seo",
+            "free online seo tools"
+          ],
+          "about": {
+            "@type": "Thing",
+            "name": "Search Engine Optimization Tools",
+            "description": "Comprehensive collection of SEO tools for digital marketers"
+          }
+        };
+        return (
+          <>
+            <StructuredData data={websiteLd} />
+            <StructuredData data={webPageLd} />
+          </>
+        );
+      })()}
     </div>
   );
 }

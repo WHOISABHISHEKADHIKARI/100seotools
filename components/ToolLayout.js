@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import Image from 'next/image';
 import { getToolGuide } from '../lib/guides';
 import UnifiedCard from './UnifiedCard';
 import StructuredData from './StructuredData';
@@ -29,7 +31,7 @@ function getInstructionEntry(slug) {
   }
 }
 
-export default function ToolLayout({ tool, children, formFirst = false, relatedTools = [] }) {
+export default function ToolLayout({ tool, children, formFirst = false, relatedTools = [], extraSchema = [] }) {
   // Generate guidance content for any tool via generic generator
   const guide = getToolGuide(tool);
   const override = getInstructionEntry(tool.slug);
@@ -44,13 +46,13 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
           </div>
           <div className="flex items-center gap-3">
             <span className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">{tool.category}</span>
-            <a
+            <Link
               href={`/blog/${tool.slug}`}
               aria-label={`Read guide: ${tool.name}`}
               className="tap-target text-sm text-brand-600 hover:opacity-85 transition-gpu will-change-transform-opacity"
             >
               Read Guide
-            </a>
+            </Link>
           </div>
         </div>
         <div className="mt-3 flex items-center justify-between">
@@ -613,6 +615,27 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
 
 
 
+      {/* Author Section */}
+      <div className="card p-6 flex items-center gap-4 border-l-4 border-brand-500">
+        <div className="flex-shrink-0">
+          <Image
+            src="/author.png"
+            alt="Abhishek Adhikari"
+            width={64}
+            height={64}
+            className="rounded-full border border-slate-200 dark:border-white/10"
+          />
+        </div>
+        <div>
+          <h3 className="font-semibold text-lg text-gray-900 dark:text-gray-100 mb-1">
+            Tool Created by <Link href="/author" className="text-brand-600 hover:underline">Abhishek Adhikari</Link>
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+            SEO Expert, Full-Stack Developer, and Creator of 100SEOTools. With 22+ years of experience, I build free, privacy-focused tools to help you rank higher.
+          </p>
+        </div>
+      </div>
+
       {/* Professional footer with additional information */}
       <div className="text-sm text-gray-500 dark:text-gray-400 px-2">
         <p>This tool is provided free of charge and requires no login. All processing happens in your browser - no data is sent to our servers.</p>
@@ -621,6 +644,9 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
       {override && override.schema_json_ld && (
         <StructuredData data={override.schema_json_ld} />
       )}
+      {extraSchema && (Array.isArray(extraSchema) ? extraSchema : [extraSchema]).map((schema, i) => (
+        schema ? <StructuredData key={i} data={schema} /> : null
+      ))}
     </div>
   );
 }

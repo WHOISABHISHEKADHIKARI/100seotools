@@ -123,9 +123,9 @@ export default async function CategoryPage({ params, searchParams }) {
         <div className="mb-6 text-sm text-slate-700 dark:text-slate-300">
           <p>
             Run quick checks to improve clarity and CTR. Use the{' '}
-            <a href="/tools/on-page-seo-audit-checker" className="text-brand-600 hover:underline">on‑page SEO audit checker</a>{' '}and read the{' '}
-            <a href="/blog/on-page-seo-audit-checker-how-to-use" className="text-brand-600 hover:underline">pillar how‑to guide</a>{' '}plus the{' '}
-            <a href="/blog/on-page-seo-audit-checker-features-benefits-keywords" className="text-brand-600 hover:underline">features and benefits overview</a>.
+            <Link href="/tools/on-page-seo-audit-checker" className="text-brand-600 hover:underline">on‑page SEO audit checker</Link>{' '}and read the{' '}
+            <Link href="/blog/on-page-seo-audit-checker-how-to-use" className="text-brand-600 hover:underline">pillar how‑to guide</Link>{' '}plus the{' '}
+            <Link href="/blog/on-page-seo-audit-checker-features-benefits-keywords" className="text-brand-600 hover:underline">features and benefits overview</Link>.
           </p>
         </div>
       )}
@@ -133,76 +133,76 @@ export default async function CategoryPage({ params, searchParams }) {
         <div className="mb-6 text-sm text-slate-700 dark:text-slate-300">
           <p>
             Strengthen topical coverage with themed clusters and intent mapping. Explore the{' '}
-            <a href="/tools/keyword-clustering-tool" className="text-brand-600 hover:underline">best free keyword clustering tool</a>{' '}to group queries, compare coverage with{' '}
-            <a href="/tools/competitor-keyword-overlap-checker" className="text-brand-600 hover:underline">AI keyword clustering benchmarks</a>{' '}and use{' '}
-            <a href="/tools/keyword-intent-identifier" className="text-brand-600 hover:underline">semantic keyword grouping tool</a>{' '}to label intent.
+            <Link href="/tools/keyword-clustering-tool" className="text-brand-600 hover:underline">best free keyword clustering tool</Link>{' '}to group queries, compare coverage with{' '}
+            <Link href="/tools/competitor-keyword-overlap-checker" className="text-brand-600 hover:underline">AI keyword clustering benchmarks</Link>{' '}and use{' '}
+            <Link href="/tools/keyword-intent-identifier" className="text-brand-600 hover:underline">semantic keyword grouping tool</Link>{' '}to label intent.
           </p>
           <p>
             Generate ideas fast with the{' '}
-            <a href="/tools/keyword-suggestion-tool" className="text-brand-600 hover:underline">keyword suggest tool</a>{' '}and the{' '}
-            <a href="/blog/keyword-suggestion-tool" className="text-brand-600 hover:underline">keyword ideas guide</a>. Use these to seed clusters and plan internal links.
+            <Link href="/tools/keyword-suggestion-tool" className="text-brand-600 hover:underline">keyword suggest tool</Link>{' '}and the{' '}
+            <Link href="/blog/keyword-suggestion-tool" className="text-brand-600 hover:underline">keyword ideas guide</Link>. Use these to seed clusters and plan internal links.
           </p>
         </div>
       )}
       <>
-          {/* Featured Tool */}
-          {featuredTool && (
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold mb-4">Featured Tool</h2>
-              <div className="rounded-lg border border-slate-200 dark:border-white/10 p-6 hover:shadow-md transition">
-                <h3 className="font-semibold text-xl mb-2">
-                  <Link href={`/tools/${featuredTool.slug}`} prefetch={false} className="hover:text-brand-600">{featuredTool.name}</Link>
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 mb-4">{featuredTool.description}</p>
-                <Link href={`/tools/${featuredTool.slug}`} prefetch={false} className="text-brand-600 hover:underline">Open Tool</Link>
-              </div>
-            </div>
-          )}
-
-          {/* Client-side filtering, search, and pagination for tools and articles */}
-          <CategoryClient items={items} catName={catName} slug={slug} initialPage={searchParams?.page || 1} relatedPosts={blogPosts} />
-
-          {/* FAQ Section */}
+        {/* Featured Tool */}
+        {featuredTool && (
           <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
-            <div className="space-y-4">
-              <details className="p-4 rounded-lg border border-slate-200 dark:border-white/10">
-                <summary className="font-semibold cursor-pointer">What are {catName} tools?</summary>
-                <p className="mt-2 text-slate-600 dark:text-slate-300">
-                  {catName} tools are a collection of utilities designed to help you with various aspects of search engine optimization.
-                </p>
-              </details>
-              <details className="p-4 rounded-lg border border-slate-200 dark:border-white/10">
-                <summary className="font-semibold cursor-pointer">How can these tools help my SEO?</summary>
-                <p className="mt-2 text-slate-600 dark:text-slate-300">
-                  By using these tools, you can analyze your website, find opportunities for improvement, and implement best practices to improve your search engine rankings.
-                </p>
-              </details>
+            <h2 className="text-2xl font-bold mb-4">Featured Tool</h2>
+            <div className="rounded-lg border border-slate-200 dark:border-white/10 p-6 hover:shadow-md transition">
+              <h3 className="font-semibold text-xl mb-2">
+                <Link href={`/tools/${featuredTool.slug}`} prefetch={false} className="hover:text-brand-600">{featuredTool.name}</Link>
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300 mb-4">{featuredTool.description}</p>
+              <Link href={`/tools/${featuredTool.slug}`} prefetch={false} className="text-brand-600 hover:underline">Open Tool</Link>
             </div>
           </div>
+        )}
 
-          {/* Social Proof */}
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Trusted by SEOs Worldwide</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-              <div className="p-4">
-                <p className="text-3xl font-bold">10,000+</p>
-                <p className="text-slate-600 dark:text-slate-300">Active Users</p>
-              </div>
-              <div className="p-4">
-                <p className="text-3xl font-bold">500+</p>
-                <p className="text-slate-600 dark:text-slate-300">5-Star Reviews</p>
-              </div>
-              <div className="p-4">
-                <p className="text-3xl font-bold">1M+</p>
-                <p className="text-slate-600 dark:text-slate-300">Tools Run</p>
-              </div>
-              <div className="p-4">
-                <p className="text-3xl font-bold">99.9%</p>
-                <p className="text-slate-600 dark:text-slate-300">Uptime</p>
-              </div>
+        {/* Client-side filtering, search, and pagination for tools and articles */}
+        <CategoryClient items={items} catName={catName} slug={slug} initialPage={searchParams?.page || 1} relatedPosts={blogPosts} />
+
+        {/* FAQ Section */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="p-4 rounded-lg border border-slate-200 dark:border-white/10">
+              <summary className="font-semibold cursor-pointer">What are {catName} tools?</summary>
+              <p className="mt-2 text-slate-600 dark:text-slate-300">
+                {catName} tools are a collection of utilities designed to help you with various aspects of search engine optimization.
+              </p>
+            </details>
+            <details className="p-4 rounded-lg border border-slate-200 dark:border-white/10">
+              <summary className="font-semibold cursor-pointer">How can these tools help my SEO?</summary>
+              <p className="mt-2 text-slate-600 dark:text-slate-300">
+                By using these tools, you can analyze your website, find opportunities for improvement, and implement best practices to improve your search engine rankings.
+              </p>
+            </details>
+          </div>
+        </div>
+
+        {/* Social Proof */}
+        <div>
+          <h2 className="text-2xl font-bold mb-4">Trusted by SEOs Worldwide</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+            <div className="p-4">
+              <p className="text-3xl font-bold">10,000+</p>
+              <p className="text-slate-600 dark:text-slate-300">Active Users</p>
+            </div>
+            <div className="p-4">
+              <p className="text-3xl font-bold">500+</p>
+              <p className="text-slate-600 dark:text-slate-300">5-Star Reviews</p>
+            </div>
+            <div className="p-4">
+              <p className="text-3xl font-bold">1M+</p>
+              <p className="text-slate-600 dark:text-slate-300">Tools Run</p>
+            </div>
+            <div className="p-4">
+              <p className="text-3xl font-bold">99.9%</p>
+              <p className="text-slate-600 dark:text-slate-300">Uptime</p>
             </div>
           </div>
+        </div>
       </>
     </main>
   );

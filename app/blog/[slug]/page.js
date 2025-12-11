@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import StructuredData from '../../../components/StructuredData';
 import { getAllBlogPostsPublished, getBlogPostPublishedBySlug } from '../../../lib/blog-data';
 import { getBaseUrl, siteName } from '../../../lib/site';
@@ -115,10 +116,6 @@ export default async function Page({ params, searchParams }) {
 
   return (
     <article className="max-w-3xl mx-auto py-10 space-y-8">
-      <StructuredData data={articleLd} />
-      {faqLd && <StructuredData data={faqLd} />}
-      {howToLd && <StructuredData data={howToLd} />}
-
       <header className="space-y-2">
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{post.title}</h1>
         <p className="text-gray-700 dark:text-gray-300">{post.description}</p>
@@ -144,9 +141,9 @@ export default async function Page({ params, searchParams }) {
           />
           <div>
             <div className="font-semibold text-gray-900 dark:text-gray-100">
-              <a href="/author" className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+              <Link href="/author" className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                 Abhishek Adhikari
-              </a>
+              </Link>
             </div>
             <div className="text-xs text-gray-600 dark:text-gray-400">
               SEO Expert & Full-Stack Developer
@@ -158,11 +155,20 @@ export default async function Page({ params, searchParams }) {
       <div className="rounded-md bg-slate-50 dark:bg-white/5 p-4 border border-slate-200 dark:border-white/10">
         <p>
           This guide is also available in the merged Blog page. View in context:
-          {' '}<a className="text-brand-600 hover:underline" href={anchorUrl}>/blog#{post.slug}</a>
+          {' '}<Link className="text-brand-600 hover:underline" href={anchorUrl}>/blog#{post.slug}</Link>
         </p>
       </div>
 
       <section className="space-y-4">
+
+        {/* TL;DR Section */}
+        {post.tldr && (
+          <div className="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 my-6 rounded-r">
+            <h2 className="text-lg font-bold text-blue-700 dark:text-blue-300 mb-2">TL;DR</h2>
+            <p className="text-gray-700 dark:text-gray-300">{post.tldr}</p>
+          </div>
+        )}
+
         {post.sections?.intro && (<p className="text-gray-700 dark:text-gray-300">{post.sections.intro}</p>)}
         {post.sections?.what && (<div><h2 className="text-lg font-semibold">What</h2><p className="text-gray-700 dark:text-gray-300">{post.sections.what}</p></div>)}
         {post.sections?.why && (<div><h2 className="text-lg font-semibold">Why</h2><p className="text-gray-700 dark:text-gray-300">{post.sections.why}</p></div>)}
@@ -172,7 +178,7 @@ export default async function Page({ params, searchParams }) {
             <h2 className="text-lg font-semibold">How</h2>
             <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
               {post.sections.how.map((h, i) => (
-                <li key={i}><a href={h.slug ? `/tools/${h.slug}` : '#'} className="text-brand-600 hover:underline">{h.label || h.text}</a></li>
+                <li key={i}><Link href={h.slug ? `/tools/${h.slug}` : '#'} className="text-brand-600 hover:underline">{h.label || h.text}</Link></li>
               ))}
             </ul>
           </div>
@@ -214,7 +220,7 @@ export default async function Page({ params, searchParams }) {
       <nav className="border-t border-slate-200 dark:border-white/10 pt-8 mt-12" aria-label="Blog post navigation">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {previousPost ? (
-            <a
+            <Link
               href={`/blog/${previousPost.slug}`}
               className="group p-4 rounded-lg border border-slate-200 dark:border-white/10 hover:border-brand-500 dark:hover:border-brand-500 hover:shadow-md transition-all"
             >
@@ -230,7 +236,7 @@ export default async function Page({ params, searchParams }) {
               {previousPost.category && (
                 <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{previousPost.category}</div>
               )}
-            </a>
+            </Link>
           ) : (
             <div className="p-4 rounded-lg border border-slate-200 dark:border-white/10 opacity-50">
               <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">No previous post</div>
@@ -238,7 +244,7 @@ export default async function Page({ params, searchParams }) {
           )}
 
           {nextPost ? (
-            <a
+            <Link
               href={`/blog/${nextPost.slug}`}
               className="group p-4 rounded-lg border border-slate-200 dark:border-white/10 hover:border-brand-500 dark:hover:border-brand-500 hover:shadow-md transition-all text-right"
             >
@@ -254,7 +260,7 @@ export default async function Page({ params, searchParams }) {
               {nextPost.category && (
                 <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{nextPost.category}</div>
               )}
-            </a>
+            </Link>
           ) : (
             <div className="p-4 rounded-lg border border-slate-200 dark:border-white/10 opacity-50 text-right">
               <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">No next post</div>
@@ -264,7 +270,7 @@ export default async function Page({ params, searchParams }) {
 
         {/* Back to all posts */}
         <div className="mt-6 text-center">
-          <a
+          <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium"
           >
@@ -272,9 +278,13 @@ export default async function Page({ params, searchParams }) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
             View All Blog Posts
-          </a>
+          </Link>
         </div>
       </nav>
+
+      <StructuredData data={articleLd} />
+      {faqLd && <StructuredData data={faqLd} />}
+      {howToLd && <StructuredData data={howToLd} />}
     </article>
   );
 }
