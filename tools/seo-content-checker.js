@@ -1,8 +1,8 @@
 export default {
   "slug": "seo-content-checker",
-  "name": "SEO Content Checker: Complete Guide - Content SEO 2025",
+  "name": "Free SEO Content Checker - Optimize Text & Readability",
   "category": "On-Page Optimization",
-  "description": "SEO Content Checker is a free, browser-based Content SEO tool that Evaluate on‑page content quality with a structured SEO content score. Enter your content to analyze density, readability, and placement.",
+  "description": "Analyze your content for SEO perfection. Check keyword density, readability scores, and structural optimization to ensure high-ranking articles.",
   "template": "seoContentChecker",
   "api": true
 };

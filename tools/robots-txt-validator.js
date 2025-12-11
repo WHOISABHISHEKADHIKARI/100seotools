@@ -1,8 +1,8 @@
 export default {
   "slug": "robots-txt-validator",
-  "name": "Robots.txt Validator: Complete Guide - Technical SEO 2025",
+  "name": "Robots.txt Validator - Free Instant Tester & Crawler Analysis",
   "category": "Technical SEO",
-  "description": "Robots.txt Validator is a free, browser-based Technical SEO tool that Validate your robots.txt file instantly with our free robots.txt validator to ensure perfect crawl control.",
+  "description": "Validate your robots.txt file instantly. Check for syntax errors, test Googlebot access, and ensure your site is indexable with this free, private, and secure tool.",
   "template": "robotsTxtValidator",
   "api": true
 };
