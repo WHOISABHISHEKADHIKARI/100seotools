@@ -13,12 +13,14 @@ export default function ContactPage() {
 
         const form = e.target;
         const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
 
         try {
-            const response = await fetch('https://formspree.io/f/manrbjga', {
+            const response = await fetch('https://formspree.io/f/xjkrvjlg', {
                 method: 'POST',
-                body: formData,
+                body: JSON.stringify(data),
                 headers: {
+                    'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 }
             });
@@ -30,12 +32,15 @@ export default function ContactPage() {
                 });
                 form.reset();
             } else {
+                const data = await response.json().catch(() => ({}));
+                console.error('Form submission error:', data);
                 setStatus({
                     type: 'error',
-                    message: 'Something went wrong. Please try again.'
+                    message: data.error || 'Something went wrong. Please try again.'
                 });
             }
         } catch (error) {
+            console.error('Submission network error:', error);
             setStatus({
                 type: 'error',
                 message: 'Failed to send message. Please try again later.'

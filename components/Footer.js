@@ -92,7 +92,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-slate-200 dark:border-gray-800 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs md:text-sm xl:text-base text-slate-600 dark:text-gray-400">
-          <p className="break-words">© {year} Hashtag Solutions. Building digital solutions, one click at a time.</p>
+          <p className="break-words">© {year} <a href="https://hashtagweb.com.np/projects/" target="_blank" rel="noopener noreferrer" className="hover:underline">Hashtag Solutions</a>. Building digital solutions, one click at a time.</p>
           <div className="flex items-center flex-wrap gap-3 md:gap-4 min-w-0">
             <Link href="/" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Home</Link>
             <Link href="/blog" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Blog</Link>
