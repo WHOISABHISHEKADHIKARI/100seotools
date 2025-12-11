@@ -37,7 +37,7 @@ export default function PrivacyPage() {
         </p>
         <h2 className="text-xl font-semibold">Contact</h2>
         <p>
-          For questions about this policy, contact Hashtag Solutions.
+          For questions about this policy, contact Hashtag Web Solutions.
         </p>
       </section>
     </div>

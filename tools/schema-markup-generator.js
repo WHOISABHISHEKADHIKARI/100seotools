@@ -1,8 +1,8 @@
 export default {
   "slug": "schema-markup-generator",
-  "name": "Schema Markup Generator",
-  "category": "On-Page Optimization",
-  "description": "Generate JSON-LD schema.",
+  "name": "Free Schema Markup Generator - 100 SEO Tools",
+  "category": "Technical SEO",
+  "description": "Free Schema Markup Generator is a powerful, free Technical SEO tool that helps you optimize your website and improve search engine rankings.",
   "template": "schemaMarkupGenerator",
   "api": true
 };

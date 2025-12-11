@@ -77,6 +77,8 @@ const nextConfig = withBundleAnalyzer({
       { source: '/blog/keyword-suggestion-tool-popular-search-terms', destination: '/tools/keyword-suggestion-tool', permanent: true },
       { source: '/blog/meta-tag-generator', destination: '/tools/meta-tag-generator', permanent: true },
       { source: '/blog/keyword-clustering-tool', destination: '/tools/keyword-clustering-tool', permanent: true },
+      // Fix 404 for indexed Heading Analyzer guide
+      { source: '/blog/heading-analyzer-guide-2', destination: '/blog/heading-analyzer-guide', permanent: true },
     ];
     if (process.env.NODE_ENV !== 'production') return common;
     return [
@@ -115,18 +117,7 @@ const nextConfig = withBundleAnalyzer({
       source: '/(.*)/(p|tp)/:page',
       headers: [{ key: 'X-Robots-Tag', value: 'noindex, follow' }],
     },
-    {
-      source: '/(.*)',
-      headers: [
-        { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://static.cloudflareinsights.com https://www.googletagmanager.com https://va.vercel-scripts.com https://vercel.live; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com https://cdn.sanity.io https://ui-avatars.com; font-src 'self'; connect-src 'self' https://cdn.sanity.io https://www.google-analytics.com https://static.cloudflareinsights.com https://vitals.vercel-insights.com https://formspree.io; media-src 'self';" },
-        { key: 'X-Frame-Options', value: 'DENY' },
-        { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
-        { key: 'X-Content-Type-Options', value: 'nosniff' },
-        { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-        { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
-        { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
-      ],
-    },
+
     { source: '/404', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] },
     { source: '/_next/static/(.*)', headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }] },
   ],

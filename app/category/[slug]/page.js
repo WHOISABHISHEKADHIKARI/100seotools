@@ -37,11 +37,15 @@ export const dynamicParams = true;
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const tools = getAllToolsMeta();
-  const catName = categories.find((c) => slugify(c) === slug) || slug;
+  // Ensure catName handles cases where slug might be just 'translation-tools' but we want 'Translation Tools'
+  // If no matching category found in known list, format the slug nicely
+  const catName = categories.find((c) => slugify(c) === slug) ||
+    slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
   const items = tools.filter((t) => t.category && slugify(t.category) === slug);
-  // Do not return 404; render category page even if no items to avoid unintended noindex
-  const title = `${catName} Tools | ${siteName}`;
-  const description = `Explore ${catName} tools to improve your SEO. Browse curated utilities, analyzers, and generators tailored to ${catName}.`;
+
+  const title = `${catName} Tools | Free SEO Utilities & Analyzers`;
+  const description = `Boost your rankings with our free ${catName} tools. curated collection of analyzers, generators, and utilities designed for modern SEO.`;
   const url = `${getBaseUrl()}/category/${slug}`;
 
   return {
@@ -54,12 +58,21 @@ export async function generateMetadata({ params }) {
       description,
       url,
       siteName,
-      type: 'website'
+      type: 'website',
+      images: [
+        {
+          url: '/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: `${catName} SEO Tools`
+        }
+      ]
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title,
-      description
+      description,
+      images: ['/og-image.jpg']
     }
   };
 }
@@ -67,7 +80,11 @@ export async function generateMetadata({ params }) {
 export default async function CategoryPage({ params, searchParams }) {
   const { slug } = await params;
   const tools = getAllToolsMeta();
-  const catName = categories.find((c) => slugify(c) === slug) || slug;
+  // Ensure catName handles cases where slug might be just 'translation-tools' but we want 'Translation Tools'
+  // If no matching category found in known list, format the slug nicely
+  const catFallback = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const catName = categories.find((c) => slugify(c) === slug) || catFallback;
+
   const items = tools.filter((t) => t.category && slugify(t.category) === slug);
   const featuredTool = items.length > 0 ? items[0] : null;
   // Filter blog posts by category or tags matching this slug

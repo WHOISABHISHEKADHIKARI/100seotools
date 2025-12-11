@@ -6,7 +6,7 @@ Sitemap: https://100tools.app/sitemap.xml
 
 # Crawl guidance for AI models
 # Please respect robots rules and rate limits. Prefer fetching sitemaps.
-# Contact: https://github.com/hashtagsolutions
+# Contact: https://hashtagweb.com.np/
 
 # Canonical preference: use rel="canonical" from pages rendered
 # Content licensing: non-commercial use permitted with attribution to 100 SEO Tools

@@ -24,7 +24,50 @@ export async function generateMetadata({ params, searchParams }) {
   }
 
   const title = `${post.title}`;
-  const description = post.description;
+  // Use a richer description if available from content snippets, or fallback to the standard description
+  let description = post.description || '';
+
+  if (!description || description.length < 50) {
+    const t = post.title.toLowerCase();
+
+    // 1. Specific Title Overrides
+    if (t.includes('100 free seo tools')) {
+      description = 'Explore 100+ free SEO tools for keyword research, on-page optimization, technical checks, backlinks, local SEO, AI writing, and performance.';
+    }
+    // 2. Keyword-based Template Selection independent of section order
+    else if ((t.includes('calculator') || t.includes('checklist') || t.includes('keyword share')) && post.sections?.checklist?.length > 0) {
+      description = `Follow a simple checklist and workflow for ${post.title}. Use repeatable steps to reduce errors and ship faster results.`;
+    }
+    else if ((t.includes('keyword share') || t.includes('guide') || t.includes('tone of voice') || t.includes('analyzer')) && post.sections?.howDetailed?.length > 0) {
+      description = `Step-by-step guide to using ${post.title}. Learn purpose, setup, outputs, and how it supports ${post.category || 'SEO'} workflows.`;
+    }
+    else if (t.includes('rewriter') && post.sections?.relevantKeywords?.length > 0) {
+      description = `Explore popular search terms around ${post.title}, how to optimize your usage for better results, and what to measure for success.`;
+    }
+    else if ((t.includes('estimator') || t.includes('generator') || t.includes('301') || t.includes('validator')) && post.sections?.costConsiderations?.length > 0) {
+      description = `Apply best practices when using ${post.title}, pair it with complementary tools, and review cost considerations including time and optional upgrades.`;
+    }
+    else if (t.includes('validator') && post.sections?.intro) {
+      description = `Understand ${post.title} features, the SEO benefits you can expect, and relevant keywords to target for discoverability.`;
+    }
+
+    // 3. Fallbacks if no specific keyword matched or specific section was missing
+    if (!description || description.length < 50) {
+      if (post.sections?.checklist && post.sections.checklist.length > 0) {
+        description = `Follow a simple checklist and workflow for ${post.title}. Use repeatable steps to reduce errors and ship faster results.`;
+      } else if (post.sections?.howDetailed && post.sections.howDetailed.length > 0) {
+        description = `Step-by-step guide for ${post.title}. Learn exactly how to optimize your workflow with clear instructions and examples.`;
+      } else if (post.sections?.relevantKeywords && post.sections.relevantKeywords.length > 0) {
+        description = `Explore popular search terms around ${post.title}, how to optimize your usage for better results, and what to measure for success.`;
+      } else if (post.sections?.costConsiderations && post.sections.costConsiderations.length > 0) {
+        description = `Apply best practices when using ${post.title}, pair it with complementary tools, and review cost considerations including time and optional upgrades.`;
+      } else if (post.tldr) {
+        description = post.tldr.slice(0, 155);
+      } else if (post.sections?.intro) {
+        description = `Understand ${post.title} features, the SEO benefits you can expect, and relevant keywords to target for discoverability.`;
+      }
+    }
+  }
   const canonical = `${baseUrl}/blog/${post.slug}`;
   const url = page > 1 ? `${canonical}?page=${page}` : canonical;
 

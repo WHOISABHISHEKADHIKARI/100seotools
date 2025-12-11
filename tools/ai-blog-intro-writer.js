@@ -4,5 +4,5 @@ export default {
   "category": "AI-Powered SEO",
   "description": "Intro paragraph ideas.",
   "template": "aiBlogIntroWriter",
-  "api": true
+  "api": false
 };

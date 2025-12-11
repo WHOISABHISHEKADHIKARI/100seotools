@@ -19,7 +19,18 @@ export async function generateMetadata({ params }) {
   const toolDescription = tool.metaDescription || tool.description;
   const toolCategory = tool.category;
   const title = tool.metaTitle || `${toolName} – Free SEO Tool | 100 SEO Tools`;
-  const description = (toolDescription || '').slice(0, 155);
+  // Create a compelling description using guide sections if available, otherwise fallback
+  const guide = getToolGuide(tool);
+  let description = (toolDescription || '').slice(0, 155);
+
+  if (guide && guide.sections && guide.sections.what) {
+    // Try to construct a rich snippet style description
+    const richDesc = `Use ${toolName} to ${guide.sections.what.split('.')[0].toLowerCase()}. Includes step-by-step instructions, examples, and optimization tips.`;
+    if (richDesc.length <= 160) {
+      description = richDesc;
+    }
+  }
+
   const keywords = Array.isArray(tool.keywords) && tool.keywords.length > 0
     ? tool.keywords.join(', ')
     : `${tool.slug.replace(/-/g, ' ')}, ${toolCategory.toLowerCase()}, seo tools, free seo tools`;

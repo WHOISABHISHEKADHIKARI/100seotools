@@ -40,7 +40,7 @@ export default function TermsPage() {
 
         <h2 className="text-xl font-semibold">Contact</h2>
         <p>
-          For questions about these terms, contact Hashtag Solutions.
+          For questions about these terms, contact Hashtag Web Solutions.
         </p>
       </section>
     </div>
