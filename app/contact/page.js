@@ -55,14 +55,15 @@ export default function ContactPage() {
         "@graph": [
             {
                 "@type": "ContactPage",
+                "@id": "https://www.100seotools.com/contact#webpage",
                 "name": "Contact Us - 100 SEO Tools",
                 "description": "Get in touch with 100 SEO Tools for guest posting, backlink opportunities, tool suggestions, or general inquiries",
                 "url": "https://www.100seotools.com/contact",
+                "isPartOf": {
+                    "@id": "https://www.100seotools.com/#website"
+                },
                 "mainEntity": {
-                    "@type": "Organization",
-                    "name": "100 SEO Tools",
-                    "email": "abhishekadhikari1254@gmail.com",
-                    "url": "https://www.100seotools.com"
+                    "@id": "https://www.100seotools.com/#organization"
                 }
             },
             {
