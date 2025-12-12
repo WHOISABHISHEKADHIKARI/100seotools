@@ -1,8 +1,8 @@
 export default {
   "slug": "seo-content-checker",
-  "name": "Free SEO Content Checker - Optimize Text & Readability",
+  "name": "SEO Content Checker",
   "category": "On-Page Optimization",
-  "description": "Analyze your content for SEO perfection. Check keyword density, readability scores, and structural optimization to ensure high-ranking articles.",
+  "description": "Comprehensive content analysis.",
   "template": "seoContentChecker",
   "api": true
 };

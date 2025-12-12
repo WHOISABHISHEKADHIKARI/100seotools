@@ -1,8 +1,8 @@
 export default {
   "slug": "headline-analyzer",
-  "name": "Headline Analyzer Checklist and Workflow - 100 SEO Tools",
+  "name": "Headline Analyzer",
   "category": "Content SEO",
-  "description": "Optimize your titles with the Free Headline Analyzer — a lightweight, browser‑based tool that helps you evaluate headline strength for SEO and engagement.",
+  "description": "Analyze headline strength.",
   "template": "headlineAnalyzer",
   "api": true
 };

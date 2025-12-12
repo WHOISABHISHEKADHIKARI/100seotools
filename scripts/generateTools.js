@@ -31,6 +31,7 @@ const tools = [
   { slug: 'image-alt-tag-generator', name: 'Image Alt Tag Generator', category: 'On-Page Optimization', description: 'Generate alt tag ideas.', template: 'imageAltTagGenerator' },
   { slug: 'on-page-seo-audit-checker', name: 'On-Page SEO Audit Checker', category: 'On-Page Optimization', description: 'Basic on-page checks.', template: 'onPageSeoAuditChecker' },
   { slug: 'schema-markup-generator', name: 'Schema Markup Generator', category: 'On-Page Optimization', description: 'Generate JSON-LD schema.', template: 'schemaMarkupGenerator' },
+  { slug: 'featured-tool-schema-generator', name: 'Featured Tool Schema Generator', category: 'Schema & Structured Data', description: 'Generate dynamic JSON-LD schema for Ads/Promotion/Featured Tool sections.', template: 'featuredToolSchemaGenerator' },
 
   // Technical SEO Tools
   { slug: 'robots-txt-validator', name: 'Robots.txt Validator', category: 'Technical SEO', description: 'Validate robots.txt directives.', template: 'robotsTxtValidator' },

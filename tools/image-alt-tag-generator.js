@@ -1,8 +1,8 @@
 export default {
   "slug": "image-alt-tag-generator",
-  "name": "Image Alt Tag Generator - Free On-Page Optimization Tool 2025",
+  "name": "Image Alt Tag Generator",
   "category": "On-Page Optimization",
-  "description": "Image Alt Tag Generator is a powerful, free On-Page Optimization tool that helps you optimize your website and improve search engine rankings.",
+  "description": "Generate alt tag ideas.",
   "template": "imageAltTagGenerator",
   "api": true
 };

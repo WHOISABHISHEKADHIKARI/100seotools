@@ -1,8 +1,8 @@
 export default {
   "slug": "on-page-seo-audit-checker",
-  "name": "On-Page SEO Audit Checker - Instant Score & Fixes",
+  "name": "On-Page SEO Audit Checker",
   "category": "On-Page Optimization",
-  "description": "Get an instant on-page SEO score for any URL. Identify missing meta tags, heading errors, and keyword density issues to boost your rankings immediately.",
+  "description": "Basic on-page checks.",
   "template": "onPageSeoAuditChecker",
   "api": true
 };

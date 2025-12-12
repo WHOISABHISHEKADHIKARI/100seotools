@@ -1,8 +1,8 @@
 export default {
   "slug": "structured-data-validator",
-  "name": "Structured Data Validator Checklist and Workflow",
+  "name": "Structured Data Validator",
   "category": "Technical SEO",
-  "description": "A Structured Data Validator workflow is a step-by-step process for using the tool effectively. Validate JSON-LD structured data and catch syntax issues instantly.",
+  "description": "Check JSON-LD validity.",
   "template": "structuredDataValidator",
   "api": true
 };

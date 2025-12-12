@@ -22,7 +22,9 @@
     "test:schema": "node tests/schema-validation.test.mjs",
     "test:accessibility": "node tests/accessibility-axe.test.mjs",
     "test:seo": "node tests/seo-performance.test.mjs",
-    "test:microdata": "node tests/microdata-errors.test.mjs"
+    "test:microdata": "node tests/microdata-errors.test.mjs",
+    "test:schema:local": "node tests/schema-validator.test.mjs",
+    "test:schema:prod": "node tests/schema-validator-production.test.mjs"
   },
   "browserslist": {
     "production": [
@@ -56,6 +58,7 @@
     "critters": "^0.0.7",
     "cssnano": "^7.1.2",
     "husky": "^9.1.7",
+    "jsdom": "^27.3.0",
     "postcss": "^8.5.6",
     "puppeteer": "^24.28.0",
     "tailwindcss": "3.4.10",

@@ -1,8 +1,8 @@
 export default {
   "slug": "robots-txt-validator",
-  "name": "Robots.txt Validator - Free Instant Tester & Crawler Analysis",
+  "name": "Robots.txt Validator",
   "category": "Technical SEO",
-  "description": "Validate your robots.txt file instantly. Check for syntax errors, test Googlebot access, and ensure your site is indexable with this free, private, and secure tool.",
+  "description": "Validate robots.txt directives.",
   "template": "robotsTxtValidator",
   "api": true
 };

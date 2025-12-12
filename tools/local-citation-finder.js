@@ -1,8 +1,8 @@
 export default {
   "slug": "local-citation-finder",
-  "name": "Local Citation Finder Checklist and Workflow - 100 SEO Tools",
+  "name": "Local Citation Finder",
   "category": "Local SEO",
-  "description": "Our free local citation finder identifies high-authority directories, niche-specific listing sites, and geo-targeted platforms where you should list your business.",
+  "description": "Find citation ideas.",
   "template": "localCitationFinder",
   "api": true
 };

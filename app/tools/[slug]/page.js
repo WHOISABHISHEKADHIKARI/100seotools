@@ -1,3 +1,4 @@
+// Updated: Force rebuild for new tools
 import ToolRunner from '../../../components/ToolRunner';
 import ToolLayout from '../../../components/ToolLayout';
 import StructuredData from '../../../components/StructuredData';
