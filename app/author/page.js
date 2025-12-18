@@ -53,7 +53,7 @@ const personSchema = {
     name: 'Abhishek Adhikari',
     alternateName: 'Abhisek Adhikari',
     jobTitle: ['Entrepreneur', 'SEO Expert', 'Full-Stack Developer', 'Tech Consultant', 'UI/UX Designer'],
-    description: 'Entrepreneur, SEO Expert, and Full-Stack Developer with 22+ years of expertise. Creator of 100SEOTools, Founder of Himalaya Krishi, and Delta Engineering Solutions.',
+    description: 'Entrepreneur, SEO Expert, and Full-Stack Developer with 10+ years of expertise. Creator of 100SEOTools, Founder of Himalaya Krishi, and Delta Engineering Solutions.',
     url: 'https://100seotools.com/author',
     image: 'https://100seotools.com/author.png',
     email: 'abhishekadhikari1254@gmail.com',
