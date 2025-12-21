@@ -1,0 +1,132 @@
+# 🧪 SEO Tool QA Master Report Template
+**Status:** [Draft / Final] | **Date:** 2025-12-21 | **Auditor:** [Name]
+
+---
+
+## 🛠️ TOOL UNDER TEST
+- **Name:** [TOOL NAME]
+- **Slug:** `[tool-slug]`
+- **Category:** [e.g., Content Optimization / Technical SEO]
+- **Framework:** Next.js 15 (App Router) + ToolRunner Core
+- **Primary Action:** [e.g., Generate Meta Tags / Analyze Readability]
+
+---
+
+## 📊 EXECUTIVE SUMMARY
+
+| Metric | Score / 100 | Rating |
+| :--- | :---: | :--- |
+| **Functionality** | [X] | [Stable / Minor Bugs / Critical] |
+| **Usability (UX/UI)** | [X] | [Premium / Standard / Poor] |
+| **Dynamicity** | [X] | [High / Interactive / Static] |
+| **SEO & Tech** | [X] | [Optimized / Needs Meta / Slow] |
+
+**OVERALL STATUS:** 
+- [ ] ✅ **Production Ready** (90-100%): No critical issues. Performance is optimal.
+- [ ] ⚠️ **Needs Fixes** (70-89%): Functional, but has minor UX polish or edge-case bugs.
+- [ ] 🔴 **Critical Issues** (<70%): Core logic failing or major tech issues found.
+
+**RECOMMENDATION:** [Launch / Patch & Retest / Rebuild Component]
+
+---
+
+## 1. ⚙️ FUNCTIONALITY TESTS
+*Objective: Ensure the core logic produces accurate, safe, and useful output.*
+
+### 1.1: Core Logic Validation
+| Input | Expected Output | Actual Output | Pass |
+| :--- | :--- | :--- | :---: |
+| **Valid Seed** | [Describe expected data] | [Observation] | [ ] |
+| **Edge Case** | [e.g., Short text] | [Observation] | [ ] |
+| **Empty State** | Error: "Enter [Input Name]" | [Observation] | [ ] |
+
+### 1.2: Advanced Input Validation (Sanitization & Security)
+| Type | Test Payload | Platform Requirement | Observed Behavior |
+| :--- | :--- | :--- | :--- |
+| **XSS Attack** | `<script>alert(1)</script>` | MUST sanitize or escape tags | [Result] |
+| **Bulk/Large** | 50,000+ characters | Should handle without crash | [Result] |
+| **Special Chars** | `!@#$%^&*()` | Maintain data integrity | [Result] |
+| **URL Format** | `htt://bad-url` | Validate `http/https` | [Result] |
+
+### 1.3: Error Handling & Rate Limiting
+- [ ] **Empty Submit:** Displays clear red error message at top or near field.
+- [ ] **Invalid Types:** Displays "Minimum X characters" or specific field warnings.
+- [ ] **Rate Limit:** Triggers after 15 requests/min per session (Platform Standard).
+- [ ] **Graceful Fail:** No raw JS errors; UI remains interactive if API fails.
+
+---
+
+## 2. ✨ DYNAMICITY & INTERACTIVITY
+*Objective: Verify real-time feedback and state persistence (ToolRunner Core).*
+
+### 2.1: Real-Time Features
+- [ ] **Live Preview:** Output updates as user types (Client-side tools only).
+- [ ] **Character/Word Counters:** Live stats appear above/within input fields.
+- [ ] **Input Sanitization:** Removes dangerous chars in real-time.
+- [ ] **Visual Feedback:** Buttons show "Processing..." spinners during active tasks.
+
+### 2.2: Interactive Elements
+| Element | Expected Interaction | Actual Result | Pass |
+| :--- | :--- | :--- | :---: |
+| **Copy Button** | Feedback: "✅ Copied!" | [Result] | [ ] |
+| **Download** | Downloads `.txt`, `.html`, `.pdf`, `.docx` | [Result] | [ ] |
+| **Reset Form** | Clears state & session storage | [Result] | [ ] |
+| **Hover States** | Subtle scale or shadow on hover | [Result] | [ ] |
+
+### 2.3: State Management (Session Context)
+- [ ] **Refresh Persistence:** Input data remains after page reload (sessionStorage).
+- [ ] **Multi-Tab Safety:** Tools in different tabs maintain separate inputs.
+- [ ] **Navigation:** Back/Forward history doesn't break the current calculation state.
+
+---
+
+## 3. 🎨 USABILITY & PREMIUM DESIGN
+*Objective: Evaluate visual excellence and accessibility.*
+
+### 3.1: Visual Excellence (Rich Aesthetics)
+- [ ] **Glassmorphism:** Uses backdrop-blur and translucent backgrounds (`bg-gray-50/50`).
+- [ ] **Modern Typography:** Uses Inter/Outfit; readable line height (1.5+).
+- [ ] **Grid/Layout:** Clean 2-column layout on Desktop; responsive stack on Mobile.
+- [ ] **Micro-animations:** Smooth Fade-in/Slide-up on tool entry.
+
+### 3.2: Mobile Usability
+- [ ] **Touch Targets:** Buttons are at least 44x44px.
+- [ ] **Responsive Output:** Results box is scrollable and doesn't break page width.
+- [ ] **Input Focus:** Keyboard doesn't hide the "Analyze" button on smaller screens.
+
+### 3.3: Accessibility (a11y)
+- [ ] **Tab Order:** Logical flow from input -> action -> output.
+- [ ] **Aria-Labels:** Used on icon buttons (Copy, Download).
+- [ ] **Color Contrast:** High enough for light/dark modes (WCAG AA).
+
+---
+
+## 4. 📈 SEO & TECHNICAL AUDIT
+*Objective: Verify crawlability and meta-data optimization.*
+
+### 4.1: Technical SEO Check
+- [ ] **H1 Presence:** Every tool has exactly one `<h1>` (from ToolLayout).
+- [ ] **Meta Title:** Optimized for CTR (e.g., "Free [Tool Name] | 100 SEO Tools").
+- [ ] **Canonical Tag:** Points to absolute URL `https://www.100seotools.com/tools/[slug]`.
+- [ ] **Structured Data:** Schema generator creates `SoftwareApplication` and `HowTo` JSON-LD.
+
+### 4.2: Console Audit
+- [ ] **Console Errors:** No red errors on initial load or execution.
+- [ ] **Network Panel:** Requests have appropriate payloads; no 404s for assets.
+- [ ] **Bundle Size:** No massive unused libraries included for simple tools.
+
+---
+
+## 5. 📝 FINAL BUGS & FIXES LIST
+
+| ID | Issue Description | Severity | Fix Status |
+| :--- | :--- | :--- | :--- |
+| BUG-001 | [Describe issue] | [Crit/High/Low] | [Pending/Fixed] |
+| BUG-002 | [Describe issue] | [Crit/High/Low] | [Pending/Fixed] |
+
+**SUMMARY OF IMPROVEMENTS NEEDED:**
+1. [Improvement 1]
+2. [Improvement 2]
+
+---
+*Report Generated: [Current Date]*
