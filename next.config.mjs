@@ -71,6 +71,8 @@ const nextConfig = withBundleAnalyzer({
       { source: '/blog/keyword-clustering-tool', destination: '/tools/keyword-clustering-tool', permanent: true },
       // Fix 404 for indexed Heading Analyzer guide
       { source: '/blog/heading-analyzer-guide-2', destination: '/blog/heading-analyzer-guide', permanent: true },
+      // Redirect Google My Business Optimization Helper Guide to home page
+      { source: '/blog/google-my-business-optimization-helper-guide-1', destination: '/', permanent: true },
     ];
     if (process.env.NODE_ENV !== 'production') return common;
     return [
