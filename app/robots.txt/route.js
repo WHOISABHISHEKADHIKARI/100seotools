@@ -55,12 +55,16 @@ Disallow: /
 User-agent: anthropic-ai
 Disallow: /
 
-# Sitemap locations (segmented for better crawling)
+# Sitemap locations (Master index + Sub-sitemaps)
+# Submit sitemap-index.xml to Google Search Console
+Sitemap: ${baseUrl}/sitemap-index.xml
 Sitemap: ${baseUrl}/sitemap.xml
-Sitemap: ${baseUrl}/sitemap-tools/sitemap.xml
-Sitemap: ${baseUrl}/sitemap-blog/sitemap.xml
-Sitemap: ${baseUrl}/sitemap-guides/sitemap.xml
-Sitemap: ${baseUrl}/sitemap-author/sitemap.xml
+Sitemap: ${baseUrl}/sitemap-tools.xml
+Sitemap: ${baseUrl}/sitemap-blog.xml
+Sitemap: ${baseUrl}/sitemap-guides.xml
+Sitemap: ${baseUrl}/sitemap-categories.xml
+Sitemap: ${baseUrl}/sitemap-author.xml
+Sitemap: ${baseUrl}/sitemap-static.xml
 `;
 
     return new Response(robotsTxt, {

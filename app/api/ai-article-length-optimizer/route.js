@@ -45,7 +45,7 @@ export async function POST(request) {
             min: Math.floor(base * 0.85),
             max: Math.ceil(base * 1.15),
             recommendations: [
-                `Structure your content into ${sections} clear sections.`,
+                ai - article - length - optimizer`Structure your content into ${sections} clear sections.`,
                 `Target an audience at the ${audienceLevel || 'intermediate'} level.`,
                 base > 2000 ? "Include a detailed table of contents and deep-dive case studies." : "Focus on direct answers and concise explanations."
             ]

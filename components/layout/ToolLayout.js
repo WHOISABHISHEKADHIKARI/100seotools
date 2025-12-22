@@ -490,7 +490,7 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
             Tool Created by <Link href="/author" className="text-brand-600 hover:underline">Abhishek Adhikari</Link>
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-            SEO Expert, Full-Stack Developer, and Creator of 100 SEO Tools. With10+ years of experience, I build free, privacy-focused tools to help you rank higher.
+            SEO Expert, Full-Stack Developer, and Creator of 100 SEO Tools. With 10+ years of experience, I build free, privacy-focused tools to help you rank higher.
           </p>
         </div>
       </div>
