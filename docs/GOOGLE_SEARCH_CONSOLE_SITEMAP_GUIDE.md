@@ -14,6 +14,12 @@ This is the **MASTER sitemap** that references all sub-sitemaps.
 ### 2. Updated robots.txt
 Added sitemap index as the primary sitemap reference.
 
+### 3. Why use a Sitemap Index?
+Using a Sitemap Index (`sitemap-index.xml`) allows you to **showcase** your different content sections clearly to Google. Instead of one giant list of URLs, Google sees your content organized by type (Tools, Blog, Categories). This helps with:
+- **Faster Discovery**: Google knows exactly where to find specific content types.
+- **Better Reporting**: In Search Console, you can see index coverage errors *specifically* for your Tools or Blog.
+- **Scalability**: As you add more tools, you update the tools sitemap without affecting the others.
+
 ---
 
 ## 📋 How to Submit to Google Search Console
