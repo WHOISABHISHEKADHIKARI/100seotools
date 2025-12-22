@@ -54,7 +54,8 @@ const sitemaps = [
     'https://www.100seotools.com/sitemap-index.xml',
     'https://www.100seotools.com/sitemap-static/sitemap.xml',
     'https://www.100seotools.com/sitemap-tools/sitemap.xml',
-    'https://www.100seotools.com/sitemap-blog/sitemap.xml'
+    'https://www.100seotools.com/sitemap-blog/sitemap.xml',
+    'https://www.100seotools.com/sitemap-author/sitemap.xml'
 ];
 
 console.log('--- SITEMAP DIAGNOSTIC ---');
