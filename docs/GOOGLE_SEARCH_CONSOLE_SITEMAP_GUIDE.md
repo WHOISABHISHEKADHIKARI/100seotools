@@ -69,12 +69,12 @@ All these sitemaps are now accessible:
 
 2. **Sub-Sitemaps** (Auto-discovered):
    - `https://100seotools.com/sitemap.xml`
-   - `https://100seotools.com/sitemap-tools.xml`
-   - `https://100seotools.com/sitemap-blog.xml`
-   - `https://100seotools.com/sitemap-guides.xml`
-   - `https://100seotools.com/sitemap-categories.xml`
-   - `https://100seotools.com/sitemap-author.xml`
-   - `https://100seotools.com/sitemap-static.xml`
+   - `https://100seotools.com/sitemap-tools/sitemap.xml`
+   - `https://100seotools.com/sitemap-blog/sitemap.xml`
+   - `https://100seotools.com/sitemap-guides/sitemap.xml`
+   - `https://100seotools.com/sitemap-categories/sitemap.xml`
+   - `https://100seotools.com/sitemap-author/sitemap.xml`
+   - `https://100seotools.com/sitemap-static/sitemap.xml`
 
 ---
 

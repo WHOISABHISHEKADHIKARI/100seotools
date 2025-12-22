@@ -59,12 +59,12 @@ Disallow: /
 # Submit sitemap-index.xml to Google Search Console
 Sitemap: ${baseUrl}/sitemap-index.xml
 Sitemap: ${baseUrl}/sitemap.xml
-Sitemap: ${baseUrl}/sitemap-tools.xml
-Sitemap: ${baseUrl}/sitemap-blog.xml
-Sitemap: ${baseUrl}/sitemap-guides.xml
-Sitemap: ${baseUrl}/sitemap-categories.xml
-Sitemap: ${baseUrl}/sitemap-author.xml
-Sitemap: ${baseUrl}/sitemap-static.xml
+Sitemap: ${baseUrl}/sitemap-tools/sitemap.xml
+Sitemap: ${baseUrl}/sitemap-blog/sitemap.xml
+Sitemap: ${baseUrl}/sitemap-guides/sitemap.xml
+Sitemap: ${baseUrl}/sitemap-categories/sitemap.xml
+Sitemap: ${baseUrl}/sitemap-author/sitemap.xml
+Sitemap: ${baseUrl}/sitemap-static/sitemap.xml
 `;
 
     return new Response(robotsTxt, {
