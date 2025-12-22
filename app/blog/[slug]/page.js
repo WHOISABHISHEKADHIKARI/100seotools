@@ -68,7 +68,27 @@ export async function generateMetadata({ params, searchParams }) {
       }
     }
   }
-  const canonical = `${baseUrl}/blog/${post.slug}`;
+  let individualCanonical = `${baseUrl}/blog/${post.slug}`;
+
+  // Handle canonical for auto-generated tool variant posts
+  // These are duplicate content of the main tool page, so we point canonical to the tool
+  const toolSuffixes = [
+    '-how-to-use',
+    '-features-benefits-keywords',
+    '-best-practices-integrations-costs',
+    '-checklist-workflow',
+    '-popular-search-terms'
+  ];
+
+  for (const suffix of toolSuffixes) {
+    if (slug.endsWith(suffix)) {
+      const toolSlug = slug.replace(suffix, '');
+      individualCanonical = `${baseUrl}/tools/${toolSlug}`;
+      break;
+    }
+  }
+
+  const canonical = individualCanonical;
   const url = page > 1 ? `${canonical}?page=${page}` : canonical;
 
   return {

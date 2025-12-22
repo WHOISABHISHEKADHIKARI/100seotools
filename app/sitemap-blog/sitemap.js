@@ -158,12 +158,24 @@ export default async function sitemap() {
     // ============================================
     // INDIVIDUAL BLOG POST PAGES
     // ============================================
-    const blogEntries = validPosts.map((post) => ({
-        url: `${baseUrl}/blog/${post.slug}`,
-        lastModified: new Date(post.datePublished || post.dateModified || now),
-        changeFrequency: getPostChangeFreq(post),
-        priority: getPostPriority(post),
-    }));
+    const blogEntries = validPosts
+        .filter(post => {
+            const toolSuffixes = [
+                '-how-to-use',
+                '-features-benefits-keywords',
+                '-best-practices-integrations-costs',
+                '-checklist-workflow',
+                '-popular-search-terms'
+            ];
+            // Exclude posts that end with any of these suffixes
+            return !toolSuffixes.some(suffix => post.slug.endsWith(suffix));
+        })
+        .map((post) => ({
+            url: `${baseUrl}/blog/${post.slug}`,
+            lastModified: new Date(post.datePublished || post.dateModified || now),
+            changeFrequency: getPostChangeFreq(post),
+            priority: getPostPriority(post),
+        }));
 
     // ============================================
     // STATISTICS & LOGGING
