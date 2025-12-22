@@ -1,4 +1,7 @@
 import { getBaseUrl } from '../../lib/site';
+import Link from 'next/link';
+import StructuredData from '../../components/ui/StructuredData';
+import { generateStaticPageSchema, generateFAQSchema } from '../../lib/schema';
 
 const baseUrl = getBaseUrl();
 
@@ -19,70 +22,50 @@ export const metadata = {
   }
 };
 
+const faqs = [
+  {
+    question: 'How do AI crawlers interpret SEO tools?',
+    answer: 'AI crawlers prioritize structured data, fast load times, and semantic relevance. Our tools are optimized with comprehensive JSON-LD (SoftwareApplication, HowTo, and FAQ schema) to provide clean, machine-readable signals.'
+  },
+  {
+    question: 'What is the "Live Preview" feature in your tools?',
+    answer: 'Most of our tools feature real-time processing. As you type in the input fields, the logic executes immediately, allowing you to see results and optimize your metadata or content without multiple clicks.'
+  },
+  {
+    question: 'Are the tools safe for my data?',
+    answer: 'Yes. All our tools run entirely client-side in your browser. We do not store or transmit your inputs or generated outputs to any server, ensuring 100% privacy and lightning-fast performance.'
+  },
+  {
+    question: 'How do these tools help with technical SEO?',
+    answer: 'By providing instant validation for robots.txt, sitemaps, and canonical tags, our tools help you identify and fix crawlability issues that might be hindering your site\'s indexation.'
+  },
+  {
+    question: 'Can I use these tools on mobile devices?',
+    answer: 'Absolutely. Every tool is built with a responsive, mobile-first design, ensuring that you can audit and optimize your SEO strategy on the go.'
+  }
+];
+
 export default function AboutPage() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'AboutPage',
-        'mainEntityOfPage': {
-          '@type': 'WebPage',
-          '@id': `${baseUrl}/about`
-        },
-        'headline': 'About 100 SEO Tools',
-        'description': '100 SEO Tools is a trusted, free platform offering AI SEO tools, indexing solutions, and technical auditors.',
-        'author': {
-          '@type': 'Person',
-          'name': 'Abhishek Adhikari',
-          'url': `${baseUrl}/author`
-        }
-      },
-      {
-        '@type': 'FAQPage',
-        'mainEntity': [
-          {
-            '@type': 'Question',
-            'name': 'How do AI crawlers interpret SEO tools?',
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': 'AI crawlers prioritize structured data, fast load times, and semantic relevance. Our tools are optimized to provide clean, machine-readable outputs that align with modern crawler logic.'
-            }
-          },
-          {
-            '@type': 'Question',
-            'name': 'Can these tools accelerate website indexing?',
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': 'Yes. Tools like our XML Sitemap Generator and Robots.txt Validator ensure search engines can discover and crawl your pages efficiently, a critical factor for rapid indexing.'
-            }
-          },
-          {
-            '@type': 'Question',
-            'name': 'How accurate are the technical SEO auditors?',
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': 'Our technical SEO tools rely on standard browser-based validation and algorithmic checks to identify canonical errors, broken links, and metadata issues with high precision.'
-            }
-          },
-          {
-            '@type': 'Question',
-            'name': 'Does using these tools help with backlink strategy?',
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': 'Absolutely. Our Backlink Tracking Template and Gap Analyzers help you organize outreach campaigns and sniff out competitor link opportunities.'
-            }
-          }
-        ]
-      }
-    ]
+  const aboutSchema = generateStaticPageSchema({
+    path: '/about',
+    title: metadata.title,
+    description: metadata.description
+  }, baseUrl);
+
+  // Enhance generic WebPage schema to specific AboutPage
+  aboutSchema['@type'] = 'AboutPage';
+  aboutSchema['headline'] = 'About 100 SEO Tools';
+  aboutSchema['author'] = {
+    '@type': 'Person',
+    'name': 'Abhishek Adhikari',
+    'url': `${baseUrl}/author`
   };
+
+  const faqSchema = generateFAQSchema(faqs);
 
   return (
     <main className="max-w-4xl mx-auto py-10 px-6 text-gray-800 dark:text-gray-200">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <StructuredData data={[aboutSchema, faqSchema]} />
 
       <header className="mb-10 text-center">
         <h1 className="text-4xl font-extrabold mb-4">About 100 SEO Tools: The Ultimate Browser-Based Toolkit</h1>
@@ -97,20 +80,42 @@ export default function AboutPage() {
           <p className="mb-4">
             In an era where search algorithms evolve daily, having reliable <strong>technical SEO</strong> and indexing utilities is non-negotiable. <a href="https://www.100seotools.com/" className="text-brand-600 dark:text-brand-400 hover:underline">100 SEO Tools</a> was built to bridge the gap between complex enterprise software and accessible, browser-based efficiency. We provide a comprehensive suite of 100+ utilities designed to streamline your workflow without improved login barriers.
           </p>
-          <div className="grid md:grid-cols-2 gap-6 mt-6">
-            <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">Crawler-Friendly Architecture</h3>
-              <p>
-                Our platform prioritizes server-side rendering and clean code, ensuring that <strong>indexing tools</strong> and bots can parse our data effortlessly. This philosophy extends to the tools we build for you, helping you create sites that Google loves.
-              </p>
+          <section>
+            <h2 className="text-3xl font-bold mb-4">Engineering for Usability & Search Visibility</h2>
+            <p className="mb-6">
+              We believe that SEO tools should be as powerful as they are easy to use. Our development philosophy is built on two core pillars: <strong>Dynamic Usability</strong> and <strong>Automated Structured Data</strong>.
+            </p>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <h3 className="text-2xl font-semibold flex items-center gap-2">
+                  <span className="text-brand-600">⚡</span> Human-First Usability
+                </h3>
+                <p>
+                  Every tool on our platform is designed for professional efficiency. We've implemented advanced usability logic including:
+                </p>
+                <ul className="list-disc pl-6 space-y-2 opacity-90">
+                  <li><strong>Live Preview:</strong> See your changes reflected instantly as you type.</li>
+                  <li><strong>Example Data Loader:</strong> One-click "💡 Example" buttons to see best-practice inputs instantly.</li>
+                  <li><strong>Session Persistence:</strong> Your inputs are remembered across refreshes, preventing data loss.</li>
+                  <li><strong>Reset Logic:</strong> 🔄 Quickly clear your workspace and start a new analysis.</li>
+                </ul>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-semibold flex items-center gap-2">
+                  <span className="text-brand-600">🔍</span> Automated JSON-LD
+                </h3>
+                <p>
+                  We don't just help you with SEO; we lead by example. Our pages use complex <strong>JSON-LD @graph</strong> structures to tell search engines exactly what each tool does:
+                </p>
+                <ul className="list-disc pl-6 space-y-2 opacity-90">
+                  <li><strong>SoftwareApplication:</strong> Identifies the tool, its category, and its free availability.</li>
+                  <li><strong>HowTo Schema:</strong> Provides step-by-step instructions for crawlers to index.</li>
+                  <li><strong>FAQPage Schema:</strong> Dynamically generated based on the tool's unique logic and guidance.</li>
+                  <li><strong>BreadcrumbList:</strong> Ensures clear navigation paths for enhanced search snippets.</li>
+                </ul>
+              </div>
             </div>
-            <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">AI SEO Tools for Modern Workflows</h3>
-              <p>
-                Leverage our <strong>AI SEO tools</strong> to generate meta tags, outlines, and structured data. We integrate logic that mimics search intent, giving you a competitive edge in semantic search.
-              </p>
-            </div>
-          </div>
+          </section>
         </section>
 
         <section>
@@ -149,30 +154,12 @@ export default function AboutPage() {
         <section>
           <h2 className="text-3xl font-bold mb-6">Frequently Asked Questions</h2>
           <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-bold mb-2">How do AI crawlers view this site?</h3>
-              <p>
-                AI crawlers prioritize structured data, fast load times, and semantic relevance. Our tools are optimized to provide clean, machine-readable outputs that align with modern crawler logic.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">Can these tools accelerate website indexing?</h3>
-              <p>
-                Yes. Utilities like our XML Sitemap Generator and Robots.txt Validator ensure search engines can discover and crawl your pages efficiently, a critical factor for rapid indexing.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">How accurate are the technical SEO auditors?</h3>
-              <p>
-                Our technical SEO tools rely on standard browser-based validation and algorithmic checks to identify canonical errors, broken links, and metadata issues with high precision.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">Does using these tools help with backlink strategy?</h3>
-              <p>
-                Absolutely. Our Backlink Tracking Template and Gap Analyzers help you organize outreach campaigns and sniff out competitor link opportunities.
-              </p>
-            </div>
+            {faqs.map((faq, index) => (
+              <div key={index}>
+                <h3 className="text-xl font-bold mb-2">{faq.question}</h3>
+                <p>{faq.answer}</p>
+              </div>
+            ))}
           </div>
           <div className="mt-6">
             <p>Find more answers in our <a href="https://www.100seotools.com/faq" className="text-brand-600 dark:text-brand-400 hover:underline">FAQ section</a>.</p>

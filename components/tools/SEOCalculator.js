@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import { useState, useMemo } from 'react';
-import StructuredData from './StructuredData';
-import { getAllBlogPosts } from '../lib/blog';
+import StructuredData from '../ui/StructuredData';
+import { getAllBlogPosts } from '../../lib/blog';
 
 // Skeleton loader for calculators to prevent layout shifts
 const CalculatorSkeleton = () => (
@@ -149,12 +149,8 @@ export default function SEOCalculator() {
       <StructuredData data={webAppLd} />
       <StructuredData data={softwareLd} />
 
-      <div className="text-center space-y-2">
-        <h2 id="seo-calculator-heading" className="text-2xl md:text-3xl font-bold">SEO Calculator</h2>
-        <p className="text-gray-700 dark:text-gray-300">
-          Switch tabs to run quick, client-side calculations. Learn more in our <a href="/blog" className="text-blue-700 dark:text-blue-400 hover:underline">Blog</a> or explore all <a href="/tools" className="text-blue-700 dark:text-blue-400 hover:underline">Tools</a>.
-        </p>
-      </div>
+      {/* Calculator Header removed for SEO-Calculator page consistency */}
+
 
       {/* Tabs */}
       <div className="flex flex-wrap items-center gap-2 justify-center" role="tablist" aria-label="SEO calculators">

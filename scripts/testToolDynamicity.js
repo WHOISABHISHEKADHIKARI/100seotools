@@ -610,8 +610,9 @@ async function main() {
             toolsToTest = tools.filter(t => targetSlugs.includes(t.slug));
         }
     } else {
-        // Default to a small subset if no args provided, to avoid running all 105 by default
-        toolsToTest = [tools[2], tools[90], tools[0]]; // keyword-density, ai-article-length, keyword-suggestion
+        // Default to running ALL tools if no specific tool is requested
+        console.log('Running functionality tests for ALL tools by default.');
+        toolsToTest = tools;
     }
 
     console.log('🚀 Starting Dynamicity & Interactivity Tests...\n');

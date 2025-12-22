@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import StructuredData from '../../components/StructuredData';
+import StructuredData from '../../components/ui/StructuredData';
 import { getAllBlogPostsPublished } from '../../lib/blog-data';
 import { getBaseUrl } from '../../lib/site';
-import BlogGrid from './BlogGrid';
+import BlogGrid from '../../components/blog/BlogGrid';
 
 const baseUrl = getBaseUrl();
 

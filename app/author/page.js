@@ -1,5 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import StructuredData from '../../components/ui/StructuredData';
+import { generateFAQSchema } from '../../lib/schema';
+import { getAuthor, getBaseUrl } from '../../lib/site';
+
+const baseUrl = getBaseUrl();
 
 export const metadata = {
     title: 'Abhishek Adhikari - Entrepreneur, SEO Expert, Full-Stack Developer & Tech Consultant in Nepal | 100SEOTools Creator',
@@ -46,6 +51,7 @@ export const metadata = {
     },
 };
 
+const authorData = getAuthor(baseUrl);
 // JSON-LD Structured Data for Person
 const personSchema = {
     '@context': 'https://schema.org',
@@ -54,8 +60,7 @@ const personSchema = {
     alternateName: 'Abhisek Adhikari',
     jobTitle: ['Entrepreneur', 'SEO Expert', 'Full-Stack Developer', 'Tech Consultant', 'UI/UX Designer'],
     description: 'Entrepreneur, SEO Expert, and Full-Stack Developer with 10+ years of expertise. Creator of 100SEOTools, Founder of Himalaya Krishi, and Delta Engineering Solutions.',
-    url: 'https://100seotools.com/author',
-    image: 'https://100seotools.com/author.png',
+    ...authorData,
     email: 'abhishekadhikari1254@gmail.com',
     telephone: '+977-9865412482',
     address: {
@@ -80,15 +85,6 @@ const personSchema = {
         'Agri-Tech Innovation',
         'Organic Farming',
         'Sustainable Technology',
-    ],
-    sameAs: [
-        'https://github.com/WHOISABHISHEKADHIKARI',
-        'https://hashtagweb.com.np/team/abhisek-adhikari/',
-        'https://krishihimalaya.com/',
-        'https://abhishekadhikari.com/',
-        'https://www.adhikariavishek.com.np/',
-        'https://deltaengineeringsolution.com',
-        'https://www.linkedin.com/in/whoisabhishekadhikari/',
     ],
     worksFor: [
         {
@@ -126,31 +122,229 @@ const breadcrumbSchema = {
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: 'https://100seotools.com',
+            item: baseUrl,
         },
         {
             '@type': 'ListItem',
             position: 2,
             name: 'About Abhishek Adhikari',
-            item: 'https://100seotools.com/author',
+            item: `${baseUrl}/author`,
         },
     ],
 };
 
+const faqs = [
+    {
+        q: 'Who is Abhishek Adhikari?',
+        a: 'Abhishek Adhikari is an entrepreneur, SEO expert, full-stack developer, and tech consultant with 22+ years of expertise. He is the creator of 100SEOTools, founder of Himalaya Krishi (Nepal\'s first fully organic farming brand), and works as an SEO Specialist at Hashtag Web Solution.'
+    },
+    {
+        q: 'What is 100SEOTools?',
+        a: '100SEOTools is a comprehensive suite of 100+ free SEO tools created by Abhishek Adhikari. It provides keyword research, on-page optimization, technical SEO, content analysis, and performance tracking tools - all completely free with no signup required.'
+    },
+    {
+        q: 'What are Abhishek Adhikari\'s main areas of expertise?',
+        a: 'Abhishek specializes in SEO optimization, UI/UX design, full-stack development (React, Node.js, Python, PHP, Laravel), digital marketing, agri-tech innovation, and sustainable technology solutions.'
+    },
+    {
+        q: 'Where is Abhishek Adhikari located?',
+        a: 'Abhishek Adhikari is based in Manahari, Nepal.'
+    },
+    {
+        q: 'How can I contact Abhishek Adhikari?',
+        a: 'You can contact Abhishek via email at abhishekadhikari1254@gmail.com or phone at +977 9865412482. You can also connect through his website 100seotools.com or GitHub profile.'
+    },
+    {
+        q: 'What is Himalaya Krishi?',
+        a: 'Himalaya Krishi is Nepal\'s first fully organic farming brand founded by Abhishek Adhikari. It focuses on sustainable agriculture, combining traditional Himalayan wisdom with cutting-edge innovations, and offers organic fertilizer solutions, livestock management consulting, and sustainable farming training programs.'
+    },
+    {
+        q: 'What programming languages does Abhishek Adhikari know?',
+        a: 'Abhishek is proficient in JavaScript (React, Node.js, Next.js), Python, PHP, Laravel, and has experience with MySQL, Git, Vite, and modern web development tools.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s educational background?',
+        a: 'Abhishek studied at Tribhuvan University and has completed certifications in Google UX Design and Fundamentals of Graphic Design.'
+    },
+    {
+        q: 'Does Abhishek Adhikari work at Hashtag Web Solutions?',
+        a: 'Yes, Abhishek works as an SEO Specialist at Hashtag Web Solution, focusing on technical optimization, keyword strategy, performance enhancement, and sustainable organic growth.'
+    },
+    {
+        q: 'What is Delta Engineering Solutions?',
+        a: 'Delta Engineering Solutions is an engineering and technology solutions company associated with Abhishek Adhikari, focused on innovative digital products, automation systems, and sustainable technology implementations.'
+    },
+    {
+        q: 'How many years of experience does Abhishek Adhikari have?',
+        a: 'Abhishek Adhikari has 22+ years of combined experience in agriculture, technology, entrepreneurship, SEO optimization, UI/UX design, and web development.'
+    },
+    {
+        q: 'Is 100SEOTools really free?',
+        a: 'Yes, all 100+ SEO tools are completely free forever. There are no hidden fees, no subscriptions, and no signup required. Abhishek created these tools to make professional SEO accessible to everyone.'
+    },
+    {
+        q: 'What inspired Abhishek to create 100SEOTools?',
+        a: 'Abhishek believes that SEO tools shouldn\'t be locked behind expensive paywalls. He created 100SEOTools to democratize SEO and help small businesses, marketers, and developers optimize their online presence without breaking the bank.'
+    },
+    {
+        q: 'Can I hire Abhishek Adhikari for SEO consulting?',
+        a: 'Yes, you can reach out to Abhishek for SEO consulting, web development, UI/UX design, or agri-tech solutions via email at abhishekadhikari1254@gmail.com or phone at +977 9865412482.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s approach to SEO?',
+        a: 'Abhishek believes in consistency, clean execution, and understanding how people actually use the internet. He focuses on what actually works, avoiding shortcuts, and building long-term, sustainable SEO strategies.'
+    },
+    {
+        q: 'Does Abhishek Adhikari have a GitHub profile?',
+        a: 'Yes, you can find Abhishek\'s open source projects and code on GitHub at github.com/WHOISABHISHEKADHIKARI.'
+    },
+    {
+        q: 'What makes Abhishek Adhikari different from other SEO experts?',
+        a: 'Abhishek combines technical expertise with practical, real-world experience. He didn\'t learn SEO from theory - he learned by doing, fixing broken sites, running audits, and testing strategies across different industries. He also provides 100+ free tools to the community.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s mission?',
+        a: 'Abhishek\'s mission is to turn technical vision into real performance, help brands grow organically, build trust, and achieve sustainable success through accessible, privacy-focused, and efficient SEO tools.'
+    },
+    {
+        q: 'Does Abhishek Adhikari offer UI/UX design services?',
+        a: 'Yes, Abhishek is a UI/UX designer with expertise in user research, wireframing, prototyping, and creating intuitive user interfaces. He specializes in human-centered design and digital product improvement.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s role in agriculture?',
+        a: 'Abhishek is pioneering agri-tech innovation through Himalaya Krishi, integrating technology with agriculture to innovate in agri-business, organic farming, and automation. He\'s expanding into eco-friendly product lines and organic food production.'
+    },
+    {
+        q: 'What technologies does Abhishek use for 100SEOTools?',
+        a: 'Abhishek built 100SEOTools using modern web technologies including React, Next.js, Node.js, and implements client-side processing for privacy and speed. The site is optimized for performance and SEO.'
+    },
+    {
+        q: 'Does Abhishek Adhikari write blog posts?',
+        a: 'Yes, Abhishek writes comprehensive SEO guides and blog posts on 100SEOTools, covering topics like keyword research, on-page optimization, technical SEO, and best practices.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s philosophy on sustainable technology?',
+        a: 'Abhishek is a strong believer in organic and sustainable development across all sectors. He advocates for long-term sustainability, honest results over shortcuts, and building systems that perform consistently.'
+    },
+    {
+        q: 'What certifications does Abhishek Adhikari hold?',
+        a: 'Abhishek holds certifications in Google UX Design and Fundamentals of Graphic Design, complementing his 22+ years of practical experience in technology and SEO.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s work style?',
+        a: 'Abhishek\'s work style is straightforward: make things cleaner, faster, more accurate, and more user-focused. He ensures every change has a purpose and focuses on practical, actionable results.'
+    },
+    {
+        q: 'What SEO services does Abhishek Adhikari offer?',
+        a: 'Abhishek offers technical SEO audits, keyword research and strategy, on-page and off-page optimization, content strategy, local SEO, schema markup implementation, and Google Analytics setup and analysis.'
+    },
+    {
+        q: 'How does Abhishek Adhikari stay updated with SEO trends?',
+        a: 'Abhishek continuously tests strategies, analyzes search engine algorithm updates, studies industry best practices, and applies real-world experimentation to stay ahead of SEO trends.'
+    },
+    {
+        q: 'What industries has Abhishek Adhikari worked with?',
+        a: 'Abhishek has worked across multiple industries including agriculture, e-commerce, technology startups, digital marketing agencies, organic farming, engineering solutions, and web development.'
+    },
+    {
+        q: 'Does Abhishek Adhikari offer training or mentorship?',
+        a: 'Yes, Abhishek offers training programs through Himalaya Krishi for sustainable farming and is available for SEO and web development mentorship. Contact him directly for consultation opportunities.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s approach to web development?',
+        a: 'Abhishek focuses on performance optimization, clean code architecture, user-centered design, SEO-friendly development, and scalable solutions using modern frameworks like React and Next.js.'
+    },
+    {
+        q: 'How does 100SEOTools protect user privacy?',
+        a: 'Most tools on 100SEOTools run client-side, meaning your data is processed in your browser and never sent to servers. This ensures complete privacy and data security.'
+    },
+    {
+        q: 'What makes Himalaya Krishi unique?',
+        a: 'Himalaya Krishi is Nepal\'s first fully organic farming brand that combines traditional Himalayan agricultural wisdom with modern technology and innovation, focusing on sustainable and eco-friendly farming practices.'
+    },
+    {
+        q: 'Can Abhishek Adhikari help with website performance optimization?',
+        a: 'Yes, Abhishek specializes in performance optimization including page speed improvements, Core Web Vitals optimization, code splitting, lazy loading, and technical performance enhancements.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s experience with React?',
+        a: 'Abhishek has extensive experience building production-ready React applications, including 100SEOTools. He specializes in React best practices, state management, component architecture, and performance optimization.'
+    },
+    {
+        q: 'Does Abhishek Adhikari work with startups?',
+        a: 'Yes, Abhishek works with startups providing SEO strategy, web development, UI/UX design, and technical consulting to help them establish strong online presence and sustainable growth.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s experience with content strategy?',
+        a: 'Abhishek has developed content strategies for multiple projects, focusing on SEO-optimized content, user intent matching, keyword targeting, and content that drives organic traffic and conversions.'
+    },
+    {
+        q: 'How does Abhishek Adhikari approach keyword research?',
+        a: 'Abhishek uses a data-driven approach combining search volume analysis, competition assessment, user intent understanding, and long-tail keyword opportunities to develop effective keyword strategies.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s experience with local SEO?',
+        a: 'Abhishek has expertise in local SEO including Google Business Profile optimization, local schema markup, NAP consistency, local citations, and geo-targeted content strategies.'
+    },
+    {
+        q: 'Can Abhishek Adhikari help with technical SEO issues?',
+        a: 'Yes, Abhishek specializes in technical SEO including site architecture, crawlability, indexation, structured data, Core Web Vitals, mobile optimization, and fixing technical SEO errors.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s approach to link building?',
+        a: 'Abhishek focuses on white-hat link building strategies including quality content creation, digital PR, guest posting, broken link building, and building genuine relationships for sustainable backlink growth.'
+    },
+    {
+        q: 'Does Abhishek Adhikari offer website audits?',
+        a: 'Yes, Abhishek provides comprehensive website audits covering technical SEO, on-page optimization, content quality, user experience, performance, and actionable recommendations for improvement.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s experience with schema markup?',
+        a: 'Abhishek has extensive experience implementing various schema types including Article, Organization, Person, Product, FAQ, HowTo, and LocalBusiness schemas to enhance search visibility.'
+    },
+    {
+        q: 'How does Abhishek Adhikari measure SEO success?',
+        a: 'Abhishek measures SEO success through organic traffic growth, keyword rankings, conversion rates, user engagement metrics, Core Web Vitals, and overall business impact from organic search.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s experience with e-commerce SEO?',
+        a: 'Abhishek has worked on e-commerce SEO including product page optimization, category structure, faceted navigation, product schema, and conversion-focused SEO strategies.'
+    },
+    {
+        q: 'Can Abhishek Adhikari help recover from Google penalties?',
+        a: 'Yes, Abhishek can help diagnose and recover from Google penalties by identifying issues, creating recovery plans, implementing fixes, and submitting reconsideration requests when needed.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s approach to mobile SEO?',
+        a: 'Abhishek prioritizes mobile-first indexing, responsive design, mobile page speed, touch-friendly interfaces, and mobile-specific user experience optimization for better mobile search performance.'
+    },
+    {
+        q: 'Does Abhishek Adhikari use AI tools for SEO?',
+        a: 'Yes, Abhishek explores and implements AI tools for content optimization, keyword research, automation workflows, and data analysis while maintaining focus on quality and user experience.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s pricing for SEO services?',
+        a: 'Pricing varies based on project scope, requirements, and duration. Contact Abhishek directly at abhishekadhikari1254@gmail.com for a customized quote based on your specific needs.'
+    },
+    {
+        q: 'How long does it take to see SEO results with Abhishek Adhikari?',
+        a: 'SEO is a long-term strategy. Typically, you can expect to see initial improvements in 3-6 months, with significant results in 6-12 months, depending on competition and current site status.'
+    },
+    {
+        q: 'What is Abhishek Adhikari\'s experience with international SEO?',
+        a: 'Abhishek has experience with international SEO including hreflang implementation, multi-language content strategy, geo-targeting, and managing SEO for websites targeting multiple countries.'
+    }
+];
+
 export default function AuthorPage() {
+    const faqSchema = generateFAQSchema(faqs);
+
     return (
         <>
             {/* JSON-LD Structured Data */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-            />
+            <StructuredData data={[personSchema, breadcrumbSchema, faqSchema]} />
 
-            <article className="min-h-screen py-12" itemScope itemType="https://schema.org/Person">
+            <article className="min-h-screen py-12">
                 <div className="max-w-5xl mx-auto px-4">
                     {/* Hero Section */}
                     <header className="card p-8 md:p-12 mb-8">
@@ -163,24 +357,22 @@ export default function AuthorPage() {
                                     height={180}
                                     className="rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg"
                                     priority
-                                    itemProp="image"
                                 />
                             </div>
                             <div className="flex-1">
-                                <h1 className="text-3xl md:text-4xl font-bold mb-3" itemProp="name">
-                                    <span itemProp="givenName">Abhishek</span> <span itemProp="familyName">Adhikari</span>
+                                <h1 className="text-3xl md:text-4xl font-bold mb-3">
+                                    <span>Abhishek</span> <span>Adhikari</span>
                                 </h1>
-                                <p className="text-lg text-gray-600 dark:text-gray-400 mb-4" itemProp="jobTitle">
+                                <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
                                     Entrepreneur | Tech Consultant | SEO Specialist | Full-Stack Developer
                                 </p>
-                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6" itemProp="description">
+                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                                     Passionate entrepreneur and technology consultant focused on creating impactful, sustainable, and scalable solutions. Currently working as an SEO Intern at Hashtag Web Solution, combining creativity, analytics, and technical expertise to improve search visibility and create user-first digital experiences.
                                 </p>
                                 <div className="flex flex-wrap gap-3">
                                     <a
                                         href="mailto:abhishekadhikari1254@gmail.com"
                                         className="btn"
-                                        itemProp="email"
                                         aria-label="Email Abhishek Adhikari"
                                     >
                                         Contact Me
@@ -188,7 +380,6 @@ export default function AuthorPage() {
                                     <a
                                         href="tel:+9779865412482"
                                         className="btn-secondary"
-                                        itemProp="telephone"
                                         aria-label="Call Abhishek Adhikari"
                                     >
                                         +977 9865412482
@@ -218,13 +409,13 @@ export default function AuthorPage() {
                         <h2 id="about-me" className="text-2xl font-bold mb-6">About Me</h2>
                         <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
                             <p>
-                                I am a results-driven <strong itemProp="jobTitle">SEO specialist</strong> with a strong foundation in technical optimization, content strategy, and organic growth systems. Over the years, I've worked across SEO, content strategy, UI/UX, branding, and digital optimization — and that experience helped me shape a practical, real-world approach to search performance.
+                                I am a results-driven <strong>SEO specialist</strong> with a strong foundation in technical optimization, content strategy, and organic growth systems. Over the years, I've worked across SEO, content strategy, UI/UX, branding, and digital optimization — and that experience helped me shape a practical, real-world approach to search performance.
                             </p>
                             <p>
                                 I didn't enter SEO from theory; I learned by doing. From fixing broken site structures to improving page experience, analyzing keywords, running audits, and testing strategies across different industries, I've always focused on what actually works. I enjoy digging into data, catching small issues others miss, and turning complex SEO tasks into simple, actionable results.
                             </p>
                             <p>
-                                With <strong>22+ years of expertise</strong> in <span itemProp="knowsAbout">UI/UX design</span>, digital product strategy, and <span itemProp="knowsAbout">agricultural technology innovation</span>, I specialize in human-centered design, organic farming systems, and sustainable digital solutions. I studied at <strong itemProp="alumniOf">Tribhuvan University</strong> and have completed certifications in Google UX Design and Fundamentals of Graphic Design.
+                                With <strong>22+ years of expertise</strong> in <span>UI/UX design</span>, digital product strategy, and <span>agricultural technology innovation</span>, I specialize in human-centered design, organic farming systems, and sustainable digital solutions. I studied at <strong>Tribhuvan University</strong> and have completed certifications in Google UX Design and Fundamentals of Graphic Design.
                             </p>
                         </div>
                     </section>
@@ -233,19 +424,18 @@ export default function AuthorPage() {
                     <section className="card p-8 mb-8" aria-labelledby="professional-experience">
                         <h2 id="professional-experience" className="text-2xl font-bold mb-6">Professional Experience</h2>
                         <div className="space-y-6">
-                            <article className="border-l-4 border-brand-500 pl-6" itemScope itemType="https://schema.org/Organization">
+                            <article className="border-l-4 border-brand-500 pl-6">
                                 <h3 className="text-xl font-semibold mb-2">
                                     <a
                                         href="https://hashtagweb.com.np/team/abhisek-adhikari/"
                                         target="_blank"
                                         rel="noopener noreferrer nofollow"
                                         className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
-                                        itemProp="url"
                                     >
-                                        <span itemProp="name">SEO Specialist - Hashtag Web Solutions</span>
+                                        <span>SEO Specialist - Hashtag Web Solutions</span>
                                     </a>
                                 </h3>
-                                <p className="text-gray-700 dark:text-gray-300 mb-3" itemProp="description">
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
                                     Focused on technical optimization, keyword strategy, performance enhancement, and sustainable organic growth. Helping websites rank higher, load faster, and perform better with clean, data-driven execution.
                                 </p>
                                 <a href="https://hashtagweb.com.np/team/abhisek-adhikari/" target="_blank" rel="noopener noreferrer nofollow" className="text-sm text-brand-600 dark:text-brand-400 hover:underline">
@@ -253,19 +443,18 @@ export default function AuthorPage() {
                                 </a>
                             </article>
 
-                            <article className="border-l-4 border-green-500 pl-6" itemScope itemType="https://schema.org/Organization">
+                            <article className="border-l-4 border-green-500 pl-6">
                                 <h3 className="text-xl font-semibold mb-2">
                                     <a
                                         href="https://krishihimalaya.com/"
                                         target="_blank"
                                         rel="noopener noreferrer nofollow"
                                         className="hover:text-green-600 dark:hover:text-green-400 transition-colors"
-                                        itemProp="url"
                                     >
-                                        <span itemProp="name">Founder - Himalaya Krishi</span>
+                                        <span>Founder - Himalaya Krishi</span>
                                     </a>
                                 </h3>
-                                <p className="text-gray-700 dark:text-gray-300 mb-3" itemProp="description">
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
                                     Leading Nepal's first fully organic farming brand. Pioneering sustainable agriculture, combining traditional Himalayan wisdom with cutting-edge innovations. Empowering farmers through organic fertilizer solutions and sustainable farming training programs.
                                 </p>
                                 <a href="https://krishihimalaya.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-sm text-green-600 dark:text-green-400 hover:underline">
@@ -273,19 +462,18 @@ export default function AuthorPage() {
                                 </a>
                             </article>
 
-                            <article className="border-l-4 border-blue-500 pl-6" itemScope itemType="https://schema.org/Organization">
+                            <article className="border-l-4 border-blue-500 pl-6">
                                 <h3 className="text-xl font-semibold mb-2">
                                     <a
                                         href="https://deltaengineeringsolution.com"
                                         target="_blank"
                                         rel="noopener noreferrer nofollow"
                                         className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                                        itemProp="url"
                                     >
-                                        <span itemProp="name">Delta Engineering Solutions</span>
+                                        <span>Delta Engineering Solutions</span>
                                     </a>
                                 </h3>
-                                <p className="text-gray-700 dark:text-gray-300 mb-3" itemProp="description">
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">
                                     Engineering and technology solutions company focused on innovative digital products, automation systems, and sustainable technology implementations.
                                 </p>
                                 <a href="https://deltaengineeringsolution.com" target="_blank" rel="noopener noreferrer nofollow" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">
@@ -310,7 +498,7 @@ export default function AuthorPage() {
                                         'Local SEO & Schema Markup',
                                         'Google Analytics & Data Analysis'
                                     ].map((skill, index) => (
-                                        <li key={index} className="flex items-start gap-3" itemProp="knowsAbout">
+                                        <li key={index} className="flex items-start gap-3">
                                             <span className="text-brand-500 mt-1">•</span>
                                             <span>{skill}</span>
                                         </li>
@@ -328,7 +516,7 @@ export default function AuthorPage() {
                                         'Graphic Design & Branding',
                                         'Agri-Tech & Digital Agriculture Solutions'
                                     ].map((skill, index) => (
-                                        <li key={index} className="flex items-start gap-3" itemProp="knowsAbout">
+                                        <li key={index} className="flex items-start gap-3">
                                             <span className="text-brand-500 mt-1">•</span>
                                             <span>{skill}</span>
                                         </li>
@@ -346,7 +534,6 @@ export default function AuthorPage() {
                                 <span
                                     key={index}
                                     className="px-4 py-2 rounded-lg text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
-                                    itemProp="knowsAbout"
                                     role="listitem"
                                 >
                                     {tech}
@@ -364,10 +551,10 @@ export default function AuthorPage() {
                                 { title: 'Google UX Design Certification', desc: 'User Experience Design' },
                                 { title: 'Fundamentals of Graphic Design', desc: 'Visual Design & Branding' }
                             ].map((edu, index) => (
-                                <div key={index} className="flex items-start gap-4 pb-4 border-b border-gray-200 dark:border-gray-700 last:border-0" itemScope itemType="https://schema.org/EducationalOccupationalCredential">
+                                <div key={index} className="flex items-start gap-4 pb-4 border-b border-gray-200 dark:border-gray-700 last:border-0">
                                     <div>
-                                        <h4 className="font-semibold text-lg" itemProp="name">{edu.title}</h4>
-                                        <p className="text-sm text-gray-600 dark:text-gray-400" itemProp="description">{edu.desc}</p>
+                                        <h4 className="font-semibold text-lg">{edu.title}</h4>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400">{edu.desc}</p>
                                     </div>
                                 </div>
                             ))}
@@ -375,7 +562,7 @@ export default function AuthorPage() {
                     </section>
 
                     {/* Contact Section */}
-                    <section className="card p-8 mb-8" aria-labelledby="contact" itemScope itemType="https://schema.org/ContactPoint">
+                    <section className="card p-8 mb-8" aria-labelledby="contact">
                         <h2 id="contact" className="text-2xl font-bold mb-6">Get In Touch</h2>
                         <p className="text-gray-700 dark:text-gray-300 mb-6">
                             Have questions, suggestions, or feedback? I'd love to hear from you! Whether you need help with SEO, UI/UX design, web development, or agri-tech solutions, feel free to reach out.
@@ -383,19 +570,19 @@ export default function AuthorPage() {
                         <div className="grid md:grid-cols-2 gap-4">
                             <div className="flex items-center gap-3">
                                 <span className="text-brand-600 dark:text-brand-400 font-semibold">Email:</span>
-                                <a href="mailto:abhishekadhikari1254@gmail.com" className="hover:underline" itemProp="email">abhishekadhikari1254@gmail.com</a>
+                                <a href="mailto:abhishekadhikari1254@gmail.com" className="hover:underline">abhishekadhikari1254@gmail.com</a>
                             </div>
                             <div className="flex items-center gap-3">
                                 <span className="text-brand-600 dark:text-brand-400 font-semibold">Phone:</span>
-                                <a href="tel:+9779865412482" className="hover:underline" itemProp="telephone">+977 9865412482</a>
+                                <a href="tel:+9779865412482" className="hover:underline">+977 9865412482</a>
                             </div>
                             <div className="flex items-center gap-3">
                                 <span className="text-brand-600 dark:text-brand-400 font-semibold">Location:</span>
-                                <span itemProp="addressLocality">Manahari, Nepal</span>
+                                <span>Manahari, Nepal</span>
                             </div>
                             <div className="flex items-center gap-3">
                                 <span className="text-brand-600 dark:text-brand-400 font-semibold">Website:</span>
-                                <Link href="/" className="hover:underline" itemProp="url">100seotools.com</Link>
+                                <Link href="/" className="hover:underline">100seotools.com</Link>
                             </div>
                         </div>
                     </section>
@@ -418,7 +605,6 @@ export default function AuthorPage() {
                                     target="_blank"
                                     rel="noopener noreferrer nofollow"
                                     className="flex items-start gap-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-brand-500 dark:hover:border-brand-400 transition-colors"
-                                    itemProp="sameAs"
                                 >
                                     <div>
                                         <h4 className="font-semibold">{link.title}</h4>
@@ -433,214 +619,13 @@ export default function AuthorPage() {
                     <section className="card p-8 mb-8" aria-labelledby="faq">
                         <h2 id="faq" className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
                         <div className="space-y-6">
-                            {[
-                                {
-                                    q: 'Who is Abhishek Adhikari?',
-                                    a: 'Abhishek Adhikari is an entrepreneur, SEO expert, full-stack developer, and tech consultant with 22+ years of expertise. He is the creator of 100SEOTools, founder of Himalaya Krishi (Nepal\'s first fully organic farming brand), and works as an SEO Specialist at Hashtag Web Solution.'
-                                },
-                                {
-                                    q: 'What is 100SEOTools?',
-                                    a: '100SEOTools is a comprehensive suite of 100+ free SEO tools created by Abhishek Adhikari. It provides keyword research, on-page optimization, technical SEO, content analysis, and performance tracking tools - all completely free with no signup required.'
-                                },
-                                {
-                                    q: 'What are Abhishek Adhikari\'s main areas of expertise?',
-                                    a: 'Abhishek specializes in SEO optimization, UI/UX design, full-stack development (React, Node.js, Python, PHP, Laravel), digital marketing, agri-tech innovation, and sustainable technology solutions.'
-                                },
-                                {
-                                    q: 'Where is Abhishek Adhikari located?',
-                                    a: 'Abhishek Adhikari is based in Manahari, Nepal.'
-                                },
-                                {
-                                    q: 'How can I contact Abhishek Adhikari?',
-                                    a: 'You can contact Abhishek via email at abhishekadhikari1254@gmail.com or phone at +977 9865412482. You can also connect through his website 100seotools.com or GitHub profile.'
-                                },
-                                {
-                                    q: 'What is Himalaya Krishi?',
-                                    a: 'Himalaya Krishi is Nepal\'s first fully organic farming brand founded by Abhishek Adhikari. It focuses on sustainable agriculture, combining traditional Himalayan wisdom with cutting-edge innovations, and offers organic fertilizer solutions, livestock management consulting, and sustainable farming training programs.'
-                                },
-                                {
-                                    q: 'What programming languages does Abhishek Adhikari know?',
-                                    a: 'Abhishek is proficient in JavaScript (React, Node.js, Next.js), Python, PHP, Laravel, and has experience with MySQL, Git, Vite, and modern web development tools.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s educational background?',
-                                    a: 'Abhishek studied at Tribhuvan University and has completed certifications in Google UX Design and Fundamentals of Graphic Design.'
-                                },
-                                {
-                                    q: 'Does Abhishek Adhikari work at Hashtag Web Solutions?',
-                                    a: 'Yes, Abhishek works as an SEO Specialist at Hashtag Web Solution, focusing on technical optimization, keyword strategy, performance enhancement, and sustainable organic growth.'
-                                },
-                                {
-                                    q: 'What is Delta Engineering Solutions?',
-                                    a: 'Delta Engineering Solutions is an engineering and technology solutions company associated with Abhishek Adhikari, focused on innovative digital products, automation systems, and sustainable technology implementations.'
-                                },
-                                {
-                                    q: 'How many years of experience does Abhishek Adhikari have?',
-                                    a: 'Abhishek Adhikari has 22+ years of combined experience in agriculture, technology, entrepreneurship, SEO optimization, UI/UX design, and web development.'
-                                },
-                                {
-                                    q: 'Is 100SEOTools really free?',
-                                    a: 'Yes, all 100+ SEO tools are completely free forever. There are no hidden fees, no subscriptions, and no signup required. Abhishek created these tools to make professional SEO accessible to everyone.'
-                                },
-                                {
-                                    q: 'What inspired Abhishek to create 100SEOTools?',
-                                    a: 'Abhishek believes that SEO tools shouldn\'t be locked behind expensive paywalls. He created 100SEOTools to democratize SEO and help small businesses, marketers, and developers optimize their online presence without breaking the bank.'
-                                },
-                                {
-                                    q: 'Can I hire Abhishek Adhikari for SEO consulting?',
-                                    a: 'Yes, you can reach out to Abhishek for SEO consulting, web development, UI/UX design, or agri-tech solutions via email at abhishekadhikari1254@gmail.com or phone at +977 9865412482.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s approach to SEO?',
-                                    a: 'Abhishek believes in consistency, clean execution, and understanding how people actually use the internet. He focuses on what actually works, avoiding shortcuts, and building long-term, sustainable SEO strategies.'
-                                },
-                                {
-                                    q: 'Does Abhishek Adhikari have a GitHub profile?',
-                                    a: 'Yes, you can find Abhishek\'s open source projects and code on GitHub at github.com/WHOISABHISHEKADHIKARI.'
-                                },
-                                {
-                                    q: 'What makes Abhishek Adhikari different from other SEO experts?',
-                                    a: 'Abhishek combines technical expertise with practical, real-world experience. He didn\'t learn SEO from theory - he learned by doing, fixing broken sites, running audits, and testing strategies across different industries. He also provides 100+ free tools to the community.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s mission?',
-                                    a: 'Abhishek\'s mission is to turn technical vision into real performance, help brands grow organically, build trust, and achieve sustainable success through accessible, privacy-focused, and efficient SEO tools.'
-                                },
-                                {
-                                    q: 'Does Abhishek Adhikari offer UI/UX design services?',
-                                    a: 'Yes, Abhishek is a UI/UX designer with expertise in user research, wireframing, prototyping, and creating intuitive user interfaces. He specializes in human-centered design and digital product improvement.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s role in agriculture?',
-                                    a: 'Abhishek is pioneering agri-tech innovation through Himalaya Krishi, integrating technology with agriculture to innovate in agri-business, organic farming, and automation. He\'s expanding into eco-friendly product lines and organic food production.'
-                                },
-                                {
-                                    q: 'What technologies does Abhishek use for 100SEOTools?',
-                                    a: 'Abhishek built 100SEOTools using modern web technologies including React, Next.js, Node.js, and implements client-side processing for privacy and speed. The site is optimized for performance and SEO.'
-                                },
-                                {
-                                    q: 'Does Abhishek Adhikari write blog posts?',
-                                    a: 'Yes, Abhishek writes comprehensive SEO guides and blog posts on 100SEOTools, covering topics like keyword research, on-page optimization, technical SEO, and best practices.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s philosophy on sustainable technology?',
-                                    a: 'Abhishek is a strong believer in organic and sustainable development across all sectors. He advocates for long-term sustainability, honest results over shortcuts, and building systems that perform consistently.'
-                                },
-                                {
-                                    q: 'What certifications does Abhishek Adhikari hold?',
-                                    a: 'Abhishek holds certifications in Google UX Design and Fundamentals of Graphic Design, complementing his 22+ years of practical experience in technology and SEO.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s work style?',
-                                    a: 'Abhishek\'s work style is straightforward: make things cleaner, faster, more accurate, and more user-focused. He ensures every change has a purpose and focuses on practical, actionable results.'
-                                },
-                                {
-                                    q: 'What SEO services does Abhishek Adhikari offer?',
-                                    a: 'Abhishek offers technical SEO audits, keyword research and strategy, on-page and off-page optimization, content strategy, local SEO, schema markup implementation, and Google Analytics setup and analysis.'
-                                },
-                                {
-                                    q: 'How does Abhishek Adhikari stay updated with SEO trends?',
-                                    a: 'Abhishek continuously tests strategies, analyzes search engine algorithm updates, studies industry best practices, and applies real-world experimentation to stay ahead of SEO trends.'
-                                },
-                                {
-                                    q: 'What industries has Abhishek Adhikari worked with?',
-                                    a: 'Abhishek has worked across multiple industries including agriculture, e-commerce, technology startups, digital marketing agencies, organic farming, engineering solutions, and web development.'
-                                },
-                                {
-                                    q: 'Does Abhishek Adhikari offer training or mentorship?',
-                                    a: 'Yes, Abhishek offers training programs through Himalaya Krishi for sustainable farming and is available for SEO and web development mentorship. Contact him directly for consultation opportunities.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s approach to web development?',
-                                    a: 'Abhishek focuses on performance optimization, clean code architecture, user-centered design, SEO-friendly development, and scalable solutions using modern frameworks like React and Next.js.'
-                                },
-                                {
-                                    q: 'How does 100SEOTools protect user privacy?',
-                                    a: 'Most tools on 100SEOTools run client-side, meaning your data is processed in your browser and never sent to servers. This ensures complete privacy and data security.'
-                                },
-                                {
-                                    q: 'What makes Himalaya Krishi unique?',
-                                    a: 'Himalaya Krishi is Nepal\'s first fully organic farming brand that combines traditional Himalayan agricultural wisdom with modern technology and innovation, focusing on sustainable and eco-friendly farming practices.'
-                                },
-                                {
-                                    q: 'Can Abhishek Adhikari help with website performance optimization?',
-                                    a: 'Yes, Abhishek specializes in performance optimization including page speed improvements, Core Web Vitals optimization, code splitting, lazy loading, and technical performance enhancements.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s experience with React?',
-                                    a: 'Abhishek has extensive experience building production-ready React applications, including 100SEOTools. He specializes in React best practices, state management, component architecture, and performance optimization.'
-                                },
-                                {
-                                    q: 'Does Abhishek Adhikari work with startups?',
-                                    a: 'Yes, Abhishek works with startups providing SEO strategy, web development, UI/UX design, and technical consulting to help them establish strong online presence and sustainable growth.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s experience with content strategy?',
-                                    a: 'Abhishek has developed content strategies for multiple projects, focusing on SEO-optimized content, user intent matching, keyword targeting, and content that drives organic traffic and conversions.'
-                                },
-                                {
-                                    q: 'How does Abhishek Adhikari approach keyword research?',
-                                    a: 'Abhishek uses a data-driven approach combining search volume analysis, competition assessment, user intent understanding, and long-tail keyword opportunities to develop effective keyword strategies.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s experience with local SEO?',
-                                    a: 'Abhishek has expertise in local SEO including Google Business Profile optimization, local schema markup, NAP consistency, local citations, and geo-targeted content strategies.'
-                                },
-                                {
-                                    q: 'Can Abhishek Adhikari help with technical SEO issues?',
-                                    a: 'Yes, Abhishek specializes in technical SEO including site architecture, crawlability, indexation, structured data, Core Web Vitals, mobile optimization, and fixing technical SEO errors.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s approach to link building?',
-                                    a: 'Abhishek focuses on white-hat link building strategies including quality content creation, digital PR, guest posting, broken link building, and building genuine relationships for sustainable backlink growth.'
-                                },
-                                {
-                                    q: 'Does Abhishek Adhikari offer website audits?',
-                                    a: 'Yes, Abhishek provides comprehensive website audits covering technical SEO, on-page optimization, content quality, user experience, performance, and actionable recommendations for improvement.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s experience with schema markup?',
-                                    a: 'Abhishek has extensive experience implementing various schema types including Article, Organization, Person, Product, FAQ, HowTo, and LocalBusiness schemas to enhance search visibility.'
-                                },
-                                {
-                                    q: 'How does Abhishek Adhikari measure SEO success?',
-                                    a: 'Abhishek measures SEO success through organic traffic growth, keyword rankings, conversion rates, user engagement metrics, Core Web Vitals, and overall business impact from organic search.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s experience with e-commerce SEO?',
-                                    a: 'Abhishek has worked on e-commerce SEO including product page optimization, category structure, faceted navigation, product schema, and conversion-focused SEO strategies.'
-                                },
-                                {
-                                    q: 'Can Abhishek Adhikari help recover from Google penalties?',
-                                    a: 'Yes, Abhishek can help diagnose and recover from Google penalties by identifying issues, creating recovery plans, implementing fixes, and submitting reconsideration requests when needed.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s approach to mobile SEO?',
-                                    a: 'Abhishek prioritizes mobile-first indexing, responsive design, mobile page speed, touch-friendly interfaces, and mobile-specific user experience optimization for better mobile search performance.'
-                                },
-                                {
-                                    q: 'Does Abhishek Adhikari use AI tools for SEO?',
-                                    a: 'Yes, Abhishek explores and implements AI tools for content optimization, keyword research, automation workflows, and data analysis while maintaining focus on quality and user experience.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s pricing for SEO services?',
-                                    a: 'Pricing varies based on project scope, requirements, and duration. Contact Abhishek directly at abhishekadhikari1254@gmail.com for a customized quote based on your specific needs.'
-                                },
-                                {
-                                    q: 'How long does it take to see SEO results with Abhishek Adhikari?',
-                                    a: 'SEO is a long-term strategy. Typically, you can expect to see initial improvements in 3-6 months, with significant results in 6-12 months, depending on competition and current site status.'
-                                },
-                                {
-                                    q: 'What is Abhishek Adhikari\'s experience with international SEO?',
-                                    a: 'Abhishek has experience with international SEO including hreflang implementation, multi-language content strategy, geo-targeting, and managing SEO for websites targeting multiple countries.'
-                                }
-                            ].map((faq, index) => (
-                                <div key={index} className="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-0" itemScope itemType="https://schema.org/Question">
-                                    <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100" itemProp="name">
+                            {faqs.map((faq, index) => (
+                                <div key={index} className="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-0">
+                                    <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
                                         {faq.q}
                                     </h3>
-                                    <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
-                                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed" itemProp="text">
+                                    <div>
+                                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                                             {faq.a}
                                         </p>
                                     </div>
@@ -648,7 +633,6 @@ export default function AuthorPage() {
                             ))}
                         </div>
                     </section>
-
 
                     <section className="card p-8 text-center">
                         <h2 className="text-2xl font-bold mb-4">Ready to Optimize Your SEO?</h2>

@@ -1,5 +1,5 @@
-import StructuredData from '../../components/StructuredData';
-import SEOCostCalculator from '../../components/SEOCostCalculator';
+import StructuredData from '../../components/ui/StructuredData';
+import SEOCostCalculator from '../../components/tools/SEOCostCalculator';
 import { getBaseUrl } from '../../lib/site';
 
 const baseUrl = getBaseUrl();

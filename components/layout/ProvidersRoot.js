@@ -1,6 +1,6 @@
 "use client";
 
-import { UserPreferencesProvider } from '../contexts/UserPreferencesContext';
+import { UserPreferencesProvider } from '../../contexts/UserPreferencesContext';
 
 export default function ProvidersRoot({ children }) {
   // Defensive: ensure provider is a function before rendering

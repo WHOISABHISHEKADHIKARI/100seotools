@@ -2,22 +2,22 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import SearchFilter from '../components/SearchFilter';
-import StructuredData from '../components/StructuredData';
+import SearchFilter from '../components/tools/SearchFilter';
+import StructuredData from '../components/ui/StructuredData';
 import { getBaseUrl } from '../lib/site';
 import { generateWebsiteSchema } from '../lib/schema';
 import { getAllToolsMeta } from '../tools';
-import BlogGrid from '../components/BlogGrid';
-import PageLinksGrid from '../components/PageLinksGrid';
+import BlogGrid from '../components/blog/BlogGrid';
+import PageLinksGrid from '../components/ui/PageLinksGrid';
 
 // Lazy load the ToolGrid component; avoid client-only fallback to prevent SSR mismatch
-const ToolGrid = dynamic(() => import('../components/ToolGrid'), { ssr: false, loading: () => null });
+const ToolGrid = dynamic(() => import('../components/tools/ToolGrid'), { ssr: false, loading: () => null });
 
 // (Deprecated here) BlogSection was used previously; replaced by BlogGrid directly below Tools.
 
 // Loading skeleton removed: ToolGrid now defers loading without a heavy placeholder
 
-const SEOCalculator = dynamic(() => import('../components/SEOCalculator'), {
+const SEOCalculator = dynamic(() => import('../components/tools/SEOCalculator'), {
   ssr: false,
   loading: () => (
     <div className="card p-4 max-w-3xl mx-auto">
@@ -489,7 +489,6 @@ export default function HomePage() {
         };
         return (
           <>
-            <StructuredData data={websiteLd} />
             <StructuredData data={webPageLd} />
           </>
         );

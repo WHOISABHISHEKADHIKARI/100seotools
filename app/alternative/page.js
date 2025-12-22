@@ -1,5 +1,5 @@
 import { getBaseUrl, siteName } from '../../lib/site';
-import AlternativeInteractive from '../../components/AlternativeInteractive';
+import AlternativeInteractive from '../../components/tools/AlternativeInteractive';
 
 const baseUrl = getBaseUrl();
 const primaryUrl = `${baseUrl}/tools/keyword-density-checker`;
@@ -125,7 +125,7 @@ export default function AlternativePage() {
           <div>
             <h3 className="font-semibold mb-2">Implementation Date:</h3>
             <p className="text-gray-600 dark:text-gray-300">
-              First detection: April 11, 2025<br/>
+              First detection: April 11, 2025<br />
               Resolution implemented: {new Date().toLocaleDateString()}
             </p>
           </div>

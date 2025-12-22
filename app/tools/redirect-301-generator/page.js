@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Redirect301GeneratorClient from "./Client";
-import ToolLayout from "../../../components/ToolLayout";
-import StructuredData from "../../../components/StructuredData";
+import ToolLayout from "../../../components/layout/ToolLayout";
+import StructuredData from "../../../components/ui/StructuredData";
 import { generateSoftwareApplicationSchema, generateHowToSchema } from "../../../lib/schema";
-import ShareActions from "../../../components/ShareActions";
-import BlogSection from "../../../components/BlogSection";
+import ShareActions from "../../../components/ui/ShareActions";
+import BlogSection from "../../../components/blog/BlogSection";
 import { getToolBySlug, getAllToolsMeta } from "../../../tools";
 import { getBaseUrl } from "../../../lib/site";
 

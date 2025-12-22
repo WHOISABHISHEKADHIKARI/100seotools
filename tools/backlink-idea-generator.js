@@ -1,8 +1,8 @@
 export default {
   "slug": "backlink-idea-generator",
-  "name": "Backlink Idea Generator",
+  "name": "Backlink Idea Generator | Build Quality Backlinks | Free SEO Tool",
   "category": "Backlink & Link-Building",
-  "description": "Suggest backlink ideas.",
+  "description": "Build quality backlinks with our free Backlink Idea Generator. Find link opportunities, analyze anchor text, and track your backlink profile. Boost your domain authority. Get started free!",
   "template": "backlinkIdeaGenerator",
   "api": true
 };

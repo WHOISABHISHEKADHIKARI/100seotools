@@ -65,12 +65,12 @@ const inter = Inter({ subsets: ['latin'], display: 'swap', weight: ['400', '700'
 if (typeof window !== 'undefined') {
   initPerformanceMonitoring();
 }
-import ErrorBoundary from '../components/ErrorBoundary';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import StructuredData from '../components/StructuredData';
-import ClientLayout from '../components/ClientLayout';
-import ClientRoot from '../components/ClientRoot';
+import ErrorBoundary from '../components/layout/ErrorBoundary';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
+import StructuredData from '../components/ui/StructuredData';
+import ClientLayout from '../components/layout/ClientLayout';
+import ClientRoot from '../components/layout/ClientRoot';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { generateWebsiteSchema } from '../lib/schema';
 

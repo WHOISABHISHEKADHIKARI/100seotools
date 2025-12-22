@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import UnifiedCard from './UnifiedCard';
+import UnifiedCard from '../ui/UnifiedCard';
 import { FiClock, FiTag, FiBookOpen, FiArrowRight } from 'react-icons/fi';
 
 export default function BlogSection({ limit = 3, showHeader = true }) {

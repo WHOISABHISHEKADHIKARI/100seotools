@@ -1,8 +1,8 @@
 export default {
   "slug": "trending-keyword-visualizer",
-  "name": "Trending Keyword Visualizer",
+  "name": "Free Trending Keyword Visualizer | Find High-Value Keywords | 100 SEO Tools",
   "category": "Keyword Research",
-  "description": "Simple list of related trends.",
+  "description": "Discover high-value keywords instantly with our free Trending Keyword Visualizer. Get search volume, competition data, and long-tail suggestions. Trusted by 10,000+ SEO professionals. Try it now!",
   "template": "keywordSuggestions",
   "api": true
 };

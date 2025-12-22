@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { getBaseUrl } from '../../lib/site';
 import ClientSEOCalculator from './ClientSEOCalculator';
-import StructuredData from '../../components/StructuredData';
+import StructuredData from '../../components/ui/StructuredData';
 
 const baseUrl = getBaseUrl();
 
@@ -32,91 +32,96 @@ export default function SEOCalculatorPage() {
       <div className="card p-4 max-w-3xl mx-auto mt-6">
         <ClientSEOCalculator />
       </div>
-      <article className="prose dark:prose-invert max-w-3xl mx-auto mt-8">
+      <article className="prose dark:prose-invert max-w-3xl mx-auto mt-8 px-4 sm:px-0">
         <section>
-          <h2>What is an SEO Calculator?</h2>
-          <p>An SEO calculator estimates performance metrics such as traffic potential, keyword value, ROI, conversion impact, cost savings, and revenue projections using simple inputs and clear formulas. It helps prioritize efforts, forecast outcomes, and communicate impact.</p>
+          <h2 className="text-xl sm:text-2xl font-bold">What is an SEO Calculator?</h2>
+          <p>An SEO calculator is a strategic tool designed to estimate critical performance metrics such as <strong>traffic potential</strong>, <strong>keyword value</strong>, <strong>ROI</strong>, and <strong>revenue projections</strong>. By using data-driven formulas, it transforms abstract search data into actionable business insights.</p>
         </section>
-        <section>
-          <h2>How it Works</h2>
-          <p>Provide baseline inputs like search volume, expected CTR, conversion rate, average order value, and cost benchmarks. The calculator applies standard models to estimate clicks, conversions, revenue, and the equivalent paid value.</p>
+
+        <section className="mt-8">
+          <h2 className="text-xl sm:text-2xl font-bold">Why Use Our SEO Calculation Suite?</h2>
+          <p>Unlike complex spreadsheets, our browser-based calculators provide instant results. Whether you're a niche blogger or a marketing agency, these tools help you:</p>
           <ul>
-            <li>Traffic potential ≈ search volume × expected CTR</li>
-            <li>Keyword value ≈ estimated clicks × CPC</li>
-            <li>SEO ROI ≈ (incremental revenue − monthly SEO cost) ÷ monthly SEO cost</li>
-            <li>Revenue projection ≈ conversions × average order value</li>
-            <li>Cost savings ≈ equivalent paid clicks × CPC</li>
+            <li><strong>Prioritize Content:</strong> Identify high-volume keywords with the best traffic potential.</li>
+            <li><strong>Justify SEO Spend:</strong> Calculate the ROI of your organic campaigns compared to PPC.</li>
+            <li><strong>Set Realistic Goals:</strong> Forecast conversions based on industry-standard CTR and AOV benchmarks.</li>
+            <li><strong>Audit On-Page Density:</strong> Ensure your keywords are balanced for safe ranking.</li>
           </ul>
         </section>
-        <section>
-          <h2>Step‑by‑Step Instructions</h2>
+
+        <section className="mt-8">
+          <h2 className="text-xl sm:text-2xl font-bold">How the Formulas Work</h2>
+          <p>Our tools use transparent, industry-standard formulas to ensure accuracy. Here is a breakdown of the math behind the metrics:</p>
+          <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-lg overflow-x-auto">
+            <ul className="list-none space-y-2 text-sm sm:text-base">
+              <li>🚀 <strong>Traffic Potential</strong> = Monthly Search Volume × Expected CTR (%)</li>
+              <li>💰 <strong>Keyword Value</strong> = Estimated Clicks × Cost-Per-Click (CPC)</li>
+              <li>📈 <strong>SEO ROI</strong> = ((Revenue - Monthly SEO Cost) / Monthly SEO Cost) × 100</li>
+              <li>🛒 <strong>Revenue Projection</strong> = Estimated Conversions × Average Order Value (AOV)</li>
+              <li>🛡️ <strong>Keyword Density</strong> = (Keyword Occurrences / Total Word Count) × 100</li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="mt-8">
+          <h2 className="text-xl sm:text-2xl font-bold">Step‑by‑Step Instructions</h2>
           <ol>
-            <li>Enter keyword search volume and expected CTR.</li>
-            <li>Add conversion rate and average order value.</li>
-            <li>Optionally include CPC to compare paid vs organic value.</li>
-            <li>Provide monthly SEO costs to compute ROI.</li>
-            <li>Review outputs: clicks, conversions, revenue, paid equivalent, and ROI.</li>
+            <li><strong>Select Your Tool:</strong> Use the tabs above to choose between Density, ROI, Authority, Traffic, or CPC modules.</li>
+            <li><strong>Input Your Data:</strong> Enter your search volume, CTR, or conversion metrics. Use conservative estimates for more realistic forecasts.</li>
+            <li><strong>Analyze Outputs:</strong> Instantly view your calculated results in the results panel.</li>
+            <li><strong>Reset or Copy:</strong> Use the <em>Reset</em> button to start over or <em>Copy Result</em> to save your data for reports.</li>
           </ol>
         </section>
-        <section>
-          <h2>Example Calculations</h2>
-          <p>Search volume: 10,000; CTR: 8%; CPC: $1.80; Conversion rate: 2.5%; AOV: $85; Monthly SEO cost: $2,500.</p>
-          <ul>
-            <li>Estimated clicks: 10,000 × 0.08 = 800</li>
-            <li>Paid equivalent value: 800 × $1.80 = $1,440/month</li>
-            <li>Conversions: 800 × 0.025 = 20</li>
-            <li>Revenue: 20 × $85 = $1,700/month</li>
-            <li>ROI: ($1,700 − $2,500) ÷ $2,500 = −32% (improve CTR or AOV to reach positive ROI)</li>
+
+        <section className="mt-8 bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800">
+          <h2 className="text-xl sm:text-2xl font-bold text-blue-900 dark:text-blue-100 mt-0">Example ROI Calculation</h2>
+          <p className="text-sm sm:text-base italic">Scenario: You target a keyword with 10,000 searches, an 8% CTR, and plan to spend $2,500/mo on SEO.</p>
+          <ul className="text-sm sm:text-base">
+            <li><strong>Clicks:</strong> 10,000 × 0.08 = 800 visits</li>
+            <li><strong>Conversions (2.5% rate):</strong> 800 × 0.025 = 20 customers</li>
+            <li><strong>Revenue ($85 AOV):</strong> 20 × $85 = $1,700/month</li>
+            <li><strong>ROI:</strong> ($1,700 − $2,500) / $2,500 = <strong>-32% ROI</strong></li>
           </ul>
+          <p className="text-sm font-medium mt-2">💡 Lesson: To turn this profitable, you need to improve your CTR to 15% or your Conversion Rate up to 4%.</p>
         </section>
-        <section>
-          <h2>Traffic Growth Models</h2>
+
+        <section className="mt-8">
+          <h2 className="text-xl sm:text-2xl font-bold">Traffic Growth Models</h2>
           <p>Estimate improvements by adjusting CTR, ranking position, and coverage:</p>
           <ul>
-            <li>CTR uplift: move from position 6 (≈3–5%) to position 3 (≈8–12%)</li>
-            <li>Coverage: target more queries to grow qualified impressions</li>
-            <li>Content quality: raise conversion rate with clearer offers</li>
+            <li><strong>CTR Uplift:</strong> Moving from Rank #6 (≈3%) to Rank #1 (≈30%) provides a 10x traffic boost.</li>
+            <li><strong>Keyword Expansion:</strong> Targeting "Near Me" variants typically raises local conversion by 15-20%.</li>
+            <li><strong>Authority Building:</strong> Higher Domain Authority allows you to rank for keywords with 50+ difficulty scores.</li>
           </ul>
         </section>
-        <section>
-          <h2>CPC Comparisons and Benchmarks</h2>
-          <p>Compare organic outcomes to paid costs and industry CPC ranges to quantify savings. Use conservative CTR and conversion assumptions for stability.</p>
+
+        <section className="mt-8">
+          <h2 className="text-xl sm:text-2xl font-bold">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="p-3 border rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900">
+              <summary className="font-medium">What is a good SEO ROI?</summary>
+              <div className="mt-2 text-sm">Most businesses aim for a 5:1 ratio (500% ROI). However, new sites often start with negative ROI as they build authority.</div>
+            </details>
+            <details className="p-3 border rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900">
+              <summary className="font-medium">Is keyword density still relevant?</summary>
+              <div className="mt-2 text-sm">Yes, but focus is on avoid over-optimization. Most experts suggest a density of 0.5% to 1.5% for modern search engines.</div>
+            </details>
+            <details className="p-3 border rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900">
+              <summary className="font-medium">Can I export these results?</summary>
+              <div className="mt-2 text-sm">You can use the "Copy Result" button to save text versions of your calculations. For full reports, we recommend pasting into Excel or Google Sheets.</div>
+            </details>
+          </div>
         </section>
-        <section>
-          <h2>FAQs</h2>
-          <details>
-            <summary>What inputs do I need?</summary>
-            <p>Search volume, CTR, conversion rate, AOV, CPC, and monthly SEO cost for ROI.</p>
-          </details>
-          <details>
-            <summary>How accurate are estimates?</summary>
-            <p>Estimates depend on assumptions. Use ranges and revisit inputs as rankings and site quality improve.</p>
-          </details>
-          <details>
-            <summary>Can I compare paid vs organic?</summary>
-            <p>Yes. Include CPC to calculate paid equivalent value and cost savings.</p>
-          </details>
-          <details>
-            <summary>Does this change the UI?</summary>
-            <p>No. The calculator UI remains the same; this page adds clear guidance and schema.</p>
-          </details>
-        </section>
-        <section>
-          <h2>Related Tools and Guides</h2>
-          <p>
-            <Link href="/" className="text-brand-600 hover:underline">Homepage</Link> ·{' '}
-            <Link href="/category/seo-performance" className="text-brand-600 hover:underline">SEO Performance</Link> ·{' '}
-            <Link href="/category/keyword-research" className="text-brand-600 hover:underline">Keyword Research</Link> ·{' '}
-            <Link href="/category/on-page-optimization" className="text-brand-600 hover:underline">On‑Page Optimization</Link>
-          </p>
-          <p>
-            <Link href="/tools/traffic-potential-calculator" className="text-brand-600 hover:underline">Traffic Potential Calculator</Link> ·{' '}
-            <Link href="/tools/keyword-roi-calculator" className="text-brand-600 hover:underline">Keyword ROI Calculator</Link> ·{' '}
-            <Link href="/tools/ctr-predictor" className="text-brand-600 hover:underline">CTR Predictor</Link> ·{' '}
-            <Link href="/tools/visibility-index-calculator" className="text-brand-600 hover:underline">Visibility Index Calculator</Link> ·{' '}
-            <Link href="/tools/ranking-progress-tracker" className="text-brand-600 hover:underline">Ranking Progress Tracker</Link> ·{' '}
-            <Link href="/tools/on-page-seo-audit-checker" className="text-brand-600 hover:underline">On‑Page SEO Audit Checker</Link>
-          </p>
+
+        <section className="mt-8 border-t pt-8">
+          <h2 className="text-xl sm:text-2xl font-bold">Related Performance Tools</h2>
+          <div className="flex flex-wrap gap-2">
+            <Link href="/tools/traffic-potential-calculator" className="badge hover:bg-blue-100 transition">Traffic Potential</Link>
+            <Link href="/tools/keyword-roi-calculator" className="badge hover:bg-blue-100 transition">ROI Calculator</Link>
+            <Link href="/tools/on-page-seo-audit-checker" className="badge hover:bg-blue-100 transition">Audit Checker</Link>
+            <Link href="/tools/ranking-progress-tracker" className="badge hover:bg-blue-100 transition">Rank Tracker</Link>
+            <Link href="/tools/bounce-rate-estimator" className="badge hover:bg-blue-100 transition">Bounce Estimator</Link>
+          </div>
         </section>
       </article>
       <div className="mt-6">

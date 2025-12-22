@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import StructuredData from '../../../components/StructuredData';
-import ShareActions from '../../../components/ShareActions';
-import NewsletterForm from '../../../components/NewsletterForm';
+import StructuredData from '../../../components/ui/StructuredData';
+import ShareActions from '../../../components/ui/ShareActions';
+import NewsletterForm from '../../../components/ui/NewsletterForm';
 import { getBaseUrl, siteName } from '../../../lib/site';
 
 export const dynamic = 'force-static';

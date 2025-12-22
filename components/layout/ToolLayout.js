@@ -1,47 +1,24 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getToolGuide } from '../lib/guides';
-import UnifiedCard from './UnifiedCard';
-import StructuredData from './StructuredData';
-import fs from 'node:fs';
-import path from 'node:path';
+import { getToolGuide, getInstructionEntry } from '../../lib/guides';
+import UnifiedCard from '../ui/UnifiedCard';
+import StructuredData from '../ui/StructuredData';
+import { toolContent } from '../../lib/toolContent';
+// fs and path imports removed as they were part of the deleted function
 
-function getInstructionEntry(slug) {
-  try {
-    const primary = path.resolve(process.cwd(), 'instruction', 'json-instruction.json');
-    const fallback = path.resolve(process.cwd(), 'tools', 'json instruction');
-    const file = fs.existsSync(primary) ? primary : fallback;
-    const text = fs.readFileSync(file, 'utf8');
-    const obj = JSON.parse(text);
-    const entries = Array.isArray(obj.entries) ? obj.entries : [];
-    const match = entries.find((e) => {
-      try {
-        const g = e.schema_json_ld && e.schema_json_ld['@graph'];
-        if (!Array.isArray(g)) return false;
-        const wp = g.find((n) => n && n['@type'] === 'WebPage');
-        const u = wp && (wp.url || wp['@id']);
-        return typeof u === 'string' && /\/tools\//.test(u) && u.endsWith(`/tools/${slug}`);
-      } catch {
-        return false;
-      }
-    });
-    return match || null;
-  } catch {
-    return null;
-  }
-}
 
 export default function ToolLayout({ tool, children, formFirst = false, relatedTools = [], extraSchema = [] }) {
   // Generate guidance content for any tool via generic generator
   const guide = getToolGuide(tool);
   const override = getInstructionEntry(tool.slug);
+  const content = toolContent[tool.slug];
 
   return (
     <div className="space-y-6">
       <div className="card p-6">
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-xl font-semibold">{`${tool.name} | Free AI SEO Tool by 100SEOTools`}</h1>
+            <h1 className="text-xl font-semibold">{`${tool.name} | 100 SEO Tools`}</h1>
             <p className="text-gray-600 dark:text-gray-400">{tool.description}</p>
           </div>
           <div className="flex items-center gap-3">
@@ -59,123 +36,15 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
           <p className="text-sm text-gray-700 dark:text-gray-300">Generate and optimize with fast, helpful outputs</p>
           <a href="#tool-form" className="btn" aria-label="Jump to the form to generate your output">Start Generating</a>
         </div>
-        {tool.slug === 'content-freshness-checker' && (
+        {content?.furtherReading && (
           <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
             <span className="font-medium">Further reading:</span>{' '}
-            <a href="/" className="hover:underline">Homepage</a>,{' '}
-            <a href="/category" className="hover:underline">SEO Tools Categories</a>,{' '}
-            <a href="/blog/content-freshness-checker" className="hover:underline">Content Freshness Checker guide</a>
-          </div>
-        )}
-        {tool.slug === 'ai-schema-generator' && (
-          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
-            <span className="font-medium">Further reading:</span>{' '}
-            <a href="/" className="hover:underline">Homepage</a>,{' '}
-            <a href="/category" className="hover:underline">SEO Tools Categories</a>,{' '}
-            <a href="/tools/schema-markup-generator" className="hover:underline">Schema Markup Generator</a>,{' '}
-            <a href="/tools/structured-data-validator" className="hover:underline">Structured Data Validator</a>,{' '}
-            <a href="/tools/xml-sitemap-visualizer" className="hover:underline">XML Sitemap Visualizer</a>,{' '}
-            <a href="/blog" className="hover:underline">All SEO Guides</a>,{' '}
-            <a href="/blog/seo-basics" className="hover:underline">SEO Basics Guide</a>
-          </div>
-        )}
-        {tool.slug === 'seo-content-checker' && (
-          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
-            <span className="font-medium">Further reading:</span>{' '}
-            <a href="/" className="hover:underline">Homepage</a>,{' '}
-            <a href="/category/content-seo" className="hover:underline">Content SEO tools</a>,{' '}
-            <a href="/tools/keyword-density-checker" className="hover:underline">Keyword Density Checker</a>,{' '}
-            <a href="/tools/readability-score-calculator" className="hover:underline">Readability Score Calculator</a>,{' '}
-            <a href="/tools/heading-analyzer" className="hover:underline">Heading Analyzer</a>,{' '}
-            <a href="/tools/meta-tag-generator" className="hover:underline">Meta Tag Generator</a>,{' '}
-            <a href="/tools/seo-content-checker" className="hover:underline">SEO Content Checker Tool</a>
-          </div>
-        )}
-        {tool.slug === 'meta-tag-generator' && (
-          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
-            <span className="font-medium">Further reading:</span>{' '}
-            <a href="/" className="hover:underline">Homepage</a>,{' '}
-            <a href="/category/on-page-optimization" className="hover:underline">On‑Page Optimization tools</a>,{' '}
-            <a href="/tools/meta-description-optimizer" className="hover:underline">Meta Description Generator</a>,{' '}
-            <a href="/tools/heading-analyzer" className="hover:underline">Heading Analyzer</a>,{' '}
-            <a href="/tools/structured-data-validator" className="hover:underline">Structured Data Validator</a>,{' '}
-            <a href="/blog/meta-tag-generator" className="hover:underline">Meta Tag Generator guide</a>
-          </div>
-        )}
-        {tool.slug === 'competitor-gap-analyzer' && (
-          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
-            <span className="font-medium">Further reading:</span>{' '}
-            <a href="/" className="hover:underline">Homepage</a>,{' '}
-            <a href="/category/competitor-analysis" className="hover:underline">Competitor Analysis tools</a>,{' '}
-            <a href="/tools/keyword-gap-finder" className="hover:underline">Keyword Gap Finder</a>,{' '}
-            <a href="/tools/competitor-keyword-overlap-checker" className="hover:underline">Competitor Keyword Overlap Checker</a>,{' '}
-            <a href="/tools/keyword-clustering-tool" className="hover:underline">Keyword Clustering Tool</a>,{' '}
-            <a href="/tools/internal-linking-planner" className="hover:underline">Internal Linking Planner</a>
-          </div>
-        )}
-        {tool.slug === 'on-page-seo-audit-checker' && (
-          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
-            <span className="font-medium">Further reading:</span>{' '}
-            <a href="/" className="hover:underline">Homepage</a>,{' '}
-            <a href="/category/on-page-optimization" className="hover:underline">On‑Page Optimization tools</a>,{' '}
-            <a href="/tools/meta-tag-generator" className="hover:underline">Meta Tag Generator</a>,{' '}
-            <a href="/tools/heading-analyzer" className="hover:underline">Heading Analyzer</a>,{' '}
-            <a href="/tools/structured-data-validator" className="hover:underline">Structured Data Validator</a>,{' '}
-            <a href="/tools/internal-linking-planner" className="hover:underline">Internal Linking Planner</a>,{' '}
-            <a href="/tools/seo-content-checker" className="hover:underline">SEO Content Checker</a>
-          </div>
-        )}
-        {tool.slug === 'local-seo-audit-checklist' && (
-          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
-            <span className="font-medium">Further reading:</span>{' '}
-            <a href="/" className="hover:underline">Homepage</a>,{' '}
-            <a href="/category/local-seo" className="hover:underline">Local SEO tools</a>,{' '}
-            <a href="/tools/local-citation-finder" className="hover:underline">Local Citation Finder</a>,{' '}
-            <a href="/tools/nap-consistency-checker" className="hover:underline">NAP Consistency Checker</a>,{' '}
-            <a href="/tools/local-schema-builder" className="hover:underline">Local Schema Builder</a>,{' '}
-            <a href="/tools/structured-data-validator" className="hover:underline">Structured Data Validator</a>,{' '}
-            <a href="/tools/on-page-seo-audit-checker" className="hover:underline">On‑Page SEO Audit Checker</a>
-          </div>
-        )}
-        {tool.slug === 'text-to-html-converter' && (
-          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
-            <span className="font-medium">Further reading:</span>{' '}
-            <a href="/" className="hover:underline">Homepage</a>,{' '}
-            <a href="/category/seo-utility" className="hover:underline">SEO Utility tools</a>,{' '}
-            <a href="/tools/structured-data-validator" className="hover:underline">Structured Data Validator</a>,{' '}
-            <a href="/tools/schema-markup-generator" className="hover:underline">Schema Markup Generator</a>,{' '}
-            <a href="/tools/heading-analyzer" className="hover:underline">Heading Analyzer</a>,{' '}
-            <a href="/tools/meta-tag-generator" className="hover:underline">Meta Tag Generator</a>,{' '}
-            <a href="/tools/url-slug-generator" className="hover:underline">URL Slug Generator</a>,{' '}
-            <a href="/tools/og-tag-generator" className="hover:underline">OG Tag Generator</a>
-          </div>
-        )}
-        {tool.slug === 'keyword-suggestion-tool' && (
-          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
-            <span className="font-medium">Further reading:</span>{' '}
-            <a href="/" className="hover:underline">Homepage</a>,{' '}
-            <a href="/category/keyword-research" className="hover:underline">Keyword Research tools</a>,{' '}
-            <a href="/tools/long-tail-keyword-generator" className="hover:underline">Long‑Tail Keyword Generator</a>,{' '}
-            <a href="/tools/keyword-clustering-tool" className="hover:underline">Keyword Clustering Tool</a>,{' '}
-            <a href="/tools/keyword-intent-identifier" className="hover:underline">Keyword Intent Identifier</a>,{' '}
-            <a href="/tools/competitor-keyword-overlap-checker" className="hover:underline">Competitor Keyword Overlap Checker</a>,{' '}
-            <a href="/tools/keyword-gap-finder" className="hover:underline">Keyword Gap Finder</a>,{' '}
-            <a href="/blog" className="hover:underline">All SEO Guides</a>,{' '}
-            <a href="/tools/long-tail-keyword-generator" className="hover:underline">Long-Tail Keywords</a>,{' '}
-            <a href="/tools/keyword-density-checker" className="hover:underline">Keyword Density Checker</a>
-          </div>
-        )}
-        {tool.slug === 'keyword-clustering-tool' && (
-          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
-            <span className="font-medium">Further reading:</span>{' '}
-            <a href="/" className="hover:underline">Homepage</a>,{' '}
-            <a href="/category/keyword-research" className="hover:underline">Keyword Research tools</a>,{' '}
-            <a href="/tools/keyword-clustering-tool" className="hover:underline">Best free keyword clustering tool</a>,{' '}
-            <a href="/blog/keyword-clustering-tool" className="hover:underline">Keyword clustering tool guide</a>,{' '}
-            <a href="/tools/keyword-intent-identifier" className="hover:underline">Semantic keyword grouping tool</a>,{' '}
-            <a href="/tools/competitor-keyword-overlap-checker" className="hover:underline">AI keyword clustering benchmarks</a>,{' '}
-            <a href="/tools/keyword-gap-finder" className="hover:underline">Competitor keyword gaps</a>,{' '}
-            <a href="/tools/internal-linking-planner" className="hover:underline">Internal linking planner</a>
+            {content.furtherReading.map((link, i) => (
+              <span key={i}>
+                <Link href={link.href} className="hover:underline">{link.text}</Link>
+                {i < content.furtherReading.length - 1 && ', '}
+              </span>
+            ))}
           </div>
         )}
       </div>
@@ -415,16 +284,10 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
                   </ul>
                 </div>
               )}
-              {tool.slug === 'content-freshness-checker' && (
+              {content?.competitorBenchmarking && (
                 <div className="pt-2">
                   <h3 className="text-lg font-medium mb-2">Competitor Benchmarking</h3>
-                  <p className="text-gray-700 dark:text-gray-300">Compare headings, internal links, and recency against top results. Use Keyword Clustering and Competitor Overlap to identify semantic gaps. Refresh with current sources and clear metadata.</p>
-                </div>
-              )}
-              {tool.slug === 'ai-schema-generator' && (
-                <div className="pt-2">
-                  <h3 className="text-lg font-medium mb-2">Competitor Benchmarking</h3>
-                  <p className="text-gray-700 dark:text-gray-300">Analyze top‑ranking pages for “100 SEO tools” and schema‑driven guides. Match entity coverage, required properties, and JSON‑LD cleanliness. Validate in Rich Results Test and ensure canonical, breadcrumbs, and FAQs reflect visible content.</p>
+                  <p className="text-gray-700 dark:text-gray-300">{content.competitorBenchmarking}</p>
                 </div>
               )}
 
@@ -589,23 +452,19 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
           <div className="card p-6">
             {children}
           </div>
-          {tool.slug === 'content-freshness-checker' && (
+          {content?.furtherReading && (
             <div className="card p-6">
               <h2 className="text-lg font-medium mb-2">Further Reading</h2>
               <div className="flex flex-wrap gap-2">
-                <a href="/" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Homepage</a>
-                <a href="/category" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">SEO Tools Categories</a>
-                <a href="/blog/content-freshness-checker" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Content Freshness Checker guide</a>
-              </div>
-            </div>
-          )}
-          {tool.slug === 'ai-schema-generator' && (
-            <div className="card p-6">
-              <h2 className="text-lg font-medium mb-2">Further Reading</h2>
-              <div className="flex flex-wrap gap-2">
-                <a href="/blog" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">All SEO Guides</a>
-                <a href="/blog/seo-basics" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">SEO Basics Guide</a>
-                <a href="/" className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">Homepage</a>
+                {content.furtherReading.map((link, i) => (
+                  <Link
+                    key={i}
+                    href={link.href}
+                    className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                  >
+                    {link.text}
+                  </Link>
+                ))}
               </div>
             </div>
           )}
@@ -631,7 +490,7 @@ export default function ToolLayout({ tool, children, formFirst = false, relatedT
             Tool Created by <Link href="/author" className="text-brand-600 hover:underline">Abhishek Adhikari</Link>
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-            SEO Expert, Full-Stack Developer, and Creator of 100SEOTools. With 22+ years of experience, I build free, privacy-focused tools to help you rank higher.
+            SEO Expert, Full-Stack Developer, and Creator of 100 SEO Tools. With10+ years of experience, I build free, privacy-focused tools to help you rank higher.
           </p>
         </div>
       </div>

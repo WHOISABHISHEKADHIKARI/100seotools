@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef } from 'react';
-import { useUserPreferences } from '../contexts/UserPreferencesContext';
+import { useUserPreferences } from '../../contexts/UserPreferencesContext';
 import {
   FiSettings,
   FiHeart,
@@ -135,11 +135,10 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-transform will-change-transform hover:scale-[1.01] ${
-                      activeTab === tab.id
+                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-transform will-change-transform hover:scale-[1.01] ${activeTab === tab.id
                         ? 'bg-brand-500 text-white'
                         : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-                    }`}
+                      }`}
                   >
                     <Icon className="w-4 h-4" />
                     {tab.label}
@@ -161,22 +160,20 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                   <div className="flex gap-2">
                     <button
                       onClick={() => handlePreferenceChange('theme', 'light')}
-                      className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${
-                        preferences.theme === 'light'
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${preferences.theme === 'light'
                           ? 'border-brand-500 bg-brand-50 dark:bg-brand-900'
                           : 'border-gray-300 dark:border-gray-600'
-                      }`}
+                        }`}
                     >
                       <FiSun className="w-4 h-4" />
                       Light
                     </button>
                     <button
                       onClick={() => handlePreferenceChange('theme', 'dark')}
-                      className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${
-                        preferences.theme === 'dark'
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${preferences.theme === 'dark'
                           ? 'border-brand-500 bg-brand-50 dark:bg-brand-900'
                           : 'border-gray-300 dark:border-gray-600'
-                      }`}
+                        }`}
                     >
                       <FiMoon className="w-4 h-4" />
                       Dark
@@ -190,22 +187,20 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                   <div className="flex gap-2">
                     <button
                       onClick={() => handlePreferenceChange('defaultView', 'grid')}
-                      className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${
-                        preferences.defaultView === 'grid'
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${preferences.defaultView === 'grid'
                           ? 'border-brand-500 bg-brand-50 dark:bg-brand-900'
                           : 'border-gray-300 dark:border-gray-600'
-                      }`}
+                        }`}
                     >
                       <FiGrid className="w-4 h-4" />
                       Grid
                     </button>
                     <button
                       onClick={() => handlePreferenceChange('defaultView', 'list')}
-                      className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${
-                        preferences.defaultView === 'list'
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${preferences.defaultView === 'list'
                           ? 'border-brand-500 bg-brand-50 dark:bg-brand-900'
                           : 'border-gray-300 dark:border-gray-600'
-                      }`}
+                        }`}
                     >
                       <FiList className="w-4 h-4" />
                       List

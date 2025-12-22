@@ -1,6 +1,6 @@
 "use client";
 import { useState, useMemo } from 'react';
-import StructuredData from './StructuredData';
+import StructuredData from '../ui/StructuredData';
 
 export default function SEOCostCalculator() {
   // Store raw strings to avoid input glitches while typing decimals
@@ -102,7 +102,7 @@ export default function SEOCostCalculator() {
   function copySummary() {
     const text = `SEO Cost Summary:\nMonthly: $${results.totalMonthly.toFixed(2)}\nOne-time: $${results.oneTimeTotal.toFixed(2)}\n3 months: $${results.threeMonthTotal.toFixed(2)}\n6 months: $${results.sixMonthTotal.toFixed(2)}\n12 months: $${results.yearlyTotal.toFixed(2)}`;
     if (navigator?.clipboard) {
-      navigator.clipboard.writeText(text).catch(() => {});
+      navigator.clipboard.writeText(text).catch(() => { });
     }
   }
 

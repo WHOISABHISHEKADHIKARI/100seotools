@@ -1,7 +1,7 @@
 // Updated: Force rebuild for new tools
-import ToolRunner from '../../../components/ToolRunner';
-import ToolLayout from '../../../components/ToolLayout';
-import StructuredData from '../../../components/StructuredData';
+import ToolRunner from '../../../components/tools/ToolRunner';
+import ToolLayout from '../../../components/layout/ToolLayout';
+import StructuredData from '../../../components/ui/StructuredData';
 import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSchema } from '../../../lib/schema';
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { getToolGuide } from '../../../lib/guides';

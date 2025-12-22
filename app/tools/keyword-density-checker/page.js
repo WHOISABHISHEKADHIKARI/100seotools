@@ -1,6 +1,6 @@
 import { getBaseUrl, siteName } from '../../../lib/site';
-import KeywordDensityInteractive from '../../../components/KeywordDensityInteractive';
-import ToolLayout from '../../../components/ToolLayout';
+import KeywordDensityInteractive from '../../../components/tools/KeywordDensityInteractive';
+import ToolLayout from '../../../components/layout/ToolLayout';
 import { getToolBySlug } from '../../../tools';
 
 const baseUrl = getBaseUrl();

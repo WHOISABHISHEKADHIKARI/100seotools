@@ -1,14 +1,18 @@
 "use client";
 import { useMemo, useState, useEffect } from 'react';
-import { getTemplateDefinition, runTemplate } from '../lib/templates';
-import { copyToClipboardWithHistory, normalizePastedContent, downloadAllFormats } from '../lib/utils';
-import { sanitizeInput, validateURL, checkInputSize } from '../lib/security';
-import { checkRateLimit } from '../lib/rateLimit';
-import { validateField, validateAllFields } from '../lib/validation';
+import { getTemplateDefinition, runTemplate } from '../../lib/templates';
+import { copyToClipboardWithHistory, normalizePastedContent, downloadAllFormats } from '../../lib/utils';
+import { sanitizeInput, validateURL, checkInputSize } from '../../lib/security';
+import { checkRateLimit } from '../../lib/rateLimit';
+import { validateField, validateAllFields } from '../../lib/validation';
+import Markdown from '../blog/Markdown';
 
 export default function ToolRunner({ tool }) {
   const def = useMemo(() => getTemplateDefinition(tool.template), [tool.template]);
+  // Initialize state
   const [inputs, setInputs] = useState(() => {
+    // Try to load from session storage during initialization (client-side only technically, but safe in useEffect)
+    // Actually, for SSR safety, better to initialize default and load in effect.
     const init = {};
     def.fields.forEach((f) => {
       init[f.name] = f.default ?? '';
@@ -21,74 +25,101 @@ export default function ToolRunner({ tool }) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [pasteFeedback, setPasteFeedback] = useState({ field: null, ts: 0 });
   const [isCopied, setIsCopied] = useState(false);
+  const [isLivePreview, setIsLivePreview] = useState(false);
 
-  // Debounced validation
+  // Initial inputs helper
+  const getInitialInputs = () => {
+    const init = {};
+    def.fields.forEach((f) => {
+      init[f.name] = f.default ?? '';
+    });
+    return init;
+  };
+
+  const resetForm = () => {
+    setInputs(getInitialInputs());
+    setOutput('');
+    setError('');
+    setFieldErrors({});
+    setIsCopied(false);
+  };
+
+  const loadExample = () => {
+    const exampleInputs = {};
+    let hasExample = false;
+    def.fields.forEach((f) => {
+      if (f.example !== undefined) {
+        exampleInputs[f.name] = f.example;
+        hasExample = true;
+      } else if (f.placeholder && f.placeholder.startsWith('e.g.')) {
+        // Fallback to placeholder if it contains an example
+        exampleInputs[f.name] = f.placeholder.replace('e.g.', '').trim();
+        hasExample = true;
+      }
+    });
+
+    if (hasExample) {
+      setInputs(prev => ({ ...prev, ...exampleInputs }));
+      setError('');
+      setFieldErrors({});
+    }
+  };
+
+  // Load from session storage on mount
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const saved = sessionStorage.getItem(`tool-inputs-${tool.slug}`);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          setInputs(prev => ({ ...prev, ...parsed }));
+        }
+
+        const savedPreview = sessionStorage.getItem(`tool-live-${tool.slug}`);
+        if (savedPreview) {
+          setIsLivePreview(JSON.parse(savedPreview));
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load session', e);
+    }
+  }, [tool.slug]);
+
+  // Save inputs to session storage
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem(`tool-inputs-${tool.slug}`, JSON.stringify(inputs));
+      }
+    } catch (e) {
+      console.error('Failed to save session', e);
+    }
+  }, [inputs, tool.slug]);
+
+  // Save live preview preference
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem(`tool-live-${tool.slug}`, JSON.stringify(isLivePreview));
+      }
+    } catch (e) {
+      console.error('Failed to save settings', e);
+    }
+  }, [isLivePreview, tool.slug]);
+
+  // Debounced execution for Live Preview and Validation
   useEffect(() => {
     const timer = setTimeout(() => {
-      // Validate all fields based on current inputs
-      const newErrors = {};
-      def.fields.forEach(field => {
-        const value = inputs[field.name];
+      // 1. Validate fields (always run validation logic passively)
+      // Note: We duplicate some validation logic here for passive feedback,
+      // but we shouldn't block the user from typing.
 
-        // If empty, do not show validation errors during passive typing/debounce.
-        // Errors will still be caught when clicking the action button.
-        if (!value) return;
-
-        // Use the existing validateField logic, but we need to re-implement it or import it?
-        // Actually, we can just use the logic that was in onChange, adapted for bulk check.
-        // Better: use validateField from lib/validation if possible, but the inline logic had some specific tweaks?
-        // The inline logic in previous onChange was specific. Let's replicate the important parts here.
-
-        let error = null;
-
-        // Size check
-        const sizeCheck = checkInputSize(value, field.maxBytes || 1000000);
-        if (!sizeCheck.valid) {
-          error = sizeCheck.error;
-        }
-
-        // Length check
-        if (!error) {
-          const maxLength = field.maxLength || (field.type === 'textarea' ? 50000 : 5000);
-          if (value && value.length > maxLength) {
-            error = `Maximum ${maxLength} characters`;
-          }
-        }
-
-        // Type validations
-        if (!error && value && field.type === 'number') {
-          const num = parseFloat(value);
-          if (isNaN(num)) error = 'Must be a number';
-          else if (field.min !== undefined && num < field.min) error = `Minimum value: ${field.min}`;
-          else if (field.max !== undefined && num > field.max) error = `Maximum value: ${field.max}`;
-        }
-
-        if (!error && value && field.type === 'url') {
-          if (!validateURL(value)) error = 'Must be a valid URL (http:// or https://)';
-        }
-
-        if (error) {
-          newErrors[field.name] = error;
-        }
-      });
-
-      // Update errors state. We merge with existing or replace?
-      // Existing behavior cleared errors on change.
-      // Here we replace the relevant field errors.
-      setFieldErrors(prev => {
-        // Create a new object to avoid stale closures issues if we used a loop?
-        // Actually, we calculated errors for ALL fields above.
-        // So we can technically replace the whole object if we assume we validate everything.
-        // But maybe we only want to validate dirty fields?
-        // The prompt implies "while the user is typing... only after stops... run validation".
-        // Validating everything that has content is safest.
-        return newErrors;
-      });
-
-    }, 5000);
-
+      if (isLivePreview) {
+        // Live preview analysis handled by separate effect below
+      }
+    }, 1000);
     return () => clearTimeout(timer);
-  }, [inputs, def.fields]);
+  }, [inputs, isLivePreview]);
 
   const onChange = (name, value) => {
     const field = def.fields.find(f => f.name === name);
@@ -203,6 +234,21 @@ export default function ToolRunner({ tool }) {
     }
   };
 
+  // Live Preview Trigger
+  useEffect(() => {
+    if (!isLivePreview) return;
+
+    // Check if we have minimum required inputs
+    const hasData = Object.values(inputs).some(v => v && v.toString().trim().length > 0);
+    if (!hasData) return;
+
+    const timer = setTimeout(() => {
+      analyze();
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [inputs, isLivePreview]);
+
   return (
     <div className="space-y-6">
       {error && (
@@ -258,42 +304,87 @@ export default function ToolRunner({ tool }) {
                   max={f.max}
                 />
               )}
+
+              {/* Validation Error */}
               {fieldErrors[f.name] && (
                 <p id={`error-${f.name}`} className="mt-1 text-xs text-red-600 dark:text-red-400">
                   {fieldErrors[f.name]}
                 </p>
               )}
-              {f.hint && !fieldErrors[f.name] && (
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                  {f.hint}
+
+              {/* Helper Text & Counters */}
+              <div className="flex justify-between items-center mt-2 px-1">
+                <p className="text-[11px] text-gray-400 dark:text-gray-500 italic flex-1 truncate mr-4">
+                  {f.hint || ''}
                 </p>
-              )}
+                {(f.type === 'text' || f.type === 'textarea' || !f.type) && (
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-brand-50/50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800 shadow-sm whitespace-nowrap">
+                    {inputs[f.name]?.length || 0} chars
+                    {f.type === 'textarea' && ` | ${inputs[f.name]?.trim().split(/\s+/).filter(Boolean).length || 0} words`}
+                  </span>
+                )}
+              </div>
             </div>
           ))}
-          <button
-            className="btn w-full"
-            onClick={analyze}
-            disabled={isProcessing}
-            aria-label={def.actionLabel || 'Analyze'}
-          >
-            {isProcessing ? (
-              <span className="flex items-center justify-center gap-2">
-                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                </svg>
-                Processing...
-              </span>
-            ) : (
-              def.actionLabel || 'Analyze'
-            )}
-          </button>
+
+          <div className="flex items-center gap-2 mb-4">
+            <input
+              type="checkbox"
+              id="live-preview-toggle"
+              className="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+              checked={isLivePreview}
+              onChange={(e) => setIsLivePreview(e.target.checked)}
+            />
+            <label htmlFor="live-preview-toggle" className="text-sm text-gray-700 dark:text-gray-300 select-none cursor-pointer">
+              Enable Live Preview (Auto-analyze as you type)
+            </label>
+          </div>
+          <div className="flex gap-2">
+            <button
+              className="btn flex-1"
+              onClick={analyze}
+              disabled={isProcessing}
+              aria-label={def.actionLabel || 'Analyze'}
+            >
+              {isProcessing ? (
+                <span className="flex items-center justify-center gap-2">
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  Processing...
+                </span>
+              ) : (
+                def.actionLabel || 'Analyze'
+              )}
+            </button>
+            <button
+              className="btn-secondary"
+              onClick={loadExample}
+              title="Load sample data"
+              aria-label="Load sample data"
+            >
+              💡 Example
+            </button>
+            <button
+              className="btn-secondary"
+              onClick={resetForm}
+              title="Clear all inputs"
+              aria-label="Clear all inputs"
+            >
+              🔄 Reset
+            </button>
+          </div>
         </div>
         <div className="space-y-3">
           <label className="block text-sm mb-1 font-medium">Output</label>
-          <pre className="input h-64 whitespace-pre-wrap overflow-auto text-sm" aria-live="polite">
-            {output || 'No output yet. Enter inputs and click the button.'}
-          </pre>
+          <div className="input h-[400px] p-4 overflow-auto text-sm border rounded-lg bg-white dark:bg-gray-950 shadow-inner" aria-live="polite">
+            {output ? (
+              <Markdown text={output} />
+            ) : (
+              <p className="text-slate-500 dark:text-slate-400 italic">No output yet. Enter inputs and click the button.</p>
+            )}
+          </div>
           <div className="flex gap-3">
             <button
               className="btn-secondary flex-1 transition-all duration-200"

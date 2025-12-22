@@ -1,6 +1,10 @@
 "use client";
 import React, { useState } from 'react';
 import { FiMail, FiUser, FiMessageSquare, FiSend, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
+import { getBaseUrl } from '../../lib/site';
+import StructuredData from '../../components/ui/StructuredData';
+
+const baseUrl = getBaseUrl();
 
 export default function ContactPage() {
     const [status, setStatus] = useState({ type: '', message: '' });
@@ -55,15 +59,15 @@ export default function ContactPage() {
         "@graph": [
             {
                 "@type": "ContactPage",
-                "@id": "https://www.100seotools.com/contact#webpage",
+                "@id": `${baseUrl}/contact#webpage`,
                 "name": "Contact Us - 100 SEO Tools",
                 "description": "Get in touch with 100 SEO Tools for guest posting, backlink opportunities, tool suggestions, or general inquiries",
-                "url": "https://www.100seotools.com/contact",
+                "url": `${baseUrl}/contact`,
                 "isPartOf": {
-                    "@id": "https://www.100seotools.com/#website"
+                    "@id": `${baseUrl}/#website`
                 },
                 "mainEntity": {
-                    "@id": "https://www.100seotools.com/#organization"
+                    "@id": `${baseUrl}/#organization`
                 }
             },
             {
@@ -73,13 +77,13 @@ export default function ContactPage() {
                         "@type": "ListItem",
                         "position": 1,
                         "name": "Home",
-                        "item": "https://www.100seotools.com"
+                        "item": baseUrl
                     },
                     {
                         "@type": "ListItem",
                         "position": 2,
                         "name": "Contact",
-                        "item": "https://www.100seotools.com/contact"
+                        "item": `${baseUrl}/contact`
                     }
                 ]
             },
@@ -141,10 +145,7 @@ export default function ContactPage() {
 
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+            <StructuredData data={jsonLd} />
             <div className="space-y-12 max-w-7xl mx-auto px-4">
                 {/* Hero Section - Matching Homepage */}
                 <section className="text-center space-y-6 py-12 border-b border-gray-200 dark:border-gray-800 min-h-[300px] flex flex-col justify-center">

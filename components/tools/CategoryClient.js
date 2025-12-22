@@ -1,9 +1,9 @@
 "use client";
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
-import SearchFilter from '@/components/SearchFilter';
-import UnifiedCard from '@/components/UnifiedCard';
-import ToolGrid from '@/components/ToolGrid';
+import SearchFilter from '@/components/tools/SearchFilter';
+import UnifiedCard from '@/components/ui/UnifiedCard';
+import ToolGrid from '@/components/tools/ToolGrid';
 
 export default function CategoryClient({ items = [], catName, slug, initialPage = 1, pageSize = 6, relatedPosts = [] }) {
   const [filteredTools, setFilteredTools] = useState(items);

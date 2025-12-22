@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { getAllToolsMeta } from '../../tools';
 import { getBaseUrl, siteName } from '../../lib/site';
-import StructuredData from '../../components/StructuredData';
+import StructuredData from '../../components/ui/StructuredData';
 
 const baseUrl = getBaseUrl();
 

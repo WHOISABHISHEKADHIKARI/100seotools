@@ -1,5 +1,5 @@
-import StructuredData from '../../../components/StructuredData';
-import ShareActions from '../../../components/ShareActions';
+import StructuredData from '../../../components/ui/StructuredData';
+import ShareActions from '../../../components/ui/ShareActions';
 import { getBaseUrl, siteName } from '../../../lib/site';
 
 export const dynamic = 'force-static';

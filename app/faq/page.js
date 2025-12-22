@@ -1,4 +1,4 @@
-import StructuredData from '../../components/StructuredData';
+import StructuredData from '../../components/ui/StructuredData';
 import { getBaseUrl } from '../../lib/site';
 
 const baseUrl = getBaseUrl();

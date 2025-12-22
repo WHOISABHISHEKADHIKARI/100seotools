@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import ThemeToggle from './ThemeToggle';
+import ThemeToggle from '../ui/ThemeToggle';
 import { FiCompass, FiChevronDown, FiMenu, FiX } from 'react-icons/fi';
 
 // Categories surfaced in dropdown

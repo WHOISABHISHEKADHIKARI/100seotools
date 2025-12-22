@@ -1,6 +1,6 @@
-import StructuredData from '../../../components/StructuredData';
-import ToolLayout from '../../../components/ToolLayout';
-import ToolRunner from '../../../components/ToolRunner';
+import StructuredData from '../../../components/ui/StructuredData';
+import ToolLayout from '../../../components/layout/ToolLayout';
+import ToolRunner from '../../../components/tools/ToolRunner';
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { getBaseUrl } from '../../../lib/site';
 import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSchema } from '../../../lib/schema';
@@ -42,7 +42,7 @@ export default function Page() {
 
   // Related tools from existing inventory
   const relatedTools = getAllToolsMeta()
-    .filter(t => ['blog-title-generator','heading-analyzer','ai-content-improver','ai-meta-tag-writer','keyword-density-checker','ai-article-length-optimizer','meta-description-writer'].includes(t.slug))
+    .filter(t => ['blog-title-generator', 'heading-analyzer', 'ai-content-improver', 'ai-meta-tag-writer', 'keyword-density-checker', 'ai-article-length-optimizer', 'meta-description-writer'].includes(t.slug))
     .slice(0, 6);
 
   // Structured data

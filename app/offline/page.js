@@ -19,7 +19,7 @@ export const metadata = {
   }
 };
 
-import OfflineContent from '../../components/OfflineContent';
+import OfflineContent from '../../components/layout/OfflineContent';
 
 export default function OfflinePage() {
   return <OfflineContent />;

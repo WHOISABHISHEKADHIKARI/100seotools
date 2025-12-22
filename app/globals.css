@@ -23,7 +23,8 @@
   --color-brand-900: #0c4a6e;
   --color-brand-950: #082f49;
 
-  --color-gray-400: #52525b; /* accessibleGray */
+  --color-gray-400: #52525b;
+  /* accessibleGray */
   --color-gray-500: #3f3f46;
   --color-gray-600: #27272a;
   --color-gray-700: #18181b;
@@ -54,9 +55,9 @@
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.08);
-  --shadow-md: 0 4px 10px rgba(0,0,0,0.08);
-  --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
   /* Spacing ratios */
   --space-1: 0.25rem;
@@ -139,11 +140,15 @@
   gap: var(--space-2);
   margin-bottom: var(--space-4);
 }
+
 .form-group label {
   font-size: var(--text-sm);
   color: var(--color-gray-500);
 }
-.form-group input, .form-group select, .form-group textarea {
+
+.form-group input,
+.form-group select,
+.form-group textarea {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 0.5rem 0.75rem;
@@ -151,7 +156,10 @@
   background-color: #ffffff;
   color: var(--color-fg);
 }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
   outline: 2px solid var(--color-brand-500);
   outline-offset: 2px;
 }
@@ -161,19 +169,23 @@
   display: flex;
   gap: var(--space-2);
 }
+
 .format-tab {
   @apply tap-target;
   background-color: #ffffff;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
 }
+
 .format-tab:hover {
   border-color: var(--color-brand-300);
 }
+
 .format-tab:focus-visible {
   outline: 2px solid var(--color-brand-500);
   outline-offset: 2px;
 }
+
 .format-tab.active {
   background-color: var(--color-brand-50);
   border-color: var(--color-brand-500);
@@ -188,14 +200,20 @@
 }
 
 /* Ensure code text visibility and contrast across themes and Prism overrides */
-pre[class*="language-"], code[class*="language-"] {
+pre[class*="language-"],
+code[class*="language-"] {
   background-color: var(--color-bg-muted) !important;
   color: var(--color-fg) !important;
 }
-.dark pre[class*="language-"], .dark code[class*="language-"] {
-  background-color: #111827 !important; /* gray-900 */
-  color: #f3f4f6 !important; /* gray-100 */
+
+.dark pre[class*="language-"],
+.dark code[class*="language-"] {
+  background-color: #111827 !important;
+  /* gray-900 */
+  color: #f3f4f6 !important;
+  /* gray-100 */
 }
+
 /* Specific override for our output code block */
 #outputCode {
   background-color: var(--color-bg-muted) !important;
@@ -237,25 +255,62 @@ html {
 }
 
 body {
-  font-size: 16px; /* Set base font size for readability */
-  line-height: 1.6; /* Improve line spacing */
+  font-size: 16px;
+  /* Set base font size for readability */
+  line-height: 1.6;
+  /* Improve line spacing */
 }
 
-*, *::before, *::after { box-sizing: border-box; }
-html, body { max-width: 100%; overflow-x: hidden; }
-img, video, canvas, svg { max-width: 100%; height: auto; }
-.unified-card, .article-card { width: 100%; }
-.unified-card-title, .unified-card-description, .article-card-title, .article-card-description { overflow-wrap: anywhere; word-break: break-word; }
-@supports (min-height: 100svh) { .min-h-screen { min-height: 100svh; } }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.unified-card,
+.article-card {
+  width: 100%;
+}
+
+.unified-card-title,
+.unified-card-description,
+.article-card-title,
+.article-card-description {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@supports (min-height: 100svh) {
+  .min-h-screen {
+    min-height: 100svh;
+  }
+}
 
 /* Improved button styles with visible feedback */
 .btn {
   @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-blue-700 text-white hover:bg-blue-800 transition-colors duration-200;
   position: relative;
   overflow: hidden;
-  min-width: 48px; /* Ensure minimum tap target size */
-  min-height: 48px; /* Ensure minimum tap target size */
-  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  min-width: 48px;
+  /* Ensure minimum tap target size */
+  min-height: 48px;
+  /* Ensure minimum tap target size */
+  -webkit-tap-highlight-color: transparent;
+  /* Remove tap highlight on mobile */
 }
 
 .btn:active {
@@ -285,6 +340,7 @@ img, video, canvas, svg { max-width: 100%; height: auto; }
     transform: scale(0, 0);
     opacity: 0.5;
   }
+
   100% {
     transform: scale(20, 20);
     opacity: 0;
@@ -295,9 +351,12 @@ img, video, canvas, svg { max-width: 100%; height: auto; }
   @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900;
   position: relative;
   overflow: hidden;
-  min-width: 48px; /* Ensure minimum tap target size */
-  min-height: 48px; /* Ensure minimum tap target size */
-  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  min-width: 48px;
+  /* Ensure minimum tap target size */
+  min-height: 48px;
+  /* Ensure minimum tap target size */
+  -webkit-tap-highlight-color: transparent;
+  /* Remove tap highlight on mobile */
 }
 
 .btn-secondary:active {
@@ -306,7 +365,8 @@ img, video, canvas, svg { max-width: 100%; height: auto; }
 
 /* Improved input styles */
 .input {
-  @apply w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-base transition-all; /* Use text-base for readability */
+  @apply w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-base transition-all;
+  /* Use text-base for readability */
 }
 
 .input:hover {
@@ -334,13 +394,18 @@ img, video, canvas, svg { max-width: 100%; height: auto; }
 
 /* Typography helpers for card content */
 .card-title {
-  @apply text-lg font-medium text-gray-900 dark:text-gray-100; /* Increased font size */
+  @apply text-lg font-medium text-gray-900 dark:text-gray-100;
+  /* Increased font size */
 }
+
 .card-desc {
-  @apply text-base text-gray-600 dark:text-gray-400; /* Increased font size */
+  @apply text-base text-gray-600 dark:text-gray-400;
+  /* Increased font size */
 }
+
 .card-meta {
-  @apply text-sm px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400; /* Increased font size */
+  @apply text-sm px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400;
+  /* Increased font size */
 }
 
 /* Mobile responsiveness improvements */
@@ -349,10 +414,24 @@ img, video, canvas, svg { max-width: 100%; height: auto; }
     @apply hover:shadow-sm hover:translate-y-0;
   }
 
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.75rem; }
-  h3 { font-size: 1.5rem; }
-  p, .card-desc { font-size: 1rem; } /* Ensure p and card descriptions are readable */
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p,
+  .card-desc {
+    font-size: 1rem;
+  }
+
+  /* Ensure p and card descriptions are readable */
 
   /* Prevent text overflow on small screens */
   .unified-card-title,
@@ -365,24 +444,37 @@ img, video, canvas, svg { max-width: 100%; height: auto; }
     hyphens: auto;
   }
 
-  .btn, .btn-secondary {
-    padding: 0.75rem 1rem; /* Larger padding for easier tapping */
+  .btn,
+  .btn-secondary {
+    padding: 0.75rem 1rem;
+    /* Larger padding for easier tapping */
   }
 }
 
 /* Accessibility: ensure brand link text meets WCAG contrast
    Override Tailwind's text-brand-600 to accessible variants for light/dark backgrounds */
-.text-brand-600 { color: #0369a1 !important; }
-.dark .text-brand-600 { color: #38bdf8 !important; }
+.text-brand-600 {
+  color: #0369a1 !important;
+}
+
+.dark .text-brand-600 {
+  color: #38bdf8 !important;
+}
 
 /* Also ensure hover variant remains accessible */
-.hover\:text-brand-600:hover { color: #0369a1 !important; }
-.dark .hover\:text-brand-600:hover { color: #38bdf8 !important; }
+.hover\:text-brand-600:hover {
+  color: #0369a1 !important;
+}
+
+.dark .hover\:text-brand-600:hover {
+  color: #38bdf8 !important;
+}
 
 /* Fix low-contrast small action links in dark unified cards */
 .dark .unified-card-actions .text-gray-500,
 .dark .unified-card-actions a.text-gray-500 {
-  color: #d1d5db !important; /* gray-300 on dark bg ensures >=4.5:1 at 12px */
+  color: #d1d5db !important;
+  /* gray-300 on dark bg ensures >=4.5:1 at 12px */
 }
 
 /* Removed unused loading-skeleton animation utility */
@@ -422,8 +514,31 @@ img, video, canvas, svg { max-width: 100%; height: auto; }
   }
 }
 
+/* Improved Placeholder Contrast */
+::placeholder {
+  @apply text-slate-500 dark:text-slate-400;
+  opacity: 1;
+}
+
+/* Character counter and secondary text contrast */
+.character-badge {
+  @apply bg-brand-50/50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800 shadow-sm transition-all;
+}
+
+/* Global focus and accessibility refinements */
+.dark .text-slate-500 {
+  color: #94a3b8 !important;
+  /* slate-400 equivalent for dark bg */
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  @apply opacity-60;
+}
+
 /* Ensure content does not exceed screen width */
-html, body {
+html,
+body {
   overflow-x: hidden;
   max-width: 100%;
 }
@@ -432,15 +547,18 @@ html, body {
 .table-container {
   overflow-x: auto;
 }
+
 .table-responsive {
   width: 100%;
   table-layout: auto;
 }
+
 .table-responsive th,
 .table-responsive td {
   padding: 0.5rem;
   white-space: normal;
 }
+
 .table-responsive td,
 .table-responsive th {
   word-break: break-word;
@@ -448,12 +566,14 @@ html, body {
 
 /* Form input scaling for mobile */
 @media (max-width: 640px) {
+
   input[type="text"],
   input[type="url"],
   input[type="email"],
   select,
   textarea {
     min-height: 44px;
-    font-size: 16px; /* Prevent iOS zoom */
+    font-size: 16px;
+    /* Prevent iOS zoom */
   }
 }

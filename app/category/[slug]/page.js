@@ -3,7 +3,7 @@ import { getAllBlogPosts } from '../../../lib/blog';
 import { getAllToolsMeta } from '../../../tools';
 import { notFound } from 'next/navigation';
 import { getBaseUrl, siteName } from '../../../lib/site';
-import CategoryClient from '../../../components/CategoryClient';
+import CategoryClient from '../../../components/tools/CategoryClient';
 
 const baseUrl = getBaseUrl();
 

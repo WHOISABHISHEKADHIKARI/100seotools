@@ -2,8 +2,8 @@
 import React, { useEffect, useState, memo, useRef, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useUserPreferences } from '../contexts/UserPreferencesContext';
-import UnifiedCard from '@/components/UnifiedCard';
+import { useUserPreferences } from '../../contexts/UserPreferencesContext';
+import UnifiedCard from '@/components/ui/UnifiedCard';
 import {
   FiSearch,
   FiTag,

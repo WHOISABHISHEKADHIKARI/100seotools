@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
-import StructuredData from '../../../components/StructuredData';
-import ShareActions from '../../../components/ShareActions';
-import CardSection from '../../../components/CardSection';
+import StructuredData from '../../../components/ui/StructuredData';
+import ShareActions from '../../../components/ui/ShareActions';
+import CardSection from '../../../components/ui/CardSection';
 import { getAllBlogPosts } from '../../../lib/blog';
 import { getBaseUrl, siteName } from '../../../lib/site';
 import Link from 'next/link';

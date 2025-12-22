@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import StructuredData from '../../../components/StructuredData';
+import StructuredData from '../../../components/ui/StructuredData';
 import { getAllBlogPostsPublished, getBlogPostPublishedBySlug } from '../../../lib/blog-data';
-import { getBaseUrl, siteName } from '../../../lib/site';
+import { getBaseUrl, siteName, getAuthor } from '../../../lib/site';
 import { notFound, redirect } from 'next/navigation';
 
 const baseUrl = getBaseUrl();
@@ -115,14 +115,7 @@ export default async function Page({ params, searchParams }) {
     datePublished: post.datePublished,
     author: {
       '@type': 'Person',
-      name: 'Abhishek Adhikari',
-      url: `${baseUrl}/author`,
-      jobTitle: 'SEO Expert & Full-Stack Developer',
-      sameAs: [
-        'https://github.com/WHOISABHISHEKADHIKARI',
-        'https://hashtagweb.com.np/team/abhisek-adhikari/',
-        'https://krishihimalaya.com/',
-      ]
+      ...getAuthor(baseUrl)
     },
     publisher: {
       '@type': 'Organization',
@@ -156,6 +149,16 @@ export default async function Page({ params, searchParams }) {
     description: post.description,
     step: post.sections.howDetailed.map((s) => ({ '@type': 'HowToStep', text: s }))
   } : null;
+
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `${baseUrl}/blog/${post.slug}` }
+    ]
+  };
 
   return (
     <article className="max-w-3xl mx-auto py-10 space-y-8">
@@ -328,6 +331,7 @@ export default async function Page({ params, searchParams }) {
       <StructuredData data={articleLd} />
       {faqLd && <StructuredData data={faqLd} />}
       {howToLd && <StructuredData data={howToLd} />}
+      <StructuredData data={breadcrumbLd} />
     </article>
   );
 }

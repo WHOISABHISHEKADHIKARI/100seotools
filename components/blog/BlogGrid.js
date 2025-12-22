@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { getAllBlogPosts } from "../lib/blog";
+import { getAllBlogPosts } from "../../lib/blog";
 
 function formatDate(iso) {
   try {

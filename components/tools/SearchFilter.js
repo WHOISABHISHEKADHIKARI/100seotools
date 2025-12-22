@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
-import { useUserPreferences } from '../contexts/UserPreferencesContext';
+import { useUserPreferences } from '../../contexts/UserPreferencesContext';
 import {
   FiSearch,
   FiX,

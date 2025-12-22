@@ -6,7 +6,7 @@ export default function WebVitals() {
     // Only load web vitals in production
     if (process.env.NODE_ENV !== 'production') return;
 
-    import('../lib/web-vitals-mock').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+    import('../../lib/web-vitals-mock').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
       function sendToAnalytics(metric) {
         // Log to console in development, send to analytics in production
         console.log('Web Vital:', metric);

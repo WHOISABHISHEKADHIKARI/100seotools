@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from 'react';
-import { useUserPreferences } from '../contexts/UserPreferencesContext';
+import { useUserPreferences } from '../../contexts/UserPreferencesContext';
 
 export default function PerformanceMonitor() {
   const { actions } = useUserPreferences();
@@ -11,7 +11,7 @@ export default function PerformanceMonitor() {
 
   const scheduleUpdate = () => {
     if (scheduleRef.current) {
-      try { clearTimeout(scheduleRef.current); } catch {}
+      try { clearTimeout(scheduleRef.current); } catch { }
     }
     scheduleRef.current = setTimeout(() => {
       try {
@@ -21,7 +21,7 @@ export default function PerformanceMonitor() {
             lastUpdated: Date.now()
           }
         });
-      } catch {}
+      } catch { }
     }, 0);
   };
 
@@ -29,7 +29,7 @@ export default function PerformanceMonitor() {
     // Track Core Web Vitals
     const trackWebVitals = () => {
       // Use web-vitals mock library
-      import('../lib/web-vitals-mock.mjs').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      import('../../lib/web-vitals-mock.mjs').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
         getCLS((metric) => {
           metricsRef.current.cls = Math.round(metric.value * 1000) / 1000;
           scheduleUpdate();
@@ -57,72 +57,72 @@ export default function PerformanceMonitor() {
       }).catch(() => {
         // Fallback to manual implementation
         if ('PerformanceObserver' in window) {
-        try {
-          const lcpObserver = new PerformanceObserver((list) => {
-            const entries = list.getEntries();
-            const lastEntry = entries[entries.length - 1];
-            metricsRef.current.lcp = Math.round(lastEntry.startTime);
-            scheduleUpdate();
-          });
-          lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-          observerRef.current = lcpObserver;
-          observersRef.current.push(lcpObserver);
-        } catch (e) {
-          console.warn('LCP observer not supported:', e);
-        }
-
-        // First Input Delay (FID)
-        try {
-          const fidObserver = new PerformanceObserver((list) => {
-            const entries = list.getEntries();
-            entries.forEach((entry) => {
-              metricsRef.current.fid = Math.round(entry.processingStart - entry.startTime);
+          try {
+            const lcpObserver = new PerformanceObserver((list) => {
+              const entries = list.getEntries();
+              const lastEntry = entries[entries.length - 1];
+              metricsRef.current.lcp = Math.round(lastEntry.startTime);
               scheduleUpdate();
             });
-          });
-          fidObserver.observe({ entryTypes: ['first-input'] });
-          observersRef.current.push(fidObserver);
-        } catch (e) {
-          console.warn('FID observer not supported:', e);
-        }
+            lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+            observerRef.current = lcpObserver;
+            observersRef.current.push(lcpObserver);
+          } catch (e) {
+            console.warn('LCP observer not supported:', e);
+          }
 
-        // Cumulative Layout Shift (CLS)
-        try {
-          let clsValue = 0;
-          let clsEntries = [];
-          let sessionValue = 0;
-          let sessionEntries = [];
+          // First Input Delay (FID)
+          try {
+            const fidObserver = new PerformanceObserver((list) => {
+              const entries = list.getEntries();
+              entries.forEach((entry) => {
+                metricsRef.current.fid = Math.round(entry.processingStart - entry.startTime);
+                scheduleUpdate();
+              });
+            });
+            fidObserver.observe({ entryTypes: ['first-input'] });
+            observersRef.current.push(fidObserver);
+          } catch (e) {
+            console.warn('FID observer not supported:', e);
+          }
 
-          const clsObserver = new PerformanceObserver((list) => {
-            for (const entry of list.getEntries()) {
-              if (!entry.hadRecentInput) {
-                const firstSessionEntry = sessionEntries[0];
-                const lastSessionEntry = sessionEntries[sessionEntries.length - 1];
+          // Cumulative Layout Shift (CLS)
+          try {
+            let clsValue = 0;
+            let clsEntries = [];
+            let sessionValue = 0;
+            let sessionEntries = [];
 
-                if (sessionValue &&
+            const clsObserver = new PerformanceObserver((list) => {
+              for (const entry of list.getEntries()) {
+                if (!entry.hadRecentInput) {
+                  const firstSessionEntry = sessionEntries[0];
+                  const lastSessionEntry = sessionEntries[sessionEntries.length - 1];
+
+                  if (sessionValue &&
                     entry.startTime - lastSessionEntry.startTime < 1000 &&
                     entry.startTime - firstSessionEntry.startTime < 5000) {
-                  sessionValue += entry.value;
-                  sessionEntries.push(entry);
-                } else {
-                  sessionValue = entry.value;
-                  sessionEntries = [entry];
-                }
+                    sessionValue += entry.value;
+                    sessionEntries.push(entry);
+                  } else {
+                    sessionValue = entry.value;
+                    sessionEntries = [entry];
+                  }
 
-                if (sessionValue > clsValue) {
-                  clsValue = sessionValue;
-                  clsEntries = [...sessionEntries];
-                  metricsRef.current.cls = Math.round(clsValue * 1000) / 1000;
-                  scheduleUpdate();
+                  if (sessionValue > clsValue) {
+                    clsValue = sessionValue;
+                    clsEntries = [...sessionEntries];
+                    metricsRef.current.cls = Math.round(clsValue * 1000) / 1000;
+                    scheduleUpdate();
+                  }
                 }
               }
-            }
-          });
-          clsObserver.observe({ entryTypes: ['layout-shift'] });
-          observersRef.current.push(clsObserver);
-        } catch (e) {
-          console.warn('CLS observer not supported:', e);
-        }
+            });
+            clsObserver.observe({ entryTypes: ['layout-shift'] });
+            observersRef.current.push(clsObserver);
+          } catch (e) {
+            console.warn('CLS observer not supported:', e);
+          }
 
           // Time to First Byte (TTFB)
           try {
@@ -280,11 +280,11 @@ export default function PerformanceMonitor() {
         window.removeEventListener('beforeunload', trackEngagement);
         document.removeEventListener('visibilitychange', handleVisibilityChange);
         if (observerRef.current) {
-          try { observerRef.current.disconnect(); } catch {}
+          try { observerRef.current.disconnect(); } catch { }
         }
         if (Array.isArray(observersRef.current)) {
           for (const obs of observersRef.current) {
-            try { obs.disconnect(); } catch {}
+            try { obs.disconnect(); } catch { }
           }
           observersRef.current = [];
         }
@@ -335,7 +335,7 @@ export default function PerformanceMonitor() {
 // Throttle function to limit how often a function can be called
 function throttle(func, limit) {
   let inThrottle;
-  return function() {
+  return function () {
     const args = arguments;
     const context = this;
     if (!inThrottle) {
