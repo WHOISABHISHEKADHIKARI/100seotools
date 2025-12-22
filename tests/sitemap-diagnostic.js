@@ -13,31 +13,36 @@ const checkSitemapLocal = async (url) => {
     let filePath = path.join(process.cwd(), 'app', route);
 
     // Check various possibilities for where the file might be
+    // Check various possibilities for where the file might be
     const possiblePaths = [
         path.join(process.cwd(), 'app', url.replace('https://www.100seotools.com/', '').replace('sitemap.xml', 'sitemap.js')),
         path.join(process.cwd(), 'app', url.replace('https://www.100seotools.com/', '').replace('/sitemap.xml', ''), 'sitemap.js'),
+        path.join(process.cwd(), 'app', url.replace('https://www.100seotools.com/', '') + '/route.js'), // For sitemap-index.xml/route.js
     ];
 
-    let found = false;
+    let foundPath = null;
     for (const p of possiblePaths) {
         if (fs.existsSync(p)) {
-            console.log(`✅ FOUND SOURCE: ${p}`);
-            found = true;
-            break;
+            // Ensure it is a file, not a directory
+            if (fs.statSync(p).isFile()) {
+                console.log(`✅ FOUND SOURCE: ${p}`);
+                foundPath = p;
+                break;
+            }
         }
     }
 
-    if (!found) {
+    if (!foundPath) {
         console.log(`❌ FILE NOT FOUND for ${url}`);
         console.log(`   Checked paths: ${possiblePaths.join(', ')}`);
     } else {
         // try to see if it exports a default function
         try {
-            const content = fs.readFileSync(possiblePaths.find(p => fs.existsSync(p)), 'utf8');
-            if (content.includes('export default function sitemap')) {
-                console.log(`   ✅ Exports sitemap function`);
+            const content = fs.readFileSync(foundPath, 'utf8');
+            if (content.match(/export (default )?(async )?function/)) {
+                console.log(`   ✅ Exports function (Route or Sitemap)`);
             } else {
-                console.log(`   ⚠️ Does not seem to export sitemap function`);
+                console.log(`   ⚠️ Does not seem to export function (Check manually)`);
             }
         } catch (e) {
             console.log(`   ❌ Error reading file: ${e.message}`);

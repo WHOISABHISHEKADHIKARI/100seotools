@@ -176,7 +176,7 @@ const faqs = [
     },
     {
         q: 'How many years of experience does Abhishek Adhikari have?',
-        a: 'Abhishek Adhikari has 22+ years of combined experience in agriculture, technology, entrepreneurship, SEO optimization, UI/UX design, and web development.'
+        a: 'Abhishek Adhikari has 10+ years of combined experience in agriculture, technology, entrepreneurship, SEO optimization, UI/UX design, and web development.'
     },
     {
         q: 'Is 100SEOTools really free?',
