@@ -49,14 +49,6 @@ const nextConfig = withBundleAnalyzer({
       // Legacy blog pagination redirect: /blog/<slug>/p/<n> -> /blog/<slug>
       { source: '/blog/:slug/p/:page', destination: '/blog/:slug', permanent: true },
 
-      // Normalize blog query pagination: /blog/<slug>?page=<n> -> /blog/<slug>
-      {
-        source: '/blog/:slug',
-        has: [{ type: 'query', key: 'page' }],
-        destination: '/blog/:slug',
-        permanent: true,
-      },
-
       // SEO keyword variant redirects for better rankings
       // On-page SEO checker variants (currently ranking 94-102)
       { source: '/on-page-checker', destination: '/tools/on-page-seo-audit-checker', permanent: true },
