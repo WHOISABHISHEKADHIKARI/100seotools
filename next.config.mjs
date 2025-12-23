@@ -71,6 +71,11 @@ const nextConfig = withBundleAnalyzer({
       { source: '/blog/keyword-clustering-tool', destination: '/tools/keyword-clustering-tool', permanent: true },
       // Fix 404 for indexed Heading Analyzer guide
       { source: '/blog/heading-analyzer-guide-2', destination: '/blog/heading-analyzer-guide', permanent: true },
+      // Fix 404s for other legacy numbered guide slugs
+      { source: '/blog/on-page-seo-audit-checker-guide-3', destination: '/blog/on-page-seo-audit-checker-guide', permanent: true },
+      { source: '/blog/meta-description-writer-guide-2', destination: '/blog/meta-description-writer-guide', permanent: true },
+      { source: '/blog/featured-snippet-optimizer-guide-3', destination: '/blog/featured-snippet-optimizer-guide', permanent: true },
+      { source: '/blog/ai-keyword-explainer-guide-1', destination: '/blog/ai-keyword-explainer-guide', permanent: true },
       // Redirect Google My Business Optimization Helper Guide to home page
       { source: '/blog/google-my-business-optimization-helper-guide-1', destination: '/', permanent: true },
     ];

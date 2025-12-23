@@ -3,7 +3,7 @@ import Link from 'next/link';
 import StructuredData from '../../../components/ui/StructuredData';
 import { getAllBlogPostsPublished, getBlogPostPublishedBySlug } from '../../../lib/blog-data';
 import { getBaseUrl, siteName, getAuthor } from '../../../lib/site';
-import { notFound, redirect } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 
 const baseUrl = getBaseUrl();
 
@@ -114,6 +114,14 @@ export async function generateMetadata({ params, searchParams }) {
 export default async function Page({ params, searchParams }) {
   const { slug } = await params;
   const page = Number((await searchParams)?.page || 1);
+
+  // If a page parameter is present for an individual blog post,
+  // redirect to the base URL since individual posts are not paginated.
+  // This resolves GSC "Redirect error" for URLs like ?page=2.
+  if (page > 1) {
+    permanentRedirect(`/blog/${slug}`);
+  }
+
   const post = await getBlogPostPublishedBySlug(slug);
   if (!post) {
     notFound();

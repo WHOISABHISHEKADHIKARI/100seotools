@@ -3,13 +3,19 @@ import StructuredData from '../../components/ui/StructuredData';
 import { getAllBlogPostsPublished } from '../../lib/blog-data';
 import { getBaseUrl } from '../../lib/site';
 import BlogGrid from '../../components/blog/BlogGrid';
+import { permanentRedirect } from 'next/navigation';
 
 const baseUrl = getBaseUrl();
 
 // Metadata moved to separate file or synced here
 export { metadata } from './metadata';
 
-export default async function BlogPage() {
+export default async function BlogPage({ searchParams }) {
+  const page = Number((await searchParams)?.page || 1);
+  if (page > 1) {
+    permanentRedirect('/blog');
+  }
+
   const posts = await getAllBlogPostsPublished();
   const categories = ['All', ...new Set(posts.map(p => p.category).filter(Boolean))];
 
