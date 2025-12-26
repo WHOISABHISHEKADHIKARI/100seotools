@@ -69,15 +69,28 @@ const nextConfig = withBundleAnalyzer({
       { source: '/blog/keyword-suggestion-tool-popular-search-terms', destination: '/tools/keyword-suggestion-tool', permanent: true },
       { source: '/blog/meta-tag-generator', destination: '/tools/meta-tag-generator', permanent: true },
       { source: '/blog/keyword-clustering-tool', destination: '/tools/keyword-clustering-tool', permanent: true },
-      // Fix 404 for indexed Heading Analyzer guide
-      { source: '/blog/heading-analyzer-guide-2', destination: '/blog/heading-analyzer-guide', permanent: true },
-      // Fix 404s for other legacy numbered guide slugs
-      { source: '/blog/on-page-seo-audit-checker-guide-3', destination: '/blog/on-page-seo-audit-checker-guide', permanent: true },
-      { source: '/blog/meta-description-writer-guide-2', destination: '/blog/meta-description-writer-guide', permanent: true },
-      { source: '/blog/featured-snippet-optimizer-guide-3', destination: '/blog/featured-snippet-optimizer-guide', permanent: true },
-      { source: '/blog/ai-keyword-explainer-guide-1', destination: '/blog/ai-keyword-explainer-guide', permanent: true },
+      // Fix 404 for hosted guides and generic paths
+      { source: '/guides', destination: '/blog/latest-seo-guides', permanent: true },
+
+      // Fix specific renamed/missing tools
+      { source: '/tools/sentiment-analyzer', destination: '/tools/tone-of-voice-analyzer', permanent: true },
+      { source: '/tools/seo-roi-calculator', destination: '/tools/keyword-roi-calculator', permanent: true },
+
+      // Fix tool variant URLs that should point to the tool itself (clean up GSC 404s)
+      { source: '/tools/:slug-guide', destination: '/tools/:slug', permanent: true },
+      { source: '/tools/:slug-best-practices-integrations-costs', destination: '/tools/:slug', permanent: true },
+      { source: '/tools/:slug-features-benefits-keywords', destination: '/tools/:slug', permanent: true },
+      { source: '/tools/:slug-checklist-workflow', destination: '/tools/:slug', permanent: true },
+      { source: '/tools/:slug-popular-search-terms', destination: '/tools/:slug', permanent: true },
+      { source: '/tools/:slug-how-to-use', destination: '/tools/:slug', permanent: true },
+
+      // Fix 404s for numbered guide variants (guide-1, guide-2, guide-3) -> base guide
+      // Pattern: /blog/:slug-guide-:number -> /blog/:slug-guide
+      { source: '/blog/:slug(.*)-guide-:number(\\d+)', destination: '/blog/:slug-guide', permanent: true },
+
       // Redirect Google My Business Optimization Helper Guide to home page
-      { source: '/blog/google-my-business-optimization-helper-guide-1', destination: '/', permanent: true },
+      { source: '/blog/google-my-business-optimization-helper-guide-:number(\\d+)', destination: '/', permanent: true },
+      { source: '/blog/gmb-optimization-helper-guide-:number(\\d+)', destination: '/', permanent: true },
     ];
     if (process.env.NODE_ENV !== 'production') return common;
     return [
@@ -96,6 +109,14 @@ const nextConfig = withBundleAnalyzer({
       },
     ];
   },
+  rewrites: async () => [
+    { source: '/sitemap-blog.xml', destination: '/sitemap-blog/sitemap.xml' },
+    { source: '/sitemap-tools.xml', destination: '/sitemap-tools/sitemap.xml' },
+    { source: '/sitemap-guides.xml', destination: '/sitemap-guides/sitemap.xml' },
+    { source: '/sitemap-categories.xml', destination: '/sitemap-categories/sitemap.xml' },
+    { source: '/sitemap-author.xml', destination: '/sitemap-author/sitemap.xml' },
+    { source: '/sitemap-static.xml', destination: '/sitemap-static/sitemap.xml' },
+  ],
   headers: async () => [
     {
       source: '/alternative/(.*)',

@@ -43,15 +43,22 @@ export default async function BlogPage({ searchParams }) {
         url: `${baseUrl}/logo.png`
       }
     },
-    blogPost: posts.slice(0, 10).map(p => ({
-      '@type': 'BlogPosting',
-      headline: p.title,
-      description: p.description,
-      datePublished: p.datePublished,
-      author: { '@type': 'Organization', name: '100 SEO Tools' },
-      url: `${baseUrl}/blog/${p.slug}`,
-      articleSection: p.category
-    }))
+    blogPost: posts
+      .filter(p => {
+        // Exclude tool variants from schema to avoid duplicate content
+        const toolSuffixes = ['-how-to-use', '-features-benefits-keywords', '-best-practices-integrations-costs', '-checklist-workflow', '-popular-search-terms'];
+        return !toolSuffixes.some(suffix => p.slug.endsWith(suffix));
+      })
+      .slice(0, 50)
+      .map(p => ({
+        '@type': 'BlogPosting',
+        headline: p.title,
+        description: p.description,
+        datePublished: p.datePublished,
+        author: { '@type': 'Organization', name: '100 SEO Tools' },
+        url: `${baseUrl}/blog/${p.slug}`,
+        articleSection: p.category
+      }))
   };
 
   return (
@@ -102,8 +109,39 @@ export default async function BlogPage({ searchParams }) {
           </div>
         </section>
 
-        {/* Blog Grid Component (Client-side filtering) */}
-        <BlogGrid initialPosts={posts} initialCategories={categories} />
+        {/* Tool Guides Section */}
+        <section className="max-w-7xl mx-auto px-4 py-8">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold mb-2">Tool-Specific Guides</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              In-depth guides for each SEO tool - how to use, features, benefits, and best practices
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {posts
+              .filter(p => p.slug.includes('-how-to-use') || (p.slug.includes('-guide') && !p.slug.match(/-guide-\d+$/)))
+              .slice(0, 8)
+              .map(post => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-brand-500 hover:shadow-md transition text-sm"
+                >
+                  <span className="line-clamp-2 font-medium">{post.title}</span>
+                </Link>
+              ))}
+          </div>
+        </section>
+
+        {/* Blog Grid Component - Filter out tool variants */}
+        <BlogGrid
+          initialPosts={posts.filter(p => {
+            const toolSuffixes = ['-how-to-use', '-features-benefits-keywords', '-best-practices-integrations-costs', '-checklist-workflow', '-popular-search-terms'];
+            return !toolSuffixes.some(suffix => p.slug.endsWith(suffix));
+          })}
+          initialCategories={categories}
+        />
 
         {/* CTA Section */}
         <section className="max-w-4xl mx-auto px-4 py-12">
@@ -152,15 +190,18 @@ export default async function BlogPage({ searchParams }) {
             </div>
 
             <div>
-              <h3 className="font-bold text-lg mb-3">Latest Guides</h3>
+              <h3 className="font-bold text-lg mb-3">Latest Tool Guides</h3>
               <ul className="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
-                {posts.slice(0, 5).map(post => (
-                  <li key={post.slug}>
-                    <Link href={`/blog/${post.slug}`} className="hover:text-brand-600 dark:hover:text-brand-400 transition line-clamp-1">
-                      {post.title}
-                    </Link>
-                  </li>
-                ))}
+                {posts
+                  .filter(p => p.slug.includes('-how-to-use'))
+                  .slice(0, 5)
+                  .map(post => (
+                    <li key={post.slug}>
+                      <Link href={`/blog/${post.slug}`} className="hover:text-brand-600 dark:hover:text-brand-400 transition line-clamp-1">
+                        {post.title}
+                      </Link>
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>
