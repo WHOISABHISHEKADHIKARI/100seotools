@@ -73,6 +73,7 @@ import ClientLayout from '../components/layout/ClientLayout';
 import ClientRoot from '../components/layout/ClientRoot';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { generateWebsiteSchema } from '../lib/schema';
+import { Analytics } from '@vercel/analytics/next';
 
 export default function RootLayout({ children }) {
   return (
@@ -183,6 +184,9 @@ export default function RootLayout({ children }) {
 
           {/* Vercel Speed Insights */}
           <SpeedInsights />
+
+          {/* Vercel Web Analytics */}
+          <Analytics />
 
         </ClientRoot>
       </body>
