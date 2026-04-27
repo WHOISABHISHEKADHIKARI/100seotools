@@ -100,6 +100,9 @@ function getToolChangeFreq(tool) {
  */
 export default function sitemap() {
     const baseUrl = getBaseUrl();
+    // Use a stable date for static content to avoid daily 'changes' that haven't happened
+    // Only update this when significant tool logic or content changes
+    const stableDate = new Date('2026-04-25');
     const now = new Date();
 
     // ============================================
@@ -125,7 +128,7 @@ export default function sitemap() {
     // ============================================
     const toolsIndex = {
         url: `${baseUrl}/tools`,
-        lastModified: now,
+        lastModified: stableDate,
         changeFrequency: 'daily',
         priority: 0.9,
     };
@@ -135,7 +138,7 @@ export default function sitemap() {
     // ============================================
     const toolEntries = validTools.map((tool) => ({
         url: `${baseUrl}/tools/${tool.slug}`,
-        lastModified: now,
+        lastModified: stableDate,
         changeFrequency: getToolChangeFreq(tool),
         priority: getToolPriority(tool),
     }));

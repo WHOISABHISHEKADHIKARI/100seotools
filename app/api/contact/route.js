@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
+import { getBaseUrl } from '../../../lib/site';
 
 export async function POST(request) {
     try {
+        const baseUrl = getBaseUrl();
         const body = await request.json();
         const { name, email, subject, message } = body;
 
@@ -106,7 +108,7 @@ This message was sent from the 100 SEO Tools contact form.
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         await resend.emails.send({
-          from: 'contact@100seotools.com',
+          from: `contact@${baseUrl.replace(/^https?:\/\/(www\.)?/, '')}`,
           to: 'abhishekadhikari1254@gmail.com',
           reply_to: email,
           subject: `Contact Form: ${subject}`,

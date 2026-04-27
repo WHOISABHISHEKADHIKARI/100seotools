@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
+import { slugify } from '../../lib/utils';
 
 export default function Card({
   href,
@@ -147,11 +148,4 @@ export default function Card({
   }
 
   return content;
-}
-
-function slugify(str) {
-  return String(str)
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)+/g, '');
 }

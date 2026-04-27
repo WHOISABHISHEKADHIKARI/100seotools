@@ -7,6 +7,7 @@ import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { getToolGuide } from '../../../lib/guides';
 import { notFound } from 'next/navigation';
 import { getBaseUrl, siteName } from '../../../lib/site';
+import { slugify } from '../../../lib/utils';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -90,7 +91,7 @@ export default async function ToolPage({ params }) {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/` },
-      { '@type': 'ListItem', position: 2, name: tool.category, item: `${baseUrl}/category/${tool.category.toLowerCase().replace(/\s+/g, '-')}` },
+      { '@type': 'ListItem', position: 2, name: tool.category, item: `${baseUrl}/category/${slugify(tool.category)}` },
       { '@type': 'ListItem', position: 3, name: tool.name, item: `${baseUrl}/tools/${tool.slug}` }
     ]
   };

@@ -6,15 +6,17 @@ import { getBaseUrl, siteName } from '../../../lib/site';
 
 export const dynamic = 'force-static';
 
+const baseUrl = getBaseUrl();
+
 export const metadata = {
   title: 'Latest SEO Guides & Tutorials to Master Search Optimization',
   description: 'Explore curated, up-to-date SEO guides and tutorials with AI-assisted analysis, proven strategies, and essential tools — optimized for clean structure and fast performance.',
-  alternates: { canonical: 'https://www.100seotools.com/blog/latest-seo-guides' },
+  alternates: { canonical: `${baseUrl}/blog/latest-seo-guides` },
   openGraph: {
     title: 'Latest SEO Guides & Tutorials to Master Search Optimization',
     description: 'Curated SEO guides and tutorials with AI tools, strategies, and resources.',
     type: 'website',
-    url: 'https://www.100seotools.com/blog/latest-seo-guides'
+    url: `${baseUrl}/blog/latest-seo-guides`
   },
   twitter: {
     card: 'summary',

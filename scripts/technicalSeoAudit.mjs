@@ -4,7 +4,9 @@ import { performance } from 'node:perf_hooks'
 import puppeteer from 'puppeteer'
 import { jsPDF } from 'jspdf'
 
-const ORIGIN = process.env.START_URL || 'https://www.100seotools.com/'
+import { getBaseUrl } from '../lib/site.js'
+
+const ORIGIN = process.env.START_URL || getBaseUrl()
 const MAX_PAGES = Number(process.env.MAX_PAGES || 150)
 const TIMEOUT_MS = Number(process.env.TIMEOUT_MS || 20000)
 const REQUEST_DELAY_MS = Number(process.env.REQUEST_DELAY_MS || 300)

@@ -3,7 +3,9 @@ import path from 'node:path'
 import { performance } from 'node:perf_hooks'
 import { jsPDF } from 'jspdf'
 
-const ORIGIN = process.env.START_URL || 'https://www.100seotools.com/'
+import { getBaseUrl } from '../lib/site.js'
+
+const ORIGIN = process.env.START_URL || getBaseUrl()
 const TIMEOUT_MS = Number(process.env.TIMEOUT_MS || 20000)
 const REQUEST_DELAY_MS = Number(process.env.REQUEST_DELAY_MS || 250)
 const SAMPLE_RATIO = Number(process.env.SAMPLE_RATIO || 0.1)

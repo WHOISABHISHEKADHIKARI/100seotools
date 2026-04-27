@@ -1,23 +1,25 @@
 import fs from 'fs';
 import path from 'path';
+import { getBaseUrl } from '../lib/site.js';
 
 // Simulation of fetch for local diagnostic
 const checkSitemapLocal = async (url) => {
     // In next.js app router, sitemaps are generated at build time or runtime
     // We can check if the route file exists
 
-    const route = url.replace('https://www.100seotools.com', '')
+    const baseUrl = getBaseUrl();
+    const route = url.replace(baseUrl, '')
         .replace('/sitemap.xml', '/sitemap.js')
         .replace('/sitemap-index.xml', '/sitemap-index.xml/route.js');
 
     let filePath = path.join(process.cwd(), 'app', route);
 
     // Check various possibilities for where the file might be
-    // Check various possibilities for where the file might be
+    const baseUrlSlash = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
     const possiblePaths = [
-        path.join(process.cwd(), 'app', url.replace('https://www.100seotools.com/', '').replace('sitemap.xml', 'sitemap.js')),
-        path.join(process.cwd(), 'app', url.replace('https://www.100seotools.com/', '').replace('/sitemap.xml', ''), 'sitemap.js'),
-        path.join(process.cwd(), 'app', url.replace('https://www.100seotools.com/', '') + '/route.js'), // For sitemap-index.xml/route.js
+        path.join(process.cwd(), 'app', url.replace(baseUrlSlash, '').replace('sitemap.xml', 'sitemap.js')),
+        path.join(process.cwd(), 'app', url.replace(baseUrlSlash, '').replace('/sitemap.xml', ''), 'sitemap.js'),
+        path.join(process.cwd(), 'app', url.replace(baseUrlSlash, '') + '/route.js'), // For sitemap-index.xml/route.js
     ];
 
     let foundPath = null;
@@ -50,13 +52,14 @@ const checkSitemapLocal = async (url) => {
     }
 };
 
+const baseUrl = getBaseUrl();
 const sitemaps = [
-    'https://www.100seotools.com/sitemap-index.xml',
-    'https://www.100seotools.com/sitemap-static/sitemap.xml',
-    'https://www.100seotools.com/sitemap-tools/sitemap.xml',
-    'https://www.100seotools.com/sitemap-blog/sitemap.xml',
-    'https://www.100seotools.com/sitemap-author/sitemap.xml',
-    'https://www.100seotools.com/sitemap-guides/sitemap.xml'
+    `${baseUrl}/sitemap-index.xml`,
+    `${baseUrl}/sitemap-static/sitemap.xml`,
+    `${baseUrl}/sitemap-tools/sitemap.xml`,
+    `${baseUrl}/sitemap-blog/sitemap.xml`,
+    `${baseUrl}/sitemap-author/sitemap.xml`,
+    `${baseUrl}/sitemap-guides/sitemap.xml`
 ];
 
 console.log('--- SITEMAP DIAGNOSTIC ---');

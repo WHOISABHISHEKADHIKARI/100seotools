@@ -10,6 +10,8 @@ import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSche
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
+const baseUrl = getBaseUrl();
+
 // Exhaustive On-Page SEO Optimization for Keyword Density Checker
 export const metadata = {
   title: "Keyword Density Checker | Free SEO Content Analysis Tool",
@@ -18,13 +20,13 @@ export const metadata = {
   keywords: "keyword density checker, seo content analyzer, keyword stuffing tool, content optimization, word frequency counter, on-page seo tool",
   robots: { index: true, follow: true },
   alternates: {
-    canonical: "https://www.100seotools.com/tools/keyword-density-checker",
+    canonical: `${baseUrl}/tools/keyword-density-checker`,
   },
   openGraph: {
     title: "Keyword Density Checker | Free SEO Content Analysis Tool",
     description: "Ensure your content is perfectly optimized. Check keyword frequency and density to avoid penalties and improve search rankings.",
     type: "website",
-    url: "https://www.100seotools.com/tools/keyword-density-checker",
+    url: `${baseUrl}/tools/keyword-density-checker`,
     siteName: siteName,
     images: [
       {

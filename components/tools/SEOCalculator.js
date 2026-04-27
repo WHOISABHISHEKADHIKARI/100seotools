@@ -130,7 +130,7 @@ export default function SEOCalculator() {
     description: 'Instant keyword density, SEO ROI, domain authority, traffic, and CPC calculations. Client-side and free.',
     applicationCategory: 'SEO Tool',
     operatingSystem: 'Any',
-    url: '/',
+    url: '/seo-calculator',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
   };
 

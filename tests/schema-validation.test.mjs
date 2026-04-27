@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { generateWebsiteSchema, generateSoftwareApplicationSchema, generateArticleSchema, generateHowToSchema, generateFAQSchema, generateBreadcrumbList } from '../lib/schema.js'
+import { getBaseUrl } from '../lib/site.js'
 
 function hasProps(obj, props) {
   return props.every((p) => obj && Object.prototype.hasOwnProperty.call(obj, p))
@@ -28,7 +29,7 @@ function validateBreadcrumb(ld) {
   assert.ok(Array.isArray(ld.itemListElement))
 }
 
-const base = 'https://www.100seotools.com'
+const base = getBaseUrl()
 
 const website = generateWebsiteSchema(base)
 assert.equal(website['@type'], 'WebSite')

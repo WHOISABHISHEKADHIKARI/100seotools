@@ -70,7 +70,7 @@ export default function AboutPage() {
       <header className="mb-10 text-center">
         <h1 className="text-4xl font-extrabold mb-4">About 100 SEO Tools: The Ultimate Browser-Based Toolkit</h1>
         <p className="text-lg opacity-80 max-w-2xl mx-auto">
-          Empowering digital marketers and developers with authoritative, high-performance <a href="https://www.100seotools.com/tools" className="text-brand-600 dark:text-brand-400 hover:underline">SEO tools</a> and AI-driven solutions.
+          Empowering digital marketers and developers with authoritative, high-performance <a href={`${baseUrl}/tools`} className="text-brand-600 dark:text-brand-400 hover:underline">SEO tools</a> and AI-driven solutions.
         </p>
       </header>
 
@@ -78,7 +78,7 @@ export default function AboutPage() {
         <section>
           <h2 className="text-3xl font-bold mb-4">Why Digital Marketers Trust 100 SEO Tools</h2>
           <p className="mb-4">
-            In an era where search algorithms evolve daily, having reliable <strong>technical SEO</strong> and indexing utilities is non-negotiable. <a href="https://www.100seotools.com/" className="text-brand-600 dark:text-brand-400 hover:underline">100 SEO Tools</a> was built to bridge the gap between complex enterprise software and accessible, browser-based efficiency. We provide a comprehensive suite of 100+ utilities designed to streamline your workflow without improved login barriers.
+            In an era where search algorithms evolve daily, having reliable <strong>technical SEO</strong> and indexing utilities is non-negotiable. <a href={`${baseUrl}/`} className="text-brand-600 dark:text-brand-400 hover:underline">100 SEO Tools</a> was built to bridge the gap between complex enterprise software and accessible, browser-based efficiency. We provide a comprehensive suite of 100+ utilities designed to streamline your workflow without improved login barriers.
           </p>
           <section>
             <h2 className="text-3xl font-bold mb-4">Engineering for Usability & Search Visibility</h2>
@@ -162,7 +162,7 @@ export default function AboutPage() {
             ))}
           </div>
           <div className="mt-6">
-            <p>Find more answers in our <a href="https://www.100seotools.com/faq" className="text-brand-600 dark:text-brand-400 hover:underline">FAQ section</a>.</p>
+            <p>Find more answers in our <a href={`${baseUrl}/faq`} className="text-brand-600 dark:text-brand-400 hover:underline">FAQ section</a>.</p>
           </div>
         </section>
 
@@ -175,7 +175,7 @@ export default function AboutPage() {
             <p className="mt-2 text-sm opacity-90">
               Lead Developer and SEO Strategist at 100 SEO Tools. Passionate about building accessible <strong>AI SEO tools</strong> and automation workflows for the digital marketing community.
             </p>
-            <a href="https://www.100seotools.com/author" className="inline-block mt-4 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:underline">
+            <a href={`${baseUrl}/author`} className="inline-block mt-4 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:underline">
               View Author Profile &rarr;
             </a>
           </div>

@@ -72,7 +72,8 @@ function validateGuide(guide) {
  */
 export default function sitemap() {
     const baseUrl = getBaseUrl();
-    const now = new Date();
+    // Use a stable date for static content to avoid daily 'changes' that haven't happened
+    const stableDate = new Date('2026-04-25');
 
     // ============================================
     // GUIDE PAGES CONFIGURATION
@@ -166,7 +167,7 @@ export default function sitemap() {
     // ============================================
     const guideEntries = validGuides.map(({ path, priority, changeFreq }) => ({
         url: `${baseUrl}${path}`,
-        lastModified: now,
+        lastModified: stableDate,
         changeFrequency: changeFreq || 'weekly',
         priority,
     }));

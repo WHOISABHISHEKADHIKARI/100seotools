@@ -198,7 +198,7 @@ function generateJavaScript(rules) {
   return lines.join("\n");
 }
 
-export default function Redirect301GeneratorClient() {
+export default function Redirect301GeneratorClient({ baseUrl }) {
   const [rules, setRules] = useState([
     { source: "/old-path", destination: "/new-path", status: "301" },
   ]);
@@ -294,7 +294,7 @@ export default function Redirect301GeneratorClient() {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: '301 Redirect Generator',
-    url: 'https://www.100seotools.com/tools/redirect-301-generator',
+    url: `${baseUrl}/tools/redirect-301-generator`,
     applicationCategory: 'SEO Tool',
     offers: {
       '@type': 'Offer',

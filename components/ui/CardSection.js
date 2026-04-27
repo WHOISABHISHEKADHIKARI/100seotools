@@ -1,8 +1,5 @@
 import UnifiedCard from './UnifiedCard';
-
-function slugify(str = '') {
-  return String(str).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-}
+import { slugify } from '../../lib/utils';
 
 export default function CardSection({
   title = 'Recommended Reads',

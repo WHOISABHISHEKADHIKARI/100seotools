@@ -5,9 +5,10 @@
  */
 
 import { JSDOM } from 'jsdom';
+import { getBaseUrl } from '../lib/site.js';
 
 // Test against production site
-const BASE_URL = 'https://www.100seotools.com';
+const BASE_URL = getBaseUrl();
 
 // Test configuration
 const TEST_PAGES = [

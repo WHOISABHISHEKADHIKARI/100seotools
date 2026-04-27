@@ -4,15 +4,17 @@ import { getBaseUrl, siteName } from '../../../lib/site';
 
 export const dynamic = 'force-static';
 
+const baseUrl = getBaseUrl();
+
 export const metadata = {
   title: 'AI Content Detection: Complete 2024 Guide to Identifying Machine-Generated Text',
   description: 'Learn proven methods to detect AI-generated content using the latest tools and techniques to ensure content authenticity in 2024.',
-  alternates: { canonical: 'https://www.100seotools.com/blog/ai-content-detection-guide-2024' },
+  alternates: { canonical: `${baseUrl}/blog/ai-content-detection-guide-2024` },
   openGraph: {
     title: 'AI Content Detection: Complete 2024 Guide',
     description: 'Detect AI-generated content with practical methods and tools.',
     type: 'article',
-    url: 'https://www.100seotools.com/blog/ai-content-detection-guide-2024'
+    url: `${baseUrl}/blog/ai-content-detection-guide-2024`
   },
   twitter: { card: 'summary', title: 'AI Content Detection Guide', description: 'Identify machine-generated text with reliable methods.' }
 };

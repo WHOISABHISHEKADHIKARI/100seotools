@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
+import { getBaseUrl } from '../../../lib/site';
 
 export async function POST(request) {
     try {
+        const baseUrl = getBaseUrl();
         const { customer_name, rating, comment } = await request.json();
 
         const n = customer_name || 'Customer';
@@ -23,7 +25,7 @@ export async function POST(request) {
         } else {
             output += `Hi ${n},\n\n`;
             output += `We are very sorry to hear about your experience. This is not the standard we aim for. `;
-            output += `Please contact us directly at support@100seotools.com so we can make this right. We value your business and want to ensure you are satisfied.\n\n`;
+            output += `Please contact us directly at support@${baseUrl.replace(/^https?:\/\/(www\.)?/, '')} so we can make this right. We value your business and want to ensure you are satisfied.\n\n`;
             output += `Sincerely,\nManagement Team`;
         }
 

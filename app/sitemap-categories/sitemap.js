@@ -118,7 +118,8 @@ function getCategoryChangeFreq(category) {
  */
 export default function sitemap() {
     const baseUrl = getBaseUrl();
-    const now = new Date();
+    // Use a stable date for static content to avoid daily 'changes' that haven't happened
+    const stableDate = new Date('2026-04-25');
 
     // ============================================
     // GET ALL CATEGORIES FROM TOOLS
@@ -144,7 +145,7 @@ export default function sitemap() {
     // ============================================
     const categoryIndex = {
         url: `${baseUrl}/category`,
-        lastModified: now,
+        lastModified: stableDate,
         changeFrequency: 'weekly',
         priority: 0.8,
     };
@@ -162,7 +163,7 @@ export default function sitemap() {
 
         return {
             url: `${baseUrl}/category/${slug}`,
-            lastModified: now,
+            lastModified: stableDate,
             changeFrequency: getCategoryChangeFreq(cat),
             priority: getCategoryPriority(cat),
         };

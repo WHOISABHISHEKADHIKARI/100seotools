@@ -67,7 +67,8 @@ function validatePageConfig(page) {
  */
 export default function sitemap() {
     const baseUrl = getBaseUrl();
-    const now = new Date();
+    // Use a stable date for static content to avoid daily 'changes' that haven't happened
+    const stableDate = new Date('2026-04-25');
 
     // ============================================
     // SECTION 1: CORE PAGES
@@ -88,11 +89,11 @@ export default function sitemap() {
             description: 'Blog listing page'
         },
         {
-            path: '/guides',
+            path: '/blog/latest-seo-guides',
             priority: 0.8,
             changeFreq: 'weekly',
             section: 'Core',
-            description: 'SEO guides and tutorials'
+            description: 'Latest SEO guides and tutorials'
         },
         {
             path: '/contact',
@@ -276,7 +277,7 @@ export default function sitemap() {
     // ============================================
     return validPages.map(({ path, priority, changeFreq }) => ({
         url: `${baseUrl}${path}`,
-        lastModified: now,
+        lastModified: stableDate,
         changeFrequency: changeFreq,
         priority,
     }));

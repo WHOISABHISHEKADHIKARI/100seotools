@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useMemo, memo } from 'react';
+import { slugify } from '../../lib/utils';
 
 function UnifiedCard({
   href,
@@ -248,13 +249,6 @@ function UnifiedCard({
   }
 
   return cardContent;
-}
-
-function slugify(str) {
-  return String(str)
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)+/g, '');
 }
 
 export default memo(UnifiedCard);

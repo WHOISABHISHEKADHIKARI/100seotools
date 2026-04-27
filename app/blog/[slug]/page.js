@@ -4,6 +4,7 @@ import StructuredData from '../../../components/ui/StructuredData';
 import { getAllBlogPostsPublished, getBlogPostPublishedBySlug } from '../../../lib/blog-data';
 import { getBaseUrl, siteName, getAuthor } from '../../../lib/site';
 import { notFound, permanentRedirect } from 'next/navigation';
+import { getAllToolsMeta } from '../../../tools';
 
 const baseUrl = getBaseUrl();
 
@@ -77,15 +78,23 @@ export async function generateMetadata({ params, searchParams }) {
     '-features-benefits-keywords',
     '-best-practices-integrations-costs',
     '-checklist-workflow',
-    '-popular-search-terms'
+    '-popular-search-terms',
+    '-guide'
   ];
 
+  // Check if it's a tool-related slug
   for (const suffix of toolSuffixes) {
     if (slug.endsWith(suffix)) {
       const toolSlug = slug.replace(suffix, '');
       individualCanonical = `${baseUrl}/tools/${toolSlug}`;
       break;
     }
+  }
+
+  // If the slug is exactly a tool slug, point to /tools/
+  const tools = getAllToolsMeta();
+  if (tools.some(t => t.slug === slug)) {
+    individualCanonical = `${baseUrl}/tools/${slug}`;
   }
 
   const canonical = individualCanonical;
@@ -125,6 +134,12 @@ export default async function Page({ params, searchParams }) {
   const post = await getBlogPostPublishedBySlug(slug);
   if (!post) {
     notFound();
+  }
+
+  // Redirect plain tool slugs to /tools/[slug] to avoid duplicate content
+  const tools = getAllToolsMeta();
+  if (tools.some(t => t.slug === slug)) {
+    permanentRedirect(`/tools/${slug}`);
   }
 
   // Get all posts for navigation

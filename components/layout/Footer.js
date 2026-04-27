@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { FiFacebook, FiInstagram, FiLinkedin, FiMail, FiPhone, FiArrowUpRight, FiGithub } from 'react-icons/fi';
+import { getBaseUrl } from '../../lib/site';
 
 // Categories to surface in footer
 const categories = [
@@ -25,6 +26,7 @@ function toSlug(name) {
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const baseUrl = getBaseUrl();
   return (
     <footer role="contentinfo" className="bg-white text-slate-800 dark:bg-gray-900 dark:text-white py-10 md:py-14 xl:py-16 mt-10 md:mt-14 xl:mt-16" aria-labelledby="footerHeading">
       <h2 id="footerHeading" className="sr-only">Site footer</h2>
@@ -78,7 +80,7 @@ export default function Footer() {
           <div>
             <h3 className="text-base md:text-lg xl:text-xl font-semibold">Follow</h3>
             <div className="mt-4 flex flex-wrap items-center gap-2 md:gap-3 xl:gap-4">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.100seotools.com%2F" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" rel="noopener noreferrer" target="_blank" aria-label="Facebook" data-external="true">
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(baseUrl)}%2F`} className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" rel="noopener noreferrer" target="_blank" aria-label="Facebook" data-external="true">
                 <FiFacebook aria-hidden className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6" /> Facebook <FiArrowUpRight aria-hidden className="w-3 h-3 md:w-4 md:h-4 xl:w-5 xl:h-5" />
               </a>
               <a href="https://www.instagram.com/hashtag" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" rel="noopener noreferrer" target="_blank" aria-label="Instagram">

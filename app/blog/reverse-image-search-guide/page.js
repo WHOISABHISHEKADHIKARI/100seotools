@@ -4,21 +4,29 @@ import { getBaseUrl, siteName } from '../../../lib/site';
 
 export const dynamic = 'force-static';
 
+const baseUrl = getBaseUrl();
+
 export const metadata = {
   title: 'Reverse Image Search: Expert Guide to Finding Original Image Sources',
   description: 'Master reverse image search techniques with our ultimate guide to verifying image authenticity and protecting your content.',
-  alternates: { canonical: 'https://www.100seotools.com/blog/reverse-image-search-guide' },
+  alternates: { canonical: `${baseUrl}/blog/reverse-image-search-guide` },
   openGraph: {
     title: 'Reverse Image Search: Expert Guide',
     description: 'Find original sources and verify authenticity using reverse image search.',
     type: 'article',
-    url: 'https://www.100seotools.com/blog/reverse-image-search-guide'
+    url: `${baseUrl}/blog/reverse-image-search-guide`
   },
   twitter: { card: 'summary', title: 'Reverse Image Search Guide', description: 'Verify image authenticity with proven methods.' }
 };
 
 export default function Page() {
   const baseUrl = getBaseUrl();
+  const canonical = `${baseUrl}/blog/reverse-image-search-guide`;
+
+  // We set metadata in the component via a helper or just rely on the export
+  // Since metadata is static, we can use getBaseUrl() directly if it's safe at build time.
+  // In Next.js App Router, metadata exports are evaluated at build time.
+
   const articleLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',

@@ -10,21 +10,23 @@ import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSche
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
+const baseUrl = getBaseUrl();
+
 // Exhaustive On-Page SEO Optimization for AI Blog Intro Writer
 export const metadata = {
-  title: "AI Blog Intro Writer | Create Captivating Introductions (Free)",
+  title: "AI Blog Intro Writer | Hook Your Readers Instantly (Free)",
   description:
-    "Generate high-converting blog introductions in seconds with our AI Blog Intro Writer. Improve engagement, reduce bounce rate, and hook your readers from the first sentence.",
-  keywords: "ai blog intro writer, blog introduction generator, ai writing assistant, content creation tools, free seo writing tool, blog post hook generator",
+    "Generate captivating blog introductions in seconds with our AI intro writer. Improve dwell time, lower bounce rates, and engage your audience from the first sentence.",
+  keywords: "ai blog intro writer, hook generator, blog introduction tool, ai writing assistant, content engagement tool, free ai writer",
   robots: { index: true, follow: true },
   alternates: {
-    canonical: "https://www.100seotools.com/tools/ai-blog-intro-writer",
+    canonical: `${baseUrl}/tools/ai-blog-intro-writer`,
   },
   openGraph: {
-    title: "AI Blog Intro Writer | Create Captivating Introductions",
-    description: "Struggling with writer's block? Use our AI to generate professional, engaging blog intros that keep readers on the page.",
+    title: "AI Blog Intro Writer | Hook Your Readers Instantly",
+    description: "The first sentence is the most important. Use AI to craft the perfect blog introduction that keeps readers on the page.",
     type: "website",
-    url: "https://www.100seotools.com/tools/ai-blog-intro-writer",
+    url: `${baseUrl}/tools/ai-blog-intro-writer`,
     siteName: siteName,
     images: [
       {

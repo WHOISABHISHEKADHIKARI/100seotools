@@ -11,21 +11,23 @@ import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSche
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
-// Exhaustive On-Page SEO Optimization for Position 1 Rankings
+const baseUrl = getBaseUrl();
+
+// Exhaustive On-Page SEO Optimization for AI Article Length Optimizer
 export const metadata = {
-  title: "AI Article Length Optimizer | Perfect SEO Word Count Tool (Free)",
+  title: "AI Article Length Optimizer | Maximize Content Performance",
   description:
-    "Dominate search results with the AI Article Length Optimizer. Find the ideal word count for any keyword, analyze competitor depth, and match search intent perfectly. Free SEO tool for position 1 rankings.",
-  keywords: "ai article length optimizer, seo word count tool, ideal blog post length, content depth analyzer, content optimization tool, seo writing assistant",
+    "Optimize your article length for SEO using AI. Analyze top-performing content in your niche, balance word count with quality, and improve your search engine rankings.",
+  keywords: "ai article length optimizer, content length for seo, optimal word count tool, content optimization ai, seo article analyzer, blog post length tool",
   robots: { index: true, follow: true },
   alternates: {
-    canonical: "https://www.100seotools.com/tools/ai-article-length-optimizer",
+    canonical: `${baseUrl}/tools/ai-article-length-optimizer`,
   },
   openGraph: {
-    title: "AI Article Length Optimizer | Perfect SEO Word Count Tool",
-    description: "Optimize your content length for Google's first page. Our AI analyzes search intent and competitor depth to give you the perfect word count recommendation.",
+    title: "AI Article Length Optimizer | Maximize Content Performance",
+    description: "Stop guessing your word count. Use AI to find the perfect length for your articles to outrank competitors and engage readers.",
     type: "website",
-    url: "https://www.100seotools.com/tools/ai-article-length-optimizer",
+    url: `${baseUrl}/tools/ai-article-length-optimizer`,
     siteName: siteName,
     images: [
       {

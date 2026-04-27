@@ -10,6 +10,8 @@ import Redirect301GeneratorClient from "./Client";
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
+const baseUrl = getBaseUrl();
+
 // Exhaustive On-Page SEO Optimization for 301 Redirect Generator
 export const metadata = {
   title: "301 Redirect Generator | Secure Your SEO Rankings (Free)",
@@ -18,13 +20,13 @@ export const metadata = {
   keywords: "301 redirect generator, htaccess redirect tool, nginx redirect generator, site migration seo, permanent redirect code, seo link juice preservation",
   robots: { index: true, follow: true },
   alternates: {
-    canonical: "https://www.100seotools.com/tools/redirect-301-generator",
+    canonical: `${baseUrl}/tools/redirect-301-generator`,
   },
   openGraph: {
     title: "301 Redirect Generator | Secure Your SEO Rankings",
     description: "Don't lose your hard-earned rankings during a site move. Generate perfect 301 redirects for any server environment instantly.",
     type: "website",
-    url: "https://www.100seotools.com/tools/redirect-301-generator",
+    url: `${baseUrl}/tools/redirect-301-generator`,
     siteName: siteName,
     images: [
       {
@@ -102,7 +104,7 @@ export default function Redirect301GeneratorPage() {
       <div className="space-y-12">
         {/* Main Tool Component */}
         <section id="tool-interface" className="scroll-mt-20">
-          <Redirect301GeneratorClient />
+          <Redirect301GeneratorClient baseUrl={baseUrl} />
         </section>
 
         {/* Share and Social Proof */}

@@ -5,6 +5,9 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
+const SITE_DOMAIN = '100seotools.com';
+const SITE_URL = `https://www.${SITE_DOMAIN}`;
+
 const nextConfig = withBundleAnalyzer({
   reactStrictMode: true,
   productionBrowserSourceMaps: true,
@@ -103,13 +106,13 @@ const nextConfig = withBundleAnalyzer({
       {
         source: '/:path*',
         has: [{ type: 'header', key: 'x-forwarded-proto', value: 'http' }],
-        destination: 'https://www.100seotools.com/:path*',
+        destination: `${SITE_URL}/:path*`,
         permanent: true,
       },
       {
         source: '/:path*',
-        has: [{ type: 'host', value: '100seotools.com' }],
-        destination: 'https://www.100seotools.com/:path*',
+        has: [{ type: 'host', value: SITE_DOMAIN }],
+        destination: `${SITE_URL}/:path*`,
         permanent: true,
       },
     ];
@@ -127,7 +130,7 @@ const nextConfig = withBundleAnalyzer({
       source: '/alternative/(.*)',
       headers: [
         { key: 'X-Robots-Tag', value: 'noindex, follow' },
-        { key: 'Link', value: '<https://www.100seotools.com/tools/keyword-density-checker>; rel="canonical"' },
+        { key: 'Link', value: `<${SITE_URL}/tools/keyword-density-checker>; rel="canonical"` },
         { key: 'Cache-Control', value: 'no-cache, no-store, must-revalidate' },
         { key: 'Pragma', value: 'no-cache' },
         { key: 'Expires', value: '0' },

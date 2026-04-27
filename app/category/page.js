@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getAllToolsMeta } from '../../tools';
 import { getBaseUrl, siteName } from '../../lib/site';
+import { slugify } from '../../lib/utils';
 
 export const metadata = {
   title: 'Free SEO Tools by Category | Keyword Research, Audit & More',
@@ -46,10 +47,6 @@ export const metadata = {
 };
 
 const baseUrl = getBaseUrl();
-
-function slugify(str = '') {
-  return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-}
 
 export default function CategoryIndexPage() {
   const tools = getAllToolsMeta();

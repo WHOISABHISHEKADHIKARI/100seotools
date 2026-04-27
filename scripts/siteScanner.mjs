@@ -4,7 +4,9 @@ import { performance } from 'node:perf_hooks';
 import tls from 'node:tls';
 import { jsPDF } from 'jspdf';
 
-const ORIGIN = process.env.START_URL || 'https://www.100seotools.com/';
+import { getBaseUrl } from '../lib/site.js'
+
+const ORIGIN = process.env.START_URL || getBaseUrl();
 const MAX_PAGES = Number(process.env.MAX_PAGES || 300);
 const TIMEOUT_MS = Number(process.env.TIMEOUT_MS || 15000);
 const CONCURRENCY = Number(process.env.CONCURRENCY || 3);

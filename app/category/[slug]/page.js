@@ -4,12 +4,9 @@ import { getAllToolsMeta } from '../../../tools';
 import { notFound } from 'next/navigation';
 import { getBaseUrl, siteName } from '../../../lib/site';
 import CategoryClient from '../../../components/tools/CategoryClient';
+import { slugify } from '../../../lib/utils';
 
 const baseUrl = getBaseUrl();
-
-function slugify(str = '') {
-  return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-}
 
 const categories = [
   'Keyword Research',
@@ -110,7 +107,7 @@ export default async function CategoryPage({ params, searchParams }) {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
-        { '@type': 'ListItem', position: 2, name: 'Categories', item: `${baseUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Categories', item: `${baseUrl}/category` },
         { '@type': 'ListItem', position: 3, name: catName, item: `${baseUrl}/category/${slug}` }
       ]
     },

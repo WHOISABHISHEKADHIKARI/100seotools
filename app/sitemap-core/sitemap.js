@@ -19,7 +19,8 @@ function validatePageConfig(page) {
 
 export default function sitemap() {
   const baseUrl = getBaseUrl();
-  const now = new Date();
+  // Use a stable date for static content to avoid daily 'changes' that haven't happened
+  const stableDate = new Date('2026-04-25');
 
   // Core Pages
   const corePages = [
@@ -57,7 +58,7 @@ export default function sitemap() {
 
   return allPages.filter(validatePageConfig).map(({ path, priority, changeFreq }) => ({
     url: `${baseUrl}${path}`,
-    lastModified: now,
+    lastModified: stableDate,
     changeFrequency: changeFreq,
     priority,
   }));

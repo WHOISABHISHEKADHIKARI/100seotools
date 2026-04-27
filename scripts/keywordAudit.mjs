@@ -7,7 +7,9 @@ const REPORTS_ROOT = path.resolve('docs','Reports')
 const FOLDER = path.join(REPORTS_ROOT,'Keywords')
 const QUERIES_CSV = path.join(REPORTS_ROOT,'Queries.csv')
 const PAGES_CSV = path.join(REPORTS_ROOT,'Pages.csv')
-const ORIGIN = process.env.START_URL || 'https://www.100seotools.com/'
+import { getBaseUrl } from '../lib/site.js'
+
+const ORIGIN = process.env.START_URL || getBaseUrl()
 
 function stamp(){const d=new Date();const y=String(d.getFullYear());const m=String(d.getMonth()+1).padStart(2,'0');const da=String(d.getDate()).padStart(2,'0');const h=String(d.getHours()).padStart(2,'0');const mi=String(d.getMinutes()).padStart(2,'0');const s=String(d.getSeconds()).padStart(2,'0');return `${y}${m}${da}_${h}${mi}${s}`}
 function esc(v){if(v===undefined||v===null)return '';const s=String(v).replace(/\r?\n/g,' ');return /[",]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}

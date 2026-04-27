@@ -10,22 +10,22 @@ export const metadata = {
     title: 'Abhishek Adhikari - Entrepreneur, SEO Expert, Full-Stack Developer & Tech Consultant in Nepal | 100SEOTools Creator',
     description: 'Meet Abhishek Adhikari - Award-winning Entrepreneur, SEO Expert, Full-Stack Developer, and Tech Consultant with 22+ years of expertise. Creator of 100SEOTools, Founder of Himalaya Krishi organic farming, and Delta Engineering Solutions. Specializing in SEO optimization, UI/UX design, agri-tech innovation, and sustainable digital solutions in Nepal.',
     keywords: 'Abhishek Adhikari, Abhishek Adhikari Nepal, Tech Consultant Nepal, SEO Expert Nepal, SEO Intern Hashtag Web Solution, Agri-Tech Developer, UI/UX Designer Nepal, Entrepreneur Nepal, Himalaya Krishi, Organic Farming Nepal, Web Developer Nepal, Software Engineer Nepal, Delta Engineering Solutions, React Developer, PHP Developer, Laravel Expert, Python Automation, Full-Stack Developer Nepal, Sustainable Technology, Search Engine Optimization Nepal, 100SEOTools, Free SEO Tools, Digital Marketing Expert Nepal, Manahari Nepal, Tribhuvan University',
-    authors: [{ name: 'Abhishek Adhikari', url: 'https://100seotools.com/author' }],
+    authors: [{ name: 'Abhishek Adhikari', url: `${baseUrl}/author` }],
     creator: 'Abhishek Adhikari',
     publisher: '100SEOTools',
     alternates: {
-        canonical: 'https://100seotools.com/author',
+        canonical: `${baseUrl}/author`,
     },
     openGraph: {
         title: 'Abhishek Adhikari - Entrepreneur, SEO Expert & Tech Consultant',
         description: 'Entrepreneur | Tech Consultant | Agri-Tech Innovator | SEO Intern @ Hashtag Web Solution | Full-Stack Developer | UI/UX Specialist. Creator of 100+ free SEO tools.',
-        url: 'https://100seotools.com/author',
+        url: `${baseUrl}/author`,
         siteName: '100SEOTools',
         locale: 'en_US',
         type: 'profile',
         images: [
             {
-                url: 'https://100seotools.com/author.png',
+                url: `${baseUrl}/author.png`,
                 width: 1200,
                 height: 630,
                 alt: 'Abhishek Adhikari - SEO Expert and Entrepreneur',
@@ -36,7 +36,7 @@ export const metadata = {
         card: 'summary_large_image',
         title: 'Abhishek Adhikari - SEO Expert & Entrepreneur',
         description: 'Creator of 100+ free SEO tools. Entrepreneur, Tech Consultant, and Agri-Tech Innovator.',
-        images: ['https://100seotools.com/author.png'],
+        images: [`${baseUrl}/author.png`],
     },
     robots: {
         index: true,
@@ -95,7 +95,7 @@ const personSchema = {
         {
             '@type': 'Organization',
             name: '100SEOTools',
-            url: 'https://100seotools.com',
+            url: baseUrl,
         },
     ],
     founder: [
@@ -152,7 +152,7 @@ const faqs = [
     },
     {
         q: 'How can I contact Abhishek Adhikari?',
-        a: 'You can contact Abhishek via email at abhishekadhikari1254@gmail.com or phone at +977 9865412482. You can also connect through his website 100seotools.com or GitHub profile.'
+        a: `You can contact Abhishek via email at abhishekadhikari1254@gmail.com or phone at +977 9865412482. You can also connect through his website ${baseUrl.replace(/^https?:\/\/(www\.)?/, '')} or GitHub profile.`
     },
     {
         q: 'What is Himalaya Krishi?',
@@ -582,7 +582,7 @@ export default function AuthorPage() {
                             </div>
                             <div className="flex items-center gap-3">
                                 <span className="text-brand-600 dark:text-brand-400 font-semibold">Website:</span>
-                                <Link href="/" className="hover:underline">100seotools.com</Link>
+                                <Link href={baseUrl} className="hover:underline">100seotools.com</Link>
                             </div>
                         </div>
                     </section>
