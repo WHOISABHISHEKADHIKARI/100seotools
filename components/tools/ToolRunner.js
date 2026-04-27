@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import { getTemplateDefinition, runTemplate } from '../../lib/templates';
 import { copyToClipboardWithHistory, normalizePastedContent, downloadAllFormats } from '../../lib/utils';
 import { sanitizeInput, validateURL, checkInputSize } from '../../lib/security';
@@ -29,6 +29,7 @@ export default function ToolRunner({ tool }) {
   const [pasteFeedback, setPasteFeedback] = useState({ field: null, ts: 0 });
   const [isCopied, setIsCopied] = useState(false);
   const [isLivePreview, setIsLivePreview] = useState(false);
+  const outputRef = useRef(null);
 
   // Initial inputs helper
   const getInitialInputs = () => {
@@ -249,6 +250,10 @@ export default function ToolRunner({ tool }) {
       setOutput('');
     } finally {
       setIsProcessing(false);
+      // Smooth scroll to output after generation
+      if (outputRef.current) {
+        outputRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   };
 
@@ -269,13 +274,17 @@ export default function ToolRunner({ tool }) {
 
   return (
     <div className="space-y-6">
-      {error && (
-        <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+        <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm font-medium text-red-700 dark:text-red-300">
             {error}
           </p>
+          <button 
+            onClick={analyze}
+            className="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-800 transition-colors border border-red-200 dark:border-red-700"
+          >
+            Retry Analysis
+          </button>
         </div>
-      )}
 
       <div className="grid md:grid-cols-2 gap-4">
         <div className="space-y-3">
@@ -394,7 +403,7 @@ export default function ToolRunner({ tool }) {
             </button>
           </div>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-4" ref={outputRef}>
           <label className="block text-sm mb-1 font-bold text-gray-900 dark:text-gray-100 uppercase tracking-tight">Analysis Output</label>
           <OutputPresentation 
             output={output}

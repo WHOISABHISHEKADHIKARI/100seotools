@@ -12,7 +12,11 @@ import {
   FiZap,
   FiClock,
   FiMaximize2,
-  FiMinimize2
+  FiMinimize2,
+  FiShare2,
+  FiPrinter,
+  FiFileText,
+  FiTrash2
 } from 'react-icons/fi';
 import Markdown from '../blog/Markdown';
 
@@ -34,6 +38,7 @@ export default function OutputPresentation({
   
   const charCount = output?.length || 0;
   const wordCount = output ? output.trim().split(/\s+/).filter(Boolean).length : 0;
+  const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   const isJson = output && (output.trim().startsWith('{') || output.trim().startsWith('['));
 
   // Reset view when output changes significantly
@@ -41,6 +46,56 @@ export default function OutputPresentation({
     if (isJson) setView('raw');
     else setView('preview');
   }, [isJson, toolSlug]);
+
+  const handleShare = async () => {
+    const shareData = {
+      title: 'SEO Analysis Report',
+      text: `Check out this SEO analysis for ${toolSlug}`,
+      url: window.location.href
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        alert('URL copied to clipboard!');
+      }
+    } catch (err) {
+      console.log('Share failed', err);
+    }
+  };
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const copyAsHtml = async () => {
+    try {
+      // Create a temporary div to render the markdown logic into HTML string
+      // This is a simple approximation; for perfect results a real md->html lib is better
+      // but we can leverage the existing DOM or a simple regex replacement for the clipboard.
+      const htmlContent = output
+        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+        .replace(/^\* (.*$)/gim, '<ul><li>$1</li></ul>')
+        .replace(/^- (.*$)/gim, '<ul><li>$1</li></ul>')
+        .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+        .replace(/\*(.*)\*/gim, '<em>$1</em>')
+        .replace(/\n/gim, '<br/>');
+      
+      const blob = new Blob([htmlContent], { type: 'text/html' });
+      const textBlob = new Blob([output], { type: 'text/plain' });
+      const data = [new ClipboardItem({ 'text/html': blob, 'text/plain': textBlob })];
+      await navigator.clipboard.write(data);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error('HTML Copy failed', err);
+      onCopy(); // Fallback to plain copy
+    }
+  };
 
   const handleCopy = () => {
     onCopy();
@@ -89,12 +144,35 @@ export default function OutputPresentation({
             {isCopied ? <FiCheck className="w-4 h-4 text-green-500" /> : <FiCopy className="w-4 h-4" />}
           </button>
           <button
+            onClick={copyAsHtml}
+            disabled={!output || isProcessing}
+            className="p-2 text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all disabled:opacity-30"
+            title="Copy as HTML (for WordPress/CMS)"
+          >
+            <FiFileText className="w-4 h-4" />
+          </button>
+          <button
             onClick={onDownload}
             disabled={!output || isProcessing}
             className="p-2 text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all disabled:opacity-30"
             title="Download results"
           >
             <FiDownload className="w-4 h-4" />
+          </button>
+          <button
+            onClick={handleShare}
+            className="p-2 text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all"
+            title="Share tool"
+          >
+            <FiShare2 className="w-4 h-4" />
+          </button>
+          <button
+            onClick={handlePrint}
+            disabled={!output}
+            className="p-2 text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all disabled:opacity-30"
+            title="Print report"
+          >
+            <FiPrinter className="w-4 h-4" />
           </button>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
@@ -157,6 +235,10 @@ export default function OutputPresentation({
           <div className="flex items-center gap-1.5">
             <FiMessageSquare className="w-3 h-3" />
             <span>{wordCount} Words</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <FiClock className="w-3 h-3" />
+            <span>{readingTime} Min Read</span>
           </div>
         </div>
         
