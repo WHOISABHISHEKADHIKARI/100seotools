@@ -13,17 +13,13 @@ const categories = [
   'On-Page Optimization',
   'Technical SEO',
   'Backlink & Link-Building',
-  'Backlink & Link Building',
   'Content SEO',
-  'Content Optimization',
-  'Content Creation',
-  'SEO Tools',
-  'Image Tools',
   'SEO Performance',
   'Local SEO',
   'Competitor Analysis',
   'AI-Powered SEO',
-  'SEO Utility'
+  'SEO Utility',
+  'Schema & Structured Data'
 ];
 
 // Prefer static generation to stabilize RSC fetch behavior

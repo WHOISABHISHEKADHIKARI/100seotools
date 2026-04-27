@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
 import { useUserPreferences } from '../../contexts/UserPreferencesContext';
+import { slugify } from '../../lib/utils';
 import {
   FiSearch,
   FiX,
@@ -28,8 +29,8 @@ const categories = [
   'Local SEO',
   'Competitor Analysis',
   'AI-Powered SEO',
-  'Foundations',
-  'SEO Utility'
+  'SEO Utility',
+  'Schema & Structured Data'
 ];
 
 // Custom hook for debounced value
@@ -49,10 +50,10 @@ function useDebounce(value, delay = 300) {
   return debouncedValue;
 }
 
-export default function SearchFilter({ tools, onChange }) {
+export default function SearchFilter({ tools, onChange, initialCategory = 'All' }) {
   const { favorites, preferences, actions } = useUserPreferences();
   const [query, setQuery] = useState('');
-  const [category, setCategory] = useState('All');
+  const [category, setCategory] = useState(initialCategory);
   const [sortBy, setSortBy] = useState('Name A-Z');
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -70,7 +71,7 @@ export default function SearchFilter({ tools, onChange }) {
     if (preferences.showFavoritesOnly !== undefined) {
       setFavoritesOnly(preferences.showFavoritesOnly);
     }
-    if (preferences.defaultCategory) {
+    if (preferences.defaultCategory && initialCategory === 'All') {
       setCategory(preferences.defaultCategory);
     }
     if (preferences.defaultSortBy) {
@@ -88,13 +89,6 @@ export default function SearchFilter({ tools, onChange }) {
     }
   }, [favoritesOnly, category, sortBy, mounted]);
 
-  // Track search queries when they change
-  useEffect(() => {
-    if (debouncedQuery && debouncedQuery.trim().length > 0) {
-      actions.addRecentSearch(debouncedQuery.trim());
-    }
-  }, [debouncedQuery]);
-
   // Show searching indicator when query changes but debounced query hasn't caught up
   useEffect(() => {
     if (query !== debouncedQuery) {
@@ -107,12 +101,16 @@ export default function SearchFilter({ tools, onChange }) {
   const filteredTools = useMemo(() => {
     // Only show items of type 'tool' in this grid
     const list = tools.filter((t) => {
-      if (t.type !== 'tool') return false;
+      // If type is present, only show tools. If type is missing, assume it's a tool.
+      if (t.type && t.type !== 'tool') return false;
       if (favoritesOnly && !favorites.includes(t.slug)) return false;
       
       // Handle category filtering
       if (category !== 'All' && t.category !== category) {
-        return false;
+        // Fallback: check if slugified categories match
+        if (slugify(t.category) !== slugify(category)) {
+          return false;
+        }
       }
 
       if (!debouncedQuery) return true;
@@ -165,6 +163,13 @@ export default function SearchFilter({ tools, onChange }) {
     handleFilterChange();
   }, [handleFilterChange]);
 
+  // Track search queries when they change
+  useEffect(() => {
+    if (debouncedQuery && debouncedQuery.trim().length > 0) {
+      actions.addRecentSearch(debouncedQuery.trim());
+    }
+  }, [debouncedQuery]);
+
   const clearQuery = useCallback(() => {
     setQuery('');
     setShowSuggestions(false);
@@ -204,8 +209,7 @@ export default function SearchFilter({ tools, onChange }) {
     'Local SEO': FiMapPin,
     'Competitor Analysis': FiUsers,
     'AI-Powered SEO': FiCpu,
-    Foundations: FiBookOpen,
-    'Expert Guides': FiBookOpen,
+    'Schema & Structured Data': FiBookOpen,
     'SEO Utility': FiTool
   };
 

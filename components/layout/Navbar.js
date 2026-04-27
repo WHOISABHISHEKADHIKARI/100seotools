@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ThemeToggle from '../ui/ThemeToggle';
 import { FiCompass, FiChevronDown, FiMenu, FiX } from 'react-icons/fi';
+import { slugify } from '../../lib/utils';
 
 // Categories surfaced in dropdown
 const categories = [
@@ -16,16 +17,9 @@ const categories = [
   'Local SEO',
   'Competitor Analysis',
   'AI-Powered SEO',
-  'SEO Utility'
+  'SEO Utility',
+  'Schema & Structured Data'
 ];
-
-function toSlug(name) {
-  return name
-    .toLowerCase()
-    .replace(/&/g, ' ')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
-}
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -185,7 +179,7 @@ export default function Navbar() {
                   {categories.map((c) => (
                     <li key={c}>
                       <Link
-                        href={`/category/${toSlug(c)}`}
+                        href={`/category/${slugify(c)}`}
                         prefetch={false}
                         className="block px-3 py-2 hover:bg-slate-50 hover:text-brand-600 dark:hover:bg-gray-800 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800"
                         role="menuitem"
@@ -278,7 +272,7 @@ export default function Navbar() {
                     {categories.map((c) => (
                       <li key={c}>
                         <Link
-                          href={`/category/${toSlug(c)}`}
+                          href={`/category/${slugify(c)}`}
                           className="block px-3 py-2 hover:bg-slate-50 hover:text-brand-600 dark:hover:bg-gray-800 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800"
                           role="menuitem"
                           onClick={() => {

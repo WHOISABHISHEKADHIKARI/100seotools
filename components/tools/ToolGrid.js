@@ -14,7 +14,8 @@ import {
   FiCpu,
   FiTool,
   FiStar,
-  FiChevronRight
+  FiChevronRight,
+  FiBookOpen
 } from 'react-icons/fi';
 //hello boss
 const categoryIconMap = {
@@ -27,6 +28,7 @@ const categoryIconMap = {
   'Local SEO': FiMapPin,
   'Competitor Analysis': FiUsers,
   'AI-Powered SEO': FiCpu,
+  'Schema & Structured Data': FiBookOpen,
   'SEO Utility': FiTool
 };
 

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { FiFacebook, FiInstagram, FiLinkedin, FiMail, FiPhone, FiArrowUpRight, FiGithub } from 'react-icons/fi';
 import { getBaseUrl } from '../../lib/site';
+import { slugify } from '../../lib/utils';
 
 // Categories to surface in footer
 const categories = [
@@ -13,16 +14,9 @@ const categories = [
   'Local SEO',
   'Competitor Analysis',
   'AI-Powered SEO',
-  'SEO Utility'
+  'SEO Utility',
+  'Schema & Structured Data'
 ];
-
-function toSlug(name) {
-  return name
-    .toLowerCase()
-    .replace(/&/g, ' ') // normalize ampersand
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
-}
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -68,7 +62,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2 md:space-y-2.5 xl:space-y-3 text-slate-600 dark:text-gray-300 break-words">
               {categories.map((c) => (
                 <li key={c}>
-                  <Link href={`/category/${toSlug(c)}`} prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">
+                  <Link href={`/category/${slugify(c)}`} prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">
                     {c}
                   </Link>
                 </li>

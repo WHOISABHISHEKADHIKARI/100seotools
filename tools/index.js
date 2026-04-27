@@ -2,7 +2,12 @@ import { tools } from './registry.js';
 import { getAllBlogPosts } from '../lib/blog.js';
 
 export { tools };
-export function getAllToolsMeta() { return tools; }
+export function getAllToolsMeta() { 
+  return tools.map(tool => ({
+    ...tool,
+    type: 'tool'
+  })); 
+}
 export function getToolBySlug(slug) { return tools.find(t => t.slug === slug); }
 
 /**

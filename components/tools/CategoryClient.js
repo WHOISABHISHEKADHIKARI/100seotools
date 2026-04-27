@@ -29,7 +29,7 @@ export default function CategoryClient({ items = [], catName, slug, initialPage 
   return (
     <div className="space-y-8">
       {/* Filtering and search */}
-      <SearchFilter tools={items} onChange={setFilteredTools} />
+      <SearchFilter tools={items} onChange={setFilteredTools} initialCategory={catName} />
 
       {/* Tools count and grid */}
       <div className="flex items-center justify-between">
