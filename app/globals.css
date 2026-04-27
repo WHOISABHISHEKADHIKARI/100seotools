@@ -1,0 +1,579 @@
+/* Import unified card design system */
+@import './components/unified-card.css';
+
+@tailwind base;
+
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   Design Tokens and UI System (301 Redirect Tool)
+   ============================================= */
+:root {
+  /* Theme Colors (mapped to Tailwind brand + accessibleGray) */
+  --color-brand-50: #f0f9ff;
+  --color-brand-100: #e0f2fe;
+  --color-brand-200: #bae6fd;
+  --color-brand-300: #7dd3fc;
+  --color-brand-400: #38bdf8;
+  --color-brand-500: #0ea5e9;
+  --color-brand-600: #0284c7;
+  --color-brand-700: #0369a1;
+  --color-brand-800: #075985;
+  --color-brand-900: #0c4a6e;
+  --color-brand-950: #082f49;
+
+  --color-gray-400: #52525b;
+  /* accessibleGray */
+  --color-gray-500: #3f3f46;
+  --color-gray-600: #27272a;
+  --color-gray-700: #18181b;
+  --color-gray-800: #020617;
+
+  /* Semantic tokens */
+  --color-bg: #ffffff;
+  --color-fg: #111827;
+  --color-bg-muted: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-success-bg: #ecfdf5;
+  --color-success-border: #6ee7b7;
+  --color-success-text: #065f46;
+
+  /* Typography scale */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  /* Radius and shadow */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Spacing ratios */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+}
+
+.dark :root {
+  --color-bg: #0b1020;
+  --color-fg: #f3f4f6;
+  --color-bg-muted: #0f172a;
+  --color-border: #1f2937;
+  --color-success-bg: rgba(5, 46, 22, 0.2);
+  --color-success-border: #065f46;
+  --color-success-text: #6ee7b7;
+}
+
+/* Gradient hero background matching prompt */
+.gradient-bg {
+  background-image: linear-gradient(135deg, var(--color-brand-700), var(--color-brand-500));
+}
+
+/* Badge component */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-size: var(--text-sm);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-muted);
+  color: var(--color-brand-700);
+}
+
+/* Tab navigation + buttons */
+.tab-navigation {
+  display: flex;
+  gap: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tab-btn {
+  @apply tap-target transition-gpu will-change-transform-opacity;
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  background-color: #ffffff;
+  border-top: 4px solid transparent;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  color: var(--color-gray-600);
+}
+
+.tab-btn:hover {
+  background-color: var(--color-bg-muted);
+}
+
+.tab-btn:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+
+.tab-btn.active {
+  border-top-color: var(--color-brand-500);
+  color: var(--color-brand-700);
+}
+
+/* Config panel */
+.config-panel {
+  background-color: var(--color-bg-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/* Form group */
+.form-group {
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.form-group label {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+  font-size: var(--text-base);
+  background-color: #ffffff;
+  color: var(--color-fg);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+
+/* Format tabs/buttons */
+.format-tabs {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.format-tab {
+  @apply tap-target;
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.format-tab:hover {
+  border-color: var(--color-brand-300);
+}
+
+.format-tab:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+
+.format-tab.active {
+  background-color: var(--color-brand-50);
+  border-color: var(--color-brand-500);
+  color: var(--color-brand-700);
+}
+
+/* Code container */
+.code-container pre {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Ensure code text visibility and contrast across themes and Prism overrides */
+pre[class*="language-"],
+code[class*="language-"] {
+  background-color: var(--color-bg-muted) !important;
+  color: var(--color-fg) !important;
+}
+
+.dark pre[class*="language-"],
+.dark code[class*="language-"] {
+  background-color: #111827 !important;
+  /* gray-900 */
+  color: #f3f4f6 !important;
+  /* gray-100 */
+}
+
+/* Specific override for our output code block */
+#outputCode {
+  background-color: var(--color-bg-muted) !important;
+  color: var(--color-fg) !important;
+}
+
+/* Article Card styles are imported per-page (e.g., article-card-demo) to avoid @import ordering issues */
+
+/* Additional global styles for improved UI/UX */
+.calculator-container {
+  contain: layout;
+  will-change: transform;
+}
+
+/* Smooth transitions for content changes */
+.content-transition {
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Removed unused loading-reserve utility */
+
+/* Custom base styles */
+:root {
+  color-scheme: light dark;
+  --brand-color: #3b82f6;
+  --brand-color-hover: #2563eb;
+  --focus-ring-color: rgba(59, 130, 246, 0.5);
+}
+
+/* Improved focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 16px;
+  /* Set base font size for readability */
+  line-height: 1.6;
+  /* Improve line spacing */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.unified-card,
+.article-card {
+  width: 100%;
+}
+
+.unified-card-title,
+.unified-card-description,
+.article-card-title,
+.article-card-description {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@supports (min-height: 100svh) {
+  .min-h-screen {
+    min-height: 100svh;
+  }
+}
+
+/* Improved button styles with visible feedback */
+.btn {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-blue-700 text-white hover:bg-blue-800 transition-colors duration-200;
+  position: relative;
+  overflow: hidden;
+  min-width: 48px;
+  /* Ensure minimum tap target size */
+  min-height: 48px;
+  /* Ensure minimum tap target size */
+  -webkit-tap-highlight-color: transparent;
+  /* Remove tap highlight on mobile */
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.btn:focus:not(:active)::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900;
+  position: relative;
+  overflow: hidden;
+  min-width: 48px;
+  /* Ensure minimum tap target size */
+  min-height: 48px;
+  /* Ensure minimum tap target size */
+  -webkit-tap-highlight-color: transparent;
+  /* Remove tap highlight on mobile */
+}
+
+.btn-secondary:active {
+  transform: translateY(1px);
+}
+
+/* Improved input styles */
+.input {
+  @apply w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-base transition-all;
+  /* Use text-base for readability */
+}
+
+.input:hover {
+  @apply border-gray-400 dark:border-gray-600;
+}
+
+.input:focus {
+  @apply border-blue-500 dark:border-blue-500 ring-2 ring-blue-500/20 outline-none;
+}
+
+/* Minimal, modern interactive card behavior */
+.card-interactive {
+  @apply transition-all duration-200 ease-out hover:shadow-md hover:-translate-y-0.5 hover:border-gray-300 dark:hover:border-gray-700 focus-within:ring-2 focus-within:ring-blue-500/50;
+}
+
+
+/* Card icon container animation */
+.card-icon-container {
+  @apply transition-all duration-200 ease-out;
+}
+
+.card-interactive:hover .card-icon-container {
+  @apply transform scale-110;
+}
+
+/* Typography helpers for card content */
+.card-title {
+  @apply text-lg font-medium text-gray-900 dark:text-gray-100;
+  /* Increased font size */
+}
+
+.card-desc {
+  @apply text-base text-gray-600 dark:text-gray-400;
+  /* Increased font size */
+}
+
+.card-meta {
+  @apply text-sm px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400;
+  /* Increased font size */
+}
+
+/* Mobile responsiveness improvements */
+@media (max-width: 640px) {
+  .card-interactive {
+    @apply hover:shadow-sm hover:translate-y-0;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p,
+  .card-desc {
+    font-size: 1rem;
+  }
+
+  /* Ensure p and card descriptions are readable */
+
+  /* Prevent text overflow on small screens */
+  .unified-card-title,
+  .unified-card-description,
+  .card-desc,
+  .table-cell-wrap,
+  .responsive-text {
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .btn,
+  .btn-secondary {
+    padding: 0.75rem 1rem;
+    /* Larger padding for easier tapping */
+  }
+}
+
+/* Accessibility: ensure brand link text meets WCAG contrast
+   Override Tailwind's text-brand-600 to accessible variants for light/dark backgrounds */
+.text-brand-600 {
+  color: #0369a1 !important;
+}
+
+.dark .text-brand-600 {
+  color: #38bdf8 !important;
+}
+
+/* Also ensure hover variant remains accessible */
+.hover\:text-brand-600:hover {
+  color: #0369a1 !important;
+}
+
+.dark .hover\:text-brand-600:hover {
+  color: #38bdf8 !important;
+}
+
+/* Fix low-contrast small action links in dark unified cards */
+.dark .unified-card-actions .text-gray-500,
+.dark .unified-card-actions a.text-gray-500 {
+  color: #d1d5db !important;
+  /* gray-300 on dark bg ensures >=4.5:1 at 12px */
+}
+
+/* Removed unused loading-skeleton animation utility */
+
+/* Error state styles */
+.error-container {
+  @apply p-4 border border-red-300 bg-red-50 dark:bg-red-900/20 dark:border-red-800 rounded-md text-red-800 dark:text-red-300;
+}
+
+/* Success state styles */
+.success-container {
+  @apply p-4 border border-green-300 bg-green-50 dark:bg-green-900/20 dark:border-green-800 rounded-md text-green-800 dark:text-green-300;
+}
+
+/* Improved focus trap for modals */
+.focus-trap {
+  @apply outline-none;
+}
+
+/* Improved scrollbar styles */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-600;
+  }
+}
+
+/* Improved Placeholder Contrast */
+::placeholder {
+  @apply text-slate-500 dark:text-slate-400;
+  opacity: 1;
+}
+
+/* Character counter and secondary text contrast */
+.character-badge {
+  @apply bg-brand-50/50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800 shadow-sm transition-all;
+}
+
+/* Global focus and accessibility refinements */
+.dark .text-slate-500 {
+  color: #94a3b8 !important;
+  /* slate-400 equivalent for dark bg */
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  @apply opacity-60;
+}
+
+/* Ensure content does not exceed screen width */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Responsive tables */
+.table-container {
+  overflow-x: auto;
+}
+
+.table-responsive {
+  width: 100%;
+  table-layout: auto;
+}
+
+.table-responsive th,
+.table-responsive td {
+  padding: 0.5rem;
+  white-space: normal;
+}
+
+.table-responsive td,
+.table-responsive th {
+  word-break: break-word;
+}
+
+/* Form input scaling for mobile */
+@media (max-width: 640px) {
+
+  input[type="text"],
+  input[type="url"],
+  input[type="email"],
+  select,
+  textarea {
+    min-height: 44px;
+    font-size: 16px;
+    /* Prevent iOS zoom */
+  }
+}

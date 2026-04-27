@@ -1,0 +1,72 @@
+{
+  "name": "100-seo-tools",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "prepare": "husky",
+    "build:analyze": "ANALYZE=true next build",
+    "generate:tools": "node scripts/generateTools.js",
+    "test": "jest",
+    "validate": "node scripts/validate.cjs",
+    "audit:contrast": "node scripts/contrastAudit.js",
+    "lint:links": "node scripts/checkExternalLinks.js",
+    "lint:canon": "node scripts/lintCanonical.js",
+    "lint:anchors": "node scripts/lintAnchors.js",
+    "lint:whitespace": "node scripts/whitespaceAudit.js",
+    "fix:whitespace": "node scripts/whitespaceAudit.js --fix",
+    "crawl:final": "node scripts/headlessCrawler.js",
+    "audit:indexing": "node scripts/site-crawler.mjs",
+    "test:schema": "node tests/schema-validation.test.mjs",
+    "test:accessibility": "node tests/accessibility-axe.test.mjs",
+    "test:seo": "node tests/seo-performance.test.mjs",
+    "test:microdata": "node tests/microdata-errors.test.mjs",
+    "test:schema:local": "node tests/schema-validator.test.mjs",
+    "test:schema:prod": "node tests/schema-validator-production.test.mjs"
+  },
+  "browserslist": {
+    "production": [
+      "Chrome >= 92",
+      "Firefox >= 90",
+      "Safari >= 15.4",
+      "Edge >= 92"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@vercel/speed-insights": "^1.2.0",
+    "docx": "^9.0.3",
+    "jspdf": "^3.0.4",
+    "next": "^16.0.7",
+    "puppeteer-core": "^24.29.1",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "react-icons": "^5.5.0",
+    "web-vitals": "^3.5.0"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^16.0.7",
+    "@types/react": "19.2.14",
+    "autoprefixer": "10.4.20",
+    "axe-core": "^4.11.0",
+    "critters": "^0.0.7",
+    "cssnano": "^7.1.2",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "jsdom": "^27.3.0",
+    "playwright": "^1.57.0",
+    "postcss": "^8.5.6",
+    "puppeteer": "^24.28.0",
+    "tailwindcss": "3.4.10",
+    "typescript": "6.0.3",
+    "webpack-bundle-analyzer": "^4.10.2"
+  }
+}
