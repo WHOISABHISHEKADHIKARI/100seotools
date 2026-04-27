@@ -8,19 +8,35 @@ import { getAllToolsMeta } from '../../../tools';
 
 const baseUrl = getBaseUrl();
 
-// Enable dynamic rendering for blog posts to prevent 404s
-// The blog system generates 810+ posts dynamically, so we use dynamic rendering
-export const dynamic = 'force-dynamic';
+// Optimized for static generation and large-scale indexing
+// We use generateStaticParams to pre-build 800+ posts
 export const dynamicParams = true;
+export const revalidate = 3600; // Revalidate every hour
 
-// All blog posts are rendered dynamically on-demand
-// No static pre-generation needed for 810+ posts
+// Pre-generate all blog post routes at build time for maximum performance and reliability
+// This resolves GSC 404 and 504 errors for dynamic routes
+export async function generateStaticParams() {
+  const posts = await getAllBlogPostsPublished();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
   const page = Number((await searchParams)?.page || 1);
   const post = await getBlogPostPublishedBySlug(slug);
+  
   if (!post) {
+    // Check if the slug belongs to a tool - if so, redirect metadata canonical
+    const tools = getAllToolsMeta();
+    const isTool = tools.some(t => t.slug === slug);
+    if (isTool) {
+      return {
+        alternates: { canonical: `${baseUrl}/tools/${slug}` },
+        robots: { index: false, follow: true } // Don't index the blog version of a tool slug
+      };
+    }
     notFound();
   }
 
@@ -69,35 +85,10 @@ export async function generateMetadata({ params, searchParams }) {
       }
     }
   }
-  let individualCanonical = `${baseUrl}/blog/${post.slug}`;
 
-  // Handle canonical for auto-generated tool variant posts
-  // These are duplicate content of the main tool page, so we point canonical to the tool
-  const toolSuffixes = [
-    '-how-to-use',
-    '-features-benefits-keywords',
-    '-best-practices-integrations-costs',
-    '-checklist-workflow',
-    '-popular-search-terms',
-    '-guide'
-  ];
-
-  // Check if it's a tool-related slug
-  for (const suffix of toolSuffixes) {
-    if (slug.endsWith(suffix)) {
-      const toolSlug = slug.replace(suffix, '');
-      individualCanonical = `${baseUrl}/tools/${toolSlug}`;
-      break;
-    }
-  }
-
-  // If the slug is exactly a tool slug, point to /tools/
-  const tools = getAllToolsMeta();
-  if (tools.some(t => t.slug === slug)) {
-    individualCanonical = `${baseUrl}/tools/${slug}`;
-  }
-
-  const canonical = individualCanonical;
+  // Self-referencing canonical for all blog posts
+  // This resolves GSC "Alternative page with proper canonical tag"
+  const canonical = `${baseUrl}/blog/${post.slug}`;
   const url = page > 1 ? `${canonical}?page=${page}` : canonical;
 
   return {
@@ -132,14 +123,15 @@ export default async function Page({ params, searchParams }) {
   }
 
   const post = await getBlogPostPublishedBySlug(slug);
+  
   if (!post) {
+    // Redirect plain tool slugs to /tools/[slug] to avoid duplicate content/404s
+    // This handles the old slugs that used to be blog posts
+    const tools = getAllToolsMeta();
+    if (tools.some(t => t.slug === slug)) {
+      permanentRedirect(`/tools/${slug}`);
+    }
     notFound();
-  }
-
-  // Redirect plain tool slugs to /tools/[slug] to avoid duplicate content
-  const tools = getAllToolsMeta();
-  if (tools.some(t => t.slug === slug)) {
-    permanentRedirect(`/tools/${slug}`);
   }
 
   // Get all posts for navigation

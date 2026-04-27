@@ -20,7 +20,6 @@ Disallow: /*/p/
 Disallow: /*/tp/
 Disallow: /*?page=
 Disallow: /api/
-Disallow: /_next/
 
 # Block error pages
 Disallow: /404
