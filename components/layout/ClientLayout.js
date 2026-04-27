@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 // Defer non-critical client helpers to reduce initial JS
 const PerformanceMonitor = dynamic(() => import('../ui/PerformanceMonitor'), { ssr: false, loading: () => null });
 const UserPreferencesPanel = dynamic(() => import('../ui/UserPreferencesPanel'), { ssr: false, loading: () => null });
+const BackToTop = dynamic(() => import('../ui/BackToTop'), { ssr: false, loading: () => null });
 
 export default function ClientLayout() {
   const [showPreferences, setShowPreferences] = useState(false);
@@ -68,6 +69,7 @@ export default function ClientLayout() {
           />
         </ErrorBoundary>
       ) : null}
+      <BackToTop />
     </>
   );
 }
