@@ -14,7 +14,7 @@ const Markdown = ({ text, className = "" }) => {
 
     const flushList = (key) => {
         if (currentList.length > 0) {
-            elements.push(<ul key={`list-${key}`} className="list-disc pl-5 mb-4 space-y-1">{currentList}</ul>);
+            elements.push(<ul key={`list-${key}`} className="list-disc pl-5 mb-6 space-y-2 text-gray-700 dark:text-gray-300">{currentList}</ul>);
             currentList = [];
         }
     };
@@ -25,10 +25,10 @@ const Markdown = ({ text, className = "" }) => {
     const flushTable = (key) => {
         if (tableHeader || tableBody.length > 0) {
             elements.push(
-                <div key={`table-wrapper-${key}`} className="overflow-x-auto mb-6">
-                    <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800 border dark:border-gray-800">
-                        {tableHeader && <thead>{tableHeader}</thead>}
-                        {tableBody.length > 0 && <tbody>{tableBody}</tbody>}
+                <div key={`table-wrapper-${key}`} className="overflow-x-auto mb-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+                    <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
+                        {tableHeader && <thead className="bg-gray-50/50 dark:bg-gray-900/50">{tableHeader}</thead>}
+                        {tableBody.length > 0 && <tbody className="divide-y divide-gray-100 dark:divide-gray-900">{tableBody}</tbody>}
                     </table>
                 </div>
             );
@@ -43,9 +43,11 @@ const Markdown = ({ text, className = "" }) => {
     const flushCodeBlock = (key) => {
         if (codeContent.length > 0) {
             elements.push(
-                <pre key={`code-${key}`} className="bg-gray-100 dark:bg-gray-900 p-3 rounded-lg overflow-x-auto mb-4 text-xs border dark:border-gray-800">
-                    <code>{codeContent.join('\n')}</code>
-                </pre>
+                <div key={`code-wrapper-${key}`} className="relative group mb-6">
+                    <pre className="bg-slate-950 text-slate-100 p-5 rounded-xl overflow-x-auto text-xs font-mono leading-relaxed border border-white/5 shadow-2xl">
+                        <code>{codeContent.join('\n')}</code>
+                    </pre>
+                </div>
             );
             codeContent = [];
         }
@@ -77,13 +79,13 @@ const Markdown = ({ text, className = "" }) => {
             const isHeader = !tableHeader;
             
             const row = (
-                <tr key={`tr-${i}`} className={isHeader ? "bg-gray-50 dark:bg-gray-900" : "bg-white dark:bg-gray-950"}>
+                <tr key={`tr-${i}`} className="transition-colors hover:bg-gray-50/30 dark:hover:bg-white/5">
                     {cells.map((cell, j) => (
                         isHeader ?
-                            <th key={j} className="px-3 py-2 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider border dark:border-gray-800">
+                            <th key={j} className="px-4 py-3 text-left text-xs font-bold text-gray-900 dark:text-gray-100 uppercase tracking-tight">
                                 {renderInline(cell.trim())}
                             </th> :
-                            <td key={j} className="px-3 py-2 text-sm text-gray-600 dark:text-gray-400 border dark:border-gray-800">
+                            <td key={j} className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">
                                 {renderInline(cell.trim())}
                             </td>
                     ))}
@@ -102,7 +104,7 @@ const Markdown = ({ text, className = "" }) => {
 
         // Lists
         if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
-            currentList.push(<li key={`li-${i}`} className="leading-relaxed">{renderInline(trimmed.substring(2))}</li>);
+            currentList.push(<li key={`li-${i}`} className="leading-relaxed pl-1">{renderInline(trimmed.substring(2))}</li>);
             return;
         } else {
             flushList(i);
@@ -111,7 +113,7 @@ const Markdown = ({ text, className = "" }) => {
         // Blockquotes
         if (trimmed.startsWith('> ')) {
             elements.push(
-                <blockquote key={i} className="border-l-4 border-brand-500 bg-brand-50/50 dark:bg-brand-900/20 px-4 py-2 italic my-4 text-gray-700 dark:text-gray-300">
+                <blockquote key={i} className="border-l-4 border-brand-500 bg-brand-50/30 dark:bg-brand-900/10 px-6 py-4 italic my-6 rounded-r-xl text-gray-700 dark:text-gray-300 shadow-sm">
                     {renderInline(trimmed.substring(2))}
                 </blockquote>
             );
@@ -120,18 +122,18 @@ const Markdown = ({ text, className = "" }) => {
 
         // Headings
         if (trimmed.startsWith('# ')) {
-            elements.push(<h2 key={i} className="text-xl font-bold mt-6 mb-3 border-b pb-1 border-gray-200 dark:border-gray-700">{renderInline(trimmed.substring(2))}</h2>);
+            elements.push(<h2 key={i} className="text-2xl font-black mt-10 mb-5 tracking-tight text-gray-900 dark:text-white border-b border-gray-100 dark:border-gray-800 pb-2">{renderInline(trimmed.substring(2))}</h2>);
         } else if (trimmed.startsWith('## ')) {
-            elements.push(<h3 key={i} className="text-lg font-bold mt-5 mb-2">{renderInline(trimmed.substring(3))}</h3>);
+            elements.push(<h3 key={i} className="text-xl font-extrabold mt-8 mb-4 tracking-tight text-gray-900 dark:text-white">{renderInline(trimmed.substring(3))}</h3>);
         } else if (trimmed.startsWith('### ')) {
-            elements.push(<h4 key={i} className="text-base font-bold mt-4 mb-2">{renderInline(trimmed.substring(4))}</h4>);
+            elements.push(<h4 key={i} className="text-lg font-bold mt-6 mb-3 tracking-tight text-gray-800 dark:text-gray-200">{renderInline(trimmed.substring(4))}</h4>);
         } else if (trimmed === '---') {
-            elements.push(<hr key={i} className="my-6 border-gray-200 dark:border-gray-700" />);
+            elements.push(<hr key={i} className="my-10 border-gray-100 dark:border-gray-800" />);
         } else if (trimmed === '') {
-            elements.push(<div key={i} className="h-2" />);
+            elements.push(<div key={i} className="h-4" />);
         } else {
             // Paragraph
-            elements.push(<p key={i} className="mb-3 leading-relaxed">{renderInline(line)}</p>);
+            elements.push(<p key={i} className="mb-5 leading-relaxed text-gray-700 dark:text-gray-300 text-sm md:text-base">{renderInline(line)}</p>);
         }
     });
 
@@ -140,7 +142,7 @@ const Markdown = ({ text, className = "" }) => {
     flushCodeBlock('end');
 
     return (
-        <div className={`markdown-body text-sm ${className}`}>
+        <div className={`markdown-body selection:bg-brand-100 dark:selection:bg-brand-900/50 ${className}`}>
             {elements}
         </div>
     );

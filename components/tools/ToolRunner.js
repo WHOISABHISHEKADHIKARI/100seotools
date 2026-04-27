@@ -7,6 +7,7 @@ import { checkRateLimit } from '../../lib/rateLimit';
 import { validateField, validateAllFields } from '../../lib/validation';
 import Markdown from '../blog/Markdown';
 import ProofTrace from '../prover/ProofTrace';
+import OutputPresentation from '../ui/OutputPresentation';
 
 export default function ToolRunner({ tool }) {
   const def = useMemo(() => getTemplateDefinition(tool.template), [tool.template]);
@@ -395,42 +396,14 @@ export default function ToolRunner({ tool }) {
         </div>
         <div className="space-y-4">
           <label className="block text-sm mb-1 font-bold text-gray-900 dark:text-gray-100 uppercase tracking-tight">Analysis Output</label>
-          <div className="h-[500px] p-6 overflow-auto text-sm border-2 border-gray-100 dark:border-gray-800 rounded-xl bg-white dark:bg-gray-950 shadow-sm transition-all duration-300 hover:border-brand-200 dark:hover:border-brand-800" aria-live="polite">
-            {output ? (
-              <Markdown text={output} />
-            ) : (
-              <div className="flex flex-col items-center justify-center h-full text-center space-y-3">
-                <div className="w-12 h-12 bg-gray-50 dark:bg-gray-900 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                </div>
-                <p className="text-slate-500 dark:text-slate-400 italic">No analysis generated yet.<br/>Enter two domains and click "Compare Domains".</p>
-              </div>
-            )}
-          </div>
-          <div className="flex gap-3">
-            <button
-              className="btn-secondary flex-1 transition-all duration-200"
-              onClick={() => {
-                copyToClipboardWithHistory(output, tool.slug);
-                setIsCopied(true);
-                setTimeout(() => setIsCopied(false), 2000);
-              }}
-              disabled={!output || isProcessing}
-              aria-label={isCopied ? "Copied to clipboard" : "Copy output to clipboard"}
-            >
-              {isCopied ? "✅ Copied!" : "📋 Copy"}
-            </button>
-            <button
-              className="btn-secondary flex-1"
-              onClick={() => downloadAllFormats(tool.slug, output, inputs, { metrics: { length: (output || '').length } })}
-              disabled={!output || isProcessing}
-              aria-label="Download output"
-            >
-              💾 Download
-            </button>
-          </div>
+          <OutputPresentation 
+            output={output}
+            toolSlug={tool.slug}
+            isProcessing={isProcessing}
+            onCopy={() => copyToClipboardWithHistory(output, tool.slug)}
+            onDownload={() => downloadAllFormats(tool.slug, output, inputs, { metrics: { length: (output || '').length } })}
+            emptyMessage={`No analysis generated yet. Enter required fields and click "${def.actionLabel || 'Analyze'}" to see results.`}
+          />
         </div>
       </div>
 
