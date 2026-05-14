@@ -32,9 +32,10 @@ export const metadata = {
         type: 'article',
         url: `${baseUrl}/blog/seo-basics`,
         images: [{
-            url: `${baseUrl}/og-seo-basics.jpg`,
+            url: `${baseUrl}/blog-images/seo-basics-guide.png`,
             width: 1200,
             height: 630,
+            type: 'image/png',
             alt: 'SEO Basics 2026 Guide'
         }]
     },
@@ -43,6 +44,7 @@ export const metadata = {
         title: 'SEO Basics 2026: Complete Beginner\'s Guide',
         description:
             'Master SEO fundamentals with our comprehensive guide. Learn on-page, technical, and off-page optimization.',
+        images: [{ url: `${baseUrl}/blog-images/seo-basics-guide.png`, alt: 'SEO Basics 2026 Guide' }],
     },
 };
 

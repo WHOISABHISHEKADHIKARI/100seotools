@@ -1,10 +1,11 @@
 import { getBaseUrl, logoImage, siteName, socialLinks, socialPreviewImage, twitterHandle } from '../lib/site';
+import { socialImageHeight, socialImageType, socialImageWidth } from '../lib/socialMetadata';
 const baseUrl = getBaseUrl();
 const defaultSocialImage = `${baseUrl}${socialPreviewImage}`;
 
 export const metadata = {
-  title: '100+ Free SEO Tools  - No Signup Required | Used by 50,000+ Marketers',
-  description: '✓ 100+ free SEO tools ✓ Keyword research ✓ On-page audit ✓ Technical SEO ✓ Content optimization ✓ No login needed ✓ Instant results. Start optimizing now!',
+  title: '100+ Free SEO Tools - No Signup Required | 100 SEO Tools',
+  description: 'Use 100+ free SEO tools for keyword research, on-page audits, technical SEO, schema, content optimization, and reports. Instant results, no signup.',
   metadataBase: new URL(baseUrl),
   keywords: ['100 seo tools', 'free seo tools list', 'seo tool comparison', 'best seo tools for 2024', '100 free seo tools', 'free seo toolkit'],
   // Icons / Favicons
@@ -23,16 +24,17 @@ export const metadata = {
   },
   // Open Graph tags
   openGraph: {
-    title: '100+ Free SEO Tools  - No Signup Required',
-    description: '✓ 100+ free SEO tools ✓ Keyword research ✓ On-page audit ✓ Technical SEO ✓ No login needed. Used by 50,000+ marketers worldwide!',
+    title: '100+ Free SEO Tools - No Signup Required',
+    description: 'Keyword research, on-page audits, technical SEO, schema, content optimization, and SEO reports in one free browser toolkit.',
     url: baseUrl,
     siteName,
     images: [
       {
         url: defaultSocialImage,
         secureUrl: defaultSocialImage,
-        width: 1200,
-        height: 630,
+        width: socialImageWidth,
+        height: socialImageHeight,
+        type: socialImageType,
         alt: '100 Free SEO Tools - Complete Toolkit for Marketers',
       },
     ],
@@ -42,8 +44,9 @@ export const metadata = {
   // Twitter Card tags
   twitter: {
     card: 'summary_large_image',
-    title: '100+ Free SEO Tools  - No Signup Required',
-    description: '✓ 100+ free SEO tools ✓ Keyword research ✓ On-page audit ✓ Technical SEO ✓ No login needed. Used by 50,000+ marketers!',
+    title: '100+ Free SEO Tools - No Signup Required',
+    description: 'Free keyword research, on-page audit, technical SEO, schema, and content optimization tools. Instant results, no signup.',
+    url: baseUrl,
     site: twitterHandle,
     creator: twitterHandle,
     images: [{ url: defaultSocialImage, alt: '100 Free SEO Tools - Complete Toolkit for Marketers' }],

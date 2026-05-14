@@ -22,7 +22,21 @@ export const metadata = {
     title: 'SEO Cost Calculator | Free SEO Pricing Estimator',
     description: 'Estimate monthly and project SEO budgets with clear factors and examples.',
     url: `${baseUrl}/seo-cost-calculator`,
-    type: 'website'
+    type: 'website',
+    images: [{
+      url: `${baseUrl}/og-image.jpg`,
+      secureUrl: `${baseUrl}/og-image.jpg`,
+      width: 1200,
+      height: 630,
+      type: 'image/jpeg',
+      alt: '100 SEO Tools - SEO Cost Calculator',
+    }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SEO Cost Calculator | Free SEO Pricing Estimator',
+    description: 'Estimate monthly and project SEO budgets with clear factors and examples.',
+    images: [{ url: `${baseUrl}/og-image.jpg`, alt: '100 SEO Tools - SEO Cost Calculator' }],
   },
   robots: { index: true, follow: true }
 };
@@ -207,4 +221,3 @@ export default function SEOCostCalculatorPage() {
     </main>
   );
 }
-

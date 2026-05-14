@@ -1,22 +1,24 @@
 import StructuredData from '../../../components/ui/StructuredData';
 import ShareActions from '../../../components/ui/ShareActions';
 import { getBaseUrl, siteName } from '../../../lib/site';
+import { createSocialMetadata } from '../../../lib/socialMetadata';
 
 export const dynamic = 'force-static';
 
 const baseUrl = getBaseUrl();
+const pageUrl = `${baseUrl}/blog/ai-content-detection-guide-2024`;
 
 export const metadata = {
+  ...createSocialMetadata({
+    title: 'AI Content Detection: Complete 2024 Guide to Identifying Machine-Generated Text',
+    description: 'Learn proven methods to detect AI-generated content using the latest tools and techniques to ensure content authenticity in 2024.',
+    url: pageUrl,
+    type: 'article',
+    image: '/blog-images/ai-content-detection-guide-2024.png',
+    imageAlt: 'AI content detection tutorial hero image',
+  }),
   title: 'AI Content Detection: Complete 2024 Guide to Identifying Machine-Generated Text',
   description: 'Learn proven methods to detect AI-generated content using the latest tools and techniques to ensure content authenticity in 2024.',
-  alternates: { canonical: `${baseUrl}/blog/ai-content-detection-guide-2024` },
-  openGraph: {
-    title: 'AI Content Detection: Complete 2024 Guide',
-    description: 'Detect AI-generated content with practical methods and tools.',
-    type: 'article',
-    url: `${baseUrl}/blog/ai-content-detection-guide-2024`
-  },
-  twitter: { card: 'summary', title: 'AI Content Detection Guide', description: 'Identify machine-generated text with reliable methods.' }
 };
 
 export default function Page() {

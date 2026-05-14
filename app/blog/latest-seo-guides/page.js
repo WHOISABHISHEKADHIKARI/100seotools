@@ -3,26 +3,21 @@ import StructuredData from '../../../components/ui/StructuredData';
 import ShareActions from '../../../components/ui/ShareActions';
 import NewsletterForm from '../../../components/ui/NewsletterForm';
 import { getBaseUrl, siteName } from '../../../lib/site';
+import { createSocialMetadata } from '../../../lib/socialMetadata';
 
 export const dynamic = 'force-static';
 
 const baseUrl = getBaseUrl();
+const pageUrl = `${baseUrl}/blog/latest-seo-guides`;
 
 export const metadata = {
+  ...createSocialMetadata({
+    title: 'Latest SEO Guides & Tutorials to Master Search Optimization',
+    description: 'Explore curated, up-to-date SEO guides and tutorials with AI-assisted analysis, proven strategies, and essential tools optimized for clean structure and fast performance.',
+    url: pageUrl,
+  }),
   title: 'Latest SEO Guides & Tutorials to Master Search Optimization',
   description: 'Explore curated, up-to-date SEO guides and tutorials with AI-assisted analysis, proven strategies, and essential tools — optimized for clean structure and fast performance.',
-  alternates: { canonical: `${baseUrl}/blog/latest-seo-guides` },
-  openGraph: {
-    title: 'Latest SEO Guides & Tutorials to Master Search Optimization',
-    description: 'Curated SEO guides and tutorials with AI tools, strategies, and resources.',
-    type: 'website',
-    url: `${baseUrl}/blog/latest-seo-guides`
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Latest SEO Guides & Tutorials to Master Search Optimization',
-    description: 'Explore curated SEO guides, AI tools, and proven strategies.'
-  }
 };
 
 export default function LatestSEOGuidesPage() {

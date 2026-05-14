@@ -16,11 +16,20 @@ export const metadata = {
     description: 'Use our free SEO Calculator to measure keyword density, ROI, traffic, and authority instantly. A part of 100+ free SEO tools for better Google and Bing optimization.',
     type: 'article',
     url: `${baseUrl}/seo-calculator`,
+    images: [{
+      url: `${baseUrl}/og-image.jpg`,
+      secureUrl: `${baseUrl}/og-image.jpg`,
+      width: 1200,
+      height: 630,
+      type: 'image/jpeg',
+      alt: '100 SEO Tools - Free SEO Calculator',
+    }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Free SEO Calculator – Measure Keyword Density, ROI, and Traffic Instantly',
     description: 'Use our free SEO Calculator to measure keyword density, ROI, traffic, and authority instantly. A part of 100+ free SEO tools for better Google and Bing optimization.',
+    images: [{ url: `${baseUrl}/og-image.jpg`, alt: '100 SEO Tools - Free SEO Calculator' }],
   },
 };
 

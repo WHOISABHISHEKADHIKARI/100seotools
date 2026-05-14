@@ -1,29 +1,24 @@
 import StructuredData from '../../../components/ui/StructuredData';
 import ShareActions from '../../../components/ui/ShareActions';
 import { getBaseUrl, siteName } from '../../../lib/site';
+import { createSocialMetadata } from '../../../lib/socialMetadata';
 
 export const dynamic = 'force-static';
 
 const baseUrl = getBaseUrl();
+const pageUrl = `${baseUrl}/blog/latest-ai-based-tips-and-tricks-for-fast-web-crawling`;
 
 export const metadata = {
+  ...createSocialMetadata({
+    title: 'Latest AI-Based Tips and Tricks for Fast Web Crawling',
+    description:
+      'Accelerate crawling with AI: RL pathing, predictive caching, adaptive limiting, smart JS execution, and ethical practices for reliable, fast extraction.',
+    url: pageUrl,
+    type: 'article',
+  }),
   title: 'Latest AI-Based Tips and Tricks for Fast Web Crawling',
   description:
     'Accelerate crawling with AI: RL pathing, predictive caching, adaptive limiting, smart JS execution, and ethical practices for reliable, fast extraction.',
-  alternates: { canonical: `${baseUrl}/blog/latest-ai-based-tips-and-tricks-for-fast-web-crawling` },
-  openGraph: {
-    title: 'Latest AI-Based Tips and Tricks for Fast Web Crawling',
-    description:
-      'Accelerate crawling with AI: RL pathing, predictive caching, adaptive limiting, and smart JS execution.',
-    type: 'article',
-    url: `${baseUrl}/blog/latest-ai-based-tips-and-tricks-for-fast-web-crawling`,
-  },
-  twitter: {
-    card: 'summary',
-    title: 'AI Tips for Fast Web Crawling',
-    description:
-      'Practical AI tactics: reinforcement learning, predictive caching, adaptive rate limiting, and ethical crawling.',
-  },
 };
 
 export default async function Page() {
