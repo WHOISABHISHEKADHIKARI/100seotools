@@ -1,11 +1,8 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-
-// Defer non-critical client helpers to reduce initial JS
-const PerformanceMonitor = dynamic(() => import('../ui/PerformanceMonitor'), { ssr: false, loading: () => null });
-const UserPreferencesPanel = dynamic(() => import('../ui/UserPreferencesPanel'), { ssr: false, loading: () => null });
-const BackToTop = dynamic(() => import('../ui/BackToTop'), { ssr: false, loading: () => null });
+import PerformanceMonitor from '../ui/PerformanceMonitor';
+import UserPreferencesPanel from '../ui/UserPreferencesPanel';
+import BackToTop from '../ui/BackToTop';
 
 export default function ClientLayout() {
   const [showPreferences, setShowPreferences] = useState(false);

@@ -1,16 +1,14 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import ErrorBoundary from './ErrorBoundary';
-
-const ProvidersRootDynamic = dynamic(() => import('./ProvidersRoot'), { ssr: false });
+import ProvidersRoot from './ProvidersRoot';
 
 export default function ClientRoot({ children }) {
   return (
     <ErrorBoundary>
-      <ProvidersRootDynamic>
+      <ProvidersRoot>
         {children}
-      </ProvidersRootDynamic>
+      </ProvidersRoot>
     </ErrorBoundary>
   );
 }

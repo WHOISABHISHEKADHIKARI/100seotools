@@ -14,11 +14,11 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
   const displayName = shortToolName(tool.name);
 
   const guideSubpages = [
-    ['How to Use', `/blog/${tool.slug}-how-to-use`, 'Step-by-step workflow'],
-    ['Features', `/blog/${tool.slug}-features-benefits-keywords`, 'Benefits and keywords'],
-    ['Best Practices', `/blog/${tool.slug}-best-practices-integrations-costs`, 'Practical checks'],
-    ['Checklist', `/blog/${tool.slug}-checklist-workflow`, 'Repeatable process'],
-    ['Search Terms', `/blog/${tool.slug}-popular-search-terms`, 'Related queries'],
+    ['How to Use', '#how-to-heading', 'Step-by-step workflow'],
+    ['Features', '#what-heading', 'Benefits and keywords'],
+    ['Best Practices', '#seo-heading', 'Practical checks'],
+    ['Checklist', '#tool-form', 'Repeatable process'],
+    ['Search Terms', '#faq-heading', 'Related queries'],
   ];
 
   const relatedItems = (() => {
@@ -81,10 +81,10 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
               <a href="#tool-form" className="inline-flex items-center justify-center rounded-xl bg-slate-950 px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-slate-800 active:scale-[0.99] dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">
                 Open tool
               </a>
-              <Link href={`/blog/${tool.slug}-how-to-use`} className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10">
+              <a href="#intro-heading" className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10">
                 Read guide
                 <BookOpen className="h-4 w-4" aria-hidden />
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -100,14 +100,14 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {guideSubpages.map(([label, href, meta]) => (
-            <Link
+            <a
               key={href}
               href={href}
               className="group rounded-xl border border-slate-200 bg-slate-50 p-4 transition hover:border-slate-300 hover:bg-white hover:shadow-sm dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
             >
               <span className="block text-sm font-extrabold text-slate-900 group-hover:text-slate-700 dark:text-white">{label}</span>
               <span className="mt-1 block text-[11px] leading-tight text-slate-500 dark:text-slate-400">{meta}</span>
-            </Link>
+            </a>
           ))}
         </div>
       </div>
@@ -164,7 +164,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
               </div>
 
               <section className="space-y-4 border-t border-slate-100 pt-7 dark:border-white/5">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">How to use it well</h3>
+                <h3 id="how-to-heading" className="scroll-mt-24 text-lg font-bold text-slate-900 dark:text-white">How to use it well</h3>
                 <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">{guide.howToUse}</p>
                 {Array.isArray(guide.howToSteps) && guide.howToSteps.length > 0 && (
                   <div className="grid gap-3 sm:grid-cols-2">
@@ -181,7 +181,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
 
               {Array.isArray(guide.faqs) && guide.faqs.length > 0 && (
                 <section className="space-y-4 border-t border-slate-100 pt-7 dark:border-white/5">
-                  <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">Frequently asked questions</h2>
+                  <h2 id="faq-heading" className="scroll-mt-24 text-xl font-extrabold text-slate-900 dark:text-white">Frequently asked questions</h2>
                   <div className="divide-y divide-slate-100 dark:divide-white/5">
                     {guide.faqs.map((faq, index) => (
                       <div key={index} className="py-4 first:pt-0">

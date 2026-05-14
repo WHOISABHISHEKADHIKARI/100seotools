@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import StructuredData from '../../../components/ui/StructuredData';
 import ShareActions from '../../../components/ui/ShareActions';
 import CardSection from '../../../components/ui/CardSection';
-import { getAllBlogPosts } from '../../../lib/blog';
+import { getAllBlogPostsPublished } from '../../../lib/blog-data';
 import { getBaseUrl, siteName } from '../../../lib/site';
 import Link from 'next/link';
 
@@ -46,8 +46,8 @@ export const metadata = {
     },
 };
 
-export default function SEOBasicsPage() {
-    const publishedDate = '2026-11-22';
+export default async function SEOBasicsPage() {
+    const publishedDate = '2026-04-25';
     const modifiedDate = new Date().toISOString();
 
     const articleLd = {
@@ -130,7 +130,7 @@ export default function SEOBasicsPage() {
 
     let recentPosts = [];
     try {
-        recentPosts = getAllBlogPosts().slice(0, 6);
+        recentPosts = (await getAllBlogPostsPublished()).slice(0, 6);
     } catch (error) {
         console.error('Error loading blog posts:', error);
     }

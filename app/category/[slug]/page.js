@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FiArrowRight, FiCheckCircle, FiHome, FiLayers, FiStar } from 'react-icons/fi';
-import { getAllBlogPosts } from '../../../lib/blog';
+import { getAllBlogPostsPublished } from '../../../lib/blog-data';
 import { getAllToolsMeta } from '../../../tools';
 import CategoryClient from '../../../components/tools/CategoryClient';
 import { slugify } from '../../../lib/utils';
@@ -56,7 +56,7 @@ export default async function CategoryPage({ params, searchParams }) {
   const catName = categories.find((category) => slugify(category) === slug) || catFallback;
   const items = tools.filter((tool) => tool.category && slugify(tool.category) === slug);
   const featuredTool = items[0] || null;
-  const allPosts = getAllBlogPosts();
+  const allPosts = await getAllBlogPostsPublished();
   const blogPosts = allPosts.filter((post) => {
     const matchesCategory = post.category && slugify(post.category) === slug;
     const matchesTag = Array.isArray(post.tags) && post.tags.some((tag) => slugify(tag) === slug);

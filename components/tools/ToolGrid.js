@@ -104,7 +104,7 @@ function ToolCard({ tool, index, isFavorite, onToggleFavorite, onToolClick }) {
   const Icon = category.icon;
   const color = visualColors[category.color] || visualColors.violet;
   const href = tool?.slug ? (isBlog ? `/blog/${tool.slug}` : `/tools/${tool.slug}`) : '#';
-  const guideHref = tool?.slug ? `/blog/${tool.slug}-how-to-use` : '#';
+  const guideHref = tool?.slug ? `/tools/${tool.slug}#intro-heading` : '#';
 
   return (
     <article className={`group relative overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-xl dark:border-white/10 dark:bg-gray-900 ${color.border}`}>
