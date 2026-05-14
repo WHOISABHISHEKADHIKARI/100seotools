@@ -6,6 +6,7 @@ import { getBaseUrl, logoImage, siteName, getAuthor } from '../../../lib/site';
 import { createSocialMetadata } from '../../../lib/socialMetadata';
 import { notFound, permanentRedirect } from 'next/navigation';
 import { getAllToolsMeta } from '../../../tools';
+import { getLegacyBlogCanonicalPath } from '../../../lib/blogCanonical';
 
 const baseUrl = getBaseUrl();
 
@@ -26,6 +27,15 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
   const page = Number((await searchParams)?.page || 1);
+  const legacyCanonicalPath = getLegacyBlogCanonicalPath(slug);
+
+  if (legacyCanonicalPath) {
+    return {
+      alternates: { canonical: `${baseUrl}${legacyCanonicalPath}` },
+      robots: { index: false, follow: true },
+    };
+  }
+
   const post = await getBlogPostPublishedBySlug(slug);
 
   if (!post) {
@@ -67,6 +77,11 @@ export async function generateMetadata({ params, searchParams }) {
 export default async function Page({ params, searchParams }) {
   const { slug } = await params;
   const page = Number((await searchParams)?.page || 1);
+  const legacyCanonicalPath = getLegacyBlogCanonicalPath(slug);
+
+  if (legacyCanonicalPath) {
+    permanentRedirect(legacyCanonicalPath);
+  }
 
   // If a page parameter is present for an individual blog post,
   // redirect to the base URL since individual posts are not paginated.

@@ -32,21 +32,6 @@ const pages = [
     title: 'Terms of Service',
     description: 'Simple terms that favor usability and educational purposes.'
   },
-  {
-    href: '/ui-guidelines',
-    title: 'UI Guidelines',
-    description: 'Design system and accessibility guidelines behind our tool interfaces.'
-  },
-  {
-    href: '/alternative',
-    title: 'Best Alternatives',
-    description: 'See comparable Small SEO Tools alternatives and how we differ.'
-  },
-  {
-    href: '/offline',
-    title: 'Offline Mode',
-    description: 'Service worker support to keep core tools usable offline.'
-  },
 ];
 
 export default function PageLinksGrid() {
@@ -58,4 +43,3 @@ export default function PageLinksGrid() {
     </div>
   );
 }
-

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 import bundleAnalyzer from '@next/bundle-analyzer';
+import { tools as toolsMeta } from './tools/registry.js';
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -7,6 +8,35 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const SITE_DOMAIN = '100seotools.com';
 const SITE_URL = `https://www.${SITE_DOMAIN}`;
+const TOOL_BLOG_SUFFIXES = [
+  'overview',
+  'guide',
+  'how-to-use',
+  'features-benefits-keywords',
+  'best-practices-integrations-costs',
+  'checklist-workflow',
+  'popular-search-terms',
+];
+const legacyBlogRedirects = [
+  ...Array.from({ length: 101 }, (_, index) => ({
+    source: `/blog/seo-basics-${index}`,
+    destination: '/blog/seo-basics',
+    permanent: true,
+  })),
+  { source: '/blog/100-free-seo-tools-ultimate-list', destination: '/blog/seo-basics', permanent: true },
+  { source: '/blog/reverse-image-search-guide', destination: '/blog/reverse-image-search-complete-guide', permanent: true },
+  ...toolsMeta.flatMap((tool) => {
+    const slug = tool.slug;
+    return [
+      { source: `/blog/${slug}`, destination: `/tools/${slug}`, permanent: true },
+      ...TOOL_BLOG_SUFFIXES.map((suffix) => ({
+        source: `/blog/${slug}-${suffix}`,
+        destination: `/tools/${slug}`,
+        permanent: true,
+      })),
+    ];
+  }),
+];
 
 const nextConfig = withBundleAnalyzer({
   reactStrictMode: true,
@@ -49,6 +79,7 @@ const nextConfig = withBundleAnalyzer({
   typedRoutes: true,
   redirects: async () => {
     const common = [
+      ...legacyBlogRedirects,
       { source: '/blog/p/:page', destination: '/blog', permanent: true },
       { source: '/blog/tp/:page', destination: '/blog', permanent: true },
       { source: '/category/:slug/p/:page', destination: '/category/:slug', permanent: true },
@@ -56,6 +87,11 @@ const nextConfig = withBundleAnalyzer({
 
       // Legacy blog pagination redirect: /blog/<slug>/p/<n> -> /blog/<slug>
       { source: '/blog/:slug/p/:page', destination: '/blog/:slug', permanent: true },
+
+      // Crawl-clean duplicate utility pages
+      { source: '/alternative', destination: '/tools/keyword-density-checker', permanent: true },
+      { source: '/alternative/:path*', destination: '/tools/keyword-density-checker', permanent: true },
+      { source: '/ui-guidelines', destination: '/about', permanent: true },
 
       // SEO keyword variant redirects for better rankings
       // On-page SEO checker variants (currently ranking 94-102)
@@ -122,16 +158,6 @@ const nextConfig = withBundleAnalyzer({
     { source: '/sitemap-static.xml', destination: '/sitemap-static/sitemap.xml' },
   ],
   headers: async () => [
-    {
-      source: '/alternative/(.*)',
-      headers: [
-        { key: 'X-Robots-Tag', value: 'noindex, follow' },
-        { key: 'Link', value: `<${SITE_URL}/tools/keyword-density-checker>; rel="canonical"` },
-        { key: 'Cache-Control', value: 'no-cache, no-store, must-revalidate' },
-        { key: 'Pragma', value: 'no-cache' },
-        { key: 'Expires', value: '0' },
-      ],
-    },
     // Block pagination pages from indexing (critical SEO fix)
     {
       source: '/(p|tp)/:page',
