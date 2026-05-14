@@ -1,4 +1,5 @@
-import { getBaseUrl, siteName } from '../../lib/site';
+import { getBaseUrl } from '../../lib/site';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 import AlternativeInteractive from '../../components/tools/AlternativeInteractive';
 
 const baseUrl = getBaseUrl();
@@ -27,31 +28,12 @@ export const metadata = {
     },
   },
 
-  // Open Graph tags for social sharing (pointing to primary)
-  openGraph: {
+  ...createSocialMetadata({
     title: 'Keyword Density Checker - 100 SEO Tools',
     description: 'Analyze keyword density in your content with our free SEO tool.',
     url: primaryUrl,
-    siteName,
-    images: [
-      {
-        url: `${baseUrl}/icon.svg`,
-        width: 1200,
-        height: 630,
-        alt: '100 SEO Tools Logo',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-
-  // Twitter Card tags
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Keyword Density Checker - 100 SEO Tools',
-    description: 'Analyze keyword density in your content with our free SEO tool.',
-    images: [`${baseUrl}/icon.svg`],
-  },
+    imageAlt: 'Keyword Density Checker - 100 SEO Tools',
+  }),
 };
 export default function AlternativePage() {
   return (

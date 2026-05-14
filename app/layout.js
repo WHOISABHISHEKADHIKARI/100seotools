@@ -1,4 +1,4 @@
-import { getBaseUrl, siteName, socialLinks, socialPreviewImage, twitterHandle } from '../lib/site';
+import { getBaseUrl, logoImage, siteName, socialLinks, socialPreviewImage, twitterHandle } from '../lib/site';
 const baseUrl = getBaseUrl();
 const defaultSocialImage = `${baseUrl}${socialPreviewImage}`;
 
@@ -30,6 +30,7 @@ export const metadata = {
     images: [
       {
         url: defaultSocialImage,
+        secureUrl: defaultSocialImage,
         width: 1200,
         height: 630,
         alt: '100 Free SEO Tools - Complete Toolkit for Marketers',
@@ -45,7 +46,7 @@ export const metadata = {
     description: '✓ 100+ free SEO tools ✓ Keyword research ✓ On-page audit ✓ Technical SEO ✓ No login needed. Used by 50,000+ marketers!',
     site: twitterHandle,
     creator: twitterHandle,
-    images: [defaultSocialImage],
+    images: [{ url: defaultSocialImage, alt: '100 Free SEO Tools - Complete Toolkit for Marketers' }],
   },
   // Canonical URL
   alternates: {
@@ -155,7 +156,7 @@ export default function RootLayout({ children }) {
           "@type": "Organization",
           "name": "100 SEO Tools",
           "url": baseUrl,
-          "logo": `${baseUrl}/logo.png`,
+          "logo": `${baseUrl}${logoImage}`,
           "sameAs": socialLinks,
           "description": "Free SEO tools collection for keyword research, on-page optimization, technical SEO, and performance tracking"
         }} />

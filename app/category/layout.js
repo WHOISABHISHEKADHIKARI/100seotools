@@ -1,4 +1,5 @@
 import { siteName, getBaseUrl } from '../../lib/site';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 
 const baseUrl = getBaseUrl();
 
@@ -12,25 +13,12 @@ export async function generateMetadata() {
         description,
         robots: { index: true, follow: true },
         alternates: { canonical: url },
-        openGraph: {
+        ...createSocialMetadata({
             title,
             description,
             url,
-            siteName,
-            type: 'website',
-            images: [{
-                url: `${baseUrl}/og-category.jpg`,
-                width: 1200,
-                height: 630,
-                alt: 'SEO Tool Categories'
-            }]
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title,
-            description,
-            images: [`${baseUrl}/og-category.jpg`]
-        }
+            imageAlt: 'SEO Tool Categories'
+        })
     };
 }
 

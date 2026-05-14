@@ -4,7 +4,8 @@ import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSche
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { getToolGuide } from '../../../lib/guides';
 import { notFound } from 'next/navigation';
-import { getBaseUrl, siteName, socialPreviewImage, twitterHandle } from '../../../lib/site';
+import { getBaseUrl } from '../../../lib/site';
+import { createSocialMetadata } from '../../../lib/socialMetadata';
 import { slugify } from '../../../lib/utils';
 import { standardizeToolSeo } from '../../../lib/toolSeo';
 
@@ -28,30 +29,12 @@ export async function generateMetadata({ params }) {
     alternates: { canonical: canonicalUrl },
     keywords,
     robots: { index: true, follow: true },
-    openGraph: {
+    ...createSocialMetadata({
       title,
       description,
       url: canonicalUrl,
-      type: 'website',
-      siteName,
-      locale: 'en_US',
-      images: [
-        {
-          url: socialPreviewImage,
-          width: 1200,
-          height: 630,
-          alt: `${toolName} - Free SEO Tool`,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      site: twitterHandle,
-      creator: twitterHandle,
-      images: [socialPreviewImage],
-    },
+      imageAlt: `${toolName} - Free SEO Tool`,
+    }),
   };
 }
 

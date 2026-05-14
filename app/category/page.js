@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { FiArrowRight, FiHome, FiLayers } from 'react-icons/fi';
 import { getAllToolsMeta } from '../../tools';
-import { getBaseUrl, siteName } from '../../lib/site';
+import { getBaseUrl } from '../../lib/site';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 import { slugify } from '../../lib/utils';
 import { categoryDetails, getCategoryDetail, getCategoryHref, visualColors } from '../../components/tools/SeoVisuals';
 
@@ -10,21 +11,12 @@ export const metadata = {
   description: 'Explore our complete collection of free SEO tools organized by category. Find the right tools for keyword research, on-page SEO, technical analysis, content optimization, and link building.',
   keywords: ['seo tools list', 'seo tools by category', 'free seo tools', 'keyword research tools', 'on-page seo tools', 'technical seo tools', 'link building tools', 'content optimization tools', '100 seo tools'],
   alternates: { canonical: `${getBaseUrl()}/category` },
-  openGraph: {
-    title: 'Free SEO Tools by Category | 100 SEO Tools',
-    description: 'Find the perfect free SEO tool for your needs. Browse categories including Keyword Research, Technical SEO, Content Optimization, and more.',
-    url: `${getBaseUrl()}/category`,
-    siteName,
-    type: 'website',
-    locale: 'en_US',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: '100 SEO Tools Categories' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
+  ...createSocialMetadata({
     title: 'Free SEO Tools by Category | 100 SEO Tools',
     description: 'Browse our organized collection of free SEO tools. Everything you need for better rankings.',
-    images: ['/og-image.jpg'],
-  },
+    url: `${getBaseUrl()}/category`,
+    imageAlt: '100 SEO Tools Categories',
+  }),
   robots: {
     index: true,
     follow: true,

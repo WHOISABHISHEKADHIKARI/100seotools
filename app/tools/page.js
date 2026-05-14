@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { FiArrowRight, FiHome, FiLayers, FiUsers } from 'react-icons/fi';
 import { getAllToolsMeta } from '../../tools';
 import { getBaseUrl, siteName } from '../../lib/site';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 import StructuredData from '../../components/ui/StructuredData';
 import {
   categoryDetails,
@@ -18,17 +19,12 @@ export const metadata = {
   title: 'All SEO Tools - Free Online SEO Toolkit | 100 SEO Tools',
   description: 'Browse all 100+ free SEO tools for keyword research, on-page optimization, technical SEO, content analysis, and performance tracking. No signup required.',
   alternates: { canonical: `${baseUrl}/tools` },
-  openGraph: {
-    title: 'All SEO Tools - Free Online SEO Toolkit',
-    description: 'Browse all 100+ free SEO tools for keyword research, on-page optimization, technical SEO, and more.',
-    type: 'website',
-    url: `${baseUrl}/tools`,
-  },
-  twitter: {
-    card: 'summary',
+  ...createSocialMetadata({
     title: 'All SEO Tools - Free Online SEO Toolkit',
     description: 'Browse all 100+ free SEO tools. No signup required, instant results.',
-  },
+    url: `${baseUrl}/tools`,
+    imageAlt: '100 SEO Tools complete toolkit',
+  }),
 };
 
 export default function ToolsIndexPage() {

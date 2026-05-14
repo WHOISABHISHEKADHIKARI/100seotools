@@ -5,6 +5,7 @@ import ShareActions from "../../../components/ui/ShareActions";
 import BlogSection from "../../../components/blog/BlogSection";
 import { getToolBySlug, getAllToolsMeta } from "../../../tools";
 import { getBaseUrl, siteName } from "../../../lib/site";
+import { createSocialMetadata } from "../../../lib/socialMetadata";
 import Redirect301GeneratorClient from "./Client";
 import { standardizeToolSeo } from "../../../lib/toolSeo";
 
@@ -23,26 +24,12 @@ export const metadata = {
   alternates: {
     canonical: `${baseUrl}/tools/redirect-301-generator`,
   },
-  openGraph: {
+  ...createSocialMetadata({
     title: toolSeo.title,
     description: toolSeo.description,
-    type: "website",
     url: `${baseUrl}/tools/redirect-301-generator`,
-    siteName: siteName,
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "301 Redirect Generator Tool",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: toolSeo.title,
-    description: toolSeo.description,
-  },
+    imageAlt: "301 Redirect Generator Tool",
+  }),
 };
 
 export default function Redirect301GeneratorPage() {

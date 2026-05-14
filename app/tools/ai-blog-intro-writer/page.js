@@ -5,6 +5,7 @@ import ShareActions from "../../../components/ui/ShareActions";
 import BlogSection from "../../../components/blog/BlogSection";
 import { getToolBySlug, getAllToolsMeta } from "../../../tools";
 import { getBaseUrl, siteName } from "../../../lib/site";
+import { createSocialMetadata } from "../../../lib/socialMetadata";
 import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSchema } from "../../../lib/schema";
 import { standardizeToolSeo } from "../../../lib/toolSeo";
 
@@ -23,26 +24,12 @@ export const metadata = {
   alternates: {
     canonical: `${baseUrl}/tools/ai-blog-intro-writer`,
   },
-  openGraph: {
+  ...createSocialMetadata({
     title: toolSeo.title,
     description: toolSeo.description,
-    type: "website",
     url: `${baseUrl}/tools/ai-blog-intro-writer`,
-    siteName: siteName,
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "AI Blog Intro Writer Tool",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: toolSeo.title,
-    description: toolSeo.description,
-  },
+    imageAlt: "AI Blog Intro Writer Tool",
+  }),
 };
 
 export default function AIBlogIntroWriterPage() {

@@ -1,5 +1,6 @@
 import StructuredData from '../../components/ui/StructuredData';
 import { getBaseUrl } from '../../lib/site';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 import Link from 'next/link';
 import {
   Search,
@@ -23,17 +24,12 @@ export const metadata = {
   title: 'FAQ - 300+ SEO Tools Questions Answered | Complete Guide 2025',
   description: 'Comprehensive FAQ with 300+ answers about 100 SEO Tools: features, pricing, privacy, keyword research, backlink analysis, technical SEO, and more.',
   alternates: { canonical: `${baseUrl}/faq` },
-  openGraph: {
+  ...createSocialMetadata({
     title: 'FAQ - 300+ SEO Tools Questions Answered | 100 SEO Tools',
-    description: 'Complete FAQ guide with 300+ detailed answers covering all SEO tools, features, privacy, and technical implementation.',
-    url: `${baseUrl}/faq`,
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'FAQ - 300+ SEO Tools Questions Answered',
     description: 'Comprehensive FAQ covering all aspects of 100 SEO Tools platform.',
-  },
+    url: `${baseUrl}/faq`,
+    imageAlt: '100 SEO Tools FAQ',
+  }),
 };
 
 const faqCategories = [

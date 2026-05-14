@@ -2,7 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import StructuredData from '../../../components/ui/StructuredData';
 import { getAllBlogPostsPublished, getBlogPostPublishedBySlug } from '../../../lib/blog-data';
-import { getBaseUrl, siteName, getAuthor } from '../../../lib/site';
+import { getBaseUrl, logoImage, siteName, getAuthor } from '../../../lib/site';
+import { createSocialMetadata } from '../../../lib/socialMetadata';
 import { notFound, permanentRedirect } from 'next/navigation';
 import { getAllToolsMeta } from '../../../tools';
 
@@ -53,18 +54,13 @@ export async function generateMetadata({ params, searchParams }) {
     description,
     alternates: { canonical },
     robots: page > 1 ? { index: false, follow: true } : { index: true, follow: true },
-    openGraph: {
+    ...createSocialMetadata({
       title,
       description,
       url,
       type: 'article',
-      siteName,
-    },
-    twitter: {
-      card: 'summary',
-      title,
-      description,
-    }
+      imageAlt: `${post.title} | 100 SEO Tools`,
+    })
   };
 }
 
@@ -113,7 +109,7 @@ export default async function Page({ params, searchParams }) {
       url: baseUrl,
       logo: {
         '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`
+        url: `${baseUrl}${logoImage}`
       }
     },
     url: `${baseUrl}/blog/${post.slug}`,

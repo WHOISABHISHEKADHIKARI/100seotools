@@ -4,7 +4,8 @@ import { getAllBlogPosts } from '../../../lib/blog';
 import { getAllToolsMeta } from '../../../tools';
 import CategoryClient from '../../../components/tools/CategoryClient';
 import { slugify } from '../../../lib/utils';
-import { getBaseUrl, siteName } from '../../../lib/site';
+import { getBaseUrl } from '../../../lib/site';
+import { createSocialMetadata } from '../../../lib/socialMetadata';
 import { getCategoryDetail, visualColors } from '../../../components/tools/SeoVisuals';
 
 const baseUrl = getBaseUrl();
@@ -39,20 +40,12 @@ export async function generateMetadata({ params }) {
     description,
     robots: { index: true, follow: true },
     alternates: { canonical: url },
-    openGraph: {
+    ...createSocialMetadata({
       title,
       description,
       url,
-      siteName,
-      type: 'website',
-      images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: `${catName} SEO Tools` }],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: ['/og-image.jpg'],
-    },
+      imageAlt: `${catName} SEO Tools`,
+    }),
   };
 }
 

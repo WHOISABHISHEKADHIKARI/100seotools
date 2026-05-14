@@ -1,4 +1,5 @@
 import { getBaseUrl } from '../../lib/site';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 import Link from 'next/link';
 import Image from 'next/image';
 import StructuredData from '../../components/ui/StructuredData';
@@ -23,17 +24,12 @@ export const metadata = {
   title: 'About 100 SEO Tools - Trusted AI & Technical SEO Solutions',
   description: '100 SEO Tools is a trusted, free platform offering AI SEO tools, indexing solutions, and technical auditors. Built for maximum crawlability and EEAT compliance.',
   alternates: { canonical: `${baseUrl}/about` },
-  openGraph: {
+  ...createSocialMetadata({
     title: 'About 100 SEO Tools - Trusted AI & Technical SEO Solutions',
     description: '100 SEO Tools is a trusted, free platform offering AI SEO tools, indexing solutions, and technical auditors. Built for maximum crawlability and EEAT compliance.',
     url: `${baseUrl}/about`,
-    type: 'website'
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'About 100 SEO Tools - Trusted AI & Technical SEO Solutions',
-    description: '100 SEO Tools is a trusted, free platform offering AI SEO tools, indexing solutions, and technical auditors. Built for maximum crawlability and EEAT compliance.'
-  }
+    imageAlt: 'About 100 SEO Tools',
+  })
 };
 
 const faqs = [
