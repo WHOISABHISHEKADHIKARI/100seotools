@@ -1,14 +1,30 @@
 import { NextResponse } from 'next/server';
-import { getBaseUrl } from '../../../lib/site';
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
 
 export async function POST(request) {
     try {
-        const baseUrl = getBaseUrl();
-        const body = await request.json();
-        const { name, email, subject, message } = body;
+        const body = await request.json().catch(() => ({}));
+        const { name, email, subject, message } = body || {};
 
         // Validate required fields
-        if (!name || !email || !subject || !message) {
+        if (
+            typeof name !== 'string' ||
+            typeof email !== 'string' ||
+            typeof subject !== 'string' ||
+            typeof message !== 'string' ||
+            !name.trim() ||
+            !email.trim() ||
+            !subject.trim() ||
+            !message.trim()
+        ) {
             return NextResponse.json(
                 { error: 'All fields are required' },
                 { status: 400 }
@@ -24,18 +40,23 @@ export async function POST(request) {
             );
         }
 
+        const safeName = escapeHtml(name.trim());
+        const safeEmail = escapeHtml(email.trim());
+        const safeSubject = escapeHtml(subject.trim());
+        const safeMessage = escapeHtml(message.trim());
+
         // Prepare email content
         const emailContent = {
             to: 'abhishekadhikari1254@gmail.com',
-            from: email,
-            subject: `Contact Form: ${subject}`,
+            from: email.trim(),
+            subject: `Contact Form: ${subject.trim()}`,
             text: `
-Name: ${name}
-Email: ${email}
-Subject: ${subject}
+Name: ${name.trim()}
+Email: ${email.trim()}
+Subject: ${subject.trim()}
 
 Message:
-${message}
+${message.trim()}
 
 ---
 This message was sent from the 100 SEO Tools contact form.
@@ -65,36 +86,30 @@ This message was sent from the 100 SEO Tools contact form.
     <div class="content">
       <div class="field">
         <div class="label">From:</div>
-        <div class="value">${name}</div>
+        <div class="value">${safeName}</div>
       </div>
       <div class="field">
         <div class="label">Email:</div>
-        <div class="value"><a href="mailto:${email}" style="color: #dc2626; text-decoration: none;">${email}</a></div>
+        <div class="value"><a href="mailto:${safeEmail}" style="color: #dc2626; text-decoration: none;">${safeEmail}</a></div>
       </div>
       <div class="field">
         <div class="label">Subject:</div>
-        <div class="value">${subject}</div>
+        <div class="value">${safeSubject}</div>
       </div>
       <div class="message-box">
         <div class="label">Message:</div>
-        <div style="margin-top: 10px; white-space: pre-wrap;">${message}</div>
+        <div style="margin-top: 10px; white-space: pre-wrap;">${safeMessage}</div>
       </div>
     </div>
     <div class="footer">
       This message was sent from the 100 SEO Tools contact form.<br>
-      Reply directly to this email to respond to ${name}.
+      Reply directly to this email to respond to ${safeName}.
     </div>
   </div>
 </body>
 </html>
       `
         };
-
-        // For development/testing: Log the email content
-        console.log('📧 Contact form submission received:');
-        console.log('From:', name, `<${email}>`);
-        console.log('Subject:', subject);
-        console.log('Message:', message);
 
         // In production, you would integrate with an email service like:
         // - Resend (recommended for Next.js)

@@ -1,105 +1,112 @@
 import Link from 'next/link';
-import { FiFacebook, FiInstagram, FiLinkedin, FiMail, FiPhone, FiArrowUpRight, FiGithub } from 'react-icons/fi';
-import { getBaseUrl } from '../../lib/site';
-import { slugify } from '../../lib/utils';
+import { FiCompass, FiGithub, FiMail, FiRss, FiTwitter, FiYoutube } from 'react-icons/fi';
+import { categoryDetails, getCategoryHref } from '../tools/SeoVisuals';
 
-// Categories to surface in footer
-const categories = [
-  'Keyword Research',
-  'On-Page Optimization',
-  'Technical SEO',
-  'Backlink & Link-Building',
-  'Content SEO',
-  'SEO Performance',
-  'Local SEO',
-  'Competitor Analysis',
-  'AI-Powered SEO',
-  'SEO Utility',
-  'Schema & Structured Data'
+const topTools = [
+  ['Keyword Density Checker', '/tools/keyword-density-checker'],
+  ['Meta Tag Generator', '/tools/meta-tag-generator'],
+  ['XML Sitemap Visualizer', '/tools/xml-sitemap-visualizer'],
+  ['Backlink Idea Generator', '/tools/backlink-idea-generator'],
+  ['On-Page SEO Audit', '/tools/on-page-seo-audit-checker'],
+  ['Schema Markup Generator', '/tools/schema-markup-generator'],
+];
+
+const resources = [
+  ['SEO Blog', '/blog'],
+  ['SEO Basics', '/blog/seo-basics'],
+  ['All Tools', '/#tools'],
+  ['Categories', '/category'],
+  ['FAQ', '/faq'],
+];
+
+const company = [
+  ['About', '/about'],
+  ['Contact', '/contact'],
+  ['Privacy', '/privacy'],
+  ['Terms', '/terms'],
+  ['Sitemap', '/sitemap.xml'],
 ];
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const baseUrl = getBaseUrl();
+
   return (
-    <footer role="contentinfo" className="bg-white text-slate-800 dark:bg-gray-900 dark:text-white py-10 md:py-14 xl:py-16 mt-10 md:mt-14 xl:mt-16" aria-labelledby="footerHeading">
-      <h2 id="footerHeading" className="sr-only">Site footer</h2>
-      <div className="container mx-auto max-w-7xl px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-10 xl:gap-12 items-start">
-          {/* Brand Info */}
-          <div>
-            <h3 className="text-xl md:text-2xl xl:text-3xl font-bold">Hashtag Web Solutions</h3>
-            <p className="mt-3 text-slate-600 dark:text-gray-400 break-words">Empowering businesses and individuals with web solutions, SEO tools, and digital growth strategies.</p>
-            <div className="mt-6 flex flex-wrap items-center gap-2 md:gap-3 xl:gap-4">
-              <a href="mailto:hashtagsolutionsocail@gmail.com" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" aria-label="Email Hashtag Web Solutions">
-                <FiMail aria-hidden className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6" /> Email us
-              </a>
-              <a href="tel:+9779823405140" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" aria-label="Call Hashtag Web Solutions">
-                <FiPhone aria-hidden className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6" /> +977-9823405140
-              </a>
-              <a href="https://hashtagweb.com.np/" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" rel="noopener noreferrer" target="_blank" aria-label="Visit Hashtag Web Solutions GitHub">
-                <FiGithub className="h-4 w-4 md:w-5 md:h-5 xl:w-6 xl:h-6" />
-                GitHub
-              </a>
+    <footer className="relative left-1/2 mt-16 w-screen -translate-x-1/2 bg-[#0b0d1a] text-white" role="contentinfo">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
+          <div className="col-span-2">
+            <Link href="/" className="mb-4 flex items-center gap-2" aria-label="Go to homepage">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-violet-500 to-blue-600 text-white shadow-lg">
+                <FiCompass className="h-5 w-5" aria-hidden />
+              </span>
+              <span className="text-lg font-extrabold">
+                100SEO<span className="text-violet-300">Tools</span>
+              </span>
+            </Link>
+            <p className="max-w-sm text-sm leading-6 text-slate-400">
+              A complete collection of free SEO tools for keyword research, technical audits, content optimization,
+              local SEO, schema, links, and performance forecasting.
+            </p>
+            <div className="mt-5 flex items-center gap-3">
+              {[
+                ['Twitter', FiTwitter, '#'],
+                ['GitHub', FiGithub, 'https://github.com/WHOISABHISHEKADHIKARI'],
+                ['YouTube', FiYoutube, '#'],
+                ['RSS', FiRss, '/blog'],
+                ['Email', FiMail, 'mailto:hashtagsolutionsocail@gmail.com'],
+              ].map(([label, Icon, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="grid h-9 w-9 place-items-center rounded-lg bg-white/10 text-slate-400 transition hover:bg-violet-600 hover:text-white"
+                  aria-label={label}
+                >
+                  <Icon className="h-4 w-4" aria-hidden />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links */}
-          <nav aria-label="Quick links">
-            <h3 className="text-base md:text-lg xl:text-xl font-semibold">Quick Links</h3>
-            <ul className="mt-4 space-y-2 md:space-y-2.5 xl:space-y-3 text-slate-600 dark:text-gray-300">
-              <li><Link href="/" className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Home</Link></li>
-              <li><Link href="/about" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">About Us</Link></li>
-              <li><Link href="/blog" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Blog</Link></li>
-              <li><Link href="/contact" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Contact</Link></li>
-              <li><Link href="/faq" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">FAQ</Link></li>
-            </ul>
-          </nav>
-
-          {/* Categories */}
-          <nav aria-label="Tool categories">
-            <h3 className="text-base md:text-lg xl:text-xl font-semibold">Categories</h3>
-            <ul className="mt-4 space-y-2 md:space-y-2.5 xl:space-y-3 text-slate-600 dark:text-gray-300 break-words">
-              {categories.map((c) => (
-                <li key={c}>
-                  <Link href={`/category/${slugify(c)}`} prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">
-                    {c}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Social & Contact */}
-          <div>
-            <h3 className="text-base md:text-lg xl:text-xl font-semibold">Follow</h3>
-            <div className="mt-4 flex flex-wrap items-center gap-2 md:gap-3 xl:gap-4">
-              <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(baseUrl)}%2F`} className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" rel="noopener noreferrer" target="_blank" aria-label="Facebook" data-external="true">
-                <FiFacebook aria-hidden className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6" /> Facebook <FiArrowUpRight aria-hidden className="w-3 h-3 md:w-4 md:h-4 xl:w-5 xl:h-5" />
-              </a>
-              <a href="https://www.instagram.com/hashtag" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" rel="noopener noreferrer" target="_blank" aria-label="Instagram">
-                <FiInstagram aria-hidden className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6" /> Instagram <FiArrowUpRight aria-hidden className="w-3 h-3 md:w-4 md:h-4 xl:w-5 xl:h-5" />
-              </a>
-              <a href="https://www.linkedin.com/company/hashtag" className="inline-flex items-center gap-2 rounded-lg border border-slate-300/60 bg-slate-100 text-slate-700 dark:border-white/10 dark:bg-gray-800 dark:text-white px-2.5 md:px-3 xl:px-3.5 py-1.5 md:py-2 xl:py-2.5 text-xs md:text-sm xl:text-base transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn">
-                <FiLinkedin aria-hidden className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6" /> LinkedIn <FiArrowUpRight aria-hidden className="w-3 h-3 md:w-4 md:h-4 xl:w-5 xl:h-5" />
-              </a>
+          <FooterColumn title="Top Tools" items={topTools} />
+          <FooterColumn title="Categories" items={categoryDetails.slice(0, 7).map((item) => [item.label, getCategoryHref(item.label)])} />
+          <div className="grid gap-8 sm:grid-cols-2 md:col-span-1 md:block">
+            <FooterColumn title="Resources" items={resources} />
+            <div className="mt-8">
+              <FooterColumn title="Company" items={company} />
             </div>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-slate-200 dark:border-gray-800 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs md:text-sm xl:text-base text-slate-600 dark:text-gray-400">
-          <p className="break-words">© {year} <a href="https://hashtagweb.com.np/projects/" target="_blank" rel="noopener noreferrer" className="hover:underline">Hashtag Web Solutions</a>. Building digital solutions, one click at a time.</p>
-          <div className="flex items-center flex-wrap gap-3 md:gap-4 min-w-0">
-            <Link href="/" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Home</Link>
-            <Link href="/blog" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Blog</Link>
-            <Link href="/contact" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Contact</Link>
-            <Link href="/robots.txt" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Robots</Link>
-            <Link href="#" className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Back to Top</Link>
-            <Link href="/privacy" prefetch={false} className="transition-transform will-change-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Privacy Policy</Link>
-            <Link href="/terms" prefetch={false} className="transition-gpu will-change-transform-opacity hover:opacity-85 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">Terms of Service</Link>
+        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+          <p>Copyright {year} 100 SEO Tools. All rights reserved.</p>
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden />
+            All tools operational
+          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <Link href="/privacy" className="transition hover:text-violet-300">Privacy</Link>
+            <Link href="/terms" className="transition hover:text-violet-300">Terms</Link>
+            <Link href="/contact" className="transition hover:text-violet-300">Contact</Link>
           </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({ title, items }) {
+  return (
+    <nav aria-label={title}>
+      <h2 className="mb-4 text-sm font-bold text-slate-200">{title}</h2>
+      <ul className="space-y-2.5">
+        {items.map(([label, href]) => (
+          <li key={`${title}-${label}`}>
+            <Link href={href} prefetch={false} className="text-sm leading-5 text-slate-500 transition hover:text-violet-300">
+              {label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }

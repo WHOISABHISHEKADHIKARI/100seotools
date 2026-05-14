@@ -1,5 +1,8 @@
 import { getAllBlogPostsPublished } from '../../lib/blog-data.js';
 import { getBaseUrl } from '../../lib/site';
+import sitemapBlogCore from '../../lib/sitemapBlogCore.cjs';
+
+const { buildBlogIndexEntry } = sitemapBlogCore;
 
 /**
  * ============================================
@@ -130,12 +133,7 @@ export default async function sitemap() {
     // ============================================
     // BLOG INDEX PAGE
     // ============================================
-    const blogIndex = {
-        url: `${baseUrl}/blog`,
-        lastModified: stableDate,
-        changeFrequency: 'daily',
-        priority: 0.85,
-    };
+    const blogIndex = buildBlogIndexEntry(baseUrl, stableDate);
 
     // ============================================
     // GET ALL PUBLISHED BLOG POSTS
@@ -164,26 +162,6 @@ export default async function sitemap() {
         changeFrequency: getPostChangeFreq(post),
         priority: getPostPriority(post),
     }));
-
-    // ============================================
-    // STATISTICS & LOGGING
-    // ============================================
-    if (process.env.NODE_ENV === 'development') {
-        const recentPosts = validPosts.filter(p => getPostAge(p.datePublished) < 30).length;
-        const standardPosts = validPosts.filter(p => {
-            const age = getPostAge(p.datePublished);
-            return age >= 30 && age < 180;
-        }).length;
-        const olderPosts = validPosts.filter(p => getPostAge(p.datePublished) >= 180).length;
-
-        console.log('📝 Blog Sitemap Generation:');
-        console.log(`   📄 Total posts: ${validPosts.length}`);
-        console.log(`   📊 By age:`);
-        console.log(`      • Recent (<30 days): ${recentPosts}`);
-        console.log(`      • Standard (30-180 days): ${standardPosts}`);
-        console.log(`      • Older (>180 days): ${olderPosts}`);
-        console.log(`   🔗 Base URL: ${baseUrl}`);
-    }
 
     // ============================================
     // RETURN COMBINED ENTRIES

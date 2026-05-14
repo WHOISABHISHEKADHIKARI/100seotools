@@ -1,45 +1,81 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { 
-  FiCopy, 
-  FiCheck, 
-  FiDownload, 
-  FiEye, 
-  FiCode, 
-  FiHash, 
+import React, { useMemo, useState, useEffect } from 'react';
+import {
+  FiCopy,
+  FiCheck,
+  FiDownload,
+  FiEye,
+  FiCode,
+  FiHash,
   FiMessageSquare,
-  FiZap,
   FiClock,
   FiMaximize2,
   FiMinimize2,
-  FiShare2,
-  FiPrinter,
   FiFileText,
-  FiTrash2
 } from 'react-icons/fi';
 import Markdown from '../blog/Markdown';
+
+const loadingStages = [
+  'Reading your input',
+  'Finding useful patterns',
+  'Building the report',
+  'Polishing recommendations',
+];
+
+function parseReport(output = '') {
+  const lines = output.split('\n');
+  const sections = [];
+  let title = 'SEO Report';
+  let current = null;
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('# ')) {
+      title = trimmed.replace(/^#\s+/, '').trim() || title;
+      return;
+    }
+    if (trimmed.startsWith('## ')) {
+      if (current) sections.push(current);
+      current = { heading: trimmed.replace(/^##\s+/, '').trim(), body: [] };
+      return;
+    }
+    if (current) current.body.push(line);
+  });
+  if (current) sections.push(current);
+
+  return {
+    title,
+    sections: sections
+      .map((section) => ({ ...section, text: section.body.join('\n').trim() }))
+      .filter((section) => section.text),
+  };
+}
 
 /**
  * OutputPresentation Component
  * A high-UX wrapper for tool outputs with preview, raw view, and metadata.
  */
-export default function OutputPresentation({ 
-  output, 
-  toolSlug, 
-  isProcessing, 
-  onCopy, 
+export default function OutputPresentation({
+  output,
+  toolSlug,
+  isProcessing,
+  onCopy,
   onDownload,
   emptyMessage = "No analysis generated yet."
 }) {
   const [view, setView] = useState('preview'); // 'preview' | 'raw'
   const [isCopied, setIsCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  
+
   const charCount = output?.length || 0;
   const wordCount = output ? output.trim().split(/\s+/).filter(Boolean).length : 0;
   const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   const isJson = output && (output.trim().startsWith('{') || output.trim().startsWith('['));
+  const report = useMemo(() => parseReport(output || ''), [output]);
+  const summary = report.sections.find((section) => /summary|overview/i.test(section.heading));
+  const reportSections = report.sections.filter((section) => section !== summary);
+  const [stageIndex, setStageIndex] = useState(0);
 
   // Reset view when output changes significantly
   useEffect(() => {
@@ -47,28 +83,16 @@ export default function OutputPresentation({
     else setView('preview');
   }, [isJson, toolSlug]);
 
-  const handleShare = async () => {
-    const shareData = {
-      title: 'SEO Analysis Report',
-      text: `Check out this SEO analysis for ${toolSlug}`,
-      url: window.location.href
-    };
-
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        await navigator.clipboard.writeText(window.location.href);
-        alert('URL copied to clipboard!');
-      }
-    } catch (err) {
-      console.log('Share failed', err);
+  useEffect(() => {
+    if (!isProcessing) {
+      setStageIndex(0);
+      return undefined;
     }
-  };
-
-  const handlePrint = () => {
-    window.print();
-  };
+    const timer = setInterval(() => {
+      setStageIndex((index) => (index + 1) % loadingStages.length);
+    }, 900);
+    return () => clearInterval(timer);
+  }, [isProcessing]);
 
   const copyAsHtml = async () => {
     try {
@@ -84,7 +108,7 @@ export default function OutputPresentation({
         .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
         .replace(/\*(.*)\*/gim, '<em>$1</em>')
         .replace(/\n/gim, '<br/>');
-      
+
       const blob = new Blob([htmlContent], { type: 'text/html' });
       const textBlob = new Blob([output], { type: 'text/plain' });
       const data = [new ClipboardItem({ 'text/html': blob, 'text/plain': textBlob })];
@@ -104,18 +128,17 @@ export default function OutputPresentation({
   };
 
   return (
-    <div className={`flex flex-col h-full transition-all duration-500 ease-in-out ${
-      isExpanded ? 'fixed inset-4 z-50 bg-white dark:bg-gray-950 shadow-2xl rounded-2xl' : 'relative'
+    <div className={`flex min-w-0 flex-col transition-all duration-300 ease-out ${
+      isExpanded ? 'fixed inset-3 z-50 rounded-2xl bg-white shadow-2xl dark:bg-gray-950' : 'relative'
     }`}>
-      {/* Header / Tabs */}
-      <div className="flex items-center justify-between px-4 py-2 bg-gray-50 dark:bg-gray-900/50 border-b border-gray-200 dark:border-gray-800 rounded-t-xl">
-        <div className="flex bg-gray-200/50 dark:bg-gray-800/50 p-1 rounded-lg">
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-t-2xl border border-b-0 border-slate-200 bg-slate-50/80 px-3 py-2 dark:border-white/10 dark:bg-white/5">
+        <div className="flex rounded-xl bg-white p-1 shadow-sm ring-1 ring-slate-200 dark:bg-gray-950 dark:ring-white/10">
           <button
             onClick={() => setView('preview')}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium transition-all ${
-              view === 'preview' 
-                ? 'bg-white dark:bg-gray-700 text-brand-600 dark:text-brand-400 shadow-sm' 
-                : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+            className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
+              view === 'preview'
+                ? 'bg-slate-950 text-white dark:bg-white dark:text-slate-950'
+                : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
             }`}
           >
             <FiEye className="w-3.5 h-3.5" />
@@ -123,10 +146,10 @@ export default function OutputPresentation({
           </button>
           <button
             onClick={() => setView('raw')}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium transition-all ${
-              view === 'raw' 
-                ? 'bg-white dark:bg-gray-700 text-brand-600 dark:text-brand-400 shadow-sm' 
-                : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+            className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
+              view === 'raw'
+                ? 'bg-slate-950 text-white dark:bg-white dark:text-slate-950'
+                : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
             }`}
           >
             <FiCode className="w-3.5 h-3.5" />
@@ -134,11 +157,11 @@ export default function OutputPresentation({
           </button>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex max-w-full flex-wrap items-center justify-end gap-1">
           <button
             onClick={handleCopy}
             disabled={!output || isProcessing}
-            className="p-2 text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all disabled:opacity-30"
+            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white"
             title="Copy to clipboard"
           >
             {isCopied ? <FiCheck className="w-4 h-4 text-green-500" /> : <FiCopy className="w-4 h-4" />}
@@ -146,7 +169,7 @@ export default function OutputPresentation({
           <button
             onClick={copyAsHtml}
             disabled={!output || isProcessing}
-            className="p-2 text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all disabled:opacity-30"
+            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white"
             title="Copy as HTML (for WordPress/CMS)"
           >
             <FiFileText className="w-4 h-4" />
@@ -154,29 +177,14 @@ export default function OutputPresentation({
           <button
             onClick={onDownload}
             disabled={!output || isProcessing}
-            className="p-2 text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all disabled:opacity-30"
+            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white"
             title="Download results"
           >
             <FiDownload className="w-4 h-4" />
           </button>
           <button
-            onClick={handleShare}
-            className="p-2 text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all"
-            title="Share tool"
-          >
-            <FiShare2 className="w-4 h-4" />
-          </button>
-          <button
-            onClick={handlePrint}
-            disabled={!output}
-            className="p-2 text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all disabled:opacity-30"
-            title="Print report"
-          >
-            <FiPrinter className="w-4 h-4" />
-          </button>
-          <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="p-2 text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all"
+            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 dark:hover:bg-gray-900 dark:hover:text-white"
             title={isExpanded ? "Collapse" : "Full Screen"}
           >
             {isExpanded ? <FiMinimize2 className="w-4 h-4" /> : <FiMaximize2 className="w-4 h-4" />}
@@ -185,38 +193,78 @@ export default function OutputPresentation({
       </div>
 
       {/* Content Area */}
-      <div className={`flex-1 relative overflow-hidden bg-white dark:bg-gray-950 border-x border-gray-200 dark:border-gray-800 ${isExpanded ? '' : 'min-h-[400px] h-[500px]'}`}>
+      <div className={`relative flex-1 overflow-hidden border-x border-slate-200 bg-white dark:border-white/10 dark:bg-gray-950 ${isExpanded ? '' : 'min-h-[320px] h-[clamp(360px,58vh,560px)]'}`}>
         {isProcessing && (
-          <div className="absolute inset-0 z-10 bg-white/60 dark:bg-gray-950/60 backdrop-blur-[2px] flex items-center justify-center">
-            <div className="flex flex-col items-center animate-in fade-in zoom-in duration-300">
-              <div className="relative w-16 h-16">
-                <div className="absolute inset-0 border-4 border-brand-100 dark:border-brand-900/30 rounded-full"></div>
-                <div className="absolute inset-0 border-4 border-brand-600 border-t-transparent rounded-full animate-spin"></div>
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/85 backdrop-blur-sm dark:bg-gray-950/80">
+            <div className="w-full max-w-sm rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-2xl shadow-slate-900/10 dark:border-white/10 dark:bg-gray-900">
+              <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl bg-[conic-gradient(from_180deg,#0f172a,#64748b,#e2e8f0,#0f172a)] p-1">
+                <div className="flex h-full w-full items-center justify-center rounded-[1.35rem] bg-white dark:bg-gray-900">
+                  <FiFileText className="h-9 w-9 text-slate-800 dark:text-white" />
+                </div>
               </div>
-              <p className="mt-4 text-sm font-medium text-brand-700 dark:text-brand-400 animate-pulse">
-                Analyzing data...
+              <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-slate-400">Generating report</p>
+              <h3 className="mt-2 text-lg font-extrabold text-slate-950 dark:text-white">{loadingStages[stageIndex]}</h3>
+              <div className="mt-5 grid grid-cols-4 gap-2">
+                {loadingStages.map((stage, index) => (
+                  <div key={stage} className={`h-1.5 rounded-full transition-colors ${index <= stageIndex ? 'bg-slate-950 dark:bg-white' : 'bg-slate-200 dark:bg-white/10'}`} />
+                ))}
+              </div>
+              <p className="mt-4 text-sm leading-6 text-slate-500 dark:text-slate-400">
+                We are turning the raw response into a clean, useful report.
               </p>
             </div>
           </div>
         )}
 
-        <div className="absolute inset-0 overflow-auto p-6 scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-gray-800">
+        <div className="absolute inset-0 overflow-auto p-4 sm:p-5 md:p-6 scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-gray-800">
           {!output && !isProcessing ? (
-            <div className="flex flex-col items-center justify-center h-full text-center p-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <div className="w-20 h-20 bg-gray-50 dark:bg-gray-900 rounded-2xl flex items-center justify-center mb-6 shadow-inner rotate-3">
-                <FiZap className="w-10 h-10 text-gray-300 dark:text-gray-700" />
+            <div className="flex h-full flex-col items-center justify-center p-6 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 shadow-inner ring-1 ring-slate-100 dark:bg-gray-900 dark:ring-white/10">
+                <FiFileText className="h-8 w-8 text-slate-300 dark:text-slate-700" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Ready to Analyze</h3>
-              <p className="text-gray-500 dark:text-gray-400 max-w-xs mx-auto text-sm leading-relaxed">
+              <h3 className="mb-2 text-lg font-bold text-gray-900 dark:text-white">Ready for output</h3>
+              <p className="mx-auto max-w-xs text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                 {emptyMessage}
               </p>
             </div>
           ) : (
             <div className={`transition-opacity duration-300 ${isProcessing ? 'opacity-30' : 'opacity-100'}`}>
               {view === 'preview' ? (
-                <Markdown text={output} className="max-w-none" />
+                <div className="space-y-5">
+                  <div className="rounded-3xl border border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_55%,#eef2ff_100%)] p-5 shadow-sm dark:border-white/10 dark:bg-[linear-gradient(135deg,#111827_0%,#020617_100%)]">
+                    <div className="flex flex-wrap items-start justify-between gap-4">
+                      <div>
+                        <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400">Generated report</p>
+                        <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">{report.title}</h3>
+                      </div>
+                      <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-right text-xs shadow-sm dark:border-white/10 dark:bg-white/5">
+                        <div className="font-bold text-slate-950 dark:text-white">{wordCount} words</div>
+                        <div className="text-slate-500">{readingTime} min read</div>
+                      </div>
+                    </div>
+                    {summary && (
+                      <div className="mt-5 rounded-2xl bg-white/80 p-4 text-sm leading-7 text-slate-700 ring-1 ring-slate-200 dark:bg-white/5 dark:text-slate-300 dark:ring-white/10">
+                        <Markdown text={summary.text} className="max-w-none" />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="grid gap-4">
+                    {reportSections.length > 0 ? reportSections.map((section, index) => (
+                      <section key={section.heading} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md dark:border-white/10 dark:bg-white/[0.03]">
+                        <div className="mb-3 flex items-center gap-3">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-950 text-xs font-extrabold text-white dark:bg-white dark:text-slate-950">{index + 1}</span>
+                          <h4 className="text-lg font-extrabold text-slate-950 dark:text-white">{section.heading}</h4>
+                        </div>
+                        <Markdown text={section.text} className="max-w-none" />
+                      </section>
+                    )) : (
+                      <Markdown text={output} className="max-w-none" />
+                    )}
+                  </div>
+                </div>
               ) : (
-                <pre className="font-mono text-xs leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-wrap selection:bg-brand-100 dark:selection:bg-brand-900">
+                <pre className="whitespace-pre-wrap break-words font-mono text-xs leading-relaxed text-gray-700 selection:bg-slate-100 dark:text-gray-300 dark:selection:bg-slate-800">
                   {output}
                 </pre>
               )}
@@ -226,8 +274,8 @@ export default function OutputPresentation({
       </div>
 
       {/* Footer / Status Bar */}
-      <div className="flex items-center justify-between px-4 py-2 bg-gray-50 dark:bg-gray-900/50 border-t border-gray-200 dark:border-gray-800 rounded-b-xl text-[10px] uppercase tracking-widest font-bold text-gray-400 dark:text-gray-500">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-b-2xl border border-t-0 border-slate-200 bg-slate-50/80 px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:border-white/10 dark:bg-white/5 dark:text-slate-500">
+        <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-1.5">
             <FiHash className="w-3 h-3" />
             <span>{charCount} Characters</span>
@@ -241,15 +289,11 @@ export default function OutputPresentation({
             <span>{readingTime} Min Read</span>
           </div>
         </div>
-        
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1.5 text-brand-600 dark:text-brand-400">
-            <FiZap className="w-3 h-3" />
-            <span>Instant Processing</span>
-          </div>
+
+        <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-1.5">
             <FiClock className="w-3 h-3" />
-            <span>Browser-Side</span>
+            <span>Local Preview</span>
           </div>
         </div>
       </div>

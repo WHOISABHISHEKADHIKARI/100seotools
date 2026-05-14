@@ -1,329 +1,175 @@
 "use client";
-import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import ThemeToggle from '../ui/ThemeToggle';
-import { FiCompass, FiChevronDown, FiMenu, FiX } from 'react-icons/fi';
-import { slugify } from '../../lib/utils';
 
-// Categories surfaced in dropdown
-const categories = [
-  'Keyword Research',
-  'On-Page Optimization',
-  'Technical SEO',
-  'Backlink & Link-Building',
-  'Content SEO',
-  'SEO Performance',
-  'Local SEO',
-  'Competitor Analysis',
-  'AI-Powered SEO',
-  'SEO Utility',
-  'Schema & Structured Data'
+import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { ChevronDown, Compass, Menu, Search, X, Zap } from 'lucide-react';
+import { categoryDetails, getCategoryHref } from '../tools/SeoVisuals';
+
+const navItems = [
+  { label: 'Tools', href: '/#tools' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Guides', href: '/blog/seo-basics' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-  const [openCalc, setOpenCalc] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileCatsOpen, setMobileCatsOpen] = useState(false);
-  const [mobileCalcOpen, setMobileCalcOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const calcDropdownRef = useRef(null);
-  const mobileMenuRef = useRef(null);
 
-  const calculators = [
-    { name: 'SEO Calculator', href: '/seo-calculator' },
-    { name: 'SEO Cost Calculator', href: '/seo-cost-calculator' }
-  ];
-
-  useEffect(() => setMounted(true), []);
-
-  // Close mobile menus when route changes (ensures menu closes after navigation)
   useEffect(() => {
-    if (mobileOpen || mobileCatsOpen || mobileCalcOpen) {
-      setMobileOpen(false);
-      setMobileCatsOpen(false);
-      setMobileCalcOpen(false);
-    }
+    setMenuOpen(false);
+    setCategoriesOpen(false);
   }, [pathname]);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (open && dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setOpen(false);
-      }
-      if (openCalc && calcDropdownRef.current && !calcDropdownRef.current.contains(event.target)) {
-        setOpenCalc(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [open, openCalc]);
-
-  // Close mobile menu when clicking outside
-  useEffect(() => {
-    if (!mobileOpen) return;
-
-    function handleClickOutside(event) {
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
-        setMobileOpen(false);
+    function onOutsideClick(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setCategoriesOpen(false);
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [mobileOpen]);
-
-  // Handle escape key press
-  useEffect(() => {
-    function handleEscapeKey(event) {
-      if (event.key === 'Escape') {
-        if (open) setOpen(false);
-        if (openCalc) setOpenCalc(false);
-        if (mobileOpen) setMobileOpen(false);
-        if (mobileCatsOpen) setMobileCatsOpen(false);
-        if (mobileCalcOpen) setMobileCalcOpen(false);
-      }
-    }
-
-    document.addEventListener('keydown', handleEscapeKey);
-    return () => document.removeEventListener('keydown', handleEscapeKey);
-  }, [open, openCalc, mobileOpen, mobileCatsOpen, mobileCalcOpen]);
+    document.addEventListener('mousedown', onOutsideClick);
+    return () => document.removeEventListener('mousedown', onOutsideClick);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-40 py-3 backdrop-blur bg-white/80 dark:bg-gray-950/80 border-b border-slate-200 dark:border-white/10">
-      <div className="flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2" aria-label="Go to homepage">
-          <FiCompass aria-hidden="true" className="w-7 h-7 text-brand-500" />
-          <span className="font-semibold text-lg">100 SEO Tools</span>
-        </Link>
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <button
-            type="button"
-            className="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded border border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-500"
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-            aria-controls="mobile-menu"
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen((v) => !v)}
-          >
-            {mobileOpen ? (
-              <>
-                <FiX aria-hidden="true" className="w-5 h-5" />
-                <span className="text-sm">Close</span>
-              </>
-            ) : (
-              <>
-                <FiMenu aria-hidden="true" className="w-5 h-5" />
-                <span className="text-sm">Menu</span>
-              </>
-            )}
-          </button>
-        </div>
+    <>
+      <div className="relative left-1/2 w-screen -translate-x-1/2 border-b border-slate-200 bg-[linear-gradient(90deg,#f8fafc_0%,#eef2ff_100%)] px-4 py-2 text-center text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-[linear-gradient(90deg,#020617_0%,#111827_100%)] dark:text-slate-200">
+        All 100+ SEO tools are free, fast, and ready to use.{' '}
+        <a href="/tools" className="text-indigo-700 underline decoration-indigo-300 underline-offset-4 hover:text-indigo-900 dark:text-indigo-200 dark:decoration-indigo-400/50 dark:hover:text-white">
+          Browse the toolkit
+        </a>
       </div>
 
-      {/* Desktop navigation */}
-      <nav aria-label="Primary navigation" className="hidden md:block mt-3">
-        <ul className="flex items-center gap-4">
-          <li>
-            <Link
-              href="/"
-              aria-current={pathname === '/' ? 'page' : undefined}
-              prefetch={false}
-              className={`text-sm hover:text-brand-600 focus:outline-none focus:underline ${pathname === '/' ? 'text-brand-600 font-medium' : ''}`}
-            >Home</Link>
-          </li>
-          <li>
-            <Link
-              href="/blog"
-              aria-current={pathname?.startsWith('/blog') ? 'page' : undefined}
-              prefetch={false}
-              className={`text-sm hover:text-brand-600 focus:outline-none focus:underline ${pathname?.startsWith('/blog') ? 'text-brand-600 font-medium' : ''}`}
-            >Blog</Link>
-          </li>
-          <li>
-            <Link
-              href="/contact"
-              aria-current={pathname === '/contact' ? 'page' : undefined}
-              prefetch={false}
-              className={`text-sm hover:text-brand-600 focus:outline-none focus:underline ${pathname === '/contact' ? 'text-brand-600 font-medium' : ''}`}
-            >Contact</Link>
-          </li>
-          <li className="relative" ref={dropdownRef}>
-            <button
-              type="button"
-              className="text-sm inline-flex items-center gap-1 hover:text-brand-600 focus:outline-none focus:underline"
-              aria-haspopup="menu"
-              aria-expanded={open}
-              onClick={() => setOpen((v) => !v)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setOpen((v) => !v);
-                }
-              }}
-            >
-              Categories
-              <FiChevronDown aria-hidden="true" className={`w-4 h-4 transition-transform ${open ? 'rotate-180' : ''}`} />
-            </button>
-            {mounted && open && (
-              <div
-                role="menu"
-                aria-label="Categories"
-                className="absolute left-0 mt-2 w-64 max-h-72 overflow-auto rounded-lg border border-slate-200 bg-white shadow-lg dark:border-white/10 dark:bg-gray-900 z-50"
-              >
-                <ul className="py-2 text-sm">
-                  {categories.map((c) => (
-                    <li key={c}>
-                      <Link
-                        href={`/category/${slugify(c)}`}
-                        prefetch={false}
-                        className="block px-3 py-2 hover:bg-slate-50 hover:text-brand-600 dark:hover:bg-gray-800 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800"
-                        role="menuitem"
-                        onClick={() => setOpen(false)}
-                      >
-                        {c}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </li>
-          <li className="relative" ref={calcDropdownRef}>
-            <button
-              type="button"
-              className="text-sm inline-flex items-center gap-1 hover:text-brand-600 focus:outline-none focus:underline"
-              aria-haspopup="menu"
-              aria-expanded={openCalc}
-              onClick={() => setOpenCalc((v) => !v)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setOpenCalc((v) => !v);
-                }
-              }}
-            >
-              Calculators
-              <FiChevronDown aria-hidden="true" className={`w-4 h-4 transition-transform ${openCalc ? 'rotate-180' : ''}`} />
-            </button>
-            {mounted && openCalc && (
-              <div
-                role="menu"
-                aria-label="Calculators"
-                className="absolute left-0 mt-2 w-64 max-h-72 overflow-auto rounded-lg border border-slate-200 bg-white shadow-lg dark:border-white/10 dark:bg-gray-900 z-50"
-              >
-                <ul className="py-2 text-sm">
-                  {calculators.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className="block px-3 py-2 hover:bg-slate-50 hover:text-brand-600 dark:hover:bg-gray-800 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800"
-                        role="menuitem"
-                        onClick={() => setOpenCalc(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </li>
-        </ul>
-      </nav>
+      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl dark:border-white/10 dark:bg-gray-950/90">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4">
+          <a href="/" className="flex shrink-0 items-center gap-2" aria-label="Go to homepage">
+            <span className="grid h-9 w-9 place-items-center rounded-lg bg-slate-950 text-white shadow-sm dark:bg-white dark:text-slate-950">
+              <Compass className="h-5 w-5" aria-hidden />
+            </span>
+            <span className="text-lg font-extrabold tracking-tight text-slate-950 dark:text-white">
+              100SEO<span className="text-indigo-600 dark:text-indigo-300">Tools</span>
+            </span>
+          </a>
 
-      {/* Mobile menu panel */}
-      {mounted && mobileOpen && (
-        <div
-          id="mobile-menu"
-          role="menu"
-          aria-label="Mobile navigation"
-          className="md:hidden mt-3 rounded-lg border border-slate-200 bg-white dark:bg-gray-900 shadow-lg"
-          ref={mobileMenuRef}
-        >
-          <ul className="p-3 space-y-2 text-sm">
-            <li>
-              <Link href="/" aria-current={pathname === '/' ? 'page' : undefined} className="block px-2 py-1 hover:text-brand-600 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800 rounded" onClick={() => setMobileOpen(false)}>Home</Link>
-            </li>
-            <li>
-              <Link href="/blog" aria-current={pathname?.startsWith('/blog') ? 'page' : undefined} className="block px-2 py-1 hover:text-brand-600 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800 rounded" onClick={() => setMobileOpen(false)}>Blog</Link>
-            </li>
-            <li>
-              <Link href="/contact" aria-current={pathname === '/contact' ? 'page' : undefined} className="block px-2 py-1 hover:text-brand-600 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800 rounded" onClick={() => setMobileOpen(false)}>Contact</Link>
-            </li>
-            <li>
+          <nav aria-label="Primary navigation" className="hidden items-center gap-1 md:flex">
+            <div className="relative" ref={dropdownRef}>
               <button
                 type="button"
-                className="w-full text-left inline-flex items-center justify-between gap-2 px-2 py-1 rounded hover:bg-slate-50 dark:hover:bg-gray-800 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800"
+                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-indigo-200"
                 aria-haspopup="menu"
-                aria-expanded={mobileCatsOpen}
-                onClick={() => setMobileCatsOpen((v) => !v)}
+                aria-expanded={categoriesOpen}
+                onClick={() => setCategoriesOpen((value) => !value)}
               >
-                <span>Categories</span>
-                <FiChevronDown aria-hidden="true" className={`w-4 h-4 transition-transform ${mobileCatsOpen ? 'rotate-180' : ''}`} />
+                Categories
+                <ChevronDown className={`h-4 w-4 transition ${categoriesOpen ? 'rotate-180' : ''}`} aria-hidden />
               </button>
-              {mobileCatsOpen && (
-                <div className="mt-2 max-h-60 overflow-auto rounded border border-slate-200 dark:border-white/10">
-                  <ul className="py-1 text-sm">
-                    {categories.map((c) => (
-                      <li key={c}>
-                        <Link
-                          href={`/category/${slugify(c)}`}
-                          className="block px-3 py-2 hover:bg-slate-50 hover:text-brand-600 dark:hover:bg-gray-800 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800"
+
+              {categoriesOpen && (
+                <div
+                  role="menu"
+                  aria-label="Tool categories"
+                  className="absolute left-0 top-full mt-2 w-[22rem] overflow-hidden rounded-lg border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-900/10 dark:border-white/10 dark:bg-gray-900"
+                >
+                  <a
+                    href="/category"
+                    className="mb-2 flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-indigo-700 dark:bg-white/5 dark:text-indigo-200"
+                    role="menuitem"
+                  >
+                    View all categories
+                    <Zap className="h-3.5 w-3.5" aria-hidden />
+                  </a>
+                  <div className="grid grid-cols-1 gap-1">
+                    {categoryDetails.map((category) => {
+                      const Icon = category.icon;
+                      return (
+                        <a
+                          key={category.label}
+                          href={getCategoryHref(category.label)}
+                          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-indigo-200"
                           role="menuitem"
-                          onClick={() => {
-                            setMobileOpen(false);
-                            setMobileCatsOpen(false);
-                          }}
                         >
-                          {c}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                          <Icon className="h-4 w-4 shrink-0" aria-hidden />
+                          <span className="font-medium">{category.label}</span>
+                        </a>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
-            </li>
-            <li>
-              <button
-                type="button"
-                className="w-full text-left inline-flex items-center justify-between gap-2 px-2 py-1 rounded hover:bg-slate-50 dark:hover:bg-gray-800 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800"
-                aria-haspopup="menu"
-                aria-expanded={mobileCalcOpen}
-                onClick={() => setMobileCalcOpen((v) => !v)}
+            </div>
+
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className={`rounded-lg px-3 py-2 text-sm font-semibold transition hover:bg-slate-100 hover:text-indigo-700 dark:hover:bg-white/10 dark:hover:text-indigo-200 ${
+                  pathname === item.href ? 'text-indigo-700 dark:text-indigo-200' : 'text-slate-600 dark:text-slate-300'
+                }`}
               >
-                <span>Calculators</span>
-                <FiChevronDown aria-hidden="true" className={`w-4 h-4 transition-transform ${mobileCalcOpen ? 'rotate-180' : ''}`} />
-              </button>
-              {mobileCalcOpen && (
-                <div className="mt-2 max-h-60 overflow-auto rounded border border-slate-200 dark:border-white/10">
-                  <ul className="py-1 text-sm">
-                    {calculators.map((item) => (
-                      <li key={item.href}>
-                        <Link
-                          href={item.href}
-                          className="block px-3 py-2 hover:bg-slate-50 hover:text-brand-600 dark:hover:bg-gray-800 focus:outline-none focus:bg-slate-50 focus:text-brand-600 dark:focus:bg-gray-800"
-                          role="menuitem"
-                          onClick={() => {
-                            setMobileOpen(false);
-                            setMobileCalcOpen(false);
-                          }}
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </li>
-          </ul>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="hidden items-center gap-2 md:flex">
+            <a
+              href="/tools"
+              aria-label="Search tools"
+              className="grid h-10 w-10 place-items-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-white/10"
+            >
+              <Search className="h-4 w-4" aria-hidden />
+            </a>
+            <a
+              href="/tools"
+              className="rounded-lg bg-slate-950 px-4 py-2.5 text-sm font-extrabold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
+            >
+              Get Started Free
+            </a>
+          </div>
+
+          <button
+            type="button"
+            className="grid h-10 w-10 place-items-center rounded-lg border border-slate-200 text-slate-700 md:hidden dark:border-white/10 dark:text-white"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((value) => !value)}
+          >
+            {menuOpen ? <X className="h-5 w-5" aria-hidden /> : <Menu className="h-5 w-5" aria-hidden />}
+          </button>
         </div>
-      )}
-    </header>
+
+        {menuOpen && (
+          <div className="border-t border-slate-200 bg-white px-4 py-4 shadow-xl md:hidden dark:border-white/10 dark:bg-gray-950">
+            <div className="mx-auto grid max-w-7xl gap-1">
+              <a href="/category" className="rounded-lg px-3 py-2.5 text-sm font-bold text-indigo-700 dark:text-indigo-200">
+                Categories
+              </a>
+              {categoryDetails.slice(0, 6).map((category) => (
+                <a
+                  key={category.label}
+                  href={getCategoryHref(category.label)}
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-white/10"
+                >
+                  {category.label}
+                </a>
+              ))}
+              <div className="my-2 border-t border-slate-100 dark:border-white/10" />
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </header>
+    </>
   );
 }

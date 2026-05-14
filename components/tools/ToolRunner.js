@@ -5,6 +5,7 @@ import { copyToClipboardWithHistory, normalizePastedContent, downloadAllFormats 
 import { sanitizeInput, validateURL, checkInputSize } from '../../lib/security';
 import { checkRateLimit } from '../../lib/rateLimit';
 import { validateField, validateAllFields } from '../../lib/validation';
+import { formatToolOutput } from '../../lib/outputHelper';
 import Markdown from '../blog/Markdown';
 import ProofTrace from '../prover/ProofTrace';
 import OutputPresentation from '../ui/OutputPresentation';
@@ -199,7 +200,7 @@ export default function ToolRunner({ tool }) {
         } else {
           apiPath = tool.api === true ? `/api/${tool.slug}` : `/api/${tool.api}`;
         }
-        
+
         const response = await fetch(apiPath, {
           method: 'POST',
           headers: {
@@ -214,16 +215,7 @@ export default function ToolRunner({ tool }) {
           throw new Error(data.error || data.message || 'Failed to process request');
         }
 
-        // Format result if it's an object, or use directly if string
-        if (typeof data.result === 'object') {
-          // If the API returns a complex object, we might need a way to format it.
-          // For now, let's assume the API returns a formatted string OR we JSON stringify it
-          // UNLESS the template has a specific formatter.
-          // Simple approach: JSON.stringify pretty print
-          result = typeof data.result === 'string' ? data.result : JSON.stringify(data.result, null, 2);
-        } else {
-          result = data.result;
-        }
+        result = formatToolOutput(data.result, { toolName: tool.name, toolSlug: tool.slug });
 
         if (data.trace) {
           setProof({
@@ -239,7 +231,10 @@ export default function ToolRunner({ tool }) {
         );
 
         const resultPromise = Promise.resolve(runTemplate(tool.template, inputs));
-        result = await Promise.race([resultPromise, timeoutPromise]);
+        result = formatToolOutput(await Promise.race([resultPromise, timeoutPromise]), {
+          toolName: tool.name,
+          toolSlug: tool.slug,
+        });
       }
 
       setOutput(result || 'No output generated');
@@ -274,23 +269,25 @@ export default function ToolRunner({ tool }) {
 
   return (
     <div className="space-y-6">
-        <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm font-medium text-red-700 dark:text-red-300">
+      {error && (
+        <div className="rounded-2xl border border-rose-200/80 bg-rose-50/80 p-4 shadow-sm dark:border-rose-500/20 dark:bg-rose-500/10">
+          <p className="text-sm font-semibold text-rose-800 dark:text-rose-200">
             {error}
           </p>
-          <button 
+          <button
             onClick={analyze}
-            className="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-800 transition-colors border border-red-200 dark:border-red-700"
+            className="mt-3 rounded-full border border-rose-200 bg-white px-3 py-1.5 text-xs font-bold text-rose-700 shadow-sm transition-colors hover:bg-rose-100 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-200"
           >
-            Retry Analysis
+            Try again
           </button>
         </div>
+      )}
 
-      <div className="grid md:grid-cols-2 gap-4">
-        <div className="space-y-3">
+      <div className="grid gap-5 xl:grid-cols-[minmax(320px,0.85fr)_minmax(0,1.15fr)]">
+        <div className="space-y-4">
           {def.fields.map((f) => (
             <div key={f.name}>
-              <label className="block text-sm mb-1 font-medium" htmlFor={`field-${f.name}`}>
+              <label className="mb-1.5 block text-sm font-semibold text-slate-800 dark:text-slate-100" htmlFor={`field-${f.name}`}>
                 {f.label}
                 {f.required && <span className="text-red-500 ml-1" title="Required">*</span>}
                 {pasteFeedback.field === f.name && (
@@ -302,7 +299,7 @@ export default function ToolRunner({ tool }) {
               {f.type === 'textarea' ? (
                 <textarea
                   id={`field-${f.name}`}
-                  className={`input h-36 ${fieldErrors[f.name] ? 'border-red-500 dark:border-red-400' : ''}`}
+                  className={`input min-h-36 ${fieldErrors[f.name] ? 'border-red-500 dark:border-red-400' : ''}`}
                   value={inputs[f.name]}
                   onChange={(e) => onChange(f.name, e.target.value)}
                   onPaste={(e) => onPaste(e, f.name)}
@@ -340,8 +337,8 @@ export default function ToolRunner({ tool }) {
               )}
 
               {/* Helper Text & Counters */}
-              <div className="flex justify-between items-center mt-2 px-1">
-                <p className="text-[11px] text-gray-400 dark:text-gray-500 italic flex-1 truncate mr-4">
+              <div className="mt-2 flex flex-wrap items-center justify-between gap-2 px-1">
+                <p className="min-w-0 flex-1 text-[11px] text-gray-400 dark:text-gray-500">
                   {f.hint || ''}
                 </p>
                 {(f.type === 'text' || f.type === 'textarea' || !f.type) && (
@@ -354,21 +351,33 @@ export default function ToolRunner({ tool }) {
             </div>
           ))}
 
-          <div className="flex items-center gap-2 mb-4">
-            <input
-              type="checkbox"
-              id="live-preview-toggle"
-              className="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-              checked={isLivePreview}
-              onChange={(e) => setIsLivePreview(e.target.checked)}
-            />
-            <label htmlFor="live-preview-toggle" className="text-sm text-gray-700 dark:text-gray-300 select-none cursor-pointer">
-              Enable Live Preview (Auto-analyze as you type)
+          <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-3 shadow-sm dark:border-white/10 dark:bg-white/5">
+            <label htmlFor="live-preview-toggle" className="flex cursor-pointer items-center justify-between gap-4">
+              <div>
+                <span className="block text-sm font-semibold text-slate-800 dark:text-slate-100">
+                  Smart preview
+                </span>
+                <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
+                  Updates results after you enter the required details.
+                </p>
+              </div>
+              <span className="relative inline-flex h-6 w-11 flex-shrink-0 items-center">
+                <input
+                  type="checkbox"
+                  id="live-preview-toggle"
+                  className="peer sr-only"
+                  checked={isLivePreview}
+                  onChange={(e) => setIsLivePreview(e.target.checked)}
+                  aria-label="Toggle smart preview"
+                />
+                <span className="absolute inset-0 rounded-full bg-slate-300 transition-colors peer-checked:bg-violet-600 peer-focus-visible:ring-2 peer-focus-visible:ring-violet-500 peer-focus-visible:ring-offset-2 dark:bg-slate-700" />
+                <span className="relative ml-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform peer-checked:translate-x-5" />
+              </span>
             </label>
           </div>
-          <div className="flex gap-2">
+          <div className="grid gap-2 sm:grid-cols-[1fr_auto_auto]">
             <button
-              className="btn flex-1"
+              className="btn w-full"
               onClick={analyze}
               disabled={isProcessing}
               aria-label={def.actionLabel || 'Analyze'}
@@ -386,26 +395,29 @@ export default function ToolRunner({ tool }) {
               )}
             </button>
             <button
-              className="btn-secondary"
+              className="btn-secondary w-full sm:w-auto"
               onClick={loadExample}
               title="Load sample data"
               aria-label="Load sample data"
             >
-              💡 Example
+              Example
             </button>
             <button
-              className="btn-secondary"
+              className="btn-secondary w-full sm:w-auto"
               onClick={resetForm}
               title="Clear all inputs"
               aria-label="Clear all inputs"
             >
-              🔄 Reset
+              Reset
             </button>
           </div>
         </div>
-        <div className="space-y-4" ref={outputRef}>
-          <label className="block text-sm mb-1 font-bold text-gray-900 dark:text-gray-100 uppercase tracking-tight">Analysis Output</label>
-          <OutputPresentation 
+        <div className="min-w-0 space-y-3" ref={outputRef}>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <label className="block text-sm font-bold text-gray-900 dark:text-gray-100">Output</label>
+            <span className="text-xs text-slate-500 dark:text-slate-400">Readable summary and export tools</span>
+          </div>
+          <OutputPresentation
             output={output}
             toolSlug={tool.slug}
             isProcessing={isProcessing}
@@ -417,10 +429,10 @@ export default function ToolRunner({ tool }) {
       </div>
 
       {proof && (
-        <ProofTrace 
-          trace={proof.trace} 
-          timestamp={proof.timestamp} 
-          verified={proof.verified} 
+        <ProofTrace
+          trace={proof.trace}
+          timestamp={proof.timestamp}
+          verified={proof.verified}
         />
       )}
     </div>

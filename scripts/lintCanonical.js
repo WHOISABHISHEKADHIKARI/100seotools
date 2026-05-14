@@ -4,9 +4,12 @@
  * - Encourages using Next.js metadata.alternates.canonical instead
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const TARGET_DIRS = [path.join(ROOT, 'app'), path.join(ROOT, 'components')];
 const CANON_REGEX = /<link[^>]+rel=["']canonical["'][^>]*>/gi;
@@ -16,6 +19,8 @@ function walk(dir) {
   const files = [];
   for (const e of entries) {
     const full = path.join(dir, e.name);
+    const relative = path.relative(ROOT, full).replace(/\\/g, '/');
+    if (relative.startsWith('app/api/')) continue;
     if (e.isDirectory()) files.push(...walk(full));
     else if (/\.(js|jsx|ts|tsx)$/.test(e.name)) files.push(full);
   }

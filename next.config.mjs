@@ -71,12 +71,8 @@ const nextConfig = withBundleAnalyzer({
       // Redirect old/removed blog URLs to valid pages (prevent 404s from external links)
       { source: '/blog/free-seo-tools-list-2024', destination: '/blog', permanent: true },
       { source: '/blog/100-free-seo-tools-ultimate-list', destination: '/blog/seo-basics', permanent: true },
-      { source: '/blog/seo-content-checker-how-to-use', destination: '/tools/seo-content-checker', permanent: true },
       { source: '/blog/keyword-suggestion-tool', destination: '/tools/keyword-suggestion-tool', permanent: true },
-      { source: '/blog/keyword-suggestion-tool-how-to-use', destination: '/tools/keyword-suggestion-tool', permanent: true },
-      { source: '/blog/keyword-suggestion-tool-popular-search-terms', destination: '/tools/keyword-suggestion-tool', permanent: true },
       { source: '/blog/meta-tag-generator', destination: '/tools/meta-tag-generator', permanent: true },
-      { source: '/blog/keyword-clustering-tool', destination: '/tools/keyword-clustering-tool', permanent: true },
       // Fix 404 for hosted guides and generic paths
       { source: '/guides', destination: '/blog/latest-seo-guides', permanent: true },
 
@@ -145,9 +141,7 @@ const nextConfig = withBundleAnalyzer({
       source: '/(.*)/(p|tp)/:page',
       headers: [{ key: 'X-Robots-Tag', value: 'noindex, follow' }],
     },
-
     { source: '/404', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] },
-    { source: '/_next/static/(.*)', headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }] },
   ],
 });
 

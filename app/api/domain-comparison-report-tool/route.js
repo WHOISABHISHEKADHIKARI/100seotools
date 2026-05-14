@@ -23,10 +23,10 @@ async function fetchSpecificSitemap(baseUrl, filename) {
 async function profile(input) {
   const target = normalizeUrl(input);
   if (!target) return { input, error: 'Invalid URL' };
-  
+
   // Try to find blog sitemaps in parallel with other probes
   const blogSitemapFiles = ['sitemap-blog.xml', 'blog-sitemap.xml', 'post-sitemap.xml'];
-  
+
   const [page, wb, sitemap, robots, ...blogSitemaps] = await Promise.all([
     fetchPage(target),
     waybackFirstSnapshot(target),
@@ -38,7 +38,7 @@ async function profile(input) {
   if (!page.ok) return { input, error: page.error };
   const meta = parseHtmlMeta(page.data.html, page.data.finalUrl);
   const host = hostnameOf(page.data.finalUrl);
-  
+
   // Link analysis
   const internalLinks = meta.links.filter(l => l.host === host || !l.host).length;
   const externalLinks = meta.links.filter(l => l.host && l.host !== host).length;
@@ -52,7 +52,7 @@ async function profile(input) {
   // Blog discovery from HTML links
   const blogLinkKeywords = ['/blog', '/articles', '/news', '/guides', '/post/'];
   const hasBlogInRobots = robots.ok && blogLinkKeywords.some(kw => robots.data.body.toLowerCase().includes(kw));
-  const hasBlogInHtml = meta.links.some(l => 
+  const hasBlogInHtml = meta.links.some(l =>
     blogLinkKeywords.some(kw => (l.href || '').toLowerCase().includes(kw))
   );
   const blogDetected = blogUrls.size > 0 || hasBlogInRobots || hasBlogInHtml;
@@ -114,7 +114,7 @@ export async function POST(request) {
           }
         }
       }
-      
+
       const formatVal = (v) => {
         if (typeof v === 'boolean') return v ? '✅ Yes' : '❌ No';
         if (v == null) return '–';
@@ -150,7 +150,7 @@ export async function POST(request) {
     lines.push(`| :--- | :--- | :--- |`);
     lines.push(`| **Title** | ${A.title || '*Missing*'} | ${B.title || '*Missing*'} |`);
     lines.push(`| **Description** | ${A.description || '*Missing*'} | ${B.description || '*Missing*'} |`);
-    
+
     lines.push(``);
     lines.push(`> **Analysis Summary:** Comparison based on real-time HTML analysis and publicly available crawl data. **TTFB** and **Page Size** are critical for Core Web Vitals.`);
 

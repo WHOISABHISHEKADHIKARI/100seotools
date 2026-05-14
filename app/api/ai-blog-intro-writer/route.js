@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { requestOpenRouterReport } from '../../../lib/openRouterGateway.js';
 
 export async function POST(request) {
     try {
@@ -8,6 +9,15 @@ export async function POST(request) {
 
         const k = keyword.trim();
         const t = title ? title.trim() : `The Guide to ${k}`;
+
+        if (process.env.OPENROUTER_API_KEY) {
+            const report = await requestOpenRouterReport({
+                toolName: 'AI Blog Intro Writer',
+                toolSlug: 'ai-blog-intro-writer',
+                inputs: { title: t, keyword: k }
+            });
+            return NextResponse.json({ success: true, result: report.result, provider: report.provider, model: report.model });
+        }
 
         // Templates
         const templates = [
@@ -20,13 +30,25 @@ export async function POST(request) {
 
         const fill = (tmpl) => tmpl.replace(/\[KEYWORD\]/g, k).replace(/\[TITLE\]/g, t).replace(/\[NICHE\]/g, 'your industry');
 
-        let output = `Here are 3 intro options for "${t}":\n\n`;
-        templates.forEach((tmpl, i) => {
-            output += `--- Option ${i + 1} ---\n${fill(tmpl)}\n\n`;
-        });
-        output += `Tip: pick the angle (urgency, empathy, curiosity) that matches your audience.`;
+        const options = templates.map((tmpl, i) => `Option ${i + 1}: ${fill(tmpl)}`);
 
-        return NextResponse.json({ success: true, result: output });
+        return NextResponse.json({
+            success: true,
+            result: {
+                summary: `Created three intro directions for "${t}" using the target keyword "${k}".`,
+                keyFindings: options,
+                recommendations: [
+                    'Use the empathy angle when readers are problem-aware.',
+                    'Use the curiosity angle when the topic is familiar but needs a fresh hook.',
+                    'Place the target keyword naturally in the first two sentences.'
+                ],
+                nextSteps: [
+                    'Choose one intro and edit it to match your brand voice.',
+                    'Add a clear promise for what the reader will learn next.',
+                    'Run the finished draft through a readability checker before publishing.'
+                ]
+            }
+        });
 
     } catch (error) {
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });

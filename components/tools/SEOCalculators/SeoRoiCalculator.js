@@ -1,12 +1,10 @@
 "use client";
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 
 export default function SeoRoiCalculator({ inputs, updateInput, resetActive, copyResult, proTip }) {
-  const defaultValues = { visitors: '', convRate: '2', aov: '50', cost: '' };
-
-  const toNum = (v) => {
-    const n = parseFloat(v);
-    return Number.isFinite(n) ? n : 0;
+  const toNum = (value) => {
+    const number = parseFloat(value);
+    return Number.isFinite(number) ? number : 0;
   };
 
   const results = useMemo(() => {
@@ -22,39 +20,43 @@ export default function SeoRoiCalculator({ inputs, updateInput, resetActive, cop
   }, [inputs.roi.visitors, inputs.roi.convRate, inputs.roi.aov, inputs.roi.cost]);
 
   return (
-    <div key="roi" className="space-y-4" role="tabpanel" id="panel-roi" aria-labelledby="roi-tab">
-      <h3 className="text-xl font-semibold">SEO ROI</h3>
-      <div className="grid sm:grid-cols-2 gap-4">
-        <label className="block">
-          <span className="text-sm">Monthly Visitors</span>
-          <input type="number" className="input mt-1 w-full" value={inputs.roi.visitors}
-            onChange={(e) => updateInput('roi', 'visitors', e.target.value)} min="0" />
-        </label>
-        <label className="block">
-          <span className="text-sm">Conversion Rate (%)</span>
-          <input type="number" className="input mt-1 w-full" value={inputs.roi.convRate}
-            onChange={(e) => updateInput('roi', 'convRate', e.target.value)} min="0" step="0.1" />
-        </label>
-        <label className="block">
-          <span className="text-sm">Average Order Value ($)</span>
-          <input type="number" className="input mt-1 w-full" value={inputs.roi.aov}
-            onChange={(e) => updateInput('roi', 'aov', e.target.value)} min="0" step="0.01" />
-        </label>
-        <label className="block">
-          <span className="text-sm">Monthly SEO Cost ($)</span>
-          <input type="number" className="input mt-1 w-full" value={inputs.roi.cost}
-            onChange={(e) => updateInput('roi', 'cost', e.target.value)} min="0" step="0.01" />
-        </label>
+    <div className="seo-calc-layout" role="tabpanel" id="panel-roi" aria-labelledby="roi-tab">
+      <div className="seo-calc-display" aria-live="polite">
+        <span className="seo-calc-display-label">SEO ROI</span>
+        <output className="seo-calc-display-value">{results.roiPct.toFixed(2)}%</output>
+        <dl className="seo-calc-metrics">
+          <div><dt>Revenue</dt><dd>${results.revenue.toFixed(2)}</dd></div>
+          <div><dt>Profit</dt><dd>${results.profit.toFixed(2)}</dd></div>
+          <div><dt>Conversions</dt><dd>{Math.round(results.conversions)}</dd></div>
+        </dl>
+        <p>Pro Tip: {proTip}</p>
       </div>
-      <div className="rounded border border-slate-200 dark:border-white/10 p-3">
-        <p>Conversions: <span className="font-medium">{Math.round(results.conversions)}</span></p>
-        <p>Revenue: <span className="font-medium">${results.revenue.toFixed(2)}</span></p>
-        <p>Profit: <span className="font-medium">${results.profit.toFixed(2)}</span></p>
-        <p className="font-medium">ROI: {results.roiPct.toFixed(2)}%</p>
-        <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">Pro Tip: {proTip}</p>
-        <div className="mt-3 flex items-center gap-2">
-          <button className="btn" onClick={() => resetActive('roi')}>Reset</button>
-          <button className="btn-secondary" onClick={() => copyResult(`SEO ROI: ${results.roiPct.toFixed(2)}% | Profit: $${results.profit.toFixed(2)}`)}>Copy Result</button>
+      <div className="seo-calc-body">
+        <div>
+          <h3>SEO ROI</h3>
+          <p className="seo-calc-description">Estimate revenue, profit, and campaign return from traffic and conversion inputs.</p>
+        </div>
+        <div className="seo-calc-field-grid">
+          <label className="seo-calc-field">
+            <span>Monthly Visitors</span>
+            <input type="number" inputMode="numeric" className="input" value={inputs.roi.visitors} onChange={(event) => updateInput('roi', 'visitors', event.target.value)} min="0" />
+          </label>
+          <label className="seo-calc-field">
+            <span>Conversion Rate (%)</span>
+            <input type="number" inputMode="decimal" className="input" value={inputs.roi.convRate} onChange={(event) => updateInput('roi', 'convRate', event.target.value)} min="0" step="0.1" />
+          </label>
+          <label className="seo-calc-field">
+            <span>Average Order Value ($)</span>
+            <input type="number" inputMode="decimal" className="input" value={inputs.roi.aov} onChange={(event) => updateInput('roi', 'aov', event.target.value)} min="0" step="0.01" />
+          </label>
+          <label className="seo-calc-field">
+            <span>Monthly SEO Cost ($)</span>
+            <input type="number" inputMode="decimal" className="input" value={inputs.roi.cost} onChange={(event) => updateInput('roi', 'cost', event.target.value)} min="0" step="0.01" />
+          </label>
+        </div>
+        <div className="seo-calc-actions">
+          <button type="button" className="seo-calc-button seo-calc-button-clear" onClick={() => resetActive('roi')}>Reset</button>
+          <button type="button" className="seo-calc-button seo-calc-button-equals" onClick={() => copyResult(`SEO ROI: ${results.roiPct.toFixed(2)}% | Profit: $${results.profit.toFixed(2)}`)}>Copy Result</button>
         </div>
       </div>
     </div>

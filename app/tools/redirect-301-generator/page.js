@@ -6,25 +6,26 @@ import BlogSection from "../../../components/blog/BlogSection";
 import { getToolBySlug, getAllToolsMeta } from "../../../tools";
 import { getBaseUrl, siteName } from "../../../lib/site";
 import Redirect301GeneratorClient from "./Client";
+import { standardizeToolSeo } from "../../../lib/toolSeo";
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
 const baseUrl = getBaseUrl();
 
-// Exhaustive On-Page SEO Optimization for 301 Redirect Generator
+const toolSeo = standardizeToolSeo(getToolBySlug("redirect-301-generator"));
+
 export const metadata = {
-  title: "301 Redirect Generator | Secure Your SEO Rankings (Free)",
-  description:
-    "Generate production-ready 301 redirects for Apache .htaccess, Nginx, PHP, and JavaScript. Prevent 404 errors, preserve link juice, and manage site migrations like a pro.",
-  keywords: "301 redirect generator, htaccess redirect tool, nginx redirect generator, site migration seo, permanent redirect code, seo link juice preservation",
+  title: toolSeo.title,
+  description: toolSeo.description,
+  keywords: toolSeo.keywords.join(", "),
   robots: { index: true, follow: true },
   alternates: {
     canonical: `${baseUrl}/tools/redirect-301-generator`,
   },
   openGraph: {
-    title: "301 Redirect Generator | Secure Your SEO Rankings",
-    description: "Don't lose your hard-earned rankings during a site move. Generate perfect 301 redirects for any server environment instantly.",
+    title: toolSeo.title,
+    description: toolSeo.description,
     type: "website",
     url: `${baseUrl}/tools/redirect-301-generator`,
     siteName: siteName,
@@ -39,8 +40,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "301 Redirect Generator | Secure Your SEO Rankings",
-    description: "The most advanced free 301 redirect generator for SEOs and developers. Supports Apache, Nginx, and more.",
+    title: toolSeo.title,
+    description: toolSeo.description,
   },
 };
 
@@ -48,7 +49,7 @@ export default function Redirect301GeneratorPage() {
   const tool = getToolBySlug("redirect-301-generator");
   const baseUrl = getBaseUrl();
   const allTools = getAllToolsMeta();
-  
+
   // Related tools for technical SEO interlinking
   const relatedTools = allTools
     .filter((t) => t.slug !== tool.slug && (

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "prepare": "husky",
     "build:analyze": "ANALYZE=true next build",
@@ -13,10 +13,12 @@
     "test": "jest",
     "validate": "node scripts/validate.cjs",
     "audit:contrast": "node scripts/contrastAudit.js",
-    "lint:links": "node scripts/checkExternalLinks.js",
+    "lint:links": "node scripts/checkExternalLinks.cjs",
     "lint:canon": "node scripts/lintCanonical.js",
     "lint:anchors": "node scripts/lintAnchors.js",
     "lint:whitespace": "node scripts/whitespaceAudit.js",
+    "audit:blog-guides": "node scripts/auditBlogGuides.mjs",
+    "audit:tools": "node scripts/auditToolSeo.mjs",
     "fix:whitespace": "node scripts/whitespaceAudit.js --fix",
     "crawl:final": "node scripts/headlessCrawler.js",
     "audit:indexing": "node scripts/site-crawler.mjs",
@@ -44,7 +46,8 @@
     "@google/generative-ai": "^0.24.1",
     "@vercel/speed-insights": "^1.2.0",
     "docx": "^9.0.3",
-    "jspdf": "^3.0.4",
+    "jspdf": "^4.2.1",
+    "lucide-react": "^1.14.0",
     "next": "^16.0.7",
     "puppeteer-core": "^24.29.1",
     "react": "^19.2.1",
@@ -64,10 +67,13 @@
     "jest": "^29.7.0",
     "jsdom": "^27.3.0",
     "playwright": "^1.57.0",
-    "postcss": "^8.5.6",
+    "postcss": "8.5.10",
     "puppeteer": "^24.28.0",
     "tailwindcss": "3.4.10",
     "typescript": "6.0.3",
     "webpack-bundle-analyzer": "^4.10.2"
+  },
+  "overrides": {
+    "postcss": "$postcss"
   }
 }

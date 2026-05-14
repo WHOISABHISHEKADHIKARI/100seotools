@@ -172,8 +172,6 @@ export default function PerformanceMonitor() {
                 metricsRef.current.cssLoadTime = Math.round(slowest.duration);
                 metricsRef.current.cssEntry = slowest.name;
 
-                // Optional: log for A/B baseline comparison
-                console.log('[Perf] CSS loaded:', slowest.name, `${Math.round(slowest.duration)}ms`);
                 scheduleUpdate();
               }
             });
@@ -231,9 +229,6 @@ export default function PerformanceMonitor() {
           }
           if (newAlerts.length) {
             localStorage.setItem(ALERTS_KEY, JSON.stringify([...alerts, ...newAlerts].slice(-200)));
-            for (const a of newAlerts) {
-              console.warn('[Perf Alert]', a.type, a);
-            }
           }
         } catch (e) {
           // ignore storage errors

@@ -1,555 +1,238 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { getToolGuide, getInstructionEntry } from '../../lib/guides';
-import UnifiedCard from '../ui/UnifiedCard';
 import StructuredData from '../ui/StructuredData';
-import { toolContent } from '../../lib/toolContent';
-// fs and path imports removed as they were part of the deleted function
+import ErrorBoundary from './ErrorBoundary';
+import { ArrowRight, BookOpen, CheckCircle, Shield, Zap } from 'lucide-react';
+import { getCategoryDetail, shortToolName, visualColors } from '../tools/SeoVisuals';
 
-
-export default function ToolLayout({ tool, children, formFirst = false, relatedTools = [], extraSchema = [] }) {
-  // Generate guidance content for any tool via generic generator
+export default function ToolLayout({ tool, children, relatedTools = [], extraSchema = [] }) {
   const guide = getToolGuide(tool);
   const override = getInstructionEntry(tool.slug);
-  const content = toolContent[tool.slug];
+  const detail = getCategoryDetail(tool.category);
+  const Icon = detail.icon;
+  const color = visualColors[detail.color] || visualColors.violet;
+  const displayName = shortToolName(tool.name);
+
+  const guideSubpages = [
+    ['How to Use', `/blog/${tool.slug}-how-to-use`, 'Step-by-step workflow'],
+    ['Features', `/blog/${tool.slug}-features-benefits-keywords`, 'Benefits and keywords'],
+    ['Best Practices', `/blog/${tool.slug}-best-practices-integrations-costs`, 'Practical checks'],
+    ['Checklist', `/blog/${tool.slug}-checklist-workflow`, 'Repeatable process'],
+    ['Search Terms', `/blog/${tool.slug}-popular-search-terms`, 'Related queries'],
+  ];
+
+  const relatedItems = (() => {
+    const seen = new Set();
+    const items = [];
+    if (Array.isArray(guide?.relatedTools)) {
+      guide.relatedTools.forEach((slug) => {
+        if (seen.has(slug)) return;
+        seen.add(slug);
+        items.push({
+          slug,
+          name: slug.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        });
+      });
+    }
+    if (Array.isArray(relatedTools)) {
+      relatedTools.forEach((relatedTool) => {
+        if (seen.has(relatedTool.slug)) return;
+        seen.add(relatedTool.slug);
+        items.push({ slug: relatedTool.slug, name: relatedTool.name });
+      });
+    }
+    return items.slice(0, 5);
+  })();
 
   return (
-    <div className="space-y-6">
-      <div className="card p-6">
-        <div className="flex items-start justify-between">
-          <div>
-            <h1 className="text-xl font-semibold">{`${tool.name} | 100 SEO Tools`}</h1>
-            <p className="text-gray-600 dark:text-gray-400">{tool.description}</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">{tool.category}</span>
-            <Link
-              href={`/blog/${tool.slug}`}
-              aria-label={`Read guide: ${tool.name}`}
-              className="tap-target text-sm text-brand-600 hover:opacity-85 transition-gpu will-change-transform-opacity"
-            >
-              Read Guide
-            </Link>
-          </div>
-        </div>
-        <div className="mt-3 flex items-center justify-between">
-          <p className="text-sm text-gray-700 dark:text-gray-300">Generate and optimize with fast, helpful outputs</p>
-          <a href="#tool-form" className="btn" aria-label="Jump to the form to generate your output">Start Generating</a>
-        </div>
-        {content?.furtherReading && (
-          <div className="mt-4 text-sm text-slate-700 dark:text-slate-300">
-            <span className="font-medium">Further reading:</span>{' '}
-            {content.furtherReading.map((link, i) => (
-              <span key={i}>
-                <Link href={link.href} className="hover:underline">{link.text}</Link>
-                {i < content.furtherReading.length - 1 && ', '}
+    <div className="space-y-5">
+      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-b border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_100%)] dark:border-white/10 dark:bg-[linear-gradient(180deg,#0f172a_0%,#020617_100%)]">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-12">
+          <div className="max-w-4xl">
+            <div className="mb-5 flex items-center gap-3">
+              <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${color.icon} shadow-sm`}>
+                <Icon className="h-7 w-7" aria-hidden />
+              </div>
+              <div>
+                <div className="mb-1 flex flex-wrap items-center gap-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{tool.category}</span>
+                  <span className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
+                  <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300">Free, no signup</span>
+                </div>
+                <h1 className="text-3xl font-extrabold tracking-tight text-slate-950 md:text-5xl dark:text-white">{displayName}</h1>
+              </div>
+            </div>
+
+            <p className="max-w-3xl text-base leading-7 text-slate-600 md:text-lg dark:text-slate-300">{tool.description}</p>
+
+            <div className="mt-7 flex flex-wrap gap-3 text-sm text-slate-600 dark:text-slate-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 shadow-sm dark:border-white/10 dark:bg-white/5">
+                <CheckCircle className="h-4 w-4 text-emerald-600" /> Clear output
               </span>
-            ))}
+              <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 shadow-sm dark:border-white/10 dark:bg-white/5">
+                <Shield className="h-4 w-4 text-slate-500" /> Privacy focused
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 shadow-sm dark:border-white/10 dark:bg-white/5">
+                <Zap className="h-4 w-4 text-amber-500" /> Fast workflow
+              </span>
+            </div>
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <a href="#tool-form" className="inline-flex items-center justify-center rounded-xl bg-slate-950 px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-slate-800 active:scale-[0.99] dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">
+                Open tool
+              </a>
+              <Link href={`/blog/${tool.slug}-how-to-use`} className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10">
+                Read guide
+                <BookOpen className="h-4 w-4" aria-hidden />
+              </Link>
+            </div>
           </div>
-        )}
+        </div>
+      </section>
+
+      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-gray-900">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4 dark:border-white/5">
+          <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">Guide sections for better results.</p>
+          <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-extrabold ${color.badge}`}>
+            <Icon className="h-3.5 w-3.5" aria-hidden />
+            {tool.category}
+          </span>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {guideSubpages.map(([label, href, meta]) => (
+            <Link
+              key={href}
+              href={href}
+              className="group rounded-xl border border-slate-200 bg-slate-50 p-4 transition hover:border-slate-300 hover:bg-white hover:shadow-sm dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+            >
+              <span className="block text-sm font-extrabold text-slate-900 group-hover:text-slate-700 dark:text-white">{label}</span>
+              <span className="mt-1 block text-[11px] leading-tight text-slate-500 dark:text-slate-400">{meta}</span>
+            </Link>
+          ))}
+        </div>
       </div>
 
-      {/* Form first layout */}
-      {formFirst && (
-        <>
-          <div className="card p-6">
-            {children}
+      <div id="tool-form" className="scroll-mt-20">
+        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-gray-900">
+          <div className="p-4 sm:p-5 md:p-6">
+            <ErrorBoundary>
+              {children}
+            </ErrorBoundary>
           </div>
+        </div>
+      </div>
 
-          {/* Social Proof Section */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 py-4">
-            <div className="flex flex-col items-center text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-              <span className="text-2xl font-bold text-brand-600">10k+</span>
-              <span className="text-xs text-slate-500 uppercase tracking-wider">Active Users</span>
-            </div>
-            <div className="flex flex-col items-center text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-              <span className="text-2xl font-bold text-brand-600">100%</span>
-              <span className="text-xs text-slate-500 uppercase tracking-wider">Free Forever</span>
-            </div>
-            <div className="flex flex-col items-center text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-              <span className="text-2xl font-bold text-brand-600">Privacy</span>
-              <span className="text-xs text-slate-500 uppercase tracking-wider">Focused</span>
-            </div>
-            <div className="flex flex-col items-center text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-              <span className="text-2xl font-bold text-brand-600">Fast</span>
-              <span className="text-xs text-slate-500 uppercase tracking-wider">Processing</span>
-            </div>
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+        {[
+          ['Clear', 'Readable Results', CheckCircle, 'text-emerald-500'],
+          ['Free', 'No Signup', Zap, 'text-amber-500'],
+          ['Private', 'Focused Flow', Shield, 'text-blue-500'],
+          ['Fast', 'Simple Checks', Zap, 'text-slate-500'],
+        ].map(([value, label, StatIcon, iconColor]) => (
+          <div key={label} className="flex flex-col items-center rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm dark:border-white/10 dark:bg-gray-900">
+            <StatIcon className={`mb-2 h-5 w-5 ${iconColor}`} aria-hidden />
+            <span className="text-lg font-extrabold text-slate-950 dark:text-white">{value}</span>
+            <span className="mt-1 text-[10px] font-extrabold uppercase tracking-widest text-slate-400">{label}</span>
           </div>
+        ))}
+      </div>
 
-          {guide && (
-            <div className="card p-6 space-y-6">
-              <section aria-labelledby="intro-heading" className="space-y-2">
-                <h2 id="intro-heading" className="text-xl font-semibold">Introduction</h2>
-                <p className="text-gray-700 dark:text-gray-300">{guide.introduction}</p>
+      {guide && (
+        <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
+          <div className="space-y-5">
+            <div className="space-y-7 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7 dark:border-white/10 dark:bg-gray-900">
+              <section aria-labelledby="intro-heading" className="space-y-3">
+                <h2 id="intro-heading" className="text-2xl font-extrabold text-slate-900 dark:text-white">Introduction</h2>
+                <p className="leading-7 text-slate-600 dark:text-slate-300">{guide.introduction}</p>
               </section>
 
-              <section aria-labelledby="what-heading" className="space-y-2">
-                <h2 id="what-heading" className="text-xl font-semibold">Why This Tool Is Needed</h2>
-                <p className="text-gray-700 dark:text-gray-300">{guide.whatItDoes}</p>
-              </section>
-
-              <section aria-labelledby="seo-heading" className="space-y-2">
-                <h2 id="seo-heading" className="text-xl font-semibold">Role of This Tool in SEO</h2>
-                <p className="text-gray-700 dark:text-gray-300">{guide.whyItMattersSEO}</p>
-              </section>
-              <h2 className="text-xl font-semibold mb-2">Tool Information</h2>
-
-              <div>
-                <h3 className="text-lg font-medium mb-2">What is this tool for?</h3>
-                <p className="text-gray-700 dark:text-gray-300">{guide.purpose}</p>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <section aria-labelledby="what-heading" className="space-y-3">
+                  <h3 id="what-heading" className="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white">
+                    <span className="h-1.5 w-1.5 rounded-full bg-slate-900 dark:bg-white" />
+                    Why this tool is needed
+                  </h3>
+                  <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">{guide.whatItDoes}</p>
+                </section>
+                <section aria-labelledby="seo-heading" className="space-y-3">
+                  <h3 id="seo-heading" className="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white">
+                    <span className="h-1.5 w-1.5 rounded-full bg-slate-900 dark:bg-white" />
+                    Role in SEO
+                  </h3>
+                  <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">{guide.whyItMattersSEO}</p>
+                </section>
               </div>
 
-              <div>
-                <h3 className="text-lg font-medium mb-2">How to use</h3>
-                <p className="text-gray-700 dark:text-gray-300">{guide.howToUse}</p>
+              <section className="space-y-4 border-t border-slate-100 pt-7 dark:border-white/5">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">How to use it well</h3>
+                <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">{guide.howToUse}</p>
                 {Array.isArray(guide.howToSteps) && guide.howToSteps.length > 0 && (
-                  <ul className="list-disc pl-5 mt-2 space-y-1 text-gray-700 dark:text-gray-300">
-                    {guide.howToSteps.map((s, idx) => (
-                      <li key={idx}><span className="font-medium">{s.step}:</span> {s.tip}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-
-              <div>
-                <h3 className="text-lg font-medium mb-2">Understanding the output</h3>
-                <p className="text-gray-700 dark:text-gray-300">{guide.outputExplanation}</p>
-              </div>
-
-              {guide.benefits && guide.benefits.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Key Benefits</h3>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                    {guide.benefits.map((benefit, index) => (
-                      <li key={index}>{benefit}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {guide.useCases && guide.useCases.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Common Use Cases</h3>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                    {guide.useCases.map((useCase, index) => (
-                      <li key={index}>{useCase}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {Array.isArray(guide.features) && guide.features.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Key Features</h3>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                    {guide.features.map((feat, index) => (
-                      <li key={index}>{feat}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {guide.exampleResults && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Example Results</h3>
-                  <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{guide.exampleResults}</p>
-                </div>
-              )}
-
-              {Array.isArray(guide.bestPractices) && guide.bestPractices.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Best Practices</h3>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                    {guide.bestPractices.map((bp, index) => (
-                      <li key={index}>{bp}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Installation & Setup */}
-              {guide.installationSetup && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Installation and Setup</h3>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                    <li><span className="font-medium">Access:</span> {guide.installationSetup.access}</li>
-                    <li><span className="font-medium">Supported devices:</span> {guide.installationSetup.devices}</li>
-                    <li><span className="font-medium">Requirements:</span> {guide.installationSetup.requirements}</li>
-                    <li><span className="font-medium">Optional:</span> {guide.installationSetup.optional}</li>
-                  </ul>
-                </div>
-              )}
-
-              {/* Core Functionality */}
-              {guide.coreFunctionality && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Core Functionality</h3>
-                  <div className="grid sm:grid-cols-2 gap-3">
-                    <div>
-                      <p className="font-medium">Inputs</p>
-                      <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                        {Array.isArray(guide.coreFunctionality.inputs) && guide.coreFunctionality.inputs.map((it, i) => (
-                          <li key={i}>{it}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <p className="font-medium">Outputs</p>
-                      <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                        {Array.isArray(guide.coreFunctionality.outputs) && guide.coreFunctionality.outputs.map((it, i) => (
-                          <li key={i}>{it}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <p className="mt-2 text-gray-700 dark:text-gray-300"><span className="font-medium">Processing:</span> {guide.coreFunctionality.processing}</p>
-                  {Array.isArray(guide.coreFunctionality.actions) && guide.coreFunctionality.actions.length > 0 && (
-                    <p className="mt-1 text-gray-700 dark:text-gray-300"><span className="font-medium">Actions:</span> {guide.coreFunctionality.actions.join(', ')}</p>
-                  )}
-                </div>
-              )}
-
-              {/* Advanced Features & Configuration */}
-              {guide.advancedFeatures && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Advanced Features & Configuration</h3>
-                  <div className="grid sm:grid-cols-2 gap-3">
-                    <div>
-                      <p className="font-medium">Settings</p>
-                      <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                        {Array.isArray(guide.advancedFeatures.settings) && guide.advancedFeatures.settings.map((s, i) => (
-                          <li key={i}>{s}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <p className="font-medium">Integrations</p>
-                      <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                        {Array.isArray(guide.advancedFeatures.integrations) && guide.advancedFeatures.integrations.map((s, i) => (
-                          <li key={i}>{s}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <p className="mt-2 text-gray-700 dark:text-gray-300"><span className="font-medium">Performance:</span> {guide.advancedFeatures.performance}</p>
-                  <p className="mt-1 text-gray-700 dark:text-gray-300"><span className="font-medium">Accessibility:</span> {guide.advancedFeatures.accessibility}</p>
-                </div>
-              )}
-
-              {/* Troubleshooting */}
-              {Array.isArray(guide.troubleshooting) && guide.troubleshooting.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Troubleshooting</h3>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                    {guide.troubleshooting.map((t, i) => (
-                      <li key={i}>{t}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Contact & Support */}
-              {guide.contactSupport && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Contact and Support</h3>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                    <li><span className="font-medium">Email:</span> {guide.contactSupport.email}</li>
-                    <li><span className="font-medium">Feedback:</span> {guide.contactSupport.feedback}</li>
-                    <li><span className="font-medium">Updates:</span> {guide.contactSupport.updates}</li>
-                  </ul>
-                </div>
-              )}
-
-              {/* SEO Requirements */}
-              {guide.seoRequirements && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">SEO Requirements</h3>
-                  <p className="text-gray-700 dark:text-gray-300"><span className="font-medium">Primary keyword:</span> {guide.seoRequirements.primaryKeyword}</p>
-                  {Array.isArray(guide.seoRequirements.keywordVariations) && guide.seoRequirements.keywordVariations.length > 0 && (
-                    <div className="mt-1">
-                      <p className="font-medium">Keyword variations</p>
-                      <div className="flex flex-wrap gap-2 mt-1">
-                        {guide.seoRequirements.keywordVariations.map((kw, i) => (
-                          <span key={i} className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">{kw}</span>
-                        ))}
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {guide.howToSteps.map((step, index) => (
+                      <div key={index} className="rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5">
+                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Step {index + 1}</span>
+                        <p className="mt-1 text-xs font-bold text-slate-900 dark:text-white">{step.step}</p>
+                        <p className="mt-1 text-[11px] text-slate-500 dark:text-slate-400">{step.tip}</p>
                       </div>
-                    </div>
-                  )}
-                  <p className="mt-2 text-gray-700 dark:text-gray-300"><span className="font-medium">Meta Description (≤155 chars):</span> {guide.seoRequirements.metaDescription}</p>
-                  <p className="mt-1 text-gray-700 dark:text-gray-300"><span className="font-medium">Internal links:</span> {guide.seoRequirements.internalLinksHint}</p>
-                  <p className="mt-1 text-gray-700 dark:text-gray-300"><span className="font-medium">Tone:</span> {guide.seoRequirements.tone}</p>
-                </div>
-              )}
-
-              {/* Schema Markup types used */}
-              {Array.isArray(guide.schemaSections) && guide.schemaSections.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Schema Markup (JSON‑LD)</h3>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                    {guide.schemaSections.map((s, i) => (
-                      <li key={i}>{s}</li>
                     ))}
-                  </ul>
-                </div>
-              )}
+                  </div>
+                )}
+              </section>
 
-              {/* Quality & Accessibility */}
-              {Array.isArray(guide.qualityAccessibility) && guide.qualityAccessibility.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Quality & Accessibility</h3>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-                    {guide.qualityAccessibility.map((q, i) => (
-                      <li key={i}>{q}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {content?.competitorBenchmarking && (
-                <div className="pt-2">
-                  <h3 className="text-lg font-medium mb-2">Competitor Benchmarking</h3>
-                  <p className="text-gray-700 dark:text-gray-300">{content.competitorBenchmarking}</p>
-                </div>
-              )}
-
-              {/* Frequency Asked Questions */}
               {Array.isArray(guide.faqs) && guide.faqs.length > 0 && (
-                <section aria-labelledby="faq-heading" className="space-y-4 pt-4 border-t border-gray-100 dark:border-gray-800">
-                  <h2 id="faq-heading" className="text-xl font-semibold">Frequently Asked Questions</h2>
-                  <div className="space-y-4">
-                    {guide.faqs.map((faq, idx) => (
-                      <div key={idx} className="space-y-1">
-                        <h3 className="font-medium text-gray-900 dark:text-gray-100">{faq.q}</h3>
-                        <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{faq.a}</p>
+                <section className="space-y-4 border-t border-slate-100 pt-7 dark:border-white/5">
+                  <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">Frequently asked questions</h2>
+                  <div className="divide-y divide-slate-100 dark:divide-white/5">
+                    {guide.faqs.map((faq, index) => (
+                      <div key={index} className="py-4 first:pt-0">
+                        <h4 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{faq.q}</h4>
+                        <p className="text-sm leading-7 text-slate-500 dark:text-slate-400">{faq.a}</p>
                       </div>
                     ))}
                   </div>
                 </section>
               )}
-
-              {/* Related tools section */}
-              <div>
-                <h3 className="text-lg font-medium mb-3">Related Tools</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {/* Show unique related tools from both hardcoded and dynamic sources */}
-                  {(() => {
-                    const seenSlugs = new Set();
-                    const uniqueTools = [];
-
-                    // Process hardcoded tools
-                    if (guide.relatedTools && Array.isArray(guide.relatedTools)) {
-                      guide.relatedTools.forEach(slug => {
-                        if (!seenSlugs.has(slug)) {
-                          seenSlugs.add(slug);
-                          const name = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-                          uniqueTools.push({ slug, name, source: 'hardcoded' });
-                        }
-                      });
-                    }
-
-                    // Process dynamic tools
-                    if (relatedTools && Array.isArray(relatedTools)) {
-                      relatedTools.forEach(t => {
-                        if (!seenSlugs.has(t.slug)) {
-                          seenSlugs.add(t.slug);
-                          uniqueTools.push({ slug: t.slug, name: t.name, source: 'dynamic' });
-                        }
-                      });
-                    }
-
-                    return uniqueTools.map(t => (
-                      <UnifiedCard
-                        key={t.slug}
-                        title={t.name}
-                        href={`/tools/${t.slug}`}
-                        meta="Related Tool"
-                        variant="minimal"
-                      />
-                    ));
-                  })()}
-                </div>
-              </div>
-
-              {/* Reference cards */}
-              {Array.isArray(guide.referenceCards) && guide.referenceCards.length > 0 && (
-                <div className="space-y-4">
-                  {guide.referenceCards.map((card, idx) => (
-                    <div key={idx} className="space-y-2">
-                      <h3 className="text-lg font-medium">{card.title}</h3>
-                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                        {card.items.map((it, i) => (
-                          <UnifiedCard
-                            key={i}
-                            title={`${it.code} – ${it.label}`}
-                            description={it.note}
-                            interactive={false}
-                            variant="minimal"
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {guide.cta && (
-                <div className="pt-2">
-                  <a href="#tool-form" className="btn" aria-label="Jump to the form">Start Now</a>
-                  <p className="text-gray-700 dark:text-gray-300 mt-2">{guide.cta}</p>
-                </div>
-              )}
-            </div>
-          )}
-        </>
-      )}
-
-      {/* Default layout (guidance first) */}
-      {!formFirst && (
-        <>
-          {/* Social Proof Section */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 py-4">
-            <div className="flex flex-col items-center text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-              <span className="text-2xl font-bold text-brand-600">10k+</span>
-              <span className="text-xs text-slate-500 uppercase tracking-wider">Active Users</span>
-            </div>
-            <div className="flex flex-col items-center text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-              <span className="text-2xl font-bold text-brand-600">100%</span>
-              <span className="text-xs text-slate-500 uppercase tracking-wider">Free Forever</span>
-            </div>
-            <div className="flex flex-col items-center text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-              <span className="text-2xl font-bold text-brand-600">Privacy</span>
-              <span className="text-xs text-slate-500 uppercase tracking-wider">Focused</span>
-            </div>
-            <div className="flex flex-col items-center text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-              <span className="text-2xl font-bold text-brand-600">Fast</span>
-              <span className="text-xs text-slate-500 uppercase tracking-wider">Processing</span>
             </div>
           </div>
-          {guide && (
-            <div className="card p-6 space-y-4">
-              <div>
-                <h2 className="text-lg font-medium mb-2">What is this tool for?</h2>
-                <p className="text-gray-700 dark:text-gray-300">{guide.purpose}</p>
-              </div>
 
-              <div>
-                <h2 className="text-lg font-medium mb-2">How to use</h2>
-                <p className="text-gray-700 dark:text-gray-300">{guide.howToUse}</p>
-              </div>
-
-              <div>
-                <h2 className="text-lg font-medium mb-2">Understanding the output</h2>
-                <p className="text-gray-700 dark:text-gray-300">{guide.outputExplanation}</p>
-              </div>
-
-              {guide.relatedTools && guide.relatedTools.length > 0 && (
-                <div>
-                  <h2 className="text-lg font-medium mb-2">Related tools</h2>
-                  <div className="flex flex-wrap gap-2">
-                    {guide.relatedTools.map(slug => {
-                      const name = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-                      return (
-                        <a
-                          key={slug}
-                          href={`/tools/${slug}`}
-                          className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 transition-transform will-change-transform hover:scale-[1.01]"
-                        >
-                          {name}
-                        </a>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* Reference cards */}
-              {Array.isArray(guide.referenceCards) && guide.referenceCards.length > 0 && (
-                <div className="space-y-4">
-                  {guide.referenceCards.map((card, idx) => (
-                    <div key={idx} className="space-y-2">
-                      <h3 className="text-lg font-medium">{card.title}</h3>
-                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                        {card.items.map((it, i) => (
-                          <UnifiedCard
-                            key={i}
-                            title={`${it.code} – ${it.label}`}
-                            description={it.note}
-                            interactive={false}
-                            variant="minimal"
-                          />
-                        ))}
-                      </div>
-                    </div>
+          <aside className="space-y-5">
+            {relatedItems.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900">
+                <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.15em] text-slate-400">Related tools</h3>
+                <div className="space-y-2">
+                  {relatedItems.map((item) => (
+                    <Link
+                      key={item.slug}
+                      href={`/tools/${item.slug}`}
+                      className="group flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-slate-50 dark:hover:bg-white/5"
+                    >
+                      <span className="truncate pr-4 text-xs font-bold text-slate-700 transition-colors group-hover:text-slate-950 dark:text-slate-300 dark:group-hover:text-white">{item.name}</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-slate-300 transition-all group-hover:translate-x-0.5 group-hover:text-slate-600" />
+                    </Link>
                   ))}
                 </div>
-              )}
-
-              {/* Quick SEO requirements */}
-              {guide.seoRequirements && (
-                <div>
-                  <h2 className="text-lg font-medium mb-2">SEO Requirements</h2>
-                  <p className="text-gray-700 dark:text-gray-300"><span className="font-medium">Primary keyword:</span> {guide.seoRequirements.primaryKeyword}</p>
-                  <p className="text-gray-700 dark:text-gray-300"><span className="font-medium">Meta Description:</span> {guide.seoRequirements.metaDescription}</p>
-                </div>
-              )}
-            </div>
-          )}
-
-          <div className="card p-6">
-            {children}
-          </div>
-          {content?.furtherReading && (
-            <div className="card p-6">
-              <h2 className="text-lg font-medium mb-2">Further Reading</h2>
-              <div className="flex flex-wrap gap-2">
-                {content.furtherReading.map((link, i) => (
-                  <Link
-                    key={i}
-                    href={link.href}
-                    className="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-                  >
-                    {link.text}
-                  </Link>
-                ))}
               </div>
-            </div>
-          )}
-        </>
+            )}
+
+            {Array.isArray(guide.benefits) && guide.benefits.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900">
+                <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.15em] text-slate-400">What improves</h3>
+                <ul className="space-y-3">
+                  {guide.benefits.slice(0, 5).map((benefit, index) => (
+                    <li key={index} className="flex gap-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                      <CheckCircle className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </aside>
+        </div>
       )}
 
-
-
-
-      {/* Author Section */}
-      <div className="card p-6 flex items-center gap-4 border-l-4 border-brand-500">
-        <div className="flex-shrink-0">
-          <Image
-            src="/author.png"
-            alt="Abhishek Adhikari"
-            width={64}
-            height={64}
-            className="rounded-full border border-slate-200 dark:border-white/10"
-          />
-        </div>
-        <div>
-          <h3 className="font-semibold text-lg text-gray-900 dark:text-gray-100 mb-1">
-            Tool Created by <Link href="/author" className="text-brand-600 hover:underline">Abhishek Adhikari</Link>
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-            SEO Expert, Full-Stack Developer, and Creator of 100 SEO Tools. With 10+ years of experience, I build free, privacy-focused tools to help you rank higher.
-          </p>
-        </div>
-      </div>
-
-      {/* Professional footer with additional information */}
-      <div className="text-sm text-gray-500 dark:text-gray-400 px-2">
-        <p>This tool is provided free of charge and requires no login. All processing happens in your browser - no data is sent to our servers.</p>
-        <p className="mt-1">Last updated: {new Date().toLocaleDateString()}</p>
-      </div>
-      {override && override.schema_json_ld && (
-        <StructuredData data={override.schema_json_ld} />
-      )}
-      {extraSchema && (Array.isArray(extraSchema) ? extraSchema : [extraSchema]).map((schema, i) => (
-        schema ? <StructuredData key={i} data={schema} /> : null
+      {extraSchema.map((schema, index) => (
+        <StructuredData key={index} data={schema} />
       ))}
     </div>
   );

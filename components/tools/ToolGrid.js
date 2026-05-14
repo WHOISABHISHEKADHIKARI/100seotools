@@ -1,277 +1,188 @@
 "use client";
-import React, { useEffect, useState, memo, useRef, useCallback, useMemo } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { BookOpen, ChevronRight, Star, Users } from 'lucide-react';
 import { useUserPreferences } from '../../contexts/UserPreferencesContext';
-import UnifiedCard from '../ui/UnifiedCard';
 import {
-  FiSearch,
-  FiTag,
-  FiLink,
-  FiBarChart2,
-  FiMapPin,
-  FiUsers,
-  FiCpu,
-  FiTool,
-  FiStar,
-  FiChevronRight,
-  FiBookOpen
-} from 'react-icons/fi';
-//hello boss
-const categoryIconMap = {
-  'Keyword Research': FiSearch,
-  'On-Page Optimization': FiTag,
-  'Technical SEO': FiTool,
-  'Backlink & Link-Building': FiLink,
-  'Content SEO': FiTag,
-  'SEO Performance': FiBarChart2,
-  'Local SEO': FiMapPin,
-  'Competitor Analysis': FiUsers,
-  'AI-Powered SEO': FiCpu,
-  'Schema & Structured Data': FiBookOpen,
-  'SEO Utility': FiTool
-};
+  getCategoryDetail,
+  getMonthlyUse,
+  getToolBadge,
+  getToolInitial,
+  shortToolName,
+  visualColors,
+} from './SeoVisuals';
 
-// Tool card component for better performance
-const ToolCard = memo(({ tool, isFavorite, onToggleFavorite, onToolClick }) => {
-  const router = useRouter();
-  const hasSlug = Boolean(tool?.slug);
-  const isBlog = tool?.type === 'blog';
-  const safeName = tool?.name ?? 'Untitled Tool';
-  const Icon = categoryIconMap[tool?.category] || FiTool;
-
-  const handleToolClick = () => {
-    onToolClick(tool);
-  };
-
-  const mainHref = hasSlug ? (isBlog ? `/blog/${tool.slug}` : `/tools/${tool.slug}`) : undefined;
-
-  return (
-    <UnifiedCard
-      href={mainHref}
-      title={safeName}
-      description={tool.description}
-      icon={Icon}
-      meta={tool.category}
-      iconColor={isBlog ? "text-blue-500" : "text-brand-500"}
-      variant="tool"
-      className="h-full"
-    >
-      <button
-        className="btn-secondary h-8 w-8 p-0 grid place-items-center"
-        onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (tool?.slug) onToggleFavorite(tool.slug); }}
-        aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-        aria-pressed={isFavorite}
-        title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-      >
-        <FiStar aria-hidden className={isFavorite ? 'text-yellow-500 fill-current' : 'text-gray-400'} />
-      </button>
-      {hasSlug && !isBlog ? (
-        <button
-          type="button"
-          className="btn-secondary text-xs px-2.5 py-1.5"
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); router.push(`/blog/${tool.slug}`); }}
-          aria-label={`Open guide for ${safeName}`}
-        >
-          Guide
-        </button>
-      ) : hasSlug && isBlog ? (
-        <span className="text-[10px] uppercase tracking-wider bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-1.5 py-1 rounded font-bold">Expert Guide</span>
-      ) : (
-        <span className="btn-secondary opacity-50 cursor-not-allowed text-xs px-2.5 py-1.5">Guide</span>
-      )}
-      {hasSlug ? (
-        <button
-          type="button"
-          className={`btn text-xs px-3 py-1.5 ml-auto ${isBlog ? 'btn-primary' : ''}`}
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); router.push(mainHref); }}
-          aria-label={`Open ${isBlog ? 'guide' : 'tool'} ${safeName}`}
-        >
-          {isBlog ? 'Read Guide' : 'Open Tool'} <FiChevronRight className="w-3.5 h-3.5" />
-        </button>
-      ) : (
-        <span className="btn opacity-50 cursor-not-allowed text-xs px-3 py-1.5">Open <FiChevronRight className="w-3.5 h-3.5" /></span>
-      )}
-    </UnifiedCard>
-  );
-});
-
-ToolCard.displayName = 'ToolCard';
+const batchSize = 12;
 
 function ToolGrid({ tools }) {
   const { favorites, actions } = useUserPreferences();
+  const [visibleCount, setVisibleCount] = useState(batchSize);
   const [mounted, setMounted] = useState(false);
-  const [visibleTools, setVisibleTools] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const isLoadingRef = useRef(false);
-  const observerRef = useRef(null);
-  const loadingRef = useRef(null);
-  const loadTimeoutRef = useRef(null);
-  const lastLoadAtRef = useRef(0);
-  const batchSize = 12; // Number of tools to load at once
-  const cooldownMs = 600; // cooldown between auto-loads to prevent flicker
+  const loadMoreRef = useRef(null);
 
-  // Reserve space for loading skeleton to prevent layout shifts
-  const [skeletonHeight, setSkeletonHeight] = useState(0);
-  const gridRef = useRef(null);
-
-  // Ensure unique tools by slug and type to prevent duplicate React keys and duplicate cards
   const uniqueTools = useMemo(() => {
     const seen = new Set();
-    const result = [];
-    for (const t of tools || []) {
-      const slug = t?.slug;
-      if (!slug) {
-        // Keep items without slug as-is, but attach a synthetic slug to avoid collisions
-        result.push(t);
-        continue;
-      }
-      // Use type-slug combo to allow a tool and a blog to have the same slug name
-      const id = `${t.type || 'tool'}-${slug}`;
-      if (!seen.has(id)) {
-        seen.add(id);
-        result.push(t);
-      }
-    }
-    return result;
+    return (tools || []).filter((tool, index) => {
+      const key = tool?.slug ? `${tool.type || 'tool'}-${tool.slug}` : `tool-${index}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
   }, [tools]);
-
-  // Generate stable keys for tools to avoid index-based keys
-  const getStableKey = useCallback((tool) => {
-    if (!tool?.slug) return `ns-${uniqueTools.indexOf(tool)}`;
-    return `${tool.type || 'tool'}-${tool.slug}`;
-  }, [uniqueTools]);
 
   useEffect(() => {
     setMounted(true);
-    // Measure grid item height for consistent skeleton sizing
-    if (gridRef.current && visibleTools.length > 0) {
-      const firstItem = gridRef.current.querySelector('article');
-      if (firstItem) {
-        setSkeletonHeight(firstItem.offsetHeight);
-      }
-    }
   }, []);
 
   useEffect(() => {
-    // Cancel any pending load when the tools list changes
-    if (loadTimeoutRef.current) {
-      clearTimeout(loadTimeoutRef.current);
-      loadTimeoutRef.current = null;
-    }
-    setIsLoading(false);
-
-    // Initialize with first batch of tools from the unique list
-    setVisibleTools(uniqueTools.slice(0, batchSize));
-
-    // Set up intersection observer for infinite scrolling
-    observerRef.current = new IntersectionObserver((entries) => {
-      const [entry] = entries;
-      const now = Date.now();
-      // Guard against stale state and rapid retriggers while layout shifts
-      if (entry.isIntersecting && !isLoadingRef.current && (now - lastLoadAtRef.current > cooldownMs)) {
-        loadMoreTools();
-      }
-    }, { rootMargin: '100px' });
-
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
+    setVisibleCount(batchSize);
   }, [uniqueTools]);
 
   useEffect(() => {
-    if (loadingRef.current && observerRef.current) {
-      observerRef.current.observe(loadingRef.current);
-    }
-    return () => {
-      if (loadingRef.current && observerRef.current) {
-        observerRef.current.unobserve(loadingRef.current);
-      }
-    };
-  }, [visibleTools]);
+    const node = loadMoreRef.current;
+    if (!node || visibleCount >= uniqueTools.length) return undefined;
 
-  const loadMoreTools = useCallback(() => {
-    if (visibleTools.length >= uniqueTools.length) return;
-    if (isLoadingRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisibleCount((count) => Math.min(count + batchSize, uniqueTools.length));
+        }
+      },
+      { rootMargin: '180px' },
+    );
 
-    setIsLoading(true);
-    isLoadingRef.current = true;
-    lastLoadAtRef.current = Date.now();
-    // Pause observing while we append the next batch to avoid double-trigger
-    if (observerRef.current && loadingRef.current) {
-      try { observerRef.current.unobserve(loadingRef.current); } catch (_) { }
-    }
-    // Simulate loading delay for better UX
-    const startIndex = visibleTools.length;
-    const nextBatch = uniqueTools.slice(startIndex, startIndex + batchSize);
-    // Merge and de-duplicate by type-slug to avoid duplicate key warnings
-    setVisibleTools((prev) => {
-      const merged = [...prev, ...nextBatch];
-      const seen = new Set();
-      return merged.filter((t) => {
-        const key = t?.slug ? `${t.type || 'tool'}-${t.slug}` : `idx-${uniqueTools.indexOf(t)}`;
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      });
-    });
-    setIsLoading(false);
-    isLoadingRef.current = false;
-    // Resume observing after batch is appended
-    if (observerRef.current && loadingRef.current) {
-      try { observerRef.current.observe(loadingRef.current); } catch (_) { }
-    }
-  }, [visibleTools, uniqueTools]);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [uniqueTools.length, visibleCount]);
 
   const toggleFavorite = useCallback((slug) => {
-    if (!mounted) return;
-    actions.toggleFavorite(slug);
-  }, [mounted, actions]);
+    if (mounted && slug) actions.toggleFavorite(slug);
+  }, [actions, mounted]);
 
-  const handleToolClick = useCallback((tool) => {
+  const rememberTool = useCallback((tool) => {
     actions.addToHistory(tool);
   }, [actions]);
 
+  const visibleTools = uniqueTools.slice(0, visibleCount);
+
   return (
     <>
-      <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {visibleTools.map((tool) => (
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {visibleTools.map((tool, index) => (
           <ToolCard
-            key={getStableKey(tool)}
+            key={tool?.slug ? `${tool.type || 'tool'}-${tool.slug}` : `tool-${index}`}
             tool={tool}
+            index={index}
             isFavorite={tool?.slug ? favorites.includes(tool.slug) : false}
             onToggleFavorite={toggleFavorite}
-            onToolClick={handleToolClick}
+            onToolClick={rememberTool}
           />
         ))}
       </div>
 
-      {visibleTools.length < uniqueTools.length && (
-        <div
-          ref={loadingRef}
-          className="flex justify-center items-center py-8"
-          style={{ minHeight: skeletonHeight > 0 ? `${skeletonHeight + 32}px` : '80px' }}
-          aria-live="polite"
-        >
-          {isLoading ? (
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 border-2 border-t-brand-500 border-r-brand-500 border-b-transparent border-l-transparent rounded-full animate-spin"></div>
-              <span>Loading more tools...</span>
-            </div>
-          ) : (
-            <button
-              onClick={loadMoreTools}
-              className="btn"
-              aria-label="Load more tools"
-            >
-              Load more tools
-            </button>
-          )}
+      {visibleCount < uniqueTools.length && (
+        <div ref={loadMoreRef} className="flex justify-center py-8">
+          <button
+            type="button"
+            onClick={() => setVisibleCount((count) => Math.min(count + batchSize, uniqueTools.length))}
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-blue-600 px-5 py-3 text-sm font-extrabold text-white shadow-lg shadow-violet-600/20 transition hover:opacity-90"
+          >
+            Load more tools
+            <ChevronRight className="h-4 w-4" aria-hidden />
+          </button>
         </div>
       )}
     </>
+  );
+}
+
+function ToolCard({ tool, index, isFavorite, onToggleFavorite, onToolClick }) {
+  const isBlog = tool?.type === 'blog';
+  const title = shortToolName(tool?.name || tool?.title || 'Untitled Tool');
+  const description = tool?.description || tool?.tldr || 'A free SEO utility built for quick, practical optimization work.';
+  const category = getCategoryDetail(tool?.category);
+  const Icon = category.icon;
+  const color = visualColors[category.color] || visualColors.violet;
+  const href = tool?.slug ? (isBlog ? `/blog/${tool.slug}` : `/tools/${tool.slug}`) : '#';
+  const guideHref = tool?.slug ? `/blog/${tool.slug}-how-to-use` : '#';
+
+  return (
+    <article className={`group relative overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-xl dark:border-white/10 dark:bg-gray-900 ${color.border}`}>
+      <div className={`h-1.5 bg-gradient-to-r ${color.bar}`} />
+      <div className="p-5">
+        <div className="mb-4 flex items-start justify-between gap-4">
+          <a
+            href={href}
+            onClick={() => onToolClick(tool)}
+            className={`grid h-12 w-12 shrink-0 place-items-center rounded-2xl ${color.icon} text-lg font-extrabold shadow-sm`}
+            aria-label={`Open ${title}`}
+          >
+            {getToolInitial(title)}
+          </a>
+          <div className="flex items-center gap-2">
+            <span className={`rounded-full px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide ${color.badge}`}>
+              {isBlog ? 'Guide' : getToolBadge(tool, index)}
+            </span>
+            {!isBlog && (
+              <button
+                type="button"
+                className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 text-slate-400 transition hover:border-yellow-200 hover:bg-yellow-50 hover:text-yellow-500 dark:border-white/10 dark:hover:bg-yellow-500/10"
+                onClick={(event) => {
+                  event.preventDefault();
+                  onToggleFavorite(tool?.slug);
+                }}
+                aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                aria-pressed={isFavorite}
+              >
+                <Star className={`h-4 w-4 ${isFavorite ? 'fill-current text-yellow-500' : ''}`} aria-hidden />
+              </button>
+            )}
+          </div>
+        </div>
+
+        <a href={href} onClick={() => onToolClick(tool)} className="block">
+          <h3 className="line-clamp-2 text-base font-extrabold leading-snug text-slate-900 transition group-hover:text-violet-700 dark:text-white dark:group-hover:text-violet-200">
+            {title}
+          </h3>
+          <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-500 dark:text-slate-400">
+            {description}
+          </p>
+        </a>
+
+        <div className="mt-5 flex flex-wrap items-center gap-2 text-xs text-slate-400">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1 font-semibold text-slate-600 dark:bg-white/10 dark:text-slate-300">
+            <Icon className="h-3.5 w-3.5" aria-hidden />
+            {tool?.category || 'SEO Tool'}
+          </span>
+          {!isBlog && (
+            <span className="inline-flex items-center gap-1">
+              <Users className="h-3.5 w-3.5" aria-hidden />
+              {getMonthlyUse(index)}/mo
+            </span>
+          )}
+        </div>
+
+        <div className="mt-5 flex items-center gap-2 border-t border-slate-100 pt-4 dark:border-white/10">
+          {!isBlog && tool?.slug && (
+            <a
+              href={guideHref}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-3 py-2 text-xs font-bold text-slate-600 transition hover:bg-slate-50 dark:border-white/10 dark:text-slate-300 dark:hover:bg-white/10"
+            >
+              <BookOpen className="h-3.5 w-3.5" aria-hidden />
+              Guide
+            </a>
+          )}
+          <a
+            href={href}
+            onClick={() => onToolClick(tool)}
+            className="ml-auto inline-flex items-center gap-1.5 rounded-xl bg-slate-950 px-3.5 py-2 text-xs font-extrabold text-white transition hover:bg-violet-700 dark:bg-white dark:text-slate-950 dark:hover:bg-violet-200"
+          >
+            {isBlog ? 'Read Guide' : 'Open Tool'}
+            <ChevronRight className="h-3.5 w-3.5" aria-hidden />
+          </a>
+        </div>
+      </div>
+    </article>
   );
 }
 

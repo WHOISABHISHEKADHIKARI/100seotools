@@ -173,27 +173,6 @@ export default function sitemap() {
     }));
 
     // ============================================
-    // STATISTICS & LOGGING
-    // ============================================
-    if (process.env.NODE_ENV === 'development') {
-        const typeStats = validGuides.reduce((acc, guide) => {
-            const type = guide.type || 'other';
-            acc[type] = (acc[type] || 0) + 1;
-            return acc;
-        }, {});
-
-        console.log('📚 Guides Sitemap Generation:');
-        console.log(`   📄 Total guides: ${validGuides.length}`);
-        console.log(`   📊 By type:`);
-        Object.entries(typeStats)
-            .sort((a, b) => b[1] - a[1])
-            .forEach(([type, count]) => {
-                console.log(`      • ${type}: ${count}`);
-            });
-        console.log(`   🔗 Base URL: ${baseUrl}`);
-    }
-
-    // ============================================
     // RETURN ENTRIES
     // ============================================
     return guideEntries;

@@ -69,6 +69,10 @@ function checkFileContains(filePath, searchString) {
   return content.includes(searchString);
 }
 
+function findExistingFile(candidates) {
+  return candidates.find((candidate) => fileExists(candidate));
+}
+
 // Validation functions
 function validateMetaTags() {
   log('Validating meta tags', 'header');
@@ -151,16 +155,16 @@ function validateAccessibility() {
 
   // Check for ARIA attributes in components
   const componentsToCheck = [
-    'Navbar.js',
-    'Card.js',
-    'BackToTop.js',
-    'SearchFilter.js',
+    ['Navbar.js', ['layout/Navbar.js']],
+    ['Card.js', ['ui/Card.js']],
+    ['BackToTop.js', ['ui/BackToTop.js']],
+    ['SearchFilter.js', ['tools/SearchFilter.js']],
   ];
 
   let allComponentsValid = true;
 
-  for (const component of componentsToCheck) {
-    const componentPath = path.join(config.componentsDir, component);
+  for (const [component, candidates] of componentsToCheck) {
+    const componentPath = findExistingFile(candidates.map((candidate) => path.join(config.componentsDir, candidate)));
 
     if (!fileExists(componentPath)) {
       log(`Component file not found: ${component}`, 'error');
@@ -193,7 +197,7 @@ function validatePerformance() {
   log('Validating performance optimizations', 'header');
 
   // Check for lazy loading implementation
-  const toolGridPath = path.join(config.componentsDir, 'ToolGrid.js');
+  const toolGridPath = path.join(config.componentsDir, 'tools', 'ToolGrid.js');
 
   if (!fileExists(toolGridPath)) {
     log('ToolGrid.js not found', 'error');
@@ -236,7 +240,7 @@ function validateUserExperience() {
   log('Validating user experience improvements', 'header');
 
   // Check for error boundary
-  const errorBoundaryPath = path.join(config.componentsDir, 'ErrorBoundary.js');
+  const errorBoundaryPath = path.join(config.componentsDir, 'layout', 'ErrorBoundary.js');
 
   if (fileExists(errorBoundaryPath)) {
     log('Found ErrorBoundary component', 'success');

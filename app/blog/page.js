@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowRight, BookOpen, CalendarDays, CheckCircle2, Clock, Layers3 } from 'lucide-react';
 import StructuredData from '../../components/ui/StructuredData';
 import { getAllBlogPostsPublished } from '../../lib/blog-data';
 import { getBaseUrl } from '../../lib/site';
@@ -7,8 +8,23 @@ import { permanentRedirect } from 'next/navigation';
 
 const baseUrl = getBaseUrl();
 
-// Metadata moved to separate file or synced here
 export { metadata } from './metadata';
+
+function cleanDate(value) {
+  try {
+    return new Date(value).toLocaleDateString(undefined, {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  } catch {
+    return '';
+  }
+}
+
+function getToolGuidePosts(posts) {
+  return posts.filter((post) => post.slug.includes('-how-to-use')).slice(0, 4);
+}
 
 export default async function BlogPage({ searchParams }) {
   const page = Number((await searchParams)?.page || 1);
@@ -17,15 +33,19 @@ export default async function BlogPage({ searchParams }) {
   }
 
   const posts = await getAllBlogPostsPublished();
-  const categories = ['All', ...new Set(posts.map(p => p.category).filter(Boolean))];
+  const toolSuffixes = ['-how-to-use', '-features-benefits-keywords', '-best-practices-integrations-costs', '-checklist-workflow', '-popular-search-terms'];
+  const visiblePosts = posts.filter((post) => !toolSuffixes.some((suffix) => post.slug.endsWith(suffix)));
+  const categories = ['All', ...new Set(visiblePosts.map((post) => post.category).filter(Boolean))];
+  const featuredPost = visiblePosts[0] || posts[0];
+  const guidePosts = getToolGuidePosts(posts);
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/` },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` }
-    ]
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` },
+    ],
   };
 
   const collectionLd = {
@@ -40,25 +60,18 @@ export default async function BlogPage({ searchParams }) {
       url: baseUrl,
       logo: {
         '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`
-      }
+        url: `${baseUrl}/logo.png`,
+      },
     },
-    blogPost: posts
-      .filter(p => {
-        // Exclude tool variants from schema to avoid duplicate content
-        const toolSuffixes = ['-how-to-use', '-features-benefits-keywords', '-best-practices-integrations-costs', '-checklist-workflow', '-popular-search-terms'];
-        return !toolSuffixes.some(suffix => p.slug.endsWith(suffix));
-      })
-      .slice(0, 50)
-      .map(p => ({
-        '@type': 'BlogPosting',
-        headline: p.title,
-        description: p.description,
-        datePublished: p.datePublished,
-        author: { '@type': 'Organization', name: '100 SEO Tools' },
-        url: `${baseUrl}/blog/${p.slug}`,
-        articleSection: p.category
-      }))
+    blogPost: visiblePosts.slice(0, 50).map((post) => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.description,
+      datePublished: post.datePublished,
+      author: { '@type': 'Organization', name: '100 SEO Tools' },
+      url: `${baseUrl}/blog/${post.slug}`,
+      articleSection: post.category,
+    })),
   };
 
   return (
@@ -66,144 +79,138 @@ export default async function BlogPage({ searchParams }) {
       <StructuredData data={breadcrumbLd} />
       <StructuredData data={collectionLd} />
 
-      <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-950">
-        {/* Hero Section */}
-        <section className="text-center space-y-6 py-12 md:py-16">
-          <div className="max-w-4xl mx-auto px-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm mb-4">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
-              </svg>
-              <span className="font-medium">{posts.length}+ SEO Guides</span>
-            </div>
+      <main className="min-h-screen bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
+        <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-b border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#eef2ff_100%)] dark:border-white/10 dark:bg-[linear-gradient(135deg,#020617_0%,#111827_100%)]">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+              <div className="max-w-3xl">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
+                  <BookOpen className="h-3.5 w-3.5 text-indigo-500" aria-hidden />
+                  SEO Research Library
+                </div>
+                <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 dark:text-white md:text-6xl">
+                  Practical SEO guides with a clear path from insight to action.
+                </h1>
+                <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300 md:text-lg">
+                  Browse focused tutorials, strategy notes, and workflow playbooks written for marketers who need useful decisions, not noisy dashboards.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link href="#guides" className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800 focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-200 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100">
+                    Browse guides
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                  <Link href="/tools" className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:text-slate-950 focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10">
+                    Open toolkit
+                    <Layers3 className="h-4 w-4" aria-hidden />
+                  </Link>
+                </div>
+              </div>
 
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
-              SEO Guides & Tutorials
-            </h1>
-
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mt-4">
-              Master SEO with comprehensive guides on keyword research, on-page optimization, technical SEO, link building, and AI-powered strategies.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-400 mt-6">
-              <span className="inline-flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                Free Forever
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                Updated 2026
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                Expert Insights
-              </span>
-            </div>
-          </div>
-        </section>
-
-        {/* Tool Guides Section */}
-        <section className="max-w-7xl mx-auto px-4 py-8">
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold mb-2">Tool-Specific Guides</h2>
-            <p className="text-gray-600 dark:text-gray-400">
-              In-depth guides for each SEO tool - how to use, features, benefits, and best practices
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {posts
-              .filter(p => p.slug.includes('-how-to-use') || (p.slug.includes('-guide') && !p.slug.match(/-guide-\d+$/)))
-              .slice(0, 8)
-              .map(post => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-brand-500 hover:shadow-md transition text-sm"
-                >
-                  <span className="line-clamp-2 font-medium">{post.title}</span>
-                </Link>
-              ))}
-          </div>
-        </section>
-
-        {/* Blog Grid Component - Filter out tool variants */}
-        <BlogGrid
-          initialPosts={posts.filter(p => {
-            const toolSuffixes = ['-how-to-use', '-features-benefits-keywords', '-best-practices-integrations-costs', '-checklist-workflow', '-popular-search-terms'];
-            return !toolSuffixes.some(suffix => p.slug.endsWith(suffix));
-          })}
-          initialCategories={categories}
-        />
-
-        {/* CTA Section */}
-        <section className="max-w-4xl mx-auto px-4 py-12">
-          <div className="card p-8 md:p-12 text-center space-y-6">
-            <h2 className="text-2xl md:text-3xl font-bold">
-              Ready to Boost Your SEO?
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              Try our 100+ free SEO tools to optimize your website and improve rankings.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 pt-4">
-              <Link href="/" className="btn">
-                Browse All Tools
-              </Link>
-              <Link href="/author" className="btn-secondary">
-                About the Creator
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* SEO Footer */}
-        <section className="max-w-7xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-800">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-bold text-lg mb-3">Popular Categories</h3>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                {categories.filter(c => c !== 'All').slice(0, 5).map(cat => (
-                  <li key={cat}>
-                    <Link href={`/blog?category=${encodeURIComponent(cat)}`} className="hover:text-brand-600 dark:hover:text-brand-400 transition">
-                      {cat}
-                    </Link>
-                  </li>
+              <div className="grid grid-cols-2 gap-3 rounded-lg border border-white bg-white/70 p-3 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+                {[
+                  { value: visiblePosts.length, label: 'Editorial guides' },
+                  { value: categories.length - 1, label: 'Topics' },
+                  { value: '100+', label: 'Free tools' },
+                  { value: '2026', label: 'Current SEO' },
+                ].map((stat) => (
+                  <div key={stat.label} className="rounded-lg border border-slate-100 bg-white p-4 dark:border-white/10 dark:bg-slate-950/40">
+                    <div className="text-2xl font-semibold tracking-tight">{stat.value}</div>
+                    <div className="mt-1 text-xs font-medium text-slate-500 dark:text-slate-400">{stat.label}</div>
+                  </div>
                 ))}
-              </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {featuredPost && (
+          <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+            <Link href={`/blog/${featuredPost.slug}`} className="group block rounded-lg border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/[0.07]">
+              <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_340px]">
+                <article className="p-6 sm:p-8 lg:p-10">
+                  <div className="mb-5 flex flex-wrap items-center gap-2">
+                    {featuredPost.category && (
+                      <span className="rounded-md border border-indigo-100 bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-700 dark:border-indigo-400/20 dark:bg-indigo-400/10 dark:text-indigo-200">
+                        {featuredPost.category}
+                      </span>
+                    )}
+                    <span className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
+                      Featured guide
+                    </span>
+                  </div>
+                  <h2 className="max-w-3xl text-2xl font-semibold tracking-tight text-slate-950 transition group-hover:text-indigo-700 dark:text-white dark:group-hover:text-indigo-200 md:text-4xl">
+                    {featuredPost.title}
+                  </h2>
+                  <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300 md:text-base">
+                    {featuredPost.description}
+                  </p>
+                  <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-slate-500 dark:text-slate-400">
+                    <span className="inline-flex items-center gap-2">
+                      <CalendarDays className="h-4 w-4" aria-hidden />
+                      {cleanDate(featuredPost.datePublished)}
+                    </span>
+                    <span className="inline-flex items-center gap-2">
+                      <Clock className="h-4 w-4" aria-hidden />
+                      {featuredPost.readTimeMinutes || 6} min read
+                    </span>
+                  </div>
+                </article>
+                <div className="border-t border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#eef2ff_100%)] p-6 dark:border-white/10 dark:bg-[linear-gradient(135deg,#0f172a_0%,#111827_100%)] lg:border-l lg:border-t-0">
+                  <div className="flex h-full min-h-56 flex-col justify-between rounded-lg border border-white bg-white/70 p-6 shadow-sm dark:border-white/10 dark:bg-slate-950/30">
+                    <div>
+                      <div className="mb-4 grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-white dark:bg-white dark:text-slate-950">
+                        <CheckCircle2 className="h-5 w-5" aria-hidden />
+                      </div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Editorial Pick</p>
+                      <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                        Start here for a polished, practical workflow before exploring the full library.
+                      </p>
+                    </div>
+                    <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-indigo-700 dark:text-indigo-200">
+                      Read guide
+                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </section>
+        )}
+
+        <BlogGrid initialPosts={visiblePosts} initialCategories={categories} />
+
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+          <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_380px]">
+            <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-indigo-600 dark:text-indigo-300">Next step</p>
+              <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight text-slate-950 dark:text-white md:text-3xl">
+                Turn reading into a repeatable SEO workflow.
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300">
+                Pair each guide with the free tools to check metadata, validate technical fixes, plan content, and produce cleaner reports.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Link href="/tools" className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100">
+                  Browse all tools
+                  <ArrowRight className="h-4 w-4" aria-hidden />
+                </Link>
+                <Link href="/author" className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-200 hover:text-slate-950 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10">
+                  About the creator
+                </Link>
+              </div>
             </div>
 
-            <div>
-              <h3 className="font-bold text-lg mb-3">Quick Links</h3>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400 transition">All Tools</Link></li>
-                <li><Link href="/blog/seo-basics" className="hover:text-brand-600 dark:hover:text-brand-400 transition">SEO Basics</Link></li>
-                <li><Link href="/author" className="hover:text-brand-600 dark:hover:text-brand-400 transition">About</Link></li>
-                <li><Link href="/sitemap.xml" className="hover:text-brand-600 dark:hover:text-brand-400 transition">Sitemap</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-3">Latest Tool Guides</h3>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
-                {posts
-                  .filter(p => p.slug.includes('-how-to-use'))
-                  .slice(0, 5)
-                  .map(post => (
-                    <li key={post.slug}>
-                      <Link href={`/blog/${post.slug}`} className="hover:text-brand-600 dark:hover:text-brand-400 transition line-clamp-1">
-                        {post.title}
-                      </Link>
-                    </li>
-                  ))}
-              </ul>
-            </div>
+            <aside className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5">
+              <h3 className="text-base font-semibold text-slate-950 dark:text-white">Latest tool guides</h3>
+              <div className="mt-4 space-y-3">
+                {guidePosts.map((post) => (
+                  <Link key={post.slug} href={`/blog/${post.slug}`} className="block rounded-lg border border-slate-100 p-3 text-sm transition hover:border-indigo-200 hover:bg-slate-50 dark:border-white/10 dark:hover:bg-white/5">
+                    <span className="line-clamp-2 font-medium text-slate-800 dark:text-slate-100">{post.title}</span>
+                    <span className="mt-1 block text-xs text-slate-500 dark:text-slate-400">{post.readTimeMinutes || 5} min read</span>
+                  </Link>
+                ))}
+              </div>
+            </aside>
           </div>
         </section>
       </main>

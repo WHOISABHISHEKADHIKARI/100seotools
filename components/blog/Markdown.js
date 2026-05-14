@@ -77,7 +77,7 @@ const Markdown = ({ text, className = "" }) => {
             if (trimmed.includes('---')) return; // skip delimiter row
             const cells = trimmed.split('|').filter((_, idx, arr) => idx > 0 && idx < arr.length - 1);
             const isHeader = !tableHeader;
-            
+
             const row = (
                 <tr key={`tr-${i}`} className="transition-colors hover:bg-gray-50/30 dark:hover:bg-white/5">
                     {cells.map((cell, j) => (

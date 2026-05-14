@@ -261,17 +261,6 @@ export default function sitemap() {
     // Validate all pages
     const validPages = allPages.filter(validatePageConfig);
 
-    // Log statistics in development
-    if (process.env.NODE_ENV === 'development') {
-        console.log('📊 Sitemap Statistics:');
-        console.log(`   Total pages: ${validPages.length}`);
-        console.log(`   Core: ${corePages.length}`);
-        console.log(`   Categories: ${categoryPages.length}`);
-        console.log(`   Calculators: ${calculatorPages.length}`);
-        console.log(`   Author/About: ${authorPages.length}`);
-        console.log(`   Utility/Legal: ${utilityPages.length}`);
-    }
-
     // ============================================
     // GENERATE SITEMAP ENTRIES
     // ============================================

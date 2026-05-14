@@ -8,22 +8,38 @@ export async function POST(request) {
 
         let targetUrl = url;
         if (!targetUrl.startsWith('http')) targetUrl = 'https://' + targetUrl;
+        let parsedUrl;
+        try {
+            parsedUrl = new URL(targetUrl);
+        } catch (error) {
+            return NextResponse.json({ success: false, error: 'Valid URL required' }, { status: 400 });
+        }
 
         // 1. Fetch
         const controller = new AbortController();
-        setTimeout(() => controller.abort(), 8000); // 8s timeout
+        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8s timeout
 
-        const res = await fetch(targetUrl, { signal: controller.signal, headers: { 'User-Agent': '100SEOTools-Bot' } });
-        if (!res.ok) throw new Error('Failed to fetch page');
+        let res;
+        try {
+            res = await fetch(parsedUrl.toString(), { signal: controller.signal, headers: { 'User-Agent': '100SEOTools-Bot' } });
+        } catch (error) {
+            const message = error.name === 'AbortError' ? 'Timed out while fetching URL' : 'Unable to fetch URL';
+            return NextResponse.json({ success: false, error: message }, { status: 422 });
+        } finally {
+            clearTimeout(timeoutId);
+        }
+        if (!res.ok) {
+            return NextResponse.json({ success: false, error: `URL returned HTTP ${res.status}` }, { status: 422 });
+        }
 
         const html = await res.text();
-        const domain = new URL(targetUrl).hostname;
-        const origin = new URL(targetUrl).origin;
+        const domain = parsedUrl.hostname;
+        const origin = parsedUrl.origin;
 
         // 2. Extract Links
         const linkRegex = /href=["'](.*?)["']/gi;
         const links = new Set();
-        links.add(targetUrl); // Add homepage
+        links.add(parsedUrl.toString()); // Add homepage
 
         let match;
         while ((match = linkRegex.exec(html)) !== null) {
@@ -32,8 +48,13 @@ export async function POST(request) {
             if (!href.startsWith('http')) continue;
 
             // Only internal
-            if (href.includes(domain)) {
-                links.add(href);
+            try {
+                const hrefUrl = new URL(href);
+                if (hrefUrl.hostname === domain) {
+                    links.add(hrefUrl.toString());
+                }
+            } catch (error) {
+                continue;
             }
         }
 
@@ -46,12 +67,19 @@ export async function POST(request) {
 
         const date = new Date().toISOString().split('T')[0];
 
+        const escapeXml = (value) => value
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&apos;');
+
         validLinks.forEach(link => {
             xml += `  <url>\n`;
-            xml += `    <loc>${link}</loc>\n`;
+            xml += `    <loc>${escapeXml(link)}</loc>\n`;
             xml += `    <lastmod>${date}</lastmod>\n`;
             xml += `    <changefreq>weekly</changefreq>\n`;
-            xml += `    <priority>${link === targetUrl ? '1.0' : '0.8'}</priority>\n`;
+            xml += `    <priority>${link === parsedUrl.toString() ? '1.0' : '0.8'}</priority>\n`;
             xml += `  </url>\n`;
         });
 
@@ -63,6 +91,6 @@ export async function POST(request) {
         });
 
     } catch (error) {
-        return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+        return NextResponse.json({ success: false, error: 'Unable to generate sitemap' }, { status: 400 });
     }
 }

@@ -44,12 +44,31 @@ export async function POST(request) {
 
         const sortedList = Array.from(allSuggestions).sort();
 
-        // Limit to 100 to be safe
-        const finalResult = sortedList.slice(0, 100).join('\n');
+        const suggestions = sortedList.slice(0, 100);
+        const topSuggestions = suggestions.slice(0, 12);
 
         return NextResponse.json({
             success: true,
-            result: finalResult
+            result: {
+                summary: `Generated ${suggestions.length} keyword ideas for "${seed}". The report groups the most useful opportunities so you can move from research to content planning faster.`,
+                keyFindings: topSuggestions,
+                recommendations: [
+                    `Start with long-tail ideas around "${seed}" before targeting broad competitive terms.`,
+                    'Group similar suggestions into one page or section instead of creating thin duplicate pages.',
+                    'Use question-based keywords for FAQ blocks, snippets, and guide introductions.'
+                ],
+                nextSteps: [
+                    'Export the list and tag each keyword by intent: informational, commercial, or navigational.',
+                    'Pick 3-5 primary targets and build supporting headings around related suggestions.',
+                    'Run the chosen terms through keyword difficulty and content tools before publishing.'
+                ],
+                rawDetails: {
+                    seed,
+                    totalSuggestions: suggestions.length,
+                    locale: locale || 'US',
+                    suggestions,
+                }
+            }
         });
 
     } catch (error) {

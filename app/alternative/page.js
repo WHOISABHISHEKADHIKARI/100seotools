@@ -53,10 +53,6 @@ export const metadata = {
     images: [`${baseUrl}/icon.svg`],
   },
 };
-
-// Export metadata directly - this is the correct way for App Router
-export { metadata };
-
 export default function AlternativePage() {
   return (
     <div className="max-w-4xl mx-auto space-y-8">

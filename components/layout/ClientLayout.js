@@ -18,14 +18,17 @@ export default function ClientLayout() {
     const onIdle = () => {
       setIsIdle(true);
       if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+        const localHost = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+        if (localHost) {
+          navigator.serviceWorker
+            .getRegistrations()
+            .then((registrations) => registrations.forEach((registration) => registration.unregister()))
+            .catch(() => {});
+          return;
+        }
         navigator.serviceWorker
           .register('/sw.js')
-          .then((registration) => {
-            console.log('Service Worker registered with scope:', registration.scope);
-          })
-          .catch((error) => {
-            console.log('Service Worker registration failed:', error);
-          });
+          .catch(() => {});
       }
     };
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {

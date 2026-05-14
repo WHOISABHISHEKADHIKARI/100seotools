@@ -170,26 +170,6 @@ export default function sitemap() {
     }).filter(Boolean); // Remove null entries
 
     // ============================================
-    // STATISTICS & LOGGING
-    // ============================================
-    if (process.env.NODE_ENV === 'development') {
-        const toolsPerCategory = categories.reduce((acc, cat) => {
-            acc[cat] = tools.filter(t => t.category === cat).length;
-            return acc;
-        }, {});
-
-        console.log('📁 Categories Sitemap Generation:');
-        console.log(`   📄 Total categories: ${categories.length}`);
-        console.log(`   📊 Tools per category:`);
-        Object.entries(toolsPerCategory)
-            .sort((a, b) => b[1] - a[1])
-            .forEach(([cat, count]) => {
-                console.log(`      • ${cat}: ${count} tools`);
-            });
-        console.log(`   🔗 Base URL: ${baseUrl}`);
-    }
-
-    // ============================================
     // RETURN COMBINED ENTRIES
     // ============================================
     return [categoryIndex, ...categoryEntries];

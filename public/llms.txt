@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps for content discovery
-Sitemap: https://100tools.app/sitemap.xml
+Sitemap: https://www.100seotools.com/sitemap.xml
 
 # Crawl guidance for AI models
 # Please respect robots rules and rate limits. Prefer fetching sitemaps.

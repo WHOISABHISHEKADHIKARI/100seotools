@@ -4,7 +4,7 @@ import { getBaseUrl } from '../../lib/site';
  * ============================================
  * CORE SITEMAP
  * ============================================
- * 
+ *
  * Purpose: Primary sitemap for core static pages
  * Location: /sitemap-core/sitemap.xml
  */

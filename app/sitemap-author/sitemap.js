@@ -117,18 +117,6 @@ export default function sitemap() {
     }));
 
     // ============================================
-    // STATISTICS & LOGGING
-    // ============================================
-    if (process.env.NODE_ENV === 'development') {
-        console.log('👤 Author Sitemap Generation:');
-        console.log(`   📄 Total authors: ${validAuthors.length}`);
-        validAuthors.forEach((author) => {
-            console.log(`      • ${author.name || 'Unknown'} (${author.role || 'No role'})`);
-        });
-        console.log(`   🔗 Base URL: ${baseUrl}`);
-    }
-
-    // ============================================
     // RETURN ENTRIES
     // ============================================
     return authorEntries;

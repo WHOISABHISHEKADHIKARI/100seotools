@@ -7,25 +7,26 @@ import BlogSection from "../../../components/blog/BlogSection";
 import { getToolBySlug, getAllToolsMeta } from "../../../tools";
 import { getBaseUrl, siteName } from "../../../lib/site";
 import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSchema } from "../../../lib/schema";
+import { standardizeToolSeo } from "../../../lib/toolSeo";
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
 const baseUrl = getBaseUrl();
 
-// Exhaustive On-Page SEO Optimization for AI Article Length Optimizer
+const toolSeo = standardizeToolSeo(getToolBySlug("ai-article-length-optimizer"));
+
 export const metadata = {
-  title: "AI Article Length Optimizer | Maximize Content Performance",
-  description:
-    "Optimize your article length for SEO using AI. Analyze top-performing content in your niche, balance word count with quality, and improve your search engine rankings.",
-  keywords: "ai article length optimizer, content length for seo, optimal word count tool, content optimization ai, seo article analyzer, blog post length tool",
+  title: toolSeo.title,
+  description: toolSeo.description,
+  keywords: toolSeo.keywords.join(", "),
   robots: { index: true, follow: true },
   alternates: {
     canonical: `${baseUrl}/tools/ai-article-length-optimizer`,
   },
   openGraph: {
-    title: "AI Article Length Optimizer | Maximize Content Performance",
-    description: "Stop guessing your word count. Use AI to find the perfect length for your articles to outrank competitors and engage readers.",
+    title: toolSeo.title,
+    description: toolSeo.description,
     type: "website",
     url: `${baseUrl}/tools/ai-article-length-optimizer`,
     siteName: siteName,
@@ -40,8 +41,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Article Length Optimizer | Perfect SEO Word Count Tool",
-    description: "Dominate SERPs by matching competitor depth. Get precise word count targets with our free AI SEO optimizer.",
+    title: toolSeo.title,
+    description: toolSeo.description,
   },
 };
 
@@ -49,7 +50,7 @@ export default function AIArticleLengthOptimizerPage() {
   const tool = getToolBySlug("ai-article-length-optimizer");
   const baseUrl = getBaseUrl();
   const allTools = getAllToolsMeta();
-  
+
   // Related tools based on semantic proximity
   const relatedTools = allTools
     .filter((t) => t.slug !== tool.slug && (

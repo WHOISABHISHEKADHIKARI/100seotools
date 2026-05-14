@@ -1,5 +1,6 @@
-import { getBaseUrl, siteName } from '../lib/site';
+import { getBaseUrl, siteName, socialLinks, socialPreviewImage, twitterHandle } from '../lib/site';
 const baseUrl = getBaseUrl();
+const defaultSocialImage = `${baseUrl}${socialPreviewImage}`;
 
 export const metadata = {
   title: '100+ Free SEO Tools  - No Signup Required | Used by 50,000+ Marketers',
@@ -28,7 +29,7 @@ export const metadata = {
     siteName,
     images: [
       {
-        url: `${baseUrl}/og-image.jpg`,
+        url: defaultSocialImage,
         width: 1200,
         height: 630,
         alt: '100 Free SEO Tools - Complete Toolkit for Marketers',
@@ -42,7 +43,9 @@ export const metadata = {
     card: 'summary_large_image',
     title: '100+ Free SEO Tools  - No Signup Required',
     description: '✓ 100+ free SEO tools ✓ Keyword research ✓ On-page audit ✓ Technical SEO ✓ No login needed. Used by 50,000+ marketers!',
-    images: [`${baseUrl}/og-image.jpg`],
+    site: twitterHandle,
+    creator: twitterHandle,
+    images: [defaultSocialImage],
   },
   // Canonical URL
   alternates: {
@@ -51,15 +54,13 @@ export const metadata = {
 };
 
 import './globals.css';
-import { Inter } from 'next/font/google';
 import { initPerformanceMonitoring } from '../lib/performance-monitor';
 import Script from 'next/script';
 const isProd = process.env.NODE_ENV === 'production';
+const isVercel = process.env.VERCEL === '1';
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const analyticsDisabled = process.env.NEXT_PUBLIC_DISABLE_ANALYTICS === 'true';
 const enableAnalytics = isProd && !analyticsDisabled && GA_ID;
-
-const inter = Inter({ subsets: ['latin'], display: 'swap', weight: ['400', '700'] });
 
 // Initialize performance monitoring
 if (typeof window !== 'undefined') {
@@ -101,20 +102,20 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <meta name="theme-color" content="#0f172a" />
+        <meta name="theme-color" content="#7c3aed" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="icon" href="/icon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
         <link rel="icon" href="/icon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
         <link rel="shortcut icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="mask-icon" href="/icon.svg" color="#0f172a" />
+        <link rel="mask-icon" href="/icon.svg" color="#7c3aed" />
         <link rel="manifest" href="/manifest.json" />
 
         {/* Minimal critical inline CSS to avoid flash of wrong colors before Tailwind loads */}
         <style dangerouslySetInnerHTML={{
           __html: `
           html{color-scheme:light dark}
-          body{background-color:#ffffff;color:#111827}
-          @media (prefers-color-scheme: dark){body{background-color:#0b1020;color:#f3f4f6}}
+          body{background-color:#fafbfc;color:#0f172a}
+          @media (prefers-color-scheme: dark){body{background-color:#020617;color:#f8fafc}}
         `}} />
 
 
@@ -124,16 +125,18 @@ export default function RootLayout({ children }) {
             __html: `
             if ('serviceWorker' in navigator) {
               window.addEventListener('load', () => {
+                const localHost = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+                if (localHost) {
+                  navigator.serviceWorker.getRegistrations()
+                    .then((registrations) => registrations.forEach((registration) => registration.unregister()))
+                    .catch(() => {});
+                  return;
+                }
                 navigator.serviceWorker.getRegistration()
                   .then((reg) => {
                     if (!reg) {
                       navigator.serviceWorker.register('/sw.js')
-                        .then((registration) => {
-                          console.log('Service Worker registered with scope:', registration.scope);
-                        })
-                        .catch((error) => {
-                          console.log('Service Worker registration failed:', error);
-                        });
+                        .catch(() => {});
                     }
                   })
                   .catch(() => {
@@ -144,7 +147,7 @@ export default function RootLayout({ children }) {
           `}} />
         )}
       </head>
-      <body suppressHydrationWarning className={`${inter.className} min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100`}>
+      <body suppressHydrationWarning className="min-h-screen bg-[#fafbfc] text-slate-900 selection:bg-violet-100 selection:text-violet-900 dark:bg-[#020617] dark:text-slate-100">
         {/* Global WebSite + Organization Schema for SEO */}
         <StructuredData data={generateWebsiteSchema(baseUrl)} />
         <StructuredData data={{
@@ -153,37 +156,36 @@ export default function RootLayout({ children }) {
           "name": "100 SEO Tools",
           "url": baseUrl,
           "logo": `${baseUrl}/logo.png`,
-          "sameAs": [
-            "https://github.com/WHOISABHISHEKADHIKARI"
-          ],
+          "sameAs": socialLinks,
           "description": "Free SEO tools collection for keyword research, on-page optimization, technical SEO, and performance tracking"
         }} />
         {/* Skip to main content link for accessibility */}
-        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
+        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-violet-600 text-white px-4 py-2 rounded-xl z-50 shadow-xl">
           Skip to main content
         </a>
         <ClientRoot>
-          {/* Global header */}
-          <div className="max-w-7xl mx-auto px-4">
+          <div className="flex min-h-screen flex-col">
+            {/* Global header */}
             <Navbar />
+
+            {/* Client helpers (FAB, preferences, performance monitor) */}
+            <ClientLayout />
+
+            {/* Main content */}
+            <main id="main" className="flex-1 pt-16 md:pt-24 pb-12 md:pb-16" tabIndex="-1">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <ErrorBoundary>
+                  {children}
+                </ErrorBoundary>
+              </div>
+            </main>
+
+            {/* Global footer */}
+            <Footer />
           </div>
-
-          {/* Client helpers (FAB, preferences, performance monitor) */}
-          <ClientLayout />
-
-          {/* Main content */}
-          <div className="max-w-7xl mx-auto px-4">
-            <ErrorBoundary>
-              <main id="main" className="pb-12 md:pb-16" tabIndex="-1">{children}</main>
-            </ErrorBoundary>
-          </div>
-
-          {/* Global footer */}
-          <Footer />
 
           {/* Vercel Speed Insights */}
-          <SpeedInsights />
-
+          {isVercel && <SpeedInsights />}
         </ClientRoot>
       </body>
     </html>

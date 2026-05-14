@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from 'react';
-import { FiMail, FiUser, FiMessageSquare, FiSend, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
+import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle, Clock, Globe, Zap, ArrowRight, Award } from 'lucide-react';
 import { getBaseUrl } from '../../lib/site';
 import StructuredData from '../../components/ui/StructuredData';
+import Link from 'next/link';
 
 const baseUrl = getBaseUrl();
 
@@ -20,7 +21,7 @@ export default function ContactPage() {
         const data = Object.fromEntries(formData.entries());
 
         try {
-            const response = await fetch('https://formspree.io/f/xjkrvjlg', {
+            const response = await fetch('/api/contact', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -37,14 +38,12 @@ export default function ContactPage() {
                 form.reset();
             } else {
                 const data = await response.json().catch(() => ({}));
-                console.error('Form submission error:', data);
                 setStatus({
                     type: 'error',
                     message: data.error || 'Something went wrong. Please try again.'
                 });
             }
         } catch (error) {
-            console.error('Submission network error:', error);
             setStatus({
                 type: 'error',
                 message: 'Failed to send message. Please try again later.'
@@ -59,328 +58,206 @@ export default function ContactPage() {
         "@graph": [
             {
                 "@type": "ContactPage",
-                "@id": `${baseUrl}/contact#webpage`,
                 "name": "Contact Us - 100 SEO Tools",
                 "description": "Get in touch with 100 SEO Tools for guest posting, backlink opportunities, tool suggestions, or general inquiries",
-                "url": `${baseUrl}/contact`,
-                "isPartOf": {
-                    "@id": `${baseUrl}/#website`
-                },
-                "mainEntity": {
-                    "@id": `${baseUrl}/#organization`
-                }
-            },
-            {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    {
-                        "@type": "ListItem",
-                        "position": 1,
-                        "name": "Home",
-                        "item": baseUrl
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 2,
-                        "name": "Contact",
-                        "item": `${baseUrl}/contact`
-                    }
-                ]
-            },
-            {
-                "@type": "FAQPage",
-                "mainEntity": [
-                    {
-                        "@type": "Question",
-                        "name": "Do you accept guest posts?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Yes! We welcome high-quality guest posts related to SEO, digital marketing, and web development. Contact us with your topic ideas and writing samples."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "What are your guest post guidelines?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "We require original, well-researched content (1500+ words), proper citations, and value for our audience. No promotional content or excessive links."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Do you offer backlink opportunities?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "We consider backlink partnerships for relevant, high-quality websites. Reach out with your domain details and we'll review your proposal."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "How long does the review process take?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "We typically review guest post submissions within 3-5 business days. If approved, we'll work with you on any edits and schedule publication."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Can I include links in my guest post?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Yes, you can include 1-2 relevant, contextual links to your website. All links must add value to readers and follow our editorial guidelines."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Do you charge for guest posts or backlinks?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "No, we don't charge for quality guest contributions. We focus on value exchange - great content for our readers in exchange for exposure and backlinks."
-                        }
-                    }
-                ]
+                "url": `${baseUrl}/contact`
             }
         ]
     };
 
     return (
-        <>
+        <div className="bg-[#fafbfc] dark:bg-[#020617] min-h-screen">
             <StructuredData data={jsonLd} />
-            <div className="space-y-12 max-w-7xl mx-auto px-4">
-                {/* Hero Section - Matching Homepage */}
-                <section className="text-center space-y-6 py-12 border-b border-gray-200 dark:border-gray-800 min-h-[300px] flex flex-col justify-center">
-                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-brand-600 to-blue-600 bg-clip-text text-transparent">
-                        Contact Us - Get in Touch
+
+            {/* ── PREMIUM HERO ── */}
+            <section className="relative overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white pt-20 pb-24">
+                <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+                <div className="absolute top-0 right-0 w-[500px] h-full bg-blue-600/10 blur-3xl" />
+
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
+                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-violet-100">
+                        <MessageSquare className="h-3.5 w-3.5 text-violet-400" />
+                        Support & Partnerships
+                    </div>
+                    <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
+                        Let's Start a <span className="text-violet-400">Conversation</span>
                     </h1>
-                    <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto">
-                        Have questions about our SEO tools, backlink opportunities, or guest posting? We'd love to hear from you. Send us a message and we'll respond within 24-48 hours.
+                    <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+                        Have a tool suggestion, guest post inquiry, or partnership idea? We'd love to hear from you.
                     </p>
-                    <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-                        <span className="inline-flex items-center gap-2">
-                            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                            24-48 Hour Response
-                        </span>
-                        <span className="inline-flex items-center gap-2">
-                            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                            Guest Post Inquiries Welcome
-                        </span>
-                        <span className="inline-flex items-center gap-2">
-                            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                            Backlink Opportunities Available
-                        </span>
-                    </div>
-                </section>
 
-                {/* Main Content Grid - Matching Homepage Layout */}
-                <section className="grid grid-cols-1 md:grid-cols-3 gap-6 py-8">
-                    {/* Contact Info Card */}
-                    <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-                        <h2 className="text-xl font-semibold mb-3">📧 Email Us</h2>
-                        <p className="text-gray-600 dark:text-gray-400 mb-3">
-                            Get in touch for general inquiries, tool suggestions, or partnership opportunities.
-                        </p>
-                        <a href="mailto:abhishekadhikari1254@gmail.com" className="text-brand-600 hover:underline break-all">
-                            abhishekadhikari1254@gmail.com
-                        </a>
+                    <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm font-bold text-white/50 uppercase tracking-widest">
+                        <span className="flex items-center gap-2"><Clock className="w-4 h-4 text-emerald-400" /> 24-48h Response</span>
+                        <span className="flex items-center gap-2"><Award className="w-4 h-4 text-amber-400" /> Guest Post Friendly</span>
+                        <span className="flex items-center gap-2"><Globe className="w-4 h-4 text-blue-400" /> Global Support</span>
                     </div>
+                </div>
+            </section>
 
-                    <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-                        <h2 className="text-xl font-semibold mb-3">Response Time</h2>
-                        <p className="text-gray-600 dark:text-gray-400">
-                            We typically respond to all inquiries within 24-48 hours during business days. For urgent matters, please mention it in your subject line.
-                        </p>
-                    </div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 -mt-10 relative z-10">
+                <div className="grid lg:grid-cols-[1fr_400px] gap-8">
 
-                    <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-                        <h2 className="text-xl font-semibold mb-3">🌍 Global Reach</h2>
-                        <p className="text-gray-600 dark:text-gray-400">
-                            Serving SEO professionals, marketers, and website owners worldwide with free tools and resources.
-                        </p>
-                    </div>
-                </section>
+                    {/* ── CONTACT FORM ── */}
+                    <div className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-2xl p-8 md:p-12">
+                        <div className="mb-10">
+                            <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Send us a message</h2>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Required fields are marked with an asterisk (*)</p>
+                        </div>
 
-                {/* Contact Form Section */}
-                <section className="max-w-3xl mx-auto py-8 border-t border-gray-200 dark:border-gray-800">
-                    <div className="text-center space-y-3 mb-8">
-                        <h2 className="text-2xl md:text-3xl font-bold">Send Us a Message</h2>
-                        <p className="text-gray-600 dark:text-gray-400">
-                            Fill out the form below and we'll get back to you as soon as possible.
-                        </p>
-                    </div>
-
-                    <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
                         {status.message && (
-                            <div className={`mb-6 p-4 rounded-md flex items-start gap-3 ${status.type === 'success'
-                                ? 'success-container'
-                                : 'error-container'
+                            <div className={`mb-8 p-6 rounded-2xl flex items-start gap-4 ${status.type === 'success'
+                                ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-500/20'
+                                : 'bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-400 border border-red-100 dark:border-red-500/20'
                                 }`}>
                                 {status.type === 'success' ? (
-                                    <FiCheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                                    <CheckCircle className="w-6 h-6 flex-shrink-0" />
                                 ) : (
-                                    <FiAlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                                    <AlertCircle className="w-6 h-6 flex-shrink-0" />
                                 )}
-                                <p className="text-sm">{status.message}</p>
+                                <p className="text-sm font-bold leading-relaxed">{status.message}</p>
                             </div>
                         )}
 
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <div className="form-group">
-                                    <label htmlFor="name">Your Name *</label>
-                                    <div className="relative">
-                                        <FiUser className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label htmlFor="name" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Your Name *</label>
+                                    <div className="relative group">
+                                        <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors w-5 h-5" />
                                         <input
                                             type="text"
                                             id="name"
                                             name="name"
                                             required
-                                            className="input pl-11"
-                                            placeholder="John Doe"
+                                            className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl pl-12 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                                            placeholder="Abhishek Adhikari"
                                         />
                                     </div>
                                 </div>
 
-                                <div className="form-group">
-                                    <label htmlFor="email">Your Email *</label>
-                                    <div className="relative">
-                                        <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                                <div className="space-y-2">
+                                    <label htmlFor="email" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Your Email *</label>
+                                    <div className="relative group">
+                                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors w-5 h-5" />
                                         <input
                                             type="email"
                                             id="email"
                                             name="email"
                                             required
-                                            className="input pl-11"
-                                            placeholder="john@example.com"
+                                            className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl pl-12 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                                            placeholder="abhishek@example.com"
                                         />
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="subject">Subject *</label>
-                                <div className="relative">
-                                    <FiMessageSquare className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                            <div className="space-y-2">
+                                <label htmlFor="subject" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Subject *</label>
+                                <div className="relative group">
+                                    <Zap className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors w-5 h-5" />
                                     <input
                                         type="text"
                                         id="subject"
                                         name="subject"
                                         required
-                                        className="input pl-11"
-                                        placeholder="Guest Post Inquiry / General Question / Partnership"
+                                        className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl pl-12 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                                        placeholder="Guest Post / Partnership / Tool Feedback"
                                     />
                                 </div>
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="message">Message *</label>
+                            <div className="space-y-2">
+                                <label htmlFor="message" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Message *</label>
                                 <textarea
                                     id="message"
                                     name="message"
                                     required
                                     rows="6"
-                                    className="input resize-none"
-                                    placeholder="Tell us about your inquiry, guest post idea, or backlink opportunity..."
+                                    className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-5 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium resize-none"
+                                    placeholder="Tell us more about your inquiry..."
                                 ></textarea>
                             </div>
 
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="btn w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full h-16 bg-violet-600 text-white font-black rounded-2xl hover:bg-violet-700 transition-all shadow-xl shadow-violet-200 dark:shadow-none flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {isSubmitting ? (
                                     <>
-                                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                        Sending...
+                                        <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                        Processing...
                                     </>
                                 ) : (
                                     <>
-                                        <FiSend className="w-5 h-5" />
                                         Send Message
+                                        <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                                     </>
                                 )}
                             </button>
                         </form>
                     </div>
-                </section>
 
-                {/* FAQ Section - Backlinks & Guest Posts */}
-                <section className="max-w-4xl mx-auto py-8 border-t border-gray-200 dark:border-gray-800">
-                    <h2 className="text-3xl font-bold text-center mb-12">Backlinks & Guest Posting FAQ</h2>
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-                            <h3 className="font-semibold text-lg mb-2">Do you accept guest posts?</h3>
-                            <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                Yes! We welcome high-quality guest posts related to SEO, digital marketing, and web development. Contact us with your topic ideas and writing samples.
-                            </p>
+                    {/* ── SIDEBAR INFO ── */}
+                    <div className="space-y-6">
+                        <div className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-lg p-10">
+                            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-8">Direct Contact</h3>
+                            <div className="space-y-8">
+                                <div className="flex gap-5">
+                                    <div className="w-12 h-12 bg-violet-50 dark:bg-violet-500/10 rounded-2xl flex items-center justify-center shrink-0">
+                                        <Mail className="w-5 h-5 text-violet-600" />
+                                    </div>
+                                    <div>
+                                        <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Email Support</div>
+                                        <a href="mailto:abhishekadhikari1254@gmail.com" className="text-sm font-bold text-slate-900 dark:text-white hover:text-violet-600 transition-colors break-all">
+                                            abhishekadhikari1254@gmail.com
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="flex gap-5">
+                                    <div className="w-12 h-12 bg-blue-50 dark:bg-blue-500/10 rounded-2xl flex items-center justify-center shrink-0">
+                                        <Clock className="w-5 h-5 text-blue-600" />
+                                    </div>
+                                    <div>
+                                        <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Business Hours</div>
+                                        <div className="text-sm font-bold text-slate-900 dark:text-white">Mon — Fri: 9am - 6pm EST</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="mt-12 pt-10 border-t border-slate-50 dark:border-white/5">
+                                <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-6">Popular Resources</h4>
+                                <div className="space-y-2">
+                                    {[
+                                        ['Browse 100+ Tools', '/tools'],
+                                        ['SEO Learning Blog', '/blog'],
+                                        ['Privacy & Data', '/privacy'],
+                                    ].map(([label, href]) => (
+                                        <Link key={label} href={href} className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
+                                            <span className="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-violet-600">{label}</span>
+                                            <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-violet-600 transition-all group-hover:translate-x-1" />
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-                            <h3 className="font-semibold text-lg mb-2">What are your guest post guidelines?</h3>
-                            <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                We require original, well-researched content (1500+ words), proper citations, and value for our audience. No promotional content or excessive links.
+                        <div className="bg-gradient-to-br from-violet-600 to-indigo-800 rounded-[40px] p-10 text-white shadow-xl shadow-violet-200 dark:shadow-none">
+                            <h3 className="text-2xl font-black mb-4">Guest Posting?</h3>
+                            <p className="text-white/70 text-sm leading-relaxed mb-8">
+                                We love high-quality, original content. If you're an SEO expert with a unique perspective, we want to hear from you.
                             </p>
-                        </div>
-
-                        <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-                            <h3 className="font-semibold text-lg mb-2">Do you offer backlink opportunities?</h3>
-                            <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                We consider backlink partnerships for relevant, high-quality websites. Reach out with your domain details and we'll review your proposal.
-                            </p>
-                        </div>
-
-                        <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-                            <h3 className="font-semibold text-lg mb-2">How long does the review process take?</h3>
-                            <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                We typically review guest post submissions within 3-5 business days. If approved, we'll work with you on any edits and schedule publication.
-                            </p>
-                        </div>
-
-                        <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-                            <h3 className="font-semibold text-lg mb-2">Can I include links in my guest post?</h3>
-                            <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                Yes, you can include 1-2 relevant, contextual links to your website. All links must add value to readers and follow our editorial guidelines.
-                            </p>
-                        </div>
-
-                        <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
-                            <h3 className="font-semibold text-lg mb-2">Do you charge for guest posts or backlinks?</h3>
-                            <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                No, we don't charge for quality guest contributions. We focus on value exchange - great content for our readers in exchange for exposure and backlinks.
-                            </p>
+                            <Link href="/blog" className="inline-flex items-center justify-center w-full py-4 bg-white text-violet-700 text-sm font-black rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-black/10">
+                                View Content Guidelines
+                            </Link>
                         </div>
                     </div>
-                </section>
-
-                {/* Bottom CTA - Matching Homepage */}
-                <section className="text-center py-8 border-t border-gray-200 dark:border-gray-800">
-                    <h2 className="text-2xl font-bold mb-4">Ready to Collaborate?</h2>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                        <div>
-                            <p className="text-4xl font-bold text-brand-600 mb-2">100+</p>
-                            <p className="text-gray-600 dark:text-gray-400">Free SEO Tools</p>
-                        </div>
-                        <div>
-                            <p className="text-4xl font-bold text-brand-600 mb-2">50K+</p>
-                            <p className="text-gray-600 dark:text-gray-400">Active Users</p>
-                        </div>
-                        <div>
-                            <p className="text-4xl font-bold text-brand-600 mb-2">DA 40+</p>
-                            <p className="text-gray-600 dark:text-gray-400">Domain Authority</p>
-                        </div>
-                        <div>
-                            <p className="text-4xl font-bold text-brand-600 mb-2">24-48h</p>
-                            <p className="text-gray-600 dark:text-gray-400">Response Time</p>
-                        </div>
-                    </div>
-                </section>
+                </div>
             </div>
-        </>
+
+            <div className="py-24 text-center">
+                <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em]">Serving 50,000+ Professionals Worldwide</p>
+            </div>
+        </div>
     );
 }

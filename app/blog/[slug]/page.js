@@ -26,7 +26,7 @@ export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
   const page = Number((await searchParams)?.page || 1);
   const post = await getBlogPostPublishedBySlug(slug);
-  
+
   if (!post) {
     // Check if the slug belongs to a tool - if so, redirect metadata canonical
     const tools = getAllToolsMeta();
@@ -40,51 +40,8 @@ export async function generateMetadata({ params, searchParams }) {
     notFound();
   }
 
-  const title = `${post.title}`;
-  // Use a richer description if available from content snippets, or fallback to the standard description
-  let description = post.description || '';
-
-  if (!description || description.length < 50) {
-    const t = post.title.toLowerCase();
-
-    // 1. Specific Title Overrides
-    if (t.includes('100 free seo tools')) {
-      description = 'Explore 100+ free SEO tools for keyword research, on-page optimization, technical checks, backlinks, local SEO, AI writing, and performance.';
-    }
-    // 2. Keyword-based Template Selection independent of section order
-    else if ((t.includes('calculator') || t.includes('checklist') || t.includes('keyword share')) && post.sections?.checklist?.length > 0) {
-      description = `Follow a simple checklist and workflow for ${post.title}. Use repeatable steps to reduce errors and ship faster results.`;
-    }
-    else if ((t.includes('keyword share') || t.includes('guide') || t.includes('tone of voice') || t.includes('analyzer')) && post.sections?.howDetailed?.length > 0) {
-      description = `Step-by-step guide to using ${post.title}. Learn purpose, setup, outputs, and how it supports ${post.category || 'SEO'} workflows.`;
-    }
-    else if (t.includes('rewriter') && post.sections?.relevantKeywords?.length > 0) {
-      description = `Explore popular search terms around ${post.title}, how to optimize your usage for better results, and what to measure for success.`;
-    }
-    else if ((t.includes('estimator') || t.includes('generator') || t.includes('301') || t.includes('validator')) && post.sections?.costConsiderations?.length > 0) {
-      description = `Apply best practices when using ${post.title}, pair it with complementary tools, and review cost considerations including time and optional upgrades.`;
-    }
-    else if (t.includes('validator') && post.sections?.intro) {
-      description = `Understand ${post.title} features, the SEO benefits you can expect, and relevant keywords to target for discoverability.`;
-    }
-
-    // 3. Fallbacks if no specific keyword matched or specific section was missing
-    if (!description || description.length < 50) {
-      if (post.sections?.checklist && post.sections.checklist.length > 0) {
-        description = `Follow a simple checklist and workflow for ${post.title}. Use repeatable steps to reduce errors and ship faster results.`;
-      } else if (post.sections?.howDetailed && post.sections.howDetailed.length > 0) {
-        description = `Step-by-step guide for ${post.title}. Learn exactly how to optimize your workflow with clear instructions and examples.`;
-      } else if (post.sections?.relevantKeywords && post.sections.relevantKeywords.length > 0) {
-        description = `Explore popular search terms around ${post.title}, how to optimize your usage for better results, and what to measure for success.`;
-      } else if (post.sections?.costConsiderations && post.sections.costConsiderations.length > 0) {
-        description = `Apply best practices when using ${post.title}, pair it with complementary tools, and review cost considerations including time and optional upgrades.`;
-      } else if (post.tldr) {
-        description = post.tldr.slice(0, 155);
-      } else if (post.sections?.intro) {
-        description = `Understand ${post.title} features, the SEO benefits you can expect, and relevant keywords to target for discoverability.`;
-      }
-    }
-  }
+  const title = post.title;
+  const description = post.description;
 
   // Self-referencing canonical for all blog posts
   // This resolves GSC "Alternative page with proper canonical tag"
@@ -123,7 +80,7 @@ export default async function Page({ params, searchParams }) {
   }
 
   const post = await getBlogPostPublishedBySlug(slug);
-  
+
   if (!post) {
     // Redirect plain tool slugs to /tools/[slug] to avoid duplicate content/404s
     // This handles the old slugs that used to be blog posts
@@ -139,8 +96,6 @@ export default async function Page({ params, searchParams }) {
   const currentIndex = allPosts.findIndex(p => p.slug === slug);
   const previousPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
   const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
-
-  const anchorUrl = `${baseUrl}/blog#${post.slug}`;
 
   const articleLd = {
     '@context': 'https://schema.org',
@@ -196,8 +151,50 @@ export default async function Page({ params, searchParams }) {
   };
 
   return (
-    <article className="max-w-3xl mx-auto py-10 space-y-8">
-      <header className="space-y-2">
+    <>
+      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white">
+        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
+        <div className="absolute right-0 top-0 w-[600px] h-full bg-blue-600 opacity-10 blur-3xl" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-14">
+          <div className="max-w-4xl">
+            <div className="flex items-center gap-2 mb-4 flex-wrap">
+              {post.category && (
+                <span className="text-xs font-extrabold px-3 py-1 rounded-full bg-violet-500/30 text-violet-200 border border-violet-500/40">{post.category}</span>
+              )}
+              <span className="text-xs text-white/50">{post.readTimeMinutes || 6} min read</span>
+              <span className="text-xs text-white/50">Published {new Date(post.datePublished).toLocaleDateString()}</span>
+            </div>
+            <h1 className="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight mb-4">{post.title}</h1>
+            <p className="text-white/60 text-base md:text-lg leading-relaxed mb-7 max-w-3xl">{post.description}</p>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/author.png"
+                alt="Abhishek Adhikari"
+                width={48}
+                height={48}
+                className="rounded-full border-2 border-violet-300"
+              />
+              <div>
+                <Link href="/author" className="text-sm font-extrabold hover:text-violet-200 transition-colors">
+                  Abhishek Adhikari
+                </Link>
+                <div className="text-xs text-white/50">SEO Expert and Full-Stack Developer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="relative h-10 overflow-hidden">
+          <svg viewBox="0 0 1440 40" className="absolute bottom-0 w-full" preserveAspectRatio="none">
+            <path d="M0,20 C360,40 720,0 1080,20 C1260,32 1380,24 1440,20 L1440,40 L0,40 Z" fill="#f4f6fb" />
+          </svg>
+        </div>
+      </section>
+
+      <main className="relative left-1/2 w-screen -translate-x-1/2 bg-[#f4f6fb] dark:bg-gray-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+          <div className="grid lg:grid-cols-[1fr_300px] gap-8 items-start">
+            <article className="min-w-0 space-y-8 rounded-[1.75rem] border border-white/70 bg-white/95 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)] ring-1 ring-slate-900/[0.03] transition-shadow duration-300 hover:shadow-[0_28px_90px_rgba(15,23,42,0.11)] md:p-9 dark:border-white/10 dark:bg-white/[0.04]">
+      <header className="sr-only">
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{post.title}</h1>
         <p className="text-gray-700 dark:text-gray-300">{post.description}</p>
         <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
@@ -233,33 +230,26 @@ export default async function Page({ params, searchParams }) {
         </div>
       </header>
 
-      <div className="rounded-md bg-slate-50 dark:bg-white/5 p-4 border border-slate-200 dark:border-white/10">
-        <p>
-          This guide is also available in the merged Blog page. View in context:
-          {' '}<Link className="text-brand-600 hover:underline" href={anchorUrl}>/blog#{post.slug}</Link>
-        </p>
-      </div>
-
-      <section className="space-y-4">
+      <section className="space-y-6 text-[1.03rem] leading-8">
 
         {/* TL;DR Section */}
         {post.tldr && (
-          <div className="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 my-6 rounded-r">
-            <h2 className="text-lg font-bold text-blue-700 dark:text-blue-300 mb-2">TL;DR</h2>
+          <div className="my-6 rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-5 shadow-sm dark:border-blue-500/20 dark:from-blue-500/10 dark:to-white/[0.03]">
+            <h2 className="mb-2 text-lg font-extrabold text-blue-800 dark:text-blue-200">Quick take</h2>
             <p className="text-gray-700 dark:text-gray-300">{post.tldr}</p>
           </div>
         )}
 
         {post.sections?.intro && (<p className="text-gray-700 dark:text-gray-300">{post.sections.intro}</p>)}
-        {post.sections?.what && (<div><h2 className="text-lg font-semibold">What</h2><p className="text-gray-700 dark:text-gray-300">{post.sections.what}</p></div>)}
-        {post.sections?.why && (<div><h2 className="text-lg font-semibold">Why</h2><p className="text-gray-700 dark:text-gray-300">{post.sections.why}</p></div>)}
+        {post.sections?.what && (<div className="space-y-2"><h2 className="text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">What it does</h2><p className="text-gray-700 dark:text-gray-300">{post.sections.what}</p></div>)}
+        {post.sections?.why && (<div className="space-y-2"><h2 className="text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Why it matters</h2><p className="text-gray-700 dark:text-gray-300">{post.sections.why}</p></div>)}
 
         {Array.isArray(post.sections?.how) && post.sections.how.length > 0 && (
           <div>
-            <h2 className="text-lg font-semibold">How</h2>
-            <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+            <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">How to use it</h2>
+            <ul className="space-y-2 text-gray-700 dark:text-gray-300">
               {post.sections.how.map((h, i) => (
-                <li key={i}><Link href={h.slug ? `/tools/${h.slug}` : '#'} className="text-brand-600 hover:underline">{h.label || h.text}</Link></li>
+                <li key={i} className="rounded-2xl border border-slate-100 bg-slate-50/70 px-4 py-3 dark:border-white/10 dark:bg-white/5"><Link href={h.slug ? `/tools/${h.slug}` : '#'} className="font-semibold text-brand-600 hover:underline">{h.label || h.text}</Link></li>
               ))}
             </ul>
           </div>
@@ -267,28 +257,28 @@ export default async function Page({ params, searchParams }) {
 
         {Array.isArray(post.sections?.howDetailed) && post.sections.howDetailed.length > 0 && (
           <div>
-            <h2 className="text-lg font-semibold">Steps</h2>
-            <ol className="list-decimal pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-              {post.sections.howDetailed.map((s, i) => (<li key={i}>{s}</li>))}
+            <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Steps</h2>
+            <ol className="space-y-3 text-gray-700 dark:text-gray-300">
+              {post.sections.howDetailed.map((s, i) => (<li key={i} className="flex gap-3 rounded-2xl border border-slate-100 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5"><span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-violet-600 text-xs font-extrabold text-white">{i + 1}</span><span>{s}</span></li>))}
             </ol>
           </div>
         )}
 
         {Array.isArray(post.sections?.tips) && post.sections.tips.length > 0 && (
           <div>
-            <h2 className="text-lg font-semibold">Tips</h2>
-            <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-              {post.sections.tips.map((t, i) => (<li key={i}>{t}</li>))}
+            <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Practical tips</h2>
+            <ul className="grid gap-3 text-gray-700 dark:text-gray-300">
+              {post.sections.tips.map((t, i) => (<li key={i} className="rounded-2xl bg-emerald-50/70 px-4 py-3 text-sm leading-6 ring-1 ring-emerald-100 dark:bg-emerald-500/10 dark:ring-emerald-500/20">{t}</li>))}
             </ul>
           </div>
         )}
 
         {Array.isArray(post.sections?.faq) && post.sections.faq.length > 0 && (
           <div>
-            <h2 className="text-lg font-semibold">FAQ</h2>
-            <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+            <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">FAQ</h2>
+            <ul className="space-y-3 text-gray-700 dark:text-gray-300">
               {post.sections.faq.map((f, i) => (
-                <li key={i}><span className="font-medium">Q:</span> {f.q || f.question} <br /><span className="font-medium">A:</span> {f.a || f.answer}</li>
+                <li key={i} className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4 dark:border-white/10 dark:bg-white/5"><span className="block font-bold text-slate-950 dark:text-white">{f.q || f.question}</span><span className="mt-1 block text-sm leading-6">{f.a || f.answer}</span></li>
               ))}
             </ul>
           </div>
@@ -363,11 +353,41 @@ export default async function Page({ params, searchParams }) {
         </div>
       </nav>
 
+            </article>
+
+            <aside className="space-y-5">
+              <div className="bg-white dark:bg-white/5 rounded-2xl border border-gray-100 dark:border-white/10 shadow-sm p-5 sticky top-24">
+                <p className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mb-3">Article Actions</p>
+                <div className="grid gap-2">
+                  <Link href="/blog" className="px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/10 text-sm font-bold text-gray-700 dark:text-gray-200 hover:text-violet-700 dark:hover:text-violet-300 transition-colors">
+                    Back to blog
+                  </Link>
+                  <Link href="/tools" className="px-4 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-blue-600 text-sm font-extrabold text-white hover:opacity-90 transition-opacity">
+                    Browse free tools
+                  </Link>
+                </div>
+              </div>
+
+              <div className="relative overflow-hidden bg-gradient-to-br from-violet-700 to-blue-800 rounded-2xl p-5 text-white">
+                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
+                <div className="relative">
+                  <p className="text-[10px] font-extrabold text-violet-200 uppercase tracking-wider mb-2">Keep Optimizing</p>
+                  <h2 className="text-xl font-extrabold mb-2">Use the toolkit after reading</h2>
+                  <p className="text-sm text-white/65 leading-relaxed mb-4">Run audits, generate metadata, validate schema, and turn this guide into measurable SEO work.</p>
+                  <Link href="/tools/keyword-suggestion-tool" className="inline-flex px-4 py-2.5 bg-white text-violet-700 text-sm font-extrabold rounded-xl hover:shadow-xl transition-shadow">
+                    Start with keywords
+                  </Link>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </main>
+
       <StructuredData data={articleLd} />
       {faqLd && <StructuredData data={faqLd} />}
       {howToLd && <StructuredData data={howToLd} />}
       <StructuredData data={breadcrumbLd} />
-    </article>
+    </>
   );
 }
-

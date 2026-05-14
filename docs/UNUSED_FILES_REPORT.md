@@ -121,7 +121,7 @@ This report identifies JavaScript files in the codebase that are **not reference
 - **Status:** ✅ Used in `npm run audit:contrast`
 - **Keep:** YES
 
-#### ✅ `checkExternalLinks.js`
+#### ✅ `checkExternalLinks.cjs`
 - **Status:** ✅ Used in `npm run lint:links`
 - **Keep:** YES
 

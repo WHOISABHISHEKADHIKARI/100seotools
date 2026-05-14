@@ -144,27 +144,6 @@ export default function sitemap() {
     }));
 
     // ============================================
-    // STATISTICS & LOGGING
-    // ============================================
-    if (process.env.NODE_ENV === 'development') {
-        const categoryStats = validTools.reduce((acc, tool) => {
-            const cat = tool.category || 'Uncategorized';
-            acc[cat] = (acc[cat] || 0) + 1;
-            return acc;
-        }, {});
-
-        console.log('🛠️  Tools Sitemap Generation:');
-        console.log(`   📄 Total tools: ${validTools.length}`);
-        console.log(`   📊 By category:`);
-        Object.entries(categoryStats)
-            .sort((a, b) => b[1] - a[1])
-            .forEach(([cat, count]) => {
-                console.log(`      • ${cat}: ${count}`);
-            });
-        console.log(`   🔗 Base URL: ${baseUrl}`);
-    }
-
-    // ============================================
     // RETURN COMBINED ENTRIES
     // ============================================
     return [toolsIndex, ...toolEntries];

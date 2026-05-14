@@ -6,25 +6,26 @@ import BlogSection from "../../../components/blog/BlogSection";
 import { getToolBySlug, getAllToolsMeta } from "../../../tools";
 import { getBaseUrl, siteName } from "../../../lib/site";
 import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSchema } from "../../../lib/schema";
+import { standardizeToolSeo } from "../../../lib/toolSeo";
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
 const baseUrl = getBaseUrl();
 
-// Exhaustive On-Page SEO Optimization for Keyword Density Checker
+const toolSeo = standardizeToolSeo(getToolBySlug("keyword-density-checker"));
+
 export const metadata = {
-  title: "Keyword Density Checker | Free SEO Content Analysis Tool",
-  description:
-    "Analyze and optimize your content's keyword density with our free tool. Avoid keyword stuffing, improve topical relevance, and rank higher on Google.",
-  keywords: "keyword density checker, seo content analyzer, keyword stuffing tool, content optimization, word frequency counter, on-page seo tool",
+  title: toolSeo.title,
+  description: toolSeo.description,
+  keywords: toolSeo.keywords.join(", "),
   robots: { index: true, follow: true },
   alternates: {
     canonical: `${baseUrl}/tools/keyword-density-checker`,
   },
   openGraph: {
-    title: "Keyword Density Checker | Free SEO Content Analysis Tool",
-    description: "Ensure your content is perfectly optimized. Check keyword frequency and density to avoid penalties and improve search rankings.",
+    title: toolSeo.title,
+    description: toolSeo.description,
     type: "website",
     url: `${baseUrl}/tools/keyword-density-checker`,
     siteName: siteName,
@@ -39,8 +40,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Keyword Density Checker | Free SEO Content Analysis Tool",
-    description: "Stop guessing your keyword density. Use our free tool to analyze your content like an SEO pro.",
+    title: toolSeo.title,
+    description: toolSeo.description,
   },
 };
 
@@ -48,7 +49,7 @@ export default function KeywordDensityCheckerPage() {
   const tool = getToolBySlug("keyword-density-checker");
   const baseUrl = getBaseUrl();
   const allTools = getAllToolsMeta();
-  
+
   // Related tools for semantic interlinking
   const relatedTools = allTools
     .filter((t) => t.slug !== tool.slug && (

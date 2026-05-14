@@ -14,6 +14,7 @@ export default function Card({
   iconColor = 'text-brand-500',
   iconLabel,
 }) {
+  const router = useRouter();
   const isLink = useMemo(() => typeof href === 'string' && href.trim().length > 0, [href]);
   const titleId = title ? `card-title-${slugify(title)}` : undefined;
   const descId = description ? `card-desc-${slugify(title)}` : undefined;
@@ -130,7 +131,6 @@ export default function Card({
   );
 
   if (isLink) {
-    const router = useRouter();
     const onKey = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); router.push(href); } };
     return (
       <div

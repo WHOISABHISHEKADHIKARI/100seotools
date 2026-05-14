@@ -1,9 +1,5 @@
 const assert = require('assert')
-
-const { buildGuidePageHref } = (() => {
-  const mod = require('../app/blog/[slug]/page.js')
-  return mod
-})()
+const { buildGuidePageHref } = require('../lib/blogHref.cjs')
 
 describe('blog subpage link building', () => {
   it('returns canonical for page 1', () => {

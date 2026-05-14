@@ -6,25 +6,26 @@ import BlogSection from "../../../components/blog/BlogSection";
 import { getToolBySlug, getAllToolsMeta } from "../../../tools";
 import { getBaseUrl, siteName } from "../../../lib/site";
 import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSchema } from "../../../lib/schema";
+import { standardizeToolSeo } from "../../../lib/toolSeo";
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
 const baseUrl = getBaseUrl();
 
-// Exhaustive On-Page SEO Optimization for AI Blog Intro Writer
+const toolSeo = standardizeToolSeo(getToolBySlug("ai-blog-intro-writer"));
+
 export const metadata = {
-  title: "AI Blog Intro Writer | Hook Your Readers Instantly (Free)",
-  description:
-    "Generate captivating blog introductions in seconds with our AI intro writer. Improve dwell time, lower bounce rates, and engage your audience from the first sentence.",
-  keywords: "ai blog intro writer, hook generator, blog introduction tool, ai writing assistant, content engagement tool, free ai writer",
+  title: toolSeo.title,
+  description: toolSeo.description,
+  keywords: toolSeo.keywords.join(", "),
   robots: { index: true, follow: true },
   alternates: {
     canonical: `${baseUrl}/tools/ai-blog-intro-writer`,
   },
   openGraph: {
-    title: "AI Blog Intro Writer | Hook Your Readers Instantly",
-    description: "The first sentence is the most important. Use AI to craft the perfect blog introduction that keeps readers on the page.",
+    title: toolSeo.title,
+    description: toolSeo.description,
     type: "website",
     url: `${baseUrl}/tools/ai-blog-intro-writer`,
     siteName: siteName,
@@ -39,8 +40,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Blog Intro Writer | Create Captivating Introductions",
-    description: "Hook your readers instantly. Get professional blog introductions for free with our AI writer.",
+    title: toolSeo.title,
+    description: toolSeo.description,
   },
 };
 
@@ -48,7 +49,7 @@ export default function AIBlogIntroWriterPage() {
   const tool = getToolBySlug("ai-blog-intro-writer");
   const baseUrl = getBaseUrl();
   const allTools = getAllToolsMeta();
-  
+
   // Related tools based on semantic proximity
   const relatedTools = allTools
     .filter((t) => t.slug !== tool.slug && (

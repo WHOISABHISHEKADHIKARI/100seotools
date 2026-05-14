@@ -108,7 +108,6 @@ const personSchema = {
         {
             '@type': 'Organization',
             name: 'Delta Engineering Solutions',
-            url: 'https://deltaengineeringsolution.com',
         },
     ],
 };
@@ -427,7 +426,7 @@ export default function AuthorPage() {
                             <article className="border-l-4 border-brand-500 pl-6">
                                 <h3 className="text-xl font-semibold mb-2">
                                     <a
-                                        href="https://hashtagweb.com.np/team/abhisek-adhikari/"
+                                        href="https://hashtagweb.com.np/"
                                         target="_blank"
                                         rel="noopener noreferrer nofollow"
                                         className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
@@ -438,8 +437,8 @@ export default function AuthorPage() {
                                 <p className="text-gray-700 dark:text-gray-300 mb-3">
                                     Focused on technical optimization, keyword strategy, performance enhancement, and sustainable organic growth. Helping websites rank higher, load faster, and perform better with clean, data-driven execution.
                                 </p>
-                                <a href="https://hashtagweb.com.np/team/abhisek-adhikari/" target="_blank" rel="noopener noreferrer nofollow" className="text-sm text-brand-600 dark:text-brand-400 hover:underline">
-                                    View Profile →
+                                <a href="https://hashtagweb.com.np/" target="_blank" rel="noopener noreferrer nofollow" className="text-sm text-brand-600 dark:text-brand-400 hover:underline">
+                                    Visit Hashtag Web Solutions →
                                 </a>
                             </article>
 
@@ -463,22 +462,10 @@ export default function AuthorPage() {
                             </article>
 
                             <article className="border-l-4 border-blue-500 pl-6">
-                                <h3 className="text-xl font-semibold mb-2">
-                                    <a
-                                        href="https://deltaengineeringsolution.com"
-                                        target="_blank"
-                                        rel="noopener noreferrer nofollow"
-                                        className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                                    >
-                                        <span>Delta Engineering Solutions</span>
-                                    </a>
-                                </h3>
+                                <h3 className="text-xl font-semibold mb-2">Delta Engineering Solutions</h3>
                                 <p className="text-gray-700 dark:text-gray-300 mb-3">
                                     Engineering and technology solutions company focused on innovative digital products, automation systems, and sustainable technology implementations.
                                 </p>
-                                <a href="https://deltaengineeringsolution.com" target="_blank" rel="noopener noreferrer nofollow" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">
-                                    Visit Delta Engineering →
-                                </a>
                             </article>
                         </div>
                     </section>
@@ -592,10 +579,9 @@ export default function AuthorPage() {
                         <h2 id="professional-links" className="text-2xl font-bold mb-6">Professional Links</h2>
                         <nav className="grid md:grid-cols-2 gap-4" aria-label="Professional profiles and websites">
                             {[
-                                { url: 'https://hashtagweb.com.np/team/abhisek-adhikari/', title: 'Hashtag Web Solutions', desc: 'SEO Specialist Profile' },
+                                { url: 'https://hashtagweb.com.np/', title: 'Hashtag Web Solutions', desc: 'SEO Specialist Profile' },
                                 { url: 'https://krishihimalaya.com/', title: 'Himalaya Krishi', desc: 'Organic Farming Brand' },
                                 { url: 'https://abhishekadhikari.com/', title: 'Portfolio Website', desc: 'UI/UX Design & Development' },
-                                { url: 'https://deltaengineeringsolution.com', title: 'Delta Engineering Solutions', desc: 'Engineering & Tech Solutions' },
                                 { url: 'https://github.com/WHOISABHISHEKADHIKARI', title: 'GitHub Profile', desc: 'Open Source & Projects' },
                                 { url: 'https://www.linkedin.com/in/whoisabhishekadhikari/', title: 'LinkedIn', desc: 'Professional Network' }
                             ].map((link, index) => (
