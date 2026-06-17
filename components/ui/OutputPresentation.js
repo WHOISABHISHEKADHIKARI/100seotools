@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import {
   FiCopy,
   FiCheck,
@@ -52,10 +52,6 @@ function parseReport(output = '') {
   };
 }
 
-/**
- * OutputPresentation Component
- * A high-UX wrapper for tool outputs with preview, raw view, and metadata.
- */
 export default function OutputPresentation({
   output,
   toolSlug,
@@ -64,7 +60,7 @@ export default function OutputPresentation({
   onDownload,
   emptyMessage = "No analysis generated yet."
 }) {
-  const [view, setView] = useState('preview'); // 'preview' | 'raw'
+  const [view, setView] = useState('preview');
   const [isCopied, setIsCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -77,7 +73,6 @@ export default function OutputPresentation({
   const reportSections = report.sections.filter((section) => section !== summary);
   const [stageIndex, setStageIndex] = useState(0);
 
-  // Reset view when output changes significantly
   useEffect(() => {
     if (isJson) setView('raw');
     else setView('preview');
@@ -96,9 +91,6 @@ export default function OutputPresentation({
 
   const copyAsHtml = async () => {
     try {
-      // Create a temporary div to render the markdown logic into HTML string
-      // This is a simple approximation; for perfect results a real md->html lib is better
-      // but we can leverage the existing DOM or a simple regex replacement for the clipboard.
       const htmlContent = output
         .replace(/^# (.*$)/gim, '<h1>$1</h1>')
         .replace(/^## (.*$)/gim, '<h2>$1</h2>')
@@ -117,7 +109,7 @@ export default function OutputPresentation({
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
       console.error('HTML Copy failed', err);
-      onCopy(); // Fallback to plain copy
+      onCopy();
     }
   };
 
@@ -131,13 +123,13 @@ export default function OutputPresentation({
     <div className={`flex min-w-0 flex-col transition-all duration-300 ease-out ${
       isExpanded ? 'fixed inset-3 z-50 rounded-2xl bg-white shadow-2xl dark:bg-gray-950' : 'relative'
     }`}>
-      <div className="flex flex-wrap items-center justify-between gap-2 rounded-t-2xl border border-b-0 border-slate-200 bg-slate-50/80 px-3 py-2 dark:border-white/10 dark:bg-white/5">
-        <div className="flex rounded-xl bg-white p-1 shadow-sm ring-1 ring-slate-200 dark:bg-gray-950 dark:ring-white/10">
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-t-2xl border border-b-0 border-slate-200/80 bg-gradient-to-r from-slate-50 to-white px-3 py-2 dark:border-white/[0.08] dark:from-gray-900 dark:to-gray-950">
+        <div className="flex rounded-xl bg-white p-1 shadow-sm ring-1 ring-slate-200 dark:bg-gray-950 dark:ring-white/[0.08]">
           <button
             onClick={() => setView('preview')}
             className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
               view === 'preview'
-                ? 'bg-slate-950 text-white dark:bg-white dark:text-slate-950'
+                ? 'bg-gradient-to-br from-violet-600 to-blue-600 text-white shadow-md'
                 : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
             }`}
           >
@@ -148,7 +140,7 @@ export default function OutputPresentation({
             onClick={() => setView('raw')}
             className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
               view === 'raw'
-                ? 'bg-slate-950 text-white dark:bg-white dark:text-slate-950'
+                ? 'bg-gradient-to-br from-violet-600 to-blue-600 text-white shadow-md'
                 : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
             }`}
           >
@@ -164,7 +156,7 @@ export default function OutputPresentation({
             className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white"
             title="Copy to clipboard"
           >
-            {isCopied ? <FiCheck className="w-4 h-4 text-green-500" /> : <FiCopy className="w-4 h-4" />}
+            {isCopied ? <FiCheck className="w-4 h-4 text-emerald-500" /> : <FiCopy className="w-4 h-4" />}
           </button>
           <button
             onClick={copyAsHtml}
@@ -192,25 +184,31 @@ export default function OutputPresentation({
         </div>
       </div>
 
-      {/* Content Area */}
-      <div className={`relative flex-1 overflow-hidden border-x border-slate-200 bg-white dark:border-white/10 dark:bg-gray-950 ${isExpanded ? '' : 'min-h-[320px] h-[clamp(360px,58vh,560px)]'}`}>
+      <div className={`relative flex-1 overflow-hidden border-x border-slate-200/80 bg-white dark:border-white/[0.08] dark:bg-gray-950 ${isExpanded ? '' : 'min-h-[320px] h-[clamp(360px,58vh,560px)]'}`}>
         {isProcessing && (
-          <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/85 backdrop-blur-sm dark:bg-gray-950/80">
-            <div className="w-full max-w-sm rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-2xl shadow-slate-900/10 dark:border-white/10 dark:bg-gray-900">
-              <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl bg-[conic-gradient(from_180deg,#0f172a,#64748b,#e2e8f0,#0f172a)] p-1">
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/90 backdrop-blur-sm dark:bg-gray-950/90">
+            <div className="w-full max-w-sm rounded-3xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50 p-6 text-center shadow-2xl shadow-violet-900/5 dark:border-white/[0.08] dark:from-gray-900 dark:to-gray-950">
+              <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-violet-500 via-blue-500 to-cyan-500 p-[2px] shadow-lg shadow-violet-500/20">
                 <div className="flex h-full w-full items-center justify-center rounded-[1.35rem] bg-white dark:bg-gray-900">
-                  <FiFileText className="h-9 w-9 text-slate-800 dark:text-white" />
+                  <FiFileText className="h-9 w-9 text-transparent bg-clip-text bg-gradient-to-br from-violet-600 to-blue-600 dark:from-violet-400 dark:to-blue-400" />
                 </div>
               </div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-slate-400">Generating report</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">Generating report</p>
               <h3 className="mt-2 text-lg font-extrabold text-slate-950 dark:text-white">{loadingStages[stageIndex]}</h3>
               <div className="mt-5 grid grid-cols-4 gap-2">
                 {loadingStages.map((stage, index) => (
-                  <div key={stage} className={`h-1.5 rounded-full transition-colors ${index <= stageIndex ? 'bg-slate-950 dark:bg-white' : 'bg-slate-200 dark:bg-white/10'}`} />
+                  <div
+                    key={stage}
+                    className={`h-1.5 rounded-full transition-all duration-500 ${
+                      index <= stageIndex
+                        ? 'bg-gradient-to-r from-violet-500 to-blue-500 shadow-sm shadow-violet-500/30'
+                        : 'bg-slate-200 dark:bg-white/[0.06]'
+                    }`}
+                  />
                 ))}
               </div>
               <p className="mt-4 text-sm leading-6 text-slate-500 dark:text-slate-400">
-                We are turning the raw response into a clean, useful report.
+                Turning raw data into a polished, actionable report
               </p>
             </div>
           </div>
@@ -219,8 +217,8 @@ export default function OutputPresentation({
         <div className="absolute inset-0 overflow-auto p-4 sm:p-5 md:p-6 scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-gray-800">
           {!output && !isProcessing ? (
             <div className="flex h-full flex-col items-center justify-center p-6 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 shadow-inner ring-1 ring-slate-100 dark:bg-gray-900 dark:ring-white/10">
-                <FiFileText className="h-8 w-8 text-slate-300 dark:text-slate-700" />
+              <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-50 to-white shadow-sm ring-1 ring-slate-200/60 dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-950 dark:ring-white/[0.06]">
+                <FiFileText className="h-8 w-8 text-slate-300 dark:text-slate-600" />
               </div>
               <h3 className="mb-2 text-lg font-bold text-gray-900 dark:text-white">Ready for output</h3>
               <p className="mx-auto max-w-xs text-sm leading-relaxed text-gray-500 dark:text-gray-400">
@@ -231,19 +229,32 @@ export default function OutputPresentation({
             <div className={`transition-opacity duration-300 ${isProcessing ? 'opacity-30' : 'opacity-100'}`}>
               {view === 'preview' ? (
                 <div className="space-y-5">
-                  <div className="rounded-3xl border border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_55%,#eef2ff_100%)] p-5 shadow-sm dark:border-white/10 dark:bg-[linear-gradient(135deg,#111827_0%,#020617_100%)]">
-                    <div className="flex flex-wrap items-start justify-between gap-4">
-                      <div>
-                        <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400">Generated report</p>
-                        <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">{report.title}</h3>
+                  <div className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-gradient-to-br from-slate-50 via-white to-violet-50/30 p-5 shadow-sm dark:border-white/[0.08] dark:from-gray-900 dark:via-gray-950 dark:to-violet-950/20">
+                    <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-violet-200/20 to-blue-200/10 blur-3xl dark:from-violet-500/5 dark:to-blue-500/5" />
+                    <div className="relative flex flex-wrap items-start justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">Generated report</p>
+                        <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-950 dark:text-white truncate">{report.title}</h3>
                       </div>
-                      <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-right text-xs shadow-sm dark:border-white/10 dark:bg-white/5">
-                        <div className="font-bold text-slate-950 dark:text-white">{wordCount} words</div>
-                        <div className="text-slate-500">{readingTime} min read</div>
+                      <div className="flex shrink-0 items-center gap-2 rounded-2xl border border-slate-200/80 bg-white/80 px-4 py-2.5 shadow-sm backdrop-blur-sm dark:border-white/[0.08] dark:bg-white/[0.04]">
+                        <div className="text-right">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">{wordCount}</span>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">words</span>
+                          </div>
+                          <div className="flex items-center gap-1 justify-end">
+                            <FiClock className="w-2.5 h-2.5 text-slate-400" />
+                            <span className="text-[10px] font-semibold text-slate-500">{readingTime} min read</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     {summary && (
-                      <div className="mt-5 rounded-2xl bg-white/80 p-4 text-sm leading-7 text-slate-700 ring-1 ring-slate-200 dark:bg-white/5 dark:text-slate-300 dark:ring-white/10">
+                      <div className="relative mt-5 rounded-2xl border-l-4 border-violet-500/40 bg-gradient-to-r from-violet-50/80 to-white/80 p-4 text-sm leading-7 text-slate-700 ring-1 ring-slate-200/60 dark:from-violet-950/20 dark:to-gray-950/80 dark:text-slate-300 dark:ring-white/[0.06]">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="h-1.5 w-1.5 rounded-full bg-violet-500" />
+                          <span className="text-[10px] font-black uppercase tracking-widest text-violet-600 dark:text-violet-400">Executive Summary</span>
+                        </div>
                         <Markdown text={summary.text} className="max-w-none" />
                       </div>
                     )}
@@ -251,49 +262,58 @@ export default function OutputPresentation({
 
                   <div className="grid gap-4">
                     {reportSections.length > 0 ? reportSections.map((section, index) => (
-                      <section key={section.heading} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md dark:border-white/10 dark:bg-white/[0.03]">
-                        <div className="mb-3 flex items-center gap-3">
-                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-950 text-xs font-extrabold text-white dark:bg-white dark:text-slate-950">{index + 1}</span>
-                          <h4 className="text-lg font-extrabold text-slate-950 dark:text-white">{section.heading}</h4>
+                      <section key={section.heading} className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:border-violet-200/60 dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-violet-500/20 dark:hover:bg-white/[0.04]">
+                        <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-gradient-to-br from-violet-100/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100 dark:from-violet-500/5" />
+                        <div className="relative mb-3 flex items-center gap-3">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-blue-600 text-xs font-black text-white shadow-sm">{index + 1}</span>
+                          <h4 className="text-lg font-black text-slate-950 dark:text-white">{section.heading}</h4>
                         </div>
                         <Markdown text={section.text} className="max-w-none" />
                       </section>
                     )) : (
-                      <Markdown text={output} className="max-w-none" />
+                      <div className="rounded-2xl border border-slate-200/80 bg-white p-5 dark:border-white/[0.06] dark:bg-white/[0.02]">
+                        <Markdown text={output} className="max-w-none" />
+                      </div>
                     )}
                   </div>
                 </div>
               ) : (
-                <pre className="whitespace-pre-wrap break-words font-mono text-xs leading-relaxed text-gray-700 selection:bg-slate-100 dark:text-gray-300 dark:selection:bg-slate-800">
-                  {output}
-                </pre>
+                <div className="rounded-2xl border border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-white p-4 dark:border-white/[0.06] dark:from-gray-900/50 dark:to-gray-950">
+                  <div className="mb-3 flex items-center gap-2">
+                    <FiCode className="w-3.5 h-3.5 text-violet-500" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">Raw Output</span>
+                    <span className="text-[10px] font-medium text-slate-400">· {charCount} chars</span>
+                  </div>
+                  <pre className="whitespace-pre-wrap break-words font-mono text-sm leading-relaxed text-gray-700 selection:bg-violet-100 dark:text-gray-300 dark:selection:bg-violet-900/40">
+                    {output}
+                  </pre>
+                </div>
               )}
             </div>
           )}
         </div>
       </div>
 
-      {/* Footer / Status Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 rounded-b-2xl border border-t-0 border-slate-200 bg-slate-50/80 px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:border-white/10 dark:bg-white/5 dark:text-slate-500">
-        <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-b-2xl border border-t-0 border-slate-200/80 bg-gradient-to-r from-slate-50/80 to-white/80 px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 backdrop-blur-sm dark:border-white/[0.06] dark:from-gray-900/80 dark:to-gray-950/80 dark:text-slate-500">
+        <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-1.5">
-            <FiHash className="w-3 h-3" />
-            <span>{charCount} Characters</span>
+            <FiHash className="w-3 h-3 text-violet-500" />
+            <span>{charCount.toLocaleString()} <span className="hidden sm:inline">Characters</span></span>
           </div>
           <div className="flex items-center gap-1.5">
-            <FiMessageSquare className="w-3 h-3" />
-            <span>{wordCount} Words</span>
+            <FiMessageSquare className="w-3 h-3 text-blue-500" />
+            <span>{wordCount.toLocaleString()} <span className="hidden sm:inline">Words</span></span>
           </div>
           <div className="flex items-center gap-1.5">
-            <FiClock className="w-3 h-3" />
-            <span>{readingTime} Min Read</span>
+            <FiClock className="w-3 h-3 text-emerald-500" />
+            <span>{readingTime} <span className="hidden sm:inline">Min Read</span></span>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="hidden sm:flex items-center gap-1.5">
-            <FiClock className="w-3 h-3" />
-            <span>Local Preview</span>
+          <div className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 dark:bg-emerald-950/30">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50" />
+            <span className="text-[9px] font-black text-emerald-700 dark:text-emerald-400">Local Preview</span>
           </div>
         </div>
       </div>

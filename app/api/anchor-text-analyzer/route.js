@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { url } = await request.json();
+        const { url } = await request.json().catch(() => ({}));
 
         if (!url) return NextResponse.json({ success: false, error: 'URL required' }, { status: 400 });
 
@@ -20,7 +20,8 @@ export async function POST(request) {
                 signal: controller.signal
             });
         } catch (e) {
-            return NextResponse.json({ success: false, error: 'Failed to access URL: ' + e.message }, { status: 422 });
+            console.error('anchor-text-analyzer fetch error:', e);
+            return NextResponse.json({ success: false, error: 'Failed to access URL' }, { status: 422 });
         }
 
         if (!res.ok) return NextResponse.json({ success: false, error: `Failed to fetch page. Status: ${res.status}` }, { status: 422 });
@@ -59,6 +60,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
-        return NextResponse.json({ success: false, error: 'Error: ' + error.message }, { status: 500 });
+        console.error('anchor-text-analyzer error:', error);
+        return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

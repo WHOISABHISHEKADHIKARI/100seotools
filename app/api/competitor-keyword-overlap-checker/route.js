@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const body = await request.json();
+        const body = await request.json().catch(() => ({}));
         const my_content = body.a || body.my_content;
         const competitor_content = body.b || body.competitor_content;
 
@@ -50,6 +50,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('competitor-keyword-overlap-checker error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

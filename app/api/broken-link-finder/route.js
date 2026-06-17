@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { url } = await request.json();
+        const { url } = await request.json().catch(() => ({}));
 
         if (!url || typeof url !== 'string') {
             return NextResponse.json({ success: false, error: 'URL is required' }, { status: 400 });
@@ -72,7 +72,6 @@ export async function POST(request) {
         });
 
         // 3. Check status codes in parallel (batches of 5)
-        // We only check Head
         const results = [];
         const batchSize = 5;
 
@@ -83,11 +82,24 @@ export async function POST(request) {
                     const controller = new AbortController();
                     const timeoutId = setTimeout(() => controller.abort(), 4000); // 4s timeout
 
-                    const res = await fetch(item.url, {
+                    // Try HEAD first, fall back to GET if HEAD not allowed
+                    let res = await fetch(item.url, {
                         method: 'HEAD',
                         signal: controller.signal,
                         headers: { 'User-Agent': '100SEOTools-Bot/1.0' }
                     });
+
+                    // Some servers return 405 for HEAD; fall back to GET
+                    if (res.status === 405) {
+                        const controller2 = new AbortController();
+                        const timeoutId2 = setTimeout(() => controller2.abort(), 4000);
+                        res = await fetch(item.url, {
+                            method: 'GET',
+                            signal: controller2.signal,
+                            headers: { 'User-Agent': '100SEOTools-Bot/1.0' },
+                        });
+                        clearTimeout(timeoutId2);
+                    }
                     clearTimeout(timeoutId);
                     return { ...item, status: res.status, ok: res.ok };
                 } catch (err) {
@@ -101,32 +113,61 @@ export async function POST(request) {
 
         const broken = results.filter(r => !r.ok);
         const brokenCount = broken.length;
+        const workingCount = results.length - brokenCount;
 
-        // Format output string
-        let output = `Scanned ${results.length} links on ${targetUrl}\n`;
-        output += `Found ${brokenCount} broken link(s).\n\n`;
+        // Format output with proper headings
+        const lines = [];
+        lines.push(`# Broken Link Report`);
+        lines.push('');
+        lines.push(`**Scanned:** ${targetUrl}`);
+        lines.push(`**Links Checked:** ${results.length} (of ${links.size} total found)`);
+        lines.push(`**Broken:** ${brokenCount}  |  **Working:** ${workingCount}`);
+        lines.push('');
 
         if (brokenCount > 0) {
+            lines.push('## Broken Links Found');
+            lines.push('');
             broken.forEach(b => {
-                output += `❌ ${b.status || 'Error'} - ${b.url}\n`;
+                const tag = b.isInternal ? '(internal)' : '(external)';
+                lines.push(`- ❌ **${b.status || 'Error'}** ${b.url} ${tag}`);
             });
+            lines.push('');
+
+            lines.push('## Recommendations');
+            lines.push('- Fix or redirect broken links to relevant working pages.');
+            lines.push('- Use 301 redirects for moved content.');
+            lines.push('- Update internal links pointing to removed pages.');
+            lines.push('- For external broken links, consider removing or updating the link.');
+            lines.push('');
         } else {
-            output += '✅ No broken links found in this sample.';
+            lines.push('✅ **No broken links found in this sample.**');
+            lines.push('');
         }
 
+        lines.push('## Summary');
+        lines.push(`| Metric | Value |`);
+        lines.push(`|---|---|`);
+        lines.push(`| Total Links Found | ${links.size} |`);
+        lines.push(`| Links Checked | ${results.length} |`);
+        lines.push(`| Broken | ${brokenCount} |`);
+        lines.push(`| Working | ${workingCount} |`);
+        lines.push(`| Internal | ${results.filter(r => r.isInternal).length} |`);
+        lines.push(`| External | ${results.filter(r => !r.isInternal).length} |`);
+        lines.push('');
+
         if (results.length < links.size) {
-            output += `\n\n(Note: limited to first ${results.length} links for performance)`;
+            lines.push(`> **Note:** Limited to first ${results.length} links for performance. Run again for a full scan.`);
         }
 
         return NextResponse.json({
             success: true,
-            result: output
+            result: lines.join('\n')
         });
 
     } catch (error) {
         console.error('Broken Link API Error:', error);
         return NextResponse.json(
-            { success: false, error: 'Internal Server Error: ' + error.message },
+            { success: false, error: 'Server Error' },
             { status: 500 }
         );
     }

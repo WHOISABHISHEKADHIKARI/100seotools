@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { category, city } = await request.json();
+        const { category, city } = await request.json().catch(() => ({}));
 
         if (!category || !city) return NextResponse.json({ success: false, error: 'Inputs required' }, { status: 400 });
 
@@ -49,6 +49,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('local-citation-finder error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { service, cities } = await request.json();
+        const { service, cities } = await request.json().catch(() => ({}));
 
         if (!service) return NextResponse.json({ success: false, error: 'Service required' }, { status: 400 });
 
@@ -29,6 +29,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('geo-keyword-expansion-tool error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

@@ -8,7 +8,12 @@ export const metadata = {
 };
 
 export default async function NotFound() {
-  const suggestions = (await getAllBlogPostsPublished()).slice(0, 4);
+  let suggestions = [];
+  try {
+    suggestions = (await getAllBlogPostsPublished()).slice(0, 4);
+  } catch (e) {
+    console.error('404 suggestions failed:', e);
+  }
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center p-6">

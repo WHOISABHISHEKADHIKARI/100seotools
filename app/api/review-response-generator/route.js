@@ -4,7 +4,7 @@ import { getBaseUrl } from '../../../lib/site';
 export async function POST(request) {
     try {
         const baseUrl = getBaseUrl();
-        const { customer_name, rating, comment } = await request.json();
+        const { customer_name, rating, comment } = await request.json().catch(() => ({}));
 
         const n = customer_name || 'Customer';
         const r = parseInt(rating) || 5;
@@ -32,6 +32,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('review-response-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

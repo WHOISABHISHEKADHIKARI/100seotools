@@ -1,4 +1,4 @@
-"use client";
+import { memo } from 'react';
 import Card from './Card';
 
 const pages = [
@@ -34,7 +34,7 @@ const pages = [
   },
 ];
 
-export default function PageLinksGrid() {
+const PageLinksGrid = memo(function PageLinksGrid() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {pages.map((p) => (
@@ -42,4 +42,6 @@ export default function PageLinksGrid() {
       ))}
     </div>
   );
-}
+});
+
+export default PageLinksGrid;

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { keyword, desc } = await request.json();
+        const { keyword, desc } = await request.json().catch(() => ({}));
 
         if (!keyword) return NextResponse.json({ success: false, error: 'Focus Keyword required' }, { status: 400 });
 
@@ -40,6 +40,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('ai-meta-tag-writer error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

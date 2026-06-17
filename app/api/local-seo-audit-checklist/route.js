@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { business_name } = await request.json();
+        const { business_name } = await request.json().catch(() => ({}));
 
         const b = business_name || 'My Business';
 
@@ -29,6 +29,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('local-seo-audit-checklist error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

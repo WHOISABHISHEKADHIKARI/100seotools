@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { paragraph, keywords } = await request.json();
+        const { paragraph, keywords } = await request.json().catch(() => ({}));
 
         if (!paragraph || !keywords) return NextResponse.json({ success: false, error: 'Input required' }, { status: 400 });
 
@@ -15,7 +15,8 @@ export async function POST(request) {
         output += `### Analysis\n`;
 
         kwList.forEach(kw => {
-            const regex = new RegExp(`\\b${kw}\\b`, 'gi');
+            const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(`\\b${escaped}\\b`, 'gi');
             const match = text.match(regex);
             const count = match ? match.length : 0;
 
@@ -29,7 +30,7 @@ export async function POST(request) {
         output += `*Original length: ${text.split(' ').length} words.*\n\n`;
 
         // Simple insertion suggestion (heuristic)
-        const missing = kwList.filter(kw => !new RegExp(`\\b${kw}\\b`, 'gi').test(text));
+        const missing = kwList.filter(kw => !new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi').test(text));
 
         if (missing.length > 0) {
             output += `Try adding a sentence like this to include missing terms:\n`;
@@ -41,6 +42,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('paragraph-keyword-optimizer error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

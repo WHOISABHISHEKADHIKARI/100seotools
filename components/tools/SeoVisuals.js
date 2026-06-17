@@ -1,18 +1,14 @@
 import {
   BarChart2,
   BookOpen,
-  Cpu,
   FileText,
   Link as LinkIcon,
   MapPin,
   Search,
   Target,
-  Wrench,
   TrendingUp,
-  Users,
+  Wrench,
   Sparkles,
-  Shield,
-  Zap,
 } from 'lucide-react';
 import { slugify } from '../../lib/utils';
 
@@ -157,7 +153,7 @@ export const visualColors = {
 export function getCategoryDetail(category) {
   return categoryDetails.find((item) => item.label === category) || {
     label: category || 'SEO Tools',
-    icon: FiTrendingUp,
+    icon: TrendingUp,
     color: 'violet',
     description: 'Free SEO utilities for faster optimization work.',
   };

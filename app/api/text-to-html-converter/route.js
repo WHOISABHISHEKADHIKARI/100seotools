@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { text } = await request.json();
+        const { text } = await request.json().catch(() => ({}));
 
         if (!text || typeof text !== 'string') {
             return NextResponse.json({ success: false, error: 'Text input is required' }, { status: 400 });
@@ -77,6 +77,7 @@ export async function POST(request) {
         });
 
     } catch (error) {
+        console.error('text-to-html-converter error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { url } = await request.json();
+        const { url } = await request.json().catch(() => ({}));
 
         if (!url) {
             return NextResponse.json({ success: false, error: 'URL is required' }, { status: 400 });
@@ -39,9 +39,10 @@ export async function POST(request) {
         });
 
     } catch (error) {
+        console.error('http-status-code-tester error:', error);
         return NextResponse.json({
-            success: true,
-            result: `Error checking URL: ${error.message}\n(Likely invalid URL, DNS error, or timeout)`
-        });
+            success: false,
+            error: 'Error checking URL. Likely invalid URL, DNS error, or timeout.'
+        }, { status: 500 });
     }
 }

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { html } = await request.json();
+        const { html } = await request.json().catch(() => ({}));
 
         if (!html) {
             return NextResponse.json({ success: false, error: 'HTML content is required' }, { status: 400 });
@@ -42,6 +42,7 @@ export async function POST(request) {
         });
 
     } catch (error) {
+        console.error('heading-analyzer error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

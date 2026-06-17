@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { title, keyword } = await request.json();
+        const { title, keyword } = await request.json().catch(() => ({}));
 
         if (!keyword) return NextResponse.json({ success: false, error: 'Keyword required' }, { status: 400 });
 
@@ -24,6 +24,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('meta-description-writer error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

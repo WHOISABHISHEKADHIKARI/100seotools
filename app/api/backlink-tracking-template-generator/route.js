@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { project_name } = await request.json();
+        const { project_name } = await request.json().catch(() => ({}));
 
         if (!project_name || !project_name.trim()) {
             return NextResponse.json({ success: false, error: 'Project Name is required' }, { status: 400 });
@@ -28,6 +28,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('backlink-tracking-template-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

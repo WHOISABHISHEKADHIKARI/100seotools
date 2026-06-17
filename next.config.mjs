@@ -40,7 +40,7 @@ const legacyBlogRedirects = [
 
 const nextConfig = withBundleAnalyzer({
   reactStrictMode: true,
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
   allowedDevOrigins: [
     'localhost',
     '127.0.0.1',
@@ -50,6 +50,10 @@ const nextConfig = withBundleAnalyzer({
     removeConsole: process.env.NODE_ENV === 'production',
   },
   compress: true,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 768, 1024, 1280, 1536],
+  },
   experimental: {
     serverActions: {
       bodySizeLimit: '1mb',
@@ -66,13 +70,7 @@ const nextConfig = withBundleAnalyzer({
     }
     return config;
   },
-  images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: 'res.cloudinary.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'cdn.sanity.io', pathname: '/**' },
-      { protocol: 'https', hostname: 'ui-avatars.com', pathname: '/**' },
-    ],
-  },
+
   // Explicitly enable webpack by silencing the turbopack error, or just let it be.
   // The error suggests setting an empty turbopack config to silence it.
   turbopack: {},
@@ -158,6 +156,16 @@ const nextConfig = withBundleAnalyzer({
     { source: '/sitemap-static.xml', destination: '/sitemap-static/sitemap.xml' },
   ],
   headers: async () => [
+    // Cache static assets for 1 year (immutable, content-hashed)
+    {
+      source: '/:path*.(jpg|jpeg|png|webp|avif|svg|ico|woff2|css|js)',
+      headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+    },
+    // Never cache service worker (must check for updates)
+    {
+      source: '/sw.js',
+      headers: [{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' }],
+    },
     // Block pagination pages from indexing (critical SEO fix)
     {
       source: '/(p|tp)/:page',

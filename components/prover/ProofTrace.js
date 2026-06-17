@@ -1,6 +1,6 @@
-import React from 'react';
+import { memo } from 'react';
 
-export default function ProofTrace({ trace, timestamp, verified }) {
+const ProofTrace = memo(function ProofTrace({ trace, timestamp, verified }) {
   if (!trace || trace.length === 0) return null;
 
   return (
@@ -63,4 +63,6 @@ export default function ProofTrace({ trace, timestamp, verified }) {
       </div>
     </div>
   );
-}
+});
+
+export default ProofTrace;

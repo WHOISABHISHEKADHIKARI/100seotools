@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { volume, position } = await request.json();
+        const { volume, position } = await request.json().catch(() => ({}));
 
         if (!volume || !position) return NextResponse.json({ success: false, error: 'Volume and Position required' }, { status: 400 });
 
@@ -33,6 +33,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('traffic-potential-calculator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

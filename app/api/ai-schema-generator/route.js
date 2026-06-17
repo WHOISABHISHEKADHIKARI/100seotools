@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { type, name, url } = await request.json();
+        const { type, name, url } = await request.json().catch(() => ({}));
 
         if (!type) return NextResponse.json({ success: false, error: 'Schema Type required' }, { status: 400 });
 
@@ -57,6 +57,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: result });
 
     } catch (error) {
+        console.error('ai-schema-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

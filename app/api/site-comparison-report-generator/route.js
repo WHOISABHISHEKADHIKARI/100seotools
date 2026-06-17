@@ -45,7 +45,7 @@ function row(label, a, b, betterIs = 'higher') {
 
 export async function POST(request) {
   try {
-    const body = await request.json();
+    const body = await request.json().catch(() => ({}));
     const inputA = body.site1 || body.a || body.url1;
     const inputB = body.site2 || body.b || body.url2;
     if (!inputA || !inputB) return NextResponse.json({ success: false, error: 'Both sites required' }, { status: 400 });
@@ -82,6 +82,7 @@ export async function POST(request) {
     lines.push(`  B: ${B.lcp || 'n/a'}`);
     return NextResponse.json({ success: true, result: lines.join('\n') });
   } catch (err) {
-    return NextResponse.json({ success: false, error: err.message || 'Server Error' }, { status: 500 });
+        console.error('site-comparison-report-generator error:', err);
+    return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const body = await request.json();
+        const body = await request.json().catch(() => ({}));
         const a = body.a || body.input || '';
         const b = body.b || '';
 
@@ -59,6 +59,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result });
 
     } catch (error) {
+        console.error('keyword-comparison-tool error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

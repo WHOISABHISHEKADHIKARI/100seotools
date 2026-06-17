@@ -3,7 +3,7 @@ import { fetchPage, parseHtmlMeta, ddgSearch, normalizeUrl, hostnameOf } from '.
 
 export async function POST(request) {
   try {
-    const body = await request.json();
+    const body = await request.json().catch(() => ({}));
     const target = normalizeUrl(body.competitor_url || body.url);
     if (!target) return NextResponse.json({ success: false, error: 'Competitor URL required' }, { status: 400 });
 
@@ -67,6 +67,7 @@ export async function POST(request) {
 
     return NextResponse.json({ success: true, result: lines.join('\n') });
   } catch (err) {
-    return NextResponse.json({ success: false, error: err.message || 'Server Error' }, { status: 500 });
+        console.error('ranking-opportunity-finder error:', err);
+    return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }

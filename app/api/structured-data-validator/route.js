@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { json } = await request.json();
+        const { json } = await request.json().catch(() => ({}));
 
         if (!json) return NextResponse.json({ success: false, error: 'JSON content required' }, { status: 400 });
 
@@ -10,7 +10,8 @@ export async function POST(request) {
         try {
             parsed = JSON.parse(json);
         } catch (e) {
-            return NextResponse.json({ success: true, result: `❌ Invalid JSON Syntax:\n${e.message}` });
+            console.error('structured-data-validator parse error:', e);
+            return NextResponse.json({ success: false, error: 'Invalid JSON syntax. Please check your input.' }, { status: 400 });
         }
 
         const checks = [];
@@ -44,6 +45,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result });
 
     } catch (error) {
+        console.error('structured-data-validator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

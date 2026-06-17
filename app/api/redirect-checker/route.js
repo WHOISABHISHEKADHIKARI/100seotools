@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { url } = await request.json();
+        const { url } = await request.json().catch(() => ({}));
 
         if (!url) {
             return NextResponse.json({ success: false, error: 'URL is required' }, { status: 400 });
@@ -43,7 +43,7 @@ export async function POST(request) {
                     break; // Not a redirect
                 }
             } catch (e) {
-                chain.push({ url: currentUrl, error: e.message });
+                chain.push({ url: currentUrl, error: 'Unable to fetch' });
                 break;
             }
         }
@@ -53,7 +53,7 @@ export async function POST(request) {
         chain.forEach((step, index) => {
             const symbol = index === chain.length - 1 ? '🏁' : '⬇️';
             if (step.error) {
-                output += `${index + 1}. ${step.url} ❌ Error: ${step.error}\n`;
+                output += `${index + 1}. ${step.url} ❌ Error: Unable to fetch\n`;
             } else {
                 output += `${index + 1}. ${step.url} --> Status: ${step.status} ${symbol}\n`;
             }
@@ -71,6 +71,7 @@ export async function POST(request) {
         });
 
     } catch (error) {
+        console.error('redirect-checker error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

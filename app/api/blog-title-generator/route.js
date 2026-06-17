@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { keyword } = await request.json();
+        const { keyword } = await request.json().catch(() => ({}));
 
         if (!keyword) return NextResponse.json({ success: false, error: 'Keyword required' }, { status: 400 });
 
@@ -28,6 +28,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('blog-title-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

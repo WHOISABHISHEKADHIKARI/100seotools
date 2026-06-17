@@ -45,6 +45,7 @@ export async function POST(request) {
 
     return NextResponse.json({ success: true, result: lines.join('\n') });
   } catch (err) {
-    return NextResponse.json({ success: false, error: err.message || 'Server Error' }, { status: 500 });
+        console.error('trending-keyword-visualizer error:', err);
+    return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }

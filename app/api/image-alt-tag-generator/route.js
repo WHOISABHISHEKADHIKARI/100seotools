@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { filename, context } = await request.json();
+        const { filename, context } = await request.json().catch(() => ({}));
 
         if (!filename) return NextResponse.json({ success: false, error: 'Filename required' }, { status: 400 });
 
@@ -33,6 +33,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('image-alt-tag-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

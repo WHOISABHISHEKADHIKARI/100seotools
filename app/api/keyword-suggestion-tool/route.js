@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { seed, locale } = await request.json();
+        const { seed, locale } = await request.json().catch(() => ({}));
 
         if (!seed || typeof seed !== 'string') {
             return NextResponse.json(

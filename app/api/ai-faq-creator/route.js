@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { topic } = await request.json();
+        const { topic } = await request.json().catch(() => ({}));
 
         if (!topic) return NextResponse.json({ success: false, error: 'Topic required' }, { status: 400 });
 
@@ -33,6 +33,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('ai-faq-creator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

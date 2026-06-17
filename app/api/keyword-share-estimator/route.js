@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { volume, difficulty } = await request.json();
+        const { volume, difficulty } = await request.json().catch(() => ({}));
 
         const vol = parseInt(volume) || 1000;
         const kd = parseInt(difficulty) || 50; // 0-100
@@ -46,6 +46,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('keyword-share-estimator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

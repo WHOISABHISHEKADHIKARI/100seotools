@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { keyword, location } = await request.json();
+        const { keyword, location } = await request.json().catch(() => ({}));
 
         if (!keyword) return NextResponse.json({ success: false, error: 'Service/Keyword required' }, { status: 400 });
 
@@ -35,6 +35,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('location-based-content-idea-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

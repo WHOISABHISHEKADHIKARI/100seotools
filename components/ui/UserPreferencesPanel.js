@@ -9,19 +9,13 @@ import {
   FiUpload,
   FiTrash2,
   FiX,
-  FiSave,
   FiRefreshCw,
-  FiEye,
   FiGrid,
   FiList,
   FiMoon,
   FiSun,
-  FiGlobe,
-  FiBell,
-  FiBarChart,
   FiSearch,
   FiBookmark,
-  FiFolder,
   FiPlus
 } from 'react-icons/fi';
 

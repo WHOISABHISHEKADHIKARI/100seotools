@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { xml } = await request.json();
+        const { xml } = await request.json().catch(() => ({}));
 
         if (!xml) return NextResponse.json({ success: false, error: 'XML content required' }, { status: 400 });
 
@@ -34,6 +34,7 @@ export async function POST(request) {
         });
 
     } catch (error) {
+        console.error('xml-sitemap-visualizer error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

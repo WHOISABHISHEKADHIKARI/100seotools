@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { product_name, features } = await request.json();
+        const { product_name, features } = await request.json().catch(() => ({}));
 
         if (!product_name) return NextResponse.json({ success: false, error: 'Product Name required' }, { status: 400 });
 
@@ -32,6 +32,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('product-description-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

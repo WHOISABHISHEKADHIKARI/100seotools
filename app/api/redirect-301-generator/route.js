@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { old, new: newUrl } = await request.json(); // 'new' is reserved keyword
+        const { old, new: newUrl } = await request.json().catch(() => ({})); // 'new' is reserved keyword
 
         if (!old || !newUrl) return NextResponse.json({ success: false, error: 'Both URLs required' }, { status: 400 });
 
@@ -29,6 +29,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('redirect-301-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

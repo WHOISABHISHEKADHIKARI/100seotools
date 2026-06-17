@@ -6,7 +6,10 @@ import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
 
 export default function Error({ error, reset }) {
   useEffect(() => {
+    const prev = document.title;
+    document.title = 'Error | 100 SEO Tools';
     console.error('Segment Error:', error);
+    return () => { document.title = prev; };
   }, [error]);
 
   return (

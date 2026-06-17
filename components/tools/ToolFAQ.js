@@ -1,12 +1,11 @@
-"use client";
-
+import { memo } from 'react';
 import { FiHelpCircle } from 'react-icons/fi';
 
 /**
  * ToolFAQ Component
  * Displays FAQ section with structured data for rich snippets
  */
-export default function ToolFAQ({ faqs, toolName }) {
+const ToolFAQ = memo(function ToolFAQ({ faqs, toolName }) {
     if (!faqs || faqs.length === 0) return null;
 
     const faqSchema = {
@@ -27,7 +26,7 @@ export default function ToolFAQ({ faqs, toolName }) {
             {/* JSON-LD Schema for rich snippets */}
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/<\/script>/gi, '<\\/script>') }}
             />
 
             {/* FAQ Section */}
@@ -83,4 +82,6 @@ export default function ToolFAQ({ faqs, toolName }) {
             </section>
         </>
     );
-}
+});
+
+export default ToolFAQ;

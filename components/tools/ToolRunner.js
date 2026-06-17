@@ -2,11 +2,10 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
 import { getTemplateDefinition, runTemplate } from '../../lib/templates';
 import { copyToClipboardWithHistory, normalizePastedContent, downloadAllFormats } from '../../lib/utils';
-import { sanitizeInput, validateURL, checkInputSize } from '../../lib/security';
+import { sanitizeInput } from '../../lib/security';
 import { checkRateLimit } from '../../lib/rateLimit';
-import { validateField, validateAllFields } from '../../lib/validation';
+import { validateAllFields } from '../../lib/validation';
 import { formatToolOutput } from '../../lib/outputHelper';
-import Markdown from '../blog/Markdown';
 import ProofTrace from '../prover/ProofTrace';
 import OutputPresentation from '../ui/OutputPresentation';
 
@@ -111,20 +110,6 @@ export default function ToolRunner({ tool }) {
       console.error('Failed to save settings', e);
     }
   }, [isLivePreview, tool.slug]);
-
-  // Debounced execution for Live Preview and Validation
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      // 1. Validate fields (always run validation logic passively)
-      // Note: We duplicate some validation logic here for passive feedback,
-      // but we shouldn't block the user from typing.
-
-      if (isLivePreview) {
-        // Live preview analysis handled by separate effect below
-      }
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [inputs, isLivePreview]);
 
   const onChange = (name, value) => {
     const field = def.fields.find(f => f.name === name);

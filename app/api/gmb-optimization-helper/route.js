@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { business_name, category, description } = await request.json();
+        const { business_name, category, description } = await request.json().catch(() => ({}));
 
         if (!business_name) return NextResponse.json({ success: false, error: 'Business Name required' }, { status: 400 });
 
@@ -36,6 +36,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('gmb-optimization-helper error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

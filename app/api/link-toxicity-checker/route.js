@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { url } = await request.json();
+        const { url } = await request.json().catch(() => ({}));
 
         if (!url) return NextResponse.json({ success: false, error: 'URL required' }, { status: 400 });
 
@@ -18,7 +18,8 @@ export async function POST(request) {
             html = await res.text();
             status = res.status;
         } catch {
-            return NextResponse.json({ success: true, result: 'Could not reach site. Toxicity Unknown (possibly dead).' });
+            console.error('link-toxicity-checker fetch error');
+            return NextResponse.json({ success: false, error: 'Could not reach site. The URL may be unreachable or invalid.' }, { status: 502 });
         }
 
         let toxicity = 0;
@@ -73,6 +74,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('link-toxicity-checker error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

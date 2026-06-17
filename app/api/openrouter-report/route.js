@@ -4,7 +4,7 @@ import { requestOpenRouterReport } from '../../../lib/openRouterGateway.js';
 
 export async function POST(request) {
   try {
-    const body = await request.json();
+    const body = await request.json().catch(() => ({}));
     const toolSlug = body?.toolSlug;
     const tool = toolSlug ? getToolBySlug(toolSlug) : null;
 
@@ -23,10 +23,11 @@ export async function POST(request) {
       usage: report.usage,
     });
   } catch (error) {
+        console.error('openrouter-report error:', error);
     return NextResponse.json(
       {
         success: false,
-        error: error.message || 'Unable to generate report',
+        error: 'Unable to generate report',
       },
       { status: 500 }
     );

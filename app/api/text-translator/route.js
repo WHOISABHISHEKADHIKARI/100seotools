@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { text, target_lang } = await request.json();
+        const { text, target_lang } = await request.json().catch(() => ({}));
 
         if (!text) return NextResponse.json({ success: false, error: 'Text required' }, { status: 400 });
 
@@ -34,6 +34,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('text-translator error:', error);
         return NextResponse.json({ success: false, error: 'Unable to prepare translation link' }, { status: 400 });
     }
 }

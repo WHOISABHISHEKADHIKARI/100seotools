@@ -6,7 +6,7 @@ import { fetchPage, parseHtmlMeta, pageSpeedInsights, normalizeUrl } from '../..
 // known to correlate with bounce: TTFB, page weight, viewport, content depth, LCP.
 export async function POST(request) {
   try {
-    const body = await request.json();
+    const body = await request.json().catch(() => ({}));
     const target = normalizeUrl(body.url);
     if (!target) {
       return NextResponse.json({ success: false, error: 'A URL is required (we measure real page signals).' }, { status: 400 });
@@ -79,6 +79,7 @@ export async function POST(request) {
     lines.push('NOTE: True bounce rate requires analytics access. This estimate uses real page signals known to correlate with bounce.');
     return NextResponse.json({ success: true, result: lines.join('\n') });
   } catch (err) {
-    return NextResponse.json({ success: false, error: err.message || 'Server Error' }, { status: 500 });
+        console.error('bounce-rate-estimator error:', err);
+    return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }

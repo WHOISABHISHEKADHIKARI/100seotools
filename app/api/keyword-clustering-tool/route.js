@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { seed } = await request.json();
+        const { seed } = await request.json().catch(() => ({}));
 
         if (!seed) return NextResponse.json({ success: false, error: 'Seed keyword required' }, { status: 400 });
 
@@ -75,6 +75,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('keyword-clustering-tool error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

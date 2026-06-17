@@ -108,12 +108,15 @@ export default async function Page({ params, searchParams }) {
   const previousPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
   const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
 
+  const fallbackImage = `${baseUrl}/og-image.jpg`;
   const articleLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
     description: post.description,
     datePublished: post.datePublished,
+    dateModified: post.dateModified || post.datePublished,
+    image: post.image || (post.slug ? `${baseUrl}/blog-images/${post.slug}.png` : fallbackImage),
     author: {
       '@type': 'Person',
       ...getAuthor(baseUrl)
@@ -128,16 +131,27 @@ export default async function Page({ params, searchParams }) {
       }
     },
     url: `${baseUrl}/blog/${post.slug}`,
-    mainEntityOfPage: `${baseUrl}/blog/${post.slug}`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${baseUrl}/blog/${post.slug}`
+    },
+    isPartOf: {
+      '@id': `${baseUrl}/#website`
+    },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.article-summary', '.article-content p:first-of-type']
+    },
     inLanguage: 'en-US',
-    keywords: Array.isArray(post.tags) ? post.tags.join(', ') : undefined,
+    keywords: Array.isArray(post.tags) ? post.tags.join(', ') : 'SEO, tools, optimization',
   };
 
   const faqLd = Array.isArray(post.sections?.faq) && post.sections.faq.length > 0 ? {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    '@id': `${baseUrl}/blog/${post.slug}#faq`,
     url: `${baseUrl}/blog/${post.slug}`,
-    isPartOf: `${baseUrl}/blog/${post.slug}`,
+    isPartOf: { '@id': `${baseUrl}/blog/${post.slug}` },
     mainEntity: post.sections.faq.map((f) => ({ '@type': 'Question', name: f.q || f.question, acceptedAnswer: { '@type': 'Answer', text: f.a || f.answer } }))
   } : null;
 
@@ -145,7 +159,7 @@ export default async function Page({ params, searchParams }) {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
     url: `${baseUrl}/blog/${post.slug}`,
-    isPartOf: `${baseUrl}/blog/${post.slug}`,
+    isPartOf: { '@id': `${baseUrl}/blog/${post.slug}` },
     name: post.title,
     description: post.description,
     step: post.sections.howDetailed.map((s) => ({ '@type': 'HowToStep', text: s }))

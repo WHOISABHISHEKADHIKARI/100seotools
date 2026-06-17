@@ -84,7 +84,7 @@ async function profile(input) {
 
 export async function POST(request) {
   try {
-    const body = await request.json();
+    const body = await request.json().catch(() => ({}));
     const a = body.domain1 || body.a;
     const b = body.domain2 || body.b;
     if (!a || !b) return NextResponse.json({ success: false, error: 'Both domains required' }, { status: 400 });
@@ -156,6 +156,7 @@ export async function POST(request) {
 
     return NextResponse.json({ success: true, result: lines.join('\n') });
   } catch (err) {
-    return NextResponse.json({ success: false, error: err.message || 'Server Error' }, { status: 500 });
+        console.error('domain-comparison-report-tool error:', err);
+    return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { topic, intent, competitorAvgWords, sectionCount, audienceLevel } = await request.json();
+        const { topic, intent, competitorAvgWords, sectionCount, audienceLevel } = await request.json().catch(() => ({}));
 
         if (!topic) return NextResponse.json({ success: false, error: 'Topic required' }, { status: 400 });
 

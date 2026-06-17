@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { seed, modifiers } = await request.json();
+        const { seed, modifiers } = await request.json().catch(() => ({}));
 
         if (!seed) return NextResponse.json({ success: false, error: 'Seed required' }, { status: 400 });
 
@@ -43,6 +43,7 @@ export async function POST(request) {
         });
 
     } catch (error) {
+        console.error('long-tail-keyword-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { content } = await request.json();
+        const { content } = await request.json().catch(() => ({}));
 
         if (!content) return NextResponse.json({ success: false, error: 'Content required' }, { status: 400 });
 
@@ -45,6 +45,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('ai-content-improver error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

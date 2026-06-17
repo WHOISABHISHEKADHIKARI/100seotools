@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { title, description, url } = await request.json();
+        const { title, description, url } = await request.json().catch(() => ({}));
 
         const safeText = (s) => (s || '').replace(/<[^>]*>/g, '').trim();
         const escapeAttr = (s) => (s || '')

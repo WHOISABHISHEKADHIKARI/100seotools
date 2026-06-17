@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { title, desc, image, url } = await request.json();
+        const { title, desc, image, url } = await request.json().catch(() => ({}));
 
         let output = '';
         if (title) output += `<meta property="og:title" content="${title}" />\n`;
@@ -15,6 +15,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('og-tag-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { keyword, content } = await request.json();
+        const { keyword, content } = await request.json().catch(() => ({}));
 
         if (!keyword) return NextResponse.json({ success: false, error: 'Keyword required' }, { status: 400 });
 
@@ -16,7 +16,7 @@ export async function POST(request) {
 
         const isQuestion = /^(what|how|why|when|where|who)/i.test(keyword);
         const isList = text.includes('\n-') || text.includes('\n1.');
-        const startsWithDirectAnswer = new RegExp(`^${keyword} is`, 'i').test(text) || /is (a|the|an)/i.test(text.substring(0, 20));
+        const startsWithDirectAnswer = new RegExp(`^${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} is`, 'i').test(text) || /is (a|the|an)/i.test(text.substring(0, 20));
 
         let score = 0;
         if (words >= 40 && words <= 60) score += 40;
@@ -48,6 +48,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('featured-snippet-optimizer error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

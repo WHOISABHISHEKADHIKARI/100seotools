@@ -1,6 +1,6 @@
-import React from 'react';
+import { memo } from 'react';
 
-export default function Skeleton({ className = '', width, height, circle = false, count = 1 }) {
+const Skeleton = memo(function Skeleton({ className = '', width, height, circle = false, count = 1 }) {
   const style = {
     width: width,
     height: height,
@@ -19,4 +19,6 @@ export default function Skeleton({ className = '', width, height, circle = false
       ))}
     </>
   );
-}
+});
+
+export default Skeleton;

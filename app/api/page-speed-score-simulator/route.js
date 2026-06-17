@@ -3,7 +3,7 @@ import { pageSpeedInsights, normalizeUrl } from '../../../lib/realData.js';
 
 export async function POST(request) {
   try {
-    const { url } = await request.json();
+    const { url } = await request.json().catch(() => ({}));
     const target = normalizeUrl(url);
     if (!target) return NextResponse.json({ success: false, error: 'Valid URL required' }, { status: 400 });
 
@@ -56,6 +56,7 @@ export async function POST(request) {
     }
     return NextResponse.json({ success: true, result: lines.join('\n') });
   } catch (err) {
-    return NextResponse.json({ success: false, error: err.message || 'Server Error' }, { status: 500 });
+        console.error('page-speed-score-simulator error:', err);
+    return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }

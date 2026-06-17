@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { robots } = await request.json();
+        const { robots } = await request.json().catch(() => ({}));
 
         if (!robots || typeof robots !== 'string') {
             return NextResponse.json(

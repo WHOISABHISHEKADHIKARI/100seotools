@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { rankings } = await request.json();
+        const { rankings } = await request.json().catch(() => ({}));
 
         if (!rankings) return NextResponse.json({ success: false, error: 'Rankings required' }, { status: 400 });
 
@@ -48,6 +48,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('visibility-index-calculator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

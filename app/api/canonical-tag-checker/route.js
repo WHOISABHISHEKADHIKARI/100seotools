@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { url } = await request.json();
+        const { url } = await request.json().catch(() => ({}));
 
         if (!url) return NextResponse.json({ success: false, error: 'URL required' }, { status: 400 });
 
@@ -24,6 +24,7 @@ export async function POST(request) {
             status = res.status;
             html = await res.text();
         } catch (err) {
+        console.error('canonical-tag-checker error:', err);
             return NextResponse.json({ success: false, error: 'Failed to fetch URL. Ensure it is accessible.' }, { status: 500 });
         } finally {
             clearTimeout(timeoutId);
@@ -62,6 +63,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('canonical-tag-checker error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

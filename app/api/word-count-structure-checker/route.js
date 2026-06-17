@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { text } = await request.json();
+        const { text } = await request.json().catch(() => ({}));
 
         if (!text) {
             return NextResponse.json({ success: false, error: 'Text input is required' }, { status: 400 });
@@ -55,6 +55,7 @@ export async function POST(request) {
         });
 
     } catch (error) {
+        console.error('word-count-structure-checker error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

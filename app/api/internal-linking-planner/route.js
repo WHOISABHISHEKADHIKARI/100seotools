@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { content, keywords } = await request.json();
+        const { content, keywords } = await request.json().catch(() => ({}));
 
         if (!content || !keywords) return NextResponse.json({ success: false, error: 'Content and Keywords required' }, { status: 400 });
 
@@ -12,7 +12,8 @@ export async function POST(request) {
         // Find opportunities
         const opportunities = [];
         kwList.forEach(kw => {
-            const regex = new RegExp(`\\b${kw}\\b`, 'gi');
+            const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(`\\b${escaped}\\b`, 'gi');
             const matchCount = (text.match(regex) || []).length;
             if (matchCount > 0) {
                 opportunities.push({ keyword: kw, count: matchCount });
@@ -40,6 +41,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('internal-linking-planner error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

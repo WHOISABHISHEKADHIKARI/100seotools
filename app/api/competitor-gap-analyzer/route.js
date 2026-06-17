@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { my_content, competitor_content } = await request.json();
+        const { my_content, competitor_content } = await request.json().catch(() => ({}));
 
         if (!my_content || !competitor_content) return NextResponse.json({ success: false, error: 'Both text contents are required' }, { status: 400 });
 
@@ -52,6 +52,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('competitor-gap-analyzer error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

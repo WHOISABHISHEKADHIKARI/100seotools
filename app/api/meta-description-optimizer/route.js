@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { desc, keyword } = await request.json();
+        const { desc, keyword } = await request.json().catch(() => ({}));
 
         if (!desc) return NextResponse.json({ success: false, error: 'Description required' }, { status: 400 });
 
@@ -32,6 +32,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('meta-description-optimizer error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

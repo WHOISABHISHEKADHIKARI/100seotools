@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { name, phone, address } = await request.json();
+        const { name, phone, address } = await request.json().catch(() => ({}));
 
         if (!name) return NextResponse.json({ success: false, error: 'Business Name required' }, { status: 400 });
 
@@ -41,6 +41,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('nap-consistency-checker error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

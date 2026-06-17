@@ -7,7 +7,7 @@ export const metadata = {
   title: '100+ Free SEO Tools - No Signup Required | 100 SEO Tools',
   description: 'Use 100+ free SEO tools for keyword research, on-page audits, technical SEO, schema, content optimization, and reports. Instant results, no signup.',
   metadataBase: new URL(baseUrl),
-  keywords: ['100 seo tools', 'free seo tools list', 'seo tool comparison', 'best seo tools for 2024', '100 free seo tools', 'free seo toolkit'],
+  keywords: ['100 seo tools', 'free seo tools list', 'seo tool comparison', '100 free seo tools', 'free seo toolkit', 'best seo tools online'],
   // Icons / Favicons
   icons: {
     icon: [
@@ -51,9 +51,23 @@ export const metadata = {
     creator: twitterHandle,
     images: [{ url: defaultSocialImage, alt: '100 Free SEO Tools - Complete Toolkit for Marketers' }],
   },
-  // Canonical URL
+  // Canonical URL + hreflang
   alternates: {
     canonical: baseUrl,
+    languages: {
+      'en': baseUrl,
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 

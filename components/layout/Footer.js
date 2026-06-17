@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { FiCompass, FiGithub, FiMail, FiRss, FiTwitter, FiYoutube } from 'react-icons/fi';
+import { memo } from 'react';
+import { FiCompass, FiGithub, FiMail, FiRss } from 'react-icons/fi';
 import { categoryDetails, getCategoryHref } from '../tools/SeoVisuals';
 
 const topTools = [
@@ -27,7 +28,13 @@ const company = [
   ['Sitemap', '/sitemap.xml'],
 ];
 
-export default function Footer() {
+const creator = [
+  ['Portfolio', 'https://abhishekadhikari.com/'],
+  ['LinkedIn', 'https://www.linkedin.com/in/whoisabhishekadhikari/'],
+  ['GitHub', 'https://github.com/whoisabhishekadhikari'],
+];
+
+const Footer = memo(function Footer() {
   const year = new Date().getFullYear();
 
   return (
@@ -49,11 +56,9 @@ export default function Footer() {
             </p>
             <div className="mt-5 flex items-center gap-3">
               {[
-                ['Twitter', FiTwitter, '#'],
                 ['GitHub', FiGithub, 'https://github.com/WHOISABHISHEKADHIKARI'],
-                ['YouTube', FiYoutube, '#'],
                 ['RSS', FiRss, '/blog'],
-                ['Email', FiMail, 'mailto:hashtagsolutionsocail@gmail.com'],
+                ['Email', FiMail, 'mailto:abhishekadhikari1254@gmail.com'],
               ].map(([label, Icon, href]) => (
                 <a
                   key={label}
@@ -74,6 +79,9 @@ export default function Footer() {
             <div className="mt-8">
               <FooterColumn title="Company" items={company} />
             </div>
+            <div className="mt-8 sm:mt-0">
+              <FooterColumn title="Creator" items={creator} />
+            </div>
           </div>
         </div>
 
@@ -92,7 +100,8 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+});
+export default Footer;
 
 function FooterColumn({ title, items }) {
   return (

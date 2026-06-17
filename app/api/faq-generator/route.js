@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { questions } = await request.json();
+        const { questions } = await request.json().catch(() => ({}));
 
         if (!questions) return NextResponse.json({ success: false, error: 'Questions required' }, { status: 400 });
 
@@ -42,6 +42,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: script });
 
     } catch (error) {
+        console.error('faq-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

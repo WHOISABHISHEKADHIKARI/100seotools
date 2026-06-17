@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { url } = await request.json();
+        const { url } = await request.json().catch(() => ({}));
 
         if (!url) return NextResponse.json({ success: false, error: 'URL required' }, { status: 400 });
 
@@ -18,6 +18,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: tag });
 
     } catch (error) {
+        console.error('canonical-url-builder error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

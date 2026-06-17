@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { text } = await request.json();
+        const { text } = await request.json().catch(() => ({}));
 
         if (!text) return NextResponse.json({ success: false, error: 'Text required' }, { status: 400 });
 
@@ -45,6 +45,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('readability-enhancer error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

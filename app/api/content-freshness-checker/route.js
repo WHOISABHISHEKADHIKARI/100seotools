@@ -10,7 +10,7 @@ function stripHtmlToText(html) {
 
 export async function POST(request) {
     try {
-        const { title, description } = await request.json(); // description here maps to 'Main Content' per template
+        const { title, description } = await request.json().catch(() => ({})); // description here maps to 'Main Content' per template
 
         const tRaw = title || '';
         const cRaw = description || '';
@@ -78,6 +78,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('content-freshness-checker error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

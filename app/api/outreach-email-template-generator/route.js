@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { recipient_name, topic, my_name } = await request.json();
+        const { recipient_name, topic, my_name } = await request.json().catch(() => ({}));
 
         const r = recipient_name || '[Recipient Name]';
         const t = topic || 'collaboration';
@@ -39,6 +39,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('outreach-email-template-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

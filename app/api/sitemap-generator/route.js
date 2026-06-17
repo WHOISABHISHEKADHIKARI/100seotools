@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { url } = await request.json();
+        const { url } = await request.json().catch(() => ({}));
 
         if (!url) return NextResponse.json({ success: false, error: 'URL required' }, { status: 400 });
 
@@ -12,6 +12,7 @@ export async function POST(request) {
         try {
             parsedUrl = new URL(targetUrl);
         } catch (error) {
+        console.error('sitemap-generator error:', error);
             return NextResponse.json({ success: false, error: 'Valid URL required' }, { status: 400 });
         }
 
@@ -23,6 +24,7 @@ export async function POST(request) {
         try {
             res = await fetch(parsedUrl.toString(), { signal: controller.signal, headers: { 'User-Agent': '100SEOTools-Bot' } });
         } catch (error) {
+        console.error('sitemap-generator error:', error);
             const message = error.name === 'AbortError' ? 'Timed out while fetching URL' : 'Unable to fetch URL';
             return NextResponse.json({ success: false, error: message }, { status: 422 });
         } finally {
@@ -54,6 +56,7 @@ export async function POST(request) {
                     links.add(hrefUrl.toString());
                 }
             } catch (error) {
+        console.error('sitemap-generator error:', error);
                 continue;
             }
         }
@@ -91,6 +94,7 @@ export async function POST(request) {
         });
 
     } catch (error) {
+        console.error('sitemap-generator error:', error);
         return NextResponse.json({ success: false, error: 'Unable to generate sitemap' }, { status: 400 });
     }
 }

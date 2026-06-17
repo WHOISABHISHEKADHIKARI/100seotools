@@ -3,7 +3,7 @@ import { fetchPage, parseHtmlMeta, fetchRobotsTxt, fetchSitemap, normalizeUrl, h
 
 export async function POST(request) {
   try {
-    const { url } = await request.json();
+    const { url } = await request.json().catch(() => ({}));
     const target = normalizeUrl(url);
     if (!target) return NextResponse.json({ success: false, error: 'Valid URL required' }, { status: 400 });
 
@@ -55,6 +55,7 @@ export async function POST(request) {
     checks.forEach((c) => lines.push('  ' + c));
     return NextResponse.json({ success: true, result: lines.join('\n') });
   } catch (err) {
-    return NextResponse.json({ success: false, error: err.message || 'Server Error' }, { status: 500 });
+        console.error('seo-health-score-calculator error:', err);
+    return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
   }
 }

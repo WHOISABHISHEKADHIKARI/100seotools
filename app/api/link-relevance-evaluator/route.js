@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { linkUrl, targetKeyword } = await request.json();
+        const { linkUrl, targetKeyword } = await request.json().catch(() => ({}));
 
         if (!linkUrl || !targetKeyword) return NextResponse.json({ success: false, error: 'URL and Keyword required' }, { status: 400 });
 
@@ -58,6 +58,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
-        return NextResponse.json({ success: false, error: 'Error: ' + error.message }, { status: 500 });
+        console.error('link-relevance-evaluator error:', error);
+        return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

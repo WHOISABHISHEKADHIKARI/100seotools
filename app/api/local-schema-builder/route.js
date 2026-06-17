@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { name, address, city, zip } = await request.json();
+        const { name, address, city, zip } = await request.json().catch(() => ({}));
 
         if (!name) return NextResponse.json({ success: false, error: 'Business Name required' }, { status: 400 });
 
@@ -35,6 +35,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('local-schema-builder error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

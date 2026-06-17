@@ -1,3 +1,4 @@
+"use client";
 import dynamic from 'next/dynamic';
 import { useMemo, useState } from 'react';
 import { ArrowRight, BookOpen, Calculator, CalendarDays, Clock, Sparkles } from 'lucide-react';

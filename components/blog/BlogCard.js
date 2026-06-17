@@ -1,5 +1,4 @@
 "use client";
-import Link from 'next/link';
 import { useMemo, memo } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';

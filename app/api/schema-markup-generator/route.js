@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const inputs = await request.json();
+        const inputs = await request.json().catch(() => ({}));
 
         // Logic ported and simplified from lib/templates.js
         const base = 'https://schema.org';
@@ -107,6 +107,7 @@ export async function POST(request) {
         });
 
     } catch (error) {
+        console.error('schema-markup-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

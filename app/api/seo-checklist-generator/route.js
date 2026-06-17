@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { type } = await request.json();
+        const { type } = await request.json().catch(() => ({}));
 
         const t = (type || '').toLowerCase();
 
@@ -63,6 +63,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('seo-checklist-generator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

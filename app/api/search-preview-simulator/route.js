@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { title, description, url } = await request.json();
+        const { title, description, url } = await request.json().catch(() => ({}));
 
         const t = title || 'Example Title';
         const d = description || 'Example description...';
@@ -22,6 +22,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('search-preview-simulator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

@@ -26,7 +26,7 @@ export async function POST(request) {
             !message.trim()
         ) {
             return NextResponse.json(
-                { error: 'All fields are required' },
+                { success: false, error: 'All fields are required' },
                 { status: 400 }
             );
         }
@@ -35,7 +35,7 @@ export async function POST(request) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             return NextResponse.json(
-                { error: 'Invalid email address' },
+                { success: false, error: 'Invalid email address' },
                 { status: 400 }
             );
         }
@@ -146,7 +146,7 @@ This message was sent from the 100 SEO Tools contact form.
     } catch (error) {
         console.error('Contact form error:', error);
         return NextResponse.json(
-            { error: 'Failed to process your request. Please try again.' },
+            { success: false, error: 'Failed to process your request. Please try again.' },
             { status: 500 }
         );
     }

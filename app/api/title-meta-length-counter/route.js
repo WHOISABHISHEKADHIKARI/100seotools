@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { title, description } = await request.json();
+        const { title, description } = await request.json().catch(() => ({}));
 
         const t = title || '';
         const d = description || '';
@@ -43,6 +43,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('title-meta-length-counter error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

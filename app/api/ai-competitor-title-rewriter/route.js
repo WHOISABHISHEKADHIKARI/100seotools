@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { title } = await request.json();
+        const { title } = await request.json().catch(() => ({}));
 
         if (!title) return NextResponse.json({ success: false, error: 'Title required' }, { status: 400 });
 
@@ -36,6 +36,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('ai-competitor-title-rewriter error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

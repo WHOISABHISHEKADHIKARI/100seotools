@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { text } = await request.json();
+        const { text } = await request.json().catch(() => ({}));
 
         if (!text || text.length < 50) return NextResponse.json({ success: false, error: 'Please enter at least 50 characters.' }, { status: 400 });
 
@@ -46,6 +46,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('ai-content-detector error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }

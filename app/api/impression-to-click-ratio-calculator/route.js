@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { impressions, clicks } = await request.json();
+        const { impressions, clicks } = await request.json().catch(() => ({}));
 
         const imp = parseInt(impressions) || 0;
         const clk = parseInt(clicks) || 0;
@@ -42,6 +42,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, result: output });
 
     } catch (error) {
+        console.error('impression-to-click-ratio-calculator error:', error);
         return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
     }
 }
