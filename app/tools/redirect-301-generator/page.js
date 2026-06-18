@@ -1,10 +1,9 @@
 import ToolLayout from "../../../components/layout/ToolLayout";
-import StructuredData from "../../../components/ui/StructuredData";
 import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSchema } from "../../../lib/schema";
 import ShareActions from "../../../components/ui/ShareActions";
 import BlogSection from "../../../components/blog/BlogSection";
 import { getToolBySlug, getAllToolsMeta } from "../../../tools";
-import { getBaseUrl, siteName } from "../../../lib/site";
+import { getBaseUrl } from "../../../lib/site";
 import { createSocialMetadata } from "../../../lib/socialMetadata";
 import Redirect301GeneratorClient from "./Client";
 import { standardizeToolSeo } from "../../../lib/toolSeo";

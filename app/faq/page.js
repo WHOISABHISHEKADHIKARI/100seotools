@@ -21,11 +21,11 @@ import {
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-  title: 'FAQ - 300+ SEO Tools Questions Answered | Complete Guide 2025',
-  description: 'Comprehensive FAQ with 300+ answers about 100 SEO Tools: features, pricing, privacy, keyword research, backlink analysis, technical SEO, and more.',
+  title: 'FAQ - 100+ SEO Tools Questions Answered | Complete Guide 2025',
+  description: 'Comprehensive FAQ with 100+ answers about 100 SEO Tools: features, pricing, privacy, keyword research, backlink analysis, technical SEO, and more.',
   alternates: { canonical: `${baseUrl}/faq` },
   ...createSocialMetadata({
-    title: 'FAQ - 300+ SEO Tools Questions Answered | 100 SEO Tools',
+    title: 'FAQ - 100+ SEO Tools Questions Answered | 100 SEO Tools',
     description: 'Comprehensive FAQ covering all aspects of 100 SEO Tools platform.',
     url: `${baseUrl}/faq`,
     imageAlt: '100 SEO Tools FAQ',
@@ -111,6 +111,7 @@ export default function FAQPage() {
             <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-white/30" />
             <input
               type="text"
+              aria-label="Search for a topic"
               placeholder="Search for a topic (e.g. 'privacy', 'backlinks')..."
               className="w-full h-16 bg-white/10 border border-white/20 rounded-2xl pl-14 pr-6 text-white placeholder:text-white/30 focus:bg-white/15 focus:ring-4 focus:ring-violet-500/20 outline-none transition-all font-medium"
             />

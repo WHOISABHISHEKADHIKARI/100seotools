@@ -76,7 +76,7 @@ export default async function CategoryPage({ params, searchParams }) {
       '@type': 'SoftwareApplication',
       name: tool.name,
       url: `${baseUrl}/tools/${tool.slug}`,
-      applicationCategory: 'SEO Tool',
+      applicationCategory: 'https://schema.org/WebApplication',
     })),
     breadcrumb: {
       '@type': 'BreadcrumbList',

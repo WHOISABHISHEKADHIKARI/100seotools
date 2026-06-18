@@ -2,13 +2,14 @@ import { getBaseUrl } from '../../lib/site';
 import StructuredData from '../../components/ui/StructuredData';
 import { Scale, FileText, ShieldAlert, CheckCircle, ArrowRight, Clock, Info, HelpCircle } from 'lucide-react';
 import Link from 'next/link';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 
 const baseUrl = getBaseUrl();
 
 export const metadata = {
+  ...createSocialMetadata({ url: `${baseUrl}/terms`, title: 'Terms of Service – 100 SEO Tools | Usage Guidelines', description: 'Read the terms governing your use of 100 SEO Tools. Client-side utilities provided as-is for professional SEO productivity.' }),
   title: 'Terms of Service – 100 SEO Tools | Usage Guidelines',
   description: 'Read the terms governing your use of 100 SEO Tools. Client-side utilities provided as-is for professional SEO productivity.',
-  alternates: { canonical: `${baseUrl}/terms` },
   robots: { index: true, follow: true },
 };
 

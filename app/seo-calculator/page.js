@@ -143,7 +143,7 @@ export default function SEOCalculatorPage() {
           name: 'SEO Calculator',
           description: 'Estimate SEO traffic, keyword value, ROI, cost savings, and revenue projections with beginner‑friendly formulas.',
           url: `${baseUrl}/seo-calculator`,
-          applicationCategory: 'SEO Tool',
+          applicationCategory: 'https://schema.org/WebApplication',
           operatingSystem: 'Web Browser',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
           publisher: { '@type': 'Organization', name: '100 SEO Tools', url: baseUrl }

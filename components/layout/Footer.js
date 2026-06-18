@@ -63,8 +63,10 @@ const Footer = memo(function Footer() {
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="grid h-9 w-9 place-items-center rounded-lg bg-white/10 text-slate-400 transition hover:bg-violet-600 hover:text-white"
-                  aria-label={label}
+                  aria-label={`Follow us on ${label}`}
                 >
                   <Icon className="h-4 w-4" aria-hidden />
                 </a>
@@ -106,15 +108,32 @@ export default Footer;
 function FooterColumn({ title, items }) {
   return (
     <nav aria-label={title}>
-      <h2 className="mb-4 text-sm font-bold text-slate-200">{title}</h2>
+      <h3 className="mb-4 text-sm font-bold text-slate-200">{title}</h3>
       <ul className="space-y-2.5">
-        {items.map(([label, href]) => (
-          <li key={`${title}-${label}`}>
-            <Link href={href} prefetch={false} className="text-sm leading-5 text-slate-500 transition hover:text-violet-300">
-              {label}
-            </Link>
-          </li>
-        ))}
+        {items.map(([label, href]) => {
+          const isExternal = href.startsWith('http');
+          if (isExternal) {
+            return (
+              <li key={`${title}-${label}`}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm leading-5 text-slate-500 transition hover:text-violet-300"
+                >
+                  {label}
+                </a>
+              </li>
+            );
+          }
+          return (
+            <li key={`${title}-${label}`}>
+              <Link href={href} prefetch={false} className="text-sm leading-5 text-slate-500 transition hover:text-violet-300">
+                {label}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

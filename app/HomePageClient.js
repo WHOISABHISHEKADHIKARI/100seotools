@@ -120,9 +120,8 @@ export default function HomePageClient({ initialTools = [] }) {
             100+ Free Tools · No Signup · Built for SEO teams
           </div>
           <h1 className="mx-auto max-w-4xl text-5xl font-extrabold leading-[1.05] tracking-tight md:text-7xl">
-            The <span className="bg-gradient-to-r from-violet-200 via-blue-200 to-cyan-200 bg-clip-text text-transparent">Complete</span>
-            <br />
-            Free SEO Toolkit
+            The Complete Suite of{' '}
+            <span className="block bg-gradient-to-r from-violet-200 via-blue-200 to-cyan-200 bg-clip-text text-transparent">100+ Free SEO Tools</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
             Keyword research, technical SEO, AI content, local search, competitor analysis, schema, links, and performance tools in one fast, free workspace.

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Search, Home, BookOpen, LayoutGrid, ArrowRight } from 'lucide-react';
+import { Home, BookOpen, LayoutGrid, ArrowRight } from 'lucide-react';
 import { getAllBlogPostsPublished } from '../lib/blog-data';
 
 export const metadata = {

@@ -82,6 +82,7 @@ export default function CategoryClient({ items = [], catName, slug, initialPage 
             <button
               onClick={goPrev}
               disabled={currentPage <= 1}
+              aria-label="Previous page"
               className="w-10 h-10 rounded-xl border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-400 disabled:opacity-30 hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -89,6 +90,7 @@ export default function CategoryClient({ items = [], catName, slug, initialPage 
             <button
               onClick={goNext}
               disabled={currentPage >= totalPages}
+              aria-label="Next page"
               className="w-10 h-10 rounded-xl border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-400 disabled:opacity-30 hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
             >
               <ArrowRight className="w-4 h-4" />

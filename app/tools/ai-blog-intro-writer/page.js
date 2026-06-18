@@ -1,10 +1,9 @@
 import ToolLayout from "../../../components/layout/ToolLayout";
 import ToolRunner from "../../../components/tools/ToolRunner";
-import StructuredData from "../../../components/ui/StructuredData";
 import ShareActions from "../../../components/ui/ShareActions";
 import BlogSection from "../../../components/blog/BlogSection";
 import { getToolBySlug, getAllToolsMeta } from "../../../tools";
-import { getBaseUrl, siteName } from "../../../lib/site";
+import { getBaseUrl } from "../../../lib/site";
 import { createSocialMetadata } from "../../../lib/socialMetadata";
 import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSchema } from "../../../lib/schema";
 import { standardizeToolSeo } from "../../../lib/toolSeo";

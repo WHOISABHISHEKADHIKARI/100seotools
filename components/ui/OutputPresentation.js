@@ -153,31 +153,32 @@ export default function OutputPresentation({
           <button
             onClick={handleCopy}
             disabled={!output || isProcessing}
+            aria-label="Copy to clipboard"
             className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white"
-            title="Copy to clipboard"
           >
             {isCopied ? <FiCheck className="w-4 h-4 text-emerald-500" /> : <FiCopy className="w-4 h-4" />}
           </button>
           <button
             onClick={copyAsHtml}
             disabled={!output || isProcessing}
+            aria-label="Copy as HTML"
             className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white"
-            title="Copy as HTML (for WordPress/CMS)"
           >
             <FiFileText className="w-4 h-4" />
           </button>
           <button
             onClick={onDownload}
             disabled={!output || isProcessing}
+            aria-label="Download results"
             className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white"
-            title="Download results"
           >
             <FiDownload className="w-4 h-4" />
           </button>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
+            aria-label={isExpanded ? "Collapse" : "Full Screen"}
+            aria-expanded={isExpanded}
             className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 dark:hover:bg-gray-900 dark:hover:text-white"
-            title={isExpanded ? "Collapse" : "Full Screen"}
           >
             {isExpanded ? <FiMinimize2 className="w-4 h-4" /> : <FiMaximize2 className="w-4 h-4" />}
           </button>

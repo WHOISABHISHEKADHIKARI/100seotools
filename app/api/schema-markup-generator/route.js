@@ -93,7 +93,7 @@ export async function POST(request) {
                     '@type': 'SoftwareApplication',
                     name: name,
                     description: desc,
-                    applicationCategory: 'SEO Tool',
+                    applicationCategory: 'https://schema.org/WebApplication',
                     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
                 };
                 break;

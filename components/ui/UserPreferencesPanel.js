@@ -284,6 +284,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                     />
                     <button
                       onClick={addCustomCategory}
+                      aria-label="Add category"
                       className="px-3 py-2 bg-brand-500 text-white rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
                     >
                       <FiPlus className="w-4 h-4" />
@@ -299,6 +300,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                           {category}
                           <button
                             onClick={() => actions.removeCustomCategory(category)}
+                            aria-label={`Remove ${category}`}
                             className="text-red-500 hover:text-red-700"
                           >
                             <FiX className="w-3 h-3" />
@@ -345,6 +347,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                         <span className="font-medium">{toolId}</span>
                         <button
                           onClick={() => actions.removeFavorite(toolId)}
+                          aria-label={`Remove ${toolId} from favorites`}
                           className="text-red-600 transition-transform will-change-transform hover:scale-[1.01]"
                         >
                           <FiTrash2 className="w-4 h-4" />
@@ -383,6 +386,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                         </div>
                         <button
                           onClick={() => actions.removeFromHistory(item.id)}
+                          aria-label={`Remove ${item.name} from history`}
                           className="text-red-600 transition-transform will-change-transform hover:scale-[1.01]"
                         >
                           <FiTrash2 className="w-4 h-4" />
@@ -442,6 +446,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                         </div>
                         <button
                           onClick={() => actions.removeBookmark(bookmark.id)}
+                          aria-label={`Remove ${bookmark.name} bookmark`}
                           className="text-red-600 transition-transform will-change-transform hover:scale-[1.01]"
                         >
                           <FiTrash2 className="w-4 h-4" />

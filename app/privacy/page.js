@@ -2,13 +2,14 @@ import { getBaseUrl } from '../../lib/site';
 import StructuredData from '../../components/ui/StructuredData';
 import { ShieldCheck, Lock, Eye, FileText, ArrowRight, Info, Clock, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 
 const baseUrl = getBaseUrl();
 
 export const metadata = {
+  ...createSocialMetadata({ url: `${baseUrl}/privacy`, title: 'Privacy Policy – 100 SEO Tools | Your Data Security Matters', description: 'Learn how 100 SEO Tools handles data, privacy, and cookies. We are a browser-based platform and do not store or sell your personal data.' }),
   title: 'Privacy Policy – 100 SEO Tools | Your Data Security Matters',
   description: 'Learn how 100 SEO Tools handles data, privacy, and cookies. We are a browser-based platform and do not store or sell your personal data.',
-  alternates: { canonical: `${baseUrl}/privacy` },
   robots: { index: true, follow: true },
 };
 
