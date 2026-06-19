@@ -25,6 +25,10 @@ Disallow: /api/
 Disallow: /404
 Disallow: /500
 
+# Block service worker and offline page (no SEO value, wastes crawl budget)
+Disallow: /sw.js
+Disallow: /offline
+
 # AI Crawlers - Allow for visibility
 User-agent: GPTBot
 Allow: /

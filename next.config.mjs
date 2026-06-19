@@ -162,11 +162,7 @@ const nextConfig = withBundleAnalyzer({
       source: '/:path*.(jpg|jpeg|png|webp|avif|svg|ico|woff2|css|js)',
       headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
     },
-    // Never cache service worker (must check for updates)
-    {
-      source: '/sw.js',
-      headers: [{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' }],
-    },
+    // Service worker removed — no longer needed
     // Block pagination pages from indexing (critical SEO fix)
     {
       source: '/(p|tp)/:page',

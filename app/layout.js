@@ -5,7 +5,7 @@ const defaultSocialImage = `${baseUrl}${socialPreviewImage}`;
 
 export const metadata = {
   title: '100+ Free SEO Tools - No Signup Required | 100 SEO Tools',
-  description: 'Use 100+ free SEO tools for keyword research, on-page audits, technical SEO, schema, content optimization, and reports. Instant results, no signup.',
+  description: 'Use 100+ free SEO tools for keyword research, on-page audits, technical SEO, schema generation, content optimization, and SEO reports. Instant results, no signup.',
   metadataBase: new URL(baseUrl),
   keywords: ['100 seo tools', 'free seo tools list', 'seo tool comparison', '100 free seo tools', 'free seo toolkit', 'best seo tools online'],
   // Icons / Favicons
@@ -71,6 +71,12 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
+
 import './globals.css';
 import { initPerformanceMonitoring } from '../lib/performance-monitor';
 import Script from 'next/script';
@@ -119,7 +125,6 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" content="#7c3aed" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="icon" href="/icon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
@@ -138,32 +143,7 @@ export default function RootLayout({ children }) {
 
 
 
-        {isProd && (
-          <script dangerouslySetInnerHTML={{
-            __html: `
-            if ('serviceWorker' in navigator) {
-              window.addEventListener('load', () => {
-                const localHost = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
-                if (localHost) {
-                  navigator.serviceWorker.getRegistrations()
-                    .then((registrations) => registrations.forEach((registration) => registration.unregister()))
-                    .catch(() => {});
-                  return;
-                }
-                navigator.serviceWorker.getRegistration()
-                  .then((reg) => {
-                    if (!reg) {
-                      navigator.serviceWorker.register('/sw.js')
-                        .catch(() => {});
-                    }
-                  })
-                  .catch(() => {
-                    navigator.serviceWorker.register('/sw.js').catch(()=>{});
-                  });
-              });
-            }
-          `}} />
-        )}
+        {/* Service worker removed — wastes crawl budget with no SEO benefit */}
       </head>
       <body suppressHydrationWarning className="min-h-screen bg-[#fafbfc] text-slate-900 selection:bg-violet-100 selection:text-violet-900 dark:bg-[#020617] dark:text-slate-100">
         {/* Global WebSite + Organization Schema for SEO */}
