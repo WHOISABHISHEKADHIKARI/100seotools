@@ -10,6 +10,7 @@ export const metadata = {
   ...createSocialMetadata({ url: `${baseUrl}/privacy`, title: 'Privacy Policy – 100 SEO Tools | Your Data Security Matters', description: 'Learn how 100 SEO Tools handles data, privacy, and cookies. We are a browser-based platform and do not store or sell your personal data.' }),
   title: 'Privacy Policy – 100 SEO Tools | Your Data Security Matters',
   description: 'Learn how 100 SEO Tools handles data, privacy, and cookies. We are a browser-based platform and do not store or sell your personal data.',
+  alternates: { canonical: `${baseUrl}/privacy` },
   robots: { index: true, follow: true },
 };
 

@@ -19,6 +19,7 @@ export const metadata = {
   }),
   title: 'AI Content Detection Guide: Identify Machine-Generated Text',
   description: 'Learn proven methods to detect AI-generated content using the latest tools and techniques to ensure content authenticity.',
+  alternates: { canonical: pageUrl },
 };
 
 export default function Page() {

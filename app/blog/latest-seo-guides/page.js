@@ -18,6 +18,7 @@ export const metadata = {
   }),
   title: 'Latest SEO Guides & Tutorials to Master Search Optimization',
   description: 'Explore curated, up-to-date SEO guides and tutorials with AI-assisted analysis, proven strategies, and essential tools — optimized for clean structure and fast performance.',
+  alternates: { canonical: pageUrl },
 };
 
 export default function LatestSEOGuidesPage() {

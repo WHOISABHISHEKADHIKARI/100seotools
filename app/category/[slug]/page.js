@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { FiArrowRight, FiCheckCircle, FiHome, FiLayers, FiStar } from 'react-icons/fi';
 import { getAllBlogPostsPublished } from '../../../lib/blog-data';
 import { getAllToolsMeta } from '../../../tools';
@@ -55,6 +56,10 @@ export default async function CategoryPage({ params, searchParams }) {
   const catFallback = slug.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   const catName = categories.find((category) => slugify(category) === slug) || catFallback;
   const items = tools.filter((tool) => tool.category && slugify(tool.category) === slug);
+  const isKnownCategory = categories.some((category) => slugify(category) === slug);
+  if (!isKnownCategory && items.length === 0) {
+    notFound();
+  }
   const featuredTool = items[0] || null;
   const allPosts = await getAllBlogPostsPublished();
   const blogPosts = allPosts.filter((post) => {

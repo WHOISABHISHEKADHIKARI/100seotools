@@ -148,6 +148,7 @@ const nextConfig = withBundleAnalyzer({
     ];
   },
   rewrites: async () => [
+    { source: '/favicon.ico', destination: '/icon' },
     { source: '/sitemap-blog.xml', destination: '/sitemap-blog/sitemap.xml' },
     { source: '/sitemap-tools.xml', destination: '/sitemap-tools/sitemap.xml' },
     { source: '/sitemap-guides.xml', destination: '/sitemap-guides/sitemap.xml' },
