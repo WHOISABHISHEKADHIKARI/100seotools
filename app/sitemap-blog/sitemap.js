@@ -128,7 +128,7 @@ function getPostChangeFreq(post) {
  */
 export default async function sitemap() {
     const baseUrl = getBaseUrl();
-    const stableDate = new Date('2026-04-25').toISOString();
+    const stableDate = new Date('2026-06-19').toISOString();
 
     // ============================================
     // BLOG INDEX PAGE

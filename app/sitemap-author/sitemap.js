@@ -72,7 +72,7 @@ function validateAuthor(author) {
 export default function sitemap() {
     const baseUrl = getBaseUrl();
     // Use a stable date for static content to avoid daily 'changes' that haven't happened
-    const stableDate = new Date('2026-04-25');
+    const stableDate = new Date('2026-06-19');
 
     // ============================================
     // AUTHOR PAGES CONFIGURATION
