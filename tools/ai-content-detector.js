@@ -7,6 +7,50 @@ const aiContentDetector = {
   "metaDescription": "Is your content AI-generated? Use our free detector to scan text for AI signatures. Maintain content authenticity and protect your rankings from search engine AI filters.",
   "keywords": ["ai content detector", "chatgpt detector", "ai writing detection", "original content checker", "ai seo tool"],
   "template": "aiContentDetector",
-  "api": true
+  "api": true,
+  "content": {
+    "introduction": "As AI writing tools become increasingly sophisticated, distinguishing between human and AI-generated content has become critical for content authenticity, academic integrity, and search engine compliance. The AI Content Detector analyzes text for patterns characteristic of AI-generated writing, providing probability scores and detailed analysis that helps content creators, editors, and SEO professionals maintain authenticity standards.",
+    "whatItDoes": "This tool scans text and analyzes it against known patterns of AI-generated content. It examines perplexity (how predictable the text is), burstiness (variation in sentence structure and complexity), vocabulary patterns, and statistical anomalies that distinguish AI writing from human composition. The detector produces a probability score indicating the likelihood that content was AI-generated, highlights specific sections that show AI patterns, and provides detailed analysis of why certain passages triggered detection.",
+    "whyItMatters": "Search engines increasingly evaluate content authenticity as a ranking factor. Content that appears AI-generated may face penalties or reduced visibility in search results. Beyond SEO, academic institutions, publishers, and clients increasingly require content authenticity verification. The AI Content Detector helps you verify original content before publishing, identify AI-generated submissions in editorial workflows, and maintain content quality standards that protect your reputation and search rankings. Understanding what makes content appear AI-generated also helps you write more naturally if using AI tools as a starting point.",
+    "benefits": [
+      "Provides probability scoring that quantifies the likelihood content was AI-generated",
+      "Highlights specific text passages that show characteristic AI writing patterns",
+      "Analyzes perplexity and burstiness metrics that distinguish human from AI composition",
+      "Offers detailed explanations of why certain sections triggered detection alerts",
+      "Enables batch analysis for verifying content authenticity across large content libraries",
+      "Establishes content authenticity baselines for editorial and publishing workflows"
+    ],
+    "useCases": [
+      "An editor verifying content authenticity before publishing on a quality-focused publication",
+      "An SEO professional ensuring website content maintains human-written standards for search compliance",
+      "A teacher or professor checking student submissions for AI-generated text",
+      "A content manager auditing existing content libraries for AI-generated passages that need revision",
+      "A freelance writer demonstrating content authenticity to clients who require human-written work"
+    ],
+    "bestPractices": [
+      "Analyze content in context—short passages may trigger false positives while longer texts provide more reliable detection",
+      "Use probability scores as one signal alongside editorial judgment rather than relying solely on automated detection",
+      "Check content that has been heavily edited or rewritten, as these may show mixed human-AI patterns",
+      "Establish baseline scores for your typical content to identify anomalies more reliably in future submissions",
+      "Combine AI detection with plagiarism checking for comprehensive content authenticity verification",
+      "If using AI as a drafting tool, run detection after human editing to ensure the final version reads naturally"
+    ],
+    "exampleResults": "Sample Output:\n\nAI Content Detection Analysis\n\nOverall Score: 23% Probability AI-Generated (Likely Human-Written)\n\nSection-by-Section Analysis:\n\nParagraph 1 (Score: 12% AI):\n\"The rapid growth of artificial intelligence has transformed how businesses approach content creation.\" - Low AI probability. Natural variation in sentence structure.\n\nParagraph 2 (Score: 67% AI):\n\"Furthermore, it is important to note that AI-generated content can be identified through various linguistic markers and statistical patterns that are characteristic of machine learning models.\" - High AI probability. Formulaic structure, predictable phrasing, and lack of burstiness.\n\nParagraph 3 (Score: 18% AI):\n\"We saw this firsthand when our team stopped using AI for blog posts and engagement jumped 40%.\" - Low AI probability. Personal anecdote with natural voice.\n\nKey Indicators Detected:\n- Perplexity: 34 (AI average: 28 | Human average: 42)\n- Burstiness: 0.31 (AI average: 0.25 | Human average: 0.52)\n- Vocabulary diversity: 0.68 (Typical human: 0.72)\n- Sentence length variation: Low (Suggests AI origin in flagged sections)",
+    "relatedTools": ["meta-tag-comparison-tool", "competitor-summary-report-creator", "location-based-content-idea-generator", "review-response-generator"],
+    "faqs": [
+      {
+        "q": "Can AI-generated content pass this detector if it is well-written?",
+        "a": "Well-edited AI content can reduce detection scores, but sophisticated detectors analyze statistical patterns that persist even after editing. Heavily rewritten AI content may score lower, but completely AI-generated text often retains subtle patterns in vocabulary choice, sentence rhythm, and predictive structure. The detector provides probability rather than certainty, so use it alongside human editorial judgment."
+      },
+      {
+        "q": "What does the perplexity score mean in the detection results?",
+        "a": "Perplexity measures how predictable the text is. AI-generated content tends to have lower perplexity because language models predict likely next words, resulting in more formulaic text. Human writing typically shows higher perplexity because people make unexpected word choices and express ideas in less predictable ways. A perplexity score significantly below the human average suggests AI involvement."
+      },
+      {
+        "q": "Should I use this tool to check content I wrote with AI assistance?",
+        "a": "Yes, this tool helps you verify that your final content reads naturally regardless of how it was created. If you used AI as a starting point and then heavily edited, expanded, and personalized the content, the detector should show low AI probability. If scores remain high, consider further editing to add personal voice, specific examples, and natural language variations that make the content unmistakably human."
+      }
+    ]
+  }
 };
 export default aiContentDetector;
