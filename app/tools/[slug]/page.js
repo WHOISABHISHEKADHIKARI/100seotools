@@ -62,16 +62,30 @@ export default async function ToolPage({ params }) {
   };
 
   const softwareLd = generateSoftwareApplicationSchema(tool, baseUrl);
-  const howToLd = generateHowToSchema(tool, baseUrl);
   const guide = getToolGuide(tool);
+  const howToLd = generateHowToSchema(tool, baseUrl, guide.howToSteps);
   const faqLd = Array.isArray(guide.faqs) && guide.faqs.length > 0 ? generateFAQSchema(guide.faqs, baseUrl) : null;
+  const webPageLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${baseUrl}/tools/${tool.slug}#webpage`,
+    'name': tool.name.split('|')[0].trim(),
+    'description': tool.description,
+    'url': `${baseUrl}/tools/${tool.slug}`,
+    'isPartOf': { '@id': `${baseUrl}/#website` },
+    'inLanguage': 'en-US',
+    'speakable': {
+      '@type': 'SpeakableSpecification',
+      'cssSelector': ['#intro-heading', '#how-to-heading', '#faq-heading']
+    }
+  };
 
   return (
     <ToolLayout
       tool={tool}
       formFirst={true}
       relatedTools={relatedTools}
-      extraSchema={[breadcrumbLd, softwareLd, howToLd, faqLd].filter(Boolean)}
+      extraSchema={[breadcrumbLd, softwareLd, howToLd, faqLd, webPageLd].filter(Boolean)}
     >
       <ToolRunner tool={tool} />
     </ToolLayout>

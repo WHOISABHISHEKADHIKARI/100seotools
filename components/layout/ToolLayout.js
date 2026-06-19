@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { getToolGuide, getInstructionEntry } from '../../lib/guides';
+import { makeToolSeoTitle } from '../../lib/toolSeo';
+import { getAuthor, getBaseUrl } from '../../lib/site';
 import StructuredData from '../ui/StructuredData';
 import ErrorBoundary from './ErrorBoundary';
-import { ArrowRight, BookOpen, CheckCircle, Shield, Zap } from 'lucide-react';
-import { getCategoryDetail, shortToolName, visualColors } from '../tools/SeoVisuals';
+import { ArrowRight, BookOpen, CheckCircle, Shield, Zap, User, Calendar } from 'lucide-react';
+import { getCategoryDetail, shortToolName, visualColors, getMonthlyUse } from '../tools/SeoVisuals';
 
 export default function ToolLayout({ tool, children, relatedTools = [], extraSchema = [] }) {
   const guide = getToolGuide(tool);
@@ -11,7 +13,18 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
   const detail = getCategoryDetail(tool.category);
   const Icon = detail.icon;
   const color = visualColors[detail.color] || visualColors.violet;
-  const displayName = shortToolName(tool.name);
+  const displayName = (() => {
+    const seoTitle = makeToolSeoTitle(tool);
+    // For pipe-separated titles like "Meta Tag Generator | Free SEO Meta Tag Creator Tool"
+    // Use the full title if it's under 60 chars (optimal H1 length)
+    if (seoTitle.length <= 60) return seoTitle;
+    // For dash-separated titles like "Free Meta Tag Generator - Create Google & Social Tags"
+    // Use just the tool name part before the dash
+    const dashBase = seoTitle.split(/\s*[-–—]\s*/)[0].trim();
+    if (dashBase.length >= 10 && dashBase.length <= 60) return dashBase;
+    // Fallback
+    return shortToolName(tool.name);
+  })();
 
   const guideSubpages = [
     ['How to Use', '#how-to-heading', 'Step-by-step workflow'],
@@ -58,6 +71,8 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{tool.category}</span>
                   <span className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
                   <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300">Free, no signup</span>
+                  <span className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
+                  <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">{getMonthlyUse(0)}+ uses/mo</span>
                 </div>
                 <h1 className="text-3xl font-extrabold tracking-tight text-slate-950 md:text-5xl dark:text-white">{displayName}</h1>
               </div>
@@ -112,6 +127,33 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
         </div>
       </div>
 
+      <div className="rounded-2xl border border-indigo-100 bg-gradient-to-br from-indigo-50/50 to-white p-5 dark:border-indigo-500/20 dark:from-indigo-500/5 dark:to-transparent md:p-7">
+        <h2 className="mb-4 text-lg font-extrabold text-slate-900 dark:text-white">Why choose this tool?</h2>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="flex gap-3">
+            <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-500" />
+            <div>
+              <p className="text-sm font-bold text-slate-900 dark:text-white">100% Free</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">No signup, no limits, no hidden costs</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <Shield className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-500" />
+            <div>
+              <p className="text-sm font-bold text-slate-900 dark:text-white">Privacy First</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">All processing happens in your browser</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <Zap className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
+            <div>
+              <p className="text-sm font-bold text-slate-900 dark:text-white">Instant Results</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">No waiting, no server processing needed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div id="tool-form" className="scroll-mt-20">
         <div className="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-gray-900">
           <div className="p-4 sm:p-5 md:p-6">
@@ -144,6 +186,16 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
               <section aria-labelledby="intro-heading" className="space-y-3">
                 <h2 id="intro-heading" className="text-2xl font-extrabold text-slate-900 dark:text-white">Introduction</h2>
                 <p className="leading-7 text-slate-600 dark:text-slate-300">{guide.introduction}</p>
+                <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-500 dark:text-slate-400">
+                  <span className="inline-flex items-center gap-1.5">
+                    <User className="h-3.5 w-3.5" aria-hidden />
+                    Written by {getAuthor(getBaseUrl()).name}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Calendar className="h-3.5 w-3.5" aria-hidden />
+                    Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </span>
+                </div>
               </section>
 
               <div className="grid gap-6 sm:grid-cols-2">
@@ -211,6 +263,25 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                       </li>
                     ))}
                   </ul>
+                </section>
+              )}
+
+              {relatedItems.length > 0 && (
+                <section className="space-y-3 border-t border-slate-100 pt-7 dark:border-white/5">
+                  <h2 className="scroll-mt-24 text-xl font-extrabold text-slate-900 dark:text-white">Related tools</h2>
+                  <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">Explore more tools in the same category to build a complete SEO workflow:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {relatedItems.map((item) => (
+                      <Link
+                        key={item.slug}
+                        href={`/tools/${item.slug}`}
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-700 transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:border-indigo-500/30 dark:hover:bg-indigo-500/10 dark:hover:text-indigo-300"
+                      >
+                        {item.name}
+                        <ArrowRight className="h-3 w-3" />
+                      </Link>
+                    ))}
+                  </div>
                 </section>
               )}
             </div>
