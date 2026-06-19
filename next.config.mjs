@@ -123,8 +123,8 @@ const nextConfig = withBundleAnalyzer({
       { source: '/tools/:slug-how-to-use', destination: '/tools/:slug', permanent: true },
 
       // Fix 404s for numbered guide variants (guide-1, guide-2, guide-3) -> base guide
-      // Pattern: /blog/:slug-guide-:number -> /blog/:slug-guide
-      { source: '/blog/:slug(.*)-guide-:number(\\d+)', destination: '/blog/:slug-guide', permanent: true },
+      // Pattern: /blog/:slug-guide-N (1-2 digit number only, not years like -2024)
+      { source: '/blog/:slug-guide-:number(\\d{1,2})$', destination: '/blog/:slug-guide', permanent: true },
 
       // Redirect Google My Business Optimization Helper Guide to home page
       { source: '/blog/google-my-business-optimization-helper-guide-:number(\\d+)', destination: '/', permanent: true },
