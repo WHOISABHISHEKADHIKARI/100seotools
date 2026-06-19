@@ -8,7 +8,7 @@ import { categoryDetails, getCategoryDetail, getCategoryHref, visualColors } fro
 
 export const metadata = {
   title: 'Free SEO Tools by Category | Keyword Research, Audit & More',
-  description: 'Explore our complete collection of free SEO tools organized by category. Find the right tools for keyword research, on-page SEO, technical analysis, content optimization, and link building.',
+  description: 'Explore 100+ free SEO tools by category: keyword research, on-page SEO, technical analysis, content optimization, and link building.',
   keywords: ['seo tools list', 'seo tools by category', 'free seo tools', 'keyword research tools', 'on-page seo tools', 'technical seo tools', 'link building tools', 'content optimization tools', '100 seo tools'],
   alternates: { canonical: `${getBaseUrl()}/category` },
   ...createSocialMetadata({

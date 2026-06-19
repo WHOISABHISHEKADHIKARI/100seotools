@@ -6,14 +6,14 @@ import StructuredData from '../../components/ui/StructuredData';
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-  title: 'Free SEO Calculator – Measure Keyword Density, ROI, and Traffic Instantly',
-  description: 'Use our free SEO Calculator to measure keyword density, ROI, traffic, and authority instantly. A part of 100+ free SEO tools for better Google and Bing optimization.',
-  keywords: 'seo calculator, free seo tools, keyword density checker, seo roi calculator, domain authority, seo analyzer, traffic estimator, seo audit, seo score checker, google seo, bing seo',
+  title: 'Free SEO Calculator - ROI, Traffic & Keyword Analysis',
+  description: 'Use our free SEO Calculator to measure keyword density, ROI, traffic, and authority instantly. Part of 100+ free SEO tools.',
+  keywords: 'seo calculator, free seo tools, keyword density checker, seo roi calculator, domain authority, seo analyzer, traffic estimator, seo audit, seo score checker',
   robots: 'index, follow',
   alternates: { canonical: `${baseUrl}/seo-calculator` },
   openGraph: {
-    title: 'Free SEO Calculator – Measure Keyword Density, ROI, and Traffic Instantly',
-    description: 'Use our free SEO Calculator to measure keyword density, ROI, traffic, and authority instantly. A part of 100+ free SEO tools for better Google and Bing optimization.',
+    title: 'Free SEO Calculator - ROI, Traffic & Keyword Analysis',
+    description: 'Use our free SEO Calculator to measure keyword density, ROI, traffic, and authority instantly. Part of 100+ free SEO tools.',
     type: 'article',
     url: `${baseUrl}/seo-calculator`,
     images: [{

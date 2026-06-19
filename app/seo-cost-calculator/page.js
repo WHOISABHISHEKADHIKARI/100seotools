@@ -9,7 +9,7 @@ export const revalidate = 3600;
 
 export const metadata = {
   title: 'SEO Cost Calculator | Free SEO Pricing Estimator',
-  description: 'Estimate SEO costs with a free calculator. Understand pricing factors: content, keyword research, link building, technical SEO, on-page optimization, audits, reporting, and tools. Plan monthly or project budgets with examples and benchmarks.',
+  description: 'Estimate SEO costs with a free calculator. Understand pricing for content, keyword research, link building, technical SEO, and reporting.',
   alternates: { canonical: `${baseUrl}/seo-cost-calculator` },
   keywords: [
     'seo cost calculator',

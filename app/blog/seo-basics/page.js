@@ -11,7 +11,7 @@ export const dynamic = 'force-static';
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-    title: 'SEO Basics 2026: Complete Beginner\'s Guide to Search Engine Optimization',
+    title: 'SEO Basics: Complete Beginner\'s Guide to SEO',
     description:
         'Master SEO fundamentals with our comprehensive 2026 guide. Learn on-page optimization, technical SEO, link building, keyword research, and content strategy. Free tools included.',
     keywords: [

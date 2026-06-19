@@ -220,7 +220,6 @@ export default async function Page({ params, searchParams }) {
           <div className="grid lg:grid-cols-[1fr_300px] gap-8 items-start">
             <article className="min-w-0 space-y-8 rounded-[1.75rem] border border-white/70 bg-white/95 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)] ring-1 ring-slate-900/[0.03] transition-shadow duration-300 hover:shadow-[0_28px_90px_rgba(15,23,42,0.11)] md:p-9 dark:border-white/10 dark:bg-white/[0.04]">
       <header className="sr-only">
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{post.title}</h1>
         <p className="text-gray-700 dark:text-gray-300">{post.description}</p>
         <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
           <span>{new Date(post.datePublished).toLocaleDateString()}</span>

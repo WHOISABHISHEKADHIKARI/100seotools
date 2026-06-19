@@ -10,15 +10,15 @@ const pageUrl = `${baseUrl}/blog/ai-content-detection-guide-2024`;
 
 export const metadata = {
   ...createSocialMetadata({
-    title: 'AI Content Detection: Complete 2024 Guide to Identifying Machine-Generated Text',
-    description: 'Learn proven methods to detect AI-generated content using the latest tools and techniques to ensure content authenticity in 2024.',
+    title: 'AI Content Detection Guide: Identify Machine-Generated Text',
+    description: 'Learn proven methods to detect AI-generated content using the latest tools and techniques to ensure content authenticity.',
     url: pageUrl,
     type: 'article',
     image: '/blog-images/ai-content-detection-guide-2024.png',
     imageAlt: 'AI content detection tutorial hero image',
   }),
-  title: 'AI Content Detection: Complete 2024 Guide to Identifying Machine-Generated Text',
-  description: 'Learn proven methods to detect AI-generated content using the latest tools and techniques to ensure content authenticity in 2024.',
+  title: 'AI Content Detection Guide: Identify Machine-Generated Text',
+  description: 'Learn proven methods to detect AI-generated content using the latest tools and techniques to ensure content authenticity.',
 };
 
 export default function Page() {

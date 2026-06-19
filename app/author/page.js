@@ -7,9 +7,8 @@ import { getAuthor, getBaseUrl } from '../../lib/site';
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-    title: 'Abhishek Adhikari - Entrepreneur, SEO Expert, Full-Stack Developer & Tech Consultant in Nepal | 100SEOTools Creator',
-    description: 'Meet Abhishek Adhikari - Award-winning Entrepreneur, SEO Expert, Full-Stack Developer, and Tech Consultant with 22+ years of expertise. Creator of 100SEOTools, Founder of Himalaya Krishi organic farming, and Delta Engineering Solutions. Specializing in SEO optimization, UI/UX design, agri-tech innovation, and sustainable digital solutions in Nepal.',
-    keywords: 'Abhishek Adhikari, Abhishek Adhikari Nepal, Tech Consultant Nepal, SEO Expert Nepal, SEO Intern Hashtag Web Solution, Agri-Tech Developer, UI/UX Designer Nepal, Entrepreneur Nepal, Himalaya Krishi, Organic Farming Nepal, Web Developer Nepal, Software Engineer Nepal, Delta Engineering Solutions, React Developer, PHP Developer, Laravel Expert, Python Automation, Full-Stack Developer Nepal, Sustainable Technology, Search Engine Optimization Nepal, 100SEOTools, Free SEO Tools, Digital Marketing Expert Nepal, Manahari Nepal, Tribhuvan University',
+    title: 'Abhishek Adhikari - SEO Expert & Tech Consultant | 100 SEO Tools',
+    description: 'Abhishek Adhikari is an SEO expert, full-stack developer, and creator of 100+ free SEO tools at 100SEOTools. 22+ years of expertise in SEO, UI/UX, and agri-tech innovation in Nepal.',
     authors: [{ name: 'Abhishek Adhikari', url: `${baseUrl}/author` }],
     creator: 'Abhishek Adhikari',
     publisher: '100SEOTools',

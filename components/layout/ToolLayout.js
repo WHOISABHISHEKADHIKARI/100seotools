@@ -164,7 +164,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
               </div>
 
               <section className="space-y-4 border-t border-slate-100 pt-7 dark:border-white/5">
-                <h3 id="how-to-heading" className="scroll-mt-24 text-lg font-bold text-slate-900 dark:text-white">How to use it well</h3>
+                <h2 id="how-to-heading" className="scroll-mt-24 text-xl font-extrabold text-slate-900 dark:text-white">How to use it well</h2>
                 <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">{guide.howToUse}</p>
                 {Array.isArray(guide.howToSteps) && guide.howToSteps.length > 0 && (
                   <div className="grid gap-3 sm:grid-cols-2">
@@ -185,11 +185,32 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                   <div className="divide-y divide-slate-100 dark:divide-white/5">
                     {guide.faqs.map((faq, index) => (
                       <div key={index} className="py-4 first:pt-0">
-                        <h4 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{faq.q}</h4>
+                        <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{faq.q}</h3>
                         <p className="text-sm leading-7 text-slate-500 dark:text-slate-400">{faq.a}</p>
                       </div>
                     ))}
                   </div>
+                </section>
+              )}
+
+              {guide.exampleResults && (
+                <section className="space-y-3 border-t border-slate-100 pt-7 dark:border-white/5">
+                  <h2 className="scroll-mt-24 text-xl font-extrabold text-slate-900 dark:text-white">Example output</h2>
+                  <pre className="overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs leading-6 text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 whitespace-pre-wrap">{guide.exampleResults}</pre>
+                </section>
+              )}
+
+              {Array.isArray(guide.bestPractices) && guide.bestPractices.length > 0 && (
+                <section className="space-y-3 border-t border-slate-100 pt-7 dark:border-white/5">
+                  <h2 className="scroll-mt-24 text-xl font-extrabold text-slate-900 dark:text-white">Best practices</h2>
+                  <ul className="space-y-2">
+                    {guide.bestPractices.map((bp, index) => (
+                      <li key={index} className="flex gap-2 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                        <CheckCircle className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                        <span>{bp}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </section>
               )}
             </div>
@@ -222,6 +243,20 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                     <li key={index} className="flex gap-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
                       <CheckCircle className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-500" />
                       <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {Array.isArray(guide.useCases) && guide.useCases.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900">
+                <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.15em] text-slate-400">Use cases</h3>
+                <ul className="space-y-3">
+                  {guide.useCases.slice(0, 5).map((uc, index) => (
+                    <li key={index} className="flex gap-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                      <Zap className="mt-1 h-4 w-4 flex-shrink-0 text-amber-500" />
+                      <span>{uc}</span>
                     </li>
                   ))}
                 </ul>

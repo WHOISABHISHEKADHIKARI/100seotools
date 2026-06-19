@@ -127,7 +127,7 @@ export default function TermsPage() {
                     within your own projects.
                   </p>
                   <div className="bg-violet-50 dark:bg-violet-500/10 rounded-2xl p-6 border border-violet-100 dark:border-violet-500/20 not-prose">
-                    <h4 className="text-sm font-black text-violet-900 dark:text-violet-400 mb-3 uppercase tracking-wider">Prohibited Actions</h4>
+                    <h3 className="text-sm font-black text-violet-900 dark:text-violet-400 mb-3 uppercase tracking-wider">Prohibited Actions</h3>
                     <ul className="grid sm:grid-cols-2 gap-4 list-none p-0">
                       {[
                         'Automated scraping of tool outputs',

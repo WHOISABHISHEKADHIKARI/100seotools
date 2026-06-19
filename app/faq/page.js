@@ -21,8 +21,8 @@ import {
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-  title: 'FAQ - 100+ SEO Tools Questions Answered | Complete Guide 2025',
-  description: 'Comprehensive FAQ with 100+ answers about 100 SEO Tools: features, pricing, privacy, keyword research, backlink analysis, technical SEO, and more.',
+  title: 'FAQ - 100+ SEO Tools Questions Answered | Complete Guide',
+  description: 'Comprehensive FAQ with answers about 100 SEO Tools: features, pricing, privacy, keyword research, backlink analysis, and technical SEO.',
   alternates: { canonical: `${baseUrl}/faq` },
   ...createSocialMetadata({
     title: 'FAQ - 100+ SEO Tools Questions Answered | 100 SEO Tools',
