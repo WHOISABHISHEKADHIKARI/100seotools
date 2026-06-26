@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { Search, X } from 'lucide-react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { ArrowUp, Search, X } from 'lucide-react';
 
 export default function StickySearchBar({ onSearch }) {
   const [visible, setVisible] = useState(false);
   const [query, setQuery] = useState('');
+  const [focused, setFocused] = useState(false);
   const inputRef = useRef(null);
   const ticking = useRef(false);
 
@@ -24,20 +25,31 @@ export default function StickySearchBar({ onSearch }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
     if (onSearch) onSearch(query);
     const toolSection = document.getElementById('tools');
     if (toolSection) {
       toolSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, [query, onSearch]);
 
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     setQuery('');
     if (onSearch) onSearch('');
     inputRef.current?.focus();
-  };
+  }, [onSearch]);
 
   return (
     <div
@@ -49,29 +61,50 @@ export default function StickySearchBar({ onSearch }) {
     >
       <div className="mx-auto max-w-3xl px-4 py-3 sm:px-6">
         <form onSubmit={handleSubmit} className="relative">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden />
+          <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden />
           <input
             ref={inputRef}
             type="text"
             value={query}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
             onChange={(e) => {
               setQuery(e.target.value);
               if (onSearch) onSearch(e.target.value);
             }}
             placeholder="Search all 100+ SEO tools..."
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-10 text-sm text-slate-900 placeholder-slate-400 transition focus:border-violet-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-violet-200 dark:border-white/10 dark:bg-gray-900 dark:text-white dark:placeholder-slate-500 dark:focus:border-violet-500 dark:focus:ring-violet-500/30"
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-24 text-base text-slate-900 placeholder-slate-400 shadow-sm transition-all focus:bg-white focus:outline-none dark:border-white/10 dark:bg-gray-900 dark:text-white dark:placeholder-slate-500 dark:focus:bg-gray-800"
+            style={{
+              borderColor: focused ? 'rgb(139, 92, 246)' : undefined,
+              boxShadow: focused ? '0 4px 20px rgba(139, 92, 246, 0.15), 0 0 0 2px rgba(139, 92, 246, 0.25)' : '0 1px 3px rgba(0,0,0,0.05)',
+            }}
             aria-label="Search SEO tools"
           />
-          {query && (
-            <button
-              type="button"
-              onClick={handleClear}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-              aria-label="Clear search"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          )}
+          <div className="absolute right-3 top-1/2 flex -translate-y-1/2 items-center gap-1.5">
+            {query ? (
+              <>
+                <button
+                  type="submit"
+                  className="flex h-7 w-7 items-center justify-center rounded-lg bg-violet-600 text-white transition hover:bg-violet-700 active:scale-95"
+                  aria-label="Search"
+                >
+                  <ArrowUp className="h-3.5 w-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleClear}
+                  className="flex h-7 w-7 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-white/10 dark:hover:text-slate-300"
+                  aria-label="Clear search"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              </>
+            ) : (
+              <kbd className="hidden rounded-md border border-slate-200 bg-slate-100 px-1.5 py-0.5 text-[11px] font-medium text-slate-400 sm:inline-block dark:border-white/10 dark:bg-white/5 dark:text-slate-500">
+                ⌘K
+              </kbd>
+            )}
+          </div>
         </form>
       </div>
     </div>
