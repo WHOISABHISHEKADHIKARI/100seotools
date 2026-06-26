@@ -72,9 +72,18 @@ export default function AboutPage() {
 
   const faqSchema = generateFAQSchema(faqs);
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: 'About', item: `${baseUrl}/about` },
+    ]
+  };
+
   return (
     <div className="bg-[#fafbfc] dark:bg-[#020617] min-h-screen">
-      <StructuredData data={[aboutSchema, faqSchema]} />
+      <StructuredData data={[aboutSchema, faqSchema, breadcrumbSchema]} />
 
       {/* ── PREMIUM HERO ── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white pt-20 pb-24">
@@ -112,6 +121,14 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
+        <ol className="flex flex-wrap items-center gap-1.5">
+          <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
+          <li aria-hidden="true">/</li>
+          <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">About</li>
+        </ol>
+      </nav>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 -mt-10 relative z-10">
         <div className="bg-white dark:bg-gray-900 rounded-3xl border border-slate-100 dark:border-white/10 shadow-2xl p-8 md:p-12">

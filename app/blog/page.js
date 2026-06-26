@@ -39,47 +39,95 @@ export default async function BlogPage({ searchParams }) {
   const featuredPost = visiblePosts[0] || posts[0];
   const guidePosts = getToolGuidePosts(posts);
 
-  const breadcrumbLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/` },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` },
-    ],
-  };
+  const fallbackImage = `${baseUrl}/og-image.jpg`;
 
-  const collectionLd = {
+  const graphLd = {
     '@context': 'https://schema.org',
-    '@type': 'Blog',
-    name: '100 SEO Tools Blog - Free SEO Guides & Tutorials 2026',
-    description: 'Comprehensive SEO guides, tutorials, and best practices. Learn keyword research, on-page optimization, technical SEO, link building, and AI-powered SEO strategies.',
-    url: `${baseUrl}/blog`,
-    publisher: {
-      '@type': 'Organization',
-      name: '100 SEO Tools',
-      url: baseUrl,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/` },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` },
+        ],
       },
-    },
-    blogPost: visiblePosts.slice(0, 50).map((post) => ({
-      '@type': 'BlogPosting',
-      headline: post.title,
-      description: post.description,
-      datePublished: post.datePublished,
-      author: { '@type': 'Organization', name: '100 SEO Tools' },
-      url: `${baseUrl}/blog/${post.slug}`,
-      articleSection: post.category,
-    })),
+      {
+        '@type': 'Blog',
+        name: '100 SEO Tools Blog - Free SEO Guides & Tutorials 2026',
+        description: 'Comprehensive SEO guides, tutorials, and best practices. Learn keyword research, on-page optimization, technical SEO, link building, and AI-powered SEO strategies.',
+        url: `${baseUrl}/blog`,
+        publisher: {
+          '@type': 'Organization',
+          name: '100 SEO Tools',
+          url: baseUrl,
+          logo: {
+            '@type': 'ImageObject',
+            url: `${baseUrl}/logo.png`,
+          },
+        },
+        blogPost: visiblePosts.slice(0, 50).map((post) => ({
+          '@type': 'BlogPosting',
+          headline: post.title,
+          description: post.description,
+          image: post.image || (post.slug ? `${baseUrl}/blog-images/${post.slug}.png` : fallbackImage),
+          datePublished: post.datePublished,
+          dateModified: post.dateModified || post.datePublished,
+          author: {
+            '@type': 'Person',
+            name: 'Abhishek Adhikari',
+            url: `${baseUrl}/author`,
+            sameAs: 'https://www.linkedin.com/in/whoisabhishekadhikari/'
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: '100 SEO Tools',
+            url: baseUrl,
+            logo: {
+              '@type': 'ImageObject',
+              url: `${baseUrl}/logo.png`,
+            },
+          },
+          url: `${baseUrl}/blog/${post.slug}`,
+          articleSection: post.category,
+          inLanguage: 'en-US',
+        })),
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'What are the best free SEO tools?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '100 SEO Tools offers 100+ free SEO tools for keyword research, on-page optimization, technical SEO, schema generation, backlink analysis, content optimization, and AI-powered SEO — all browser-based with no signup required.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'How do I learn SEO?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Start with the SEO guides on this blog covering keyword research, on-page SEO, technical SEO, link building, and AI-powered strategies. Each guide pairs with free tools from the 100 SEO Tools toolkit for hands-on practice.'
+            }
+          }
+        ]
+      }
+    ]
   };
 
   return (
     <>
-      <StructuredData data={breadcrumbLd} />
-      <StructuredData data={collectionLd} />
+      <StructuredData data={graphLd} />
 
-      <main className="min-h-screen bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
+      <main role="main" className="min-h-screen bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
+        <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 text-sm text-slate-500 dark:text-slate-400">
+          <ol className="flex flex-wrap items-center gap-1.5">
+            <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
+            <li aria-hidden="true">/</li>
+            <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">Blog</li>
+          </ol>
+        </nav>
         <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-b border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#eef2ff_100%)] dark:border-white/10 dark:bg-[linear-gradient(135deg,#020617_0%,#111827_100%)]">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
             <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
@@ -89,7 +137,7 @@ export default async function BlogPage({ searchParams }) {
                   SEO Research Library
                 </div>
                 <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 dark:text-white md:text-6xl">
-                  Practical SEO guides with a clear path from insight to action.
+                  SEO Blog &mdash; Free SEO Guides with a Clear Path from Insight to Action
                 </h1>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300 md:text-lg">
                   Browse focused tutorials, strategy notes, and workflow playbooks written for marketers who need useful decisions, not noisy dashboards.
@@ -144,16 +192,35 @@ export default async function BlogPage({ searchParams }) {
                   <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300 md:text-base">
                     {featuredPost.description}
                   </p>
-                  <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-slate-500 dark:text-slate-400">
-                    <span className="inline-flex items-center gap-2">
-                      <CalendarDays className="h-4 w-4" aria-hidden />
-                      {cleanDate(featuredPost.datePublished)}
-                    </span>
-                    <span className="inline-flex items-center gap-2">
-                      <Clock className="h-4 w-4" aria-hidden />
-                      {featuredPost.readTimeMinutes || 6} min read
-                    </span>
-                  </div>
+                    <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-slate-500 dark:text-slate-400">
+                      <span className="inline-flex items-center gap-2">
+                        <CalendarDays className="h-4 w-4" aria-hidden />
+                        {cleanDate(featuredPost.datePublished)}
+                      </span>
+                      <span className="inline-flex items-center gap-2">
+                        <Clock className="h-4 w-4" aria-hidden />
+                        {featuredPost.readTimeMinutes || 6} min read
+                      </span>
+                      <span className="inline-flex items-center gap-2 text-slate-400">
+                        <span aria-hidden>by</span>
+                        <a
+                          href="/author"
+                          rel="author"
+                          className="font-medium text-slate-700 underline-offset-2 hover:text-indigo-700 hover:underline dark:text-slate-300 dark:hover:text-indigo-200"
+                        >
+                          Abhishek Adhikari
+                        </a>
+                        <a
+                          href="https://www.linkedin.com/in/whoisabhishekadhikari/"
+                          target="_blank"
+                          rel="noopener noreferrer author"
+                          className="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-300"
+                          aria-label="Abhishek Adhikari on LinkedIn"
+                        >
+                          <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                      </span>
+                    </div>
                 </article>
                 <div className="border-t border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#eef2ff_100%)] p-6 dark:border-white/10 dark:bg-[linear-gradient(135deg,#0f172a_0%,#111827_100%)] lg:border-l lg:border-t-0">
                   <div className="flex h-full min-h-56 flex-col justify-between rounded-lg border border-white bg-white/70 p-6 shadow-sm dark:border-white/10 dark:bg-slate-950/30">
@@ -180,6 +247,22 @@ export default async function BlogPage({ searchParams }) {
         <BlogGrid initialPosts={visiblePosts} initialCategories={categories} />
 
         <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+          <div className="mb-8 rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
+            <div className="flex items-start gap-4">
+              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-gradient-to-br from-violet-500 to-blue-600 text-lg font-extrabold text-white">
+                AA
+              </span>
+              <div>
+                <h2 className="text-base font-semibold text-slate-950 dark:text-white">
+                  Written by <a href="/author" rel="author" className="text-indigo-700 underline-offset-2 hover:underline dark:text-indigo-300">Abhishek Adhikari</a>
+                </h2>
+                <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                  SEO Expert &amp; Full-Stack Developer. Creator of 100 SEO Tools, building free, privacy-first browser-based SEO utilities for marketers and agencies worldwide. 
+                  <a href="https://www.linkedin.com/in/whoisabhishekadhikari/" target="_blank" rel="noopener noreferrer author" className="ml-1 text-indigo-600 hover:underline dark:text-indigo-300">LinkedIn</a>.
+                </p>
+              </div>
+            </div>
+          </div>
           <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_380px]">
             <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-indigo-600 dark:text-indigo-300">Next step</p>
@@ -201,6 +284,24 @@ export default async function BlogPage({ searchParams }) {
             </div>
 
             <aside className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5">
+              <h3 className="text-base font-semibold text-slate-950 dark:text-white">Sources & references</h3>
+              <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">
+                Each guide is built from hands-on SEO experience, platform documentation, and industry best practices from Google Search Central, Schema.org, and Moz.
+              </p>
+              <div className="mt-3 space-y-2 text-xs">
+                {[
+                  ['Google Search Central', 'https://developers.google.com/search'],
+                  ['Schema.org', 'https://schema.org'],
+                  ['W3C Web Standards', 'https://www.w3.org/standards/'],
+                ].map(([name, url]) => (
+                  <a key={name} href={url} target="_blank" rel="noopener noreferrer" className="block rounded-md border border-slate-100 px-3 py-2 text-slate-600 transition hover:border-indigo-200 hover:text-indigo-700 dark:border-white/10 dark:text-slate-400 dark:hover:text-indigo-300">
+                    <span className="font-medium">{name}</span>
+                    <span className="ml-2 text-slate-400">↗</span>
+                  </a>
+                ))}
+              </div>
+            </aside>
+            <aside className="mt-5 rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5">
               <h3 className="text-base font-semibold text-slate-950 dark:text-white">Latest tool guides</h3>
               <div className="mt-4 space-y-3">
                 {guidePosts.map((post) => (

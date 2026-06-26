@@ -8,7 +8,7 @@ const baseUrl = getBaseUrl();
 
 export const metadata = {
     title: 'Abhishek Adhikari - SEO Expert & Tech Consultant | 100 SEO Tools',
-    description: 'Abhishek Adhikari is an SEO expert, full-stack developer, and creator of 100+ free SEO tools at 100SEOTools. 22+ years of expertise in SEO, UI/UX, and agri-tech innovation in Nepal.',
+    description: 'Abhishek Adhikari is an SEO expert, full-stack developer, and creator of 100+ free SEO tools at 100SEOTools. 10+ years of expertise in SEO, UI/UX, and agri-tech innovation in Nepal.',
     authors: [{ name: 'Abhishek Adhikari', url: `${baseUrl}/author` }],
     creator: 'Abhishek Adhikari',
     publisher: '100SEOTools',
@@ -134,7 +134,7 @@ const breadcrumbSchema = {
 const faqs = [
     {
         q: 'Who is Abhishek Adhikari?',
-        a: 'Abhishek Adhikari is an entrepreneur, SEO expert, full-stack developer, and tech consultant with 22+ years of expertise. He is the creator of 100SEOTools, founder of Himalaya Krishi (Nepal\'s first fully organic farming brand), and works as an SEO Specialist at Hashtag Web Solution.'
+        a: 'Abhishek Adhikari is an entrepreneur, SEO expert, full-stack developer, and tech consultant with 10+ years of expertise. He is the creator of 100SEOTools, founder of Himalaya Krishi (Nepal\'s first fully organic farming brand), and works as an SEO Specialist at Hashtag Web Solution.'
     },
     {
         q: 'What is 100SEOTools?',
@@ -226,7 +226,7 @@ const faqs = [
     },
     {
         q: 'What certifications does Abhishek Adhikari hold?',
-        a: 'Abhishek holds certifications in Google UX Design and Fundamentals of Graphic Design, complementing his 22+ years of practical experience in technology and SEO.'
+        a: 'Abhishek holds certifications in Google UX Design and Fundamentals of Graphic Design, complementing his 10+ years of practical experience in technology and SEO.'
     },
     {
         q: 'What is Abhishek Adhikari\'s work style?',
@@ -342,7 +342,14 @@ export default function AuthorPage() {
             {/* JSON-LD Structured Data */}
             <StructuredData data={[personSchema, breadcrumbSchema, faqSchema]} />
 
-            <article className="min-h-screen py-12">
+            <nav aria-label="Breadcrumb" className="max-w-5xl mx-auto px-4 pt-6 pb-0 text-sm text-slate-500 dark:text-slate-400">
+                <ol className="flex flex-wrap items-center gap-1.5">
+                    <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
+                    <li aria-hidden="true">/</li>
+                    <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">Author</li>
+                </ol>
+            </nav>
+            <article className="min-h-screen pb-12">
                 <div className="max-w-5xl mx-auto px-4">
                     {/* Hero Section */}
                     <header className="card p-8 md:p-12 mb-8">
@@ -413,7 +420,7 @@ export default function AuthorPage() {
                                 I didn't enter SEO from theory; I learned by doing. From fixing broken site structures to improving page experience, analyzing keywords, running audits, and testing strategies across different industries, I've always focused on what actually works. I enjoy digging into data, catching small issues others miss, and turning complex SEO tasks into simple, actionable results.
                             </p>
                             <p>
-                                With <strong>22+ years of expertise</strong> in <span>UI/UX design</span>, digital product strategy, and <span>agricultural technology innovation</span>, I specialize in human-centered design, organic farming systems, and sustainable digital solutions. I studied at <strong>Tribhuvan University</strong> and have completed certifications in Google UX Design and Fundamentals of Graphic Design.
+                                With <strong>10+ years of expertise</strong> in <span>UI/UX design</span>, digital product strategy, and <span>agricultural technology innovation</span>, I specialize in human-centered design, organic farming systems, and sustainable digital solutions. I studied at <strong>Tribhuvan University</strong> and have completed certifications in Google UX Design and Fundamentals of Graphic Design.
                             </p>
                         </div>
                     </section>
@@ -625,7 +632,7 @@ export default function AuthorPage() {
                             Explore 100+ free SEO tools designed to help you rank higher and grow your online presence.
                         </p>
                         <Link
-                            href="/"
+                            href="/tools"
                             className="btn"
                             aria-label="Explore all free SEO tools"
                         >

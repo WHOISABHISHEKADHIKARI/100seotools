@@ -55,7 +55,7 @@
     "react-icons": "^5.5.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^16.0.7",
+    "@next/bundle-analyzer": "^16.2.9",
     "@types/react": "19.2.14",
     "autoprefixer": "10.4.20",
     "axe-core": "^4.11.0",

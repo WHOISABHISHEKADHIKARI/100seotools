@@ -57,6 +57,13 @@ export default function ContactForm() {
         "@context": "https://schema.org",
         "@graph": [
             {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+                    { "@type": "ListItem", "position": 2, "name": "Contact", "item": `${baseUrl}/contact` },
+                ]
+            },
+            {
                 "@type": "ContactPage",
                 "name": "Contact Us - 100 SEO Tools",
                 "description": "Get in touch with 100 SEO Tools for guest posting, backlink opportunities, tool suggestions, or general inquiries",
@@ -93,6 +100,14 @@ export default function ContactForm() {
                     </div>
                 </div>
             </section>
+
+            <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
+                <ol className="flex flex-wrap items-center gap-1.5">
+                    <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
+                    <li aria-hidden="true">/</li>
+                    <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">Contact</li>
+                </ol>
+            </nav>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 -mt-10 relative z-10">
                 <div className="grid lg:grid-cols-[1fr_400px] gap-8">
