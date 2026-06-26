@@ -8,6 +8,7 @@ export async function GET() {
     // Define the sub-sitemaps
     // Note: App Router 'sitemap.js' in a folder generates '/folder/sitemap.xml'
     const sitemaps = [
+        `${baseUrl}/sitemap-core/sitemap.xml`,       // Core (homepage, blog index, tools index, about, contact, privacy, terms, calculators)
         `${baseUrl}/sitemap-tools/sitemap.xml`,      // SEO Tools
         `${baseUrl}/sitemap-blog/sitemap.xml`,       // Blog
         `${baseUrl}/sitemap-guides/sitemap.xml`,     // Guides

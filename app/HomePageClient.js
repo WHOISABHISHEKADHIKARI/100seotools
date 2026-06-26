@@ -164,7 +164,20 @@ export default function HomePageClient({ initialTools = [] }) {
         </div>
       </section>
 
-      <StickySearchBar />
+      <StickySearchBar onSearch={(query) => {
+        if (!query.trim()) {
+          setFilteredTools(tools);
+          return;
+        }
+        const q = query.toLowerCase();
+        setFilteredTools(
+          tools.filter((tool) =>
+            tool.name.toLowerCase().includes(q) ||
+            tool.slug.includes(q) ||
+            (tool.category && tool.category.toLowerCase().includes(q))
+          )
+        );
+      }} />
 
       <section className="relative left-1/2 w-screen -translate-x-1/2 border-b border-slate-100 bg-white py-5 dark:border-white/10 dark:bg-gray-950">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-300 sm:px-6">
