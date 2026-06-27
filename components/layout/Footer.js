@@ -75,14 +75,10 @@ const Footer = function Footer() {
 
           <FooterColumn title="Top Tools" items={topTools} />
           <FooterColumn title="Categories" items={categoryDetails.slice(0, 7).map((item) => [item.label, getCategoryHref(item.label)])} />
-          <div className="grid gap-8 sm:grid-cols-2 md:col-span-1 md:block">
+          <div className="flex flex-col gap-6 md:col-span-1">
             <FooterColumn title="Resources" items={resources} />
-            <div className="mt-8">
-              <FooterColumn title="Company" items={company} />
-            </div>
-            <div className="mt-8 sm:mt-0">
-              <FooterColumn title="Creator" items={creator} />
-            </div>
+            <FooterColumn title="Company" items={company} />
+            <FooterColumn title="Creator" items={creator} />
           </div>
         </div>
 
