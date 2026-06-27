@@ -105,6 +105,21 @@ const nextConfig = withBundleAnalyzer({
       // Pattern: /blog/:slug-guide-N (1-2 digit number only, not years like -2024)
       { source: '/blog/:slug-guide-:number(\\d{1,2})$', destination: '/blog/:slug-guide', permanent: true },
 
+      // Fix blog variant URLs that should point to tools (same patterns as tools)
+      { source: '/blog/:slug-checklist-workflow', destination: '/tools/:slug', permanent: true },
+      { source: '/blog/:slug-features-benefits-keywords', destination: '/tools/:slug', permanent: true },
+      { source: '/blog/:slug-popular-search-terms', destination: '/tools/:slug', permanent: true },
+      { source: '/blog/:slug-best-practices-integrations-costs', destination: '/tools/:slug', permanent: true },
+      { source: '/blog/:slug-how-to-use', destination: '/tools/:slug', permanent: true },
+      { source: '/blog/:slug-overview', destination: '/tools/:slug', permanent: true },
+      { source: '/blog/:slug-guide', destination: '/tools/:slug', permanent: true },
+
+      // Specific blog->tool 404 redirects for tools with hyphens in name
+      { source: '/blog/meta-description-optimizer', destination: '/tools/meta-description-optimizer', permanent: true },
+      { source: '/blog/content-freshness-checker', destination: '/tools/content-freshness-checker', permanent: true },
+      { source: '/blog/readability-score-calculator', destination: '/tools/readability-score-calculator', permanent: true },
+      { source: '/blog/local-citation-finder', destination: '/tools/local-citation-finder', permanent: true },
+
       // Redirect Google My Business Optimization Helper Guide to home page
       { source: '/blog/google-my-business-optimization-helper-guide-:number(\\d+)', destination: '/', permanent: true },
       { source: '/blog/gmb-optimization-helper-guide-:number(\\d+)', destination: '/', permanent: true },
