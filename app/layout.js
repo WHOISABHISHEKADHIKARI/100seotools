@@ -1,4 +1,4 @@
-import { getBaseUrl, logoImage, siteName, socialLinks, socialPreviewImage, twitterHandle } from '../lib/site';
+import { getBaseUrl, siteName, socialLinks, socialPreviewImage, twitterHandle } from '../lib/site';
 import { socialImageHeight, socialImageType, socialImageWidth } from '../lib/socialMetadata';
 const baseUrl = getBaseUrl();
 const defaultSocialImage = `${baseUrl}${socialPreviewImage}`;
@@ -97,7 +97,7 @@ import StructuredData from '../components/ui/StructuredData';
 import ClientLayout from '../components/layout/ClientLayout';
 import ClientRoot from '../components/layout/ClientRoot';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { generateWebsiteSchema } from '../lib/schema';
+import { generateHomepageGraphSchema } from '../lib/schema';
 
 export default function RootLayout({ children }) {
   return (
@@ -146,17 +146,8 @@ export default function RootLayout({ children }) {
         {/* Service worker removed — wastes crawl budget with no SEO benefit */}
       </head>
       <body suppressHydrationWarning className="min-h-screen bg-[#fafbfc] text-slate-900 selection:bg-violet-100 selection:text-violet-900 dark:bg-[#020617] dark:text-slate-100">
-        {/* Global WebSite + Organization Schema for SEO */}
-        <StructuredData data={generateWebsiteSchema(baseUrl)} />
-        <StructuredData data={{
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "100 SEO Tools",
-          "url": baseUrl,
-          "logo": `${baseUrl}${logoImage}`,
-          "sameAs": socialLinks,
-          "description": "Free SEO tools collection for keyword research, on-page optimization, technical SEO, and performance tracking"
-        }} />
+        {/* Consolidated Semantic Graph for SEO, AEO, and GEO */}
+        <StructuredData data={generateHomepageGraphSchema(baseUrl, socialLinks)} />
         {/* Skip to main content link for accessibility */}
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-violet-600 text-white px-4 py-2 rounded-xl z-50 shadow-xl">
           Skip to main content

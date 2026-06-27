@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 import bundleAnalyzer from '@next/bundle-analyzer';
-import { tools as toolsMeta } from './tools/registry.js';
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -8,15 +7,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const SITE_DOMAIN = '100seotools.com';
 const SITE_URL = `https://www.${SITE_DOMAIN}`;
-const TOOL_BLOG_SUFFIXES = [
-  'overview',
-  'guide',
-  'how-to-use',
-  'features-benefits-keywords',
-  'best-practices-integrations-costs',
-  'checklist-workflow',
-  'popular-search-terms',
-];
 const legacyBlogRedirects = [
   ...Array.from({ length: 101 }, (_, index) => ({
     source: `/blog/seo-basics-${index}`,
@@ -25,17 +15,6 @@ const legacyBlogRedirects = [
   })),
   { source: '/blog/100-free-seo-tools-ultimate-list', destination: '/blog/seo-basics', permanent: true },
   { source: '/blog/reverse-image-search-guide', destination: '/blog/reverse-image-search-complete-guide', permanent: true },
-  ...toolsMeta.flatMap((tool) => {
-    const slug = tool.slug;
-    return [
-      { source: `/blog/${slug}`, destination: `/tools/${slug}`, permanent: true },
-      ...TOOL_BLOG_SUFFIXES.map((suffix) => ({
-        source: `/blog/${slug}-${suffix}`,
-        destination: `/tools/${slug}`,
-        permanent: true,
-      })),
-    ];
-  }),
 ];
 
 const nextConfig = withBundleAnalyzer({

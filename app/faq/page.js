@@ -48,7 +48,7 @@ const faqCategories = [
     icon: Search,
     color: 'blue',
     faqs: [
-      { q: 'What keyword tools are available?', a: 'We offer Keyword Density Checker, Difficulty Analyzer, Long-Tail Finder, LSI Generator, and Clustering tools.' },
+      { q: 'What keyword tools are available?', a: 'We offer Keyword Density Checker, Difficulty Analyzer, Long-Tail Finder, LSI Generator, and Clustering tools.', tool: 'keyword-density-checker' },
       { q: 'How often is keyword data updated?', a: 'Keyword metrics are updated regularly, with search volume data refreshed monthly and competition metrics updated weekly.' },
     ],
   },
@@ -57,7 +57,7 @@ const faqCategories = [
     icon: Settings,
     color: 'orange',
     faqs: [
-      { q: 'How do I test my website speed?', a: 'Use our Website Speed Test which analyzes page load time and provides actionable recommendations to improve speed.' },
+      { q: 'How do I test my website speed?', a: 'Use our Website Speed Test which analyzes page load time and provides actionable recommendations to improve speed.', tool: 'website-speed-test' },
       { q: 'What are Core Web Vitals?', a: 'Core Web Vitals are Google\'s page experience metrics: LCP, FID, and CLS. They directly impact rankings.' },
     ],
   },
@@ -75,15 +75,26 @@ const faqCategories = [
 export default function FAQPage() {
   const faqLd = {
     '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqCategories.flatMap(cat => cat.faqs.map(faq => ({
-      '@type': 'Question',
-      name: faq.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.a
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+          { '@type': 'ListItem', position: 2, name: 'FAQ', item: `${baseUrl}/faq` },
+        ]
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: faqCategories.flatMap(cat => cat.faqs.map(faq => ({
+          '@type': 'Question',
+          name: faq.q,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.a
+          }
+        })))
       }
-    })))
+    ]
   };
 
   return (
@@ -119,6 +130,13 @@ export default function FAQPage() {
         </div>
       </section>
 
+      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
+        <ol className="flex flex-wrap items-center gap-1.5">
+          <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
+          <li aria-hidden="true">/</li>
+          <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">FAQ</li>
+        </ol>
+      </nav>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
         <div className="grid lg:grid-cols-[280px_1fr] gap-12 items-start">
 
@@ -170,6 +188,13 @@ export default function FAQPage() {
                       <div className="pl-7 text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
                         {faq.a}
                       </div>
+                      {faq.tool && (
+                        <div className="pl-7 mt-3">
+                          <Link href={`/tools/${faq.tool}`} className="inline-flex items-center gap-1.5 text-xs font-bold text-violet-600 hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300">
+                            Try this tool <ArrowRight className="h-3 w-3" />
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

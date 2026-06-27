@@ -6,6 +6,7 @@ import { getBaseUrl, logoImage, siteName, getAuthor } from '../../../lib/site';
 import { createSocialMetadata } from '../../../lib/socialMetadata';
 import { notFound, permanentRedirect } from 'next/navigation';
 import { getAllToolsMeta } from '../../../tools';
+import { slugify } from '../../../lib/utils';
 import { getLegacyBlogCanonicalPath } from '../../../lib/blogCanonical';
 
 const baseUrl = getBaseUrl();
@@ -77,17 +78,21 @@ export async function generateMetadata({ params, searchParams }) {
 export default async function Page({ params, searchParams }) {
   const { slug } = await params;
   const page = Number((await searchParams)?.page || 1);
-  const legacyCanonicalPath = getLegacyBlogCanonicalPath(slug);
-
-  if (legacyCanonicalPath) {
-    permanentRedirect(legacyCanonicalPath);
-  }
 
   // If a page parameter is present for an individual blog post,
   // redirect to the base URL since individual posts are not paginated.
   // This resolves GSC "Redirect error" for URLs like ?page=2.
   if (page > 1) {
     permanentRedirect(`/blog/${slug}`);
+  }
+
+  const legacyCanonicalPath = getLegacyBlogCanonicalPath(slug);
+
+  // Return 404 for legacy tool blog suffix URLs (e.g., /blog/keyword-density-checker-overview)
+  // instead of redirecting. GSC flags 301s as "Page with redirect", while 404s
+  // trigger proper deindexing. The metadata handler already sets noindex for these.
+  if (legacyCanonicalPath) {
+    notFound();
   }
 
   const post = await getBlogPostPublishedBySlug(slug);
@@ -184,7 +189,9 @@ export default async function Page({ params, searchParams }) {
           <div className="max-w-4xl">
             <div className="flex items-center gap-2 mb-4 flex-wrap">
               {post.category && (
-                <span className="text-xs font-extrabold px-3 py-1 rounded-full bg-violet-500/30 text-violet-200 border border-violet-500/40">{post.category}</span>
+                <Link href={`/category/${slugify(post.category)}`} className="text-xs font-extrabold px-3 py-1 rounded-full bg-violet-500/30 text-violet-200 border border-violet-500/40 hover:bg-violet-500/50 transition-colors">
+                  {post.category}
+                </Link>
               )}
               <span className="text-xs text-white/50">{post.readTimeMinutes || 6} min read</span>
               <span className="text-xs text-white/50">Published {new Date(post.datePublished).toLocaleDateString()}</span>
@@ -303,6 +310,48 @@ export default async function Page({ params, searchParams }) {
             <ul className="space-y-3 text-gray-700 dark:text-gray-300">
               {post.sections.faq.map((f, i) => (
                 <li key={i} className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4 dark:border-white/10 dark:bg-white/5"><span className="block font-bold text-slate-950 dark:text-white">{f.q || f.question}</span><span className="mt-1 block text-sm leading-6">{f.a || f.answer}</span></li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {post.sections?.comparison && (
+          <div>
+            <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">{post.sections.comparison.heading}</h2>
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-white/10">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/5">
+                    <th className="px-4 py-3 text-left font-extrabold text-slate-700 dark:text-slate-200">Feature</th>
+                    <th className="px-4 py-3 text-left font-semibold text-slate-500 dark:text-slate-400">Cloud Analytics</th>
+                    <th className="px-4 py-3 text-left font-semibold text-emerald-700 dark:text-emerald-300">Self-Hosted</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {post.sections.comparison.rows.map((row, i) => (
+                    <tr key={i} className="border-b border-slate-100 last:border-0 dark:border-white/5">
+                      <td className="px-4 py-3 font-medium text-slate-900 dark:text-white">{row.feature}</td>
+                      <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{row.cloud}</td>
+                      <td className="px-4 py-3 font-medium text-emerald-700 dark:text-emerald-300">{row.selfHosted}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {Array.isArray(post.sections?.sources) && post.sections.sources.length > 0 && (
+          <div className="rounded-2xl border border-slate-100 bg-slate-50/50 p-5 dark:border-white/10 dark:bg-white/[0.03]">
+            <h2 className="mb-3 text-base font-extrabold text-slate-950 dark:text-white">Sources &amp; further reading</h2>
+            <ul className="space-y-2">
+              {post.sections.sources.map((s, i) => (
+                <li key={i}>
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-indigo-600 hover:text-indigo-800 hover:underline dark:text-indigo-400 dark:hover:text-indigo-200">
+                    {s.name}
+                    <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                  </a>
+                </li>
               ))}
             </ul>
           </div>

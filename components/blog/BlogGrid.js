@@ -1,7 +1,12 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { ArrowLeft, ArrowRight, BookOpen, CalendarDays, Clock, Search, SlidersHorizontal, X } from "lucide-react";
+
+function slugify(str) {
+  return str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
 
 const PAGE_SIZE = 12;
 
@@ -166,13 +171,19 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
                       <article className="flex h-full flex-col">
                         <div className="mb-4 flex items-center justify-between gap-3">
                           {post.category ? (
-                            <span className="rounded-md border border-indigo-100 bg-indigo-50 px-2 py-1 text-[11px] font-semibold text-indigo-700 dark:border-indigo-400/20 dark:bg-indigo-400/10 dark:text-indigo-200">
+                            <Link
+                              href={`/category/${slugify(post.category)}`}
+                              className="rounded-md border border-indigo-100 bg-indigo-50 px-2 py-1 text-[11px] font-semibold text-indigo-700 hover:bg-indigo-100 dark:border-indigo-400/20 dark:bg-indigo-400/10 dark:text-indigo-200 dark:hover:bg-indigo-400/20"
+                            >
                               {post.category}
-                            </span>
+                            </Link>
                           ) : (
-                            <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-semibold text-slate-500 dark:border-white/10 dark:bg-white/5">
+                            <Link
+                              href="/category/seo"
+                              className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-semibold text-slate-500 hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+                            >
                               SEO
-                            </span>
+                            </Link>
                           )}
                           <span className="inline-flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
                             <Clock className="h-3.5 w-3.5" aria-hidden />

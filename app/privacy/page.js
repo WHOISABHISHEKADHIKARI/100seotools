@@ -17,7 +17,14 @@ export const metadata = {
 export default function PrivacyPage() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [
+        "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+          { "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": `${baseUrl}/privacy` },
+        ]
+      },
       {
         "@type": "WebPage",
         "name": "Privacy Policy - 100 SEO Tools",
@@ -67,6 +74,14 @@ export default function PrivacyPage() {
           </div>
         </div>
       </section>
+
+      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
+        <ol className="flex flex-wrap items-center gap-1.5">
+          <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
+          <li aria-hidden="true">/</li>
+          <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">Privacy Policy</li>
+        </ol>
+      </nav>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
         <div className="grid lg:grid-cols-[280px_1fr] gap-12 items-start">

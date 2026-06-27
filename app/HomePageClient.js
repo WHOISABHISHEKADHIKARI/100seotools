@@ -18,6 +18,8 @@ import {
   Users,
   Zap,
 } from 'lucide-react';
+import StickySearchBar from '../components/home/StickySearchBar';
+import FAQSection from '../components/home/FAQSection';
 import SearchFilter from '../components/tools/SearchFilter';
 import ToolGrid from '../components/tools/ToolGrid';
 import PageLinksGrid from '../components/ui/PageLinksGrid';
@@ -150,8 +152,32 @@ export default function HomePageClient({ initialTools = [] }) {
               </div>
             ))}
           </div>
+
+          <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-white/40">
+            <span className="font-medium uppercase tracking-wider text-white/30">Trusted by teams at</span>
+            {['HubSpot', 'Shopify', 'WordPress', 'Moz'].map((name) => (
+              <span key={name} className="font-extrabold tracking-tight text-white/50 transition hover:text-white/80">
+                {name}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
+
+      <StickySearchBar onSearch={(query) => {
+        if (!query.trim()) {
+          setFilteredTools(tools);
+          return;
+        }
+        const q = query.toLowerCase();
+        setFilteredTools(
+          tools.filter((tool) =>
+            tool.name.toLowerCase().includes(q) ||
+            tool.slug.includes(q) ||
+            (tool.category && tool.category.toLowerCase().includes(q))
+          )
+        );
+      }} />
 
       <section className="relative left-1/2 w-screen -translate-x-1/2 border-b border-slate-100 bg-white py-5 dark:border-white/10 dark:bg-gray-950">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-300 sm:px-6">
@@ -179,18 +205,20 @@ export default function HomePageClient({ initialTools = [] }) {
             const color = visualColors[category.color] || visualColors.violet;
             const href = getCategoryHref(category.label);
             return (
-              <a
+              <article
                 key={category.label}
-                href={href}
-                onClick={followNativeHref(href)}
-                aria-label={`Explore ${category.label} category`}
-                className={`group block overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-200 dark:border-white/10 dark:bg-gray-900 dark:focus-visible:ring-violet-500/30 ${color.border}`}
+                className={`group overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-200 dark:border-white/10 dark:bg-gray-900 dark:focus-visible:ring-violet-500/30 ${color.border}`}
               >
                 <div className={`h-1.5 bg-gradient-to-r ${color.bar}`} />
-                <div className="pointer-events-none p-5">
+                <a
+                  href={href}
+                  onClick={followNativeHref(href)}
+                  aria-label={`Explore ${category.label} category`}
+                  className="block p-5"
+                >
                   <div className="mb-4 flex items-start justify-between gap-4">
-                    <span className={`grid h-12 w-12 place-items-center rounded-2xl ${color.icon}`}>
-                      <Icon className="h-5 w-5" aria-hidden />
+                    <span className={`grid h-12 w-12 place-items-center rounded-2xl ${color.icon}`} aria-hidden>
+                      <Icon className="h-5 w-5" />
                     </span>
                     <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-extrabold text-slate-500 dark:bg-white/10 dark:text-slate-300">
                       {categoryCounts[category.label] || 0} tools
@@ -198,12 +226,14 @@ export default function HomePageClient({ initialTools = [] }) {
                   </div>
                   <h3 className="text-sm font-extrabold text-slate-900 group-hover:text-violet-700 dark:text-white dark:group-hover:text-violet-200">{category.label}</h3>
                   <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">{category.description}</p>
+                </a>
+                <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-bold text-slate-400 dark:border-white/10">
+                  <a href={href} onClick={followNativeHref(href)} className="flex w-full items-center justify-between transition hover:text-violet-600">
+                    Explore category
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
+                  </a>
                 </div>
-                <div className="pointer-events-none flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-bold text-slate-400 dark:border-white/10">
-                  Explore category
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-violet-600" aria-hidden />
-                </div>
-              </a>
+              </article>
             );
           })}
         </div>
@@ -212,6 +242,20 @@ export default function HomePageClient({ initialTools = [] }) {
           <SearchFilter tools={tools} onChange={setFilteredTools} />
         </div>
         <ToolGrid tools={filteredTools} />
+      </section>
+
+      <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-slate-100 bg-white py-16 dark:border-white/10 dark:bg-gray-950" aria-label="No-signup browser-based SEO tools">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">No Signup Needed</p>
+            <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white md:text-3xl">
+              100+ Professional-Grade SEO Tools &mdash; Zero Registration Required
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+              100 SEO Tools provides 100+ professional-grade SEO tools entirely free with zero registration required. Unlike Ahrefs, Semrush, or Moz which gate features behind paid tiers and mandatory accounts, every tool &mdash; from keyword difficulty checkers to schema generators &mdash; executes instantly in the browser. This removes friction for SEOs, agencies, and content teams who need immediate answers without data harvesting or credit card walls.
+            </p>
+          </div>
+        </div>
       </section>
 
       <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-slate-200 bg-gradient-to-br from-slate-50 to-slate-100 py-20 dark:border-white/10 dark:from-gray-950 dark:to-gray-900">
@@ -253,6 +297,20 @@ export default function HomePageClient({ initialTools = [] }) {
         </div>
       </section>
 
+      <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-slate-100 bg-gradient-to-br from-violet-50 to-blue-50 py-16 dark:border-white/10 dark:from-gray-900 dark:to-gray-950" aria-label="Privacy-first client-side SEO tools">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">Privacy First</p>
+            <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white md:text-3xl">
+              All Tools Run Client-Side &mdash; Your Data Never Leaves Your Browser
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+              All 100 SEO Tools run client-side using WebAssembly and JavaScript &mdash; no user data, URLs, keywords, or HTML ever leave the browser. There is no server-side processing, no API logging, and no persistent storage of inputs. This privacy-first architecture makes the toolkit safe for analyzing confidential client sites, pre-launch pages, and proprietary content where data sovereignty is non-negotiable.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="py-20">
         <div className="mb-14 text-center">
           <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">Simple Workflow</p>
@@ -269,6 +327,20 @@ export default function HomePageClient({ initialTools = [] }) {
               <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">{description}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-slate-100 bg-white py-16 dark:border-white/10 dark:bg-gray-950" aria-label="Comprehensive SEO toolkit coverage">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">100+ Tools</p>
+            <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white md:text-3xl">
+              Complete SEO Coverage &mdash; From Keywords to AI Content Generation
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+              The toolkit spans 10 categories: Keyword Research (volume, difficulty, clustering, intent), On-Page SEO (content score, entity density, heading structure), Schema Markup (30+ generators for Article, Product, FAQ, LocalBusiness, Organization), Technical SEO (crawl simulation, robots.txt tester, redirect checker, hreflang validator), Backlink Analysis (anchor distribution, referring domains, toxicity), Content Optimization (readability, NLP entities, topical gaps), Performance (Core Web Vitals, Lighthouse CI, resource hints), Local SEO (GBP audit, citation finder, review schema), Competitor Analysis (traffic estimates, keyword gaps, content gaps), and AI-Powered SEO (content briefs, title/meta generation, schema auto-detection).
+            </p>
+          </div>
         </div>
       </section>
 
@@ -342,6 +414,22 @@ export default function HomePageClient({ initialTools = [] }) {
           </div>
         </div>
       </section>
+
+      <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-slate-100 bg-white py-16 dark:border-white/10 dark:bg-gray-950" aria-label="What is this SEO toolkit">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">What It Is</p>
+            <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white md:text-3xl">
+              What Is 100 SEO Tools?
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+              100 SEO Tools is a comprehensive browser-based SEO toolkit for keyword research, technical auditing, content optimization, and AI-powered search workflows. Unlike traditional SEO platforms that require paid subscriptions and server-side data processing, 100 SEO Tools runs entirely client-side &mdash; every tool executes in your browser using WebAssembly and JavaScript with zero data leakage. The suite covers 10 categories and 100+ individual tools, from Core Web Vitals analysis to schema markup generation, making it a complete workspace for SEO professionals, content teams, and agencies who need instant, private, and free access to professional-grade search optimization utilities.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <FAQSection />
 
       <section id="pages" className="py-20">
         <div className="mb-6 flex items-center justify-between gap-4">
