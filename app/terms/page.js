@@ -106,8 +106,8 @@ export default function TermsPage() {
 
             <div className="mt-6 bg-slate-50 dark:bg-white/5 rounded-3xl p-6 border border-slate-100 dark:border-white/10">
               <Info className="w-6 h-6 text-violet-600 mb-4" />
-              <h3 className="text-sm font-black text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Fair Use Policy</h3>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+              <h2 className="text-sm font-black text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Fair Use Policy</h2>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
                 Our tools are free for everyone. We request that you do not use automated scripts to scrape data from our platform.
               </p>
             </div>

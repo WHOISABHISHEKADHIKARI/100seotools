@@ -323,7 +323,7 @@ export default function ToolRunner({ tool }) {
 
               {/* Helper Text & Counters */}
               <div className="mt-2 flex flex-wrap items-center justify-between gap-2 px-1">
-                <p className="min-w-0 flex-1 text-[11px] text-gray-400 dark:text-gray-500">
+                <p className="min-w-0 flex-1 text-[11px] text-gray-500 dark:text-gray-400">
                   {f.hint || ''}
                 </p>
                 {(f.type === 'text' || f.type === 'textarea' || !f.type) && (
@@ -342,7 +342,7 @@ export default function ToolRunner({ tool }) {
                 <span className="block text-sm font-semibold text-slate-800 dark:text-slate-100">
                   Smart preview
                 </span>
-                <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
+                <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-300">
                   Updates results after you enter the required details.
                 </p>
               </div>

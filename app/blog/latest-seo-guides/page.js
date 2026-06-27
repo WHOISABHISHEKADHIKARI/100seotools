@@ -117,7 +117,7 @@ export default function LatestSEOGuidesPage() {
   }));
 
   return (
-    <main id="main" className="container mx-auto px-4 py-8">
+    <section id="main" className="container mx-auto px-4 py-8">
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="mb-4">
         <ol className="flex flex-wrap items-center gap-1 text-sm text-slate-600 dark:text-slate-300">
@@ -224,6 +224,6 @@ export default function LatestSEOGuidesPage() {
       <StructuredData data={breadcrumbLd} />
       <StructuredData data={faqLd} />
       {articleLds.map((ld, idx) => (<StructuredData key={idx} data={ld} />))}
-    </main>
+    </section>
   );
 }

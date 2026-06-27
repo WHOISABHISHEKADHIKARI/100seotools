@@ -28,8 +28,27 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
   const page = Number((await searchParams)?.page || 1);
-  const legacyCanonicalPath = getLegacyBlogCanonicalPath(slug);
 
+  // Try to find the post first — serve real posts regardless of legacy patterns
+  const post = await getBlogPostPublishedBySlug(slug);
+
+  if (post) {
+    const canonical = `${baseUrl}/blog/${post.slug}`;
+    const url = page > 1 ? `${canonical}?page=${page}` : canonical;
+    return {
+      title: post.title,
+      description: post.description,
+      alternates: { canonical },
+      robots: page > 1 ? { index: false, follow: true } : { index: true, follow: true },
+      ...createSocialMetadata({
+        title: post.title, description: post.description, url, type: 'article',
+        imageAlt: `${post.title} | 100 SEO Tools`,
+      })
+    };
+  }
+
+  // Post not found — apply legacy redirect logic
+  const legacyCanonicalPath = getLegacyBlogCanonicalPath(slug);
   if (legacyCanonicalPath) {
     return {
       alternates: { canonical: `${baseUrl}${legacyCanonicalPath}` },
@@ -37,27 +56,16 @@ export async function generateMetadata({ params, searchParams }) {
     };
   }
 
-  const post = await getBlogPostPublishedBySlug(slug);
-
-  if (!post) {
-    // Check if the slug belongs to a tool - if so, redirect metadata canonical
-    const tools = getAllToolsMeta();
-    const isTool = tools.some(t => t.slug === slug);
-    if (isTool) {
-      return {
-        alternates: { canonical: `${baseUrl}/tools/${slug}` },
-        robots: { index: false, follow: true } // Don't index the blog version of a tool slug
-      };
-    }
-    notFound();
+  // Check if the slug belongs to a tool — redirect canonical
+  const tools = getAllToolsMeta();
+  if (tools.some(t => t.slug === slug)) {
+    return {
+      alternates: { canonical: `${baseUrl}/tools/${slug}` },
+      robots: { index: false, follow: true },
+    };
   }
 
-  const title = post.title;
-  const description = post.description;
-
-  // Self-referencing canonical for all blog posts
-  // This resolves GSC "Alternative page with proper canonical tag"
-  const canonical = `${baseUrl}/blog/${post.slug}`;
+  notFound();
   const url = page > 1 ? `${canonical}?page=${page}` : canonical;
 
   return {
@@ -86,20 +94,16 @@ export default async function Page({ params, searchParams }) {
     permanentRedirect(`/blog/${slug}`);
   }
 
-  const legacyCanonicalPath = getLegacyBlogCanonicalPath(slug);
-
-  // Return 404 for legacy tool blog suffix URLs (e.g., /blog/keyword-density-checker-overview)
-  // instead of redirecting. GSC flags 301s as "Page with redirect", while 404s
-  // trigger proper deindexing. The metadata handler already sets noindex for these.
-  if (legacyCanonicalPath) {
-    notFound();
-  }
-
+  // Try to find the post first — serve real blog posts regardless of slug pattern
   const post = await getBlogPostPublishedBySlug(slug);
 
   if (!post) {
-    // Redirect plain tool slugs to /tools/[slug] to avoid duplicate content/404s
-    // This handles the old slugs that used to be blog posts
+    // Post doesn't exist — apply legacy redirect logic
+    const legacyCanonicalPath = getLegacyBlogCanonicalPath(slug);
+    if (legacyCanonicalPath) {
+      notFound();
+    }
+    // Redirect plain tool slugs to /tools/[slug]
     const tools = getAllToolsMeta();
     if (tools.some(t => t.slug === slug)) {
       permanentRedirect(`/tools/${slug}`);
@@ -222,7 +226,7 @@ export default async function Page({ params, searchParams }) {
         </div>
       </section>
 
-      <main className="relative left-1/2 w-screen -translate-x-1/2 bg-[#f4f6fb] dark:bg-gray-950">
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-[#f4f6fb] dark:bg-gray-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
           <div className="grid lg:grid-cols-[1fr_300px] gap-8 items-start">
             <article className="min-w-0 space-y-8 rounded-[1.75rem] border border-white/70 bg-white/95 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)] ring-1 ring-slate-900/[0.03] transition-shadow duration-300 hover:shadow-[0_28px_90px_rgba(15,23,42,0.11)] md:p-9 dark:border-white/10 dark:bg-white/[0.04]">
@@ -455,7 +459,7 @@ export default async function Page({ params, searchParams }) {
             </aside>
           </div>
         </div>
-      </main>
+      </section>
 
       <StructuredData data={articleLd} />
       {faqLd && <StructuredData data={faqLd} />}

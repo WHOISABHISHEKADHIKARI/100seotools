@@ -2,22 +2,22 @@
 import { useState, useRef } from 'react';
 import { useUserPreferences } from '../../contexts/UserPreferencesContext';
 import {
-  FiSettings,
-  FiHeart,
-  FiClock,
-  FiDownload,
-  FiUpload,
-  FiTrash2,
-  FiX,
-  FiRefreshCw,
-  FiGrid,
-  FiList,
-  FiMoon,
-  FiSun,
-  FiSearch,
-  FiBookmark,
-  FiPlus
-} from 'react-icons/fi';
+  Settings,
+  Heart,
+  Clock,
+  Download,
+  Upload,
+  Trash2,
+  X,
+  RefreshCw,
+  Grid,
+  List,
+  Moon,
+  Sun,
+  Search,
+  Bookmark,
+  Plus
+} from 'lucide-react';
 
 export default function UserPreferencesPanel({ isOpen, onClose }) {
   const {
@@ -37,12 +37,12 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
   const fileInputRef = useRef(null);
 
   const tabs = [
-    { id: 'preferences', label: 'Preferences', icon: FiSettings },
-    { id: 'favorites', label: 'Favorites', icon: FiHeart },
-    { id: 'history', label: 'History', icon: FiClock },
-    { id: 'searches', label: 'Recent Searches', icon: FiSearch },
-    { id: 'bookmarks', label: 'Bookmarks', icon: FiBookmark },
-    { id: 'export', label: 'Export/Import', icon: FiDownload }
+    { id: 'preferences', label: 'Preferences', icon: Settings },
+    { id: 'favorites', label: 'Favorites', icon: Heart },
+    { id: 'history', label: 'History', icon: Clock },
+    { id: 'searches', label: 'Recent Searches', icon: Search },
+    { id: 'bookmarks', label: 'Bookmarks', icon: Bookmark },
+    { id: 'export', label: 'Export/Import', icon: Download }
   ];
 
   const handlePreferenceChange = (key, value) => {
@@ -115,7 +115,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
             className="p-2 rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
             aria-label="Close preferences"
           >
-            <FiX className="w-5 h-5" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
@@ -159,7 +159,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                           : 'border-gray-300 dark:border-gray-600'
                         }`}
                     >
-                      <FiSun className="w-4 h-4" />
+                      <Sun className="w-4 h-4" />
                       Light
                     </button>
                     <button
@@ -169,7 +169,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                           : 'border-gray-300 dark:border-gray-600'
                         }`}
                     >
-                      <FiMoon className="w-4 h-4" />
+                      <Moon className="w-4 h-4" />
                       Dark
                     </button>
                   </div>
@@ -186,7 +186,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                           : 'border-gray-300 dark:border-gray-600'
                         }`}
                     >
-                      <FiGrid className="w-4 h-4" />
+                      <Grid className="w-4 h-4" />
                       Grid
                     </button>
                     <button
@@ -196,7 +196,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                           : 'border-gray-300 dark:border-gray-600'
                         }`}
                     >
-                      <FiList className="w-4 h-4" />
+                      <List className="w-4 h-4" />
                       List
                     </button>
                   </div>
@@ -287,7 +287,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                       aria-label="Add category"
                       className="px-3 py-2 bg-brand-500 text-white rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
                     >
-                      <FiPlus className="w-4 h-4" />
+                      <Plus className="w-4 h-4" />
                     </button>
                   </div>
                   {customCategories.length > 0 && (
@@ -303,7 +303,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                             aria-label={`Remove ${category}`}
                             className="text-red-500 hover:text-red-700"
                           >
-                            <FiX className="w-3 h-3" />
+                            <X className="w-3 h-3" />
                           </button>
                         </span>
                       ))}
@@ -316,7 +316,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                     onClick={actions.resetPreferences}
                     className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
                   >
-                    <FiRefreshCw className="w-4 h-4 inline mr-2" />
+                    <RefreshCw className="w-4 h-4 inline mr-2" />
                     Reset to Defaults
                   </button>
                 </div>
@@ -332,7 +332,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                       onClick={() => setShowConfirmClear('favorites')}
                       className="px-3 py-1 text-red-600 rounded transition-transform will-change-transform hover:scale-[1.01]"
                     >
-                      <FiTrash2 className="w-4 h-4 inline mr-1" />
+                      <Trash2 className="w-4 h-4 inline mr-1" />
                       Clear All
                     </button>
                   )}
@@ -350,7 +350,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                           aria-label={`Remove ${toolId} from favorites`}
                           className="text-red-600 transition-transform will-change-transform hover:scale-[1.01]"
                         >
-                          <FiTrash2 className="w-4 h-4" />
+                          <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
                     ))}
@@ -368,7 +368,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                       onClick={() => setShowConfirmClear('history')}
                       className="px-3 py-1 text-red-600 rounded transition-transform will-change-transform hover:scale-[1.01]"
                     >
-                      <FiTrash2 className="w-4 h-4 inline mr-1" />
+                      <Trash2 className="w-4 h-4 inline mr-1" />
                       Clear All
                     </button>
                   )}
@@ -389,7 +389,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                           aria-label={`Remove ${item.name} from history`}
                           className="text-red-600 transition-transform will-change-transform hover:scale-[1.01]"
                         >
-                          <FiTrash2 className="w-4 h-4" />
+                          <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
                     ))}
@@ -407,7 +407,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                       onClick={() => setShowConfirmClear('searches')}
                       className="px-3 py-1 text-red-600 rounded transition-transform will-change-transform hover:scale-[1.01]"
                     >
-                      <FiTrash2 className="w-4 h-4 inline mr-1" />
+                      <Trash2 className="w-4 h-4 inline mr-1" />
                       Clear All
                     </button>
                   )}
@@ -449,7 +449,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                           aria-label={`Remove ${bookmark.name} bookmark`}
                           className="text-red-600 transition-transform will-change-transform hover:scale-[1.01]"
                         >
-                          <FiTrash2 className="w-4 h-4" />
+                          <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
                     ))}
@@ -519,7 +519,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                     onClick={handleExport}
                     className="flex items-center gap-2 px-4 py-2 bg-brand-500 text-white rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
                   >
-                    <FiDownload className="w-4 h-4" />
+                    <Download className="w-4 h-4" />
                     Export Data
                   </button>
 
@@ -527,7 +527,7 @@ export default function UserPreferencesPanel({ isOpen, onClose }) {
                     onClick={() => fileInputRef.current?.click()}
                     className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg transition-transform will-change-transform hover:scale-[1.01]"
                   >
-                    <FiUpload className="w-4 h-4" />
+                    <Upload className="w-4 h-4" />
                     Import Data
                   </button>
 

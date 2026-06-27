@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FiArrowRight, FiHome, FiLayers, FiUsers, FiStar, FiChevronRight } from 'react-icons/fi';
+import { ArrowRight, Home, Layers, Users, ChevronRight } from 'lucide-react';
 import { getAllToolsMeta } from '../../tools';
 import { getBaseUrl, siteName, socialLinks, getAuthor } from '../../lib/site';
 import { createSocialMetadata } from '../../lib/socialMetadata';
@@ -105,12 +105,12 @@ export default function ToolsIndexPage() {
   };
 
   return (
-    <main id="main" className="py-8">
+    <section id="main" className="py-8">
       <nav aria-label="Breadcrumb" className="mb-5 text-sm">
         <ol className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-400">
           <li>
             <Link href="/" className="inline-flex items-center gap-1 hover:text-violet-700 dark:hover:text-violet-200">
-              <FiHome className="h-3.5 w-3.5" aria-hidden />
+              <Home className="h-3.5 w-3.5" aria-hidden />
               Home
             </Link>
           </li>
@@ -123,7 +123,7 @@ export default function ToolsIndexPage() {
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-violet-100">
-            <FiLayers className="h-4 w-4" aria-hidden />
+            <Layers className="h-4 w-4" aria-hidden />
             Complete Toolkit
           </span>
           <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl">All Free SEO Tools</h1>
@@ -184,7 +184,7 @@ export default function ToolsIndexPage() {
                 </div>
                 <Link href={getCategoryHref(category)} className="inline-flex items-center gap-2 text-sm font-extrabold text-violet-700 hover:underline dark:text-violet-300">
                   View category
-                  <FiArrowRight className="h-4 w-4" aria-hidden />
+                  <ArrowRight className="h-4 w-4" aria-hidden />
                 </Link>
               </div>
 
@@ -217,12 +217,12 @@ export default function ToolsIndexPage() {
                       <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-500 dark:text-slate-400">{item.description}</p>
                       <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 text-xs dark:border-white/10">
                         <span className="inline-flex items-center gap-1.5 text-slate-400">
-                          <FiUsers className="h-3.5 w-3.5" aria-hidden />
+                          <Users className="h-3.5 w-3.5" aria-hidden />
                           {getMonthlyUse(index)}/mo
                         </span>
                         <span className="inline-flex items-center gap-1 font-extrabold text-violet-700 dark:text-violet-300">
                           Open Tool
-                          <FiArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" aria-hidden />
+                          <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" aria-hidden />
                         </span>
                       </div>
                     </div>
@@ -248,7 +248,7 @@ export default function ToolsIndexPage() {
               <details key={faq.q} className="group overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition hover:shadow-md dark:border-white/10 dark:bg-gray-900" itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
                 <summary className="flex cursor-pointer items-center justify-between px-6 py-5 text-sm font-extrabold text-slate-900 dark:text-white [&::-webkit-details-marker]:hidden">
                   <span itemProp="name">{faq.q}</span>
-                  <FiChevronRight className="ml-4 shrink-0 text-violet-500 transition group-open:rotate-90" aria-hidden />
+                  <ChevronRight className="ml-4 shrink-0 text-violet-500 transition group-open:rotate-90" aria-hidden />
                 </summary>
                 <div className="border-t border-slate-100 px-6 pb-5 pt-4 dark:border-white/10" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                   <p className="text-sm leading-6 text-slate-600 dark:text-slate-300" itemProp="text">{faq.a}</p>
@@ -260,6 +260,6 @@ export default function ToolsIndexPage() {
       </section>
 
       <StructuredData data={graphLd} />
-    </main>
+    </section>
   );
 }

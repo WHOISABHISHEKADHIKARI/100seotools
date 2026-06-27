@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { FiArrowUp } from 'react-icons/fi';
+import { ArrowUp } from 'lucide-react';
 
 /**
  * BackToTop Component
@@ -41,7 +41,7 @@ export default function BackToTop() {
         aria-label="Back to top"
         className="group flex items-center justify-center w-12 h-12 bg-white dark:bg-gray-900 text-brand-600 dark:text-brand-400 rounded-full shadow-lg border border-gray-100 dark:border-gray-800 hover:bg-brand-600 dark:hover:bg-brand-500 hover:text-white dark:hover:text-white hover:shadow-xl hover:-translate-y-1 transition-all focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-gray-950"
       >
-        <FiArrowUp className="w-6 h-6 group-hover:scale-110 transition-transform" />
+        <ArrowUp className="w-6 h-6 group-hover:scale-110 transition-transform" />
       </button>
     </div>
   );

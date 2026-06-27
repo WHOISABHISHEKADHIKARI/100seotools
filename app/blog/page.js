@@ -120,7 +120,7 @@ export default async function BlogPage({ searchParams }) {
     <>
       <StructuredData data={graphLd} />
 
-      <main role="main" className="min-h-screen bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
+      <section className="min-h-screen bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
         <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 text-sm text-slate-500 dark:text-slate-400">
           <ol className="flex flex-wrap items-center gap-1.5">
             <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
@@ -314,7 +314,7 @@ export default async function BlogPage({ searchParams }) {
             </aside>
           </div>
         </section>
-      </main>
+      </section>
     </>
   );
 }

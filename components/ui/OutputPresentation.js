@@ -2,18 +2,18 @@
 
 import { useMemo, useState, useEffect } from 'react';
 import {
-  FiCopy,
-  FiCheck,
-  FiDownload,
-  FiEye,
-  FiCode,
-  FiHash,
-  FiMessageSquare,
-  FiClock,
-  FiMaximize2,
-  FiMinimize2,
-  FiFileText,
-} from 'react-icons/fi';
+  Copy,
+  Check,
+  Download,
+  Eye,
+  Code,
+  Hash,
+  MessageSquare,
+  Clock,
+  Maximize2,
+  Minimize2,
+  FileText,
+} from 'lucide-react';
 import Markdown from '../blog/Markdown';
 
 const loadingStages = [
@@ -133,7 +133,7 @@ export default function OutputPresentation({
                 : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
             }`}
           >
-            <FiEye className="w-3.5 h-3.5" />
+            <Eye className="w-3.5 h-3.5" />
             Preview
           </button>
           <button
@@ -144,7 +144,7 @@ export default function OutputPresentation({
                 : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
             }`}
           >
-            <FiCode className="w-3.5 h-3.5" />
+            <Code className="w-3.5 h-3.5" />
             Raw
           </button>
         </div>
@@ -154,33 +154,33 @@ export default function OutputPresentation({
             onClick={handleCopy}
             disabled={!output || isProcessing}
             aria-label="Copy to clipboard"
-            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white"
+            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
-            {isCopied ? <FiCheck className="w-4 h-4 text-emerald-500" /> : <FiCopy className="w-4 h-4" />}
+            {isCopied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
           </button>
           <button
             onClick={copyAsHtml}
             disabled={!output || isProcessing}
             aria-label="Copy as HTML"
-            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white"
+            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
-            <FiFileText className="w-4 h-4" />
+            <FileText className="w-4 h-4" />
           </button>
           <button
             onClick={onDownload}
             disabled={!output || isProcessing}
             aria-label="Download results"
-            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white"
+            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
-            <FiDownload className="w-4 h-4" />
+            <Download className="w-4 h-4" />
           </button>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             aria-label={isExpanded ? "Collapse" : "Full Screen"}
             aria-expanded={isExpanded}
-            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 dark:hover:bg-gray-900 dark:hover:text-white"
+            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
-            {isExpanded ? <FiMinimize2 className="w-4 h-4" /> : <FiMaximize2 className="w-4 h-4" />}
+            {isExpanded ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
           </button>
         </div>
       </div>
@@ -191,7 +191,7 @@ export default function OutputPresentation({
             <div className="w-full max-w-sm rounded-3xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50 p-6 text-center shadow-2xl shadow-violet-900/5 dark:border-white/[0.08] dark:from-gray-900 dark:to-gray-950">
               <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-violet-500 via-blue-500 to-cyan-500 p-[2px] shadow-lg shadow-violet-500/20">
                 <div className="flex h-full w-full items-center justify-center rounded-[1.35rem] bg-white dark:bg-gray-900">
-                  <FiFileText className="h-9 w-9 text-transparent bg-clip-text bg-gradient-to-br from-violet-600 to-blue-600 dark:from-violet-400 dark:to-blue-400" />
+                  <FileText className="h-9 w-9 text-transparent bg-clip-text bg-gradient-to-br from-violet-600 to-blue-600 dark:from-violet-400 dark:to-blue-400" />
                 </div>
               </div>
               <p className="text-[10px] font-black uppercase tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">Generating report</p>
@@ -219,7 +219,7 @@ export default function OutputPresentation({
           {!output && !isProcessing ? (
             <div className="flex h-full flex-col items-center justify-center p-6 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-50 to-white shadow-sm ring-1 ring-slate-200/60 dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-950 dark:ring-white/[0.06]">
-                <FiFileText className="h-8 w-8 text-slate-300 dark:text-slate-600" />
+                <FileText className="h-8 w-8 text-slate-300 dark:text-slate-600" />
               </div>
               <h3 className="mb-2 text-lg font-bold text-gray-900 dark:text-white">Ready for output</h3>
               <p className="mx-auto max-w-xs text-sm leading-relaxed text-gray-500 dark:text-gray-400">
@@ -241,10 +241,10 @@ export default function OutputPresentation({
                         <div className="text-right">
                           <div className="flex items-center gap-1.5">
                             <span className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">{wordCount}</span>
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">words</span>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">words</span>
                           </div>
                           <div className="flex items-center gap-1 justify-end">
-                            <FiClock className="w-2.5 h-2.5 text-slate-400" />
+                            <Clock className="w-2.5 h-2.5 text-slate-400" />
                             <span className="text-[10px] font-semibold text-slate-500">{readingTime} min read</span>
                           </div>
                         </div>
@@ -281,7 +281,7 @@ export default function OutputPresentation({
               ) : (
                 <div className="rounded-2xl border border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-white p-4 dark:border-white/[0.06] dark:from-gray-900/50 dark:to-gray-950">
                   <div className="mb-3 flex items-center gap-2">
-                    <FiCode className="w-3.5 h-3.5 text-violet-500" />
+                    <Code className="w-3.5 h-3.5 text-violet-500" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">Raw Output</span>
                     <span className="text-[10px] font-medium text-slate-400">· {charCount} chars</span>
                   </div>
@@ -295,18 +295,18 @@ export default function OutputPresentation({
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-2 rounded-b-2xl border border-t-0 border-slate-200/80 bg-gradient-to-r from-slate-50/80 to-white/80 px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 backdrop-blur-sm dark:border-white/[0.06] dark:from-gray-900/80 dark:to-gray-950/80 dark:text-slate-500">
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-b-2xl border border-t-0 border-slate-200/80 bg-gradient-to-r from-slate-50/80 to-white/80 px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-500 backdrop-blur-sm dark:border-white/[0.06] dark:from-gray-900/80 dark:to-gray-950/80 dark:text-slate-400">
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-1.5">
-            <FiHash className="w-3 h-3 text-violet-500" />
+            <Hash className="w-3 h-3 text-violet-500" />
             <span>{charCount.toLocaleString()} <span className="hidden sm:inline">Characters</span></span>
           </div>
           <div className="flex items-center gap-1.5">
-            <FiMessageSquare className="w-3 h-3 text-blue-500" />
+            <MessageSquare className="w-3 h-3 text-blue-500" />
             <span>{wordCount.toLocaleString()} <span className="hidden sm:inline">Words</span></span>
           </div>
           <div className="flex items-center gap-1.5">
-            <FiClock className="w-3 h-3 text-emerald-500" />
+            <Clock className="w-3 h-3 text-emerald-500" />
             <span>{readingTime} <span className="hidden sm:inline">Min Read</span></span>
           </div>
         </div>

@@ -35,7 +35,7 @@ export const metadata = {
 
 export default function SEOCalculatorPage() {
   return (
-    <main id="main" className="container mx-auto px-4 py-8">
+    <section id="main" className="container mx-auto px-4 py-8">
       <h1 className="text-2xl sm:text-3xl font-bold mb-3">SEO Calculator</h1>
       <p className="text-slate-600 dark:text-slate-300">Estimate SEO traffic, value, ROI, cost savings, and revenue projections with beginner‑friendly formulas and examples.</p>
       <div className="card p-4 max-w-3xl mx-auto mt-6">
@@ -188,6 +188,6 @@ export default function SEOCalculatorPage() {
           </>
         );
       })()}
-    </main>
+    </section>
   );
 }

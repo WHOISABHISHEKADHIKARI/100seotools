@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { memo } from 'react';
-import { FiCompass, FiGithub, FiMail, FiRss } from 'react-icons/fi';
+import { Compass, Code2, Mail, Rss } from 'lucide-react';
 import { categoryDetails, getCategoryHref } from '../tools/SeoVisuals';
 
 const topTools = [
@@ -34,7 +33,7 @@ const creator = [
   ['GitHub', 'https://github.com/whoisabhishekadhikari'],
 ];
 
-const Footer = memo(function Footer() {
+const Footer = function Footer() {
   const year = new Date().getFullYear();
 
   return (
@@ -44,7 +43,7 @@ const Footer = memo(function Footer() {
           <div className="col-span-2">
             <Link href="/" className="mb-4 flex items-center gap-2" aria-label="Go to homepage">
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-violet-500 to-blue-600 text-white shadow-lg">
-                <FiCompass className="h-5 w-5" aria-hidden />
+                <Compass className="h-5 w-5" aria-hidden />
               </span>
               <span className="text-lg font-extrabold">
                 100SEO<span className="text-violet-300">Tools</span>
@@ -56,16 +55,16 @@ const Footer = memo(function Footer() {
             </p>
             <div className="mt-5 flex items-center gap-3">
               {[
-                ['GitHub', FiGithub, 'https://github.com/WHOISABHISHEKADHIKARI'],
-                ['RSS', FiRss, '/blog'],
-                ['Email', FiMail, 'mailto:abhishekadhikari1254@gmail.com'],
+                ['GitHub', Code2, 'https://github.com/WHOISABHISHEKADHIKARI'],
+                ['RSS', Rss, '/blog'],
+                ['Email', Mail, 'mailto:abhishekadhikari1254@gmail.com'],
               ].map(([label, Icon, href]) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="grid h-9 w-9 place-items-center rounded-lg bg-white/10 text-slate-400 transition hover:bg-violet-600 hover:text-white"
+                  className="grid min-h-[44px] min-w-[44px] place-items-center rounded-lg bg-white/10 text-slate-400 transition hover:bg-violet-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
                   aria-label={`Follow us on ${label}`}
                 >
                   <Icon className="h-4 w-4" aria-hidden />
@@ -102,7 +101,7 @@ const Footer = memo(function Footer() {
       </div>
     </footer>
   );
-});
+}
 export default Footer;
 
 function FooterColumn({ title, items }) {

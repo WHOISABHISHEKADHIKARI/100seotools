@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FiArrowRight, FiHome, FiLayers } from 'react-icons/fi';
+import { ArrowRight, Home, Layers } from 'lucide-react';
 import { getAllToolsMeta } from '../../tools';
 import { getBaseUrl } from '../../lib/site';
 import { createSocialMetadata } from '../../lib/socialMetadata';
@@ -67,14 +67,14 @@ export default function CategoryIndexPage() {
   };
 
   return (
-    <main id="main" className="py-8">
+    <section id="main" className="py-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/<\/script>/gi, '<\\/script>') }} />
 
       <nav aria-label="Breadcrumb" className="mb-5 text-sm">
         <ol className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-400">
           <li>
             <Link href="/" className="inline-flex items-center gap-1 hover:text-violet-700 dark:hover:text-violet-200">
-              <FiHome className="h-3.5 w-3.5" aria-hidden />
+              <Home className="h-3.5 w-3.5" aria-hidden />
               Home
             </Link>
           </li>
@@ -87,7 +87,7 @@ export default function CategoryIndexPage() {
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-violet-100">
-            <FiLayers className="h-4 w-4" aria-hidden />
+            <Layers className="h-4 w-4" aria-hidden />
             Browse by Workflow
           </span>
           <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl">SEO Tool Categories</h1>
@@ -117,7 +117,7 @@ export default function CategoryIndexPage() {
                   <span className={`grid h-12 w-12 place-items-center rounded-2xl ${color.icon}`}>
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
-                  <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-extrabold text-slate-500 dark:bg-white/10 dark:text-slate-300">
+                  <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-extrabold text-slate-600 dark:bg-white/10 dark:text-slate-300">
                     {count} tools
                   </span>
                 </div>
@@ -128,12 +128,12 @@ export default function CategoryIndexPage() {
               </div>
               <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-extrabold text-slate-400 dark:border-white/10">
                 Browse tools
-                <FiArrowRight className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-violet-600" aria-hidden />
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-violet-600" aria-hidden />
               </div>
             </Link>
           );
         })}
       </section>
-    </main>
+    </section>
   );
 }

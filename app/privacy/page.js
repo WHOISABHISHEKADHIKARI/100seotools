@@ -106,7 +106,7 @@ export default function PrivacyPage() {
 
             <div className="mt-6 bg-emerald-50 dark:bg-emerald-500/5 rounded-3xl p-6 border border-emerald-100 dark:border-emerald-500/20">
               <Lock className="w-6 h-6 text-emerald-600 mb-4" />
-              <h3 className="text-sm font-black text-emerald-900 dark:text-emerald-400 mb-2 uppercase tracking-tight">Encryption Standards</h3>
+              <h2 className="text-sm font-black text-emerald-900 dark:text-emerald-400 mb-2 uppercase tracking-tight">Encryption Standards</h2>
               <p className="text-[11px] text-emerald-700/70 dark:text-emerald-400/60 leading-relaxed">
                 All data transmitted to our public validators is encrypted via SSL/TLS (HTTPS) to ensure secure processing.
               </p>

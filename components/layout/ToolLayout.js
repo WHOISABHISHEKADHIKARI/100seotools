@@ -126,7 +126,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
               className="group rounded-xl border border-slate-200 bg-slate-50 p-4 transition hover:border-slate-300 hover:bg-white hover:shadow-sm dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
             >
               <span className="block text-sm font-extrabold text-slate-900 group-hover:text-slate-700 dark:text-white">{label}</span>
-              <span className="mt-1 block text-[11px] leading-tight text-slate-500 dark:text-slate-400">{meta}</span>
+              <span className="mt-1 block text-[11px] leading-tight text-slate-600 dark:text-slate-400">{meta}</span>
             </a>
           ))}
         </div>
@@ -227,9 +227,9 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                   <div className="grid gap-3 sm:grid-cols-2">
                     {guide.howToSteps.map((step, index) => (
                       <div key={index} className="rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5">
-                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Step {index + 1}</span>
+                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-600">Step {index + 1}</span>
                         <p className="mt-1 text-xs font-bold text-slate-900 dark:text-white">{step.step}</p>
-                        <p className="mt-1 text-[11px] text-slate-500 dark:text-slate-400">{step.tip}</p>
+                        <p className="mt-1 text-[11px] text-slate-600 dark:text-slate-400">{step.tip}</p>
                       </div>
                     ))}
                   </div>

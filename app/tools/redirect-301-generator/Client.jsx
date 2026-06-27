@@ -310,7 +310,7 @@ export default function Redirect301GeneratorClient({ baseUrl }) {
   };
 
   return (
-    <main className="px-4 md:px-8 lg:px-12 py-8 max-w-6xl mx-auto text-slate-900 dark:text-slate-100">
+    <section className="px-4 md:px-8 lg:px-12 py-8 max-w-6xl mx-auto text-slate-900 dark:text-slate-100">
       <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-brand-700 dark:text-brand-300">301 Redirect Generator</h1>
       <p className="mt-2 text-accessibleGray-600 dark:text-slate-300">
         Generate production-ready 301 redirects across Apache, Nginx, PHP, HTML, and JavaScript. Real-time validation,
@@ -558,6 +558,6 @@ export default function Redirect301GeneratorClient({ baseUrl }) {
       <Script id="schema-redirect-generator" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(schemaLd)}
       </Script>
-    </main>
+    </section>
   );
 }

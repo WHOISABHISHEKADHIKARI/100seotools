@@ -138,7 +138,7 @@ export default async function SEOBasicsPage() {
     }
 
     return (
-        <main id="main" className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
+        <section id="main" className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
             <div className="container mx-auto px-4 py-8 max-w-4xl">
                 {/* Breadcrumb Navigation */}
                 <nav aria-label="Breadcrumb" className="mb-6">
@@ -257,6 +257,6 @@ export default async function SEOBasicsPage() {
             <StructuredData data={articleLd} />
             <StructuredData data={breadcrumbLd} />
             <StructuredData data={faqLd} />
-        </main>
+        </section>
     );
 }

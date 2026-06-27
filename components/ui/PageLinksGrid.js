@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import Card from './Card';
+import UnifiedCard from './UnifiedCard';
 
 const pages = [
   {
@@ -38,7 +38,7 @@ const PageLinksGrid = memo(function PageLinksGrid() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {pages.map((p) => (
-        <Card key={p.href} href={p.href} title={p.title} description={p.description} />
+        <UnifiedCard key={p.href} href={p.href} title={p.title} description={p.description} variant="minimal" />
       ))}
     </div>
   );

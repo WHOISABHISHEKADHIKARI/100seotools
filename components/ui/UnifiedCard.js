@@ -84,7 +84,7 @@ function UnifiedCard({
         ease-out
         overflow-hidden
         ${interactive ? 'focus-within:ring-4 focus-within:ring-violet-100 dark:focus-within:ring-violet-500/20' : ''}
-        ${variant === 'article' ? 'article-card' : ''}
+
         ${variant === 'tool' ? 'tool-card' : ''}
         ${variant === 'minimal' ? 'minimal-card' : ''}
         ${className}

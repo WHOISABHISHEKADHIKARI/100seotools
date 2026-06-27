@@ -126,7 +126,7 @@ function ToolCard({ tool, index, isFavorite, onToggleFavorite, onToolClick }) {
             {!isBlog && (
               <button
                 type="button"
-                className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 text-slate-400 transition hover:border-yellow-200 hover:bg-yellow-50 hover:text-yellow-500 dark:border-white/10 dark:hover:bg-yellow-500/10"
+                className="grid min-h-[44px] min-w-[44px] place-items-center rounded-xl border border-slate-200 text-slate-400 transition hover:border-yellow-200 hover:bg-yellow-50 hover:text-yellow-500 dark:border-white/10 dark:hover:bg-yellow-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2"
                 onClick={(event) => {
                   event.preventDefault();
                   onToggleFavorite(tool?.slug);

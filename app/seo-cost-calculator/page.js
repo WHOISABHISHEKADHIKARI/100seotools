@@ -80,7 +80,7 @@ export default function SEOCostCalculatorPage() {
   };
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-8">
+    <section className="max-w-6xl mx-auto px-4 py-8">
       <nav aria-label="Breadcrumb" className="mb-6">
         <ol className="flex flex-wrap items-center gap-1 text-sm text-slate-700 dark:text-slate-300">
           <li><a href="/" className="hover:underline">Home</a></li>
@@ -218,6 +218,6 @@ export default function SEOCostCalculatorPage() {
           <li><a href="/tools/traffic-potential-calculator" className="text-brand-600 hover:underline">Traffic Potential Calculator</a></li>
         </ul>
       </aside>
-    </main>
+    </section>
   );
 }

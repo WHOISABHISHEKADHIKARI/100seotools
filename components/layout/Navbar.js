@@ -58,7 +58,7 @@ export default function Navbar() {
             <div className="relative" ref={dropdownRef}>
               <button
                 type="button"
-                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-indigo-200"
+                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-indigo-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
                 aria-haspopup="menu"
                 aria-expanded={categoriesOpen}
                 onClick={() => setCategoriesOpen((value) => !value)}
@@ -105,9 +105,9 @@ export default function Navbar() {
               <a
                 key={item.label}
                 href={item.href}
-                className={`rounded-lg px-3 py-2 text-sm font-semibold transition hover:bg-slate-100 hover:text-indigo-700 dark:hover:bg-white/10 dark:hover:text-indigo-200 ${
-                  pathname === item.href ? 'text-indigo-700 dark:text-indigo-200' : 'text-slate-600 dark:text-slate-300'
-                }`}
+                className={`rounded-lg px-3 py-2 text-sm font-semibold transition hover:bg-slate-100 hover:text-indigo-700 dark:hover:bg-white/10 dark:hover:text-indigo-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 ${
+                   pathname === item.href ? 'text-indigo-700 dark:text-indigo-200' : 'text-slate-600 dark:text-slate-300'
+                 }`}
               >
                 {item.label}
               </a>
@@ -117,7 +117,7 @@ export default function Navbar() {
           <div className="hidden items-center gap-2 md:flex">
             <a
               href="/tools"
-              className="rounded-lg bg-slate-950 px-4 py-2.5 text-sm font-extrabold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
+              className="rounded-lg bg-slate-950 px-4 py-2.5 text-sm font-extrabold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
             >
               Get Started Free
             </a>
@@ -125,7 +125,7 @@ export default function Navbar() {
 
           <button
             type="button"
-            className="grid h-10 w-10 place-items-center rounded-lg border border-slate-200 text-slate-700 md:hidden dark:border-white/10 dark:text-white"
+            className="grid h-10 w-10 place-items-center rounded-lg border border-slate-200 text-slate-700 md:hidden dark:border-white/10 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((value) => !value)}
@@ -137,14 +137,14 @@ export default function Navbar() {
         {menuOpen && (
           <div className="border-t border-slate-200 bg-white px-4 py-4 shadow-xl md:hidden dark:border-white/10 dark:bg-gray-950">
             <div className="mx-auto grid max-w-7xl gap-1">
-              <a href="/category" className="rounded-lg px-3 py-2.5 text-sm font-bold text-indigo-700 dark:text-indigo-200">
+              <a href="/category" className="rounded-lg px-3 py-2.5 text-sm font-bold text-indigo-700 dark:text-indigo-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2">
                 Categories
               </a>
               {categoryDetails.slice(0, 6).map((category) => (
                 <a
                   key={category.label}
                   href={getCategoryHref(category.label)}
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-white/10"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
                 >
                   {category.label}
                 </a>
@@ -154,7 +154,7 @@ export default function Navbar() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10"
+                  className="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
                 >
                   {item.label}
                 </a>

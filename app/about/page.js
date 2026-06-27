@@ -156,7 +156,7 @@ export default function AboutPage() {
                   <div className="w-12 h-12 bg-violet-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-violet-200 dark:shadow-none">
                     <Zap className="text-white h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-black text-slate-900 dark:text-white mb-4">Human-First Usability</h3>
+                  <h2 className="text-xl font-black text-slate-900 dark:text-white mb-4">Human-First Usability</h2>
                   <ul className="space-y-3">
                     {[
                       ['Live Preview', 'See changes reflected instantly as you type.'],
@@ -179,7 +179,7 @@ export default function AboutPage() {
                   <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-200 dark:shadow-none">
                     <Code className="text-white h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-black text-slate-900 dark:text-white mb-4">Automated JSON-LD</h3>
+                  <h2 className="text-xl font-black text-slate-900 dark:text-white mb-4">Automated JSON-LD</h2>
                   <ul className="space-y-3">
                     {[
                       ['SoftwareApplication', 'Identifies tool category and availability.'],
@@ -260,7 +260,7 @@ export default function AboutPage() {
                     className="relative rounded-3xl border-4 border-white dark:border-slate-800 shadow-xl"
                   />
                 </div>
-                <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2">Abhishek Adhikari</h3>
+                <h2 className="text-xl font-black text-slate-900 dark:text-white mb-2">Abhishek Adhikari</h2>
                 <p className="text-xs font-bold text-violet-600 uppercase tracking-wider mb-4">Lead Developer & SEO Strategist</p>
                 <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
                   Passionate about building accessible <strong>AI SEO tools</strong> and automation workflows for the digital marketing community.

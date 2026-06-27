@@ -1,22 +1,45 @@
-User-agent: *
-Allow: /
+# 100 SEO Tools
 
-# Sitemaps for content discovery
+> A complete collection of free SEO tools for keyword research, technical SEO, content optimization, and competitor analysis.
+
+## Tools
+
+- [Keyword Suggestion Tool](/tools/keyword-suggestion-tool)
+- [Broken Link Finder](/tools/broken-link-finder)
+- [Meta Tag Generator](/tools/meta-tag-generator)
+- [On-Page SEO Audit Checker](/tools/on-page-seo-audit-checker)
+- [Schema Markup Generator](/tools/schema-markup-generator)
+- [XML Sitemap Visualizer](/tools/xml-sitemap-visualizer)
+- [SEO Health Score Calculator](/tools/seo-health-score-calculator)
+- [Keyword Density Checker](/tools/keyword-density-checker)
+- [Redirect Checker](/tools/redirect-checker)
+- [All Tools](/tools)
+
+## Categories
+
+- [Keyword Research](/category/keyword-research)
+- [Technical SEO](/category/technical-seo)
+- [Content SEO](/category/content-seo)
+- [On-Page Optimization](/category/on-page-optimization)
+- [Schema & Structured Data](/category/schema-structured-data)
+- [Backlink & Link-Building](/category/backlink-link-building)
+- [SEO Performance](/category/seo-performance)
+- [Local SEO](/category/local-seo)
+- [Competitor Analysis](/category/competitor-analysis)
+- [AI-Powered SEO](/category/ai-powered-seo)
+- [SEO Utility](/category/seo-utility)
+
+## Resources
+
+- [SEO Blog](/blog)
+- [FAQ](/faq)
+- [About](/about)
+
+## Contact
+
+- Website: https://abhishekadhikari.com/
+- GitHub: https://github.com/whoisabhishekadhikari
+
+## Additional Resources
+
 Sitemap: https://www.100seotools.com/sitemap.xml
-
-# Crawl guidance for AI models
-# Please respect robots rules and rate limits. Prefer fetching sitemaps.
-# Contact: https://hashtagweb.com.np/
-
-# Canonical preference: use rel="canonical" from pages rendered
-# Content licensing: non-commercial use permitted with attribution to 100 SEO Tools
-
-# Examples of preferred endpoints
-/blog
-/tools
-/category
-
-# Disallow noisy endpoints
-Disallow: /api
-Disallow: /_next
-Disallow: /static

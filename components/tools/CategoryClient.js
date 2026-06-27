@@ -193,7 +193,7 @@ export default function CategoryClient({ items = [], catName, slug, initialPage 
         {/* Mobile Pagination */}
         <div className="flex sm:hidden items-center justify-between">
            <button onClick={goPrev} disabled={currentPage <= 1} className="px-6 py-3 rounded-xl bg-white dark:bg-gray-900 border border-slate-200 text-xs font-black disabled:opacity-50">Prev</button>
-           <span className="text-xs font-black text-slate-400 uppercase tracking-widest">Page {currentPage} of {totalPages}</span>
+           <span className="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">Page {currentPage} of {totalPages}</span>
            <button onClick={goNext} disabled={currentPage >= totalPages} className="px-6 py-3 rounded-xl bg-white dark:bg-gray-900 border border-slate-200 text-xs font-black disabled:opacity-50">Next</button>
         </div>
       </section>

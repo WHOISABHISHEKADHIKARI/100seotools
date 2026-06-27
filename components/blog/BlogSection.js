@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import UnifiedCard from '../ui/UnifiedCard';
-import { FiClock, FiTag, FiBookOpen, FiArrowRight } from 'react-icons/fi';
+import { Clock, Tag, BookOpen, ArrowRight } from 'lucide-react';
 
 export default function BlogSection({ limit = 3, showHeader = true }) {
   const [posts, setPosts] = useState([]);
@@ -155,11 +155,11 @@ export default function BlogSection({ limit = 3, showHeader = true }) {
                   />
                   <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-3 px-1">
                     <span className="inline-flex items-center gap-1">
-                      <FiClock className="w-3.5 h-3.5" />
+                      <Clock className="w-3.5 h-3.5" />
                       <time dateTime={post.publishDate}>{formatDate(post.publishDate)}</time>
                     </span>
                     <span className="inline-flex items-center gap-1">
-                      <FiTag className="w-3.5 h-3.5" />
+                      <Tag className="w-3.5 h-3.5" />
                       {post.tags.slice(0, 2).join(' • ')}
                     </span>
                   </div>
@@ -173,9 +173,9 @@ export default function BlogSection({ limit = 3, showHeader = true }) {
           {showHeader ? (
             <div className="text-center">
               <Link href="/blog" className="btn btn-outline inline-flex items-center gap-2">
-                <FiBookOpen className="w-5 h-5" />
+                <BookOpen className="w-5 h-5" />
                 View All Guides
-                <FiArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           ) : null}

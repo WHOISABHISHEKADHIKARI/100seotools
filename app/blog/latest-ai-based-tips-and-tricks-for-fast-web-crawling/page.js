@@ -48,7 +48,7 @@ export default async function Page() {
   const publishedLabel = `Published: ${new Date().toLocaleDateString()} • 8 min read`;
 
   return (
-    <main id="main" className="container mx-auto px-4 py-8">
+    <section id="main" className="container mx-auto px-4 py-8">
       <nav aria-label="Breadcrumb" className="text-sm mb-4">
         <ol className="flex flex-wrap gap-1 text-slate-600 dark:text-slate-300">
           <li><a className="hover:underline" href="/">Home</a> <span aria-hidden>›</span></li>
@@ -161,6 +161,6 @@ export default async function Page() {
 
       <StructuredData data={articleLd} />
       <StructuredData data={breadcrumbLd} />
-    </main>
+    </section>
   );
 }

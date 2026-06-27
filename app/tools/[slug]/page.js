@@ -1,5 +1,7 @@
 import ToolRunner from '../../../components/tools/ToolRunner';
 import ToolLayout from '../../../components/layout/ToolLayout';
+import ShareActions from '../../../components/ui/ShareActions';
+import BlogSection from '../../../components/blog/BlogSection';
 import { generateSoftwareApplicationSchema, generateHowToSchema, generateFAQSchema } from '../../../lib/schema';
 import { getToolBySlug, getAllToolsMeta } from '../../../tools';
 import { getToolGuide } from '../../../lib/guides';
@@ -87,7 +89,35 @@ export default async function ToolPage({ params }) {
       relatedTools={relatedTools}
       extraSchema={[breadcrumbLd, softwareLd, howToLd, faqLd, webPageLd].filter(Boolean)}
     >
-      <ToolRunner tool={tool} />
+      <div className="space-y-12">
+        <section id="tool-interface" className="scroll-mt-20">
+          <ToolRunner tool={tool} />
+        </section>
+
+        <div className="flex justify-between items-center py-6 border-y border-gray-100 dark:border-gray-800">
+          <ShareActions title={tool.name} url={`${baseUrl}/tools/${tool.slug}`} />
+          <div className="text-sm text-gray-500">
+            Trusted by <span className="font-bold text-brand-600">15,000+</span> marketers every month
+          </div>
+        </div>
+
+        <article className="prose prose-slate dark:prose-invert max-w-none">
+          <BlogSection>
+            <h2>How to Use the {tool.name}</h2>
+            <p>{guide.introduction || `Learn how to use the ${tool.name} tool effectively for your SEO workflow.`}</p>
+            {guide.howToSteps && guide.howToSteps.length > 0 && (
+              <>
+                <h3>Step-by-Step Guide</h3>
+                <ol>
+                  {guide.howToSteps.map((step, i) => (
+                    <li key={i}>{step}</li>
+                  ))}
+                </ol>
+              </>
+            )}
+          </BlogSection>
+        </article>
+      </div>
     </ToolLayout>
   );
 }

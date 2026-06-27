@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { FiArrowRight, FiCheckCircle, FiHome, FiLayers, FiStar } from 'react-icons/fi';
+import { ArrowRight, CheckCircle, Home, Layers, Star } from 'lucide-react';
 import { getAllBlogPostsPublished } from '../../../lib/blog-data';
 import { getAllToolsMeta } from '../../../tools';
 import CategoryClient from '../../../components/tools/CategoryClient';
@@ -107,11 +107,11 @@ export default async function CategoryPage({ params, searchParams }) {
   };
 
   return (
-    <main id="main" className="py-8">
+    <section id="main" className="py-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/<\/script>/gi, '<\\/script>') }} />
       <nav aria-label="Breadcrumb" className="mb-5 text-sm">
         <ol className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-400">
-          <li><Link href="/" className="inline-flex items-center gap-1 hover:text-violet-700 dark:hover:text-violet-200"><FiHome className="h-3.5 w-3.5" aria-hidden />Home</Link></li>
+          <li><Link href="/" className="inline-flex items-center gap-1 hover:text-violet-700 dark:hover:text-violet-200"><Home className="h-3.5 w-3.5" aria-hidden />Home</Link></li>
           <li aria-hidden>/</li>
           <li><Link href="/category" className="hover:text-violet-700 dark:hover:text-violet-200">Categories</Link></li>
           <li aria-hidden>/</li>
@@ -128,7 +128,7 @@ export default async function CategoryPage({ params, searchParams }) {
             {featuredTool && (
               <a href={`/tools/${featuredTool.slug}`} className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-extrabold text-violet-700 shadow-xl shadow-black/20 transition hover:scale-[1.01] focus:outline-none focus-visible:ring-4 focus-visible:ring-white/40">
                 Start with {featuredTool.name.replace(/\s*\|.*/, '')}
-                <FiArrowRight className="h-4 w-4" aria-hidden />
+                <ArrowRight className="h-4 w-4" aria-hidden />
               </a>
             )}
           </div>
@@ -154,7 +154,7 @@ export default async function CategoryPage({ params, searchParams }) {
               <div className="mb-4 flex items-center gap-3"><span className={`grid h-12 w-12 place-items-center rounded-2xl ${color.icon}`}><Icon className="h-5 w-5" aria-hidden /></span><span className={`rounded-full px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide ${color.badge}`}>Featured</span></div>
               <h3 className="mb-2 text-xl font-extrabold text-slate-950 transition group-hover:text-violet-700 dark:text-white dark:group-hover:text-violet-200">{featuredTool.name.replace(/\s*\|.*/, '')}</h3>
               <p className="mb-5 text-slate-600 dark:text-slate-300">{featuredTool.description}</p>
-              <span className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-extrabold text-white transition group-hover:bg-violet-700 dark:bg-white dark:text-slate-950 dark:group-hover:bg-violet-200">Open Tool<FiArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden /></span>
+              <span className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-extrabold text-white transition group-hover:bg-violet-700 dark:bg-white dark:text-slate-950 dark:group-hover:bg-violet-200">Open Tool<ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden /></span>
             </div>
           </a>
         </section>
@@ -173,16 +173,16 @@ export default async function CategoryPage({ params, searchParams }) {
         <h2 className="mb-4 text-2xl font-extrabold text-slate-950 dark:text-white">Trusted by SEOs Worldwide</h2>
         <div className="grid grid-cols-2 gap-4 text-center sm:grid-cols-4">
           {[
-            ['10,000+', 'Active Users', FiCheckCircle],
-            ['500+', '5-Star Reviews', FiStar],
-            ['1M+', 'Tools Run', FiLayers],
-            ['99.9%', 'Uptime', FiCheckCircle],
+            ['10,000+', 'Active Users', CheckCircle],
+            ['500+', '5-Star Reviews', Star],
+            ['1M+', 'Tools Run', Layers],
+            ['99.9%', 'Uptime', CheckCircle],
           ].map(([value, label, StatIcon]) => (
             <div key={label} className="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900"><StatIcon className="mx-auto mb-2 h-5 w-5 text-violet-600" aria-hidden /><p className="text-3xl font-extrabold text-slate-950 dark:text-white">{value}</p><p className="text-sm text-slate-600 dark:text-slate-300">{label}</p></div>
           ))}
         </div>
       </section>
-    </main>
+    </section>
   );
 }
 

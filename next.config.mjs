@@ -37,6 +37,7 @@ const nextConfig = withBundleAnalyzer({
     serverActions: {
       bodySizeLimit: '1mb',
     },
+    browsersListForSwc: true,
   },
   transpilePackages: [],
   webpack(config, { isServer }) {
