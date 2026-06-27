@@ -6,21 +6,14 @@ import {
   ArrowRight,
   BarChart2,
   CheckCircle,
-  Globe,
-  Lock,
   Play,
-  RefreshCw,
   Search,
-  Shield,
-  Smartphone,
   Star,
   TrendingUp,
   Users,
   Zap,
 } from 'lucide-react';
-import StickySearchBar from '../components/home/StickySearchBar';
 import FAQSection from '../components/home/FAQSection';
-import SearchFilter from '../components/tools/SearchFilter';
 import ToolGrid from '../components/tools/ToolGrid';
 import PageLinksGrid from '../components/ui/PageLinksGrid';
 import {
@@ -72,15 +65,6 @@ function followNativeHref(href) {
     window.location.assign(href);
   };
 }
-
-const trustItems = [
-  [Lock, 'No credit card required', 'text-emerald-500'],
-  [Zap, 'Instant results', 'text-amber-500'],
-  [Shield, 'Privacy-first processing', 'text-blue-500'],
-  [Globe, 'Works worldwide', 'text-violet-500'],
-  [RefreshCw, 'Updated for modern SEO', 'text-rose-500'],
-  [Smartphone, 'Mobile-friendly', 'text-sky-500'],
-];
 
 const workflow = [
   ['01', 'Find your keywords', 'Build a keyword map with suggestion, clustering, intent, and gap tools.', Search],
@@ -164,29 +148,28 @@ export default function HomePageClient({ initialTools = [] }) {
         </div>
       </section>
 
-      <StickySearchBar onSearch={(query) => {
-        if (!query.trim()) {
-          setFilteredTools(tools);
-          return;
-        }
-        const q = query.toLowerCase();
-        setFilteredTools(
-          tools.filter((tool) =>
-            tool.name.toLowerCase().includes(q) ||
-            tool.slug.includes(q) ||
-            (tool.category && tool.category.toLowerCase().includes(q))
-          )
-        );
-      }} />
-
-      <section className="relative left-1/2 w-screen -translate-x-1/2 border-b border-slate-100 bg-white py-5 dark:border-white/10 dark:bg-gray-950">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-300 sm:px-6">
-          {trustItems.map(([Icon, label, color]) => (
-            <div key={label} className="flex items-center gap-2">
-              <Icon className={`h-4 w-4 ${color}`} aria-hidden />
-              {label}
-            </div>
-          ))}
+      <section className="relative left-1/2 w-screen -translate-x-1/2 border-b border-slate-100 bg-white py-5 dark:border-white/10 dark:bg-gray-950 flex justify-center items-center">
+        <div className="relative w-full max-w-[600px] mx-auto">
+          <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" aria-hidden />
+          <input
+            id="tool-search"
+            type="search"
+            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-12 pr-10 text-base font-medium text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-violet-300 focus:bg-white focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-white/5 dark:text-white dark:focus:ring-violet-500/20"
+            placeholder="Search 100+ SEO tools..."
+            autoComplete="off"
+            onChange={(e) => {
+              const q = e.target.value.toLowerCase();
+              setFilteredTools(
+                q.trim()
+                  ? tools.filter((tool) =>
+                      tool.name.toLowerCase().includes(q) ||
+                      tool.slug.includes(q) ||
+                      (tool.category && tool.category.toLowerCase().includes(q))
+                    )
+                  : tools
+              );
+            }}
+          />
         </div>
       </section>
 
@@ -200,10 +183,20 @@ export default function HomePageClient({ initialTools = [] }) {
         </div>
 
         <div className="mb-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {categoryDetails.map((category) => {
+          {categoryDetails
+            .filter((category) => {
+              const q = filteredTools.length < tools.length ? filteredTools : null;
+              if (!q) return true;
+              const categoryTools = tools.filter((tool) => tool.category === category.label);
+              return categoryTools.some((tool) => filteredTools.includes(tool));
+            })
+            .map((category) => {
             const Icon = category.icon;
             const color = visualColors[category.color] || visualColors.violet;
             const href = getCategoryHref(category.label);
+            const count = filteredTools.length < tools.length
+              ? tools.filter((tool) => tool.category === category.label && filteredTools.includes(tool)).length
+              : (categoryCounts[category.label] || 0);
             return (
               <article
                 key={category.label}
@@ -221,7 +214,7 @@ export default function HomePageClient({ initialTools = [] }) {
                       <Icon className="h-5 w-5" />
                     </span>
                     <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-extrabold text-slate-600 dark:bg-white/10 dark:text-slate-300">
-                      {categoryCounts[category.label] || 0} tools
+                      {count} tools
                     </span>
                   </div>
                   <h3 className="text-sm font-extrabold text-slate-900 group-hover:text-violet-700 dark:text-white dark:group-hover:text-violet-200">{category.label}</h3>
@@ -238,9 +231,6 @@ export default function HomePageClient({ initialTools = [] }) {
           })}
         </div>
 
-        <div className="mb-8">
-          <SearchFilter tools={tools} onChange={setFilteredTools} />
-        </div>
         <ToolGrid tools={filteredTools} />
       </section>
 
