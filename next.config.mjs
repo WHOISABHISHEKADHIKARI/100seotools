@@ -93,6 +93,10 @@ const nextConfig = withBundleAnalyzer({
       { source: '/tools/sentiment-analyzer', destination: '/tools/tone-of-voice-analyzer', permanent: true },
       { source: '/tools/seo-roi-calculator', destination: '/tools/keyword-roi-calculator', permanent: true },
 
+      // Fix broken redirect: translate-to-english-complete-guide was redirecting to non-existent tool
+      // The correct tool slug is text-translator
+      { source: '/blog/translate-to-english-complete-guide', destination: '/tools/text-translator', permanent: true },
+
       // Fix tool variant URLs that should point to the tool itself (clean up GSC 404s)
       { source: '/tools/:slug-guide', destination: '/tools/:slug', permanent: true },
       { source: '/tools/:slug-best-practices-integrations-costs', destination: '/tools/:slug', permanent: true },
@@ -167,6 +171,15 @@ const nextConfig = withBundleAnalyzer({
       headers: [{ key: 'X-Robots-Tag', value: 'noindex, follow' }],
     },
     { source: '/404', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] },
+    // Prevent indexing of sitemaps and Next.js internal URLs
+    {
+      source: '/:path(sitemap.*\\.xml)',
+      headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+    },
+    {
+      source: '/_next/:path*',
+      headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+    },
   ],
 });
 

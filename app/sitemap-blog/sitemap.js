@@ -128,12 +128,12 @@ function getPostChangeFreq(post) {
  */
 export default async function sitemap() {
     const baseUrl = getBaseUrl();
-    const stableDate = new Date('2026-06-19').toISOString();
+    const now = new Date().toISOString();
 
     // ============================================
     // BLOG INDEX PAGE
     // ============================================
-    const blogIndex = buildBlogIndexEntry(baseUrl, stableDate);
+    const blogIndex = buildBlogIndexEntry(baseUrl, now);
 
     // ============================================
     // GET ALL PUBLISHED BLOG POSTS
@@ -158,7 +158,7 @@ export default async function sitemap() {
     // ============================================
     const blogEntries = validPosts.map((post) => ({
         url: `${baseUrl}/blog/${post.slug}`,
-        lastModified: stableDate,
+        lastModified: new Date(post.dateModified || post.datePublished || now).toISOString(),
         changeFrequency: getPostChangeFreq(post),
         priority: getPostPriority(post),
     }));

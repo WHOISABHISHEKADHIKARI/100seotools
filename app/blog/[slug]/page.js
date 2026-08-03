@@ -42,6 +42,7 @@ export async function generateMetadata({ params, searchParams }) {
       robots: page > 1 ? { index: false, follow: true } : { index: true, follow: true },
       ...createSocialMetadata({
         title: post.title, description: post.description, url, type: 'article',
+        image: post.image || (post.slug ? `${baseUrl}/blog-images/${post.slug}.png` : undefined),
         imageAlt: `${post.title} | 100 SEO Tools`,
       })
     };
@@ -118,6 +119,25 @@ export default async function Page({ params, searchParams }) {
   const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
 
   const fallbackImage = `${baseUrl}/og-image.jpg`;
+
+  function getDefaultSources(post) {
+    const sources = [
+      { name: 'Google Search Central — SEO Documentation', url: 'https://developers.google.com/search/docs' },
+      { name: 'Moz — The Beginner\'s Guide to SEO', url: 'https://moz.com/beginners-guide-to-seo' },
+      { name: 'web.dev — Google SEO & Performance Guides', url: 'https://web.dev/learn-core-web-vitals/' },
+    ];
+    if (post.category === 'Technical SEO' || post.tags?.some(t => /accessibility|a11y|wcag/i.test(t))) {
+      sources.push({ name: 'W3C Web Accessibility Initiative (WAI)', url: 'https://www.w3.org/WAI/' });
+    }
+    if (post.category === 'Content SEO' || post.tags?.some(t => /content|writing|readability/i.test(t))) {
+      sources.push({ name: 'Search Engine Journal — Content SEO', url: 'https://www.searchenginejournal.com/category/content/' });
+    }
+    if (post.tags?.some(t => /analytics|search-console|gsc/i.test(t))) {
+      sources.push({ name: 'Google Search Status Dashboard', url: 'https://status.search.google.com/' });
+    }
+    return sources;
+  }
+
   const articleLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -345,11 +365,11 @@ export default async function Page({ params, searchParams }) {
           </div>
         )}
 
-        {Array.isArray(post.sections?.sources) && post.sections.sources.length > 0 && (
+        {(Array.isArray(post.sections?.sources) || true) && (
           <div className="rounded-2xl border border-slate-100 bg-slate-50/50 p-5 dark:border-white/10 dark:bg-white/[0.03]">
-            <h2 className="mb-3 text-base font-extrabold text-slate-950 dark:text-white">Sources &amp; further reading</h2>
+            <h2 className="mb-3 text-base font-extrabold text-slate-950 dark:text-white">Sources &amp; references</h2>
             <ul className="space-y-2">
-              {post.sections.sources.map((s, i) => (
+              {[...(post.sections?.sources || []), ...getDefaultSources(post)].map((s, i) => (
                 <li key={i}>
                   <a href={s.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-indigo-600 hover:text-indigo-800 hover:underline dark:text-indigo-400 dark:hover:text-indigo-200">
                     {s.name}

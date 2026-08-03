@@ -2,8 +2,7 @@ import { getBaseUrl } from '../../lib/site';
 
 export async function GET() {
     const baseUrl = getBaseUrl();
-    // Use a stable date for the sitemap index to avoid constant 'updates' in Search Console
-    const stableDate = new Date('2026-04-25').toISOString();
+    const stableDate = new Date().toISOString();
 
     // Define the sub-sitemaps
     // Note: App Router 'sitemap.js' in a folder generates '/folder/sitemap.xml'
@@ -14,7 +13,7 @@ export async function GET() {
         `${baseUrl}/sitemap-guides/sitemap.xml`,     // Guides
         `${baseUrl}/sitemap-categories/sitemap.xml`, // Categories
         `${baseUrl}/sitemap-author/sitemap.xml`,     // Author
-        `${baseUrl}/sitemap-static/sitemap.xml`,     // Static redundancy
+        // sitemap-static removed — duplicates sitemap-core and sitemap-categories
     ];
 
     // Generate the XML

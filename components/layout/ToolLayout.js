@@ -1,11 +1,12 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getToolGuide, getInstructionEntry } from '../../lib/guides';
 import { makeToolSeoTitle } from '../../lib/toolSeo';
 import { getAuthor, getBaseUrl } from '../../lib/site';
 import StructuredData from '../ui/StructuredData';
 import ErrorBoundary from './ErrorBoundary';
-import { ArrowRight, BookOpen, CheckCircle, Shield, Zap, User, Calendar } from 'lucide-react';
-import { getCategoryDetail, shortToolName, visualColors, getMonthlyUse } from '../tools/SeoVisuals';
+import { ArrowRight, BookOpen, CheckCircle, Shield, Zap, Calendar } from 'lucide-react';
+import { getCategoryDetail, shortToolName, visualColors } from '../tools/SeoVisuals';
 import { slugify } from '../../lib/utils';
 
 export default function ToolLayout({ tool, children, relatedTools = [], extraSchema = [] }) {
@@ -73,7 +74,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                   <span className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
                   <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300">Free, no signup</span>
                   <span className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
-                  <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">{getMonthlyUse(0)}+ uses/mo</span>
+                  <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">Trusted by SEOs worldwide</span>
                 </div>
                 <h1 className="text-3xl font-extrabold tracking-tight text-slate-950 md:text-5xl dark:text-white">{displayName}</h1>
               </div>
@@ -189,19 +190,39 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
           <div className="space-y-5">
             <div className="space-y-7 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7 dark:border-white/10 dark:bg-gray-900">
               <section aria-labelledby="intro-heading" className="space-y-3">
-                <h2 id="intro-heading" className="text-2xl font-extrabold text-slate-900 dark:text-white">Introduction</h2>
-                <p className="leading-7 text-slate-600 dark:text-slate-300">{guide.introduction}</p>
+                <h2 id="intro-heading" className="text-2xl font-extrabold text-slate-900 dark:text-white">What is {displayName}</h2>
+                <p className="leading-7 text-slate-600 dark:text-slate-300">{displayName} is a free, browser-based SEO tool from 100 SEO Tools that helps you {guide.whatItDoes?.toLowerCase() || 'optimize your SEO workflow'}. No signup, no data storage — everything runs client-side in your browser for instant, private results.</p>
                 <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-500 dark:text-slate-400">
                   <span className="inline-flex items-center gap-1.5">
-                    <User className="h-3.5 w-3.5" aria-hidden />
-                    Written by {getAuthor(getBaseUrl()).name}
+                    <Image src="/author.png" alt="Abhishek Adhikari" width={20} height={20} className="rounded-full" />
+                    <a href="/author" className="font-semibold text-violet-600 hover:text-violet-800 dark:text-violet-400 dark:hover:text-violet-300">Abhishek Adhikari</a>
                   </span>
                   <span className="inline-flex items-center gap-1.5">
                     <Calendar className="h-3.5 w-3.5" aria-hidden />
-                    Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                   </span>
                 </div>
               </section>
+
+              <section className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-5 shadow-sm dark:border-blue-500/20 dark:from-blue-500/10 dark:to-white/[0.03]">
+                <h3 className="mb-3 text-sm font-extrabold text-blue-800 dark:text-blue-200">Key takeaways</h3>
+                <ul className="space-y-2">
+                  <li className="flex gap-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
+                    <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                    <span>Free to use with no signup, limits, or hidden costs</span>
+                  </li>
+                  <li className="flex gap-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
+                    <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                    <span>100% browser-based — your data never leaves your device</span>
+                  </li>
+                  <li className="flex gap-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
+                    <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                    <span>Instant results with real-time processing as you type</span>
+                  </li>
+                </ul>
+              </section>
+
+              <p className="leading-7 text-slate-600 dark:text-slate-300">{guide.introduction}</p>
 
               <div className="grid gap-6 sm:grid-cols-2">
                 <section aria-labelledby="what-heading" className="space-y-3">

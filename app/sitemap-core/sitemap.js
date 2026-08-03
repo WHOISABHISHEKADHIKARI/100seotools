@@ -19,8 +19,8 @@ function validatePageConfig(page) {
 
 export default function sitemap() {
   const baseUrl = getBaseUrl();
-  // Use a stable date for static content to avoid daily 'changes' that haven't happened
-  const stableDate = new Date('2026-06-19');
+  // Use build date to signal freshness to search engines
+  const stableDate = new Date();
 
   // Core Pages
   const corePages = [
@@ -47,6 +47,8 @@ export default function sitemap() {
     { path: '/tools', priority: 0.9, changeFreq: 'daily' },
     { path: '/privacy', priority: 0.3, changeFreq: 'yearly' },
     { path: '/terms', priority: 0.3, changeFreq: 'yearly' },
+    { path: '/faq', priority: 0.5, changeFreq: 'monthly' },
+    { path: '/editorial-policy', priority: 0.3, changeFreq: 'yearly' },
   ];
 
   const allPages = [

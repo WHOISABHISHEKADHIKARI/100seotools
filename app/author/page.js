@@ -109,6 +109,11 @@ const personSchema = {
             name: 'Delta Engineering Solutions',
         },
     ],
+    sameAs: [
+        'https://www.linkedin.com/in/abhishek-adhikari-958aa2248/',
+        'https://github.com/abhishek-100seotools',
+        'https://twitter.com/abhi_seotools',
+    ],
 };
 
 // Breadcrumb Schema
@@ -575,7 +580,7 @@ export default function AuthorPage() {
                             </div>
                             <div className="flex items-center gap-3">
                                 <span className="text-brand-600 dark:text-brand-400 font-semibold">Website:</span>
-                                <Link href={baseUrl} className="hover:underline">100seotools.com</Link>
+                                <Link href={baseUrl} className="hover:underline">www.100seotools.com</Link>
                             </div>
                         </div>
                     </section>

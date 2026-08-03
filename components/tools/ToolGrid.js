@@ -5,7 +5,6 @@ import { BookOpen, ChevronRight, Star, Users } from 'lucide-react';
 import { useUserPreferences } from '../../contexts/UserPreferencesContext';
 import {
   getCategoryDetail,
-  getMonthlyUse,
   getToolBadge,
   getToolInitial,
   shortToolName,
@@ -157,7 +156,7 @@ function ToolCard({ tool, index, isFavorite, onToggleFavorite, onToolClick }) {
           {!isBlog && (
             <span className="inline-flex items-center gap-1">
               <Users className="h-3.5 w-3.5" aria-hidden />
-              {getMonthlyUse(index)}/mo
+              Free to use
             </span>
           )}
         </div>

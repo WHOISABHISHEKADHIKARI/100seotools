@@ -2,6 +2,7 @@ import { getBaseUrl } from '../../lib/site';
 import StructuredData from '../../components/ui/StructuredData';
 import { ShieldCheck, Lock, Eye, FileText, ArrowRight, Info, Clock, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+
 import { createSocialMetadata } from '../../lib/socialMetadata';
 
 const baseUrl = getBaseUrl();
@@ -144,7 +145,7 @@ export default function PrivacyPage() {
                         <Lock className="w-4 h-4" /> Client-Side Tools
                       </div>
                       <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        90% of our tools run entirely in your browser. Inputs never leave your computer, ensuring absolute privacy.
+                        90% of our <Link href="/tools" className="text-violet-600 hover:underline dark:text-violet-400">tools</Link> run entirely in your browser. Inputs never leave your computer, ensuring absolute privacy.
                       </p>
                     </div>
                     <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10">
@@ -152,7 +153,7 @@ export default function PrivacyPage() {
                         <Eye className="w-4 h-4" /> Public Validators
                       </div>
                       <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Some tools (like sitemap validators) fetch public web resources. We do not store the URLs you validate.
+                        Some tools (like our <Link href="/tools/xml-sitemap-validator" className="text-violet-600 hover:underline dark:text-violet-400">XML Sitemap Validator</Link>) fetch public web resources. We do not store the URLs you validate.
                       </p>
                     </div>
                   </div>

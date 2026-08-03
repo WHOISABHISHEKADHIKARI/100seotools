@@ -182,15 +182,17 @@ export default function AboutPage() {
                   <h2 className="text-xl font-black text-slate-900 dark:text-white mb-4">Automated JSON-LD</h2>
                   <ul className="space-y-3">
                     {[
-                      ['SoftwareApplication', 'Identifies tool category and availability.'],
-                      ['HowTo Schema', 'Step-by-step instructions for search bots.'],
-                      ['FAQPage Schema', 'Dynamic generation based on tool logic.'],
-                      ['BreadcrumbList', 'Ensures clear navigation for rich snippets.'],
-                    ].map(([title, desc]) => (
+                      ['SoftwareApplication', 'Identifies tool category and availability.', null],
+                      ['HowTo Schema', 'Step-by-step instructions for search bots.', '/tools/howto-schema-generator'],
+                      ['FAQPage Schema', 'Dynamic generation based on tool logic.', '/tools/faq-schema-generator'],
+                      ['BreadcrumbList', 'Ensures clear navigation for rich snippets.', '/tools/breadcrumb-schema-generator'],
+                    ].map(([title, desc, link]) => (
                       <li key={title} className="flex gap-3">
                         <CheckCircle className="h-5 w-5 text-emerald-500 shrink-0" />
                         <div>
-                          <div className="text-sm font-bold text-slate-900 dark:text-white">{title}</div>
+                          <div className="text-sm font-bold text-slate-900 dark:text-white">
+                            {link ? <Link href={link} className="hover:text-violet-600 dark:hover:text-violet-400">{title}</Link> : title}
+                          </div>
                           <div className="text-xs text-slate-500 dark:text-slate-400">{desc}</div>
                         </div>
                       </li>

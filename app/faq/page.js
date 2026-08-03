@@ -58,7 +58,7 @@ const faqCategories = [
     color: 'orange',
     faqs: [
       { q: 'How do I test my website speed?', a: 'Use our Website Speed Test which analyzes page load time and provides actionable recommendations to improve speed.', tool: 'website-speed-test' },
-      { q: 'What are Core Web Vitals?', a: 'Core Web Vitals are Google\'s page experience metrics: LCP, FID, and CLS. They directly impact rankings.' },
+      { q: 'What are Core Web Vitals?', a: 'Core Web Vitals are Google\'s page experience metrics: LCP, FID, and CLS. They directly impact rankings. Use our Core Web Vitals Checker and Website Speed Test.', tool: 'core-web-vitals-checker' },
     ],
   },
   {
@@ -118,14 +118,20 @@ export default function FAQPage() {
             Find instant answers to questions about our 100+ SEO tools, privacy policies, and technical implementation.
           </p>
 
-          <div className="mt-10 max-w-2xl mx-auto relative">
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-white/30" />
-            <input
-              type="text"
-              aria-label="Search for a topic"
-              placeholder="Search for a topic (e.g. 'privacy', 'backlinks')..."
-              className="w-full h-16 bg-white/10 border border-white/20 rounded-2xl pl-14 pr-6 text-white placeholder:text-white/30 focus:bg-white/15 focus:ring-4 focus:ring-violet-500/20 outline-none transition-all font-medium"
-            />
+          <div className="mt-10 max-w-2xl mx-auto">
+            <p className="text-sm text-white/50 mb-4">Jump to a topic:</p>
+            <div className="flex flex-wrap justify-center gap-2" role="list" aria-label="FAQ topics">
+              {faqCategories.map((cat) => (
+                <a
+                  key={cat.category}
+                  href={`#${cat.category.toLowerCase().replace(/[^a-z]+/g, '-')}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold text-white/80 hover:bg-white/20 hover:text-white transition-all"
+                >
+                  <cat.icon className="h-4 w-4" aria-hidden />
+                  {cat.category}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -170,7 +176,7 @@ export default function FAQPage() {
           {/* FAQ Content */}
           <div className="space-y-16">
             {faqCategories.map((cat) => (
-              <section key={cat.category}>
+              <section key={cat.category} id={cat.category.toLowerCase().replace(/[^a-z]+/g, '-')} className="scroll-mt-24">
                 <div className="flex items-center gap-3 mb-8">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400`}>
                     <cat.icon className="h-5 w-5" />

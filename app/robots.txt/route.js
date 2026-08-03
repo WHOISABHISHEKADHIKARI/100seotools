@@ -15,10 +15,11 @@ export async function GET() {
 User-Agent: *
 Allow: /
 
-# Block pagination and duplicate content
+# Block pagination, duplicate content, and framework internal params
 Disallow: /*/p/
 Disallow: /*/tp/
 Disallow: /*?page=
+Disallow: /*?_rsc
 Disallow: /api/
 
 # Block error pages

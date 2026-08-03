@@ -100,10 +100,8 @@ function getToolChangeFreq(tool) {
  */
 export default function sitemap() {
     const baseUrl = getBaseUrl();
-    // Use a stable date for static content to avoid daily 'changes' that haven't happened
-    // Only update this when significant tool logic or content changes
-    const stableDate = new Date('2026-06-19');
-    const now = new Date();
+    // Use build date to signal freshness to search engines
+    const stableDate = new Date();
 
     // ============================================
     // GET ALL TOOLS

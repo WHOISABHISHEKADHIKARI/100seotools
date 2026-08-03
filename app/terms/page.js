@@ -185,7 +185,7 @@ export default function TermsPage() {
                     </p>
                   </div>
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed mt-6">
-                    While we aim for high accuracy in our technical SEO auditors and AI generators, the dynamic nature
+                    While we aim for high accuracy in our <Link href="/tools?category=technical-seo" className="text-violet-600 hover:underline dark:text-violet-400">technical SEO auditors</Link> and <Link href="/tools?category=ai-powered-seo" className="text-violet-600 hover:underline dark:text-violet-400">AI generators</Link>, the dynamic nature
                     of search algorithms means that you should always verify outputs before implementation.
                   </p>
                 </section>
