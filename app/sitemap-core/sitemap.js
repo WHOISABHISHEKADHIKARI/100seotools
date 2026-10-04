@@ -42,6 +42,11 @@ export default function sitemap() {
     { path: '/about', priority: 0.65, changeFreq: 'monthly' },
   ];
 
+  // Services
+  const servicePages = [
+    { path: '/ai-trainer-nepal', priority: 0.8, changeFreq: 'weekly' },
+  ];
+
   // Legal & Utility
   const utilityPages = [
     { path: '/tools', priority: 0.9, changeFreq: 'daily' },
@@ -55,6 +60,7 @@ export default function sitemap() {
     ...corePages,
     ...calculatorPages,
     ...authorPages,
+    ...servicePages,
     ...utilityPages,
   ];
 

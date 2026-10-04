@@ -399,6 +399,22 @@ export default function AuthorPage() {
                         </div>
                     </header>
 
+                    {/* AI Training Callout */}
+                    <section
+                        aria-label="AI training services"
+                        className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm p-6 mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+                    >
+                        <div>
+                            <h2 className="text-lg font-bold mb-1 text-gray-900 dark:text-gray-100">AI Trainer in Nepal</h2>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                                Practical AI training for corporate teams — prompt engineering, AI workflows and responsible use, shaped around your team&apos;s work.
+                            </p>
+                        </div>
+                        <Link href="/ai-trainer-nepal" className="btn whitespace-nowrap">
+                            View AI Training Details
+                        </Link>
+                    </section>
+
                     {/* Stats Section */}
                     <section className="grid md:grid-cols-4 gap-6 mb-8" aria-label="Key Statistics">
                         {[

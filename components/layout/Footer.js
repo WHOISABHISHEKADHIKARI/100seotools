@@ -28,6 +28,7 @@ const company = [
 ];
 
 const creator = [
+  ['AI Trainer in Nepal', '/ai-trainer-nepal'],
   ['Portfolio', 'https://abhishekadhikari.com/'],
   ['LinkedIn', 'https://www.linkedin.com/in/whoisabhishekadhikari/'],
   ['GitHub', 'https://github.com/whoisabhishekadhikari'],
