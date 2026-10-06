@@ -1,11 +1,11 @@
 const keywordGapFinder = {
   "slug": "keyword-gap-finder",
-  "name": "Keyword Gap Finder | Find Competitor Ranking Gaps",
+  "name": "Keyword Gap Finder | Find Missing Keywords vs Competitors",
   "category": "Keyword Research",
-  "description": "Identify keywords your competitors rank for, but you don't. Uncover untapped traffic opportunities and refine your content strategy with our free gap analyzer.",
-  "metaTitle": "Keyword Gap Finder — Free, No Login | 100SEOTools",
-  "metaDescription": "Analyze keyword gaps between your site and competitors. Find new ranking opportunities, identify missing topics, and boost your search visibility for free.",
-  "keywords": ["keyword gap finder", "competitor keyword analysis", "seo gap analyzer", "keyword research tool", "competitor audit"],
+  "description": "Find keywords your competitors rank for but you don't. Discover keyword gaps and untapped SEO opportunities for free.",
+  "metaTitle": "Free Keyword Gap Finder | Find Competitor Keyword Gaps",
+  "metaDescription": "Free keyword gap finder to uncover keywords competitors rank for but you don't. Find missing keywords, content gaps & ranking opportunities instantly.",
+  "keywords": ["keyword gap finder", "keyword gap analysis", "competitor keyword analysis", "seo gap analyzer", "keyword research tool", "competitor audit", "missing keywords"],
   "template": "duplicateContentChecker",
   "api": true,
   "content": {
@@ -35,7 +35,7 @@ const keywordGapFinder = {
       "Run gap analysis monthly to catch emerging competitor content before it builds significant ranking authority—new competitor pages are easiest to outrank in their first 3 months"
     ],
     "exampleResults": "Sample Output:\n\nYour Site: abcmarketing.com\nCompetitors: hubspot.com, Neilpatel.com,Backlinko.com\n\nCritical Gaps (all 3 competitors rank, you do not):\n• 'content marketing strategy' — Volume: 14,800 | Difficulty: 62 | Best competitor rank: #3\n• 'email subject line examples' — Volume: 9,900 | Difficulty: 41 | Best competitor rank: #2\n• 'SEO audit checklist' — Volume: 8,100 | Difficulty: 55 | Best competitor rank: #4\n\nCommon Gaps (2 of 3 competitors rank):\n• 'blog post templates' — Volume: 6,600 | Difficulty: 38 | Competitors ranking: hubspot, Neilpatel\n• 'landing page best practices' — Volume: 5,400 | Difficulty: 44 | Competitors ranking: Backlinko, Neilpatel\n\nOpportunity Gaps (weaker competitor outranks stronger ones):\n• 'B2B marketing ideas' — Volume: 3,200 | Difficulty: 29 | Weaker competitor at #5\n• 'marketing funnel stages explained' — Volume: 2,900 | Difficulty: 33 | Weaker competitor at #3\n\nTotal keyword gaps identified: 127\nEstimated combined monthly traffic potential: 186,000 visits\nQuick-win opportunities (difficulty < 35): 34 keywords",
-    "relatedTools": ["keyword-difficulty-estimator", "keyword-clustering-tool", "keyword-comparison-tool", "long-tail-keyword-generator", "keyword-intent-identifier"],
+    "relatedTools": ["keyword-suggestion-tool", "keyword-clustering-tool", "keyword-comparison-tool", "long-tail-keyword-generator", "keyword-intent-identifier"],
     "faqs": [
       {"q": "How many competitors should I analyze for keyword gaps?", "a": "Analyze 3-5 competitors for the most useful results. Fewer than 3 may miss keywords that multiple competitors target. More than 5 creates noise—keywords where only one obscure competitor ranks may not be strategically relevant. Choose competitors that share your target audience, not necessarily your biggest competitors. A niche competitor with overlapping keywords is more useful for gap analysis than a large competitor in a tangentially related space."},
       {"q": "What if I already have content targeting a gap keyword but it is not ranking?", "a": "That indicates a content quality or authority issue, not a gap. The gap tool identifies keywords where you have zero visibility—you do not appear anywhere in the top-100 results. If you have published content but it ranks poorly, use the keyword difficulty estimator to assess whether you need more backlinks, deeper content, or better on-page optimization for that specific keyword."},

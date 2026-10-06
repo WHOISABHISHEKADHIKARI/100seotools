@@ -1,11 +1,11 @@
 const keywordSuggestionTool = {
   "slug": "keyword-suggestion-tool",
-  "name": "Keyword Suggestion Tool | Discover High-Intent Search Terms",
+  "name": "Keyword Suggestion Tool | Free Search Term Ideas",
   "category": "Keyword Research",
-  "description": "Find the best keywords for your SEO strategy. Generate hundreds of relevant keyword suggestions with search volume, competition, and intent data to boost your traffic.",
-  "metaTitle": "Keyword Suggestion Tool | Free Search Term Discovery (SEO)",
-  "metaDescription": "Discover high-performing keywords for your niche. Get instant suggestions, volume estimates, and competition analysis to improve your search engine rankings.",
-  "keywords": ["keyword suggestion tool", "keyword discovery", "free keyword tool", "search term generator", "keyword research tool"],
+  "description": "Find free keyword suggestions from a seed term. Generate search term ideas with long-tail and question-based variations to kickstart your content plan.",
+  "metaTitle": "Free Keyword Suggestion Tool | Generate Search Term Ideas",
+  "metaDescription": "Free keyword suggestion tool to discover search term ideas, long-tail keywords & question queries. No signup, instant results.",
+  "keywords": ["keyword suggestion tool", "free keyword suggestion tool", "keyword suggestions", "keyword ideas tool", "search term suggestion tool", "long tail keywords", "keyword research tool"],
   "template": "keywordSuggestions",
   "api": true,
   "content": {
@@ -35,7 +35,7 @@ const keywordSuggestionTool = {
       "Track keyword difficulty alongside volume for realistic targeting"
     ],
     "exampleResults": "Seed: on page seo checker\n\nInformational:\n- what is on page seo checker\n- how to use on page seo checker\n- on page seo checker guide\n- on page seo checker tutorial\n\nCommercial Investigation:\n- best on page seo checker\n- free on page seo checker\n- on page seo checker vs audit tool\n- top on page seo checker 2026\n\nTransactional:\n- on page seo checker online\n- on page seo checker tool\n- on page seo checker free tool\n- run on page seo check\n\nLong-tail:\n- on page seo checker for wordpress\n- on page seo checker for beginners\n- on page seo checker with screenshots",
-    "relatedTools": ["long-tail-keyword-generator", "keyword-clustering-tool", "keyword-intent-identifier", "keyword-gap-finder", "keyword-density-checker"],
+    "relatedTools": ["keyword-clustering-tool", "keyword-gap-finder", "keyword-comparison-tool", "keyword-intent-identifier", "keyword-density-checker"],
     "faqs": [
       { "q": "How many keyword suggestions should I target?", "a": "Start with 10–20 per page. Group them by intent and map each group to a specific page or section. Focus on quality and relevance over sheer volume." },
       { "q": "What are long-tail keywords?", "a": "Long-tail keywords are longer, more specific search phrases (3+ words). They have lower search volume but higher conversion rates because they capture specific user intent." },
