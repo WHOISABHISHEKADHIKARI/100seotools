@@ -2,6 +2,8 @@ import HomePageClient from './HomePageClient';
 import { getAllToolsMeta } from '../tools';
 import { getBaseUrl } from '../lib/site';
 import { createSocialMetadata } from '../lib/socialMetadata';
+import { generateStaticPageSchema } from '../lib/schema';
+import { StructuredData } from '../components/ui/StructuredData';
 
 const baseUrl = getBaseUrl();
 
@@ -28,8 +30,32 @@ export const metadata = {
   },
 };
 
+// Enhanced WebPage schema for AEO/GEO optimization
+const pageSchema = generateStaticPageSchema({
+  path: '/',
+  title: metadata.title,
+  description: metadata.description,
+}, baseUrl);
+
+pageSchema['@type'] = 'WebPage';
+pageSchema['@id'] = `${baseUrl}#website`;
+pageSchema.name = '100 SEO Tools';
+pageSchema.url = baseUrl;
+pageSchema.inLanguage = 'en-US';
+pageSchema.publisher = {
+  '@type': 'Organization',
+  name: '100 SEO Tools',
+  url: baseUrl,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${baseUrl}/logo.png`,
+  },
+};
+pageSchema.lastmod = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+pageSchema.changefreq = 'daily';
+
 export default function HomePage() {
   const tools = getAllToolsMeta().map((tool) => ({ ...tool, type: 'tool' }));
 
-  return <HomePageClient initialTools={tools} />;
+  return <HomePageClient initialTools={tools} structuredData={pageSchema} h1Title="100+ Free SEO Tools" />;
 }

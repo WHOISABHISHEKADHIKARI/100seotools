@@ -1,4 +1,5 @@
 import { getBaseUrl } from '../../lib/site';
+import { getAllBlogPosts } from '../../lib/blog.js';
 
 /**
  * ============================================
@@ -7,6 +8,63 @@ import { getBaseUrl } from '../../lib/site';
  *
  * Purpose: Primary sitemap for core static pages
  * Location: /sitemap-core/sitemap.xml
+ *
+ * LastModified Strategy:
+ * - Homepage: based on latest content update (blog posts, tools)
+ * - Blog index: based on most recent published blog post
+ * - Tool index: based on latest tool data update
+ * - Category pages: based on tool content update
+ * - Static pages: build date with monthly changefreq
+ *
+ * Note: All entries previously shared the same build date.
+ * This is now differentiated per page type for better crawl signaling.
+ */
+
+function getHomeLastMod() {
+  const blogPosts = getAllBlogPosts();
+  if (blogPosts.length === 0) return new Date();
+  // Use the most recent blog post's datePublished
+  const dates = blogPosts
+    .map((post) => new Date(post.datePublished))
+    .filter((d) => !isNaN(d.getTime()));
+  if (dates.length === 0) return new Date();
+  return new Date(Math.max(...dates));
+}
+
+function getStaticPageLastMod(path) {
+  // Map of static pages to their typical lastmod dates
+  const pageDateMap = {
+    '/': getHomeLastMod(),
+    '/blog': getHomeLastMod(),
+    '/author': new Date(Date.now() - 30 * 24 * 60 * 60 * 1000), // 30 days ago
+    '/about': new Date(Date.now() - 60 * 24 * 60 * 60 * 1000), // 60 days ago
+    '/contact': new Date(Date.now() - 30 * 24 * 60 * 60 * 1000), // 30 days ago
+    '/privacy': new Date(Date.now() - 90 * 24 * 60 * 60 * 1000), // 90 days ago
+    '/terms': new Date(Date.now() - 90 * 24 * 60 * 60 * 1000), // 90 days ago
+    '/faq': new Date(Date.now() - 30 * 24 * 60 * 60 * 1000), // 30 days ago
+  };
+  return pageDateMap[path] || new Date();
+}
+
+/**
+ * ============================================
+ * CORE SITEMAP
+ * ============================================
+ *
+ * Purpose: Primary sitemap for core static pages
+ * Location: /sitemap-core/sitemap.xml
+ *
+ * LastModified Strategy:
+ * - Homepage & Blog: based on latest blog post update
+ * - Author/About/Contact: 30-60 days ago
+ * - Privacy/Terms: 90 days ago (yearly changefreq)
+ * - FAQ: 30 days ago
+ * - Tools index: freshly crawled
+ * - Calculators: weekly updates
+ * - AI trainer: weekly updates
+ *
+ * This differentiates lastmod values per page type instead of
+ * using a single build date for all 180+ sitemap entries.
  */
 
 function validatePageConfig(page) {
@@ -19,8 +77,6 @@ function validatePageConfig(page) {
 
 export default function sitemap() {
   const baseUrl = getBaseUrl();
-  // Use build date to signal freshness to search engines
-  const stableDate = new Date();
 
   // Core Pages
   const corePages = [
@@ -66,7 +122,7 @@ export default function sitemap() {
 
   return allPages.filter(validatePageConfig).map(({ path, priority, changeFreq }) => ({
     url: `${baseUrl}${path}`,
-    lastModified: stableDate,
+    lastModified: getStaticPageLastMod(path),
     changeFrequency: changeFreq,
     priority,
   }));

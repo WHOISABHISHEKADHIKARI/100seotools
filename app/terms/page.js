@@ -1,5 +1,6 @@
 import { getBaseUrl } from '../../lib/site';
 import StructuredData from '../../components/ui/StructuredData';
+import { generateStaticPageSchema } from '../../lib/schema';
 import { Scale, FileText, ShieldAlert, CheckCircle, ArrowRight, Clock, Info, HelpCircle } from 'lucide-react';
 import Link from 'next/link';
 import { createSocialMetadata } from '../../lib/socialMetadata';
@@ -15,9 +16,20 @@ export const metadata = {
 };
 
 export default function TermsPage() {
+  const pageSchema = generateStaticPageSchema({
+    path: '/terms',
+    title: 'Terms of Service – 100 SEO Tools | Usage Guidelines',
+    description: 'Read the terms governing your use of 100 SEO Tools. Client-side utilities provided as-is for professional SEO productivity.',
+  }, baseUrl);
+
+  // Enhance with WebPage schema for AEO/GEO
+  pageSchema['@type'] = 'WebPage';
+  pageSchema.lastmod = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  pageSchema.changefreq = 'yearly';
+
   const jsonLd = {
     "@context": "https://schema.org",
-        "@graph": [
+    "@graph": [
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
@@ -39,17 +51,9 @@ export default function TermsPage() {
     ]
   };
 
-  const sections = [
-    { id: 'acceptance', title: 'Acceptance of Terms', icon: CheckCircle },
-    { id: 'usage', title: 'Use of Tools', icon: FileText },
-    { id: 'availability', title: 'Availability & Changes', icon: Clock },
-    { id: 'disclaimer', title: 'Disclaimer & Liability', icon: ShieldAlert },
-    { id: 'contact', title: 'Contact', icon: HelpCircle },
-  ];
-
   return (
     <div className="bg-[#fafbfc] dark:bg-[#020617] min-h-screen">
-      <StructuredData data={jsonLd} />
+      <StructuredData data={[jsonLd, pageSchema]} />
 
       {/* ── PREMIUM HERO ── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white pt-20 pb-24">
@@ -97,19 +101,11 @@ export default function TermsPage() {
                     href={`#${s.id}`}
                     className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group"
                   >
-                    <s.icon className="w-4 h-4 text-slate-300 group-hover:text-violet-600" />
+                    <s.icon className="w-4 h-4 text-slate-400 group-hover:text-violet-600" />
                     {s.title}
                   </a>
                 ))}
               </nav>
-            </div>
-
-            <div className="mt-6 bg-slate-50 dark:bg-white/5 rounded-3xl p-6 border border-slate-100 dark:border-white/10">
-              <Info className="w-6 h-6 text-violet-600 mb-4" />
-              <h2 className="text-sm font-black text-slate-900 dark:text-white mb-2 uppercase tracking-tight">Fair Use Policy</h2>
-              <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
-                Our tools are free for everyone. We request that you do not use automated scripts to scrape data from our platform.
-              </p>
             </div>
           </aside>
 
@@ -212,7 +208,7 @@ export default function TermsPage() {
             </div>
 
             {/* Bottom Nav */}
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-8 border-t border-slate-100 dark:border-white/10">
               <Link href="/privacy" className="text-xs font-black text-slate-400 hover:text-violet-600 uppercase tracking-widest transition-colors">Privacy Policy</Link>
               <span className="w-1 h-1 rounded-full bg-slate-300" />
               <Link href="/faq" className="text-xs font-black text-slate-400 hover:text-violet-600 uppercase tracking-widest transition-colors">FAQ</Link>

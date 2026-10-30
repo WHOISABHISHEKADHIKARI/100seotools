@@ -5,7 +5,7 @@ const defaultSocialImage = `${baseUrl}${socialPreviewImage}`;
 
 export const metadata = {
   title: '100+ Free SEO Tools - No Signup Required | 100 SEO Tools',
-  description: 'Use 100+ free SEO tools for keyword research, on-page audits, technical SEO, schema generation, content optimization, and SEO reports. Instant results, no signup.',
+  description: 'Use 100+ free SEO tools for keyword research, on-page audits, technical SEO, schema generation, content optimization, and SEO reports. Instant results, no signup. Also featuring Nepal-focused local SEO and citation tools.',
   metadataBase: new URL(baseUrl),
   keywords: ['100 seo tools', 'free seo tools list', 'seo tool comparison', '100 free seo tools', 'free seo toolkit', 'best seo tools online'],
   // Icons / Favicons

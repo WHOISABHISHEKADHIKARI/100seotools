@@ -83,13 +83,6 @@ export default function ToolsIndexPage() {
         url: `${baseUrl}/tools`,
         numberOfItems: allTools.length,
         provider: { '@type': 'Organization', '@id': `${baseUrl}/#organization`, name: siteName, url: baseUrl },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.9',
-          reviewCount: '50000',
-          bestRating: '5',
-          itemReviewed: { '@type': 'CollectionPage', name: 'All SEO Tools', url: `${baseUrl}/tools` },
-        },
       },
       {
         '@type': 'FAQPage',

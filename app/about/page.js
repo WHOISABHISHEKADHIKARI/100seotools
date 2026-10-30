@@ -72,18 +72,9 @@ export default function AboutPage() {
 
   const faqSchema = generateFAQSchema(faqs);
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
-      { '@type': 'ListItem', position: 2, name: 'About', item: `${baseUrl}/about` },
-    ]
-  };
-
   return (
     <div className="bg-[#fafbfc] dark:bg-[#020617] min-h-screen">
-      <StructuredData data={[aboutSchema, faqSchema, breadcrumbSchema]} />
+      <StructuredData data={[aboutSchema, faqSchema]} />
 
       {/* ── PREMIUM HERO ── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white pt-20 pb-24">

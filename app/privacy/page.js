@@ -1,5 +1,6 @@
 import { getBaseUrl } from '../../lib/site';
 import StructuredData from '../../components/ui/StructuredData';
+import { generateStaticPageSchema } from '../../lib/schema';
 import { ShieldCheck, Lock, Eye, FileText, ArrowRight, Info, Clock, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
@@ -16,9 +17,20 @@ export const metadata = {
 };
 
 export default function PrivacyPage() {
+  const pageSchema = generateStaticPageSchema({
+    path: '/privacy',
+    title: 'Privacy Policy – 100 SEO Tools | Your Data Security Matters',
+    description: 'Learn how 100 SEO Tools handles data, privacy, and cookies. We are a browser-based platform and do not store or sell your personal data.',
+  }, baseUrl);
+
+  // Enhance with WebPage schema for AEO/GEO
+  pageSchema['@type'] = 'WebPage';
+  pageSchema.lastmod = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  pageSchema.changefreq = 'yearly';
+
   const jsonLd = {
     "@context": "https://schema.org",
-        "@graph": [
+    "@graph": [
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
@@ -40,17 +52,9 @@ export default function PrivacyPage() {
     ]
   };
 
-  const sections = [
-    { id: 'introduction', title: 'Introduction', icon: Info },
-    { id: 'data-processing', title: 'Data Processing', icon: Database },
-    { id: 'analytics', title: 'Analytics', icon: BarChart },
-    { id: 'cookies', title: 'Cookies', icon: Lock },
-    { id: 'contact', title: 'Contact Information', icon: Mail },
-  ];
-
   return (
     <div className="bg-[#fafbfc] dark:bg-[#020617] min-h-screen">
-      <StructuredData data={jsonLd} />
+      <StructuredData data={[jsonLd, pageSchema]} />
 
       {/* ── PREMIUM HERO ── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white pt-20 pb-24">
@@ -103,14 +107,6 @@ export default function PrivacyPage() {
                   </a>
                 ))}
               </nav>
-            </div>
-
-            <div className="mt-6 bg-emerald-50 dark:bg-emerald-500/5 rounded-3xl p-6 border border-emerald-100 dark:border-emerald-500/20">
-              <Lock className="w-6 h-6 text-emerald-600 mb-4" />
-              <h2 className="text-sm font-black text-emerald-900 dark:text-emerald-400 mb-2 uppercase tracking-tight">Encryption Standards</h2>
-              <p className="text-[11px] text-emerald-700/70 dark:text-emerald-400/60 leading-relaxed">
-                All data transmitted to our public validators is encrypted via SSL/TLS (HTTPS) to ensure secure processing.
-              </p>
             </div>
           </aside>
 

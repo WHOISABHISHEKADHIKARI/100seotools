@@ -8,6 +8,7 @@ import { slugify } from '../../../lib/utils';
 import { getBaseUrl } from '../../../lib/site';
 import { createSocialMetadata } from '../../../lib/socialMetadata';
 import { getCategoryDetail, visualColors } from '../../../components/tools/SeoVisuals';
+import { generateStaticPageSchema } from '../../../lib/schema';
 
 const baseUrl = getBaseUrl();
 
@@ -136,6 +137,20 @@ export default async function CategoryPage({ params, searchParams }) {
   const Icon = detail.icon;
   const color = visualColors[detail.color] || visualColors.violet;
 
+  // Enhanced AEO/GEO Schema: CollectionPage with BreadcrumbList, HasPart, and WebPage
+  const pageSchema = generateStaticPageSchema({
+    path: `/category/${slug}`,
+    title: `${catName} Tools | Free SEO Utilities & Analyzers`,
+    description: `Boost your rankings with our free ${catName} tools. Curated analyzers, generators, and utilities designed for modern SEO.`,
+  }, baseUrl);
+
+  // Override with CollectionPage schema for AEO/GEO optimization
+  pageSchema['@type'] = 'CollectionPage';
+  pageSchema.name = `${catName} Tools`;
+  pageSchema.url = `${baseUrl}/category/${slug}`;
+  pageSchema.lastmod = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  pageSchema.changefreq = 'weekly';
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -147,6 +162,7 @@ export default async function CategoryPage({ params, searchParams }) {
       url: `${baseUrl}/tools/${tool.slug}`,
       applicationCategory: 'https://schema.org/WebApplication',
     })),
+    // BreadcrumbList for AEO/GEO
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
@@ -155,6 +171,7 @@ export default async function CategoryPage({ params, searchParams }) {
         { '@type': 'ListItem', position: 3, name: catName, item: `${baseUrl}/category/${slug}` },
       ],
     },
+    // HasPart for blog integration (AEO: content related to category)
     hasPart: {
       '@type': 'ItemList',
       itemListElement: blogPosts.slice(0, 12).map((post, index) => ({
@@ -168,6 +185,16 @@ export default async function CategoryPage({ params, searchParams }) {
         },
       })),
     },
+    // Organization for GEO
+    publisher: {
+      '@type': 'Organization',
+      name: '100 SEO Tools',
+      url: baseUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/logo.png`,
+      },
+    },
   };
 
   return (
@@ -175,29 +202,67 @@ export default async function CategoryPage({ params, searchParams }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/<\/script>/gi, '<\\/script>') }} />
       <nav aria-label="Breadcrumb" className="mb-5 text-sm">
         <ol className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-400">
-          <li><Link href="/" className="inline-flex items-center gap-1 hover:text-violet-700 dark:hover:text-violet-200"><Home className="h-3.5 w-3.5" aria-hidden />Home</Link></li>
-          <li aria-hidden>/</li>
-          <li><Link href="/category" className="hover:text-violet-700 dark:hover:text-violet-200">Categories</Link></li>
+          <li>
+            <Link href="/" className="inline-flex items-center gap-1 hover:text-violet-700 dark:hover:text-violet-200">
+              <Home className="h-3.5 w-3.5" aria-hidden />Home
+            </Link>
+          </li>
           <li aria-hidden>/</li>
           <li aria-current="page" className="font-bold text-slate-900 dark:text-white">{catName}</li>
         </ol>
       </nav>
+
       <header className="relative left-1/2 mb-10 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-violet-100"><Icon className="h-4 w-4" aria-hidden />{items.length} free tools</span>
-            <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl">{catName} Tools</h1>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/65 md:text-lg">{detail.description} Open any tool to run it in your browser with no signup required.</p>
-            {featuredTool && (
-              <a href={`/tools/${featuredTool.slug}`} className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-extrabold text-violet-700 shadow-xl shadow-black/20 transition hover:scale-[1.01] focus:outline-none focus-visible:ring-4 focus-visible:ring-white/40">
-                Start with {featuredTool.name.replace(/\s*\|.*/, '')}
-                <ArrowRight className="h-4 w-4" aria-hidden />
-              </a>
-            )}
+        <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-violet-100">
+            <Layers className="h-4 w-4" aria-hidden />
+            Browse by Workflow
           </div>
+          <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl">SEO Tool Categories</h1>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/65 md:text-lg">
+            Pick the workflow you are working on now, then jump into focused tools for keywords, content, technical SEO, links, local search, AI, and more.
+          </p>
         </div>
       </header>
+
+      <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {categories.map((category) => {
+          const detail = getCategoryDetail(category);
+          const Icon = detail.icon;
+          const color = visualColors[detail.color] || visualColors.violet;
+          const count = items.filter((tool) => tool.category && slugify(tool.category) === category).length || 0;
+
+          return (
+            <Link
+              key={category}
+              href={getCategoryHref(category)}
+              className={`group overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-xl dark:border-white/10 dark:bg-gray-900 ${color.border}`}
+              aria-label={`Open ${category} category with ${count} tool${count !== 1 ? 's' : ''}`}
+            >
+              <div className={`h-1.5 bg-gradient-to-r ${color.bar}`} />
+              <div className="p-5">
+                <div className="mb-4 flex items-start justify-between gap-4">
+                  <span className={`grid h-12 w-12 place-items-center rounded-2xl ${color.icon}`}>
+                    <Icon className="h-5 w-5" aria-hidden />
+                  </span>
+                  <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-extrabold text-slate-600 dark:bg-white/10 dark:text-slate-300">
+                    {count} tools
+                  </span>
+                </div>
+                <h2 className="text-base font-extrabold text-slate-950 transition group-hover:text-violet-700 dark:text-white dark:group-hover:text-violet-200">
+                  {category}
+                </h2>
+                <p className="mt-2 min-h-[3.75rem] text-sm leading-6 text-slate-500 dark:text-slate-400">{detail.description}</p>
+              </div>
+              <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-extrabold text-slate-400 dark:border-white/10">
+                Browse tools
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-violet-600" aria-hidden />
+              </div>
+            </Link>
+          );
+        })}
+      </section>
       {slug && categoryIntro[slug] && (
         <div className="mb-8 space-y-3 rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-5 text-sm leading-6 text-slate-700 shadow-sm dark:border-blue-500/20 dark:from-blue-500/10 dark:to-white/[0.03] dark:text-slate-300">
           <p>{categoryIntro[slug]}</p>

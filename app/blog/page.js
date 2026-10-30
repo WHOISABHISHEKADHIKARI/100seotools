@@ -41,6 +41,7 @@ export default async function BlogPage({ searchParams }) {
 
   const fallbackImage = `${baseUrl}/og-image.jpg`;
 
+  // Enhanced graphLd with proper title and description for SEO
   const graphLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -112,6 +113,24 @@ export default async function BlogPage({ searchParams }) {
             }
           }
         ]
+      },
+      {
+        '@type': 'Article',
+        headline: '100 SEO Tools Blog',
+        description: 'Comprehensive SEO guides, tutorials, and best practices. Learn keyword research, on-page optimization, technical SEO, link building, and AI-powered SEO strategies.',
+        url: `${baseUrl}/blog`,
+        author: {
+          '@type': 'Person',
+          name: 'Abhishek Adhikari',
+          url: `${baseUrl}/author`,
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: '100 SEO Tools',
+          url: baseUrl,
+        },
+        datePublished: new Date().toISOString(),
+        inLanguage: 'en-US',
       }
     ]
   };
@@ -153,20 +172,20 @@ export default async function BlogPage({ searchParams }) {
                   </Link>
                 </div>
               </div>
+            </div>
 
-              <div className="grid grid-cols-2 gap-3 rounded-lg border border-white bg-white/70 p-3 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-                {[
-                  { value: visiblePosts.length, label: 'Editorial guides' },
-                  { value: categories.length - 1, label: 'Topics' },
-                  { value: '100+', label: 'Free tools' },
-                  { value: '2026', label: 'Current SEO' },
-                ].map((stat) => (
-                  <div key={stat.label} className="rounded-lg border border-slate-100 bg-white p-4 dark:border-white/10 dark:bg-slate-950/40">
-                    <div className="text-2xl font-semibold tracking-tight">{stat.value}</div>
-                    <div className="mt-1 text-xs font-medium text-slate-500 dark:text-slate-400">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
+            <div className="grid grid-cols-2 gap-3 rounded-lg border border-white bg-white/70 p-3 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+              {[
+                { value: visiblePosts.length, label: 'Editorial guides' },
+                { value: categories.length - 1, label: 'Topics' },
+                { value: '100+', label: 'Free tools' },
+                { value: '2026', label: 'Current SEO' },
+              ].map((stat) => (
+                <div key={stat.label} className="rounded-lg border border-slate-100 bg-white p-4 dark:border-white/10 dark:bg-slate-950/40">
+                  <div className="text-2xl font-semibold tracking-tight">{stat.value}</div>
+                  <div className="mt-1 text-xs font-medium text-slate-500 dark:text-slate-400">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -186,7 +205,7 @@ export default async function BlogPage({ searchParams }) {
                       Featured guide
                     </span>
                   </div>
-                  <h2 className="max-w-3xl text-2xl font-semibold tracking-tight text-slate-950 transition group-hover:text-indigo-700 dark:text-white dark:group-hover:text-indigo-200 md:text-4xl">
+                  <h2 className="max-w-3xl text-2xl font-semibold tracking-tight text-slate-950 transition group-hover:text-indigo-700 dark:text-white md:text-4xl">
                     {featuredPost.title}
                   </h2>
                   <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300 md:text-base">
@@ -221,24 +240,25 @@ export default async function BlogPage({ searchParams }) {
                         </a>
                       </span>
                     </div>
-                </article>
-                <div className="border-t border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#eef2ff_100%)] p-6 dark:border-white/10 dark:bg-[linear-gradient(135deg,#0f172a_0%,#111827_100%)] lg:border-l lg:border-t-0">
-                  <div className="flex h-full min-h-56 flex-col justify-between rounded-lg border border-white bg-white/70 p-6 shadow-sm dark:border-white/10 dark:bg-slate-950/30">
-                    <div>
-                      <div className="mb-4 grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-white dark:bg-white dark:text-slate-950">
-                        <CheckCircle2 className="h-5 w-5" aria-hidden />
+                  </article>
+                  <div className="border-t border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#eef2ff_100%)] p-6 dark:border-white/10 dark:bg-[linear-gradient(135deg,#0f172a_0%,#111827_100%)] lg:border-l lg:border-t-0">
+                    <div className="flex h-full min-h-56 flex-col justify-between rounded-lg border border-white bg-white/70 p-6 shadow-sm dark:border-white/10 dark:bg-slate-950/30">
+                      <div>
+                        <div className="mb-4 grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-white dark:bg-white dark:text-slate-950">
+                          <CheckCircle2 className="h-5 w-5" aria-hidden />
+                        </div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Editorial Pick</p>
+                        <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                          Start here for a polished, practical workflow before exploring the full library.
+                        </p>
                       </div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Editorial Pick</p>
-                      <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                        Start here for a polished, practical workflow before exploring the full library.
-                      </p>
+                      <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-indigo-700 dark:text-indigo-200">
+                        Read guide
+                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
+                      </span>
                     </div>
-                    <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-indigo-700 dark:text-indigo-200">
-                      Read guide
-                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
-                    </span>
                   </div>
-                </div>
+                </article>
               </div>
             </Link>
           </section>
@@ -257,62 +277,61 @@ export default async function BlogPage({ searchParams }) {
                   Written by <a href="/author" rel="author" className="text-indigo-700 underline-offset-2 hover:underline dark:text-indigo-300">Abhishek Adhikari</a>
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                  SEO Expert &amp; Full-Stack Developer. Creator of 100 SEO Tools, building free, privacy-first browser-based SEO utilities for marketers and agencies worldwide. 
+                  SEO Expert & Full-Stack Developer. Creator of 100 SEO Tools, building free, privacy-first browser-based SEO utilities for marketers and agencies worldwide. 
                   <a href="https://www.linkedin.com/in/whoisabhishekadhikari/" target="_blank" rel="noopener noreferrer author" className="ml-1 text-indigo-600 hover:underline dark:text-indigo-300">LinkedIn</a>.
                 </p>
               </div>
             </div>
-          </div>
-          <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_380px]">
-            <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-indigo-600 dark:text-indigo-300">Next step</p>
-              <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight text-slate-950 dark:text-white md:text-3xl">
-                Turn reading into a repeatable SEO workflow.
-              </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300">
-                Pair each guide with the free tools to check metadata, validate technical fixes, plan content, and produce cleaner reports.
-              </p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Link href="/tools" className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100">
-                  Browse all tools
-                  <ArrowRight className="h-4 w-4" aria-hidden />
-                </Link>
-                <Link href="/author" className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-200 hover:text-slate-950 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10">
-                  About the creator
-                </Link>
-              </div>
-            </div>
-
-            <aside className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5">
-              <h3 className="text-base font-semibold text-slate-950 dark:text-white">Sources & references</h3>
-              <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">
-                Each guide is built from hands-on SEO experience, platform documentation, and industry best practices from Google Search Central, Schema.org, and Moz.
-              </p>
-              <div className="mt-3 space-y-2 text-xs">
-                {[
-                  ['Google Search Central', 'https://developers.google.com/search'],
-                  ['Schema.org', 'https://schema.org'],
-                  ['W3C Web Standards', 'https://www.w3.org/standards/'],
-                ].map(([name, url]) => (
-                  <a key={name} href={url} target="_blank" rel="noopener noreferrer" className="block rounded-md border border-slate-100 px-3 py-2 text-slate-600 transition hover:border-indigo-200 hover:text-indigo-700 dark:border-white/10 dark:text-slate-400 dark:hover:text-indigo-300">
-                    <span className="font-medium">{name}</span>
-                    <span className="ml-2 text-slate-400">↗</span>
-                  </a>
-                ))}
-              </div>
-            </aside>
-            <aside className="mt-5 rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5">
-              <h3 className="text-base font-semibold text-slate-950 dark:text-white">Latest tool guides</h3>
-              <div className="mt-4 space-y-3">
-                {guidePosts.map((post) => (
-                  <Link key={post.slug} href={`/blog/${post.slug}`} className="block rounded-lg border border-slate-100 p-3 text-sm transition hover:border-indigo-200 hover:bg-slate-50 dark:border-white/10 dark:hover:bg-white/5">
-                    <span className="line-clamp-2 font-medium text-slate-800 dark:text-slate-100">{post.title}</span>
-                    <span className="mt-1 block text-xs text-slate-500 dark:text-slate-400">{post.readTimeMinutes || 5} min read</span>
+            <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_380px]">
+              <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-indigo-600 dark:text-indigo-300">Next step</p>
+                <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight text-slate-950 dark:text-white md:text-3xl">
+                  Turn reading into a repeatable SEO workflow.
+                </h2>
+                <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300">
+                  Pair each guide with the free tools to check metadata, validate technical fixes, plan content, and produce cleaner reports.
+                </p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Link href="/tools" className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:hover:bg-slate-800 dark:hover:bg-white dark:text-slate-950 dark:hover:bg-slate-100">
+                    Browse all tools
+                    <ArrowRight className="h-4 w-4" aria-hidden />
                   </Link>
-                ))}
+                  <Link href="/author" className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition:hover:border-indigo-200:hover:text-slate-950 dark:hover:bg-white/5 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10">
+                    About the creator
+                  </Link>
+                </div>
               </div>
-            </aside>
-          </div>
+              <aside className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5">
+                <h3 className="text-base font-semibold text-slate-950 dark:text-white">Sources & references</h3>
+                <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">
+                  Each guide is built from hands-on SEO experience, platform documentation, and industry best practices from Google Search Central, Schema.org, and Moz.
+                </p>
+                <div className="mt-3 space-y-2 text-xs">
+                  {[
+                    ['Google Search Central', 'https://developers.google.com/search'],
+                    ['Schema.org', 'https://schema.org'],
+                    ['W3C Web Standards', 'https://www.w3.org/standards/'],
+                  ].map(([name, url]) => (
+                    <a key={name} href={url} target="_blank" rel="noopener noreferrer" className="block rounded-md border border-slate-100 px-3 py-2 text-slate-600 transition:hover:border-indigo-200:hover:text-indigo-700 dark:border-white/10 dark:text-slate-400 dark:hover:text-indigo-300">
+                      <span className="font-medium">{name}</span>
+                      <span className="ml-2 text-slate-400">↗</span>
+                    </a>
+                  ))}
+                </div>
+              </aside>
+              <aside className="mt-5 rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5">
+                <h3 className="text-base font-semibold text-slate-950 dark:text-white">Latest tool guides</h3>
+                <div className="mt-4 space-y-3">
+                  {guidePosts.map((post) => (
+                    <Link key={post.slug} href={`/blog/${post.slug}`} className="block rounded-lg border border-slate-100 p-3 text-sm transition:hover:border-indigo-200:hover:bg-slate-50 dark:hover:bg-white/5">
+                      <span className="line-clamp-2 font-medium text-slate-800 dark:text-slate-100">{post.title}</span>
+                      <span className="mt-1 block text-xs text-slate-500 dark:text-slate-400">{post.readTimeMinutes || 5} min read</span>
+                    </Link>
+                  ))}
+                </div>
+              </aside>
+            </div>
+          </section>
         </section>
       </section>
     </>

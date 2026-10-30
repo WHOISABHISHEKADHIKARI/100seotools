@@ -1,22 +1,18 @@
 import Link from 'next/link';
-import { ArrowRight, Home, Layers } from 'lucide-react';
 import { getAllToolsMeta } from '../../tools';
 import { getBaseUrl } from '../../lib/site';
 import { createSocialMetadata } from '../../lib/socialMetadata';
 import { slugify } from '../../lib/utils';
 import { categoryDetails, getCategoryDetail, getCategoryHref, visualColors } from '../../components/tools/SeoVisuals';
+import { generateStaticPageSchema } from '../../lib/schema';
+
+const baseUrl = getBaseUrl();
 
 export const metadata = {
   title: 'Free SEO Tools by Category | Keyword Research, Audit & More',
   description: 'Explore 100+ free SEO tools by category: keyword research, on-page SEO, technical analysis, content optimization, and link building.',
   keywords: ['seo tools list', 'seo tools by category', 'free seo tools', 'keyword research tools', 'on-page seo tools', 'technical seo tools', 'link building tools', 'content optimization tools', '100 seo tools'],
   alternates: { canonical: `${getBaseUrl()}/category` },
-  ...createSocialMetadata({
-    title: 'Free SEO Tools by Category | 100 SEO Tools',
-    description: 'Browse our organized collection of free SEO tools. Everything you need for better rankings.',
-    url: `${getBaseUrl()}/category`,
-    imageAlt: '100 SEO Tools Categories',
-  }),
   robots: {
     index: true,
     follow: true,
@@ -30,7 +26,48 @@ export const metadata = {
   },
 };
 
-const baseUrl = getBaseUrl();
+// Enhanced CollectionPage schema for AEO/GEO optimization
+const pageSchema = generateStaticPageSchema({
+  path: '/category',
+  title: 'Free SEO Tools by Category | 100 SEO Tools',
+  description: 'Explore 100+ free SEO tools by category: keyword research, on-page SEO, technical analysis, content optimization, and link building.',
+}, baseUrl);
+
+pageSchema['@type'] = 'CollectionPage';
+pageSchema.name = 'All Categories';
+pageSchema.url = `${baseUrl}/category`;
+pageSchema.description = 'Explore 100+ free SEO tools by category: keyword research, on-page SEO, technical analysis, content optimization, and link building.';
+pageSchema.lastmod = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+pageSchema.changefreq = 'weekly';
+
+pageSchema.breadcrumb = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+    { '@type': 'ListItem', position: 2, name: 'Categories', item: `${baseUrl}/category` },
+  ],
+};
+
+pageSchema.publisher = {
+  '@type': 'Organization',
+  name: '100 SEO Tools',
+  url: baseUrl,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${baseUrl}/logo.png`,
+  },
+};
+
+pageSchema.hasPart = {
+  '@type': 'ItemList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Keyword Research', item: `${baseUrl}/category/keyword-research` },
+    { '@type': 'ListItem', position: 2, name: 'On-Page Optimization', item: `${baseUrl}/category/on-page-optimization` },
+    { '@type': 'ListItem', position: 3, name: 'Technical SEO', item: `${baseUrl}/category/technical-seo` },
+    { '@type': 'ListItem', position: 4, name: 'Backlink & Link-Building', item: `${baseUrl}/category/backlink-link-building` },
+    { '@type': 'ListItem', position: 5, name: 'Content SEO', item: `${baseUrl}/category/content-seo` },
+  ],
+};
 
 export default function CategoryIndexPage() {
   const tools = getAllToolsMeta();
@@ -74,8 +111,7 @@ export default function CategoryIndexPage() {
         <ol className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-400">
           <li>
             <Link href="/" className="inline-flex items-center gap-1 hover:text-violet-700 dark:hover:text-violet-200">
-              <Home className="h-3.5 w-3.5" aria-hidden />
-              Home
+              <Home className="h-3.5 w-3.5" aria-hidden />Home
             </Link>
           </li>
           <li aria-hidden>/</li>
@@ -83,13 +119,13 @@ export default function CategoryIndexPage() {
         </ol>
       </nav>
 
-      <header className="relative left-1/2 mb-12 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white">
+      <header className="relative left-1/2 mb-10 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-violet-100">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-violet-100">
             <Layers className="h-4 w-4" aria-hidden />
             Browse by Workflow
-          </span>
+          </div>
           <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl">SEO Tool Categories</h1>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/65 md:text-lg">
             Pick the workflow you are working on now, then jump into focused tools for keywords, content, technical SEO, links, local search, AI, and more.
@@ -128,7 +164,7 @@ export default function CategoryIndexPage() {
               </div>
               <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-extrabold text-slate-400 dark:border-white/10">
                 Browse tools
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-violet-600" aria-hidden />
+                <svg className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-violet-600" aria-hidden viewBox="0 0 24 24"><path d="M5 12h3L12 5l7 7L20 9"/path></svg>
               </div>
             </Link>
           );
