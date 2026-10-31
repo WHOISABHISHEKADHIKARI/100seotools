@@ -46,7 +46,6 @@ const faqSchema = {
 function FAQSection() {
   return (
     <>
-      <StructuredData data={faqSchema} />
       <section className="py-20" id="faq" itemScope itemType="https://schema.org/FAQPage">
         <div className="mb-12 text-center">
           <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">Common Questions</p>
@@ -82,6 +81,7 @@ function FAQSection() {
           ))}
         </div>
       </section>
+      <StructuredData data={faqSchema} />
     </>
   );
 }
