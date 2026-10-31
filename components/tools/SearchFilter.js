@@ -110,7 +110,7 @@ export default function SearchFilter({ tools, onChange, initialCategory = 'All' 
           <input
             id="tool-search"
             type="search"
-            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-12 pr-10 text-base font-medium text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-violet-300 focus:bg-white focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-white/5 dark:text-white dark:focus:ring-violet-500/20"
+            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-12 pr-10 text-base font-medium text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-brand-300 focus:bg-white focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-white/5 dark:text-white dark:focus:ring-violet-500/20"
             placeholder="Search 100+ SEO tools..."
             value={query}
             autoComplete="off"
@@ -138,7 +138,7 @@ export default function SearchFilter({ tools, onChange, initialCategory = 'All' 
                 <button
                   key={`${suggestion.type}-${suggestion.label}`}
                   type="button"
-                  className="flex w-full items-center justify-between gap-4 border-b border-slate-50 px-4 py-3 text-left transition last:border-0 hover:bg-violet-50 dark:border-white/5 dark:hover:bg-white/10"
+                  className="flex w-full items-center justify-between gap-4 border-b border-slate-50 px-4 py-3 text-left transition last:border-0 hover:bg-brand-50 dark:border-white/5 dark:hover:bg-white/10"
                   onMouseDown={(event) => event.preventDefault()}
                   onClick={() => {
                     if (suggestion.type === 'category') {
@@ -160,7 +160,7 @@ export default function SearchFilter({ tools, onChange, initialCategory = 'All' 
         </div>
 
         <select
-          className="h-12 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-bold text-slate-700 outline-none transition focus:border-violet-300 focus:ring-4 focus:ring-violet-100 lg:col-span-3 dark:border-white/10 dark:bg-white/5 dark:text-white dark:focus:ring-violet-500/20"
+          className="h-12 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-bold text-slate-700 outline-none transition focus:border-brand-300 focus:ring-4 focus:ring-violet-100 lg:col-span-3 dark:border-white/10 dark:bg-white/5 dark:text-white dark:focus:ring-violet-500/20"
           value={category}
           onChange={(event) => setCategory(event.target.value)}
           aria-label="Filter by category"
@@ -171,7 +171,7 @@ export default function SearchFilter({ tools, onChange, initialCategory = 'All' 
         </select>
 
         <select
-          className="h-12 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-bold text-slate-700 outline-none transition focus:border-violet-300 focus:ring-4 focus:ring-violet-100 lg:col-span-2 dark:border-white/10 dark:bg-white/5 dark:text-white dark:focus:ring-violet-500/20"
+          className="h-12 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-bold text-slate-700 outline-none transition focus:border-brand-300 focus:ring-4 focus:ring-violet-100 lg:col-span-2 dark:border-white/10 dark:bg-white/5 dark:text-white dark:focus:ring-violet-500/20"
           value={sortBy}
           onChange={(event) => setSortBy(event.target.value)}
           aria-label="Sort tools"

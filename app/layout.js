@@ -145,11 +145,11 @@ export default function RootLayout({ children }) {
 
         {/* Service worker removed — wastes crawl budget with no SEO benefit */}
       </head>
-      <body suppressHydrationWarning className="min-h-screen bg-[#fafbfc] text-slate-900 selection:bg-violet-100 selection:text-violet-900 dark:bg-[#020617] dark:text-slate-100">
+      <body suppressHydrationWarning className="min-h-screen bg-[color-bg] text-[color-fg] selection:bg-[color-brand-100] selection:text-[color-brand-900] dark:bg-[color-slate-950] dark:text-[color-slate-100]">
         {/* Consolidated Semantic Graph for SEO, AEO, and GEO */}
         <StructuredData data={generateHomepageGraphSchema(baseUrl, socialLinks)} />
         {/* Skip to main content link for accessibility */}
-        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-violet-600 text-white px-4 py-2 rounded-xl z-50 shadow-xl">
+        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-brand-600 text-white px-4 py-2 rounded-xl z-50 shadow-xl">
           Skip to main content
         </a>
         <ClientRoot>

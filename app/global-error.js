@@ -20,7 +20,7 @@ export default function GlobalError({ error, reset }) {
           <div className="space-y-3">
             <button
               onClick={() => reset()}
-              className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-violet-600 text-white font-extrabold rounded-xl hover:bg-violet-700 transition-all shadow-lg shadow-violet-200 dark:shadow-none"
+              className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-600 text-white font-extrabold rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-violet-200 dark:shadow-none"
             >
               <RefreshCw className="w-4 h-4" />
               Try Restarting App

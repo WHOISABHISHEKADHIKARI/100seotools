@@ -57,9 +57,9 @@ export default function PrivacyPage() {
       <StructuredData data={[jsonLd, pageSchema]} />
 
       {/* ── PREMIUM HERO ── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white pt-20 pb-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white pt-20 pb-24">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-        <div className="absolute top-0 right-0 w-[500px] h-full bg-emerald-600/10 blur-3xl" />
+        <div className="absolute top-0 right-0 w-[500px] h-full bg-earth-600/10 blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-emerald-100">
@@ -67,7 +67,7 @@ export default function PrivacyPage() {
             Privacy & Security
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
-            Your Privacy is Our <span className="text-emerald-400">Priority</span>
+            Your Privacy is Our <span className="text-earth-400">Priority</span>
           </h1>
           <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
             We are committed to protecting your data. Learn how we handle information across our browser-based SEO toolkit.
@@ -82,7 +82,7 @@ export default function PrivacyPage() {
 
       <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
         <ol className="flex flex-wrap items-center gap-1.5">
-          <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
+          <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
           <li aria-hidden="true">/</li>
           <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">Privacy Policy</li>
         </ol>
@@ -102,7 +102,7 @@ export default function PrivacyPage() {
                     href={`#${s.id}`}
                     className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group"
                   >
-                    <s.icon className="w-4 h-4 text-slate-300 group-hover:text-emerald-600" />
+                    <s.icon className="w-4 h-4 text-slate-300 group-hover:text-earth-600" />
                     {s.title}
                   </a>
                 ))}
@@ -113,13 +113,13 @@ export default function PrivacyPage() {
           {/* ── CONTENT AREA ── */}
           <article className="min-w-0 space-y-12">
             <div className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-sm overflow-hidden">
-              <div className="h-2 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500" />
+              <div className="h-2 bg-gradient-to-r from-earth-500 via-earth-300 to-earth-400" />
 
               <div className="p-8 md:p-12 space-y-12 prose prose-slate dark:prose-invert max-w-none">
 
                 <section id="introduction" className="scroll-mt-24">
                   <h2 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                    <div className="w-2 h-8 bg-emerald-500 rounded-full" />
+                    <div className="w-2 h-8 bg-earth-500 rounded-full" />
                     Introduction
                   </h2>
                   <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-400">
@@ -132,16 +132,16 @@ export default function PrivacyPage() {
 
                 <section id="data-processing" className="scroll-mt-24 space-y-6">
                   <h2 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                    <div className="w-2 h-8 bg-emerald-500 rounded-full" />
+                    <div className="w-2 h-8 bg-earth-500 rounded-full" />
                     Data Processing
                   </h2>
                   <div className="grid sm:grid-cols-2 gap-6 not-prose">
                     <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10">
-                      <div className="flex items-center gap-2 text-emerald-600 font-black text-xs uppercase tracking-widest mb-3">
+                      <div className="flex items-center gap-2 text-earth-600 font-black text-xs uppercase tracking-widest mb-3">
                         <Lock className="w-4 h-4" /> Client-Side Tools
                       </div>
                       <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        90% of our <Link href="/tools" className="text-violet-600 hover:underline dark:text-violet-400">tools</Link> run entirely in your browser. Inputs never leave your computer, ensuring absolute privacy.
+                        90% of our <Link href="/tools" className="text-brand-600 hover:underline dark:text-brand-400">tools</Link> run entirely in your browser. Inputs never leave your computer, ensuring absolute privacy.
                       </p>
                     </div>
                     <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10">
@@ -149,7 +149,7 @@ export default function PrivacyPage() {
                         <Eye className="w-4 h-4" /> Public Validators
                       </div>
                       <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Some tools (like our <Link href="/tools/xml-sitemap-validator" className="text-violet-600 hover:underline dark:text-violet-400">XML Sitemap Validator</Link>) fetch public web resources. We do not store the URLs you validate.
+                        Some tools (like our <Link href="/tools/xml-sitemap-validator" className="text-brand-600 hover:underline dark:text-brand-400">XML Sitemap Validator</Link>) fetch public web resources. We do not store the URLs you validate.
                       </p>
                     </div>
                   </div>
@@ -161,7 +161,7 @@ export default function PrivacyPage() {
 
                 <section id="analytics" className="scroll-mt-24">
                   <h2 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                    <div className="w-2 h-8 bg-emerald-500 rounded-full" />
+                    <div className="w-2 h-8 bg-earth-500 rounded-full" />
                     Analytics
                   </h2>
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -177,7 +177,7 @@ export default function PrivacyPage() {
                       'Browser & device statistics',
                     ].map((item) => (
                       <li key={item} className="flex items-center gap-3 text-sm font-bold text-slate-700 dark:text-slate-300">
-                        <CheckCircle className="w-4 h-4 text-emerald-500" />
+                        <CheckCircle className="w-4 h-4 text-earth-500" />
                         {item}
                       </li>
                     ))}
@@ -186,7 +186,7 @@ export default function PrivacyPage() {
 
                 <section id="cookies" className="scroll-mt-24">
                   <h2 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                    <div className="w-2 h-8 bg-emerald-500 rounded-full" />
+                    <div className="w-2 h-8 bg-earth-500 rounded-full" />
                     Cookies
                   </h2>
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -203,14 +203,14 @@ export default function PrivacyPage() {
                   <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6">Contact Us</h2>
                   <div className="bg-slate-50 dark:bg-white/5 rounded-3xl p-8 flex flex-col md:flex-row items-center gap-8">
                     <div className="shrink-0 w-16 h-16 bg-white dark:bg-gray-800 rounded-2xl flex items-center justify-center shadow-sm">
-                      <Mail className="w-8 h-8 text-emerald-600" />
+                      <Mail className="w-8 h-8 text-earth-600" />
                     </div>
                     <div>
                       <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">Privacy Concerns?</h3>
                       <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
                         If you have any questions regarding this policy or how your data is handled, please reach out to our team.
                       </p>
-                      <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-black text-emerald-600 hover:underline">
+                      <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-black text-earth-600 hover:underline">
                         Message Privacy Team <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>
@@ -222,11 +222,11 @@ export default function PrivacyPage() {
 
             {/* Bottom Nav */}
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/terms" className="text-xs font-black text-slate-400 hover:text-emerald-600 uppercase tracking-widest transition-colors">Terms of Service</Link>
+              <Link href="/terms" className="text-xs font-black text-slate-400 hover:text-earth-600 uppercase tracking-widest transition-colors">Terms of Service</Link>
               <span className="w-1 h-1 rounded-full bg-slate-300" />
-              <Link href="/faq" className="text-xs font-black text-slate-400 hover:text-emerald-600 uppercase tracking-widest transition-colors">FAQ</Link>
+              <Link href="/faq" className="text-xs font-black text-slate-400 hover:text-earth-600 uppercase tracking-widest transition-colors">FAQ</Link>
               <span className="w-1 h-1 rounded-full bg-slate-300" />
-              <Link href="/about" className="text-xs font-black text-slate-400 hover:text-emerald-600 uppercase tracking-widest transition-colors">About Us</Link>
+              <Link href="/about" className="text-xs font-black text-slate-400 hover:text-earth-600 uppercase tracking-widest transition-colors">About Us</Link>
             </div>
           </article>
 

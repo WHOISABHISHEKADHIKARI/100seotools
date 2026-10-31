@@ -77,18 +77,18 @@ export default function AboutPage() {
       <StructuredData data={[aboutSchema, faqSchema]} />
 
       {/* ── PREMIUM HERO ── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white pt-20 pb-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white pt-20 pb-24">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-violet-600/20 rounded-full blur-3xl" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-600/20 rounded-full blur-3xl" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-violet-100">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-brand-100">
             <Award className="h-3.5 w-3.5 text-yellow-300" />
             Built for Excellence
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6 leading-tight">
-            The Ultimate <span className="text-violet-400">Browser-Based</span>
+            The Ultimate <span className="text-brand-400">Browser-Based</span>
             <br />
             SEO Toolkit
           </h1>
@@ -100,8 +100,8 @@ export default function AboutPage() {
             {[
               ['100+', 'SEO Utilities', Zap, 'text-amber-400'],
               ['50k+', 'Monthly Users', Users, 'text-blue-400'],
-              ['100%', 'Privacy Focused', ShieldCheck, 'text-emerald-400'],
-              ['Free', 'Forever', Award, 'text-violet-400'],
+              ['100%', 'Privacy Focused', ShieldCheck, 'text-earth-400'],
+              ['Free', 'Forever', Award, 'text-brand-400'],
             ].map(([val, label, Icon, iconColor]) => (
               <div key={label} className="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-6">
                 <Icon className={`h-6 w-6 mx-auto mb-3 ${iconColor}`} />
@@ -115,7 +115,7 @@ export default function AboutPage() {
 
       <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
         <ol className="flex flex-wrap items-center gap-1.5">
-          <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
+          <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
           <li aria-hidden="true">/</li>
           <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">About</li>
         </ol>
@@ -128,13 +128,13 @@ export default function AboutPage() {
               {/* Mission */}
               <section>
                 <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                  <div className="w-2 h-10 bg-violet-600 rounded-full" />
+                  <div className="w-2 h-10 bg-brand-600 rounded-full" />
                   Our Mission
                 </h2>
                 <div className="prose prose-slate dark:prose-invert max-w-none">
                   <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
                     In an era where search algorithms evolve daily, having reliable <strong>technical SEO</strong> and indexing utilities is non-negotiable.
-                    <Link href="/" className="text-violet-600 font-bold hover:underline mx-1">100 SEO Tools</Link>
+                    <Link href="/" className="text-brand-600 font-bold hover:underline mx-1">100 SEO Tools</Link>
                     was built to bridge the gap between complex enterprise software and accessible, browser-based efficiency.
                     We provide a comprehensive suite of 100+ utilities designed to streamline your workflow without annoying login barriers or paywalls.
                   </p>
@@ -144,7 +144,7 @@ export default function AboutPage() {
               {/* Pillars */}
               <section className="grid md:grid-cols-2 gap-8">
                 <div className="p-8 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 hover-lift">
-                  <div className="w-12 h-12 bg-violet-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-violet-200 dark:shadow-none">
+                  <div className="w-12 h-12 bg-brand-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-violet-200 dark:shadow-none">
                     <Zap className="text-white h-6 w-6" />
                   </div>
                   <h2 className="text-xl font-black text-slate-900 dark:text-white mb-4">Human-First Usability</h2>
@@ -156,7 +156,7 @@ export default function AboutPage() {
                       ['One-Click Reset', 'Quickly clear workspace for new analysis.'],
                     ].map(([title, desc]) => (
                       <li key={title} className="flex gap-3">
-                        <CheckCircle className="h-5 w-5 text-emerald-500 shrink-0" />
+                        <CheckCircle className="h-5 w-5 text-earth-500 shrink-0" />
                         <div>
                           <div className="text-sm font-bold text-slate-900 dark:text-white">{title}</div>
                           <div className="text-xs text-slate-500 dark:text-slate-400">{desc}</div>
@@ -179,10 +179,10 @@ export default function AboutPage() {
                       ['BreadcrumbList', 'Ensures clear navigation for rich snippets.', '/tools/breadcrumb-schema-generator'],
                     ].map(([title, desc, link]) => (
                       <li key={title} className="flex gap-3">
-                        <CheckCircle className="h-5 w-5 text-emerald-500 shrink-0" />
+                        <CheckCircle className="h-5 w-5 text-earth-500 shrink-0" />
                         <div>
                           <div className="text-sm font-bold text-slate-900 dark:text-white">
-                            {link ? <Link href={link} className="hover:text-violet-600 dark:hover:text-violet-400">{title}</Link> : title}
+                            {link ? <Link href={link} className="hover:text-brand-600 dark:hover:text-brand-400">{title}</Link> : title}
                           </div>
                           <div className="text-xs text-slate-500 dark:text-slate-400">{desc}</div>
                         </div>
@@ -193,11 +193,11 @@ export default function AboutPage() {
               </section>
 
               {/* Commitment */}
-              <section className="bg-gradient-to-br from-violet-600 to-indigo-700 rounded-3xl p-10 text-white relative overflow-hidden shadow-xl shadow-violet-200 dark:shadow-none">
+              <section className="bg-gradient-to-br from-brand-600 to-brand-700 rounded-3xl p-10 text-white relative overflow-hidden shadow-xl shadow-violet-200 dark:shadow-none">
                 <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
                 <div className="relative">
                   <h2 className="text-2xl font-black mb-6 flex items-center gap-3">
-                    <ShieldCheck className="h-8 w-8 text-violet-200" />
+                    <ShieldCheck className="h-8 w-8 text-brand-200" />
                     EEAT & Data Accuracy
                   </h2>
                   <p className="text-white/80 leading-relaxed mb-8 font-medium">
@@ -211,7 +211,7 @@ export default function AboutPage() {
                       ['Trust', 'Privacy-first with no data retention.'],
                     ].map(([title, desc]) => (
                       <div key={title}>
-                        <div className="text-lg font-black text-violet-200 mb-1">{title}</div>
+                        <div className="text-lg font-black text-brand-200 mb-1">{title}</div>
                         <div className="text-xs text-white/60 leading-relaxed">{desc}</div>
                       </div>
                     ))}
@@ -231,7 +231,7 @@ export default function AboutPage() {
                   ))}
                 </div>
                 <div className="mt-8 text-center">
-                  <Link href="/faq" className="inline-flex items-center gap-2 text-sm font-black text-violet-600 hover:underline">
+                  <Link href="/faq" className="inline-flex items-center gap-2 text-sm font-black text-brand-600 hover:underline">
                     Find more answers in our full FAQ section <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
@@ -244,7 +244,7 @@ export default function AboutPage() {
               <div className="bg-slate-50 dark:bg-white/5 rounded-3xl p-8 border border-slate-100 dark:border-white/10 text-center">
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Author & Creator</p>
                 <div className="relative inline-block mb-6">
-                  <div className="absolute inset-0 bg-violet-500 blur-2xl opacity-20 rounded-full" />
+                  <div className="absolute inset-0 bg-brand-500 blur-2xl opacity-20 rounded-full" />
                   <Image
                     src="/author.png"
                     alt="Abhishek Adhikari"
@@ -254,11 +254,11 @@ export default function AboutPage() {
                   />
                 </div>
                 <h2 className="text-xl font-black text-slate-900 dark:text-white mb-2">Abhishek Adhikari</h2>
-                <p className="text-xs font-bold text-violet-600 uppercase tracking-wider mb-4">Lead Developer & SEO Strategist</p>
+                <p className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-4">Lead Developer & SEO Strategist</p>
                 <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
                   Passionate about building accessible <strong>AI SEO tools</strong> and automation workflows for the digital marketing community.
                 </p>
-                <Link href="/author" className="inline-flex items-center justify-center gap-2 w-full py-4 bg-white dark:bg-gray-800 text-slate-900 dark:text-white text-sm font-black rounded-2xl border border-slate-200 dark:border-white/10 hover:border-violet-300 transition-all shadow-sm">
+                <Link href="/author" className="inline-flex items-center justify-center gap-2 w-full py-4 bg-white dark:bg-gray-800 text-slate-900 dark:text-white text-sm font-black rounded-2xl border border-slate-200 dark:border-white/10 hover:border-brand-300 transition-all shadow-sm">
                   View Profile <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -274,8 +274,8 @@ export default function AboutPage() {
                     ['Privacy Policy', '/privacy', ShieldCheck],
                   ].map(([label, href, Icon]) => (
                     <Link key={label} href={href} className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group">
-                      <span className="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-violet-600">{label}</span>
-                      <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-violet-600 transition-all group-hover:translate-x-1" />
+                      <span className="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-brand-600">{label}</span>
+                      <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-brand-600 transition-all group-hover:translate-x-1" />
                     </Link>
                   ))}
                 </div>

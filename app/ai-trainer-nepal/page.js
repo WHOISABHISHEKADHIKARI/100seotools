@@ -132,20 +132,20 @@ export default function AiTrainerNepalPage() {
 
             <nav aria-label="Breadcrumb" className="max-w-5xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
                 <ol className="flex flex-wrap items-center gap-1.5">
-                    <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
+                    <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
                     <li aria-hidden="true">/</li>
                     <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">AI Trainer in Nepal</li>
                 </ol>
             </nav>
 
             {/* ── PREMIUM HERO ── */}
-            <section className="relative overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white pt-16 pb-24 mt-6">
+            <section className="relative overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white pt-16 pb-24 mt-6">
                 <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-                <div className="absolute -top-24 -right-24 w-96 h-96 bg-violet-600/20 rounded-full blur-3xl" />
+                <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-600/20 rounded-full blur-3xl" />
                 <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
 
                 <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
-                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-violet-100">
+                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-brand-100">
                         <Award className="h-3.5 w-3.5 text-yellow-300" aria-hidden />
                         AI Training · Hetauda, Nepal
                     </div>
@@ -154,7 +154,7 @@ export default function AiTrainerNepalPage() {
                         AI Trainer in Nepal for Corporate Teams and Practical Work
                     </h1>
 
-                    <p className="text-lg md:text-xl text-violet-100/90 font-bold mb-6">
+                    <p className="text-lg md:text-xl text-brand-100/90 font-bold mb-6">
                         Practical AI skills. Clear workflows. Work your team can review and reuse.
                     </p>
 
@@ -169,7 +169,7 @@ export default function AiTrainerNepalPage() {
                                 href="https://github.com/sickn33/agentic-awesome-skills#top-contributors"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="font-bold text-violet-300 hover:text-violet-200 underline underline-offset-2"
+                                className="font-bold text-brand-300 hover:text-brand-200 underline underline-offset-2"
                             >
                                 View the contributor listing
                             </a>.
@@ -183,7 +183,7 @@ export default function AiTrainerNepalPage() {
                     <div className="flex flex-wrap gap-4 mb-6">
                         <a
                             href="#training-enquiry"
-                            className="inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-6 py-4 text-sm font-black text-white hover:bg-violet-500 transition-all shadow-xl shadow-violet-900/30"
+                            className="inline-flex items-center gap-2 rounded-2xl bg-brand-600 px-6 py-4 text-sm font-black text-white hover:bg-brand-500 transition-all shadow-xl shadow-violet-900/30"
                         >
                             Request a Corporate Training Proposal
                             <ArrowRight className="h-4 w-4" aria-hidden />
@@ -320,7 +320,7 @@ export default function AiTrainerNepalPage() {
                             ['Multi-session learning:', 'A sequence that allows participants to practise between sessions and bring back examples for review.'],
                         ].map(([label, body]) => (
                             <div key={label} className="flex items-start gap-4">
-                                <CheckCircle className="h-5 w-5 text-violet-600 dark:text-violet-400 flex-shrink-0 mt-1" aria-hidden />
+                                <CheckCircle className="h-5 w-5 text-brand-600 dark:text-brand-400 flex-shrink-0 mt-1" aria-hidden />
                                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                                     <strong className="text-slate-900 dark:text-white">{label}</strong> {body}
                                 </p>
@@ -333,7 +333,7 @@ export default function AiTrainerNepalPage() {
                 </section>
 
                 {/* ── MID-PAGE CTA ── */}
-                <section className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-violet-600 to-indigo-800 p-8 md:p-10 mb-8 text-white shadow-xl">
+                <section className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-brand-600 to-indigo-800 p-8 md:p-10 mb-8 text-white shadow-xl">
                     <div className="absolute -top-16 -right-16 w-64 h-64 bg-white/10 rounded-full blur-3xl" aria-hidden />
                     <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                         <div>
@@ -344,7 +344,7 @@ export default function AiTrainerNepalPage() {
                         </div>
                         <a
                             href="#training-enquiry"
-                            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-sm font-black text-violet-700 hover:scale-105 active:scale-95 transition-all shadow-xl shadow-black/10 whitespace-nowrap"
+                            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-sm font-black text-brand-700 hover:scale-105 active:scale-95 transition-all shadow-xl shadow-black/10 whitespace-nowrap"
                         >
                             Discuss Your Training Needs
                             <ArrowRight className="h-4 w-4" aria-hidden />
@@ -384,7 +384,7 @@ export default function AiTrainerNepalPage() {
                             <h2 id="meet-abhishek" className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-2">
                                 Meet Abhishek Adhikari
                             </h2>
-                            <p className="text-sm font-bold text-violet-600 dark:text-violet-400 uppercase tracking-widest">
+                            <p className="text-sm font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">
                                 AI Trainer · Prompt Engineering Practitioner · Open-Source Contributor
                             </p>
                         </div>
@@ -410,7 +410,7 @@ export default function AiTrainerNepalPage() {
                             href="https://github.com/sickn33/agentic-awesome-skills#top-contributors"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-sm font-black text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 transition-colors"
+                            className="inline-flex items-center gap-2 text-sm font-black text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors"
                         >
                             See the Top Contributors section
                             <ArrowRight className="h-4 w-4" aria-hidden />
@@ -436,7 +436,7 @@ export default function AiTrainerNepalPage() {
                                     href={href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-between gap-3 rounded-2xl border border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-white/5 px-5 py-4 text-sm font-bold text-slate-700 dark:text-slate-200 hover:border-violet-300 dark:hover:border-violet-500/40 hover:text-violet-700 dark:hover:text-violet-300 transition-all"
+                                    className="flex items-center justify-between gap-3 rounded-2xl border border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-white/5 px-5 py-4 text-sm font-bold text-slate-700 dark:text-slate-200 hover:border-brand-300 dark:hover:border-brand-500/40 hover:text-brand-700 dark:hover:text-brand-300 transition-all"
                                 >
                                     {label}
                                     <ArrowRight className="h-4 w-4 flex-shrink-0" aria-hidden />
@@ -479,7 +479,7 @@ export default function AiTrainerNepalPage() {
                                         href="https://kathmandu.wordcamp.org/2026/speaker/abhishek-adhikari/"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="font-bold text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 underline underline-offset-2"
+                                        className="font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline underline-offset-2"
                                     >
                                         View the official speaker profile
                                     </a>.
@@ -522,7 +522,7 @@ export default function AiTrainerNepalPage() {
                             href="https://luma.com/user/whoisabhishek"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-bold text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 underline underline-offset-2"
+                            className="font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline underline-offset-2"
                         >
                             Luma profile
                         </a>{' '}
@@ -545,7 +545,7 @@ export default function AiTrainerNepalPage() {
                                             href="https://luma.com/1d6w9vfq"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 underline underline-offset-2"
+                                            className="text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline underline-offset-2"
                                         >
                                             Secure Developer Conference 2026
                                         </a>
@@ -560,7 +560,7 @@ export default function AiTrainerNepalPage() {
                                             href="https://luma.com/jxeyh7fd"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 underline underline-offset-2"
+                                            className="text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline underline-offset-2"
                                         >
                                             Building Applications with IBM Bob
                                         </a>
@@ -608,7 +608,7 @@ export default function AiTrainerNepalPage() {
                     <div className="my-8 flex flex-wrap items-center gap-5">
                         <a
                             href="#training-enquiry"
-                            className="inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-6 py-4 text-sm font-black text-white hover:bg-violet-700 transition-all shadow-xl shadow-violet-200 dark:shadow-none"
+                            className="inline-flex items-center gap-2 rounded-2xl bg-brand-600 px-6 py-4 text-sm font-black text-white hover:bg-brand-700 transition-all shadow-xl shadow-violet-200 dark:shadow-none"
                         >
                             Request a Training Proposal
                             <ArrowRight className="h-4 w-4" aria-hidden />
@@ -641,8 +641,8 @@ export default function AiTrainerNepalPage() {
                 </section>
 
                 {/* ── CLOSING CTA ── */}
-                <section aria-labelledby="plan-workshop" className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white p-8 md:p-12 shadow-xl">
-                    <div className="absolute -top-20 -right-20 w-72 h-72 bg-violet-600/20 rounded-full blur-3xl" aria-hidden />
+                <section aria-labelledby="plan-workshop" className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white p-8 md:p-12 shadow-xl">
+                    <div className="absolute -top-20 -right-20 w-72 h-72 bg-brand-600/20 rounded-full blur-3xl" aria-hidden />
                     <div className="relative max-w-2xl">
                         <h2 id="plan-workshop" className="text-2xl md:text-3xl font-black mb-4">
                             Plan a useful AI workshop for your team
@@ -656,7 +656,7 @@ export default function AiTrainerNepalPage() {
                         <div className="flex flex-wrap gap-4">
                             <a
                                 href="#training-enquiry"
-                                className="inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-6 py-4 text-sm font-black text-white hover:bg-violet-500 transition-all shadow-xl shadow-violet-900/30"
+                                className="inline-flex items-center gap-2 rounded-2xl bg-brand-600 px-6 py-4 text-sm font-black text-white hover:bg-brand-500 transition-all shadow-xl shadow-violet-900/30"
                             >
                                 Request a Corporate Training Proposal
                                 <ArrowRight className="h-4 w-4" aria-hidden />
@@ -676,7 +676,7 @@ export default function AiTrainerNepalPage() {
                                 href="https://abhishekadhikari.com/contact"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="font-bold text-violet-300 hover:text-violet-200 underline underline-offset-2"
+                                className="font-bold text-brand-300 hover:text-brand-200 underline underline-offset-2"
                             >
                                 abhishekadhikari.com/contact
                             </a>.

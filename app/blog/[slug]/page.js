@@ -206,14 +206,14 @@ export default async function Page({ params, searchParams }) {
 
   return (
     <>
-      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white">
+      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white">
         <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
         <div className="absolute right-0 top-0 w-[600px] h-full bg-blue-600 opacity-10 blur-3xl" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-14">
           <div className="max-w-4xl">
             <div className="flex items-center gap-2 mb-4 flex-wrap">
               {post.category && (
-                <Link href={`/category/${slugify(post.category)}`} className="text-xs font-extrabold px-3 py-1 rounded-full bg-violet-500/30 text-violet-200 border border-violet-500/40 hover:bg-violet-500/50 transition-colors">
+                <Link href={`/category/${slugify(post.category)}`} className="text-xs font-extrabold px-3 py-1 rounded-full bg-brand-500/30 text-brand-200 border border-brand-500/40 hover:bg-brand-500/50 transition-colors">
                   {post.category}
                 </Link>
               )}
@@ -228,10 +228,10 @@ export default async function Page({ params, searchParams }) {
                 alt="Abhishek Adhikari"
                 width={48}
                 height={48}
-                className="rounded-full border-2 border-violet-300"
+                className="rounded-full border-2 border-brand-300"
               />
               <div>
-                <Link href="/author" className="text-sm font-extrabold hover:text-violet-200 transition-colors">
+                <Link href="/author" className="text-sm font-extrabold hover:text-brand-200 transition-colors">
                   Abhishek Adhikari
                 </Link>
                 <div className="text-xs text-white/50">SEO Expert and Full-Stack Developer</div>
@@ -314,7 +314,7 @@ export default async function Page({ params, searchParams }) {
           <div>
             <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Steps</h2>
             <ol className="space-y-3 text-gray-700 dark:text-gray-300">
-              {post.sections.howDetailed.map((s, i) => (<li key={i} className="flex gap-3 rounded-2xl border border-slate-100 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5"><span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-violet-600 text-xs font-extrabold text-white">{i + 1}</span><span>{s}</span></li>))}
+              {post.sections.howDetailed.map((s, i) => (<li key={i} className="flex gap-3 rounded-2xl border border-slate-100 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5"><span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-brand-600 text-xs font-extrabold text-white">{i + 1}</span><span>{s}</span></li>))}
             </ol>
           </div>
         )}
@@ -323,7 +323,7 @@ export default async function Page({ params, searchParams }) {
           <div>
             <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Practical tips</h2>
             <ul className="grid gap-3 text-gray-700 dark:text-gray-300">
-              {post.sections.tips.map((t, i) => (<li key={i} className="rounded-2xl bg-emerald-50/70 px-4 py-3 text-sm leading-6 ring-1 ring-emerald-100 dark:bg-emerald-500/10 dark:ring-emerald-500/20">{t}</li>))}
+              {post.sections.tips.map((t, i) => (<li key={i} className="rounded-2xl bg-earth-50/70 px-4 py-3 text-sm leading-6 ring-1 ring-earth-100 dark:bg-earth-500/10 dark:ring-earth-500/20">{t}</li>))}
             </ul>
           </div>
         )}
@@ -348,7 +348,7 @@ export default async function Page({ params, searchParams }) {
                   <tr className="border-b border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/5">
                     <th className="px-4 py-3 text-left font-extrabold text-slate-700 dark:text-slate-200">Feature</th>
                     <th className="px-4 py-3 text-left font-semibold text-slate-500 dark:text-slate-400">Cloud Analytics</th>
-                    <th className="px-4 py-3 text-left font-semibold text-emerald-700 dark:text-emerald-300">Self-Hosted</th>
+                    <th className="px-4 py-3 text-left font-semibold text-earth-700 dark:text-emerald-300">Self-Hosted</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -356,7 +356,7 @@ export default async function Page({ params, searchParams }) {
                     <tr key={i} className="border-b border-slate-100 last:border-0 dark:border-white/5">
                       <td className="px-4 py-3 font-medium text-slate-900 dark:text-white">{row.feature}</td>
                       <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{row.cloud}</td>
-                      <td className="px-4 py-3 font-medium text-emerald-700 dark:text-emerald-300">{row.selfHosted}</td>
+                      <td className="px-4 py-3 font-medium text-earth-700 dark:text-emerald-300">{row.selfHosted}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -371,7 +371,7 @@ export default async function Page({ params, searchParams }) {
             <ul className="space-y-2">
               {[...(post.sections?.sources || []), ...getDefaultSources(post)].map((s, i) => (
                 <li key={i}>
-                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-indigo-600 hover:text-indigo-800 hover:underline dark:text-indigo-400 dark:hover:text-indigo-200">
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-brand-600 hover:text-brand-800 hover:underline dark:text-brand-400 dark:hover:text-brand-200">
                     {s.name}
                     <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                   </a>
@@ -456,22 +456,22 @@ export default async function Page({ params, searchParams }) {
               <div className="bg-white dark:bg-white/5 rounded-2xl border border-gray-100 dark:border-white/10 shadow-sm p-5 sticky top-24">
                 <p className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mb-3">Article Actions</p>
                 <div className="grid gap-2">
-                  <Link href="/blog" className="px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/10 text-sm font-bold text-gray-700 dark:text-gray-200 hover:text-violet-700 dark:hover:text-violet-300 transition-colors">
+                  <Link href="/blog" className="px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/10 text-sm font-bold text-gray-700 dark:text-gray-200 hover:text-brand-700 dark:hover:text-brand-300 transition-colors">
                     Back to blog
                   </Link>
-                  <Link href="/tools" className="px-4 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-blue-600 text-sm font-extrabold text-white hover:opacity-90 transition-opacity">
+                  <Link href="/tools" className="px-4 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-blue-600 text-sm font-extrabold text-white hover:opacity-90 transition-opacity">
                     Browse free tools
                   </Link>
                 </div>
               </div>
 
-              <div className="relative overflow-hidden bg-gradient-to-br from-violet-700 to-blue-800 rounded-2xl p-5 text-white">
+              <div className="relative overflow-hidden bg-gradient-to-br from-brand-700 to-blue-800 rounded-2xl p-5 text-white">
                 <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
                 <div className="relative">
-                  <p className="text-[10px] font-extrabold text-violet-200 uppercase tracking-wider mb-2">Keep Optimizing</p>
+                  <p className="text-[10px] font-extrabold text-brand-200 uppercase tracking-wider mb-2">Keep Optimizing</p>
                   <h2 className="text-xl font-extrabold mb-2">Use the toolkit after reading</h2>
                   <p className="text-sm text-white/65 leading-relaxed mb-4">Run audits, generate metadata, validate schema, and turn this guide into measurable SEO work.</p>
-                  <Link href="/tools/keyword-suggestion-tool" className="inline-flex px-4 py-2.5 bg-white text-violet-700 text-sm font-extrabold rounded-xl hover:shadow-xl transition-shadow">
+                  <Link href="/tools/keyword-suggestion-tool" className="inline-flex px-4 py-2.5 bg-white text-brand-700 text-sm font-extrabold rounded-xl hover:shadow-xl transition-shadow">
                     Start with keywords
                   </Link>
                 </div>

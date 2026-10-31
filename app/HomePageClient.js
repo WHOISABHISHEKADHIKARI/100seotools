@@ -95,19 +95,19 @@ export default function HomePageClient({ initialTools = [] }) {
 
   return (
     <div className="space-y-0">
-      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white">
+      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute -top-40 left-1/2 h-[560px] w-[980px] -translate-x-1/2 rounded-full bg-violet-700 opacity-25 blur-3xl" />
+        <div className="absolute -top-40 left-1/2 h-[560px] w-[980px] -translate-x-1/2 rounded-full bg-brand-700 opacity-25 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-[360px] w-[360px] rounded-full bg-blue-600 opacity-15 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-20 text-center sm:px-6">
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-extrabold text-violet-100">
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-extrabold text-brand-100">
             <Star className="h-3.5 w-3.5 text-yellow-300" aria-hidden />
             100+ Free Tools · No Signup · Built for SEO teams
           </div>
           <h1 className="mx-auto max-w-4xl text-5xl font-extrabold leading-[1.05] tracking-tight md:text-7xl">
             The Complete Suite of{' '}
-            <span className="block bg-gradient-to-r from-violet-200 via-blue-200 to-cyan-200 bg-clip-text text-transparent">100+ Free SEO Tools</span>
+            <span className="block bg-gradient-to-r from-brand-200 via-slate-200 to-slate-200 bg-clip-text text-transparent">100+ Free SEO Tools</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
             Keyword research, technical SEO, AI content, local search, competitor analysis, schema, links, and performance tools in one fast, free workspace.
@@ -116,7 +116,7 @@ export default function HomePageClient({ initialTools = [] }) {
           <div className="mx-auto mt-10 max-w-2xl">
             <a
               href="/tools"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-7 py-4 text-base font-extrabold text-violet-700 shadow-2xl shadow-black/40 transition hover:scale-[1.01] sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-7 py-4 text-base font-extrabold text-brand-700 shadow-2xl shadow-black/40 transition hover:scale-[1.01] sm:w-auto"
             >
               Search all tools
               <ArrowRight className="h-5 w-5" aria-hidden />
@@ -154,7 +154,7 @@ export default function HomePageClient({ initialTools = [] }) {
           <input
             id="tool-search"
             type="search"
-            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-12 pr-10 text-base font-medium text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-violet-300 focus:bg-white focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-white/5 dark:text-white dark:focus:ring-violet-500/20"
+            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-12 pr-10 text-base font-medium text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-brand-300 focus:bg-white focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-white/5 dark:text-white dark:focus:ring-violet-500/20"
             placeholder="Search 100+ SEO tools..."
             autoComplete="off"
             onChange={(e) => {
@@ -175,7 +175,7 @@ export default function HomePageClient({ initialTools = [] }) {
 
       <section className="py-20" id="tools">
         <div className="mb-10 text-center">
-          <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">Browse by Category</p>
+          <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">Browse by Category</p>
           <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white md:text-4xl">Find the Right Tool Fast</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">
             Every utility is organized by workflow, with fast search and clean tool cards so you can jump straight into the job.
@@ -217,11 +217,11 @@ export default function HomePageClient({ initialTools = [] }) {
                       {count} tools
                     </span>
                   </div>
-                  <h3 className="text-sm font-extrabold text-slate-900 group-hover:text-violet-700 dark:text-white dark:group-hover:text-violet-200">{category.label}</h3>
+                  <h3 className="text-sm font-extrabold text-slate-900 group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">{category.label}</h3>
                   <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">{category.description}</p>
                 </a>
                 <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-bold text-slate-400 dark:border-white/10">
-                  <a href={href} onClick={followNativeHref(href)} className="flex w-full items-center justify-between transition hover:text-violet-600">
+                  <a href={href} onClick={followNativeHref(href)} className="flex w-full items-center justify-between transition hover:text-brand-600">
                     Explore category
                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
                   </a>
@@ -237,7 +237,7 @@ export default function HomePageClient({ initialTools = [] }) {
       <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-slate-100 bg-white py-16 dark:border-white/10 dark:bg-gray-950" aria-label="No-signup browser-based SEO tools">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">No Signup Needed</p>
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">No Signup Needed</p>
             <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white md:text-3xl">
               100+ Professional-Grade SEO Tools &mdash; Zero Registration Required
             </h2>
@@ -252,10 +252,10 @@ export default function HomePageClient({ initialTools = [] }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mb-10 flex items-end justify-between gap-4">
             <div>
-              <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">Most Used This Month</p>
+              <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">Most Used This Month</p>
               <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white md:text-4xl">Popular Tools</h2>
             </div>
-            <a href="/tools" className="hidden items-center gap-2 text-sm font-extrabold text-violet-700 hover:underline sm:flex">
+            <a href="/tools" className="hidden items-center gap-2 text-sm font-extrabold text-brand-700 hover:underline sm:flex">
               Browse all tools <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
           </div>
@@ -270,7 +270,7 @@ export default function HomePageClient({ initialTools = [] }) {
                       {shortToolName(tool.name).charAt(0)}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <div className="truncate text-sm font-extrabold text-slate-900 group-hover:text-violet-700 dark:text-white">{shortToolName(tool.name)}</div>
+                      <div className="truncate text-sm font-extrabold text-slate-900 group-hover:text-brand-700 dark:text-white">{shortToolName(tool.name)}</div>
                       <div className="mt-1 flex items-center gap-1.5 text-xs text-slate-400">
                         <span>{tool.category}</span>
                         <span>·</span>
@@ -287,10 +287,10 @@ export default function HomePageClient({ initialTools = [] }) {
         </div>
       </section>
 
-      <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-slate-100 bg-gradient-to-br from-violet-50 to-blue-50 py-16 dark:border-white/10 dark:from-gray-900 dark:to-gray-950" aria-label="Privacy-first client-side SEO tools">
+      <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-slate-100 bg-gradient-to-br from-brand-50 to-slate-50 py-16 dark:border-white/10 dark:from-gray-900 dark:to-gray-950" aria-label="Privacy-first client-side SEO tools">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">Privacy First</p>
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">Privacy First</p>
             <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white md:text-3xl">
               All Tools Run Client-Side &mdash; Your Data Never Leaves Your Browser
             </h2>
@@ -303,16 +303,16 @@ export default function HomePageClient({ initialTools = [] }) {
 
       <section className="py-20">
         <div className="mb-14 text-center">
-          <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">Simple Workflow</p>
+          <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">Simple Workflow</p>
           <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white md:text-4xl">How the SEO Toolkit Works</h2>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {workflow.map(([number, title, description, Icon]) => (
             <div key={number} className="text-center">
-              <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-violet-600 to-blue-600 text-white shadow-xl shadow-violet-200 dark:shadow-none">
+              <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand-600 to-blue-600 text-white shadow-xl shadow-violet-200 dark:shadow-none">
                 <Icon className="h-6 w-6" aria-hidden />
               </div>
-              <div className="text-[11px] font-extrabold text-violet-600">{number}</div>
+              <div className="text-[11px] font-extrabold text-brand-600">{number}</div>
               <h3 className="mt-1 text-sm font-extrabold text-slate-900 dark:text-white">{title}</h3>
               <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">{description}</p>
             </div>
@@ -323,7 +323,7 @@ export default function HomePageClient({ initialTools = [] }) {
       <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-slate-100 bg-white py-16 dark:border-white/10 dark:bg-gray-950" aria-label="Comprehensive SEO toolkit coverage">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">100+ Tools</p>
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">100+ Tools</p>
             <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white md:text-3xl">
               Complete SEO Coverage &mdash; From Keywords to AI Content Generation
             </h2>
@@ -335,10 +335,10 @@ export default function HomePageClient({ initialTools = [] }) {
       </section>
 
       <section className="py-20">
-        <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-[#0f0528] via-[#1a085e] to-[#050e3a] p-8 text-white md:p-12">
+        <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] p-8 text-white md:p-12">
           <div className="grid gap-10 md:grid-cols-2 md:items-center">
             <div>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-extrabold text-indigo-100">
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-extrabold text-brand-100">
                 <Zap className="h-3.5 w-3.5 text-yellow-300" aria-hidden />
                 AI-powered SEO tools
               </div>
@@ -346,14 +346,14 @@ export default function HomePageClient({ initialTools = [] }) {
               <p className="mt-4 text-sm leading-6 text-white/60">
                 Generate outlines, write introductions, improve content, build FAQs, and create metadata without leaving the toolkit.
               </p>
-              <a href={getCategoryHref('AI-Powered SEO')} className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-extrabold text-violet-700">
+              <a href={getCategoryHref('AI-Powered SEO')} className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-extrabold text-brand-700">
                 Explore AI tools <ArrowRight className="h-4 w-4" aria-hidden />
               </a>
             </div>
             <div className="grid gap-3">
               {aiTools.map((tool) => (
                 <a key={tool.slug} href={`/tools/${tool.slug}`} className="flex items-center gap-4 rounded-2xl border border-white/15 bg-white/10 px-5 py-3 transition hover:bg-white/15">
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-indigo-50 text-sm font-extrabold text-indigo-700">{shortToolName(tool.name).charAt(0)}</span>
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-brand-50 text-sm font-extrabold text-brand-700">{shortToolName(tool.name).charAt(0)}</span>
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-sm font-bold">{shortToolName(tool.name)}</span>
                     <span className="text-[11px] text-white/40">{tool.category}</span>
@@ -369,10 +369,10 @@ export default function HomePageClient({ initialTools = [] }) {
       <section id="calculator" className="py-20">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">Forecast Impact</p>
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">Forecast Impact</p>
             <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white">SEO Calculator</h2>
           </div>
-          <a href="/tools" className="text-sm font-bold text-violet-700 hover:underline">Back to tools</a>
+          <a href="/tools" className="text-sm font-bold text-brand-700 hover:underline">Back to tools</a>
         </div>
         <AfterFirstPaint>
           <SEOCalculator />
@@ -382,7 +382,7 @@ export default function HomePageClient({ initialTools = [] }) {
       <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-slate-200 bg-gradient-to-br from-slate-50 to-slate-100 py-20 dark:border-white/10 dark:from-gray-950 dark:to-gray-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mb-12 text-center">
-            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">What Marketers Say</p>
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">What Marketers Say</p>
             <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white md:text-4xl">Trusted by SEO Professionals</h2>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
@@ -393,7 +393,7 @@ export default function HomePageClient({ initialTools = [] }) {
                 </div>
                 <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">"{text}"</p>
                 <div className="mt-5 flex items-center gap-3 border-t border-slate-100 pt-4 dark:border-white/10">
-                  <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-violet-500 to-blue-600 text-sm font-extrabold text-white">{name.charAt(0)}</span>
+                  <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-blue-600 text-sm font-extrabold text-white">{name.charAt(0)}</span>
                   <span>
                     <span className="block text-sm font-extrabold text-slate-900 dark:text-white">{name}</span>
                     <span className="text-xs text-slate-400">{role}</span>
@@ -408,7 +408,7 @@ export default function HomePageClient({ initialTools = [] }) {
       <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-slate-100 bg-white py-16 dark:border-white/10 dark:bg-gray-950" aria-label="What is this SEO toolkit">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">What It Is</p>
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">What It Is</p>
             <h2 className="text-2xl font-extrabold text-slate-950 dark:text-white md:text-3xl">
               What Is 100 SEO Tools?
             </h2>
@@ -424,13 +424,13 @@ export default function HomePageClient({ initialTools = [] }) {
       <section id="pages" className="py-20">
         <div className="mb-6 flex items-center justify-between gap-4">
           <h2 className="text-3xl font-extrabold text-slate-950 dark:text-white">Explore Pages</h2>
-          <a href="/tools" className="text-sm font-bold text-violet-700 hover:underline">Back to Tools</a>
+          <a href="/tools" className="text-sm font-bold text-brand-700 hover:underline">Back to Tools</a>
         </div>
         <PageLinksGrid />
       </section>
 
       <section className="pb-20">
-        <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 via-blue-700 to-indigo-800 p-10 text-center text-white shadow-2xl shadow-violet-200/50 md:p-14 dark:shadow-none">
+        <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-blue-700 to-indigo-800 p-10 text-center text-white shadow-2xl shadow-violet-200/50 md:p-14 dark:shadow-none">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-1.5 text-xs font-extrabold">
             <CheckCircle className="h-4 w-4" aria-hidden />
             Ready when you are
@@ -440,7 +440,7 @@ export default function HomePageClient({ initialTools = [] }) {
             Every tool you need to research, audit, optimize, and ship better SEO work is already here.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href="/tools" className="inline-flex items-center gap-2 rounded-xl bg-white px-7 py-4 text-base font-extrabold text-violet-700">
+            <a href="/tools" className="inline-flex items-center gap-2 rounded-xl bg-white px-7 py-4 text-base font-extrabold text-brand-700">
               Browse all tools <ArrowRight className="h-5 w-5" aria-hidden />
             </a>
             <a href="/blog/seo-basics" className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/15 px-7 py-4 text-base font-bold text-white transition hover:bg-white/25">

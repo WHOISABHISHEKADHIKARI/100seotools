@@ -219,7 +219,7 @@ export default function SEOCalculator() {
       <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/[0.04] sm:p-6">
         <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-indigo-600 dark:text-indigo-300">
+            <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">
               <BookOpen className="h-3.5 w-3.5" aria-hidden />
               Learn More
             </p>
@@ -232,7 +232,7 @@ export default function SEOCalculator() {
           </div>
           <a
             href="/blog"
-            className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-indigo-200 hover:bg-white hover:text-indigo-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-brand-200 hover:bg-white hover:text-brand-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
           >
             View all guides
             <ArrowRight className="h-4 w-4" aria-hidden />
@@ -245,10 +245,10 @@ export default function SEOCalculator() {
               key={post.slug}
               href={`/blog/${post.slug}`}
               aria-label={`Read guide: ${post.title}`}
-              className="group flex min-h-[230px] flex-col rounded-lg border border-slate-200 bg-slate-50 p-4 transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:bg-white hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 dark:border-white/10 dark:bg-slate-950/40 dark:hover:bg-white/[0.07]"
+              className="group flex min-h-[230px] flex-col rounded-lg border border-slate-200 bg-slate-50 p-4 transition duration-200 hover:-translate-y-0.5 hover:border-brand-200 hover:bg-white hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 dark:border-white/10 dark:bg-slate-950/40 dark:hover:bg-white/[0.07]"
             >
               <div className="mb-4 flex items-center justify-between gap-3">
-                <span className="rounded-md border border-indigo-100 bg-indigo-50 px-2 py-1 text-[11px] font-semibold text-indigo-700 dark:border-indigo-400/20 dark:bg-indigo-400/10 dark:text-indigo-200">
+                <span className="rounded-md border border-brand-100 bg-brand-50 px-2 py-1 text-[11px] font-semibold text-brand-700 dark:border-brand-400/20 dark:bg-indigo-400/10 dark:text-brand-200">
                   {post.category || 'SEO Guide'}
                 </span>
                 <span className="inline-flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
@@ -256,7 +256,7 @@ export default function SEOCalculator() {
                   {post.readTimeMinutes || 6} min
                 </span>
               </div>
-              <h4 className="line-clamp-3 text-base font-semibold leading-6 tracking-tight text-slate-950 transition group-hover:text-indigo-700 dark:text-white dark:group-hover:text-indigo-200">
+              <h4 className="line-clamp-3 text-base font-semibold leading-6 tracking-tight text-slate-950 transition group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">
                 {post.title}
               </h4>
               <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
@@ -267,7 +267,7 @@ export default function SEOCalculator() {
                   <CalendarDays className="h-3.5 w-3.5" aria-hidden />
                   {formatGuideDate(post.datePublished)}
                 </span>
-                <span className="inline-flex items-center gap-1.5 font-semibold text-slate-700 transition group-hover:text-indigo-700 dark:text-slate-200 dark:group-hover:text-indigo-200">
+                <span className="inline-flex items-center gap-1.5 font-semibold text-slate-700 transition group-hover:text-brand-700 dark:text-slate-200 dark:group-hover:text-brand-200">
                   Read
                   <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" aria-hidden />
                 </span>

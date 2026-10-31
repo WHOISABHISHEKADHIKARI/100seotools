@@ -15,7 +15,7 @@ function UnifiedCard({
   image,
   publishedAt,
   icon: Icon,
-  iconColor = 'text-violet-600',
+  iconColor = 'text-brand-600',
   iconLabel,
   meta,
   children,
@@ -126,11 +126,11 @@ function UnifiedCard({
                 font-extrabold
                 uppercase
                 tracking-widest
-                bg-violet-50
-                text-violet-700
-                dark:bg-violet-500/10
-                dark:text-violet-300
-                border border-violet-100 dark:border-violet-500/20
+                bg-brand-50
+                text-brand-700
+                dark:bg-brand-500/10
+                dark:text-brand-300
+                border border-brand-100 dark:border-brand-500/20
                 transition-colors
                 duration-200
               `}>
@@ -142,7 +142,7 @@ function UnifiedCard({
           {/* Icon for Tool variant */}
           {Icon && !image && (
             <div
-              className={`unified-card-icon flex-shrink-0 w-10 h-10 rounded-xl bg-slate-50 dark:bg-white/5 flex items-center justify-center will-change-transform transition-all duration-300 ${interactive ? 'group-hover:bg-violet-600 group-hover:text-white group-hover:rotate-12 group-hover:shadow-lg group-hover:shadow-violet-200 dark:group-hover:shadow-none' : ''}`}
+              className={`unified-card-icon flex-shrink-0 w-10 h-10 rounded-xl bg-slate-50 dark:bg-white/5 flex items-center justify-center will-change-transform transition-all duration-300 ${interactive ? 'group-hover:bg-brand-600 group-hover:text-white group-hover:rotate-12 group-hover:shadow-lg group-hover:shadow-violet-200 dark:group-hover:shadow-none' : ''}`}
               aria-hidden={!iconLabel}
               aria-label={iconLabel}
               role={iconLabel ? 'img' : undefined}
@@ -164,7 +164,7 @@ function UnifiedCard({
               text-slate-900
               dark:text-white
               mb-2
-              ${interactive ? 'group-hover:text-violet-600 dark:group-hover:text-violet-400' : ''}
+              ${interactive ? 'group-hover:text-brand-600 dark:group-hover:text-brand-400' : ''}
               transition-colors
               duration-300
               line-clamp-2

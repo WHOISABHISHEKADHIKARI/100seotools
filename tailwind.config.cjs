@@ -10,8 +10,36 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Non-AI professional palette - matte, sophisticated, print-media inspired
         brand: {
-          // Accessible brand palette (AA compliant on light/dark backgrounds)
+          // Accessible palette (AA compliant on light/dark backgrounds)
+          50: '#fafafa',
+          100: '#f5f5f5',
+          200: '#e5e5e5',
+          300: '#d4d4d4',
+          400: '#a3a3a3',
+          500: '#737373',
+          600: '#525252',
+          700: '#404040',
+          800: '#262626',
+          900: '#151515',
+          950: '#0a0a0a',
+        },
+        // Warm earth accent for highlights (not neon/cyberpunk)
+        earth: {
+          50: '#fff7ec',
+          100: '#ffede8',
+          200: '#fcd3c7',
+          300: '#fbbfbc',
+          400: '#f8a9a5',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
+        },
+        // Subtle sky blue (muted, not electric)
+        sky: {
           50: '#f0f9ff',
           100: '#e0f2fe',
           200: '#bae6fd',
@@ -22,15 +50,6 @@ module.exports = {
           700: '#0369a1',
           800: '#075985',
           900: '#0c4a6e',
-          950: '#082f49',
-        },
-        // Darker gray steps for small text contrast (>=4.5:1)
-        accessibleGray: {
-          400: '#52525b',
-          500: '#3f3f46',
-          600: '#27272a',
-          700: '#18181b',
-          800: '#020617',
         }
       }
     }

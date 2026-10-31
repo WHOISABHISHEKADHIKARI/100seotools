@@ -77,24 +77,24 @@ export default function ContactForm() {
             <StructuredData data={jsonLd} />
 
             {/* ── PREMIUM HERO ── */}
-            <section className="relative overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white pt-20 pb-24">
+            <section className="relative overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white pt-20 pb-24">
                 <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
                 <div className="absolute top-0 right-0 w-[500px] h-full bg-blue-600/10 blur-3xl" />
 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
-                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-violet-100">
-                        <MessageSquare className="h-3.5 w-3.5 text-violet-400" />
+                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-brand-100">
+                        <MessageSquare className="h-3.5 w-3.5 text-brand-400" />
                         Support & Partnerships
                     </div>
                     <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
-                        Let's Start a <span className="text-violet-400">Conversation</span>
+                        Let's Start a <span className="text-brand-400">Conversation</span>
                     </h1>
                     <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
                         Have a tool suggestion, guest post inquiry, or partnership idea? We'd love to hear from you.
                     </p>
 
                     <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm font-bold text-white/50 uppercase tracking-widest">
-                        <span className="flex items-center gap-2"><Clock className="w-4 h-4 text-emerald-400" /> 24-48h Response</span>
+                        <span className="flex items-center gap-2"><Clock className="w-4 h-4 text-earth-400" /> 24-48h Response</span>
                         <span className="flex items-center gap-2"><Award className="w-4 h-4 text-amber-400" /> Guest Post Friendly</span>
                         <span className="flex items-center gap-2"><Globe className="w-4 h-4 text-blue-400" /> Global Support</span>
                     </div>
@@ -103,7 +103,7 @@ export default function ContactForm() {
 
             <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
                 <ol className="flex flex-wrap items-center gap-1.5">
-                    <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
+                    <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
                     <li aria-hidden="true">/</li>
                     <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">Contact</li>
                 </ol>
@@ -121,7 +121,7 @@ export default function ContactForm() {
 
                         {status.message && (
                             <div className={`mb-8 p-6 rounded-2xl flex items-start gap-4 ${status.type === 'success'
-                                ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-500/20'
+                                ? 'bg-earth-50 text-earth-700 dark:bg-earth-500/10 dark:text-earth-400 border border-earth-100 dark:border-earth-500/20'
                                 : 'bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-400 border border-red-100 dark:border-red-500/20'
                                 }`}>
                                 {status.type === 'success' ? (
@@ -138,13 +138,13 @@ export default function ContactForm() {
                                 <div className="space-y-2">
                                     <label htmlFor="name" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Your Name *</label>
                                     <div className="relative group">
-                                        <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors w-5 h-5" />
+                                        <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand-600 transition-colors w-5 h-5" />
                                         <input
                                             type="text"
                                             id="name"
                                             name="name"
                                             required
-                                            className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl pl-12 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                                            className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl pl-12 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-brand-300 outline-none transition-all font-medium"
                                             placeholder="Abhishek Adhikari"
                                         />
                                     </div>
@@ -153,13 +153,13 @@ export default function ContactForm() {
                                 <div className="space-y-2">
                                     <label htmlFor="email" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Your Email *</label>
                                     <div className="relative group">
-                                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors w-5 h-5" />
+                                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand-600 transition-colors w-5 h-5" />
                                         <input
                                             type="email"
                                             id="email"
                                             name="email"
                                             required
-                                            className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl pl-12 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                                            className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl pl-12 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-brand-300 outline-none transition-all font-medium"
                                             placeholder="abhishek@example.com"
                                         />
                                     </div>
@@ -169,13 +169,13 @@ export default function ContactForm() {
                             <div className="space-y-2">
                                 <label htmlFor="subject" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Subject *</label>
                                 <div className="relative group">
-                                    <Zap className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors w-5 h-5" />
+                                    <Zap className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand-600 transition-colors w-5 h-5" />
                                     <input
                                         type="text"
                                         id="subject"
                                         name="subject"
                                         required
-                                        className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl pl-12 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                                        className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl pl-12 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-brand-300 outline-none transition-all font-medium"
                                         placeholder="Guest Post / Partnership / Tool Feedback"
                                     />
                                 </div>
@@ -188,7 +188,7 @@ export default function ContactForm() {
                                     name="message"
                                     required
                                     rows="6"
-                                    className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-5 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium resize-none"
+                                    className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-5 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-brand-300 outline-none transition-all font-medium resize-none"
                                     placeholder="Tell us more about your inquiry..."
                                 ></textarea>
                             </div>
@@ -196,7 +196,7 @@ export default function ContactForm() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full h-16 bg-violet-600 text-white font-black rounded-2xl hover:bg-violet-700 transition-all shadow-xl shadow-violet-200 dark:shadow-none flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full h-16 bg-brand-600 text-white font-black rounded-2xl hover:bg-brand-700 transition-all shadow-xl shadow-violet-200 dark:shadow-none flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {isSubmitting ? (
                                     <>
@@ -219,12 +219,12 @@ export default function ContactForm() {
                             <h3 className="text-xl font-black text-slate-900 dark:text-white mb-8">Direct Contact</h3>
                             <div className="space-y-8">
                                 <div className="flex gap-5">
-                                    <div className="w-12 h-12 bg-violet-50 dark:bg-violet-500/10 rounded-2xl flex items-center justify-center shrink-0">
-                                        <Mail className="w-5 h-5 text-violet-600" />
+                                    <div className="w-12 h-12 bg-brand-50 dark:bg-brand-500/10 rounded-2xl flex items-center justify-center shrink-0">
+                                        <Mail className="w-5 h-5 text-brand-600" />
                                     </div>
                                     <div>
                                         <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Email Support</div>
-                                        <a href="mailto:abhishekadhikari1254@gmail.com" className="text-sm font-bold text-slate-900 dark:text-white hover:text-violet-600 transition-colors break-all">
+                                        <a href="mailto:abhishekadhikari1254@gmail.com" className="text-sm font-bold text-slate-900 dark:text-white hover:text-brand-600 transition-colors break-all">
                                             abhishekadhikari1254@gmail.com
                                         </a>
                                     </div>
@@ -249,20 +249,20 @@ export default function ContactForm() {
                                         ['Privacy & Data', '/privacy'],
                                     ].map(([label, href]) => (
                                         <Link key={label} href={href} className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
-                                            <span className="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-violet-600">{label}</span>
-                                            <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-violet-600 transition-all group-hover:translate-x-1" />
+                                            <span className="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-brand-600">{label}</span>
+                                            <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-brand-600 transition-all group-hover:translate-x-1" />
                                         </Link>
                                     ))}
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-gradient-to-br from-violet-600 to-indigo-800 rounded-[40px] p-10 text-white shadow-xl shadow-violet-200 dark:shadow-none">
+                        <div className="bg-gradient-to-br from-brand-600 to-indigo-800 rounded-[40px] p-10 text-white shadow-xl shadow-violet-200 dark:shadow-none">
                             <h3 className="text-2xl font-black mb-4">Guest Posting?</h3>
                             <p className="text-white/70 text-sm leading-relaxed mb-8">
                                 We love high-quality, original content. If you're an SEO expert with a unique perspective, we want to hear from you.
                             </p>
-                            <Link href="/blog" className="inline-flex items-center justify-center w-full py-4 bg-white text-violet-700 text-sm font-black rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-black/10">
+                            <Link href="/blog" className="inline-flex items-center justify-center w-full py-4 bg-white text-brand-700 text-sm font-black rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-black/10">
                                 View Content Guidelines
                             </Link>
                         </div>

@@ -355,7 +355,7 @@ export default function ToolRunner({ tool }) {
                   onChange={(e) => setIsLivePreview(e.target.checked)}
                   aria-label="Toggle smart preview"
                 />
-                <span className="absolute inset-0 rounded-full bg-slate-300 transition-colors peer-checked:bg-violet-600 peer-focus-visible:ring-2 peer-focus-visible:ring-violet-500 peer-focus-visible:ring-offset-2 dark:bg-slate-700" />
+                <span className="absolute inset-0 rounded-full bg-slate-300 transition-colors peer-checked:bg-brand-600 peer-focus-visible:ring-2 peer-focus-visible:ring-violet-500 peer-focus-visible:ring-offset-2 dark:bg-slate-700" />
                 <span className="relative ml-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform peer-checked:translate-x-5" />
               </span>
             </label>

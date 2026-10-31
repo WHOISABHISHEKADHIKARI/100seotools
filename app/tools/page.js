@@ -102,7 +102,7 @@ export default function ToolsIndexPage() {
       <nav aria-label="Breadcrumb" className="mb-5 text-sm">
         <ol className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-400">
           <li>
-            <Link href="/" className="inline-flex items-center gap-1 hover:text-violet-700 dark:hover:text-violet-200">
+            <Link href="/" className="inline-flex items-center gap-1 hover:text-brand-700 dark:hover:text-brand-200">
               <Home className="h-3.5 w-3.5" aria-hidden />
               Home
             </Link>
@@ -112,10 +112,10 @@ export default function ToolsIndexPage() {
         </ol>
       </nav>
 
-      <header className="relative left-1/2 mb-12 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white">
+      <header className="relative left-1/2 mb-12 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-violet-100">
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-brand-100">
             <Layers className="h-4 w-4" aria-hidden />
             Complete Toolkit
           </span>
@@ -175,7 +175,7 @@ export default function ToolsIndexPage() {
                     <p className="text-sm text-slate-500 dark:text-slate-400">{items.length} tools · {detail.description}</p>
                   </div>
                 </div>
-                <Link href={getCategoryHref(category)} className="inline-flex items-center gap-2 text-sm font-extrabold text-violet-700 hover:underline dark:text-violet-300">
+                <Link href={getCategoryHref(category)} className="inline-flex items-center gap-2 text-sm font-extrabold text-brand-700 hover:underline dark:text-brand-300">
                   View category
                   <ArrowRight className="h-4 w-4" aria-hidden />
                 </Link>
@@ -183,7 +183,7 @@ export default function ToolsIndexPage() {
 
               {definition && (
                 <div className="mb-6 rounded-2xl border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-5 dark:border-white/10 dark:from-gray-900 dark:to-gray-950">
-                  <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-violet-600 dark:text-violet-400">What is {category}?</p>
+                  <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-400">What is {category}?</p>
                   <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{definition}</p>
                 </div>
               )}
@@ -204,7 +204,7 @@ export default function ToolsIndexPage() {
                         </span>
                         <span className={`rounded-full px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide ${color.badge}`}>Free</span>
                       </div>
-                      <h3 className="line-clamp-2 text-base font-extrabold leading-snug text-slate-900 group-hover:text-violet-700 dark:text-white dark:group-hover:text-violet-200">
+                      <h3 className="line-clamp-2 text-base font-extrabold leading-snug text-slate-900 group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">
                         {shortToolName(item.name)}
                       </h3>
                       <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-500 dark:text-slate-400">{item.description}</p>
@@ -213,7 +213,7 @@ export default function ToolsIndexPage() {
                           <Users className="h-3.5 w-3.5" aria-hidden />
                           {getMonthlyUse(index)}/mo
                         </span>
-                        <span className="inline-flex items-center gap-1 font-extrabold text-violet-700 dark:text-violet-300">
+                        <span className="inline-flex items-center gap-1 font-extrabold text-brand-700 dark:text-brand-300">
                           Open Tool
                           <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" aria-hidden />
                         </span>
@@ -230,7 +230,7 @@ export default function ToolsIndexPage() {
       <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-slate-100 bg-white py-16 dark:border-white/10 dark:bg-gray-950" aria-label="Frequently asked questions about SEO tools" itemScope itemType="https://schema.org/FAQPage">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mb-10 text-center">
-            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">FAQ</p>
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">FAQ</p>
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white md:text-4xl">SEO Tools — Common Questions</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">
               Direct answers about free SEO tools, privacy, and capabilities.
@@ -241,7 +241,7 @@ export default function ToolsIndexPage() {
               <details key={faq.q} className="group overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition hover:shadow-md dark:border-white/10 dark:bg-gray-900" itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
                 <summary className="flex cursor-pointer items-center justify-between px-6 py-5 text-sm font-extrabold text-slate-900 dark:text-white [&::-webkit-details-marker]:hidden">
                   <span itemProp="name">{faq.q}</span>
-                  <ChevronRight className="ml-4 shrink-0 text-violet-500 transition group-open:rotate-90" aria-hidden />
+                  <ChevronRight className="ml-4 shrink-0 text-brand-500 transition group-open:rotate-90" aria-hidden />
                 </summary>
                 <div className="border-t border-slate-100 px-6 pb-5 pt-4 dark:border-white/10" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                   <p className="text-sm leading-6 text-slate-600 dark:text-slate-300" itemProp="text">{faq.a}</p>

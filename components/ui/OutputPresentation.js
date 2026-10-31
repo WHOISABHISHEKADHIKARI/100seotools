@@ -129,7 +129,7 @@ export default function OutputPresentation({
             onClick={() => setView('preview')}
             className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
               view === 'preview'
-                ? 'bg-gradient-to-br from-violet-600 to-blue-600 text-white shadow-md'
+                ? 'bg-gradient-to-br from-brand-600 to-brand-600 text-white shadow-md'
                 : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
             }`}
           >
@@ -140,7 +140,7 @@ export default function OutputPresentation({
             onClick={() => setView('raw')}
             className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
               view === 'raw'
-                ? 'bg-gradient-to-br from-violet-600 to-blue-600 text-white shadow-md'
+                ? 'bg-gradient-to-br from-brand-600 to-brand-600 text-white shadow-md'
                 : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
             }`}
           >
@@ -156,7 +156,7 @@ export default function OutputPresentation({
             aria-label="Copy to clipboard"
             className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
-            {isCopied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+            {isCopied ? <Check className="w-4 h-4 text-earth-500" /> : <Copy className="w-4 h-4" />}
           </button>
           <button
             onClick={copyAsHtml}
@@ -189,12 +189,12 @@ export default function OutputPresentation({
         {isProcessing && (
           <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/90 backdrop-blur-sm dark:bg-gray-950/90">
             <div className="w-full max-w-sm rounded-3xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50 p-6 text-center shadow-2xl shadow-violet-900/5 dark:border-white/[0.08] dark:from-gray-900 dark:to-gray-950">
-              <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-violet-500 via-blue-500 to-cyan-500 p-[2px] shadow-lg shadow-violet-500/20">
+              <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-brand-500 via-brand-500 to-brand-500 p-[2px] shadow-lg shadow-brand-500/20">
                 <div className="flex h-full w-full items-center justify-center rounded-[1.35rem] bg-white dark:bg-gray-900">
-                  <FileText className="h-9 w-9 text-transparent bg-clip-text bg-gradient-to-br from-violet-600 to-blue-600 dark:from-violet-400 dark:to-blue-400" />
+                  <FileText className="h-9 w-9 text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-brand-600 dark-from-brand-400 dark-to-brand-400" />
                 </div>
               </div>
-              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">Generating report</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-600">Generating report</p>
               <h3 className="mt-2 text-lg font-extrabold text-slate-950 dark:text-white">{loadingStages[stageIndex]}</h3>
               <div className="mt-5 grid grid-cols-4 gap-2">
                 {loadingStages.map((stage, index) => (
@@ -202,7 +202,7 @@ export default function OutputPresentation({
                     key={stage}
                     className={`h-1.5 rounded-full transition-all duration-500 ${
                       index <= stageIndex
-                        ? 'bg-gradient-to-r from-violet-500 to-blue-500 shadow-sm shadow-violet-500/30'
+                        ? 'bg-gradient-to-r from-brand-500 to-slate-500 shadow-sm shadow-brand-500/30'
                         : 'bg-slate-200 dark:bg-white/[0.06]'
                     }`}
                   />
@@ -230,17 +230,17 @@ export default function OutputPresentation({
             <div className={`transition-opacity duration-300 ${isProcessing ? 'opacity-30' : 'opacity-100'}`}>
               {view === 'preview' ? (
                 <div className="space-y-5">
-                  <div className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-gradient-to-br from-slate-50 via-white to-violet-50/30 p-5 shadow-sm dark:border-white/[0.08] dark:from-gray-900 dark:via-gray-950 dark:to-violet-950/20">
-                    <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-violet-200/20 to-blue-200/10 blur-3xl dark:from-violet-500/5 dark:to-blue-500/5" />
+                  <div className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-gradient-to-br from-slate-50 via-white to-brand-50/30 p-5 shadow-sm dark:border-white/[0.08] dark:from-gray-900 dark:via-gray-950 dark:to-brand-950/20">
+                    <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-brand-200/20 to-blue-200/10 blur-3xl dark:from-brand-500/5 dark:to-slate-500/5" />
                     <div className="relative flex flex-wrap items-start justify-between gap-4">
                       <div className="flex-1 min-w-0">
-                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">Generated report</p>
+                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-600">Generated report</p>
                         <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-950 dark:text-white truncate">{report.title}</h3>
                       </div>
                       <div className="flex shrink-0 items-center gap-2 rounded-2xl border border-slate-200/80 bg-white/80 px-4 py-2.5 shadow-sm backdrop-blur-sm dark:border-white/[0.08] dark:bg-white/[0.04]">
                         <div className="text-right">
                           <div className="flex items-center gap-1.5">
-                            <span className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">{wordCount}</span>
+                            <span className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-600">{wordCount}</span>
                             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">words</span>
                           </div>
                           <div className="flex items-center gap-1 justify-end">
@@ -251,10 +251,10 @@ export default function OutputPresentation({
                       </div>
                     </div>
                     {summary && (
-                      <div className="relative mt-5 rounded-2xl border-l-4 border-violet-500/40 bg-gradient-to-r from-violet-50/80 to-white/80 p-4 text-sm leading-7 text-slate-700 ring-1 ring-slate-200/60 dark:from-violet-950/20 dark:to-gray-950/80 dark:text-slate-300 dark:ring-white/[0.06]">
+                      <div className="relative mt-5 rounded-2xl border-l-4 border-brand-500/40 bg-gradient-to-r from-brand-50/80 to-white/80 p-4 text-sm leading-7 text-slate-700 ring-1 ring-slate-200/60 dark:from-brand-950/20 dark:to-gray-950/80 dark:text-slate-300 dark:ring-white/[0.06]">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="h-1.5 w-1.5 rounded-full bg-violet-500" />
-                          <span className="text-[10px] font-black uppercase tracking-widest text-violet-600 dark:text-violet-400">Executive Summary</span>
+                          <div className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+                          <span className="text-[10px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-400">Executive Summary</span>
                         </div>
                         <Markdown text={summary.text} className="max-w-none" />
                       </div>
@@ -263,10 +263,10 @@ export default function OutputPresentation({
 
                   <div className="grid gap-4">
                     {reportSections.length > 0 ? reportSections.map((section, index) => (
-                      <section key={section.heading} className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:border-violet-200/60 dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-violet-500/20 dark:hover:bg-white/[0.04]">
-                        <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-gradient-to-br from-violet-100/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100 dark:from-violet-500/5" />
+                      <section key={section.heading} className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:border-brand-200/60 dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-brand-500/20 dark:hover:bg-white/[0.04]">
+                        <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-gradient-to-br from-brand-100/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100 dark:from-brand-500/5" />
                         <div className="relative mb-3 flex items-center gap-3">
-                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-blue-600 text-xs font-black text-white shadow-sm">{index + 1}</span>
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-brand-600 text-xs font-black text-white shadow-sm">{index + 1}</span>
                           <h4 className="text-lg font-black text-slate-950 dark:text-white">{section.heading}</h4>
                         </div>
                         <Markdown text={section.text} className="max-w-none" />
@@ -281,11 +281,11 @@ export default function OutputPresentation({
               ) : (
                 <div className="rounded-2xl border border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-white p-4 dark:border-white/[0.06] dark:from-gray-900/50 dark:to-gray-950">
                   <div className="mb-3 flex items-center gap-2">
-                    <Code className="w-3.5 h-3.5 text-violet-500" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">Raw Output</span>
+                    <Code className="w-3.5 h-3.5 text-brand-500" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-600">Raw Output</span>
                     <span className="text-[10px] font-medium text-slate-400">· {charCount} chars</span>
                   </div>
-                  <pre className="whitespace-pre-wrap break-words font-mono text-sm leading-relaxed text-gray-700 selection:bg-violet-100 dark:text-gray-300 dark:selection:bg-violet-900/40">
+                  <pre className="whitespace-pre-wrap break-words font-mono text-sm leading-relaxed text-gray-700 selection:bg-brand-100 dark:text-gray-300 dark:selection:bg-brand-900/40">
                     {output}
                   </pre>
                 </div>
@@ -298,7 +298,7 @@ export default function OutputPresentation({
       <div className="flex flex-wrap items-center justify-between gap-2 rounded-b-2xl border border-t-0 border-slate-200/80 bg-gradient-to-r from-slate-50/80 to-white/80 px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-500 backdrop-blur-sm dark:border-white/[0.06] dark:from-gray-900/80 dark:to-gray-950/80 dark:text-slate-400">
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-1.5">
-            <Hash className="w-3 h-3 text-violet-500" />
+            <Hash className="w-3 h-3 text-brand-500" />
             <span>{charCount.toLocaleString()} <span className="hidden sm:inline">Characters</span></span>
           </div>
           <div className="flex items-center gap-1.5">
@@ -306,15 +306,15 @@ export default function OutputPresentation({
             <span>{wordCount.toLocaleString()} <span className="hidden sm:inline">Words</span></span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Clock className="w-3 h-3 text-emerald-500" />
+            <Clock className="w-3 h-3 text-earth-500" />
             <span>{readingTime} <span className="hidden sm:inline">Min Read</span></span>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 dark:bg-emerald-950/30">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50" />
-            <span className="text-[9px] font-black text-emerald-700 dark:text-emerald-400">Local Preview</span>
+          <div className="flex items-center gap-1.5 rounded-full bg-earth-50 px-2.5 py-1 dark:bg-emerald-950/30">
+            <span className="h-1.5 w-1.5 rounded-full bg-earth-500 shadow-sm shadow-earth-500/50" />
+            <span className="text-[9px] font-black text-earth-700 dark:text-earth-400">Local Preview</span>
           </div>
         </div>
       </div>

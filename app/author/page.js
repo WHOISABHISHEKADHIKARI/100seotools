@@ -102,17 +102,17 @@ export default function AuthorPage() {
       <StructuredData data={faqLd} />
 
       {/* ── PREMIUM HERO ── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white pt-20 pb-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white pt-20 pb-24">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-        <div className="absolute top-0 right-0 w-[500px] h-full bg-violet-600/10 blur-3xl" />
+        <div className="absolute top-0 right-0 w-[500px] h-full bg-brand-600/10 blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-violet-100">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-brand-100">
             <HelpCircle className="h-3.5 w-3.5" />
             Knowledge Base
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
-            Common Questions <span className="text-violet-400">Answered</span>
+            Common Questions <span className="text-brand-400">Answered</span>
           </h1>
           <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
             Find instant answers to questions about our 100+ SEO tools, privacy policies, and technical implementation.
@@ -138,7 +138,7 @@ export default function AuthorPage() {
 
       <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
         <ol className="flex flex-wrap items-center gap-1.5">
-          <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
+          <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
           <li aria-hidden="true">/</li>
           <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">Author</li>
         </ol>
@@ -153,7 +153,7 @@ export default function AuthorPage() {
               {faqCategories.map((cat) => (
                 <button key={cat.category} className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
                   <span className="flex items-center gap-3">
-                    <cat.icon className="h-4 w-4 text-slate-400 group-hover:text-violet-600" />
+                    <cat.icon className="h-4 w-4 text-slate-400 group-hover:text-brand-600" />
                     {cat.category}
                   </span>
                   <ChevronRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-all" />
@@ -162,11 +162,11 @@ export default function AuthorPage() {
             </nav>
           </div>
 
-          <div className="mt-6 bg-gradient-to-br from-violet-600 to-indigo-700 rounded-3xl p-6 text-white shadow-xl shadow-violet-200 dark:shadow-none">
-            <MessageSquare className="h-6 w-6 mb-4 text-violet-200" />
+          <div className="mt-6 bg-gradient-to-br from-brand-600 to-brand-700 rounded-3xl p-6 text-white shadow-xl shadow-violet-200 dark:shadow-none">
+            <MessageSquare className="h-6 w-6 mb-4 text-brand-200" />
             <h3 className="text-lg font-black mb-2">Still have questions?</h3>
             <p className="text-xs text-white/70 leading-relaxed mb-6">Our team is here to help you with any custom tool requests or technical issues.</p>
-            <Link href="/contact" className="inline-flex items-center justify-center w-full py-3 bg-white text-violet-700 text-xs font-black rounded-xl hover:scale-105 active:scale-95 transition-all">
+            <Link href="/contact" className="inline-flex items-center justify-center w-full py-3 bg-white text-brand-700 text-xs font-black rounded-xl hover:scale-105 active:scale-95 transition-all">
               Contact Support
             </Link>
           </div>
@@ -177,7 +177,7 @@ export default function AuthorPage() {
           {faqCategories.map((cat) => (
             <section key={cat.category} id={cat.category.toLowerCase().replace(/[^a-z]+/g, '-')} className="scroll-mt-24">
               <div className="flex items-center gap-3 mb-8">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400`}>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400`}>
                   <cat.icon className="h-5 w-5" />
                 </div>
                 <h2 className="text-2xl font-black text-slate-900 dark:text-white">{cat.category}</h2>
@@ -185,9 +185,9 @@ export default function AuthorPage() {
 
               <div className="grid gap-4">
                 {cat.faqs.map((faq, i) => (
-                  <div key={i} className="group bg-white dark:bg-gray-900 rounded-2xl border border-slate-100 dark:border-white/10 p-6 hover:border-violet-200 dark:hover:border-violet-500/30 transition-all shadow-sm">
+                  <div key={i} className="group bg-white dark:bg-gray-900 rounded-2xl border border-slate-100 dark:border-white/10 p-6 hover:border-brand-200 dark:hover:border-violet-500/30 transition-all shadow-sm">
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-start gap-3">
-                      <span className="text-violet-600 dark:text-violet-400 mt-0.5 font-black text-sm">Q.</span>
+                      <span className="text-brand-600 dark:text-brand-400 mt-0.5 font-black text-sm">Q.</span>
                       {faq.q}
                     </h3>
                     <div className="pl-7 text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
@@ -195,7 +195,7 @@ export default function AuthorPage() {
                     </div>
                     {faq.tool && (
                       <div className="pl-7 mt-3">
-                        <Link href={`/tools/${faq.tool}`} className="inline-flex items-center gap-1.5 text-xs font-bold text-violet-600 hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300">
+                        <Link href={`/tools/${faq.tool}`} className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">
                           Try this tool <ArrowRight className="h-3 w-3" />
                         </Link>
                       </div>
@@ -214,7 +214,7 @@ export default function AuthorPage() {
             We're constantly updating our documentation and tools. If you have a specific question or feature request, we'd love to hear from you.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="px-8 py-4 bg-violet-600 text-white font-black rounded-2xl hover:bg-violet-700 transition-all shadow-xl shadow-violet-200 dark:shadow-none">
+            <Link href="/contact" className="px-8 py-4 bg-brand-600 text-white font-black rounded-2xl hover:bg-brand-700 transition-all shadow-xl shadow-violet-200 dark:shadow-none">
               Get in Touch
             </Link>
             <Link href="/tools" className="px-8 py-4 bg-white dark:bg-gray-800 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 font-black rounded-2xl hover:bg-slate-50 dark:hover:bg-white/10 transition-all">

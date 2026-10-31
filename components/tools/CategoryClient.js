@@ -10,68 +10,68 @@ const categoryResources = {
   'Keyword Research': [
     { href: '/tools/keyword-suggestion-tool', title: 'Keyword Suggestion Tool', desc: 'Discover profitable keywords for your niche.', Icon: Search, iconColor: 'text-sky-600', iconBg: 'bg-sky-50 dark:bg-sky-500/10' },
     { href: '/tools/keyword-density-checker', title: 'Keyword Density Checker', desc: 'Analyze keyword usage density in content.', Icon: BarChart2, iconColor: 'text-blue-600', iconBg: 'bg-blue-50 dark:bg-blue-500/10' },
-    { href: '/tools/keyword-difficulty-estimator', title: 'Keyword Difficulty Estimator', desc: 'Evaluate how hard it is to rank for a query.', Icon: Target, iconColor: 'text-indigo-600', iconBg: 'bg-indigo-50 dark:bg-indigo-500/10' },
-    { href: '/blog/keyword-difficulty-estimator-how-to-use', title: 'Keyword Research Guide', desc: 'Complete workflow for keyword discovery.', Icon: BookOpen, iconColor: 'text-violet-600', iconBg: 'bg-violet-50 dark:bg-violet-500/10' },
+    { href: '/tools/keyword-difficulty-estimator', title: 'Keyword Difficulty Estimator', desc: 'Evaluate how hard it is to rank for a query.', Icon: Target, iconColor: 'text-brand-600', iconBg: 'bg-brand-50 dark:bg-brand-500/10' },
+    { href: '/blog/keyword-difficulty-estimator-how-to-use', title: 'Keyword Research Guide', desc: 'Complete workflow for keyword discovery.', Icon: BookOpen, iconColor: 'text-brand-600', iconBg: 'bg-brand-50 dark:bg-brand-500/10' },
   ],
   'Technical SEO': [
     { href: '/tools/robots-txt-validator', title: 'Robots.txt Validator', desc: 'Check your robots.txt for crawl issues.', Icon: Settings, iconColor: 'text-amber-600', iconBg: 'bg-amber-50 dark:bg-amber-500/10' },
     { href: '/tools/xml-sitemap-visualizer', title: 'Sitemap Visualizer', desc: 'Preview XML sitemap structure and URLs.', Icon: FileText, iconColor: 'text-orange-600', iconBg: 'bg-orange-50 dark:bg-orange-500/10' },
     { href: '/tools/broken-link-finder', title: 'Broken Link Finder', desc: 'Find and report broken links on any page.', Icon: LinkIcon, iconColor: 'text-red-600', iconBg: 'bg-red-50 dark:bg-red-500/10' },
-    { href: '/tools/mobile-friendly-test', title: 'Mobile-Friendly Test', desc: 'Test pages for mobile usability.', Icon: Globe, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-50 dark:bg-emerald-500/10' },
+    { href: '/tools/mobile-friendly-test', title: 'Mobile-Friendly Test', desc: 'Test pages for mobile usability.', Icon: Globe, iconColor: 'text-earth-600', iconBg: 'bg-earth-50 dark:bg-earth-500/10' },
   ],
   'On-Page Optimization': [
     { href: '/tools/meta-tag-generator', title: 'Meta Tag Generator', desc: 'Draft clean titles and descriptions.', Icon: Tag, iconColor: 'text-amber-600', iconBg: 'bg-amber-50 dark:bg-amber-500/10' },
     { href: '/tools/heading-analyzer', title: 'Heading Analyzer', desc: 'Review H1-H6 hierarchy on any page.', Icon: FileText, iconColor: 'text-orange-600', iconBg: 'bg-orange-50 dark:bg-orange-500/10' },
-    { href: '/tools/image-alt-tag-generator', title: 'Alt Tag Generator', desc: 'Generate optimized image alt text.', Icon: BookOpen, iconColor: 'text-indigo-600', iconBg: 'bg-indigo-50 dark:bg-indigo-500/10' },
-    { href: '/tools/readability-score-calculator', title: 'Readability Score', desc: 'Check content readability level.', Icon: BarChart2, iconColor: 'text-violet-600', iconBg: 'bg-violet-50 dark:bg-violet-500/10' },
+    { href: '/tools/image-alt-tag-generator', title: 'Alt Tag Generator', desc: 'Generate optimized image alt text.', Icon: BookOpen, iconColor: 'text-brand-600', iconBg: 'bg-brand-50 dark:bg-brand-500/10' },
+    { href: '/tools/readability-score-calculator', title: 'Readability Score', desc: 'Check content readability level.', Icon: BarChart2, iconColor: 'text-brand-600', iconBg: 'bg-brand-50 dark:bg-brand-500/10' },
   ],
   'Content SEO': [
     { href: '/tools/headline-analyzer', title: 'Headline Analyzer', desc: 'Score headlines for click-through impact.', Icon: Target, iconColor: 'text-pink-600', iconBg: 'bg-pink-50 dark:bg-pink-500/10' },
     { href: '/tools/featured-snippet-optimizer', title: 'Featured Snippet Optimizer', desc: 'Optimize content for position zero.', Icon: Zap, iconColor: 'text-yellow-600', iconBg: 'bg-yellow-50 dark:bg-yellow-500/10' },
     { href: '/tools/content-gap-finder', title: 'Content Gap Finder', desc: 'Identify missing topics in your content.', Icon: Search, iconColor: 'text-sky-600', iconBg: 'bg-sky-50 dark:bg-sky-500/10' },
-    { href: '/tools/faq-generator', title: 'FAQ Generator', desc: 'Create FAQ sections fast.', Icon: HelpCircle, iconColor: 'text-violet-600', iconBg: 'bg-violet-50 dark:bg-violet-500/10' },
+    { href: '/tools/faq-generator', title: 'FAQ Generator', desc: 'Create FAQ sections fast.', Icon: HelpCircle, iconColor: 'text-brand-600', iconBg: 'bg-brand-50 dark:bg-brand-500/10' },
   ],
   'Schema & Structured Data': [
-    { href: '/tools/structured-data-validator', title: 'Structured Data Validator', desc: 'Check JSON-LD for common issues.', Icon: Database, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-50 dark:bg-emerald-500/10' },
-    { href: '/tools/schema-markup-generator', title: 'Schema Markup Generator', desc: 'Generate any schema type in seconds.', Icon: FileText, iconColor: 'text-teal-600', iconBg: 'bg-teal-50 dark:bg-teal-500/10' },
+    { href: '/tools/structured-data-validator', title: 'Structured Data Validator', desc: 'Check JSON-LD for common issues.', Icon: Database, iconColor: 'text-earth-600', iconBg: 'bg-earth-50 dark:bg-earth-500/10' },
+    { href: '/tools/schema-markup-generator', title: 'Schema Markup Generator', desc: 'Generate any schema type in seconds.', Icon: FileText, iconColor: 'text-earth-600', iconBg: 'bg-teal-50 dark:bg-earth-400/10' },
     { href: '/tools/local-schema-builder', title: 'Local Schema Builder', desc: 'Build LocalBusiness schema for SEO.', Icon: Globe, iconColor: 'text-blue-600', iconBg: 'bg-blue-50 dark:bg-blue-500/10' },
-    { href: '/blog/structured-data-markup-how-to-use', title: 'Schema Guide', desc: 'Learn how structured data boosts SEO.', Icon: BookOpen, iconColor: 'text-indigo-600', iconBg: 'bg-indigo-50 dark:bg-indigo-500/10' },
+    { href: '/blog/structured-data-markup-how-to-use', title: 'Schema Guide', desc: 'Learn how structured data boosts SEO.', Icon: BookOpen, iconColor: 'text-brand-600', iconBg: 'bg-brand-50 dark:bg-brand-500/10' },
   ],
   'Backlink & Link-Building': [
     { href: '/tools/anchor-text-analyzer', title: 'Anchor Text Analyzer', desc: 'Analyze anchor text distribution.', Icon: LinkIcon, iconColor: 'text-rose-600', iconBg: 'bg-rose-50 dark:bg-rose-500/10' },
     { href: '/tools/link-toxicity-checker', title: 'Link Toxicity Checker', desc: 'Detect harmful backlink patterns.', Icon: ShieldCheck, iconColor: 'text-red-600', iconBg: 'bg-red-50 dark:bg-red-500/10' },
     { href: '/tools/outreach-email-template-generator', title: 'Outreach Template', desc: 'Write effective link-building emails.', Icon: FileText, iconColor: 'text-orange-600', iconBg: 'bg-orange-50 dark:bg-orange-500/10' },
-    { href: '/tools/backlink-idea-generator', title: 'Backlink Idea Generator', desc: 'Find link-building opportunities.', Icon: Search, iconColor: 'text-violet-600', iconBg: 'bg-violet-50 dark:bg-violet-500/10' },
+    { href: '/tools/backlink-idea-generator', title: 'Backlink Idea Generator', desc: 'Find link-building opportunities.', Icon: Search, iconColor: 'text-brand-600', iconBg: 'bg-brand-50 dark:bg-brand-500/10' },
   ],
   'Competitor Analysis': [
     { href: '/tools/competitor-gap-analyzer', title: 'Competitor Gap Analyzer', desc: 'Find holes in competitor strategies.', Icon: BarChart2, iconColor: 'text-cyan-600', iconBg: 'bg-cyan-50 dark:bg-cyan-500/10' },
     { href: '/tools/competitor-keyword-overlap-checker', title: 'Keyword Overlap Checker', desc: 'See where your keywords compete.', Icon: Search, iconColor: 'text-blue-600', iconBg: 'bg-blue-50 dark:bg-blue-500/10' },
-    { href: '/tools/domain-comparison-report-tool', title: 'Domain Comparison', desc: 'Compare domains side-by-side.', Icon: Globe, iconColor: 'text-indigo-600', iconBg: 'bg-indigo-50 dark:bg-indigo-500/10' },
-    { href: '/tools/ranking-opportunity-finder', title: 'Ranking Opportunities', desc: 'Find pages you can easily outrank.', Icon: TrendingUp, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-50 dark:bg-emerald-500/10' },
+    { href: '/tools/domain-comparison-report-tool', title: 'Domain Comparison', desc: 'Compare domains side-by-side.', Icon: Globe, iconColor: 'text-brand-600', iconBg: 'bg-brand-50 dark:bg-brand-500/10' },
+    { href: '/tools/ranking-opportunity-finder', title: 'Ranking Opportunities', desc: 'Find pages you can easily outrank.', Icon: TrendingUp, iconColor: 'text-earth-600', iconBg: 'bg-earth-50 dark:bg-earth-500/10' },
   ],
   'Local SEO': [
-    { href: '/tools/local-citation-finder', title: 'Local Citation Finder', desc: 'Find citation opportunities near you.', Icon: Globe, iconColor: 'text-teal-600', iconBg: 'bg-teal-50 dark:bg-teal-500/10' },
+    { href: '/tools/local-citation-finder', title: 'Local Citation Finder', desc: 'Find citation opportunities near you.', Icon: Globe, iconColor: 'text-earth-600', iconBg: 'bg-teal-50 dark:bg-earth-400/10' },
     { href: '/tools/gmb-optimization-helper', title: 'GMB Optimization', desc: 'Optimize your Google Business Profile.', Icon: Settings, iconColor: 'text-blue-600', iconBg: 'bg-blue-50 dark:bg-blue-500/10' },
-    { href: '/tools/nap-consistency-checker', title: 'NAP Consistency Checker', desc: 'Check name, address, phone consistency.', Icon: ShieldCheck, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-50 dark:bg-emerald-500/10' },
+    { href: '/tools/nap-consistency-checker', title: 'NAP Consistency Checker', desc: 'Check name, address, phone consistency.', Icon: ShieldCheck, iconColor: 'text-earth-600', iconBg: 'bg-earth-50 dark:bg-earth-500/10' },
     { href: '/tools/local-keyword-generator', title: 'Local Keyword Generator', desc: 'Geo-targeted keyword ideas.', Icon: Target, iconColor: 'text-orange-600', iconBg: 'bg-orange-50 dark:bg-orange-500/10' },
   ],
   'AI-Powered SEO': [
-    { href: '/tools/ai-meta-tag-writer', title: 'AI Meta Tag Writer', desc: 'AI generates optimized meta tags.', Icon: Zap, iconColor: 'text-violet-600', iconBg: 'bg-violet-50 dark:bg-violet-500/10' },
+    { href: '/tools/ai-meta-tag-writer', title: 'AI Meta Tag Writer', desc: 'AI generates optimized meta tags.', Icon: Zap, iconColor: 'text-brand-600', iconBg: 'bg-brand-50 dark:bg-brand-500/10' },
     { href: '/tools/ai-content-improver', title: 'AI Content Improver', desc: 'AI-powered content enhancement.', Icon: FileText, iconColor: 'text-purple-600', iconBg: 'bg-purple-50 dark:bg-purple-500/10' },
-    { href: '/tools/ai-snippet-generator', title: 'AI Snippet Generator', desc: 'Generate rich snippets with AI.', Icon: Database, iconColor: 'text-indigo-600', iconBg: 'bg-indigo-50 dark:bg-indigo-500/10' },
+    { href: '/tools/ai-snippet-generator', title: 'AI Snippet Generator', desc: 'Generate rich snippets with AI.', Icon: Database, iconColor: 'text-brand-600', iconBg: 'bg-brand-50 dark:bg-brand-500/10' },
     { href: '/tools/ai-keyword-explainer', title: 'AI Keyword Explainer', desc: 'Understand keyword intent with AI.', Icon: Search, iconColor: 'text-sky-600', iconBg: 'bg-sky-50 dark:bg-sky-500/10' },
   ],
   'SEO Performance': [
     { href: '/tools/site-comparison-report-generator', title: 'Site Comparison Report', desc: 'Compare site performance metrics.', Icon: BarChart2, iconColor: 'text-blue-600', iconBg: 'bg-blue-50 dark:bg-blue-500/10' },
-    { href: '/tools/organic-growth-forecast-tool', title: 'Growth Forecast', desc: 'Predict organic traffic growth.', Icon: TrendingUp, iconColor: 'text-emerald-600', iconBg: 'bg-emerald-50 dark:bg-emerald-500/10' },
+    { href: '/tools/organic-growth-forecast-tool', title: 'Growth Forecast', desc: 'Predict organic traffic growth.', Icon: TrendingUp, iconColor: 'text-earth-600', iconBg: 'bg-earth-50 dark:bg-earth-500/10' },
     { href: '/tools/seo-health-score-calculator', title: 'SEO Health Score', desc: 'Score your site SEO health.', Icon: ShieldCheck, iconColor: 'text-green-600', iconBg: 'bg-green-50 dark:bg-green-500/10' },
     { href: '/tools/ranking-progress-tracker', title: 'Ranking Progress', desc: 'Track keyword ranking changes.', Icon: Target, iconColor: 'text-orange-600', iconBg: 'bg-orange-50 dark:bg-orange-500/10' },
   ],
   'SEO Utility': [
     { href: '/tools/url-slug-generator', title: 'URL Slug Generator', desc: 'Create SEO-friendly URL slugs.', Icon: LinkIcon, iconColor: 'text-slate-600', iconBg: 'bg-slate-50 dark:bg-slate-500/10' },
     { href: '/tools/redirect-301-generator', title: '301 Redirect Generator', desc: 'Generate proper 301 redirects.', Icon: Settings, iconColor: 'text-amber-600', iconBg: 'bg-amber-50 dark:bg-amber-500/10' },
-    { href: '/tools/robots-txt-creator', title: 'Robots.txt Creator', desc: 'Build robots.txt from scratch.', Icon: FileText, iconColor: 'text-indigo-600', iconBg: 'bg-indigo-50 dark:bg-indigo-500/10' },
-    { href: '/tools/sitemap-generator', title: 'Sitemap Generator', desc: 'Generate XML sitemaps quickly.', Icon: Database, iconColor: 'text-violet-600', iconBg: 'bg-violet-50 dark:bg-violet-500/10' },
+    { href: '/tools/robots-txt-creator', title: 'Robots.txt Creator', desc: 'Build robots.txt from scratch.', Icon: FileText, iconColor: 'text-brand-600', iconBg: 'bg-brand-50 dark:bg-brand-500/10' },
+    { href: '/tools/sitemap-generator', title: 'Sitemap Generator', desc: 'Generate XML sitemaps quickly.', Icon: Database, iconColor: 'text-brand-600', iconBg: 'bg-brand-50 dark:bg-brand-500/10' },
   ],
 };
 
@@ -113,7 +113,7 @@ export default function CategoryClient({ items = [], catName, slug, initialPage 
 
         <div className="mt-8 pt-6 border-t border-slate-50 dark:border-white/5 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-violet-600 flex items-center justify-center shadow-lg shadow-violet-200 dark:shadow-none">
+            <div className="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center shadow-lg shadow-violet-200 dark:shadow-none">
               <LayoutGrid className="text-white w-5 h-5" />
             </div>
             <div>
@@ -146,7 +146,7 @@ export default function CategoryClient({ items = [], catName, slug, initialPage 
       <section aria-labelledby="related-articles" className="space-y-8 pt-8">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-violet-600">Educational Resources</p>
+            <p className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-brand-600">Educational Resources</p>
             <h2 id="related-articles" className="text-3xl font-black text-slate-950 dark:text-white">Related Guides</h2>
           </div>
           <div className="hidden sm:flex items-center gap-2">
@@ -211,10 +211,10 @@ export default function CategoryClient({ items = [], catName, slug, initialPage 
                 <Icon className="w-6 h-6" />
               </span>
               <div className="min-w-0 flex-1">
-                <span className="block font-black text-slate-900 dark:text-white group-hover:text-violet-600 transition-colors">{title}</span>
+                <span className="block font-black text-slate-900 dark:text-white group-hover:text-brand-600 transition-colors">{title}</span>
                 <span className="mt-1 block text-sm leading-relaxed text-slate-500 dark:text-slate-400">{desc}</span>
               </div>
-              <ArrowRight className="w-5 h-5 text-slate-200 group-hover:text-violet-600 transition-all group-hover:translate-x-1" />
+              <ArrowRight className="w-5 h-5 text-slate-200 group-hover:text-brand-600 transition-all group-hover:translate-x-1" />
             </Link>
           ))}
         </div>

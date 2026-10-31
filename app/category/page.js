@@ -110,7 +110,7 @@ export default function CategoryIndexPage() {
       <nav aria-label="Breadcrumb" className="mb-5 text-sm">
         <ol className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-400">
           <li>
-            <Link href="/" className="inline-flex items-center gap-1 hover:text-violet-700 dark:hover:text-violet-200">
+            <Link href="/" className="inline-flex items-center gap-1 hover:text-brand-700 dark:hover:text-brand-200">
               <Home className="h-3.5 w-3.5" aria-hidden />Home
             </Link>
           </li>
@@ -119,10 +119,10 @@ export default function CategoryIndexPage() {
         </ol>
       </nav>
 
-      <header className="relative left-1/2 mb-10 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white">
+      <header className="relative left-1/2 mb-10 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-violet-100">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-brand-100">
             <Layers className="h-4 w-4" aria-hidden />
             Browse by Workflow
           </div>
@@ -157,14 +157,14 @@ export default function CategoryIndexPage() {
                     {count} tools
                   </span>
                 </div>
-                <h2 className="text-base font-extrabold text-slate-950 transition group-hover:text-violet-700 dark:text-white dark:group-hover:text-violet-200">
+                <h2 className="text-base font-extrabold text-slate-950 transition group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">
                   {category}
                 </h2>
                 <p className="mt-2 min-h-[3.75rem] text-sm leading-6 text-slate-500 dark:text-slate-400">{detail.description}</p>
               </div>
               <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-extrabold text-slate-400 dark:border-white/10">
                 Browse tools
-                <svg className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-violet-600" aria-hidden viewBox="0 0 24 24"><path d="M5 12h3L12 5l7 7L20 9"/path></svg>
+                <svg className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-brand-600" aria-hidden viewBox="0 0 24 24"><path d="M5 12h3L12 5l7 7L20 9"/path></svg>
               </div>
             </Link>
           );

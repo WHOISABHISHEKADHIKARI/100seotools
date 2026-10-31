@@ -85,7 +85,7 @@ export default function StickySearchBar({ onSearch }) {
               <>
                 <button
                   type="submit"
-                  className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-violet-600 text-white transition hover:bg-violet-700 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2"
+                  className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-brand-600 text-white transition hover:bg-brand-700 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2"
                   aria-label="Search"
                 >
                   <ArrowUp className="h-3.5 w-3.5" />

@@ -84,7 +84,7 @@ function ToolGrid({ tools }) {
           <button
             type="button"
             onClick={() => setVisibleCount((count) => Math.min(count + batchSize, uniqueTools.length))}
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-blue-600 px-5 py-3 text-sm font-extrabold text-white shadow-lg shadow-violet-600/20 transition hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-brand-600 px-5 py-3 text-sm font-extrabold text-white shadow-lg shadow-violet-600/20 transition hover:opacity-90"
           >
             Load more tools
             <ChevronRight className="h-4 w-4" aria-hidden />
@@ -140,7 +140,7 @@ function ToolCard({ tool, index, isFavorite, onToggleFavorite, onToolClick }) {
         </div>
 
         <a href={href} onClick={() => onToolClick(tool)} className="block">
-          <h3 className="line-clamp-2 text-base font-extrabold leading-snug text-slate-900 transition group-hover:text-violet-700 dark:text-white dark:group-hover:text-violet-200">
+          <h3 className="line-clamp-2 text-base font-extrabold leading-snug text-slate-900 transition group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">
             {title}
           </h3>
           <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-500 dark:text-slate-400">
@@ -174,7 +174,7 @@ function ToolCard({ tool, index, isFavorite, onToggleFavorite, onToolClick }) {
           <a
             href={href}
             onClick={() => onToolClick(tool)}
-            className="ml-auto inline-flex items-center gap-1.5 rounded-xl bg-slate-950 px-3.5 py-2 text-xs font-extrabold text-white transition hover:bg-violet-700 dark:bg-white dark:text-slate-950 dark:hover:bg-violet-200"
+            className="ml-auto inline-flex items-center gap-1.5 rounded-xl bg-slate-950 px-3.5 py-2 text-xs font-extrabold text-white transition hover:bg-brand-700 dark:bg-white dark:text-slate-950 dark:hover:bg-brand-200"
           >
             {isBlog ? 'Read Guide' : 'Open Tool'}
             <ChevronRight className="h-3.5 w-3.5" aria-hidden />

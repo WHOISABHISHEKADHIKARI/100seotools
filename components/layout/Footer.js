@@ -43,11 +43,11 @@ const Footer = function Footer() {
         <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
           <div className="col-span-2">
             <Link href="/" className="mb-4 flex items-center gap-2" aria-label="Go to homepage">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-violet-500 to-blue-600 text-white shadow-lg">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-blue-600 text-white shadow-lg">
                 <Compass className="h-5 w-5" aria-hidden />
               </span>
               <span className="text-lg font-extrabold">
-                100SEO<span className="text-violet-300">Tools</span>
+                100SEO<span className="text-brand-300">Tools</span>
               </span>
             </Link>
             <p className="max-w-sm text-sm leading-6 text-slate-400">
@@ -65,7 +65,7 @@ const Footer = function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="grid min-h-[44px] min-w-[44px] place-items-center rounded-lg bg-white/10 text-slate-400 transition hover:bg-violet-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
+                  className="grid min-h-[44px] min-w-[44px] place-items-center rounded-lg bg-white/10 text-slate-400 transition hover:bg-brand-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
                   aria-label={`Follow us on ${label}`}
                 >
                   <Icon className="h-4 w-4" aria-hidden />
@@ -86,13 +86,13 @@ const Footer = function Footer() {
         <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <p>Copyright {year} 100 SEO Tools. All rights reserved.</p>
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden />
+            <span className="h-2 w-2 rounded-full bg-earth-400" aria-hidden />
             All tools operational
           </div>
           <div className="flex flex-wrap items-center gap-4">
-            <Link href="/privacy" className="transition hover:text-violet-300">Privacy</Link>
-            <Link href="/terms" className="transition hover:text-violet-300">Terms</Link>
-            <Link href="/contact" className="transition hover:text-violet-300">Contact</Link>
+            <Link href="/privacy" className="transition hover:text-brand-300">Privacy</Link>
+            <Link href="/terms" className="transition hover:text-brand-300">Terms</Link>
+            <Link href="/contact" className="transition hover:text-brand-300">Contact</Link>
           </div>
         </div>
       </div>
@@ -115,7 +115,7 @@ function FooterColumn({ title, items }) {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm leading-5 text-slate-500 transition hover:text-violet-300"
+                  className="text-sm leading-5 text-slate-500 transition hover:text-brand-300"
                 >
                   {label}
                 </a>
@@ -124,7 +124,7 @@ function FooterColumn({ title, items }) {
           }
           return (
             <li key={`${title}-${label}`}>
-              <Link href={href} prefetch={false} className="text-sm leading-5 text-slate-500 transition hover:text-violet-300">
+              <Link href={href} prefetch={false} className="text-sm leading-5 text-slate-500 transition hover:text-brand-300">
                 {label}
               </Link>
             </li>

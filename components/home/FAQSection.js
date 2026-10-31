@@ -49,7 +49,7 @@ function FAQSection() {
       <StructuredData data={faqSchema} />
       <section className="py-20" id="faq" itemScope itemType="https://schema.org/FAQPage">
         <div className="mb-12 text-center">
-          <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-violet-600">Common Questions</p>
+          <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">Common Questions</p>
           <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white md:text-4xl">
             SEO Tools — Answered
           </h2>
@@ -68,13 +68,13 @@ function FAQSection() {
             >
               <summary className="flex cursor-pointer items-center justify-between px-6 py-5 text-sm font-extrabold text-slate-900 dark:text-white [&::-webkit-details-marker]:hidden">
                 <span itemProp="name">{faq.question}</span>
-                <span className="ml-4 shrink-0 text-violet-500 transition group-open:rotate-45" aria-hidden>+</span>
+                <span className="ml-4 shrink-0 text-brand-500 transition group-open:rotate-45" aria-hidden>+</span>
               </summary>
               <div className="border-t border-slate-100 px-6 pb-5 pt-4 dark:border-white/10" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                 <p className="text-sm leading-6 text-slate-600 dark:text-slate-300" itemProp="text">
                   {faq.answer}
                 </p>
-                <p className="mt-3 text-xs font-medium text-violet-600 dark:text-violet-400">
+                <p className="mt-3 text-xs font-medium text-brand-600 dark:text-brand-400">
                   Entity Trail: {faq.entityLink}
                 </p>
               </div>

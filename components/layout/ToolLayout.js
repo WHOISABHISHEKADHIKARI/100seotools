@@ -72,9 +72,9 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                 <div className="mb-1 flex flex-wrap items-center gap-2">
                   <Link href={`/category/${slugify(tool.category)}`} className="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200">{tool.category}</Link>
                   <span className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
-                  <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300">Free, no signup</span>
+                  <span className="text-xs font-bold text-earth-700 dark:text-emerald-300">Free, no signup</span>
                   <span className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
-                  <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">Trusted by SEOs worldwide</span>
+                  <span className="text-xs font-bold text-brand-600 dark:text-brand-400">Trusted by SEOs worldwide</span>
                 </div>
                 <h1 className="text-3xl font-extrabold tracking-tight text-slate-950 md:text-5xl dark:text-white">{displayName}</h1>
               </div>
@@ -84,7 +84,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
 
             <div className="mt-7 flex flex-wrap gap-3 text-sm text-slate-600 dark:text-slate-300">
               <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 shadow-sm dark:border-white/10 dark:bg-white/5">
-                <CheckCircle className="h-4 w-4 text-emerald-600" /> Clear output
+                <CheckCircle className="h-4 w-4 text-earth-600" /> Clear output
               </span>
               <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 shadow-sm dark:border-white/10 dark:bg-white/5">
                 <Shield className="h-4 w-4 text-slate-500" /> Privacy focused
@@ -133,11 +133,11 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
         </div>
       </div>
 
-      <div className="rounded-2xl border border-indigo-100 bg-gradient-to-br from-indigo-50/50 to-white p-5 dark:border-indigo-500/20 dark:from-indigo-500/5 dark:to-transparent md:p-7">
+      <div className="rounded-2xl border border-brand-100 bg-gradient-to-br from-brand-50/50 to-white p-5 dark:border-indigo-500/20 dark:from-brand-500/5 dark:to-transparent md:p-7">
         <h2 className="mb-4 text-lg font-extrabold text-slate-900 dark:text-white">Why choose this tool?</h2>
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="flex gap-3">
-            <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-500" />
+            <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-earth-500" />
             <div>
               <p className="text-sm font-bold text-slate-900 dark:text-white">100% Free</p>
               <p className="text-xs text-slate-500 dark:text-slate-400">No signup, no limits, no hidden costs</p>
@@ -172,7 +172,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         {[
-          ['Clear', 'Readable Results', CheckCircle, 'text-emerald-500'],
+          ['Clear', 'Readable Results', CheckCircle, 'text-earth-500'],
           ['Free', 'No Signup', Zap, 'text-amber-500'],
           ['Private', 'Focused Flow', Shield, 'text-blue-500'],
           ['Fast', 'Simple Checks', Zap, 'text-slate-500'],
@@ -195,7 +195,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                 <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-500 dark:text-slate-400">
                   <span className="inline-flex items-center gap-1.5">
                     <Image src="/author.png" alt="Abhishek Adhikari" width={20} height={20} className="rounded-full" />
-                    <a href="/author" className="font-semibold text-violet-600 hover:text-violet-800 dark:text-violet-400 dark:hover:text-violet-300">Abhishek Adhikari</a>
+                    <a href="/author" className="font-semibold text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300">Abhishek Adhikari</a>
                   </span>
                   <span className="inline-flex items-center gap-1.5">
                     <Calendar className="h-3.5 w-3.5" aria-hidden />
@@ -208,15 +208,15 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                 <h3 className="mb-3 text-sm font-extrabold text-blue-800 dark:text-blue-200">Key takeaways</h3>
                 <ul className="space-y-2">
                   <li className="flex gap-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
-                    <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                    <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-earth-500" />
                     <span>Free to use with no signup, limits, or hidden costs</span>
                   </li>
                   <li className="flex gap-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
-                    <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                    <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-earth-500" />
                     <span>100% browser-based — your data never leaves your device</span>
                   </li>
                   <li className="flex gap-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
-                    <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                    <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-earth-500" />
                     <span>Instant results with real-time processing as you type</span>
                   </li>
                 </ul>
@@ -284,7 +284,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                   <ul className="space-y-2">
                     {guide.bestPractices.map((bp, index) => (
                       <li key={index} className="flex gap-2 text-sm leading-7 text-slate-600 dark:text-slate-300">
-                        <CheckCircle className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                        <CheckCircle className="mt-1 h-4 w-4 flex-shrink-0 text-earth-500" />
                         <span>{bp}</span>
                       </li>
                     ))}
@@ -301,7 +301,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                       <Link
                         key={item.slug}
                         href={`/tools/${item.slug}`}
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-700 transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:border-indigo-500/30 dark:hover:bg-indigo-500/10 dark:hover:text-indigo-300"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-700 transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:border-indigo-500/30 dark:hover:bg-brand-500/10 dark:hover:text-brand-300"
                       >
                         {item.name}
                         <ArrowRight className="h-3 w-3" />
@@ -338,7 +338,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                 <ul className="space-y-3">
                   {guide.benefits.slice(0, 5).map((benefit, index) => (
                     <li key={index} className="flex gap-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                      <CheckCircle className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                      <CheckCircle className="mt-1 h-4 w-4 flex-shrink-0 text-earth-500" />
                       <span>{benefit}</span>
                     </li>
                   ))}

@@ -203,7 +203,7 @@ export default async function CategoryPage({ params, searchParams }) {
       <nav aria-label="Breadcrumb" className="mb-5 text-sm">
         <ol className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-400">
           <li>
-            <Link href="/" className="inline-flex items-center gap-1 hover:text-violet-700 dark:hover:text-violet-200">
+            <Link href="/" className="inline-flex items-center gap-1 hover:text-brand-700 dark:hover:text-brand-200">
               <Home className="h-3.5 w-3.5" aria-hidden />Home
             </Link>
           </li>
@@ -212,10 +212,10 @@ export default async function CategoryPage({ params, searchParams }) {
         </ol>
       </nav>
 
-      <header className="relative left-1/2 mb-10 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[#0f0528] via-[#1a085e] to-[#050e3a] text-white">
+      <header className="relative left-1/2 mb-10 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-violet-100">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-brand-100">
             <Layers className="h-4 w-4" aria-hidden />
             Browse by Workflow
           </div>
@@ -250,14 +250,14 @@ export default async function CategoryPage({ params, searchParams }) {
                     {count} tools
                   </span>
                 </div>
-                <h2 className="text-base font-extrabold text-slate-950 transition group-hover:text-violet-700 dark:text-white dark:group-hover:text-violet-200">
+                <h2 className="text-base font-extrabold text-slate-950 transition group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">
                   {category}
                 </h2>
                 <p className="mt-2 min-h-[3.75rem] text-sm leading-6 text-slate-500 dark:text-slate-400">{detail.description}</p>
               </div>
               <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-extrabold text-slate-400 dark:border-white/10">
                 Browse tools
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-violet-600" aria-hidden />
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-brand-600" aria-hidden />
               </div>
             </Link>
           );
@@ -269,7 +269,7 @@ export default async function CategoryPage({ params, searchParams }) {
           {categoryToolLinks[slug] && (
             <div className="flex flex-wrap gap-2 pt-2">
               {categoryToolLinks[slug].map(({ href, label }) => (
-                <Link key={href} href={href} className="inline-flex items-center gap-1 rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-700 hover:bg-violet-200 dark:bg-violet-500/20 dark:text-violet-300 dark:hover:bg-violet-500/30">→ {label}</Link>
+                <Link key={href} href={href} className="inline-flex items-center gap-1 rounded-full bg-brand-100 px-3 py-1 text-xs font-bold text-brand-700 hover:bg-brand-200 dark:bg-brand-500/20 dark:text-brand-300 dark:hover:bg-brand-500/30">→ {label}</Link>
               ))}
             </div>
           )}
@@ -277,7 +277,7 @@ export default async function CategoryPage({ params, searchParams }) {
       )}
       {featuredTool && (
         <section className="mb-10">
-          <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-violet-600">Recommended First Step</p>
+          <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-brand-600">Recommended First Step</p>
           <h2 className="mb-4 text-2xl font-extrabold text-slate-950 dark:text-white">Featured Tool</h2>
           <a
             href={`/tools/${featuredTool.slug}`}
@@ -287,16 +287,16 @@ export default async function CategoryPage({ params, searchParams }) {
             <div className={`h-1.5 bg-gradient-to-r ${color.bar}`} />
             <div className="pointer-events-none p-6">
               <div className="mb-4 flex items-center gap-3"><span className={`grid h-12 w-12 place-items-center rounded-2xl ${color.icon}`}><Icon className="h-5 w-5" aria-hidden /></span><span className={`rounded-full px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide ${color.badge}`}>Featured</span></div>
-              <h3 className="mb-2 text-xl font-extrabold text-slate-950 transition group-hover:text-violet-700 dark:text-white dark:group-hover:text-violet-200">{featuredTool.name.replace(/\s*\|.*/, '')}</h3>
+              <h3 className="mb-2 text-xl font-extrabold text-slate-950 transition group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">{featuredTool.name.replace(/\s*\|.*/, '')}</h3>
               <p className="mb-5 text-slate-600 dark:text-slate-300">{featuredTool.description}</p>
-              <span className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-extrabold text-white transition group-hover:bg-violet-700 dark:bg-white dark:text-slate-950 dark:group-hover:bg-violet-200">Open Tool<ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden /></span>
+              <span className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-extrabold text-white transition group-hover:bg-brand-700 dark:bg-white dark:text-slate-950 dark:group-hover:bg-brand-200">Open Tool<ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden /></span>
             </div>
           </a>
         </section>
       )}
       <CategoryClient items={items} catName={catName} slug={slug} initialPage={searchParams?.page || 1} relatedPosts={blogPosts} />
       <section className="mb-10 mt-10">
-        <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-violet-600">Quick Answers</p>
+        <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-brand-600">Quick Answers</p>
         <h2 className="mb-4 text-2xl font-extrabold text-slate-950 dark:text-white">Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900"><summary className="cursor-pointer font-extrabold text-slate-950 dark:text-white">What are {catName} tools?</summary><p className="mt-2 text-slate-600 dark:text-slate-300">{catName} tools are free browser-based utilities that help SEO professionals and website owners with {detail.description.toLowerCase()} All tools run client-side with no signup required.</p></details>
@@ -304,7 +304,7 @@ export default async function CategoryPage({ params, searchParams }) {
         </div>
       </section>
       <section>
-        <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-violet-600">Trusted Workflow</p>
+        <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-brand-600">Trusted Workflow</p>
         <h2 className="mb-4 text-2xl font-extrabold text-slate-950 dark:text-white">Trusted by SEOs Worldwide</h2>
         <div className="grid grid-cols-2 gap-4 text-center sm:grid-cols-4">
           {[
@@ -313,7 +313,7 @@ export default async function CategoryPage({ params, searchParams }) {
             ['1M+', 'Tools Run', Layers],
             ['99.9%', 'Uptime', CheckCircle],
           ].map(([value, label, StatIcon]) => (
-            <div key={label} className="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900"><StatIcon className="mx-auto mb-2 h-5 w-5 text-violet-600" aria-hidden /><p className="text-3xl font-extrabold text-slate-950 dark:text-white">{value}</p><p className="text-sm text-slate-600 dark:text-slate-300">{label}</p></div>
+            <div key={label} className="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900"><StatIcon className="mx-auto mb-2 h-5 w-5 text-brand-600" aria-hidden /><p className="text-3xl font-extrabold text-slate-950 dark:text-white">{value}</p><p className="text-sm text-slate-600 dark:text-slate-300">{label}</p></div>
           ))}
         </div>
       </section>

@@ -73,7 +73,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mb-8 grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
           <div>
-            <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-indigo-600 dark:text-indigo-300">
+            <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">
               <BookOpen className="h-3.5 w-3.5" aria-hidden />
               Guide library
             </p>
@@ -94,7 +94,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search guides, topics, workflows..."
-                className="h-12 w-full rounded-lg border border-transparent bg-white pl-10 pr-10 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-indigo-200 focus:ring-4 focus:ring-indigo-100 dark:bg-slate-950/70 dark:text-white dark:focus:border-indigo-400/30 dark:focus:ring-indigo-400/10"
+                className="h-12 w-full rounded-lg border border-transparent bg-white pl-10 pr-10 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-200 focus:ring-4 focus:ring-indigo-100 dark:bg-slate-950/70 dark:text-white dark:focus:border-brand-400/30 dark:focus:ring-indigo-400/10"
               />
               {query && (
                 <button
@@ -126,7 +126,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
                   className={`flex shrink-0 items-center gap-2 rounded-lg border px-3.5 py-2 text-xs font-semibold transition ${
                     active
                       ? "border-slate-950 bg-slate-950 text-white shadow-sm dark:border-white dark:bg-white dark:text-slate-950"
-                      : "border-slate-200 bg-white text-slate-600 hover:border-indigo-200 hover:text-slate-950 dark:border-white/10 dark:bg-slate-950/60 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
+                      : "border-slate-200 bg-white text-slate-600 hover:border-brand-200 hover:text-slate-950 dark:border-white/10 dark:bg-slate-950/60 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
                   }`}
                 >
                   {item}
@@ -166,14 +166,14 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
                     <a
                       key={post.slug}
                       href={href}
-                      className="group flex min-h-[286px] flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 dark:border-white/10 dark:bg-white/[0.04] dark:hover:bg-white/[0.07]"
+                      className="group flex min-h-[286px] flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 dark:border-white/10 dark:bg-white/[0.04] dark:hover:bg-white/[0.07]"
                     >
                       <article className="flex h-full flex-col">
                         <div className="mb-4 flex items-center justify-between gap-3">
                           {post.category ? (
                             <Link
                               href={`/category/${slugify(post.category)}`}
-                              className="rounded-md border border-indigo-100 bg-indigo-50 px-2 py-1 text-[11px] font-semibold text-indigo-700 hover:bg-indigo-100 dark:border-indigo-400/20 dark:bg-indigo-400/10 dark:text-indigo-200 dark:hover:bg-indigo-400/20"
+                              className="rounded-md border border-brand-100 bg-brand-50 px-2 py-1 text-[11px] font-semibold text-brand-700 hover:bg-brand-100 dark:border-brand-400/20 dark:bg-indigo-400/10 dark:text-brand-200 dark:hover:bg-indigo-400/20"
                             >
                               {post.category}
                             </Link>
@@ -191,7 +191,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
                           </span>
                         </div>
 
-                        <h3 className="text-base font-semibold leading-6 tracking-tight text-slate-950 transition group-hover:text-indigo-700 dark:text-white dark:group-hover:text-indigo-200">
+                        <h3 className="text-base font-semibold leading-6 tracking-tight text-slate-950 transition group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">
                           <span className="line-clamp-3">{post.title}</span>
                         </h3>
                         <p className="mt-3 line-clamp-4 text-sm leading-6 text-slate-600 dark:text-slate-300">
@@ -203,7 +203,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
                             <CalendarDays className="h-3.5 w-3.5" aria-hidden />
                             <time dateTime={post.datePublished}>{formatDate(post.datePublished)}</time>
                           </span>
-                          <span className="inline-flex items-center gap-1.5 font-semibold text-slate-700 transition group-hover:text-indigo-700 dark:text-slate-200 dark:group-hover:text-indigo-200">
+                          <span className="inline-flex items-center gap-1.5 font-semibold text-slate-700 transition group-hover:text-brand-700 dark:text-slate-200 dark:group-hover:text-brand-200">
                             Read
                             <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" aria-hidden />
                           </span>
@@ -225,7 +225,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
                     type="button"
                     onClick={() => setPage((value) => Math.max(1, value - 1))}
                     disabled={page === 1}
-                    className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-semibold text-slate-600 transition hover:border-indigo-200 hover:text-slate-950 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10"
+                    className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-semibold text-slate-600 transition hover:border-brand-200 hover:text-slate-950 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10"
                   >
                     <ArrowLeft className="h-4 w-4" aria-hidden />
                     Prev
@@ -237,7 +237,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
                     type="button"
                     onClick={() => setPage((value) => Math.min(totalPages, value + 1))}
                     disabled={page === totalPages}
-                    className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-semibold text-slate-600 transition hover:border-indigo-200 hover:text-slate-950 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10"
+                    className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-semibold text-slate-600 transition hover:border-brand-200 hover:text-slate-950 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10"
                   >
                     Next
                     <ArrowRight className="h-4 w-4" aria-hidden />
@@ -268,7 +268,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
                     key={item}
                     type="button"
                     onClick={() => setCategory(item)}
-                    className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-600 transition hover:border-indigo-200 hover:text-slate-950 dark:border-white/10 dark:bg-slate-950/50 dark:text-slate-300 dark:hover:bg-white/10"
+                    className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-600 transition hover:border-brand-200 hover:text-slate-950 dark:border-white/10 dark:bg-slate-950/50 dark:text-slate-300 dark:hover:bg-white/10"
                   >
                     {item}
                   </button>

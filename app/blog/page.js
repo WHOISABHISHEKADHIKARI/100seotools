@@ -142,7 +142,7 @@ export default async function BlogPage({ searchParams }) {
       <section className="min-h-screen bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
         <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 text-sm text-slate-500 dark:text-slate-400">
           <ol className="flex flex-wrap items-center gap-1.5">
-            <li><Link href="/" className="hover:text-violet-600 dark:hover:text-violet-400">Home</Link></li>
+            <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
             <li aria-hidden="true">/</li>
             <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">Blog</li>
           </ol>
@@ -152,7 +152,7 @@ export default async function BlogPage({ searchParams }) {
             <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
               <div className="max-w-3xl">
                 <div className="mb-6 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
-                  <BookOpen className="h-3.5 w-3.5 text-indigo-500" aria-hidden />
+                  <BookOpen className="h-3.5 w-3.5 text-brand-500" aria-hidden />
                   SEO Research Library
                 </div>
                 <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 dark:text-white md:text-6xl">
@@ -166,7 +166,7 @@ export default async function BlogPage({ searchParams }) {
                     Browse guides
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </Link>
-                  <Link href="/tools" className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:text-slate-950 focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10">
+                  <Link href="/tools" className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-200 hover:text-slate-950 focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10">
                     Open toolkit
                     <Layers3 className="h-4 w-4" aria-hidden />
                   </Link>
@@ -192,12 +192,12 @@ export default async function BlogPage({ searchParams }) {
 
         {featuredPost && (
           <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-            <Link href={`/blog/${featuredPost.slug}`} className="group block rounded-lg border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/[0.07]">
+            <Link href={`/blog/${featuredPost.slug}`} className="group block rounded-lg border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/[0.07]">
               <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_340px]">
                 <article className="p-6 sm:p-8 lg:p-10">
                   <div className="mb-5 flex flex-wrap items-center gap-2">
                     {featuredPost.category && (
-                      <span className="rounded-md border border-indigo-100 bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-700 dark:border-indigo-400/20 dark:bg-indigo-400/10 dark:text-indigo-200">
+                      <span className="rounded-md border border-brand-100 bg-brand-50 px-2.5 py-1 text-xs font-semibold text-brand-700 dark:border-brand-400/20 dark:bg-indigo-400/10 dark:text-brand-200">
                         {featuredPost.category}
                       </span>
                     )}
@@ -205,7 +205,7 @@ export default async function BlogPage({ searchParams }) {
                       Featured guide
                     </span>
                   </div>
-                  <h2 className="max-w-3xl text-2xl font-semibold tracking-tight text-slate-950 transition group-hover:text-indigo-700 dark:text-white md:text-4xl">
+                  <h2 className="max-w-3xl text-2xl font-semibold tracking-tight text-slate-950 transition group-hover:text-brand-700 dark:text-white md:text-4xl">
                     {featuredPost.title}
                   </h2>
                   <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300 md:text-base">
@@ -225,7 +225,7 @@ export default async function BlogPage({ searchParams }) {
                         <a
                           href="/author"
                           rel="author"
-                          className="font-medium text-slate-700 underline-offset-2 hover:text-indigo-700 hover:underline dark:text-slate-300 dark:hover:text-indigo-200"
+                          className="font-medium text-slate-700 underline-offset-2 hover:text-brand-700 hover:underline dark:text-slate-300 dark:hover:text-brand-200"
                         >
                           Abhishek Adhikari
                         </a>
@@ -233,7 +233,7 @@ export default async function BlogPage({ searchParams }) {
                           href="https://www.linkedin.com/in/whoisabhishekadhikari/"
                           target="_blank"
                           rel="noopener noreferrer author"
-                          className="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-300"
+                          className="text-slate-400 hover:text-brand-600 dark:hover:text-brand-300"
                           aria-label="Abhishek Adhikari on LinkedIn"
                         >
                           <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -252,7 +252,7 @@ export default async function BlogPage({ searchParams }) {
                           Start here for a polished, practical workflow before exploring the full library.
                         </p>
                       </div>
-                      <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-indigo-700 dark:text-indigo-200">
+                      <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 dark:text-brand-200">
                         Read guide
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
                       </span>
@@ -269,22 +269,22 @@ export default async function BlogPage({ searchParams }) {
         <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
           <div className="mb-8 rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
             <div className="flex items-start gap-4">
-              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-gradient-to-br from-violet-500 to-blue-600 text-lg font-extrabold text-white">
+              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-blue-600 text-lg font-extrabold text-white">
                 AA
               </span>
               <div>
                 <h2 className="text-base font-semibold text-slate-950 dark:text-white">
-                  Written by <a href="/author" rel="author" className="text-indigo-700 underline-offset-2 hover:underline dark:text-indigo-300">Abhishek Adhikari</a>
+                  Written by <a href="/author" rel="author" className="text-brand-700 underline-offset-2 hover:underline dark:text-brand-300">Abhishek Adhikari</a>
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
                   SEO Expert & Full-Stack Developer. Creator of 100 SEO Tools, building free, privacy-first browser-based SEO utilities for marketers and agencies worldwide. 
-                  <a href="https://www.linkedin.com/in/whoisabhishekadhikari/" target="_blank" rel="noopener noreferrer author" className="ml-1 text-indigo-600 hover:underline dark:text-indigo-300">LinkedIn</a>.
+                  <a href="https://www.linkedin.com/in/whoisabhishekadhikari/" target="_blank" rel="noopener noreferrer author" className="ml-1 text-brand-600 hover:underline dark:text-brand-300">LinkedIn</a>.
                 </p>
               </div>
             </div>
             <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_380px]">
               <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-indigo-600 dark:text-indigo-300">Next step</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">Next step</p>
                 <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight text-slate-950 dark:text-white md:text-3xl">
                   Turn reading into a repeatable SEO workflow.
                 </h2>
@@ -296,7 +296,7 @@ export default async function BlogPage({ searchParams }) {
                     Browse all tools
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </Link>
-                  <Link href="/author" className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition:hover:border-indigo-200:hover:text-slate-950 dark:hover:bg-white/5 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10">
+                  <Link href="/author" className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition:hover:border-brand-200:hover:text-slate-950 dark:hover:bg-white/5 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10">
                     About the creator
                   </Link>
                 </div>
@@ -312,7 +312,7 @@ export default async function BlogPage({ searchParams }) {
                     ['Schema.org', 'https://schema.org'],
                     ['W3C Web Standards', 'https://www.w3.org/standards/'],
                   ].map(([name, url]) => (
-                    <a key={name} href={url} target="_blank" rel="noopener noreferrer" className="block rounded-md border border-slate-100 px-3 py-2 text-slate-600 transition:hover:border-indigo-200:hover:text-indigo-700 dark:border-white/10 dark:text-slate-400 dark:hover:text-indigo-300">
+                    <a key={name} href={url} target="_blank" rel="noopener noreferrer" className="block rounded-md border border-slate-100 px-3 py-2 text-slate-600 transition:hover:border-brand-200:hover:text-brand-700 dark:border-white/10 dark:text-slate-400 dark:hover:text-brand-300">
                       <span className="font-medium">{name}</span>
                       <span className="ml-2 text-slate-400">↗</span>
                     </a>
@@ -323,7 +323,7 @@ export default async function BlogPage({ searchParams }) {
                 <h3 className="text-base font-semibold text-slate-950 dark:text-white">Latest tool guides</h3>
                 <div className="mt-4 space-y-3">
                   {guidePosts.map((post) => (
-                    <Link key={post.slug} href={`/blog/${post.slug}`} className="block rounded-lg border border-slate-100 p-3 text-sm transition:hover:border-indigo-200:hover:bg-slate-50 dark:hover:bg-white/5">
+                    <Link key={post.slug} href={`/blog/${post.slug}`} className="block rounded-lg border border-slate-100 p-3 text-sm transition:hover:border-brand-200:hover:bg-slate-50 dark:hover:bg-white/5">
                       <span className="line-clamp-2 font-medium text-slate-800 dark:text-slate-100">{post.title}</span>
                       <span className="mt-1 block text-xs text-slate-500 dark:text-slate-400">{post.readTimeMinutes || 5} min read</span>
                     </Link>

@@ -81,7 +81,7 @@ export default function TrainingEnquiryForm() {
     return (
         <div id="training-enquiry" className="scroll-mt-28 bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-2xl p-8 md:p-12">
             <div className="mb-10">
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-200 dark:border-violet-500/30 bg-violet-50 dark:bg-violet-500/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-violet-700 dark:text-violet-300">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-200 dark:border-brand-500/30 bg-brand-50 dark:bg-brand-500/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-brand-700 dark:text-brand-300">
                     <Send className="h-3.5 w-3.5" aria-hidden />
                     Training Enquiry
                 </div>
@@ -95,7 +95,7 @@ export default function TrainingEnquiryForm() {
 
             {status.message && (
                 <div role="status" aria-live="polite" className={`mb-8 p-6 rounded-2xl flex items-start gap-4 ${status.type === 'success'
-                    ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-500/20'
+                    ? 'bg-earth-50 text-earth-700 dark:bg-earth-500/10 dark:text-earth-400 border border-earth-100 dark:border-earth-500/20'
                     : 'bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-400 border border-red-100 dark:border-red-500/20'
                     }`}>
                     {status.type === 'success' ? (
@@ -128,7 +128,7 @@ export default function TrainingEnquiryForm() {
                             type="text"
                             required
                             autoComplete="name"
-                            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-brand-300 outline-none transition-all font-medium"
                             placeholder="Your full name"
                         />
                     </div>
@@ -140,7 +140,7 @@ export default function TrainingEnquiryForm() {
                             type="email"
                             required
                             autoComplete="email"
-                            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-brand-300 outline-none transition-all font-medium"
                             placeholder="you@company.com"
                         />
                     </div>
@@ -155,7 +155,7 @@ export default function TrainingEnquiryForm() {
                             type="text"
                             required
                             autoComplete="organization"
-                            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-brand-300 outline-none transition-all font-medium"
                             placeholder="Company, institution or organisation"
                         />
                     </div>
@@ -165,7 +165,7 @@ export default function TrainingEnquiryForm() {
                             id="teamSize"
                             name="teamSize"
                             defaultValue=""
-                            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-brand-300 outline-none transition-all font-medium"
                         >
                             <option value="">Select a range</option>
                             <option value="1-5">1-5 people</option>
@@ -186,7 +186,7 @@ export default function TrainingEnquiryForm() {
                             id="format"
                             name="format"
                             defaultValue=""
-                            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-brand-300 outline-none transition-all font-medium"
                         >
                             <option value="">No preference yet</option>
                             <option value="Online">Online</option>
@@ -200,7 +200,7 @@ export default function TrainingEnquiryForm() {
                             id="preferredDates"
                             name="preferredDates"
                             type="text"
-                            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-brand-300 outline-none transition-all font-medium"
                             placeholder="e.g. November 2026, or a specific week"
                         />
                     </div>
@@ -213,7 +213,7 @@ export default function TrainingEnquiryForm() {
                         name="phone"
                         type="tel"
                         autoComplete="tel"
-                        className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium"
+                        className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-brand-300 outline-none transition-all font-medium"
                         placeholder="+977 ..."
                     />
                 </div>
@@ -225,7 +225,7 @@ export default function TrainingEnquiryForm() {
                         name="goals"
                         required
                         rows="5"
-                        className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-violet-300 outline-none transition-all font-medium resize-none"
+                        className="w-full bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl p-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-4 focus:ring-violet-500/10 focus:border-brand-300 outline-none transition-all font-medium resize-none"
                         placeholder="Two or three examples of tasks your team wants to improve - for example: product briefs, support replies, report summaries. Please do not include confidential information."
                     ></textarea>
                 </div>
@@ -233,16 +233,16 @@ export default function TrainingEnquiryForm() {
 
 
                 <div className="flex items-start gap-3 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 p-5">
-                    <ShieldCheck className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" aria-hidden />
+                    <ShieldCheck className="w-5 h-5 text-earth-600 flex-shrink-0 mt-0.5" aria-hidden />
                     <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                        We use your details only to respond to this training enquiry. Please do not include confidential documents or personal data. See our <Link href="/privacy" className="font-bold text-violet-600 dark:text-violet-400 hover:underline">Privacy Policy</Link>.
+                        We use your details only to respond to this training enquiry. Please do not include confidential documents or personal data. See our <Link href="/privacy" className="font-bold text-brand-600 dark:text-brand-400 hover:underline">Privacy Policy</Link>.
                     </p>
                 </div>
 
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full h-16 bg-violet-600 text-white font-black rounded-2xl hover:bg-violet-700 transition-all shadow-xl shadow-violet-200 dark:shadow-none flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full h-16 bg-brand-600 text-white font-black rounded-2xl hover:bg-brand-700 transition-all shadow-xl shadow-violet-200 dark:shadow-none flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {isSubmitting ? (
                         <>
@@ -264,7 +264,7 @@ export default function TrainingEnquiryForm() {
                     href="https://abhishekadhikari.com/contact"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-bold text-violet-600 dark:text-violet-400 hover:underline"
+                    className="font-bold text-brand-600 dark:text-brand-400 hover:underline"
                 >
                     contact page on abhishekadhikari.com
                 </a>.

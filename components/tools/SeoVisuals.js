@@ -83,10 +83,10 @@ export const categoryDetails = [
 
 export const visualColors = {
   violet: {
-    bar: 'from-violet-500 to-purple-600',
-    icon: 'bg-violet-50 text-violet-700',
-    badge: 'bg-violet-100 text-violet-700',
-    border: 'hover:border-violet-200',
+    bar: 'from-brand-500 to-purple-600',
+    icon: 'bg-brand-50 text-brand-700',
+    badge: 'bg-brand-100 text-brand-700',
+    border: 'hover:border-brand-200',
   },
   blue: {
     bar: 'from-blue-500 to-cyan-600',
@@ -95,9 +95,9 @@ export const visualColors = {
     border: 'hover:border-blue-200',
   },
   emerald: {
-    bar: 'from-emerald-500 to-teal-600',
-    icon: 'bg-emerald-50 text-emerald-700',
-    badge: 'bg-emerald-100 text-emerald-700',
+    bar: 'from-earth-500 to-earth-600',
+    icon: 'bg-earth-50 text-earth-700',
+    badge: 'bg-earth-100 text-earth-700',
     border: 'hover:border-emerald-200',
   },
   orange: {
@@ -107,13 +107,13 @@ export const visualColors = {
     border: 'hover:border-orange-200',
   },
   sky: {
-    bar: 'from-sky-500 to-indigo-600',
+    bar: 'from-sky-500 to-brand-600',
     icon: 'bg-sky-50 text-sky-700',
     badge: 'bg-sky-100 text-sky-700',
     border: 'hover:border-sky-200',
   },
   teal: {
-    bar: 'from-teal-500 to-cyan-600',
+    bar: 'from-earth-400 to-cyan-600',
     icon: 'bg-teal-50 text-teal-700',
     badge: 'bg-teal-100 text-teal-700',
     border: 'hover:border-teal-200',
@@ -137,10 +137,10 @@ export const visualColors = {
     border: 'hover:border-purple-200',
   },
   indigo: {
-    bar: 'from-indigo-500 to-violet-600',
-    icon: 'bg-indigo-50 text-indigo-700',
-    badge: 'bg-indigo-100 text-indigo-700',
-    border: 'hover:border-indigo-200',
+    bar: 'from-brand-500 to-brand-600',
+    icon: 'bg-brand-50 text-brand-700',
+    badge: 'bg-brand-100 text-brand-700',
+    border: 'hover:border-brand-200',
   },
   cyan: {
     bar: 'from-cyan-500 to-sky-600',

@@ -38,7 +38,7 @@ export default function Navbar() {
     <>
       <div className="relative left-1/2 w-screen -translate-x-1/2 border-b border-slate-200 bg-[linear-gradient(90deg,#f8fafc_0%,#eef2ff_100%)] px-4 py-2 text-center text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-[linear-gradient(90deg,#020617_0%,#111827_100%)] dark:text-slate-200">
         All 100+ SEO tools are free, fast, and ready to use.{' '}
-        <a href="/tools" className="text-indigo-700 underline decoration-indigo-300 underline-offset-4 hover:text-indigo-900 dark:text-indigo-200 dark:decoration-indigo-400/50 dark:hover:text-white">
+        <a href="/tools" className="text-brand-700 underline decoration-indigo-300 underline-offset-4 hover:text-indigo-900 dark:text-brand-200 dark:decoration-indigo-400/50 dark:hover:text-white">
           Browse the toolkit
         </a>
       </div>
@@ -50,7 +50,7 @@ export default function Navbar() {
               <Compass className="h-5 w-5" aria-hidden />
             </span>
             <span className="text-lg font-extrabold tracking-tight text-slate-950 dark:text-white">
-              100SEO<span className="text-indigo-600 dark:text-indigo-300">Tools</span>
+              100SEO<span className="text-brand-600 dark:text-brand-300">Tools</span>
             </span>
           </a>
 
@@ -58,7 +58,7 @@ export default function Navbar() {
             <div className="relative" ref={dropdownRef}>
               <button
                 type="button"
-                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-indigo-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-brand-700 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
                 aria-haspopup="menu"
                 aria-expanded={categoriesOpen}
                 onClick={() => setCategoriesOpen((value) => !value)}
@@ -75,7 +75,7 @@ export default function Navbar() {
                 >
                   <a
                     href="/category"
-                    className="mb-2 flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-indigo-700 dark:bg-white/5 dark:text-indigo-200"
+                    className="mb-2 flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-brand-700 dark:bg-white/5 dark:text-brand-200"
                     role="menuitem"
                   >
                     View all categories
@@ -88,7 +88,7 @@ export default function Navbar() {
                         <a
                           key={category.label}
                           href={getCategoryHref(category.label)}
-                          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-indigo-200"
+                          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-brand-700 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-brand-200"
                           role="menuitem"
                         >
                           <Icon className="h-4 w-4 shrink-0" aria-hidden />
@@ -105,8 +105,8 @@ export default function Navbar() {
               <a
                 key={item.label}
                 href={item.href}
-                className={`rounded-lg px-3 py-2 text-sm font-semibold transition hover:bg-slate-100 hover:text-indigo-700 dark:hover:bg-white/10 dark:hover:text-indigo-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 ${
-                   pathname === item.href ? 'text-indigo-700 dark:text-indigo-200' : 'text-slate-600 dark:text-slate-300'
+                className={`rounded-lg px-3 py-2 text-sm font-semibold transition hover:bg-slate-100 hover:text-brand-700 dark:hover:bg-white/10 dark:hover:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 ${
+                   pathname === item.href ? 'text-brand-700 dark:text-brand-200' : 'text-slate-600 dark:text-slate-300'
                  }`}
               >
                 {item.label}
@@ -137,14 +137,14 @@ export default function Navbar() {
         {menuOpen && (
           <div className="border-t border-slate-200 bg-white px-4 py-4 shadow-xl md:hidden dark:border-white/10 dark:bg-gray-950">
             <div className="mx-auto grid max-w-7xl gap-1">
-              <a href="/category" className="rounded-lg px-3 py-2.5 text-sm font-bold text-indigo-700 dark:text-indigo-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2">
+              <a href="/category" className="rounded-lg px-3 py-2.5 text-sm font-bold text-brand-700 dark:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2">
                 Categories
               </a>
               {categoryDetails.slice(0, 6).map((category) => (
                 <a
                   key={category.label}
                   href={getCategoryHref(category.label)}
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-700 dark:text-slate-300 dark:hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
                 >
                   {category.label}
                 </a>
