@@ -79,8 +79,7 @@ export default function ContactPage() {
               </h1>
               <p className="text-sm font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">
                 Get in touch with 100 SEO Tools
-              </h1>
-              <p className="text-slate-500 dark:text-slate-400">
+              </p>
                 24-48h response time
               </p>
             </div>
