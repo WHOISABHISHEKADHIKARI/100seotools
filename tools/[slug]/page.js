@@ -89,7 +89,7 @@ const categoryToolLinks = {
     { href: '/tools/breadcrumb-schema-generator', label: 'Breadcrumb Schema' },
     { href: '/tools/howto-schema-generator', label: 'HowTo Schema Generator' },
   ],
-];
+};
 
 export const dynamic = 'force-static';
 export const dynamicParams = true;
@@ -302,7 +302,7 @@ export default async function CategoryPage({ params, searchParams }) {
         <h2 className="mb-4 text-2xl font-extrabold text-slate-950 dark:text-white">Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900"><summary className="cursor-pointer font-extrabold text-slate-950 dark:text-white">What are {catName} tools?</summary><p className="mt-2 text-slate-600 dark:text-slate-300">{catName} tools are free browser-based utilities that help SEO professionals and website owners with {detail.description.toLowerCase()} All tools run client-side with no signup required.</p></details>
-          <details className="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900"><summary className="cursor-pointer font-extrabold text-slate-950 dark:text-white">How can these tools help my SEO?</summary><p className="mt-2 text-slate-600 dark:text-slate-300">They help you analyze issues, find opportunities, and apply practical optimization steps faster — all from your browser with no installation, no data uploads, and instant results.</p></details>
+          <details className="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900"><summary className="cursor-pointer font-extrabold text-slate-950 dark:text-white">How can these tools help my SEO?</summary><p className="mt-2 text-slate-600 dark:text-slate-300">They help you analyze issues, find opportunities, and apply practical optimization steps faster . all from your browser with no installation, no data uploads, and instant results.</p></details>
         </div>
       </section>
       <section>

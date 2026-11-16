@@ -80,7 +80,7 @@ export async function POST(request) {
     const tier = score >= 80 ? 'Excellent' : score >= 60 ? 'Strong' : score >= 40 ? 'Moderate' : score >= 20 ? 'Developing' : 'Weak';
 
     const lines = [];
-    lines.push(`Real-Signal Authority Report — ${host}`);
+    lines.push(`Real-Signal Authority Report . ${host}`);
     lines.push('Source: Wayback Machine + live page fetch + robots/sitemap probes');
     lines.push('='.repeat(60));
     lines.push('');
@@ -89,7 +89,7 @@ export async function POST(request) {
     lines.push('SIGNAL BREAKDOWN');
     breakdown.forEach((b) => lines.push('  ' + b));
     lines.push('');
-    lines.push('NOTE: This score is computed only from publicly fetchable signals — no Math.random.');
+    lines.push('NOTE: This score is computed only from publicly fetchable signals . no Math.random.');
     lines.push('It is not Moz DA or Ahrefs DR; it is a transparent, free alternative score useful for self-audit.');
 
     return NextResponse.json({ success: true, result: lines.join('\n') });

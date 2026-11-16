@@ -7,8 +7,8 @@ import { createSocialMetadata } from '../../lib/socialMetadata';
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-  ...createSocialMetadata({ url: `${baseUrl}/editorial-policy`, title: 'Editorial Policy – 100 SEO Tools | Content & AI Standards', description: 'Our editorial standards: how we create, review, and update SEO content. Transparency in AI-assisted writing, human expertise, and factual accuracy.' }),
-  title: 'Editorial Policy – 100 SEO Tools | Content & AI Standards',
+  ...createSocialMetadata({ url: `${baseUrl}/editorial-policy`, title: 'Editorial Policy , 100 SEO Tools | Content & AI Standards', description: 'Our editorial standards: how we create, review, and update SEO content. Transparency in AI-assisted writing, human expertise, and factual accuracy.' }),
+  title: 'Editorial Policy , 100 SEO Tools | Content & AI Standards',
   description: 'Our editorial standards: how we create, review, and update SEO content. Transparency in AI-assisted writing, human expertise, and factual accuracy.',
   alternates: { canonical: `${baseUrl}/editorial-policy` },
   robots: { index: true, follow: true },
@@ -146,7 +146,7 @@ export default function EditorialPolicyPage() {
                     {[
                       ['AI-Assisted Drafting', 'We use AI to generate initial drafts, outlines, and code examples. This allows us to cover more topics while maintaining consistency.'],
                       ['Human Review', 'Every draft is reviewed, edited, and fact-checked by an SEO professional before publication. AI output is never published verbatim.'],
-                      ['Tool Data Accuracy', 'All tool descriptions, feature lists, and capability claims are verified against the actual tool implementation — not generated from AI knowledge.'],
+                      ['Tool Data Accuracy', 'All tool descriptions, feature lists, and capability claims are verified against the actual tool implementation . not generated from AI knowledge.'],
                       ['Continuous Improvement', 'Reader feedback, search data, and algorithm updates inform content revisions. We treat content as living documentation.'],
                     ].map(([title, desc]) => (
                       <div key={title} className="p-5 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10">

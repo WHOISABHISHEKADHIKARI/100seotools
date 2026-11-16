@@ -24,7 +24,7 @@ export async function POST(request) {
             const feat = f[0];
             output += `Imagine achieving more with less effort, thanks to its innovative ${feat}. `;
         }
-        output += `It's not just a product; it's a game-changer. Experience the difference that quality makes. reliable, efficient, and stylish – the ${p} is everything you've been looking for.\n\n`;
+        output += `It's not just a product; it's a game-changer. Experience the difference that quality makes. reliable, efficient, and stylish , the ${p} is everything you've been looking for.\n\n`;
 
         output += `### Option 3: Short & Punchy\n`;
         output += `Meet ${p}. The smarter way to handle your needs. Features: ${f.slice(0, 3).join(', ')}. Get yours now.`;

@@ -9,7 +9,7 @@ const backlinkIdeaGenerator = {
   "template": "backlinkIdeaGenerator",
   "api": true,
   "content": {
-    "introduction": "Building high-quality backlinks remains one of the most powerful ranking signals. The Backlink Idea Generator helps you discover link building opportunities tailored to your niche. Enter your topic or website, and the tool generates a curated list of strategies — from guest posting and resource page outreach to broken link building and digital PR angles. Each idea includes a description and priority level.",
+    "introduction": "Building high-quality backlinks remains one of the most powerful ranking signals. The Backlink Idea Generator helps you discover link building opportunities tailored to your niche. Enter your topic or website, and the tool generates a curated list of strategies . from guest posting and resource page outreach to broken link building and digital PR angles. Each idea includes a description and priority level.",
     "whatItDoes": "The tool takes your input (topic, industry, or URL) and generates categorized link building ideas. It covers guest posting, resource page link building, broken link building, skyscraper technique, digital PR, unlinked brand mentions, and competitor backlink gaps. Each suggestion comes with a brief explanation of the strategy and how to execute it.",
     "whyItMatters": "Backlinks from authoritative, relevant sites signal trust to search engines. But finding quality link opportunities is time-consuming and often relies on manual prospecting. This tool accelerates the process by generating targeted strategies based on your niche, helping you build a diverse and natural link profile faster.",
     "benefits": [
@@ -27,9 +27,9 @@ const backlinkIdeaGenerator = {
       "Agency work: generate ideas for client link building proposals"
     ],
     "bestPractices": [
-      "Prioritize relevance over authority — a link from a related site matters more",
-      "Diversify your link sources — don't rely on one strategy",
-      "Create genuine value in outreach — don't just ask for links",
+      "Prioritize relevance over authority . a link from a related site matters more",
+      "Diversify your link sources . don't rely on one strategy",
+      "Create genuine value in outreach . don't just ask for links",
       "Track outreach results to refine your approach over time",
       "Build relationships before asking for links",
       "Focus on earning links through quality content, not buying them"

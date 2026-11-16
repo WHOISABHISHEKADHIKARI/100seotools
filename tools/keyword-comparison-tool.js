@@ -9,8 +9,8 @@ const keywordComparisonTool = {
   "template": "duplicateContentChecker",
   "api": true,
   "content": {
-    "introduction": "The Keyword Comparison Tool shows a side-by-side keyword comparison so you can see which terms are worth targeting. Compare keywords by search volume, keyword difficulty, CPC, search intent, traffic potential, and top benefiting domains—all in one clean table.",
-    "whatItDoes": "Enter 2–10 keywords to compare them side-by-side. The comparison table shows traffic contribution, search volume, keyword difficulty, CPC, search intent, SERP features, trend data, and highlights which domains benefit most from each term. It also calculates an opportunity score to help you prioritize the best keyword fast.",
+    "introduction": "The Keyword Comparison Tool shows a side-by-side keyword comparison so you can see which terms are worth targeting. Compare keywords by search volume, keyword difficulty, CPC, search intent, traffic potential, and top benefiting domains.all in one clean table.",
+    "whatItDoes": "Enter 2,10 keywords to compare them side-by-side. The comparison table shows traffic contribution, search volume, keyword difficulty, CPC, search intent, SERP features, trend data, and highlights which domains benefit most from each term. It also calculates an opportunity score to help you prioritize the best keyword fast.",
     "whyItMatters": "Keyword decisions need comparison, not guesswork. Seeing traffic contribution and top benefiting domains side-by-side helps you pick keywords you can realistically rank for and that drive meaningful traffic. This makes prioritization objective instead of chasing only the highest volume terms.",
     "benefits": [
       "Compare keywords side-by-side in one view for faster prioritization",
@@ -28,7 +28,7 @@ const keywordComparisonTool = {
       "A PPC manager compares organic versus paid opportunity by examining CPC data alongside organic difficulty to decide where each dollar generates the highest return"
     ],
     "bestPractices": [
-      "Always compare keywords within the same topic area—comparing 'best CRM software' against 'healthy meal prep' provides no actionable insight because they serve different business goals",
+      "Always compare keywords within the same topic area.comparing 'best CRM software' against 'healthy meal prep' provides no actionable insight because they serve different business goals",
       "Weight metrics by your primary objective: traffic-focused strategies prioritize volume, conversion-focused strategies prioritize CPC and transactional intent, quick-win strategies prioritize low difficulty",
       "Include at least one high-volume and one low-difficulty keyword in every comparison to calibrate what realistic opportunity looks like for your domain",
       "Re-compare keywords quarterly because difficulty scores shift as competitors publish new content and build backlinks",
@@ -38,7 +38,7 @@ const keywordComparisonTool = {
     "relatedTools": ["keyword-suggestion-tool", "keyword-clustering-tool", "keyword-gap-finder", "keyword-intent-identifier", "keyword-difficulty-estimator"],
     "faqs": [
       {"q": "Where can I see traffic contribution and top benefiting domains?", "a": "In the keyword comparison table, each keyword shows estimated traffic contribution and the top domains that benefit from it. This side-by-side view helps you spot realistic opportunities based on who currently ranks."},
-      {"q": "How many keywords should I compare at once?", "a": "Compare 3–8 keywords side-by-side for the clearest results. This keeps the comparison table readable while giving you enough data to prioritize."},
+      {"q": "How many keywords should I compare at once?", "a": "Compare 3,8 keywords side-by-side for the clearest results. This keeps the comparison table readable while giving you enough data to prioritize."},
       {"q": "What is the opportunity score?", "a": "Opportunity score balances search volume vs keyword difficulty. It helps you quickly compare keywords and pick the one with the best realistic chance to rank."},
       {"q": "Should I always pick the highest volume keyword?", "a": "No. When you compare keywords side-by-side, look at difficulty, traffic contribution, intent, and benefiting domains. Often a medium-volume keyword with lower difficulty is easier to win and drive real traffic."},
       {"q": "Why compare keywords instead of looking at one?", "a": "Side-by-side keyword comparison makes tradeoffs obvious. You can see which term fits your timeline and authority best, rather than guessing from isolated metrics."}

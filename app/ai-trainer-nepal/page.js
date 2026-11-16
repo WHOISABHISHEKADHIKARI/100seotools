@@ -4,14 +4,14 @@ import StructuredData from '../../components/ui/StructuredData';
 import { generateFAQSchema, generateBreadcrumbList } from '../../lib/schema';
 import { getBaseUrl } from '../../lib/site';
 import { createSocialMetadata } from '../../lib/socialMetadata';
-import { ArrowRight, Award, CheckCircle } from 'lucide-react';
+import { ArrowRight, Award, CheckCircle, BookOpen, Users, Shield, Zap, ExternalLink } from 'lucide-react';
 import TrainingEnquiryForm from './TrainingEnquiryForm';
 
 const baseUrl = getBaseUrl();
 const pageUrl = `${baseUrl}/ai-trainer-nepal`;
 
 export const metadata = {
-    title: 'AI Trainer in Nepal | Corporate Training — Abhishek Adhikari',
+    title: 'AI Trainer in Nepal | Corporate Training . Abhishek Adhikari',
     description: "Practical AI training in Nepal with Abhishek Adhikari. Explore corporate workshops, prompt engineering and AI workflows. Discuss your team's training needs.",
     authors: [{ name: 'Abhishek Adhikari', url: `${baseUrl}/author` }],
     creator: 'Abhishek Adhikari',
@@ -88,14 +88,18 @@ const faqs = [
     },
 ];
 
-// JSON-LD: webpage, person and service identity (per the reviewed content plan)
 const personSchema = {
     '@type': 'Person',
     '@id': 'https://abhishekadhikari.com/#person',
     name: 'Abhishek Adhikari',
     url: 'https://abhishekadhikari.com/',
     jobTitle: 'AI Trainer and Open-Source Contributor',
-    sameAs: ['https://github.com/WHOISABHISHEKADHIKARI'],
+    sameAs: [
+        'https://github.com/WHOISABHISHEKADHIKARI',
+        'https://www.linkedin.com/in/whoisabhishekadhikari/',
+        'https://abhishekadhikari.com/',
+        'https://kathmandu.wordcamp.org/2026/speaker/abhishek-adhikari/',
+    ],
 };
 
 const serviceSchema = {
@@ -113,10 +117,14 @@ const webPageSchema = {
     '@type': 'WebPage',
     '@id': `${pageUrl}#webpage`,
     url: pageUrl,
-    name: 'AI Trainer in Nepal | Corporate Training — Abhishek Adhikari',
+    name: 'AI Trainer in Nepal | Corporate Training . Abhishek Adhikari',
     mainEntity: { '@id': `${pageUrl}#service` },
     about: { '@id': 'https://abhishekadhikari.com/#person' },
     inLanguage: 'en',
+    speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['.article-summary', '.article-content p:first-of-type', '.faq-section'],
+    },
 };
 
 export default function AiTrainerNepalPage() {
@@ -138,552 +146,302 @@ export default function AiTrainerNepalPage() {
                 </ol>
             </nav>
 
-            {/* ── PREMIUM HERO ── */}
-            <section className="relative overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white pt-16 pb-24 mt-6">
-                <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-                <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-600/20 rounded-full blur-3xl" />
-                <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
-
-                <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
-                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-brand-100">
-                        <Award className="h-3.5 w-3.5 text-yellow-300" aria-hidden />
-                        AI Training · Hetauda, Nepal
+            {/* ── ARTICLE HEADER ── */}
+            <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+                <header className="mb-8">
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-extrabold uppercase tracking-widest text-brand-700 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-300">
+                        <Award className="h-3.5 w-3.5" aria-hidden />
+                        Field notes . AI education in Nepal
                     </div>
 
-                    <h1 className="text-3xl md:text-5xl font-black tracking-tight mb-6 leading-tight">
-                        AI Trainer in Nepal for Corporate Teams and Practical Work
+                    <h1 className="text-3xl md:text-5xl font-black tracking-tight text-slate-950 dark:text-white leading-tight mb-4">
+                        How I Teach Practical AI in Nepal: A Field Guide for Better Everyday Work
                     </h1>
 
-                    <p className="text-lg md:text-xl text-brand-100/90 font-bold mb-6">
-                        Practical AI skills. Clear workflows. Work your team can review and reuse.
+                    <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                        नेपालमा व्यावहारिक AI प्रशिक्षण, prompt engineering र AI workshop सम्बन्धी जानकारी।
                     </p>
 
-                    <p className="text-white/70 leading-relaxed font-medium mb-6 max-w-3xl">
-                        Abhishek Adhikari is an AI trainer, prompt engineering practitioner and open-source contributor based in Hetauda, Nepal. His training focuses on helping people understand AI tools, write clearer instructions and apply AI to everyday professional tasks.
-                    </p>
-
-                    <div className="rounded-2xl border border-white/15 bg-white/5 p-6 mb-8 max-w-3xl">
-                        <p className="text-sm text-white/80 leading-relaxed">
-                            <strong className="text-white">Listed among Agentic Awesome Skills&rsquo; Top Contributors: #1 for commits and #2 for skills added</strong> in its README, checked 5 October 2026.{' '}
-                            <a
-                                href="https://github.com/sickn33/agentic-awesome-skills#top-contributors"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="font-bold text-brand-300 hover:text-brand-200 underline underline-offset-2"
-                            >
-                                View the contributor listing
-                            </a>.
-                        </p>
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+                        <span className="inline-flex items-center gap-1.5">
+                            <Image src="/author.png" alt="Abhishek Adhikari" width={24} height={24} className="rounded-full" />
+                            <Link href="/author" className="font-semibold text-brand-600 hover:text-brand-800 dark:text-brand-400">Abhishek Adhikari</Link>
+                        </span>
+                        <span>25 September 2026</span>
+                        <span>9 min read</span>
                     </div>
+                </header>
 
-                    <p className="text-white/70 leading-relaxed font-medium mb-8 max-w-3xl">
-                        Looking for corporate AI training in Nepal? Start with the work your team already does: preparing reports, researching information, writing customer messages, planning content or documenting repeatable processes. Build a training session around those needs and the level of support your participants require.
-                    </p>
+                {/* ── STATS ── */}
+                <div className="grid grid-cols-3 gap-4 mb-8">
+                    {[
+                        ['125', 'AI skills added'],
+                        ['36', 'Merged PRs'],
+                        ['100+', 'Community events'],
+                    ].map(([value, label]) => (
+                        <div key={label} className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm dark:border-white/10 dark:bg-gray-900">
+                            <p className="text-2xl font-extrabold text-brand-600 dark:text-brand-400">{value}</p>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{label}</p>
+                        </div>
+                    ))}
+                </div>
 
-                    <div className="flex flex-wrap gap-4 mb-6">
-                        <a
-                            href="#training-enquiry"
-                            className="inline-flex items-center gap-2 rounded-2xl bg-brand-600 px-6 py-4 text-sm font-black text-white hover:bg-brand-500 transition-all shadow-xl shadow-violet-900/30"
-                        >
-                            Request a Corporate Training Proposal
-                            <ArrowRight className="h-4 w-4" aria-hidden />
-                        </a>
-                        <a
-                            href="https://abhishekadhikari.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-2xl border border-white/25 bg-white/5 px-6 py-4 text-sm font-black text-white hover:bg-white/10 transition-all"
-                        >
-                            Explore Abhishek&rsquo;s Public Work
-                        </a>
+                {/* ── HERO IMAGE ── */}
+                <figure className="mb-8">
+                    <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10">
+                        <img
+                            src="https://abhishekadhikari.com/abhishek-adhikari-ai-trainer-nepal-hero-tiny.jpg"
+                            alt="Abhishek Adhikari, AI trainer in Nepal. Portrait of the prompt engineering educator from Hetauda."
+                            width={800}
+                            height={450}
+                            className="w-full h-auto"
+                            loading="lazy"
+                        />
                     </div>
+                    <figcaption className="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center">
+                        Abhishek Adhikari, AI trainer in Nepal.
+                    </figcaption>
+                </figure>
 
-                    <p className="text-sm text-white/50 font-medium">
-                        For businesses, marketing teams, educational institutions and community organisations. Discuss your location, preferred delivery format and available dates when enquiring.
+                {/* ── THE SHORT VERSION ── */}
+                <div className="article-summary rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-6 mb-8 dark:border-blue-500/20 dark:from-blue-500/10 dark:to-white/[0.03]">
+                    <h2 className="mb-2 text-lg font-extrabold text-blue-800 dark:text-blue-200">The short version</h2>
+                    <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                        Useful AI training is less about discovering tools and more about learning sound habits: give context, state the goal, check the result, and protect sensitive information.
                     </p>
                 </div>
-            </section>
 
-
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-                {/* ── WHAT CAN YOUR TEAM LEARN ── */}
-                <section aria-labelledby="what-teams-learn" className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-lg p-8 md:p-10 mb-8">
-                    <h2 id="what-teams-learn" className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-6">
-                        What can your team learn?
-                    </h2>
-                    <div className="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-                        <p>
-                            AI training is practical education in using artificial intelligence tools effectively and checking their output. A useful workshop connects explanations to guided exercises, giving participants a way to judge when AI helps, where it can make mistakes and when a person must make the final decision.
-                        </p>
-                        <p>
-                            Training topics can include ChatGPT, Claude and Gemini, prompt engineering, research support, business writing, content planning and introductory AI workflows. The tools and exercises should match your organisation&rsquo;s approved accounts, policies and learning goals.
-                        </p>
-                        <p>
-                            For foundational sessions, participants need basic computer skills rather than a programming background. More technical topics can be scoped separately.
-                        </p>
-                    </div>
-                </section>
-
-                {/* ── SHAPED AROUND YOUR TEAM'S WORK ── */}
-                <section aria-labelledby="shaped-around-work" className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-lg p-8 md:p-10 mb-8">
-                    <h2 id="shaped-around-work" className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-6">
-                        Corporate AI training shaped around your team&rsquo;s work
-                    </h2>
-                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-                        Your marketing team, operations staff and managers do not all need the same workshop. Begin with the tasks that consume time or create inconsistent results, then choose practical exercises that address them.
-                    </p>
-                    <div className="overflow-x-auto rounded-2xl border border-slate-100 dark:border-white/10">
-                        <table className="w-full text-left text-sm">
-                            <thead className="bg-slate-50 dark:bg-white/5">
-                                <tr>
-                                    <th scope="col" className="px-5 py-4 font-black text-slate-900 dark:text-white">Team</th>
-                                    <th scope="col" className="px-5 py-4 font-black text-slate-900 dark:text-white">Example training exercise</th>
-                                    <th scope="col" className="px-5 py-4 font-black text-slate-900 dark:text-white">Output to practise reviewing</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-100 dark:divide-white/10">
-                                {[
-                                    ['Marketing and SEO', 'Turn an approved product brief into a content plan', 'Audience-focused outline with factual claims flagged for checking'],
-                                    ['Sales and customer support', 'Draft responses from an approved service policy', 'Reply templates with clear escalation points'],
-                                    ['HR and administration', 'Organise an onboarding process', 'Checklist with responsibilities, required inputs and approval steps'],
-                                    ['Operations', 'Convert a process description into a draft procedure', 'Reusable workflow with exceptions and human review'],
-                                    ['Management', 'Summarise a nonconfidential report', 'Decision brief separating evidence, assumptions and unanswered questions'],
-                                    ['Education', 'Develop an activity from an approved lesson objective', 'Teaching resource checked for accuracy, level and academic integrity'],
-                                ].map(([team, exercise, output]) => (
-                                    <tr key={team}>
-                                        <th scope="row" className="px-5 py-4 font-bold text-slate-800 dark:text-slate-100 align-top">{team}</th>
-                                        <td className="px-5 py-4 text-slate-600 dark:text-slate-300 align-top">{exercise}</td>
-                                        <td className="px-5 py-4 text-slate-600 dark:text-slate-300 align-top">{output}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mt-5">
-                        These examples illustrate possible workshop exercises. The final agenda is agreed around your team and the information it can safely use.
-                    </p>
-                </section>
-
-
-
-                {/* ── TRAINING TOPICS ── */}
-                <section aria-labelledby="training-topics" className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-lg p-8 md:p-10 mb-8">
-                    <h2 id="training-topics" className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-6">
-                        Training topics
-                    </h2>
-                    <div className="grid md:grid-cols-2 gap-6">
+                {/* ── TABLE OF CONTENTS ── */}
+                <nav className="rounded-2xl border border-slate-200 bg-slate-50 p-5 mb-8 dark:border-white/10 dark:bg-white/5" aria-label="Table of contents">
+                    <h2 className="text-sm font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3">In this guide</h2>
+                    <ol className="space-y-1 text-sm">
                         {[
-                            {
-                                title: 'AI literacy and everyday productivity',
-                                body: 'Understand what generative AI does, why it can produce convincing errors and how to choose suitable tasks. Practise drafting, summarising and organising information while retaining responsibility for the result.'
-                            },
-                            {
-                                title: 'Prompt engineering for repeatable work',
-                                body: 'Learn to specify the task, relevant context, source material, constraints and required output. Improve a prompt by examining its results and refining unclear instructions. Build useful templates for work that recurs.'
-                            },
-                            {
-                                title: 'AI for marketing, SEO and content teams',
-                                body: 'Use AI to explore search intent, organise topic research, prepare briefs and review content structure. Keep product information, examples and claims grounded in your own knowledge and reliable sources. Discuss how helpful content and technical accessibility support discovery in search and AI-assisted answers.'
-                            },
-                            {
-                                title: 'Research, reporting and document workflows',
-                                body: 'Practise extracting information from approved material, comparing sources and producing an initial summary. Learn to distinguish a source-supported statement from an inference, then check references before sharing the output.'
-                            },
-                            {
-                                title: 'Agentic AI and reusable open-source skills',
-                                body: 'Explore how a repeatable task can be documented as a workflow with defined inputs, steps, outputs and review points. For suitable groups, discuss how reusable agent instructions differ from a single prompt, and how permissions and validation affect their use.'
-                            },
-                            {
-                                title: 'Responsible AI use',
-                                body: 'Work with public, synthetic or approved information. Discuss confidentiality, personal data, tool permissions, misleading output and human approval. Agree which work can be assisted by AI and which decisions need a qualified person.'
-                            },
-
-                        ].map((topic) => (
-                            <article key={topic.title} className="rounded-3xl border border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-6">
-                                <h3 className="text-lg font-black text-slate-900 dark:text-white mb-3">{topic.title}</h3>
-                                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{topic.body}</p>
-                            </article>
-                        ))}
-                    </div>
-                </section>
-
-                {/* ── CHOOSE A STARTING POINT ── */}
-                <section aria-labelledby="starting-point" className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-lg p-8 md:p-10 mb-8">
-                    <h2 id="starting-point" className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-6">
-                        Choose a starting point
-                    </h2>
-                    <div className="space-y-5">
-                        {[
-                            ['AI awareness session:', 'An introduction for a team beginning to explore AI, with demonstrations and discussion around relevant work.'],
-                            ['Practical team workshop:', 'Guided exercises around a small number of priority tasks, with time to inspect and improve the outputs.'],
-                            ['Department-focused training:', 'A programme built around a defined function, such as marketing, administration or operations.'],
-                            ['Multi-session learning:', 'A sequence that allows participants to practise between sessions and bring back examples for review.'],
-                        ].map(([label, body]) => (
-                            <div key={label} className="flex items-start gap-4">
-                                <CheckCircle className="h-5 w-5 text-brand-600 dark:text-brand-400 flex-shrink-0 mt-1" aria-hidden />
-                                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                                    <strong className="text-slate-900 dark:text-white">{label}</strong> {body}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mt-6">
-                        Ask about online or in-person delivery. Duration, group size, materials, support and any paid-tool requirements are confirmed in the proposal.
-                    </p>
-                </section>
-
-                {/* ── MID-PAGE CTA ── */}
-                <section className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-brand-600 to-indigo-800 p-8 md:p-10 mb-8 text-white shadow-xl">
-                    <div className="absolute -top-16 -right-16 w-64 h-64 bg-white/10 rounded-full blur-3xl" aria-hidden />
-                    <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                        <div>
-                            <h2 className="text-xl md:text-2xl font-black mb-2">Have a session format or department in mind?</h2>
-                            <p className="text-white/75 text-sm leading-relaxed max-w-xl">
-                                Share two or three tasks your team wants to improve and we can discuss the exercises, format and dates that fit.
-                            </p>
-                        </div>
-                        <a
-                            href="#training-enquiry"
-                            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-sm font-black text-brand-700 hover:scale-105 active:scale-95 transition-all shadow-xl shadow-black/10 whitespace-nowrap"
-                        >
-                            Discuss Your Training Needs
-                            <ArrowRight className="h-4 w-4" aria-hidden />
-                        </a>
-                    </div>
-                </section>
-
-                {/* ── FROM ONE PROMPT TO A WORKFLOW ── */}
-                <section aria-labelledby="workflow-example" className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-lg p-8 md:p-10 mb-8">
-                    <h2 id="workflow-example" className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-6">
-                        From one prompt to a workflow your team can explain
-                    </h2>
-                    <div className="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-                        <p>
-                            Consider an employee onboarding checklist. A simple request to &ldquo;write an onboarding plan&rdquo; can produce a polished but generic answer. A stronger exercise begins with the approved process, responsible people, required documents and completion criteria.
-                        </p>
-                        <p>
-                            Participants can practise turning that information into a draft checklist, then inspect the result for missing steps, unsupported assumptions and actions requiring approval. The same approach can apply to content briefs, meeting summaries and customer-support drafts.
-                        </p>
-                        <p>
-                            The goal is to make the work understandable and reviewable, so the team knows how to use the output and when to challenge it.
-                        </p>
-                    </div>
-                </section>
-
-                {/* ── MEET ABHISHEK ── */}
-                <section aria-labelledby="meet-abhishek" className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-lg p-8 md:p-10 mb-8">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-6">
-                        <Image
-                            src="/author.png"
-                            alt="Abhishek Adhikari - AI trainer and prompt engineering practitioner based in Hetauda, Nepal"
-                            width={112}
-                            height={112}
-                            className="rounded-3xl border border-slate-100 dark:border-white/10 shadow-lg flex-shrink-0"
-                        />
-                        <div>
-                            <h2 id="meet-abhishek" className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-2">
-                                Meet Abhishek Adhikari
-                            </h2>
-                            <p className="text-sm font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">
-                                AI Trainer · Prompt Engineering Practitioner · Open-Source Contributor
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-                        <p>
-                            Abhishek&rsquo;s work connects AI practice, entrepreneurship, community learning and open-source contribution. His official WordCamp Kathmandu 2026 speaker biography describes his work in prompt engineering, AI workflows and community-led technology initiatives.
-                        </p>
-                        <p>
-                            His public GitHub profile and contributions provide another way to assess his work. Release notes for Agentic Awesome Skills acknowledge his contributions to SME operations skill batches and improvements to repository documentation and catalogue links.
-                        </p>
-                    </div>
-
-                    <div className="rounded-3xl border border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-6 my-6">
-                        <h3 className="text-lg font-black text-slate-900 dark:text-white mb-3">
-                            Recognised in the project&rsquo;s Top Contributors list
-                        </h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
-                            The Agentic Awesome Skills README lists <strong className="text-slate-900 dark:text-white">@WHOISABHISHEKADHIKARI first in its &ldquo;Most Commits&rdquo; table, with 36 commits, and second in its &ldquo;Most Skills Added&rdquo; table, with 125 skills</strong>. These are the figures displayed by the project&rsquo;s README when checked on 5 October 2026. They describe contribution to this specific open-source project.
-                        </p>
-                        <a
-                            href="https://github.com/sickn33/agentic-awesome-skills#top-contributors"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-sm font-black text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors"
-                        >
-                            See the Top Contributors section
-                            <ArrowRight className="h-4 w-4" aria-hidden />
-                        </a>
-                    </div>
-
-                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-                        For a training buyer, those records offer something practical to inspect: examples of how work can be described, structured and improved in public.
-                    </p>
-
-                    <ul className="grid sm:grid-cols-2 gap-3">
-                        {[
-                            ['Official profile and portfolio', 'https://abhishekadhikari.com/'],
-                            ['WordCamp Kathmandu 2026 speaker biography', 'https://kathmandu.wordcamp.org/2026/speaker/abhishek-adhikari/'],
-                            ['GitHub profile', 'https://github.com/WHOISABHISHEKADHIKARI'],
-                            ['Agentic Awesome Skills project', 'https://github.com/sickn33/agentic-awesome-skills'],
-                            ['Public contribution acknowledgements', 'https://github.com/sickn33/agentic-awesome-skills/releases'],
-                            ['Practical AI teaching field guide on Gita Nepal', 'https://www.gitanepal.com.np/ai-trainer-nepal'],
-                            ['Contact Abhishek directly', 'https://abhishekadhikari.com/contact'],
+                            ['Why most AI training misses the point', '#why'],
+                            ['The four habits I teach first', '#framework'],
+                            ['A prompt template that works', '#prompt'],
+                            ['Turning prompts into workflows', '#workflows'],
+                            ['Responsible AI is practical AI', '#responsible'],
+                            ['Workshop and speaking notes', '#proof'],
+                            ['What I hope people take away', '#takeaway'],
                         ].map(([label, href]) => (
                             <li key={href}>
-                                <a
-                                    href={href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center justify-between gap-3 rounded-2xl border border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-white/5 px-5 py-4 text-sm font-bold text-slate-700 dark:text-slate-200 hover:border-brand-300 dark:hover:border-brand-500/40 hover:text-brand-700 dark:hover:text-brand-300 transition-all"
-                                >
-                                    {label}
-                                    <ArrowRight className="h-4 w-4 flex-shrink-0" aria-hidden />
-                                </a>
+                                <a href={href} className="text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300 hover:underline">{label}</a>
                             </li>
                         ))}
-                    </ul>
-                </section>
+                    </ol>
+                </nav>
 
-                {/* ── SELECTED SESSIONS ── */}
-                <section aria-labelledby="selected-sessions" className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-lg p-8 md:p-10 mb-8">
-                    <h2 id="selected-sessions" className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-6">
-                        Selected AI training and speaking sessions
-                    </h2>
-                    <div className="space-y-8">
-                        <article>
-                            <h3 className="text-lg font-black text-slate-900 dark:text-white mb-3">
-                                Prompt engineering for HR professionals — HCDPN
-                            </h3>
-                            <div className="space-y-3 text-slate-600 dark:text-slate-300 leading-relaxed">
-                                <p>
-                                    On 7 August 2026, Abhishek facilitated a two-hour online AI prompt-engineering session for 75+ HR professionals in collaboration with Human Capital Development Professionals Nepal. Under the theme &ldquo;Prompt Smarter, Not Harder,&rdquo; the session covered practical prompting for HR workflows, communication, productivity and organisational development.
-                                </p>
-                                <p>
-                                    This professional-audience session is particularly relevant for organisations exploring AI training for HR and administration teams.
-                                </p>
-                            </div>
-                        </article>
+                <div className="article-content space-y-8">
+                    {/* ── WHY ── */}
+                    <section id="why" className="space-y-3">
+                        <h2 className="text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Why most AI training misses the point</h2>
+                        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                            The first question people ask is usually, "Which AI tool should I use?" Tools change quickly. The ability to describe a problem, judge an answer, and make a responsible decision travels with you from one tool to the next.
+                        </p>
+                        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                            AI responds best when a person does the thinking that comes before the prompt: audience, context, constraints, source material, and a definition of success.
+                        </p>
+                    </section>
 
-                        <article>
-                            <h3 className="text-lg font-black text-slate-900 dark:text-white mb-3">
-                                WordCamp Kathmandu 2026 — speaker
-                            </h3>
-                            <div className="space-y-3 text-slate-600 dark:text-slate-300 leading-relaxed">
-                                <p>
-                                    Abhishek presented &ldquo;Prompt Smarter, Not Harder: Curing Pain Points with skill.md,&rdquo; exploring how structured instructions can help AI tools work with context and repeatable processes. The session connected prompt engineering and reusable AI skills to practical coding and productivity tasks.
-                                </p>
-                                <p>
-                                    <a
-                                        href="https://kathmandu.wordcamp.org/2026/speaker/abhishek-adhikari/"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline underline-offset-2"
-                                    >
-                                        View the official speaker profile
-                                    </a>.
-                                </p>
-                            </div>
-                        </article>
+                    {/* ── FRAMEWORK ── */}
+                    <section id="framework" className="space-y-3">
+                        <h2 className="text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">The four habits I teach first</h2>
+                        <ol className="space-y-4">
+                            <li className="rounded-2xl border border-slate-100 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/5">
+                                <strong className="text-slate-950 dark:text-white">Start with the task, not the tool.</strong>
+                                <span className="text-slate-700 dark:text-slate-300"> Name the audience, intended outcome, constraints, and source material.</span>
+                            </li>
+                            <li className="rounded-2xl border border-slate-100 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/5">
+                                <strong className="text-slate-950 dark:text-white">Give the model usable context.</strong>
+                                <span className="text-slate-700 dark:text-slate-300"> A clear brief, example, or draft produces better results than a vague one-line prompt.</span>
+                            </li>
+                            <li className="rounded-2xl border border-slate-100 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/5">
+                                <strong className="text-slate-950 dark:text-white">Verify important outputs.</strong>
+                                <span className="text-slate-700 dark:text-slate-300"> Facts, calculations, citations, and recommendations require human checking.</span>
+                            </li>
+                            <li className="rounded-2xl border border-slate-100 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/5">
+                                <strong className="text-slate-950 dark:text-white">Keep private data private.</strong>
+                                <span className="text-slate-700 dark:text-slate-300"> Decide whether a document contains personal, client, internal, or otherwise sensitive information before sharing.</span>
+                            </li>
+                        </ol>
+                    </section>
 
-                        <article>
-                            <h3 className="text-lg font-black text-slate-900 dark:text-white mb-3">
-                                Code for Change — AI workflows and open-source contribution
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                                At Dreams College in Bharatpur, Abhishek delivered &ldquo;Open to Open Source: Build Your Career with AI Workflows&rdquo; in collaboration with Code for Change. The session introduced AI workflows, agentic AI, large language models and practical ways to begin contributing to open-source projects.
+                    {/* ── PROMPT ── */}
+                    <section id="prompt" className="space-y-3">
+                        <h2 className="text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">A prompt template that works</h2>
+                        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                            Use this brief: task, audience, context, format, and check. For example, a teacher can request a lesson outline for a specific age group, provide the curriculum topic, ask for an activity and assessment, then review every fact before use.
+                        </p>
+                        <blockquote className="rounded-2xl border-l-4 border-brand-500 bg-brand-50/50 p-5 dark:bg-brand-500/5">
+                            <p className="text-slate-800 dark:text-slate-200 font-medium italic">
+                                "The best AI workflow is one you can explain, check, and repeat."
                             </p>
-                        </article>
+                        </blockquote>
+                    </section>
 
-                        <article>
-                            <h3 className="text-lg font-black text-slate-900 dark:text-white mb-3">
-                                Hacktoberfest 2026 — Graphilla Technology
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                                As an Open Source &amp; AI Mentor with Graphilla Technology, Abhishek delivered a two-hour session on AI-assisted open-source contribution. Topics included contribution workflows, collaboration and using practical projects to develop technical skills.
-                            </p>
-                        </article>
+                    {/* ── WORKFLOWS ── */}
+                    <section id="workflows" className="space-y-3">
+                        <h2 className="text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Turning prompts into workflows</h2>
+                        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                            Map recurring work into inputs, a brief, a draft, a human check, revision, and an approved final version. This works for content planning, customer support, SEO briefs, meeting summaries, research preparation, and proposal drafts.
+                        </p>
+                        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                            Beginners can start with no-code tools. Technical teams can build from the same fundamentals into APIs, retrieval-augmented generation, evaluation, and agentic workflows.
+                        </p>
+                    </section>
 
-                        <p className="text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-white/10 pt-6">
-                            His earlier teaching and mentoring work includes Figma and UI/UX programmes with Code for Change, Sharing Mentorship and DEV Community Nepal, alongside introductory Arduino and robotics instruction at Navodaya Shishu Sadan. This background adds experience explaining technical concepts through guided practice.
+                    {/* ── RESPONSIBLE ── */}
+                    <section id="responsible" className="space-y-3">
+                        <h2 className="text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Responsible AI is practical AI</h2>
+                        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                            Responsible use appears in every task: checking whether a claim is supported, recognising biased language, protecting sensitive information, and telling readers when AI helped create a draft. High-consequence decisions require a high standard of verification.
                         </p>
-                    </div>
-                </section>
+                    </section>
 
-                {/* ── PUBLIC EVENT ACTIVITY ── */}
-                <section aria-labelledby="public-event-activity" className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-lg p-8 md:p-10 mb-8">
-                    <h2 id="public-event-activity" className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-6">
-                        Public event activity
-                    </h2>
-                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-                        Abhishek&rsquo;s{' '}
-                        <a
-                            href="https://luma.com/user/whoisabhishek"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline underline-offset-2"
-                        >
-                            Luma profile
-                        </a>{' '}
-                        provides a public record of event activity. As checked on 5 October 2026, it displays four hosted events. The following event listings identify him as a host or co-host:
-                    </p>
-                    <div className="overflow-x-auto rounded-2xl border border-slate-100 dark:border-white/10">
-                        <table className="w-full text-left text-sm">
-                            <thead className="bg-slate-50 dark:bg-white/5">
-                                <tr>
-                                    <th scope="col" className="px-5 py-4 font-black text-slate-900 dark:text-white">Event</th>
-                                    <th scope="col" className="px-5 py-4 font-black text-slate-900 dark:text-white">Advertised date and location</th>
-                                    <th scope="col" className="px-5 py-4 font-black text-slate-900 dark:text-white">Listed role</th>
-                                    <th scope="col" className="px-5 py-4 font-black text-slate-900 dark:text-white">Programme focus</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-100 dark:divide-white/10">
-                                <tr>
-                                    <th scope="row" className="px-5 py-4 font-bold align-top">
-                                        <a
-                                            href="https://luma.com/1d6w9vfq"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline underline-offset-2"
-                                        >
-                                            Secure Developer Conference 2026
-                                        </a>
-                                    </th>
-                                    <td className="px-5 py-4 text-slate-600 dark:text-slate-300 align-top">31 August&ndash;1 September 2026, Hetauda</td>
-                                    <td className="px-5 py-4 text-slate-600 dark:text-slate-300 align-top">Host</td>
-                                    <td className="px-5 py-4 text-slate-600 dark:text-slate-300 align-top">Development, open source, AI, cloud and cybersecurity</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" className="px-5 py-4 font-bold align-top">
-                                        <a
-                                            href="https://luma.com/jxeyh7fd"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline underline-offset-2"
-                                        >
-                                            Building Applications with IBM Bob
-                                        </a>
-                                    </th>
-                                    <td className="px-5 py-4 text-slate-600 dark:text-slate-300 align-top">1 September 2026, Dragon Banquet, Hetauda</td>
-                                    <td className="px-5 py-4 text-slate-600 dark:text-slate-300 align-top">Co-host with Upendra Prasad Neupane</td>
-                                    <td className="px-5 py-4 text-slate-600 dark:text-slate-300 align-top">Hands-on AI-assisted application development</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mt-5">
-                        Abhishek also served as lead organiser of Secure Developer Conference 2026 and delivered an &ldquo;Open to Open Source&rdquo; session on beginning contributions and collaborating with open-source communities.
-                    </p>
-                </section>
-
-                {/* ── WHY ON 100SEOTOOLS ── */}
-                <section aria-labelledby="why-100seotools" className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-lg p-8 md:p-10 mb-8">
-                    <h2 id="why-100seotools" className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-6">
-                        Why this training appears on 100SEOTools
-                    </h2>
-                    <div className="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-                        <p>
-                            Abhishek is the creator of 100SEOTools. Visitors to the platform already work on content, websites and search visibility. Practical AI training extends that work by helping teams improve how they research, brief, draft and review their material.
+                    {/* ── OPEN SOURCE ── */}
+                    <section id="opensource" className="space-y-3">
+                        <h2 className="text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Open source: 125 AI agent skills, 36 merged PRs</h2>
+                        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                            Reusable agent skills contributed to Agentic Awesome Skills. The README lists the account number 1 under "Most Commits" and number 2 under "Most Skills Added". This public contribution record demonstrates sustained, verifiable open-source AI work.
                         </p>
-                        <p>
-                            The connection is straightforward: useful tools support individual tasks, while training helps people choose the right task, explain their requirements and assess the result.
-                        </p>
-                    </div>
-                </section>
-
-                {/* ── TRAINING ENQUIRY ── */}
-                <section aria-labelledby="enquiry-details" className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-lg p-8 md:p-10 mb-8">
-                    <h2 id="enquiry-details" className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-6">
-                        What to include in your training enquiry
-                    </h2>
-                    <div className="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-                        <p>
-                            Tell us about your organisation, the participants and the work you want to improve. Include two or three examples of relevant tasks without sharing confidential documents or personal information.
-                        </p>
-                        <p>
-                            The discussion can then establish the proposed agenda, delivery format, participant requirements, expected exercises and fee. Any follow-up support or additional deliverables should be stated in the proposal so your team knows what is included.
-                        </p>
-                    </div>
-                    <div className="my-8 flex flex-wrap items-center gap-5">
-                        <a
-                            href="#training-enquiry"
-                            className="inline-flex items-center gap-2 rounded-2xl bg-brand-600 px-6 py-4 text-sm font-black text-white hover:bg-brand-700 transition-all shadow-xl shadow-violet-200 dark:shadow-none"
-                        >
-                            Request a Training Proposal
-                            <ArrowRight className="h-4 w-4" aria-hidden />
+                        <a href="https://github.com/sickn33/agentic-awesome-skills" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300 hover:underline font-bold">
+                            View the repository <ExternalLink className="h-3 w-3" aria-hidden />
                         </a>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium max-w-sm">
-                            Suggested enquiry details: your name, organisation, work email, approximate participant count, training goals, preferred dates and online or in-person preference. Phone number is optional.
-                        </p>
-                    </div>
+                    </section>
 
-                    <TrainingEnquiryForm />
-                </section>
+                    {/* ── PROOF / WORKSHOP ── */}
+                    <section id="proof" className="space-y-4">
+                        <h2 className="text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Workshop and speaking notes</h2>
+                        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                            These references help readers verify my professional identity and work.
+                        </p>
+                        <ul className="space-y-2">
+                            <li>
+                                <a href="https://abhishekadhikari.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300 hover:underline">
+                                    Abhishek Adhikari portfolio <ExternalLink className="h-3 w-3" aria-hidden />
+                                </a>
+                                <span className="text-slate-500 dark:text-slate-400"> . professional background and selected work.</span>
+                            </li>
+                            <li>
+                                <a href="https://kathmandu.wordcamp.org/2026/speaker/abhishek-adhikari/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300 hover:underline">
+                                    WordCamp Kathmandu 2026 speaker profile <ExternalLink className="h-3 w-3" aria-hidden />
+                                </a>
+                                <span className="text-slate-500 dark:text-slate-400"> . public speaking reference.</span>
+                            </li>
+                            <li>
+                                <a href="https://github.com/WHOISABHISHEKADHIKARI" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300 hover:underline">
+                                    GitHub profile <ExternalLink className="h-3 w-3" aria-hidden />
+                                </a>
+                                <span className="text-slate-500 dark:text-slate-400"> . open-source activity and technical work.</span>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/whoisabhishekadhikari/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300 hover:underline">
+                                    LinkedIn profile <ExternalLink className="h-3 w-3" aria-hidden />
+                                </a>
+                                <span className="text-slate-500 dark:text-slate-400"> . professional identity reference.</span>
+                            </li>
+                        </ul>
+
+                        <figure className="mt-6">
+                            <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10">
+                                <img
+                                    src="https://abhishekadhikari.com/sections/volunteering/images/abhishek-adhikari--prompt-engineering-jb-coffee.jpg"
+                                    alt="Prompt engineering workshop at J&B Coffee Hetauda"
+                                    width={800}
+                                    height={450}
+                                    className="w-full h-auto"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <figcaption className="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center">
+                                Prompt engineering workshop at J&B Coffee, Hetauda.
+                            </figcaption>
+                        </figure>
+
+                        <figure className="mt-6">
+                            <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10">
+                                <img
+                                    src="https://abhishekadhikari.com/sections/volunteering/images/abhishek-adhikari--ai-digital-literacy-workshop.jpeg"
+                                    alt="AI and digital literacy workshop session"
+                                    width={800}
+                                    height={450}
+                                    className="w-full h-auto"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <figcaption className="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center">
+                                AI and digital literacy workshop session.
+                            </figcaption>
+                        </figure>
+
+                        <figure className="mt-6">
+                            <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10">
+                                <img
+                                    src="https://abhishekadhikari.com/sections/media/images/abhishek-adhikari--wordcamp-kathmandu-2026-speaker.jpg"
+                                    alt="WordCamp Kathmandu 2026 speaker"
+                                    width={800}
+                                    height={450}
+                                    className="w-full h-auto"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <figcaption className="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center">
+                                Speaking at WordCamp Kathmandu 2026.
+                            </figcaption>
+                        </figure>
+                    </section>
+
+                    {/* ── TAKEAWAY ── */}
+                    <section id="takeaway" className="space-y-3">
+                        <h2 className="text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">What I hope people take away</h2>
+                        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                            The goal is not simply to be faster. It is to do better work with more clarity: to know what to ask, what to question, and when a human decision matters most.
+                        </p>
+                    </section>
+
+                    {/* ── AUTHOR BIO ── */}
+                    <section className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/5">
+                        <h2 className="text-lg font-extrabold text-slate-950 dark:text-white mb-2">About the author</h2>
+                        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Abhishek Adhikari writes and speaks about practical AI workflows, open source, SEO, and digital learning in Nepal. He is the creator of 100 SEO Tools and a contributor to Agentic Awesome Skills.
+                        </p>
+                        <div className="mt-3 flex flex-wrap gap-3">
+                            <Link href="/author" className="text-xs font-bold text-brand-600 hover:text-brand-800 dark:text-brand-400">View full profile</Link>
+                            <a href="https://abhishekadhikari.com/" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-brand-600 hover:text-brand-800 dark:text-brand-400">Portfolio</a>
+                        </div>
+                    </section>
+
+                    {/* ── CTA ── */}
+                    <div className="rounded-2xl border border-brand-200 bg-brand-50 p-6 dark:border-brand-500/30 dark:bg-brand-500/5">
+                        <h2 className="text-xl font-extrabold text-slate-950 dark:text-white mb-2">Looking for corporate AI training in Nepal?</h2>
+                        <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
+                            Share your team's needs and preferred delivery format. I'll confirm availability and propose a scope tailored to your organisation.
+                        </p>
+                        <a href="#training-enquiry" className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-bold text-white hover:bg-brand-500">
+                            Request a Training Proposal <ArrowRight className="h-4 w-4" aria-hidden />
+                        </a>
+                    </div>
+                </div>
 
                 {/* ── FAQ ── */}
-                <section aria-labelledby="faq" className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-lg p-8 md:p-10 mb-8">
-                    <h2 id="faq" className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-6">
-                        Frequently asked questions
-                    </h2>
-                    <div className="space-y-6">
-                        {faqs.map((faq, index) => (
-                            <div key={faq.question} className="border-b border-slate-100 dark:border-white/10 pb-6 last:border-0 last:pb-0">
-                                <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">
-                                    {faq.question}
-                                </h3>
-                                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                                    {faq.answer}
-                                </p>
-                            </div>
+                <section id="faq" className="faq-section mt-10 space-y-4">
+                    <h2 className="text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Frequently asked questions</h2>
+                    <div className="space-y-3">
+                        {faqs.map((faq, i) => (
+                            <details key={i} className="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900">
+                                <summary className="cursor-pointer font-bold text-slate-950 dark:text-white">{faq.question}</summary>
+                                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{faq.answer}</p>
+                            </details>
                         ))}
                     </div>
                 </section>
 
-                {/* ── CLOSING CTA ── */}
-                <section aria-labelledby="plan-workshop" className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white p-8 md:p-12 shadow-xl">
-                    <div className="absolute -top-20 -right-20 w-72 h-72 bg-brand-600/20 rounded-full blur-3xl" aria-hidden />
-                    <div className="relative max-w-2xl">
-                        <h2 id="plan-workshop" className="text-2xl md:text-3xl font-black mb-4">
-                            Plan a useful AI workshop for your team
-                        </h2>
-                        <p className="text-white/70 leading-relaxed mb-4">
-                            Start with one question: which recurring task would your team benefit from doing more clearly and consistently?
-                        </p>
-                        <p className="text-white/70 leading-relaxed mb-8">
-                            Share that task, your audience and your preferred dates to discuss practical AI training with Abhishek Adhikari.
-                        </p>
-                        <div className="flex flex-wrap gap-4">
-                            <a
-                                href="#training-enquiry"
-                                className="inline-flex items-center gap-2 rounded-2xl bg-brand-600 px-6 py-4 text-sm font-black text-white hover:bg-brand-500 transition-all shadow-xl shadow-violet-900/30"
-                            >
-                                Request a Corporate Training Proposal
-                                <ArrowRight className="h-4 w-4" aria-hidden />
-                            </a>
-                            <a
-                                href="https://abhishekadhikari.com/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 rounded-2xl border border-white/25 bg-white/5 px-6 py-4 text-sm font-black text-white hover:bg-white/10 transition-all"
-                            >
-                                Review Abhishek&rsquo;s Profile
-                            </a>
-                        </div>
-                        <p className="text-sm text-white/60 mt-6">
-                            Prefer to write directly? All enquiries can also be handled through{' '}
-                            <a
-                                href="https://abhishekadhikari.com/contact"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="font-bold text-brand-300 hover:text-brand-200 underline underline-offset-2"
-                            >
-                                abhishekadhikari.com/contact
-                            </a>.
-                        </p>
-                    </div>
+                {/* ── ENQUIRY FORM ── */}
+                <section id="training-enquiry" className="mt-10">
+                    <h2 className="text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white mb-4">Request a training proposal</h2>
+                    <TrainingEnquiryForm />
                 </section>
-            </div>
+            </article>
         </div>
     );
 }

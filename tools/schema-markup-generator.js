@@ -30,7 +30,7 @@ const schemaMarkupGenerator = {
       "Validate output with Google's Rich Results Test before publishing",
       "Only include properties that match visible page content",
       "Use the @id property to connect related schema objects",
-      "Keep schema clean — don't add every possible property",
+      "Keep schema clean . don't add every possible property",
       "Update schema when page content changes",
       "Don't use schema for content that isn't visible on the page"
     ],

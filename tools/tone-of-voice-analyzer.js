@@ -30,12 +30,12 @@ const toneOfVoiceAnalyzer = {
     "bestPractices": [
       "Create a baseline tone profile from your best-performing content and use it as your benchmark",
       "Run the analyzer on competitor content to understand how your voice compares in the market",
-      "Set different tone thresholds for different content types—landing pages may be more assertive than blog posts",
+      "Set different tone thresholds for different content types.landing pages may be more assertive than blog posts",
       "Review tone scores before publishing any content that represents your brand publicly",
       "Use the detailed sentence-level feedback to coach writers on specific tone adjustments",
       "Monitor tone across seasonal campaigns where messaging shifts are common"
     ],
-    "exampleResults": "Sample Output:\n\nOverall Tone Score: 87/100 (Aligned)\n\nFormality: 72% formal — Slightly more formal than your benchmark (65%)\nEmotional Tone: Neutral-positive — Matches your target profile\nAssertiveness: High — 3 sentences flagged as overly aggressive for your brand\nOptimism Level: Moderate — Within range for B2B content\n\nDeviations Found:\n- Paragraph 3: Tone shifts to casual mid-article (score: 41% formal vs 72% target)\n- Sentence 12: Overly aggressive phrasing detected\n- Sentence 28: Emotional tone reads as negative despite positive intent\n\nRecommendations:\n1. Rewrite paragraph 3 to maintain formal register\n2. Soften sentence 12 with collaborative language\n3. Adjust sentence 28 to convey optimism more directly",
+    "exampleResults": "Sample Output:\n\nOverall Tone Score: 87/100 (Aligned)\n\nFormality: 72% formal . Slightly more formal than your benchmark (65%)\nEmotional Tone: Neutral-positive . Matches your target profile\nAssertiveness: High . 3 sentences flagged as overly aggressive for your brand\nOptimism Level: Moderate . Within range for B2B content\n\nDeviations Found:\n- Paragraph 3: Tone shifts to casual mid-article (score: 41% formal vs 72% target)\n- Sentence 12: Overly aggressive phrasing detected\n- Sentence 28: Emotional tone reads as negative despite positive intent\n\nRecommendations:\n1. Rewrite paragraph 3 to maintain formal register\n2. Soften sentence 12 with collaborative language\n3. Adjust sentence 28 to convey optimism more directly",
     "relatedTools": ["content-freshness-checker", "keyword-placement-highlighter", "seo-health-score-calculator"],
     "faqs": [
       {

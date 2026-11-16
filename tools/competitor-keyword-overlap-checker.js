@@ -9,9 +9,9 @@ const competitorKeywordOverlapChecker = {
   "template": "duplicateContentChecker",
   "api": true,
   "content": {
-    "introduction": "Competitive keyword analysis is the cornerstone of any successful SEO strategy. Understanding which keywords your competitors rank for—and where your strategies intersect or diverge—provides a roadmap for capturing untapped search traffic. The Competitor Keyword Overlap Checker transforms raw keyword data into actionable intelligence, giving you a clear picture of the competitive landscape in your niche.",
+    "introduction": "Competitive keyword analysis is the cornerstone of any successful SEO strategy. Understanding which keywords your competitors rank for.and where your strategies intersect or diverge.provides a roadmap for capturing untapped search traffic. The Competitor Keyword Overlap Checker transforms raw keyword data into actionable intelligence, giving you a clear picture of the competitive landscape in your niche.",
     "whatItDoes": "This tool compares the keyword profiles of your website against up to four competitors simultaneously, generating a detailed overlap visualization. It identifies shared keywords where both you and competitors rank, exclusive keywords unique to each domain, and calculates an overlap score that quantifies how closely your keyword strategies align. The tool produces a Venn diagram-style breakdown showing the percentage of keyword overlap, the strength of shared rankings, and the size of untapped keyword opportunities waiting to be claimed.",
-    "whyItMatters": "Without understanding keyword overlap, you are essentially guessing at your content strategy. Knowing which keywords you share with competitors reveals where direct competition is fiercest, while exclusive keywords expose gaps you can exploit. A high overlap score indicates intense competition in your core topic areas, requiring differentiated content or stronger backlinks. Low overlap suggests either untapped opportunities or misaligned targeting that needs correction. This intelligence allows you to allocate resources strategically—doubling down on keywords where you have momentum and identifying new territories where competitors have no presence.",
+    "whyItMatters": "Without understanding keyword overlap, you are essentially guessing at your content strategy. Knowing which keywords you share with competitors reveals where direct competition is fiercest, while exclusive keywords expose gaps you can exploit. A high overlap score indicates intense competition in your core topic areas, requiring differentiated content or stronger backlinks. Low overlap suggests either untapped opportunities or misaligned targeting that needs correction. This intelligence allows you to allocate resources strategically.doubling down on keywords where you have momentum and identifying new territories where competitors have no presence.",
     "benefits": [
       "Identifies shared keywords requiring competitive differentiation or stronger content to outrank",
       "Reveals exclusive competitor keywords representing untapped content opportunities for your site",
@@ -29,7 +29,7 @@ const competitorKeywordOverlapChecker = {
     ],
     "bestPractices": [
       "Compare against at least three competitors to get a meaningful picture of keyword overlap patterns in your niche",
-      "Focus on exclusive competitor keywords with moderate search volume—these represent the easiest expansion opportunities",
+      "Focus on exclusive competitor keywords with moderate search volume.these represent the easiest expansion opportunities",
       "Use overlap scores to segment keywords into tiers: high overlap for competitive battle keywords, low overlap for quick wins",
       "Re-run the analysis quarterly to track whether your keyword profile is converging with or diverging from competitors",
       "Cross-reference overlap data with your current rankings to prioritize keywords where you rank on page two versus not ranking at all",

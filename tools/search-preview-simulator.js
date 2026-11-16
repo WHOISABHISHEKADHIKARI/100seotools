@@ -9,9 +9,9 @@ const searchPreviewSimulator = {
   "template": "searchPreviewSimulator",
   "api": true,
   "content": {
-    "introduction": "Before you publish a page, you should know exactly how it will look in Google search results. The Search Preview Simulator renders a pixel-accurate preview of your title, URL, and meta description as they appear on both desktop and mobile SERPs. See if your title gets truncated, whether your description fits within visible limits, and how your snippet compares to typical search result formatting — all before going live.",
+    "introduction": "Before you publish a page, you should know exactly how it will look in Google search results. The Search Preview Simulator renders a pixel-accurate preview of your title, URL, and meta description as they appear on both desktop and mobile SERPs. See if your title gets truncated, whether your description fits within visible limits, and how your snippet compares to typical search result formatting . all before going live.",
     "whatItDoes": "Enter your proposed title tag, URL, and meta description, and the tool renders a realistic Google search result preview. It shows character and pixel measurements, highlights truncation points where text gets cut off with an ellipsis, and switches between desktop and mobile views. The tool also flags common issues like missing keywords, overly generic descriptions, and titles that are too long or too short for optimal display.",
-    "whyItMatters": "Your search snippet is the first impression users have of your page. A truncated title or cut-off description wastes valuable SERP real estate and reduces click-through rates. Google displays approximately 60 characters (or ~580 pixels) for titles and 155-160 characters for descriptions on desktop — but these limits vary by device and character width. The preview simulator lets you optimize within these constraints before publishing, ensuring every character of your snippet works to attract clicks.",
+    "whyItMatters": "Your search snippet is the first impression users have of your page. A truncated title or cut-off description wastes valuable SERP real estate and reduces click-through rates. Google displays approximately 60 characters (or ~580 pixels) for titles and 155-160 characters for descriptions on desktop . but these limits vary by device and character width. The preview simulator lets you optimize within these constraints before publishing, ensuring every character of your snippet works to attract clicks.",
     "benefits": [
       "See exactly how your snippet will appear in Google before publishing",
       "Desktop and mobile preview modes for accurate cross-device optimization",
@@ -29,7 +29,7 @@ const searchPreviewSimulator = {
       "Competitor analysis: preview how competitor snippets compare to yours"
     ],
     "bestPractices": [
-      "Always check both desktop and mobile previews — limits differ",
+      "Always check both desktop and mobile previews . limits differ",
       "Keep titles under 60 characters to avoid truncation on most devices",
       "Place primary keywords in the first 40 characters of your title",
       "Front-load your meta description with the value proposition, not brand name",

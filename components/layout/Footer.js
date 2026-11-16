@@ -17,11 +17,16 @@ const resources = [
   ['All Tools', '/#tools'],
   ['Categories', '/category'],
   ['FAQ', '/faq'],
+  ['SEO Glossary', '/seo-glossary'],
+  ['SEO Statistics', '/seo-statistics'],
+  ['Case Studies', '/case-studies'],
+  ['Free vs Paid Tools', '/compare/free-vs-paid-seo-tools'],
 ];
 
 const company = [
   ['About', '/about'],
   ['Contact', '/contact'],
+  ['Editorial Policy', '/editorial-policy'],
   ['Privacy', '/privacy'],
   ['Terms', '/terms'],
   ['Sitemap', '/sitemap.xml'],

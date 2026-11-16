@@ -109,6 +109,10 @@ export default function sitemap() {
     { path: '/privacy', priority: 0.3, changeFreq: 'yearly' },
     { path: '/terms', priority: 0.3, changeFreq: 'yearly' },
     { path: '/faq', priority: 0.5, changeFreq: 'monthly' },
+    { path: '/seo-glossary', priority: 0.7, changeFreq: 'monthly' },
+    { path: '/seo-statistics', priority: 0.7, changeFreq: 'monthly' },
+    { path: '/case-studies', priority: 0.6, changeFreq: 'monthly' },
+    { path: '/compare/free-vs-paid-seo-tools', priority: 0.6, changeFreq: 'monthly' },
     { path: '/editorial-policy', priority: 0.3, changeFreq: 'yearly' },
   ];
 

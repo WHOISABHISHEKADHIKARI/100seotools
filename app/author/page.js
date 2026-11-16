@@ -77,6 +77,39 @@ export default function AuthorPage() {
     '@context': 'https://schema.org',
     '@graph': [
       {
+        '@type': 'Person',
+        '@id': `${baseUrl}/author#person`,
+        name: 'Abhishek Adhikari',
+        url: `${baseUrl}/author`,
+        image: `${baseUrl}/author.png`,
+        jobTitle: 'Entrepreneur, SEO Expert & Full-Stack Developer',
+        description: 'Creator of 100+ free browser-based SEO tools. SEO strategist and full-stack developer.',
+        sameAs: [
+          'https://github.com/WHOISABHISHEKADHIKARI',
+          'https://www.linkedin.com/in/whoisabhishekadhikari/',
+          'https://abhishekadhikari.com/',
+          'https://www.adhikariavishek.com.np/',
+          'https://hashtagweb.com.np/'
+        ],
+        worksFor: {
+          '@type': 'Organization',
+          '@id': `${baseUrl}/#organization`,
+          name: '100 SEO Tools',
+          url: baseUrl
+        },
+        knowsAbout: [
+          'Search Engine Optimization',
+          'Technical SEO',
+          'Keyword Research',
+          'Schema Markup',
+          'Structured Data',
+          'On-Page Optimization',
+          'Content SEO',
+          'Local SEO',
+          'AI-Powered SEO'
+        ]
+      },
+      {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
@@ -227,4 +260,3 @@ export default function AuthorPage() {
     </div>
   );
 }
-PYEOF

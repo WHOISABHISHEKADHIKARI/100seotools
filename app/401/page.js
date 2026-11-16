@@ -1,18 +1,20 @@
 import Link from 'next/link';
 import { generateStaticPageSchema } from '../../lib/schema';
 import { getBaseUrl } from '../../lib/site';
+import StructuredData from '../../components/ui/StructuredData';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 
 const baseUrl = getBaseUrl();
 
 export const metadata = {
   title: 'Unauthorized (401) | 100 SEO Tools',
   description: 'Page not authorized - Access is denied. You do not have permission to view this page.',
- 
+
   ...createSocialMetadata({
-    title: metadata.title,
-    description: metadata.description,
+    title: 'Unauthorized (401) | 100 SEO Tools',
+    description: 'Page not authorized - Access is denied. You do not have permission to view this page.',
     url: baseUrl,
-    imageAlt: metadata.title,
+    imageAlt: 'Unauthorized (401) | 100 SEO Tools',
   }),
  robots: { index: false, follow: false },
   alternates: { canonical: `${baseUrl}/401` },

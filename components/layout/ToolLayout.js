@@ -22,7 +22,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
     if (seoTitle.length <= 60) return seoTitle;
     // For dash-separated titles like "Free Meta Tag Generator - Create Google & Social Tags"
     // Use just the tool name part before the dash
-    const dashBase = seoTitle.split(/\s*[-–—]\s*/)[0].trim();
+    const dashBase = seoTitle.split(/\s*[-,.]\s*/)[0].trim();
     if (dashBase.length >= 10 && dashBase.length <= 60) return dashBase;
     // Fallback
     return shortToolName(tool.name);
@@ -191,7 +191,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
             <div className="space-y-7 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7 dark:border-white/10 dark:bg-gray-900">
               <section aria-labelledby="intro-heading" className="space-y-3">
                 <h2 id="intro-heading" className="text-2xl font-extrabold text-slate-900 dark:text-white">What is {displayName}</h2>
-                <p className="leading-7 text-slate-600 dark:text-slate-300">{displayName} is a free, browser-based SEO tool from 100 SEO Tools that helps you {guide.whatItDoes?.toLowerCase() || 'optimize your SEO workflow'}. No signup, no data storage — everything runs client-side in your browser for instant, private results.</p>
+                <p className="leading-7 text-slate-600 dark:text-slate-300">{displayName} is a free, browser-based SEO tool from 100 SEO Tools that helps you {guide.whatItDoes?.toLowerCase() || 'optimize your SEO workflow'}. No signup, no data storage . everything runs client-side in your browser for instant, private results.</p>
                 <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-500 dark:text-slate-400">
                   <span className="inline-flex items-center gap-1.5">
                     <Image src="/author.png" alt="Abhishek Adhikari" width={20} height={20} className="rounded-full" />
@@ -204,6 +204,17 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                 </div>
               </section>
 
+              {Array.isArray(guide.bestPractices) && guide.bestPractices.length > 0 && (
+                <section className="rounded-xl border border-brand-100 bg-brand-50/50 p-4 dark:border-brand-500/20 dark:bg-brand-500/5">
+                  <h3 className="mb-2 text-sm font-extrabold text-brand-700 dark:text-brand-300">Key takeaways</h3>
+                  <ul className="space-y-1">
+                    {guide.bestPractices.slice(0, 5).map((bp, index) => (
+                      <li key={index} className="text-xs leading-6 text-slate-600 dark:text-slate-300">- {bp}</li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
               <section className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-5 shadow-sm dark:border-blue-500/20 dark:from-blue-500/10 dark:to-white/[0.03]">
                 <h3 className="mb-3 text-sm font-extrabold text-blue-800 dark:text-blue-200">Key takeaways</h3>
                 <ul className="space-y-2">
@@ -213,7 +224,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                   </li>
                   <li className="flex gap-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
                     <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-earth-500" />
-                    <span>100% browser-based — your data never leaves your device</span>
+                    <span>100% browser-based . your data never leaves your device</span>
                   </li>
                   <li className="flex gap-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
                     <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-earth-500" />
@@ -289,6 +300,52 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                       </li>
                     ))}
                   </ul>
+                </section>
+              )}
+
+              {Array.isArray(guide.commonMistakes) && guide.commonMistakes.length > 0 && (
+                <section className="space-y-3 border-t border-slate-100 pt-7 dark:border-white/5">
+                  <h2 className="scroll-mt-24 text-xl font-extrabold text-slate-900 dark:text-white">Common mistakes</h2>
+                  <ul className="space-y-2">
+                    {guide.commonMistakes.map((m, index) => (
+                      <li key={index} className="flex gap-2 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                        <span className="mt-1 h-4 w-4 flex-shrink-0 text-red-500">!</span>
+                        <span>{m}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {Array.isArray(guide.advancedTips) && guide.advancedTips.length > 0 && (
+                <section className="space-y-3 border-t border-slate-100 pt-7 dark:border-white/5">
+                  <h2 className="scroll-mt-24 text-xl font-extrabold text-slate-900 dark:text-white">Advanced tips</h2>
+                  <ul className="space-y-2">
+                    {guide.advancedTips.map((t, index) => (
+                      <li key={index} className="flex gap-2 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                        <CheckCircle className="mt-1 h-4 w-4 flex-shrink-0 text-brand-500" />
+                        <span>{t}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {Array.isArray(guide.troubleshooting) && guide.troubleshooting.length > 0 && (
+                <section className="space-y-3 border-t border-slate-100 pt-7 dark:border-white/5">
+                  <h2 className="scroll-mt-24 text-xl font-extrabold text-slate-900 dark:text-white">Troubleshooting</h2>
+                  <ul className="space-y-2">
+                    {guide.troubleshooting.map((t, index) => (
+                      <li key={index} className="text-sm leading-7 text-slate-600 dark:text-slate-300">{t}</li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {guide.summary && (
+                <section className="space-y-3 border-t border-slate-100 pt-7 dark:border-white/5">
+                  <h2 className="scroll-mt-24 text-xl font-extrabold text-slate-900 dark:text-white">Summary</h2>
+                  <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">{guide.summary}</p>
                 </section>
               )}
 

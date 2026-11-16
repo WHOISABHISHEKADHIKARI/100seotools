@@ -102,7 +102,7 @@ export async function POST(request) {
     lines.push(`| :--- | :---: | :---: | :---: |`);
 
     const r = (label, av, bv, betterIs = 'higher') => {
-      let winner = '—';
+      let winner = '.';
       if (av != null && bv != null) {
         if (typeof av === 'number' && typeof bv === 'number') {
           if (av !== bv) {
@@ -117,7 +117,7 @@ export async function POST(request) {
 
       const formatVal = (v) => {
         if (typeof v === 'boolean') return v ? '✅ Yes' : '❌ No';
-        if (v == null) return '–';
+        if (v == null) return ',';
         if (label.includes('ms')) return `${v}ms`;
         if (label.includes('KB')) return `${v}KB`;
         return v;

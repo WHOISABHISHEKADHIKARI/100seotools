@@ -27,9 +27,9 @@ const redirect301Generator = {
       "Content pruning: redirect deleted pages to relevant alternatives"
     ],
     "bestPractices": [
-      "Always use 301 (permanent) redirects for moved pages — not 302 (temporary)",
+      "Always use 301 (permanent) redirects for moved pages . not 302 (temporary)",
       "Redirect to the most relevant destination, not just the homepage",
-      "Avoid redirect chains — redirect directly to the final URL",
+      "Avoid redirect chains . redirect directly to the final URL",
       "Update internal links to point to the new URL after redirecting",
       "Test redirects in a staging environment before deploying to production",
       "Monitor Google Search Console for crawl errors after bulk redirects"
@@ -39,7 +39,7 @@ const redirect301Generator = {
     "faqs": [
       { "q": "What is a 301 redirect?", "a": "A 301 redirect is a permanent redirect from one URL to another. It tells search engines the content has moved permanently and transfers link equity from the old URL to the new one." },
       { "q": "Do 301 redirects pass link juice?", "a": "Yes. Google confirms that 301 redirects pass PageRank (link equity) from the old URL to the new one. This is why 301s are essential for URL migrations." },
-      { "q": "What's the difference between 301 and 302?", "a": "A 301 is permanent — use it when content has moved for good. A 302 is temporary — use it when content will return to the original URL. Using the wrong type can confuse crawlers." },
+      { "q": "What's the difference between 301 and 302?", "a": "A 301 is permanent . use it when content has moved for good. A 302 is temporary . use it when content will return to the original URL. Using the wrong type can confuse crawlers." },
       { "q": "How do I redirect an entire domain?", "a": "Use a server-level redirect rule that matches all URLs on the old domain and forwards them to the equivalent pages on the new domain. Our generator handles this for both Apache and Nginx." },
       { "q": "Can too many redirects hurt SEO?", "a": "Yes. Redirect chains (A → B → C) waste crawl budget and slow page loads. Redirect directly to the final URL. Google recommends keeping chains to 5 hops or fewer." }
     ]

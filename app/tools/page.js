@@ -59,11 +59,11 @@ export default function ToolsIndexPage() {
   };
 
   const toolFaqs = [
-    { q: 'What is an SEO tool?', a: 'An SEO tool is software that helps analyze, optimize, and monitor websites for search engine performance. 100 SEO Tools offers 100+ free browser-based tools covering keyword research, technical audits, content optimization, schema generation, backlink analysis, and performance tracking — no signup required, all running client-side for privacy.' },
-    { q: 'Are these SEO tools really free?', a: 'Yes — all 100+ tools are completely free with no paid tiers, no credit card, and no signup required. Every utility runs in your browser with no server-side processing, unlimited usage, and no data collection.' },
-    { q: 'What is the best free SEO tool for keyword research?', a: '100 SEO Tools includes 15+ keyword research utilities — Keyword Suggestion Tool, Keyword Difficulty Checker, Keyword Clustering Tool, Search Intent Classifier, Question Generator, and Keyword Gap Analyzer — all free, browser-based, and privacy-first.' },
-    { q: 'Can I generate schema markup with free tools?', a: 'Yes — the Schema Markup Generator supports 30+ schema types including Article, Product, FAQ, LocalBusiness, Organization, HowTo, and Breadcrumb. Outputs valid JSON-LD compliant with Google Rich Results Test, no API key required.' },
-    { q: 'How do free SEO tools protect my data?', a: 'All tools run client-side using WebAssembly and JavaScript. Your URLs, keywords, and content never leave your browser. There is no server processing, no API logging, and no persistent storage — making it safe for confidential client work.' },
+    { q: 'What is an SEO tool?', a: 'An SEO tool is software that helps analyze, optimize, and monitor websites for search engine performance. 100 SEO Tools offers 100+ free browser-based tools covering keyword research, technical audits, content optimization, schema generation, backlink analysis, and performance tracking . no signup required, all running client-side for privacy.' },
+    { q: 'Are these SEO tools really free?', a: 'Yes . all 100+ tools are completely free with no paid tiers, no credit card, and no signup required. Every utility runs in your browser with no server-side processing, unlimited usage, and no data collection.' },
+    { q: 'What is the best free SEO tool for keyword research?', a: '100 SEO Tools includes 15+ keyword research utilities . Keyword Suggestion Tool, Keyword Difficulty Checker, Keyword Clustering Tool, Search Intent Classifier, Question Generator, and Keyword Gap Analyzer . all free, browser-based, and privacy-first.' },
+    { q: 'Can I generate schema markup with free tools?', a: 'Yes . the Schema Markup Generator supports 30+ schema types including Article, Product, FAQ, LocalBusiness, Organization, HowTo, and Breadcrumb. Outputs valid JSON-LD compliant with Google Rich Results Test, no API key required.' },
+    { q: 'How do free SEO tools protect my data?', a: 'All tools run client-side using WebAssembly and JavaScript. Your URLs, keywords, and content never leave your browser. There is no server processing, no API logging, and no persistent storage . making it safe for confidential client work.' },
   ];
 
   const graphLd = {
@@ -78,7 +78,7 @@ export default function ToolsIndexPage() {
       },
       {
         '@type': 'CollectionPage',
-        name: 'All Free SEO Tools — Complete Online Toolkit',
+        name: 'All Free SEO Tools . Complete Online Toolkit',
         description: `Browse all ${allTools.length} free SEO tools for keyword research, on-page optimization, technical SEO, schema generation, backlink analysis, content optimization, and AI-powered SEO workflows. No signup required.`,
         url: `${baseUrl}/tools`,
         numberOfItems: allTools.length,
@@ -147,17 +147,17 @@ export default function ToolsIndexPage() {
 
           const categorySlug = category.replace(/\s+/g, '-').toLowerCase();
           const definitions = {
-            'Keyword Research': `${category} tools help you discover, analyze, and prioritize search terms your audience uses. These free utilities cover keyword suggestions, difficulty scoring, clustering, search intent classification, question extraction, and gap analysis — all running in your browser with zero configuration.`,
-            'On-Page Optimization': `${category} tools analyze and improve individual page elements for better search visibility. Check meta tags, headings, content structure, readability, keyword density, and internal links with instant browser-based audits — no crawling required.`,
-            'Schema & Structured Data': `${category} tools generate and validate JSON-LD markup for rich results. Supports 30+ types including Article, Product, FAQ, LocalBusiness, Organization, HowTo, and Breadcrumb — compliant with Google Rich Results Test, no API key needed.`,
-            'Technical SEO': `${category} tools audit your site's technical foundation. Crawl simulation, robots.txt validation, redirect chain detection, hreflang checks, canonical analysis, status code testing, and Core Web Vitals measurement — all client-side for zero data leakage.`,
-            'Backlink & Link-Building': `${category} tools analyze your link profile and find new opportunities. Check referring domains, anchor text distribution, link toxicity, competitor backlinks, and broken link prospects — without exposing your data to third-party servers.`,
-            'Content SEO': `${category} tools optimize written content for search engines and readers. Analyze readability, entity density, topical coverage, keyword usage, content freshness, and tone of voice — with AI-powered suggestions for improvement.`,
-            'SEO Performance': `${category} tools forecast and measure SEO impact. Estimate traffic potential, calculate ROI, track ranking progress, analyze click-through rates, and project growth — giving you data-driven decisions without complex spreadsheets.`,
-            'Local SEO': `${category} tools optimize your business for local search. Audit Google Business Profile, manage citations, check NAP consistency, generate local schema, monitor reviews, and find local keyword opportunities — all free and privacy-first.`,
-            'Competitor Analysis': `${category} tools reveal your competitive landscape. Compare keyword portfolios, identify content gaps, analyze backlink profiles, estimate competitor traffic, and spot market opportunities — without expensive enterprise subscriptions.`,
-            'AI-Powered SEO': `${category} tools use large language models to accelerate SEO workflows. Generate content briefs, write meta titles and descriptions, create FAQ content, detect schema opportunities, and rewrite content — all running locally in your browser via WebLLM.`,
-            'SEO Utility': `${category} tools provide everyday helpers for common SEO tasks. Generate slugs, preview SERP snippets, create redirects, format HTML, build checklists, and validate technical elements — simple, fast, and always free.`,
+            'Keyword Research': `${category} tools help you discover, analyze, and prioritize search terms your audience uses. These free utilities cover keyword suggestions, difficulty scoring, clustering, search intent classification, question extraction, and gap analysis . all running in your browser with zero configuration.`,
+            'On-Page Optimization': `${category} tools analyze and improve individual page elements for better search visibility. Check meta tags, headings, content structure, readability, keyword density, and internal links with instant browser-based audits . no crawling required.`,
+            'Schema & Structured Data': `${category} tools generate and validate JSON-LD markup for rich results. Supports 30+ types including Article, Product, FAQ, LocalBusiness, Organization, HowTo, and Breadcrumb . compliant with Google Rich Results Test, no API key needed.`,
+            'Technical SEO': `${category} tools audit your site's technical foundation. Crawl simulation, robots.txt validation, redirect chain detection, hreflang checks, canonical analysis, status code testing, and Core Web Vitals measurement . all client-side for zero data leakage.`,
+            'Backlink & Link-Building': `${category} tools analyze your link profile and find new opportunities. Check referring domains, anchor text distribution, link toxicity, competitor backlinks, and broken link prospects . without exposing your data to third-party servers.`,
+            'Content SEO': `${category} tools optimize written content for search engines and readers. Analyze readability, entity density, topical coverage, keyword usage, content freshness, and tone of voice . with AI-powered suggestions for improvement.`,
+            'SEO Performance': `${category} tools forecast and measure SEO impact. Estimate traffic potential, calculate ROI, track ranking progress, analyze click-through rates, and project growth . giving you data-driven decisions without complex spreadsheets.`,
+            'Local SEO': `${category} tools optimize your business for local search. Audit Google Business Profile, manage citations, check NAP consistency, generate local schema, monitor reviews, and find local keyword opportunities . all free and privacy-first.`,
+            'Competitor Analysis': `${category} tools reveal your competitive landscape. Compare keyword portfolios, identify content gaps, analyze backlink profiles, estimate competitor traffic, and spot market opportunities . without expensive enterprise subscriptions.`,
+            'AI-Powered SEO': `${category} tools use large language models to accelerate SEO workflows. Generate content briefs, write meta titles and descriptions, create FAQ content, detect schema opportunities, and rewrite content . all running locally in your browser via WebLLM.`,
+            'SEO Utility': `${category} tools provide everyday helpers for common SEO tasks. Generate slugs, preview SERP snippets, create redirects, format HTML, build checklists, and validate technical elements . simple, fast, and always free.`,
           };
           const definition = definitions[category];
 
@@ -231,7 +231,7 @@ export default function ToolsIndexPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mb-10 text-center">
             <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">FAQ</p>
-            <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white md:text-4xl">SEO Tools — Common Questions</h2>
+            <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white md:text-4xl">SEO Tools . Common Questions</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">
               Direct answers about free SEO tools, privacy, and capabilities.
             </p>

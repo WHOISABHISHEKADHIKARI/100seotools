@@ -82,7 +82,7 @@ export async function POST(request) {
     const status = estimated < 40 ? 'Excellent' : estimated < 55 ? 'Good' : estimated < 70 ? 'Average' : 'Poor';
 
     const lines = [];
-    lines.push(`Real-Signal Bounce Rate Estimate — ${page.data.finalUrl}`);
+    lines.push(`Real-Signal Bounce Rate Estimate . ${page.data.finalUrl}`);
     lines.push('Source: Live page HTML analysis (no API needed)');
     lines.push('='.repeat(60));
     lines.push('');

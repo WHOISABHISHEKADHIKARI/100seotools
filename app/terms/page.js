@@ -8,8 +8,8 @@ import { createSocialMetadata } from '../../lib/socialMetadata';
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-  ...createSocialMetadata({ url: `${baseUrl}/terms`, title: 'Terms of Service – 100 SEO Tools | Usage Guidelines', description: 'Read the terms governing your use of 100 SEO Tools. Client-side utilities provided as-is for professional SEO productivity.' }),
-  title: 'Terms of Service – 100 SEO Tools | Usage Guidelines',
+  ...createSocialMetadata({ url: `${baseUrl}/terms`, title: 'Terms of Service , 100 SEO Tools | Usage Guidelines', description: 'Read the terms governing your use of 100 SEO Tools. Client-side utilities provided as-is for professional SEO productivity.' }),
+  title: 'Terms of Service , 100 SEO Tools | Usage Guidelines',
   description: 'Read the terms governing your use of 100 SEO Tools. Client-side utilities provided as-is for professional SEO productivity.',
   alternates: { canonical: `${baseUrl}/terms` },
   robots: { index: true, follow: true },
@@ -18,7 +18,7 @@ export const metadata = {
 export default function TermsPage() {
   const pageSchema = generateStaticPageSchema({
     path: '/terms',
-    title: 'Terms of Service – 100 SEO Tools | Usage Guidelines',
+    title: 'Terms of Service , 100 SEO Tools | Usage Guidelines',
     description: 'Read the terms governing your use of 100 SEO Tools. Client-side utilities provided as-is for professional SEO productivity.',
   }, baseUrl);
 
@@ -50,6 +50,8 @@ export default function TermsPage() {
       }
     ]
   };
+
+  const sections = [];
 
   return (
     <div className="bg-[#fafbfc] dark:bg-[#020617] min-h-screen">

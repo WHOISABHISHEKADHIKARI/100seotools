@@ -6,7 +6,7 @@ function getAdvice(rank) {
   if (rank <= 5) return 'Strong Page 1 position. Create supplementary content (FAQ, video) to capture more SERP real estate.';
   if (rank <= 10) return 'Good visibility. Build 2-3 quality backlinks and improve content freshness to climb higher.';
   if (rank <= 15) return 'Bottom of Page 1. Add internal links from high-authority pages and refresh outdated content.';
-  if (rank <= 20) return 'Page 2 — "Striking Distance". Update title/meta for better CTR, bulk up content with examples.';
+  if (rank <= 20) return 'Page 2 . "Striking Distance". Update title/meta for better CTR, bulk up content with examples.';
   if (rank <= 30) return 'Page 3. Improve E-E-A-T signals, add schema markup, and target long-tail variations.';
   if (rank <= 50) return 'Deep in results. Focus on topical authority, comprehensive content, and backlinks from related sites.';
   return 'Low visibility. Build foundational SEO: quality content, technical basics, and consistent link building.';
@@ -90,7 +90,7 @@ export async function POST(request) {
       lines.push('- Add FAQ schema and video markup to compete for rich results.');
     } else if (avgCur <= 20) {
       lines.push('- 🎯 Target keywords just above your average with refreshed content and better internal linking.');
-      lines.push('- Prioritize keywords where you dropped in position — audit those pages for technical issues.');
+      lines.push('- Prioritize keywords where you dropped in position . audit those pages for technical issues.');
       lines.push('- Build 1-2 contextual backlinks per week to pages in positions 11-20.');
     } else {
       lines.push('- 🚀 Focus on low-competition, long-tail keywords to build ranking momentum.');

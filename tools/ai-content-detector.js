@@ -28,7 +28,7 @@ const aiContentDetector = {
       "A freelance writer demonstrating content authenticity to clients who require human-written work"
     ],
     "bestPractices": [
-      "Analyze content in context—short passages may trigger false positives while longer texts provide more reliable detection",
+      "Analyze content in context.short passages may trigger false positives while longer texts provide more reliable detection",
       "Use probability scores as one signal alongside editorial judgment rather than relying solely on automated detection",
       "Check content that has been heavily edited or rewritten, as these may show mixed human-AI patterns",
       "Establish baseline scores for your typical content to identify anomalies more reliably in future submissions",

@@ -19,55 +19,55 @@ export async function POST(request) {
     const passes = [];
 
     // Title
-    if (!meta.title) issues.push('❌ **Title Tag Missing** — Crucial for SEO. Every page needs a unique title.');
-    else if (meta.title.length < 30) issues.push(`⚠️ **Title Too Short** (${meta.title.length} chars) — Aim for 50–60 characters.`);
-    else if (meta.title.length > 60) issues.push(`⚠️ **Title Too Long** (${meta.title.length} chars) — Google may truncate in SERPs.`);
-    else passes.push(`✅ **Title Optimized** — ${meta.title.length} chars.`);
+    if (!meta.title) issues.push('❌ **Title Tag Missing** . Crucial for SEO. Every page needs a unique title.');
+    else if (meta.title.length < 30) issues.push(`⚠️ **Title Too Short** (${meta.title.length} chars) . Aim for 50,60 characters.`);
+    else if (meta.title.length > 60) issues.push(`⚠️ **Title Too Long** (${meta.title.length} chars) . Google may truncate in SERPs.`);
+    else passes.push(`✅ **Title Optimized** . ${meta.title.length} chars.`);
 
     // Meta Description
-    if (!meta.metaDescription) issues.push('❌ **Meta Description Missing** — Missed CTR opportunity. Add a compelling 150–160 char description.');
-    else if (meta.metaDescription.length < 100) issues.push(`⚠️ **Meta Description Too Short** (${meta.metaDescription.length} chars) — Aim for 150–160.`);
-    else if (meta.metaDescription.length > 160) issues.push(`⚠️ **Meta Description Too Long** (${meta.metaDescription.length} chars) — Shorten to ~150–160.`);
-    else passes.push(`✅ **Meta Description Optimized** — ${meta.metaDescription.length} chars.`);
+    if (!meta.metaDescription) issues.push('❌ **Meta Description Missing** . Missed CTR opportunity. Add a compelling 150,160 char description.');
+    else if (meta.metaDescription.length < 100) issues.push(`⚠️ **Meta Description Too Short** (${meta.metaDescription.length} chars) . Aim for 150,160.`);
+    else if (meta.metaDescription.length > 160) issues.push(`⚠️ **Meta Description Too Long** (${meta.metaDescription.length} chars) . Shorten to ~150,160.`);
+    else passes.push(`✅ **Meta Description Optimized** . ${meta.metaDescription.length} chars.`);
 
     // H1
-    if (meta.headings.h1.length === 0) issues.push('❌ **H1 Tag Missing** — Page structure is unclear. Use exactly one H1.');
-    else if (meta.headings.h1.length > 1) issues.push(`⚠️ **Multiple H1 Tags** (${meta.headings.h1.length} found) — Use exactly one H1 per page.`);
-    else passes.push(`✅ **H1 Present** — "${meta.headings.h1[0].slice(0, 80)}"`);
+    if (meta.headings.h1.length === 0) issues.push('❌ **H1 Tag Missing** . Page structure is unclear. Use exactly one H1.');
+    else if (meta.headings.h1.length > 1) issues.push(`⚠️ **Multiple H1 Tags** (${meta.headings.h1.length} found) . Use exactly one H1 per page.`);
+    else passes.push(`✅ **H1 Present** . "${meta.headings.h1[0].slice(0, 80)}"`);
 
     // Canonical
-    if (!meta.canonical) issues.push('⚠️ **Canonical Tag Missing** — Add a self-referencing canonical to prevent duplicate content issues.');
-    else passes.push(`✅ **Canonical Tag Present** — ${meta.canonical}`);
+    if (!meta.canonical) issues.push('⚠️ **Canonical Tag Missing** . Add a self-referencing canonical to prevent duplicate content issues.');
+    else passes.push(`✅ **Canonical Tag Present** . ${meta.canonical}`);
 
     // Content length
-    if (meta.wordCount < 300) issues.push(`⚠️ **Thin Content** — Only ~${meta.wordCount} words. Aim for 500+ words for meaningful SEO impact.`);
-    else if (meta.wordCount < 500) issues.push(`⚠️ **Content Could Be Deeper** — ~${meta.wordCount} words. 600+ words typically ranks better.`);
-    else passes.push(`✅ **Content Length Good** — ~${meta.wordCount} words.`);
+    if (meta.wordCount < 300) issues.push(`⚠️ **Thin Content** . Only ~${meta.wordCount} words. Aim for 500+ words for meaningful SEO impact.`);
+    else if (meta.wordCount < 500) issues.push(`⚠️ **Content Could Be Deeper** . ~${meta.wordCount} words. 600+ words typically ranks better.`);
+    else passes.push(`✅ **Content Length Good** . ~${meta.wordCount} words.`);
 
     // Images without alt text
     const imgsNoAlt = meta.images.filter(i => !i.hasAlt || !i.alt);
     if (meta.images.length > 0 && imgsNoAlt.length > 0) {
-      issues.push(`⚠️ **${imgsNoAlt.length} Image(s) Missing Alt Text** — Add descriptive alt attributes for accessibility and SEO.`);
+      issues.push(`⚠️ **${imgsNoAlt.length} Image(s) Missing Alt Text** . Add descriptive alt attributes for accessibility and SEO.`);
     } else if (meta.images.length > 0) {
       passes.push(`✅ **All ${meta.images.length} images have alt text**`);
     }
 
     // Internal links
     const internalLinks = meta.links.filter(l => !l.isAnchor && !l.isMailto && l.host && page.data.finalUrl.includes(l.host));
-    if (internalLinks.length < 2) issues.push(`⚠️ **Few Internal Links** (${internalLinks.length}) — Add 3+ internal links to help crawl and distribute authority.`);
+    if (internalLinks.length < 2) issues.push(`⚠️ **Few Internal Links** (${internalLinks.length}) . Add 3+ internal links to help crawl and distribute authority.`);
     else passes.push(`✅ **${internalLinks.length} Internal Links Found**`);
 
     // Open Graph
-    if (!meta.ogTags.title) issues.push('⚠️ **Open Graph Title Missing** — Controls how your page appears when shared on social media.');
-    if (!meta.metaDescription && !meta.ogTags.description) issues.push('⚠️ **OG Description Missing** — Add og:description for social sharing.');
+    if (!meta.ogTags.title) issues.push('⚠️ **Open Graph Title Missing** . Controls how your page appears when shared on social media.');
+    if (!meta.metaDescription && !meta.ogTags.description) issues.push('⚠️ **OG Description Missing** . Add og:description for social sharing.');
 
     // Viewport
-    if (!meta.viewport) issues.push('⚠️ **Viewport Meta Tag Missing** — Required for mobile responsiveness.');
+    if (!meta.viewport) issues.push('⚠️ **Viewport Meta Tag Missing** . Required for mobile responsiveness.');
     else passes.push('✅ **Viewport Meta Tag Present**');
 
     // Word count per H2 (structure)
     const h2Count = meta.headings.h2.length;
-    if (h2Count < 2) issues.push(`⚠️ **Only ${h2Count} H2 Subheadings** — Add more H2s to improve scannability and keyword targeting.`);
+    if (h2Count < 2) issues.push(`⚠️ **Only ${h2Count} H2 Subheadings** . Add more H2s to improve scannability and keyword targeting.`);
 
     const issueCount = issues.length;
     const passCount = passes.length;
@@ -83,7 +83,7 @@ export async function POST(request) {
     lines.push(`**Checks Passed:** ${passCount}/${totalChecks}`);
     lines.push('');
 
-    // Issues FIRST — the user asked for issues to appear at the top
+    // Issues FIRST . the user asked for issues to appear at the top
     lines.push('## Issues Found');
     if (issues.length) {
       issues.forEach(i => lines.push(`- ${i}`));

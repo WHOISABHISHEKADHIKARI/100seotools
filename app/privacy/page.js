@@ -9,8 +9,8 @@ import { createSocialMetadata } from '../../lib/socialMetadata';
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-  ...createSocialMetadata({ url: `${baseUrl}/privacy`, title: 'Privacy Policy – 100 SEO Tools | Your Data Security Matters', description: 'Learn how 100 SEO Tools handles data, privacy, and cookies. We are a browser-based platform and do not store or sell your personal data.' }),
-  title: 'Privacy Policy – 100 SEO Tools | Your Data Security Matters',
+  ...createSocialMetadata({ url: `${baseUrl}/privacy`, title: 'Privacy Policy , 100 SEO Tools | Your Data Security Matters', description: 'Learn how 100 SEO Tools handles data, privacy, and cookies. We are a browser-based platform and do not store or sell your personal data.' }),
+  title: 'Privacy Policy , 100 SEO Tools | Your Data Security Matters',
   description: 'Learn how 100 SEO Tools handles data, privacy, and cookies. We are a browser-based platform and do not store or sell your personal data.',
   alternates: { canonical: `${baseUrl}/privacy` },
   robots: { index: true, follow: true },
@@ -19,7 +19,7 @@ export const metadata = {
 export default function PrivacyPage() {
   const pageSchema = generateStaticPageSchema({
     path: '/privacy',
-    title: 'Privacy Policy – 100 SEO Tools | Your Data Security Matters',
+    title: 'Privacy Policy , 100 SEO Tools | Your Data Security Matters',
     description: 'Learn how 100 SEO Tools handles data, privacy, and cookies. We are a browser-based platform and do not store or sell your personal data.',
   }, baseUrl);
 
@@ -51,6 +51,8 @@ export default function PrivacyPage() {
       }
     ]
   };
+
+  const sections = [];
 
   return (
     <div className="bg-[#fafbfc] dark:bg-[#020617] min-h-screen">

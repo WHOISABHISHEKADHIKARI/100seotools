@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { FileText, Bird, Mail, Megaphone } from 'lucide-react';
 
 export default function ShareActions({ url = '', title = '' }) {
   const [copied, setCopied] = useState(false);
@@ -51,7 +52,7 @@ export default function ShareActions({ url = '', title = '' }) {
   return (
     <div aria-label="Share actions" className="not-prose flex flex-wrap items-center gap-3">
       <button onClick={onCopy} className={iconBtn} aria-label="Copy link">
-        <span role="img" aria-hidden="true">📋</span>
+        <span role="img" aria-hidden="true"><FileText className="h-4 w-4 lucide lucide-file-text" /></span>
         <span>{copied ? 'Copied!' : 'Copy link'}</span>
       </button>
       <button onClick={onWebShare} className={iconBtn} aria-label="Share">
@@ -59,7 +60,7 @@ export default function ShareActions({ url = '', title = '' }) {
         <span>Share</span>
       </button>
       <a href={shareLinks.twitter} target="_blank" rel="noopener noreferrer" className={iconBtn} aria-label="Share on Twitter">
-        <span role="img" aria-hidden="true">🐦</span>
+        <span role="img" aria-hidden="true"><Bird className="h-4 w-4 lucide lucide-bird" /></span>
         <span>Twitter</span>
       </a>
       <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" className={iconBtn} aria-label="Share on LinkedIn">
@@ -67,11 +68,11 @@ export default function ShareActions({ url = '', title = '' }) {
         <span>LinkedIn</span>
       </a>
       <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer" className={iconBtn} aria-label="Share on Facebook">
-        <span role="img" aria-hidden="true">📣</span>
+        <span role="img" aria-hidden="true"><Megaphone className="h-4 w-4 lucide lucide-megaphone" /></span>
         <span>Facebook</span>
       </a>
       <a href={shareLinks.email} className={iconBtn} aria-label="Share via Email">
-        <span role="img" aria-hidden="true">✉️</span>
+        <span role="img" aria-hidden="true"><Mail className="h-4 w-4 lucide lucide-mail" /></span>
         <span>Email</span>
       </a>
       {status ? <span className="text-xs text-slate-600 dark:text-slate-300">{status}</span> : null}

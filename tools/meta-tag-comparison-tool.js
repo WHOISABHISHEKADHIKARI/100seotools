@@ -48,7 +48,7 @@ const metaTagComparisonTool = {
       },
       {
         "q": "Should I copy my competitors' meta tags exactly?",
-        "a": "Never copy competitor metadata verbatim. Use the comparison as inspiration to craft your own unique messaging that aligns with your brand voice and value proposition. The goal is to understand what works in your niche and then differentiate yourself—standing out in search results is just as important as matching competitor standards."
+        "a": "Never copy competitor metadata verbatim. Use the comparison as inspiration to craft your own unique messaging that aligns with your brand voice and value proposition. The goal is to understand what works in your niche and then differentiate yourself.standing out in search results is just as important as matching competitor standards."
       }
     ]
   }

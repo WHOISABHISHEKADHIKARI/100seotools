@@ -67,9 +67,9 @@ async function snapshot(siteInput) {
 }
 
 function row(label, a, b, betterIs = 'higher') {
-  const av = a == null ? '–' : a;
-  const bv = b == null ? '–' : b;
-  let winner = '—';
+  const av = a == null ? ',' : a;
+  const bv = b == null ? ',' : b;
+  let winner = '.';
   if (a != null && b != null && a !== b) {
     const aBetter = betterIs === 'higher' ? a > b : a < b;
     winner = aBetter ? '◀ A' : 'B ▶';

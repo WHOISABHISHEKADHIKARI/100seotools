@@ -9,7 +9,7 @@ const aiMetaTagWriter = {
   "template": "aiMetaTagWriter",
   "api": true,
   "content": {
-    "introduction": "The AI Meta Tag Writer takes the guesswork out of crafting the two most visible elements of any search listing — the title tag and meta description. By analyzing your target keyword, brand voice, and competitive landscape, it produces optimized tags that balance search engine requirements with human appeal.",
+    "introduction": "The AI Meta Tag Writer takes the guesswork out of crafting the two most visible elements of any search listing . the title tag and meta description. By analyzing your target keyword, brand voice, and competitive landscape, it produces optimized tags that balance search engine requirements with human appeal.",
     "whatItDoes": "Enter a target keyword or page URL and the tool generates multiple meta title and description variations. Each suggestion stays within recommended character limits (approximately 60 characters for titles, 155 for descriptions), integrates primary and secondary keywords naturally, and includes persuasive language patterns proven to boost click-through rates from the SERP.",
     "whyItMatters": "Title tags and meta descriptions are your first impression in search results. A compelling title can lift organic CTR by 20 percent or more, directly translating to additional traffic without ranking changes. Poorly written tags cause users to skip over your listing even if you rank in position one, wasting the SEO equity you earned.",
     "benefits": [
@@ -31,9 +31,9 @@ const aiMetaTagWriter = {
       "Include a power word or emotional trigger in every title (e.g., proven, essential, free, guide)",
       "Front-load the primary keyword in the title tag while keeping it readable",
       "Write descriptions that expand on the title with a clear value proposition or call to action",
-      "Avoid duplicating titles across pages — use the tool to create unique variations for each URL"
+      "Avoid duplicating titles across pages . use the tool to create unique variations for each URL"
     ],
-    "exampleResults": "Sample Output:\n\nKeyword: \"wireless earbuds 2025\"\n\nTitle Option 1: Best Wireless Earbuds 2025 — Top 10 Picks Tested & Ranked\nTitle Option 2: 10 Wireless Earbuds That Actually Deliver on Battery Life (2025)\nTitle Option 3: Wireless Earbuds Compared: Find Your Perfect Pair in 2025\n\nDescription Option 1: We tested 30+ wireless earbuds for sound quality, battery life, and comfort. See our expert picks for every budget and find the right pair today.\nDescription Option 2: Looking for wireless earbuds that last? Our hands-on reviews cover noise cancelling, fit, and audio quality so you can choose with confidence.\nDescription Option 3: Not sure which wireless earbuds to buy? Compare top-rated models side by side — from budget-friendly to premium — in our 2025 guide.",
+    "exampleResults": "Sample Output:\n\nKeyword: \"wireless earbuds 2025\"\n\nTitle Option 1: Best Wireless Earbuds 2025 . Top 10 Picks Tested & Ranked\nTitle Option 2: 10 Wireless Earbuds That Actually Deliver on Battery Life (2025)\nTitle Option 3: Wireless Earbuds Compared: Find Your Perfect Pair in 2025\n\nDescription Option 1: We tested 30+ wireless earbuds for sound quality, battery life, and comfort. See our expert picks for every budget and find the right pair today.\nDescription Option 2: Looking for wireless earbuds that last? Our hands-on reviews cover noise cancelling, fit, and audio quality so you can choose with confidence.\nDescription Option 3: Not sure which wireless earbuds to buy? Compare top-rated models side by side . from budget-friendly to premium . in our 2025 guide.",
     "relatedTools": ["ai-content-outline-generator", "ai-snippet-generator", "ai-competitor-title-rewriter", "search-preview-simulator"],
     "faqs": [
       {"q": "Why does the tool suggest multiple variations instead of one perfect tag?", "a": "No single meta tag works universally. Different search intents respond to different language patterns. Providing multiple options allows you to A/B test and identify which phrasing resonates most with your specific audience."},

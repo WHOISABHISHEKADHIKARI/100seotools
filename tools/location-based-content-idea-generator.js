@@ -31,7 +31,7 @@ const locationBasedContentIdeaGenerator = {
       "Research local events, landmarks, and community organizations to ensure content ideas feel authentic and current",
       "Create separate content strategies for each neighborhood or service area you target to build granular local authority",
       "Incorporate natural geographic references rather than forcing location keywords into every paragraph",
-      "Combine local content with genuine expertise—share knowledge that helps locals, not just content that mentions locations",
+      "Combine local content with genuine expertise.share knowledge that helps locals, not just content that mentions locations",
       "Update location-based content regularly to reflect current events, seasonal changes, and community developments",
       "Encourage community engagement by featuring local businesses, organizations, and events in your content"
     ],
@@ -40,15 +40,15 @@ const locationBasedContentIdeaGenerator = {
     "faqs": [
       {
         "q": "How many location-specific pages should I create for my service area?",
-        "a": "Create individual pages for each distinct neighborhood, city, or service area where you genuinely operate. Focus on locations where you have actual customers and can provide authentic local knowledge. Quality matters more than quantity—five comprehensive neighborhood pages with genuine local insights outperform fifty thin, keyword-stuffed location pages. Aim for 3-5 pages per major area you serve."
+        "a": "Create individual pages for each distinct neighborhood, city, or service area where you genuinely operate. Focus on locations where you have actual customers and can provide authentic local knowledge. Quality matters more than quantity.five comprehensive neighborhood pages with genuine local insights outperform fifty thin, keyword-stuffed location pages. Aim for 3-5 pages per major area you serve."
       },
       {
         "q": "What if my business serves multiple cities or regions?",
-        "a": "Create dedicated content strategies for each geographic market, as local search signals are inherently geographic. Develop unique content for each area that references local landmarks, events, and community characteristics. Avoid duplicating the same content with different city names substituted—search engines recognize this as thin content. Each location page should provide genuine value specific to that area."
+        "a": "Create dedicated content strategies for each geographic market, as local search signals are inherently geographic. Develop unique content for each area that references local landmarks, events, and community characteristics. Avoid duplicating the same content with different city names substituted.search engines recognize this as thin content. Each location page should provide genuine value specific to that area."
       },
       {
         "q": "How do I incorporate local events into my content strategy?",
-        "a": "Research your area's annual events, seasonal activities, and community happenings. Create content that connects your business expertise to these events—like plumbing tips before festival season or HVAC maintenance before summer heat. Publish event-related content 2-4 weeks before the event to capture search traffic from people planning to attend. Update content annually to keep it fresh and relevant."
+        "a": "Research your area's annual events, seasonal activities, and community happenings. Create content that connects your business expertise to these events.like plumbing tips before festival season or HVAC maintenance before summer heat. Publish event-related content 2-4 weeks before the event to capture search traffic from people planning to attend. Update content annually to keep it fresh and relevant."
       }
     ]
   }

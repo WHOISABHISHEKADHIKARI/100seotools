@@ -1,4 +1,4 @@
-import { getBaseUrl, siteName, socialLinks, socialPreviewImage, twitterHandle } from '../lib/site';
+import { getBaseUrl, siteName, socialPreviewImage, twitterHandle } from '../lib/site';
 import { socialImageHeight, socialImageType, socialImageWidth } from '../lib/socialMetadata';
 const baseUrl = getBaseUrl();
 const defaultSocialImage = `${baseUrl}${socialPreviewImage}`;
@@ -93,17 +93,15 @@ if (typeof window !== 'undefined') {
 import ErrorBoundary from '../components/layout/ErrorBoundary';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
-import StructuredData from '../components/ui/StructuredData';
 import ClientLayout from '../components/layout/ClientLayout';
 import ClientRoot from '../components/layout/ClientRoot';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { generateHomepageGraphSchema } from '../lib/schema';
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google Analytics (gtag) — load only when GA_ID is set and analytics not disabled */}
+        {/* Google Analytics (gtag) . load only when GA_ID is set and analytics not disabled */}
         {enableAnalytics && (
           <>
             <Script
@@ -125,12 +123,12 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <meta charSet="UTF-8" />
-        <meta name="theme-color" content="#7c3aed" />
+        <meta name="theme-color" content="#0f172a" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="icon" href="/icon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
         <link rel="icon" href="/icon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
         <link rel="shortcut icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="mask-icon" href="/icon.svg" color="#7c3aed" />
+        <link rel="mask-icon" href="/icon.svg" color="#0f172a" />
         <link rel="manifest" href="/manifest.json" />
 
         {/* Minimal critical inline CSS to avoid flash of wrong colors before Tailwind loads */}
@@ -143,11 +141,9 @@ export default function RootLayout({ children }) {
 
 
 
-        {/* Service worker removed — wastes crawl budget with no SEO benefit */}
+        {/* Service worker removed . wastes crawl budget with no SEO benefit */}
       </head>
       <body suppressHydrationWarning className="min-h-screen bg-[color-bg] text-[color-fg] selection:bg-[color-brand-100] selection:text-[color-brand-900] dark:bg-[color-slate-950] dark:text-[color-slate-100]">
-        {/* Consolidated Semantic Graph for SEO, AEO, and GEO */}
-        <StructuredData data={generateHomepageGraphSchema(baseUrl, socialLinks)} />
         {/* Skip to main content link for accessibility */}
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-brand-600 text-white px-4 py-2 rounded-xl z-50 shadow-xl">
           Skip to main content

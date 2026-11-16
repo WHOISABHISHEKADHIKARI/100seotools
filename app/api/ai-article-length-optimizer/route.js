@@ -36,7 +36,7 @@ export async function POST(request) {
         if (k.includes('beginners')) base += 200;
         if (k.includes('best') || k.includes('top')) base += 500;
 
-        // Deterministic micro-adjustment based on topic hash — gives stable, reproducible results.
+        // Deterministic micro-adjustment based on topic hash . gives stable, reproducible results.
         let h = 0;
         for (let i = 0; i < k.length; i++) h = ((h << 5) - h + k.charCodeAt(i)) | 0;
         base += (Math.abs(h) % 101) - 50;

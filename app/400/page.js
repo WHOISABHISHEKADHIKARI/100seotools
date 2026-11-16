@@ -1,18 +1,20 @@
 import Link from 'next/link';
 import { generateStaticPageSchema } from '../../lib/schema';
 import { getBaseUrl } from '../../lib/site';
+import StructuredData from '../../components/ui/StructuredData';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 
 const baseUrl = getBaseUrl();
 
 export const metadata = {
   title: 'Bad Request (400) | 100 SEO Tools',
   description: 'Page not found - Bad Request. The server could not understand your request due to invalid syntax.',
- 
+
   ...createSocialMetadata({
-    title: metadata.title,
-    description: metadata.description,
+    title: 'Bad Request (400) | 100 SEO Tools',
+    description: 'Page not found - Bad Request. The server could not understand your request due to invalid syntax.',
     url: baseUrl,
-    imageAlt: metadata.title,
+    imageAlt: 'Bad Request (400) | 100 SEO Tools',
   }),
  robots: { index: false, follow: false },
   alternates: { canonical: `${baseUrl}/400` },

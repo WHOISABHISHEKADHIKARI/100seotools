@@ -1,18 +1,20 @@
 import Link from 'next/link';
 import { generateStaticPageSchema } from '../../lib/schema';
 import { getBaseUrl } from '../../lib/site';
+import StructuredData from '../../components/ui/StructuredData';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 
 const baseUrl = getBaseUrl();
 
 export const metadata = {
   title: 'Too Many Requests (429) | 100 SEO Tools',
   description: 'Rate limited - Too many requests have been sent in a given amount of time.',
- 
+
   ...createSocialMetadata({
-    title: metadata.title,
-    description: metadata.description,
+    title: 'Too Many Requests (429) | 100 SEO Tools',
+    description: 'Rate limited - Too many requests have been sent in a given amount of time.',
     url: baseUrl,
-    imageAlt: metadata.title,
+    imageAlt: 'Too Many Requests (429) | 100 SEO Tools',
   }),
  robots: { index: false, follow: false },
   alternates: { canonical: `${baseUrl}/429` },

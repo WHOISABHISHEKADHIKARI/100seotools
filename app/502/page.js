@@ -1,18 +1,20 @@
 import Link from 'next/link';
 import { generateStaticPageSchema } from '../../lib/schema';
 import { getBaseUrl } from '../../lib/site';
+import StructuredData from '../../components/ui/StructuredData';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 
 const baseUrl = getBaseUrl();
 
 export const metadata = {
   title: 'Bad Gateway (502) | 100 SEO Tools',
   description: 'Server error - The server received an invalid response from an upstream server.',
- 
+
   ...createSocialMetadata({
-    title: metadata.title,
-    description: metadata.description,
+    title: 'Bad Gateway (502) | 100 SEO Tools',
+    description: 'Server error - The server received an invalid response from an upstream server.',
     url: baseUrl,
-    imageAlt: metadata.title,
+    imageAlt: 'Bad Gateway (502) | 100 SEO Tools',
   }),
  robots: { index: false, follow: false },
   alternates: { canonical: `${baseUrl}/502` },

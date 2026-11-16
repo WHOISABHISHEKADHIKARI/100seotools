@@ -96,7 +96,7 @@ export default function SEOCostCalculatorPage() {
       <StructuredData data={howToLd} />
 
       <header className="space-y-2 mb-4">
-        <h1 className="text-2xl md:text-3xl font-bold">SEO Cost Calculator – Free SEO Pricing Estimator</h1>
+        <h1 className="text-2xl md:text-3xl font-bold">SEO Cost Calculator , Free SEO Pricing Estimator</h1>
         <p className="text-slate-700 dark:text-slate-300 max-w-3xl">Estimate monthly and project SEO budgets with transparent breakdowns. Understand how pricing is shaped by content creation, keyword research, link building, technical SEO, on‑page optimization, audits, reporting, and tools.</p>
       </header>
 
@@ -145,31 +145,31 @@ export default function SEOCostCalculatorPage() {
           <h3>Low‑Budget Plan</h3>
           <p>Focus on essentials: light monthly edits, a small number of new pages, basic link acquisition, and foundational technical fixes.</p>
           <ul>
-            <li>Retainer: $300–$800</li>
-            <li>Labor: 10–20 hours/mo</li>
-            <li>Content: 2–4 pieces/mo</li>
-            <li>Links: 2–5/mo</li>
-            <li>Tools: $0–$100/mo</li>
+            <li>Retainer: $300,$800</li>
+            <li>Labor: 10,20 hours/mo</li>
+            <li>Content: 2,4 pieces/mo</li>
+            <li>Links: 2,5/mo</li>
+            <li>Tools: $0,$100/mo</li>
           </ul>
 
           <h3>Mid‑Budget Plan</h3>
           <p>Balanced publishing, link acquisition, and technical improvements; suitable for competitive niches with steady growth targets.</p>
           <ul>
-            <li>Retainer: $800–$2,000</li>
-            <li>Labor: 25–50 hours/mo</li>
-            <li>Content: 4–8 pieces/mo</li>
-            <li>Links: 6–12/mo</li>
-            <li>Tools: $100–$300/mo</li>
+            <li>Retainer: $800,$2,000</li>
+            <li>Labor: 25,50 hours/mo</li>
+            <li>Content: 4,8 pieces/mo</li>
+            <li>Links: 6,12/mo</li>
+            <li>Tools: $100,$300/mo</li>
           </ul>
 
           <h3>Premium Plan</h3>
           <p>Aggressive publishing, digital PR, and advanced technical projects; targets competitive queries, scale, and brand authority.</p>
           <ul>
-            <li>Retainer: $2,000–$5,000+</li>
-            <li>Labor: 60–120 hours/mo</li>
-            <li>Content: 8–20 pieces/mo</li>
-            <li>Links: 12–30+/mo</li>
-            <li>Tools: $300–$800/mo</li>
+            <li>Retainer: $2,000,$5,000+</li>
+            <li>Labor: 60,120 hours/mo</li>
+            <li>Content: 8,20 pieces/mo</li>
+            <li>Links: 12,30+/mo</li>
+            <li>Tools: $300,$800/mo</li>
           </ul>
         </section>
 
@@ -177,16 +177,16 @@ export default function SEOCostCalculatorPage() {
           <h2>Cost Breakdowns and Benchmarks</h2>
           <p>Use the calculator to produce a clean breakdown of monthly costs (labor, content, links, tools, contingency) and multi‑month totals. Benchmarks vary by industry and competition; start lean, then increase investment as results compound.</p>
           <ul>
-            <li>Content/unit: $50–$500+ depending on quality and niche</li>
-            <li>Links/unit: $50–$500+ depending on approach</li>
+            <li>Content/unit: $50,$500+ depending on quality and niche</li>
+            <li>Links/unit: $50,$500+ depending on approach</li>
             <li>Technical sprints: billed hourly or per project</li>
-            <li>Tools: $0–$800/mo depending on stack</li>
+            <li>Tools: $0,$800/mo depending on stack</li>
           </ul>
         </section>
 
         <section id="competitor-comparisons">
           <h2>Competitor Comparisons</h2>
-          <p>Benchmark top competitors for content velocity, publishing cadence, and link acquisition ratio. Model plans that match or exceed their pace by 10–20% while maintaining quality and avoiding spammy practices.</p>
+          <p>Benchmark top competitors for content velocity, publishing cadence, and link acquisition ratio. Model plans that match or exceed their pace by 10,20% while maintaining quality and avoiding spammy practices.</p>
         </section>
 
         <section id="faq">
@@ -197,11 +197,11 @@ export default function SEOCostCalculatorPage() {
           </details>
           <details>
             <summary>What is a typical monthly SEO budget?</summary>
-            <p>Small sites: $500–$1,500; growing businesses: $1,500–$4,000; competitive niches: $4,000+ depending on output and goals.</p>
+            <p>Small sites: $500,$1,500; growing businesses: $1,500,$4,000; competitive niches: $4,000+ depending on output and goals.</p>
           </details>
           <details>
             <summary>Should I add contingency?</summary>
-            <p>Yes. A 10–20% contingency helps account for scope changes, unforeseen technical work, or increased content/links needed to compete.</p>
+            <p>Yes. A 10,20% contingency helps account for scope changes, unforeseen technical work, or increased content/links needed to compete.</p>
           </details>
         </section>
       </article>

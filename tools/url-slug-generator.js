@@ -27,19 +27,19 @@ const urlSlugGenerator = {
       "International content: generate slugs from non-English titles"
     ],
     "bestPractices": [
-      "Keep slugs under 5 words — shorter is always better",
+      "Keep slugs under 5 words . shorter is always better",
       "Include your primary keyword in the slug",
       "Use hyphens to separate words (not underscores or spaces)",
       "Remove stop words (a, the, and, for) to shorten slugs",
-      "Don't change slugs after publishing — it breaks existing links",
+      "Don't change slugs after publishing . it breaks existing links",
       "Match slug to page title for consistency"
     ],
     "exampleResults": "Input: \"The Complete Guide to On-Page SEO Optimization in 2026\"\n\nOutput (with stop words): the-complete-guide-to-on-page-seo-optimization-in-2026\nOutput (without stop words): complete-guide-on-page-seo-optimization-2026\nOutput (short): on-page-seo-guide\n\nInput: \"How to Generate Meta Tags for Your Website\"\n\nOutput: how-to-generate-meta-tags-website\n\nInput: \"Best Free SEO Tools for Small Businesses\"\n\nOutput: best-free-seo-tools-small-businesses",
     "relatedTools": ["meta-tag-generator", "og-tag-generator", "redirect-301-generator", "xml-sitemap-visualizer", "canonical-url-builder"],
     "faqs": [
-      { "q": "What makes a good URL slug?", "a": "A good slug is short (2–5 words), includes your primary keyword, uses hyphens to separate words, and accurately describes the page content." },
+      { "q": "What makes a good URL slug?", "a": "A good slug is short (2,5 words), includes your primary keyword, uses hyphens to separate words, and accurately describes the page content." },
       { "q": "Should I include keywords in my URL slug?", "a": "Yes. Including your primary keyword in the slug is a minor but consistent ranking signal. It also helps users understand what the page is about before clicking." },
-      { "q": "How long should a URL slug be?", "a": "Aim for 3–5 words. Shorter slugs are easier to share, remember, and type. Google treats all words in the URL equally, so length matters less than clarity." },
+      { "q": "How long should a URL slug be?", "a": "Aim for 3,5 words. Shorter slugs are easier to share, remember, and type. Google treats all words in the URL equally, so length matters less than clarity." },
       { "q": "Can I change my URL slug after publishing?", "a": "Technically yes, but you must set up a 301 redirect from the old URL to the new one. Changing slugs breaks existing links and social shares, so do it sparingly." },
       { "q": "Hyphens or underscores in URLs?", "a": "Always use hyphens. Google treats hyphens as word separators but treats underscores as word joiners. Use hyphens for better readability and SEO." }
     ]

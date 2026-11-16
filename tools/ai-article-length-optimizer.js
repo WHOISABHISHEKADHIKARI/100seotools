@@ -9,7 +9,7 @@ const aiArticleLengthOptimizer = {
   "template": "aiArticleLengthOptimizer",
   "api": true,
   "content": {
-    "introduction": "The AI Article Length Optimizer answers the question every content creator asks — how long should my article be? Instead of relying on generic benchmarks, it analyzes the actual word counts of pages currently ranking for your target keyword and provides a data-driven recommendation tailored to the competitive landscape of that specific query.",
+    "introduction": "The AI Article Length Optimizer answers the question every content creator asks . how long should my article be? Instead of relying on generic benchmarks, it analyzes the actual word counts of pages currently ranking for your target keyword and provides a data-driven recommendation tailored to the competitive landscape of that specific query.",
     "whatItDoes": "Enter your target keyword and the tool scrapes the word counts of the top ten organic results, calculates the average, median, and range, then recommends an optimal word count for your article. It also factors in content depth indicators like heading count, image usage, and internal link density to determine whether the competing pages achieve their depth through length or through structured presentation.",
     "whyItMatters": "Writing too short leaves gaps that competitors fill, causing your page to be perceived as incomplete by both readers and search engines. Writing too long wastes resources and risks diluting your key messages. The right length is determined by what the SERP demands, not by arbitrary rules. This tool grounds your content length decisions in competitive reality.",
     "benefits": [
@@ -27,9 +27,9 @@ const aiArticleLengthOptimizer = {
       "Agencies building content strategies that allocate resources based on realistic length requirements"
     ],
     "bestPractices": [
-      "Use the recommended range rather than a fixed number — aim for the middle of the suggested bracket",
+      "Use the recommended range rather than a fixed number . aim for the middle of the suggested bracket",
       "Consider content type: how-to guides often need more words than definition articles on the same topic",
-      "Factor in your authority level — newer sites sometimes need more comprehensive content to compete",
+      "Factor in your authority level . newer sites sometimes need more comprehensive content to compete",
       "Recheck recommendations periodically as competitor content tends to grow longer over time",
       "Combine length optimization with the AI Content Outline Generator to ensure added length serves a structural purpose"
     ],

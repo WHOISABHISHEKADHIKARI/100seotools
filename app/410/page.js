@@ -1,18 +1,20 @@
 import Link from 'next/link';
 import { generateStaticPageSchema } from '../../lib/schema';
 import { getBaseUrl } from '../../lib/site';
+import StructuredData from '../../components/ui/StructuredData';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 
 const baseUrl = getBaseUrl();
 
 export const metadata = {
   title: 'Gone (410) | 100 SEO Tools',
   description: 'Page deleted - The requested resource is no longer available and this condition is likely permanent.',
- 
+
   ...createSocialMetadata({
-    title: metadata.title,
-    description: metadata.description,
+    title: 'Gone (410) | 100 SEO Tools',
+    description: 'Page deleted - The requested resource is no longer available and this condition is likely permanent.',
     url: baseUrl,
-    imageAlt: metadata.title,
+    imageAlt: 'Gone (410) | 100 SEO Tools',
   }),
  robots: { index: false, follow: false },
   alternates: { canonical: `${baseUrl}/410` },

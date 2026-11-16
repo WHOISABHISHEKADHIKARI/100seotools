@@ -11,7 +11,7 @@ const ogTagGenerator = {
   "content": {
     "introduction": "When someone shares your page on Facebook, LinkedIn, or Twitter, Open Graph tags control the title, description, and image that appear in the preview. The OG Tag Generator creates a complete set of Open Graph meta tags from your page details. Enter your title, description, image URL, and page URL, then get copy-paste-ready tags that ensure your content looks professional on every social platform.",
     "whatItDoes": "The tool generates og:title, og:description, og:image, og:url, og:type, and og:site_name meta tags from your inputs. It validates URL formats, checks image dimensions, and formats descriptions for optimal social preview display. The output is clean HTML ready to paste into your <head> section.",
-    "whyItMatters": "Social media is a major traffic source, and first impressions matter. Without Open Graph tags, platforms pull random content from your page — often truncated titles and mismatched images. Properly configured OG tags ensure your content appears polished and professional in social feeds, increasing click-through rates and referral traffic.",
+    "whyItMatters": "Social media is a major traffic source, and first impressions matter. Without Open Graph tags, platforms pull random content from your page . often truncated titles and mismatched images. Properly configured OG tags ensure your content appears polished and professional in social feeds, increasing click-through rates and referral traffic.",
     "benefits": [
       "Generate complete Open Graph tag sets instantly",
       "Control title, description, and image in social previews",
@@ -27,8 +27,8 @@ const ogTagGenerator = {
       "Content marketing: maximize social sharing impact"
     ],
     "bestPractices": [
-      "Use og:title (60–90 chars) that's different from your page title — optimized for social",
-      "Write og:description (100–200 chars) with a compelling hook for social feeds",
+      "Use og:title (60,90 chars) that's different from your page title . optimized for social",
+      "Write og:description (100,200 chars) with a compelling hook for social feeds",
       "Use high-quality images: 1200×630px for Facebook, 1200×628px for LinkedIn",
       "Always include og:url with the canonical page URL",
       "Set og:type to 'website' for homepages, 'article' for blog posts",
@@ -39,7 +39,7 @@ const ogTagGenerator = {
     "faqs": [
       { "q": "What are Open Graph tags?", "a": "Open Graph tags are meta tags that control how your content appears when shared on social platforms like Facebook, LinkedIn, and Twitter. They define the title, description, image, and URL shown in social previews." },
       { "q": "Do OG tags affect SEO?", "a": "Indirectly. OG tags don't directly impact search rankings, but they control social sharing previews. Better previews drive more social traffic, which can indirectly improve rankings through increased engagement signals." },
-      { "q": "What image size should I use for OG tags?", "a": "Use 1200×630 pixels for the best display across all platforms. This size works for Facebook, LinkedIn, and most other social networks. Avoid text-heavy images — keep them clean and readable." },
+      { "q": "What image size should I use for OG tags?", "a": "Use 1200×630 pixels for the best display across all platforms. This size works for Facebook, LinkedIn, and most other social networks. Avoid text-heavy images . keep them clean and readable." },
       { "q": "Can I test my OG tags?", "a": "Yes. Use Facebook's Sharing Debugger (developers.facebook.com/tools/debug) and LinkedIn's Post Inspector to preview how your content will appear when shared." },
       { "q": "What's the difference between OG and Twitter tags?", "a": "Open Graph tags are used by most platforms (Facebook, LinkedIn, Pinterest). Twitter uses its own tags (twitter:card, twitter:title, etc.) but falls back to OG tags if Twitter-specific tags are missing." }
     ]

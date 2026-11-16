@@ -235,7 +235,7 @@ export default function ContactForm() {
                                     </div>
                                     <div>
                                         <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Business Hours</div>
-                                        <div className="text-sm font-bold text-slate-900 dark:text-white">Mon — Fri: 9am - 6pm EST</div>
+                                        <div className="text-sm font-bold text-slate-900 dark:text-white">Mon . Fri: 9am - 6pm EST</div>
                                     </div>
                                 </div>
                             </div>

@@ -97,6 +97,57 @@ const nextConfig = withBundleAnalyzer({
       // The correct tool slug is text-translator
       { source: '/blog/translate-to-english-complete-guide', destination: '/tools/text-translator', permanent: true },
 
+      // Fix 404s for non-existent tool slugs -> closest existing tool
+      { source: '/tools/ai-meta-description-generator', destination: '/tools/ai-meta-tag-writer', permanent: true },
+      { source: '/tools/robots-txt-generator', destination: '/tools/robots-txt-creator', permanent: true },
+      { source: '/tools/website-speed-test', destination: '/tools/page-speed-score-simulator', permanent: true },
+      { source: '/tools/local-content-idea-generator', destination: '/tools/location-based-content-idea-generator', permanent: true },
+      { source: '/tools/local-content-idea-generator-guide', destination: '/tools/location-based-content-idea-generator', permanent: true },
+      { source: '/tools/gmb-optimization-helper', destination: '/tools/gmb-optimization-helper', permanent: true },
+
+      // Fix 404 for non-existent category
+      { source: '/category/content-tools', destination: '/category/content-seo', permanent: true },
+
+      // Fix 404 for placeholder URL
+      { source: '/tool-name', destination: '/tools', permanent: true },
+
+      // Fix 404 for /search (SearchAction removed; redirect to tools)
+      { source: '/search', destination: '/tools', permanent: true },
+
+      // Fix 404s for genuinely missing blog posts -> /blog
+      { source: '/blog/structured-data-markup-how-to-use', destination: '/blog', permanent: true },
+      { source: '/blog/elasticsearch-seo-content-search-guide', destination: '/blog', permanent: true },
+      { source: '/blog/json-ld-schema-javascript-guide', destination: '/blog', permanent: true },
+      { source: '/blog/headless-cms-seo-comparison-guide', destination: '/blog', permanent: true },
+      { source: '/blog/seo-friendly-api-design-guide', destination: '/blog', permanent: true },
+      { source: '/blog/broken-link-checker-guide', destination: '/tools/broken-link-finder', permanent: true },
+      { source: '/blog/robots-txt-generator-complete-guide', destination: '/tools/robots-txt-creator', permanent: true },
+      { source: '/blog/free-meta-tag-generator-guide', destination: '/tools/meta-tag-generator', permanent: true },
+      { source: '/blog/nap-consistency-local-seo-audit-guide', destination: '/tools/nap-consistency-checker', permanent: true },
+      { source: '/blog/local-citation-finder-guide-1', destination: '/tools/local-citation-finder', permanent: true },
+      { source: '/blog/word-count-structure-checker-guide-2', destination: '/tools/word-count-structure-checker', permanent: true },
+      { source: '/blog/redirect-301-generator-guide', destination: '/tools/redirect-301-generator', permanent: true },
+      { source: '/blog/redirect-301-generator-guide-3', destination: '/tools/redirect-301-generator', permanent: true },
+      { source: '/blog/keyword-placement-highlighter-guide-3', destination: '/tools/keyword-placement-highlighter', permanent: true },
+      { source: '/blog/keyword-intent-identifier-guide-1', destination: '/tools/keyword-intent-identifier', permanent: true },
+      { source: '/blog/keyword-intent-identifier-guide-3', destination: '/tools/keyword-intent-identifier', permanent: true },
+      { source: '/blog/page-speed-score-simulator-guide-3', destination: '/tools/page-speed-score-simulator', permanent: true },
+      { source: '/blog/on-page-seo-audit-checker-guide-3', destination: '/tools/on-page-seo-audit-checker', permanent: true },
+      { source: '/blog/visibility-index-calculator-guide-3', destination: '/tools/visibility-index-calculator', permanent: true },
+      { source: '/blog/keyword-comparison-tool-guide-3', destination: '/tools/keyword-comparison-tool', permanent: true },
+      { source: '/blog/link-relevance-evaluator-guide-1', destination: '/tools/link-relevance-evaluator', permanent: true },
+      { source: '/blog/link-source-categorizer-guide-3', destination: '/tools/link-source-categorizer', permanent: true },
+      { source: '/blog/geo-keyword-expansion-tool-guide-1', destination: '/tools/geo-keyword-expansion-tool', permanent: true },
+      { source: '/blog/ctr-predictor-guide-3', destination: '/tools/ctr-predictor', permanent: true },
+      { source: '/blog/canonical-url-builder-guide-3', destination: '/tools/canonical-url-builder', permanent: true },
+      { source: '/blog/ai-article-length-optimizer-guide-3', destination: '/tools/ai-article-length-optimizer', permanent: true },
+      { source: '/blog/outreach-email-template-generator-guide-3', destination: '/tools/outreach-email-template-generator', permanent: true },
+      { source: '/blog/long-tail-keyword-generator-guide-2', destination: '/tools/long-tail-keyword-generator', permanent: true },
+      { source: '/blog/meta-description-optimizer-guide-1', destination: '/tools/meta-description-optimizer', permanent: true },
+      { source: '/blog/structured-data-validator-guide-2', destination: '/tools/structured-data-validator', permanent: true },
+      { source: '/blog/location-based-content-idea-generator-guide-3', destination: '/tools/location-based-content-idea-generator', permanent: true },
+      { source: '/blog/local-schema-builder-guide-1', destination: '/tools/local-schema-builder', permanent: true },
+
       // Fix tool variant URLs that should point to the tool itself (clean up GSC 404s)
       { source: '/tools/:slug-guide', destination: '/tools/:slug', permanent: true },
       { source: '/tools/:slug-best-practices-integrations-costs', destination: '/tools/:slug', permanent: true },
@@ -160,7 +211,7 @@ const nextConfig = withBundleAnalyzer({
       source: '/:path*.(jpg|jpeg|png|webp|avif|svg|ico|woff2|css|js)',
       headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
     },
-    // Service worker removed — no longer needed
+    // Service worker removed .  no longer needed
     // Block pagination pages from indexing (critical SEO fix)
     {
       source: '/(p|tp)/:page',

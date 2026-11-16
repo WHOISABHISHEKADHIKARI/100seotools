@@ -11,7 +11,7 @@ const domainComparisonReportTool = {
   "content": {
     "introduction": "Understanding how your domain stacks up against competitors requires more than just checking individual metrics in isolation. The Domain Comparison Report Tool provides a holistic side-by-side analysis of two domains, revealing not just where you stand but where strategic gaps exist. This comprehensive comparison examines authority, traffic patterns, content strategy, and technical performance to create a complete picture of competitive positioning.",
     "whatItDoes": "This tool generates a detailed comparison report between your domain and a competitor, analyzing domain authority scores, estimated organic traffic, backlink profiles, content strategy differences, and technical SEO health. It examines blog indexing patterns, content publishing frequency, topical coverage, and technical performance metrics. The report highlights areas where the competitor outperforms you and identifies specific improvements that could close the gap or flip the advantage.",
-    "whyItMatters": "Individual SEO metrics only tell part of the story. A domain might have high authority but poor content strategy, or strong traffic but weak technical performance. The Domain Comparison Report reveals these nuances, showing you exactly where to focus your optimization efforts. By understanding the full competitive picture, you can prioritize improvements that deliver the greatest impact rather than chasing metrics in isolation. This tool also uncovers content strategy differences—if a competitor blogs more frequently or covers topics you have ignored, those insights shape your content calendar.",
+    "whyItMatters": "Individual SEO metrics only tell part of the story. A domain might have high authority but poor content strategy, or strong traffic but weak technical performance. The Domain Comparison Report reveals these nuances, showing you exactly where to focus your optimization efforts. By understanding the full competitive picture, you can prioritize improvements that deliver the greatest impact rather than chasing metrics in isolation. This tool also uncovers content strategy differences.if a competitor blogs more frequently or covers topics you have ignored, those insights shape your content calendar.",
     "benefits": [
       "Provides a holistic authority comparison showing domain strength differences and growth trajectories",
       "Estimates organic traffic for both domains to benchmark relative search visibility",
@@ -28,9 +28,9 @@ const domainComparisonReportTool = {
       "A website owner investigating why competitors consistently outrank them for target keywords"
     ],
     "bestPractices": [
-      "Compare against your most direct competitors—those targeting the same keywords and audience—not aspirational industry leaders",
+      "Compare against your most direct competitors.those targeting the same keywords and audience.not aspirational industry leaders",
       "Run comparisons at regular intervals (monthly or quarterly) to track competitive shifts over time",
-      "Focus on the largest gaps first—improvements in areas where you trail significantly have the most impact",
+      "Focus on the largest gaps first.improvements in areas where you trail significantly have the most impact",
       "Use the traffic estimation to set realistic benchmarks for your growth goals based on competitor performance",
       "Analyze technical SEO differences especially if your competitor ranks higher despite similar content quality",
       "Document findings and track which competitor advantages you have closed over successive comparison periods"
@@ -48,7 +48,7 @@ const domainComparisonReportTool = {
       },
       {
         "q": "What should I do if my competitor outperforms me in every metric?",
-        "a": "Start with the largest gaps and work backward—prioritize the areas where the difference is most significant. Technical SEO improvements often provide quick wins, while content and authority building are longer-term plays. Focus on one metric at a time, set realistic improvement targets, and measure progress over successive comparison periods."
+        "a": "Start with the largest gaps and work backward.prioritize the areas where the difference is most significant. Technical SEO improvements often provide quick wins, while content and authority building are longer-term plays. Focus on one metric at a time, set realistic improvement targets, and measure progress over successive comparison periods."
       }
     ]
   }

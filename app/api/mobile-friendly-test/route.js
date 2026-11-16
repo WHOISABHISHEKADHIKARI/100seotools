@@ -10,21 +10,21 @@ function analyzeMobile(html, meta) {
   if (meta?.viewport) {
     const vp = meta.viewport.toLowerCase();
     if (vp.includes('width=device-width')) passes.push('Viewport sets width=device-width');
-    else issues.push('Viewport missing width=device-width — page may not scale correctly on mobile');
+    else issues.push('Viewport missing width=device-width . page may not scale correctly on mobile');
 
     if (vp.includes('initial-scale=1') || vp.includes('initial-scale=1.0')) passes.push('Viewport sets initial-scale=1');
-    else warnings.push('Viewport missing initial-scale=1 — may cause unexpected zoom behavior');
+    else warnings.push('Viewport missing initial-scale=1 . may cause unexpected zoom behavior');
 
     if (vp.includes('maximum-scale=1') || vp.includes('user-scalable=no')) {
-      issues.push('Viewport disables user zoom (maximum-scale or user-scalable=no) — hurts accessibility');
+      issues.push('Viewport disables user zoom (maximum-scale or user-scalable=no) . hurts accessibility');
     }
   } else {
-    issues.push('No viewport meta tag — page will NOT be mobile-friendly');
+    issues.push('No viewport meta tag . page will NOT be mobile-friendly');
   }
 
   // 2. HTML lang
   if (meta?.lang) passes.push(`HTML lang attribute set to "${meta.lang}"`);
-  else warnings.push('Missing HTML lang attribute — affects accessibility');
+  else warnings.push('Missing HTML lang attribute . affects accessibility');
 
   // 3. Image responsiveness
   const images = meta?.images || [];
@@ -42,11 +42,11 @@ function analyzeMobile(html, meta) {
   if (hasResponsiveImages || hasResponsiveCss) {
     passes.push('Images use responsive attributes (srcset, max-width, or responsive classes)');
   } else if (images.length > 0) {
-    warnings.push(`${images.length} images found — none use srcset or responsive classes. Add max-width:100% for mobile safety.`);
+    warnings.push(`${images.length} images found . none use srcset or responsive classes. Add max-width:100% for mobile safety.`);
   }
 
   if (imgsWithoutAlt.length > 0) {
-    warnings.push(`${imgsWithoutAlt.length} images missing alt text — affects accessibility and image SEO`);
+    warnings.push(`${imgsWithoutAlt.length} images missing alt text . affects accessibility and image SEO`);
   } else if (images.length > 0) {
     passes.push('All images have alt text');
   }
@@ -54,11 +54,11 @@ function analyzeMobile(html, meta) {
   // 4. Responsive CSS patterns
   const mediaQueries = (html.match(/@media[^{]*\{/gi) || []).length;
   if (mediaQueries >= 3) {
-    passes.push(`Found ${mediaQueries} media queries — responsive design detected`);
+    passes.push(`Found ${mediaQueries} media queries . responsive design detected`);
   } else if (mediaQueries > 0) {
-    warnings.push(`Only ${mediaQueries} media query found — may need more responsive breakpoints`);
+    warnings.push(`Only ${mediaQueries} media query found . may need more responsive breakpoints`);
   } else {
-    warnings.push('No @media queries found — page may not be responsive');
+    warnings.push('No @media queries found . page may not be responsive');
   }
 
   // 5. Font size analysis
@@ -68,7 +68,7 @@ function analyzeMobile(html, meta) {
     return size > 0 && size < 14;
   });
   if (smallFonts.length > 0) {
-    issues.push(`${smallFonts.length} elements with font-size < 14px — too small for mobile reading`);
+    issues.push(`${smallFonts.length} elements with font-size < 14px . too small for mobile reading`);
   } else {
     passes.push('No dangerously small font sizes detected');
   }
@@ -80,7 +80,7 @@ function analyzeMobile(html, meta) {
     return w >= 768;
   });
   if (largeFixedWidths.length > 0) {
-    issues.push(`${largeFixedWidths.length} elements with fixed width ≥ 768px — may cause horizontal scrolling on mobile`);
+    issues.push(`${largeFixedWidths.length} elements with fixed width ≥ 768px . may cause horizontal scrolling on mobile`);
   } else {
     passes.push('No large fixed-width elements detected');
   }
@@ -88,26 +88,26 @@ function analyzeMobile(html, meta) {
   // 7. Horizontal overflow risk
   const hasOverflowHidden = /overflow\s*:\s*hidden/i.test(html);
   const hasBoxSizing = /box-sizing\s*:\s*border-box/i.test(html);
-  if (hasBoxSizing) passes.push('Uses box-sizing: border-box — prevents width overflow');
+  if (hasBoxSizing) passes.push('Uses box-sizing: border-box . prevents width overflow');
   if (hasOverflowHidden) passes.push('Uses overflow: hidden on some elements');
 
   // 8. Tap target analysis (from inline styles)
   const smallPadding = html.match(/(?:padding|margin)\s*:\s*[1-4]px/gi) || [];
   if (smallPadding.length > 5) {
-    warnings.push(`${smallPadding.length} elements with very small padding/margin — may cause tap target issues`);
+    warnings.push(`${smallPadding.length} elements with very small padding/margin . may cause tap target issues`);
   }
 
   // 9. Mobile-unfriendly patterns
   const hasFrames = /<iframe[^>]/i.test(html);
-  if (hasFrames) warnings.push('Page contains iframes — may not render correctly on mobile');
+  if (hasFrames) warnings.push('Page contains iframes . may not render correctly on mobile');
 
   const hasFlash = /<object|<embed|flash/i.test(html);
-  if (hasFlash) issues.push('Page uses Flash — not supported on mobile devices');
+  if (hasFlash) issues.push('Page uses Flash . not supported on mobile devices');
 
   // 10. Structured data in mobile
   const hasJsonLd = /application\/ld\+json/i.test(html);
   if (hasJsonLd) passes.push('Structured data (JSON-LD) present');
-  else warnings.push('No structured data found — may miss rich result opportunities');
+  else warnings.push('No structured data found . may miss rich result opportunities');
 
   // 11. Meta tags
   if (meta?.title) passes.push('Title tag present');
@@ -119,7 +119,7 @@ function analyzeMobile(html, meta) {
   // 12. Lazy loading
   const hasLazyLoading = /loading\s*=\s*["']lazy["']/i.test(html);
   if (hasLazyLoading) passes.push('Uses native lazy loading on images');
-  else if (images.length > 3) warnings.push('No lazy loading detected on images — add loading="lazy" for below-fold images');
+  else if (images.length > 3) warnings.push('No lazy loading detected on images . add loading="lazy" for below-fold images');
 
   // 13. Touch events
   const hasTouchEvents = /ontouchstart|ontouchmove|touch-action/i.test(html);
@@ -149,7 +149,7 @@ export async function POST(request) {
       lines.push(`  HTTP status:  ${page.data.status}`);
       lines.push(`  Page weight:  ${(page.data.bytes / 1024).toFixed(1)} KB`);
       lines.push(`  Response time: ${page.data.elapsedMs} ms`);
-      lines.push(`  Viewport:     ${meta?.viewport ? 'YES — ' + meta.viewport : 'MISSING (critical)'}`);
+      lines.push(`  Viewport:     ${meta?.viewport ? 'YES . ' + meta.viewport : 'MISSING (critical)'}`);
       lines.push(`  HTML lang:    ${meta?.lang || 'missing'}`);
       lines.push(`  Title:        ${meta?.title ? meta.title.substring(0, 80) : 'MISSING'}`);
       lines.push(`  Images:       ${meta?.images?.length || 0} found`);
@@ -176,11 +176,11 @@ export async function POST(request) {
     lines.push('');
 
     if (totalIssues === 0 && score >= 80) {
-      lines.push('VERDICT: PASS — Page is mobile-friendly.');
+      lines.push('VERDICT: PASS . Page is mobile-friendly.');
     } else if (totalIssues <= 2 && score >= 60) {
-      lines.push('VERDICT: MOSTLY PASS — Minor issues to fix.');
+      lines.push('VERDICT: MOSTLY PASS . Minor issues to fix.');
     } else {
-      lines.push('VERDICT: NEEDS WORK — See issues below.');
+      lines.push('VERDICT: NEEDS WORK . See issues below.');
     }
     lines.push('');
 

@@ -30,7 +30,7 @@ const competitorSummaryReportCreator = {
     "bestPractices": [
       "Update competitor profiles quarterly to capture meaningful changes in competitive positioning",
       "Include multiple competitors in separate reports to enable side-by-side strategic comparison",
-      "Tailor the report depth to your audience—executive summaries for leadership, detailed metrics for tactical teams",
+      "Tailor the report depth to your audience.executive summaries for leadership, detailed metrics for tactical teams",
       "Use the strategic recommendations as starting points for discussion rather than final action items",
       "Share reports cross-functionally to ensure sales, product, and marketing teams align on competitive understanding",
       "Track which competitor strengths and weaknesses change over time to identify emerging threats and opportunities"
@@ -40,7 +40,7 @@ const competitorSummaryReportCreator = {
     "faqs": [
       {
         "q": "How detailed should a competitor summary report be?",
-        "a": "The level of detail depends on your audience. Executive summaries for leadership should focus on high-level findings, key opportunities, and strategic recommendations—typically 2-3 pages. Tactical reports for SEO and content teams should include detailed metrics, specific keyword data, and granular recommendations—potentially 5-10 pages. The tool provides both formats, and you can customize the depth based on your needs."
+        "a": "The level of detail depends on your audience. Executive summaries for leadership should focus on high-level findings, key opportunities, and strategic recommendations.typically 2-3 pages. Tactical reports for SEO and content teams should include detailed metrics, specific keyword data, and granular recommendations.potentially 5-10 pages. The tool provides both formats, and you can customize the depth based on your needs."
       },
       {
         "q": "How often should I create updated competitor summary reports?",

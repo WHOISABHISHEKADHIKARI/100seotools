@@ -10,7 +10,7 @@ const blogTitleGenerator = {
   "api": true,
   "content": {
     "introduction": "A blog title is the first impression your content makes on both search engines and human readers. Our Blog Title Generator crafts compelling, keyword-rich headlines that balance SEO requirements with click-worthy appeal. Whether you need a BuzzFeed-style curiosity hook or an authority-driven title, this tool produces options tailored to your topic and audience.",
-    "whatItDoes": "This tool takes a seed topic or keyword and generates a curated list of blog title variations. It applies proven headline formulas—list posts, how-to guides, questions, and power word combinations—while embedding target keywords naturally. Titles are optimized for SERP display length, ensuring they won't be truncated in search results.",
+    "whatItDoes": "This tool takes a seed topic or keyword and generates a curated list of blog title variations. It applies proven headline formulas.list posts, how-to guides, questions, and power word combinations.while embedding target keywords naturally. Titles are optimized for SERP display length, ensuring they won't be truncated in search results.",
     "whyItMatters": "Headlines directly influence click-through rates, which are a significant ranking signal. A poorly crafted title can bury great content, while a strong one can outperform higher-authority pages. Consistent title optimization compounds over time, driving more organic clicks and reducing bounce rates from mismatched expectations.",
     "benefits": [
       "Generates dozens of title variations from a single topic input",
@@ -30,7 +30,7 @@ const blogTitleGenerator = {
     "bestPractices": [
       "Place your primary keyword within the first 60 characters of the title",
       "Include power words like 'ultimate,' 'proven,' or 'essential' to boost CTR",
-      "Use numbers in titles when relevant—odd numbers tend to perform slightly better",
+      "Use numbers in titles when relevant.odd numbers tend to perform slightly better",
       "Keep titles under 60 characters to prevent SERP truncation",
       "Match title style to search intent: how-to for informational, comparison for commercial",
       "Test multiple title variations to identify which resonates with your audience"

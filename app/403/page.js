@@ -1,18 +1,20 @@
 import Link from 'next/link';
 import { generateStaticPageSchema } from '../../lib/schema';
 import { getBaseUrl } from '../../lib/site';
+import StructuredData from '../../components/ui/StructuredData';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 
 const baseUrl = getBaseUrl();
 
 export const metadata = {
   title: 'Forbidden (403) | 100 SEO Tools',
   description: 'Access denied - You do not have permission to access the requested resource.',
- 
+
   ...createSocialMetadata({
-    title: metadata.title,
-    description: metadata.description,
+    title: 'Forbidden (403) | 100 SEO Tools',
+    description: 'Access denied - You do not have permission to access the requested resource.',
     url: baseUrl,
-    imageAlt: metadata.title,
+    imageAlt: 'Forbidden (403) | 100 SEO Tools',
   }),
  robots: { index: false, follow: false },
   alternates: { canonical: `${baseUrl}/403` },

@@ -9,7 +9,7 @@ const canonicalUrlBuilder = {
   "template": "canonicalUrlBuilder",
   "api": true,
   "content": {
-    "introduction": "The Canonical URL Builder generates correct rel=canonical tags that tell search engines which version of a URL is the authoritative one. It handles the most common canonicalization scenarios — self-referencing tags, cross-domain consolidation, parameter-based duplicates, and www versus non-www normalization — so you never lose ranking power to duplicate content.",
+    "introduction": "The Canonical URL Builder generates correct rel=canonical tags that tell search engines which version of a URL is the authoritative one. It handles the most common canonicalization scenarios . self-referencing tags, cross-domain consolidation, parameter-based duplicates, and www versus non-www normalization . so you never lose ranking power to duplicate content.",
     "whatItDoes": "Enter the page URL and the tool analyzes it for common canonicalization issues: trailing slash inconsistency, www versus non-www mismatch, HTTP versus HTTPS, URL parameter variations, and session ID appending. It then generates the correct canonical tag and identifies any additional canonicalization steps needed at the server or redirect level.",
     "whyItMatters": "Duplicate content splits ranking signals across multiple URLs pointing to the same or nearly identical pages. Instead of one strong page, you end up with several weak ones competing against each other. Canonical tags consolidate these signals, telling Google which URL to index and attribute all link equity to, protecting your pages from cannibalizing themselves.",
     "benefits": [
@@ -27,7 +27,7 @@ const canonicalUrlBuilder = {
       "Marketing teams setting up campaign tracking parameters without creating indexable duplicates"
     ],
     "bestPractices": [
-      "Add self-referencing canonical tags to every page on your site — even pages without known duplicates",
+      "Add self-referencing canonical tags to every page on your site . even pages without known duplicates",
       "Use absolute URLs in canonical tags rather than relative paths to avoid parsing errors",
       "Combine canonical tags with 301 redirects for the most authoritative canonicalization signal",
       "Audit canonical tags quarterly as CMS updates and new URL patterns can introduce issues",

@@ -28,7 +28,7 @@ const sitemapGenerator = {
     ],
     "bestPractices": [
       "Submit your sitemap to both Google Search Console and Bing Webmaster Tools for maximum coverage",
-      "Keep individual sitemap files under 50,000 URLs and 50MB uncompressed — use sitemap indexes for larger sites",
+      "Keep individual sitemap files under 50,000 URLs and 50MB uncompressed . use sitemap indexes for larger sites",
       "Update lastmod dates only when content meaningfully changes, not for minor edits like fixing typos",
       "Exclude non-essential pages like tag archives, search results, and parameter-filtered URLs from your sitemap",
       "Regenerate and resubmit your sitemap whenever you add significant new content or restructure URLs"

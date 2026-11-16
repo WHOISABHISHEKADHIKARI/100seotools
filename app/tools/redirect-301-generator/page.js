@@ -107,7 +107,7 @@ export default function Redirect301GeneratorPage() {
           <BlogSection>
             <h2>The Definitive Guide to 301 Redirects and Site Migrations</h2>
             <p>
-              In technical SEO, few things are as powerful—or as dangerous—as the <strong>301 redirect</strong>. When implemented correctly, it preserves years of link building efforts. When done wrong, it can lead to catastrophic ranking drops. Our <strong>301 Redirect Generator</strong> ensures you get it right every time.
+              In technical SEO, few things are as powerful.or as dangerous.as the <strong>301 redirect</strong>. When implemented correctly, it preserves years of link building efforts. When done wrong, it can lead to catastrophic ranking drops. Our <strong>301 Redirect Generator</strong> ensures you get it right every time.
             </p>
 
             <h3>How 301 Redirects Preserve Your "Link Juice"</h3>

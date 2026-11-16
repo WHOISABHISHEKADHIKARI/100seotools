@@ -140,7 +140,7 @@ export default function Page() {
         <section aria-labelledby="workflow-heading" className="mt-8">
           <h2 id="workflow-heading">Practical Workflow: From Draft to Publication</h2>
           <h3>1. Draft assessment</h3>
-          <p>Start by scanning the draft for repetitive phrasing, overly generic claims, or missing citations. Use the <a href="/tools/heading-analyzer" className="hover:underline">Heading Analyzer</a> to ensure a clean H1–H6 structure that improves readability and SEO.</p>
+          <p>Start by scanning the draft for repetitive phrasing, overly generic claims, or missing citations. Use the <a href="/tools/heading-analyzer" className="hover:underline">Heading Analyzer</a> to ensure a clean H1,H6 structure that improves readability and SEO.</p>
           <h3>2. Detection and verification</h3>
           <p>Run content through the <a href="/tools/ai-content-detector" className="hover:underline">AI Content Detector</a> and record confidence scores. Triangulate with other tools or manual checks, then validate sources.</p>
           <h3>3. Improvement and enrichment</h3>
@@ -197,7 +197,7 @@ export default function Page() {
           <h2 id="checklist-heading">Editorial Checklist</h2>
           <h3>Structure</h3>
           <ul>
-            <li>Clean H1–H6 hierarchy with descriptive headings.</li>
+            <li>Clean H1,H6 hierarchy with descriptive headings.</li>
             <li>Short paragraphs, scannable lists, and clear CTAs.</li>
           </ul>
           <h3>Evidence</h3>

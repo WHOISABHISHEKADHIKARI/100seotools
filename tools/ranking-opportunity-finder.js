@@ -9,9 +9,9 @@ const rankingOpportunityFinder = {
   "template": "rankingOpportunityFinder",
   "api": true,
   "content": {
-    "introduction": "Some of the most valuable SEO gains come not from targeting new keywords but from improving rankings for keywords you already rank for. The Ranking Opportunity Finder identifies pages and keywords where you are close to the top positions—ranking on page two or the bottom of page one—revealing low-hanging fruit that can deliver significant traffic boosts with minimal optimization effort. This tool transforms ranking data into a prioritized action plan for quick wins.",
-    "whatItDoes": "This tool scans your keyword rankings to identify positions 11-20 (page two) and positions 6-10 (bottom of page one) opportunities. It analyzes each opportunity based on search volume, current position, ranking velocity, and competitive intensity to determine which keywords offer the fastest path to page one. The tool groups opportunities by effort required—quick fixes like title tag optimization versus longer-term plays like content expansion—and provides specific optimization recommendations for each keyword.",
-    "whyItMatters": "Moving a keyword from position 15 to position 5 delivers dramatically more traffic than targeting a new keyword from scratch. These near-ranking keywords represent pages already indexed, already relevant, and already earning some algorithmic trust. A small optimization push can catapult them into high-traffic positions. This approach maximizes ROI by focusing on proven ranking potential rather than speculative new keyword targets. The tool also identifies ranking velocity—keywords where your position is already trending upward—allowing you to accelerate natural momentum with strategic optimizations.",
+    "introduction": "Some of the most valuable SEO gains come not from targeting new keywords but from improving rankings for keywords you already rank for. The Ranking Opportunity Finder identifies pages and keywords where you are close to the top positions.ranking on page two or the bottom of page one.revealing low-hanging fruit that can deliver significant traffic boosts with minimal optimization effort. This tool transforms ranking data into a prioritized action plan for quick wins.",
+    "whatItDoes": "This tool scans your keyword rankings to identify positions 11-20 (page two) and positions 6-10 (bottom of page one) opportunities. It analyzes each opportunity based on search volume, current position, ranking velocity, and competitive intensity to determine which keywords offer the fastest path to page one. The tool groups opportunities by effort required.quick fixes like title tag optimization versus longer-term plays like content expansion.and provides specific optimization recommendations for each keyword.",
+    "whyItMatters": "Moving a keyword from position 15 to position 5 delivers dramatically more traffic than targeting a new keyword from scratch. These near-ranking keywords represent pages already indexed, already relevant, and already earning some algorithmic trust. A small optimization push can catapult them into high-traffic positions. This approach maximizes ROI by focusing on proven ranking potential rather than speculative new keyword targets. The tool also identifies ranking velocity.keywords where your position is already trending upward.allowing you to accelerate natural momentum with strategic optimizations.",
     "benefits": [
       "Identifies page two rankings that require minimal optimization to reach page one",
       "Groups opportunities by effort level so you can choose quick wins versus strategic improvements",
@@ -28,7 +28,7 @@ const rankingOpportunityFinder = {
       "A website owner investigating why traffic has plateaued despite publishing new content regularly"
     ],
     "bestPractices": [
-      "Start with keywords in positions 11-15—these require the least effort to move to page one",
+      "Start with keywords in positions 11-15.these require the least effort to move to page one",
       "Prioritize keywords with high search volume and low competitive intensity for maximum traffic impact",
       "Check ranking velocity alongside current position to identify keywords with natural upward momentum",
       "Group opportunities by content type to optimize multiple similar pages efficiently",

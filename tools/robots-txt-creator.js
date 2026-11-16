@@ -9,9 +9,9 @@ const robotsTxtCreator = {
   "template": "robotsTxtCreator",
   "api": true,
   "content": {
-    "introduction": "A robots.txt file tells search engine crawlers which pages to visit and which to skip. The Robots.txt Creator generates a valid, standards-compliant robots.txt file based on your inputs. Select which directories to block, which crawlers to restrict, and point to your sitemap — then copy the output and add it to your site root.",
+    "introduction": "A robots.txt file tells search engine crawlers which pages to visit and which to skip. The Robots.txt Creator generates a valid, standards-compliant robots.txt file based on your inputs. Select which directories to block, which crawlers to restrict, and point to your sitemap . then copy the output and add it to your site root.",
     "whatItDoes": "The tool builds a robots.txt file with User-agent directives, Disallow rules, Allow rules, and a Sitemap reference. It uses proper syntax for all major crawlers (Googlebot, Bingbot, etc.) and formats the output with correct line breaks and indentation. The result is a file you can paste directly into your server's root directory.",
-    "whyItMatters": "Without a robots.txt file, crawlers index everything — including admin pages, duplicate content, and staging environments. This wastes crawl budget and can dilute your site's authority. A well-configured robots.txt directs crawlers to your most important pages, improves crawl efficiency, and prevents sensitive directories from appearing in search results.",
+    "whyItMatters": "Without a robots.txt file, crawlers index everything . including admin pages, duplicate content, and staging environments. This wastes crawl budget and can dilute your site's authority. A well-configured robots.txt directs crawlers to your most important pages, improves crawl efficiency, and prevents sensitive directories from appearing in search results.",
     "benefits": [
       "Generate valid robots.txt syntax for all major crawlers",
       "Block admin, staging, and duplicate content directories",
@@ -28,11 +28,11 @@ const robotsTxtCreator = {
     ],
     "bestPractices": [
       "Always include a Sitemap: directive pointing to your XML sitemap",
-      "Don't block CSS and JavaScript — crawlers need them for rendering",
+      "Don't block CSS and JavaScript . crawlers need them for rendering",
       "Use specific paths rather than broad wildcards when possible",
       "Test with Google Search Console's robots.txt tester before deploying",
       "Keep the file in your site's root directory (/robots.txt)",
-      "Don't use robots.txt to hide content — use noindex meta tags instead"
+      "Don't use robots.txt to hide content . use noindex meta tags instead"
     ],
     "exampleResults": "Sample robots.txt output:\n\nUser-agent: *\nDisallow: /admin/\nDisallow: /staging/\nDisallow: /tmp/\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nUser-agent: Googlebot\nAllow: /\n\nSitemap: https://www.example.com/sitemap.xml",
     "relatedTools": ["xml-sitemap-visualizer", "redirect-301-generator", "canonical-url-builder", "http-status-code-tester", "redirect-checker"],

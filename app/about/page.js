@@ -58,8 +58,8 @@ const faqs = [
 export default function AboutPage() {
   const aboutSchema = generateStaticPageSchema({
     path: '/about',
-    title: metadata.title,
-    description: metadata.description
+    title: 'About 100 SEO Tools - Trusted AI & Technical SEO Solutions',
+    description: '100 SEO Tools is a trusted, free platform offering AI SEO tools, indexing solutions, and technical auditors. Built for maximum crawlability and EEAT compliance.'
   }, baseUrl);
 
   aboutSchema['@type'] = 'AboutPage';

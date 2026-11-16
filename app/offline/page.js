@@ -6,11 +6,11 @@ import Link from 'next/link';
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-  title: 'Offline – 100 SEO Tools',
+  title: 'Offline , 100 SEO Tools',
   description: 'All 100+ SEO tools are browser-based and work offline after initial load. No data is sent to servers unless you choose to use a public validator tool.',
   alternates: { canonical: baseUrl },
   ...createSocialMetadata({
-    title: 'Offline – 100 SEO Tools',
+    title: 'Offline , 100 SEO Tools',
     description: 'All 100+ SEO tools are browser-based and work offline after initial load.',
     url: baseUrl,
     imageAlt: '100 SEO Tools - Offline Mode',
@@ -31,8 +31,8 @@ export const metadata = {
 // Enhanced WebPage schema for AEO/GEO optimization
 const pageSchema = generateStaticPageSchema({
   path: '/offline',
-  title: metadata.title,
-  description: metadata.description,
+  title: 'Offline , 100 SEO Tools',
+  description: 'All 100+ SEO tools are browser-based and work offline after initial load. No data is sent to servers unless you choose to use a public validator tool.',
 }, baseUrl);
 
 pageSchema['@type'] = 'WebPage';
@@ -59,7 +59,7 @@ export default function OfflinePage() {
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">All Tools Go Offline</h1>
           <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Once loaded, all 100+ SEO tools function entirely offline. Your data stays on your device — no network required.
+            Once loaded, all 100+ SEO tools function entirely offline. Your data stays on your device . no network required.
           </p>
           <div className="mt-8 flex items-center justify-center gap-3">
             <Link href="/" className="btn">Go Home</Link>

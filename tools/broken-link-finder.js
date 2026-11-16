@@ -28,7 +28,7 @@ const brokenLinkFinder = {
     ],
     "bestPractices": [
       "Run a broken link check monthly as part of routine maintenance",
-      "Fix internal broken links immediately — they're under your control",
+      "Fix internal broken links immediately . they're under your control",
       "For broken external links, update the URL or remove the link",
       "Set up custom 404 pages with helpful navigation and search",
       "Use 301 redirects for moved pages rather than leaving dead links",

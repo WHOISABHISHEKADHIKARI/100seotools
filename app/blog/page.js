@@ -101,7 +101,7 @@ export default async function BlogPage({ searchParams }) {
             name: 'What are the best free SEO tools?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: '100 SEO Tools offers 100+ free SEO tools for keyword research, on-page optimization, technical SEO, schema generation, backlink analysis, content optimization, and AI-powered SEO — all browser-based with no signup required.'
+              text: '100 SEO Tools offers 100+ free SEO tools for keyword research, on-page optimization, technical SEO, schema generation, backlink analysis, content optimization, and AI-powered SEO. All browser-based with no signup required.'
             }
           },
           {
@@ -258,7 +258,6 @@ export default async function BlogPage({ searchParams }) {
                       </span>
                     </div>
                   </div>
-                </article>
               </div>
             </Link>
           </section>
@@ -277,7 +276,7 @@ export default async function BlogPage({ searchParams }) {
                   Written by <a href="/author" rel="author" className="text-brand-700 underline-offset-2 hover:underline dark:text-brand-300">Abhishek Adhikari</a>
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                  SEO Expert & Full-Stack Developer. Creator of 100 SEO Tools, building free, privacy-first browser-based SEO utilities for marketers and agencies worldwide. 
+                  SEO Expert & Full-Stack Developer. Creator of 100 SEO Tools, building free, privacy-first browser-based SEO utilities for marketers and agencies worldwide.
                   <a href="https://www.linkedin.com/in/whoisabhishekadhikari/" target="_blank" rel="noopener noreferrer author" className="ml-1 text-brand-600 hover:underline dark:text-brand-300">LinkedIn</a>.
                 </p>
               </div>
@@ -331,7 +330,7 @@ export default async function BlogPage({ searchParams }) {
                 </div>
               </aside>
             </div>
-          </section>
+          </div>
         </section>
       </section>
     </>

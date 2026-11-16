@@ -66,7 +66,7 @@ export default function AIArticleLengthOptimizerPage() {
     },
     {
       question: "Does content length actually affect Google rankings?",
-      answer: "Yes, content length is a proxy for 'completeness.' Longer content typically covers more entities and answers more related questions, which helps Google understand your topical authority. However, quality always beats quantity—bloated content can hurt your bounce rate."
+      answer: "Yes, content length is a proxy for 'completeness.' Longer content typically covers more entities and answers more related questions, which helps Google understand your topical authority. However, quality always beats quantity.bloated content can hurt your bounce rate."
     },
     {
       question: "How does the AI Article Length Optimizer work?",

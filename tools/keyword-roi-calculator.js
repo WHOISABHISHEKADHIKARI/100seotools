@@ -9,8 +9,8 @@ const keywordRoiCalculator = {
   "template": "keywordRoiCalculator",
   "api": true,
   "content": {
-    "introduction": "Not all keywords are created equal. Some generate thousands of visits that never convert, while others drive a handful of highly targeted visitors that become paying customers. The Keyword ROI Calculator translates raw keyword metrics—search volume, ranking position, and click-through rates—into financial projections that reveal which keywords are actually worth your investment. It models traffic-to-revenue pathways, calculates the equivalent cost of organic traffic compared to paid advertising, and estimates payback periods for SEO campaigns targeting specific terms. This tool bridges the gap between SEO metrics and business outcomes that justify continued investment.",
-    "whatItDoes": "The tool takes your target keywords and combines search volume data, estimated click-through rates for various ranking positions, your website's conversion rate, and average customer value to calculate the potential revenue each keyword could generate. It computes the CPC equivalent—what you would pay for the same traffic through Google Ads—providing a direct comparison between organic and paid acquisition costs. It also models different ranking scenarios so you can see the ROI difference between ranking in position 3 versus position 1, and estimates the payback period for the SEO investment required to achieve those rankings.",
+    "introduction": "Not all keywords are created equal. Some generate thousands of visits that never convert, while others drive a handful of highly targeted visitors that become paying customers. The Keyword ROI Calculator translates raw keyword metrics.search volume, ranking position, and click-through rates.into financial projections that reveal which keywords are actually worth your investment. It models traffic-to-revenue pathways, calculates the equivalent cost of organic traffic compared to paid advertising, and estimates payback periods for SEO campaigns targeting specific terms. This tool bridges the gap between SEO metrics and business outcomes that justify continued investment.",
+    "whatItDoes": "The tool takes your target keywords and combines search volume data, estimated click-through rates for various ranking positions, your website's conversion rate, and average customer value to calculate the potential revenue each keyword could generate. It computes the CPC equivalent.what you would pay for the same traffic through Google Ads.providing a direct comparison between organic and paid acquisition costs. It also models different ranking scenarios so you can see the ROI difference between ranking in position 3 versus position 1, and estimates the payback period for the SEO investment required to achieve those rankings.",
     "whyItMatters": "SEO requires significant investment in content creation, technical optimization, and link building, but many teams struggle to quantify the return on that investment. Without ROI projections, SEO budgets are vulnerable to being cut in favor of channels with more immediately measurable returns like paid advertising. The Keyword ROI Calculator provides the financial evidence needed to justify SEO spending, prioritize keywords by revenue potential rather than just traffic volume, and build business cases for ranking improvements. It also reveals when a keyword's ROI does not justify the investment, helping you redirect resources to more profitable opportunities.",
     "benefits": [
       "Translates keyword rankings into projected revenue and financial value",
@@ -29,7 +29,7 @@ const keywordRoiCalculator = {
     ],
     "bestPractices": [
       "Use your actual conversion rate and customer value rather than industry averages for accurate projections",
-      "Model multiple ranking scenarios—position 1, 3, and 5—to show realistic ROI ranges",
+      "Model multiple ranking scenarios.position 1, 3, and 5.to show realistic ROI ranges",
       "Recalculate ROI projections quarterly as conversion rates, keyword volumes, and competition change",
       "Compare organic ROI against paid CPC data to quantify the cost savings of ranking organically",
       "Factor in content creation and link building costs to calculate true net ROI, not just gross traffic value",
@@ -40,7 +40,7 @@ const keywordRoiCalculator = {
     "faqs": [
       {
         "q": "How accurate are the ROI projections?",
-        "a": "The projections are estimates based on the inputs you provide—search volume, CTR, conversion rate, and customer value. Using your actual conversion data rather than industry averages significantly improves accuracy. The tool is designed for directional decision-making rather than precise financial forecasting."
+        "a": "The projections are estimates based on the inputs you provide.search volume, CTR, conversion rate, and customer value. Using your actual conversion data rather than industry averages significantly improves accuracy. The tool is designed for directional decision-making rather than precise financial forecasting."
       },
       {
         "q": "What is CPC equivalent and why does it matter?",

@@ -29,7 +29,7 @@ export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
   const page = Number((await searchParams)?.page || 1);
 
-  // Try to find the post first — serve real posts regardless of legacy patterns
+  // Try to find the post first . serve real posts regardless of legacy patterns
   const post = await getBlogPostPublishedBySlug(slug);
 
   if (post) {
@@ -48,7 +48,7 @@ export async function generateMetadata({ params, searchParams }) {
     };
   }
 
-  // Post not found — apply legacy redirect logic
+  // Post not found . apply legacy redirect logic
   const legacyCanonicalPath = getLegacyBlogCanonicalPath(slug);
   if (legacyCanonicalPath) {
     return {
@@ -57,7 +57,7 @@ export async function generateMetadata({ params, searchParams }) {
     };
   }
 
-  // Check if the slug belongs to a tool — redirect canonical
+  // Check if the slug belongs to a tool . redirect canonical
   const tools = getAllToolsMeta();
   if (tools.some(t => t.slug === slug)) {
     return {
@@ -95,14 +95,14 @@ export default async function Page({ params, searchParams }) {
     permanentRedirect(`/blog/${slug}`);
   }
 
-  // Try to find the post first — serve real blog posts regardless of slug pattern
+  // Try to find the post first . serve real blog posts regardless of slug pattern
   const post = await getBlogPostPublishedBySlug(slug);
 
   if (!post) {
-    // Post doesn't exist — apply legacy redirect logic
+    // Post doesn't exist . apply legacy redirect logic
     const legacyCanonicalPath = getLegacyBlogCanonicalPath(slug);
     if (legacyCanonicalPath) {
-      notFound();
+      permanentRedirect(legacyCanonicalPath);
     }
     // Redirect plain tool slugs to /tools/[slug]
     const tools = getAllToolsMeta();
@@ -122,15 +122,15 @@ export default async function Page({ params, searchParams }) {
 
   function getDefaultSources(post) {
     const sources = [
-      { name: 'Google Search Central — SEO Documentation', url: 'https://developers.google.com/search/docs' },
-      { name: 'Moz — The Beginner\'s Guide to SEO', url: 'https://moz.com/beginners-guide-to-seo' },
-      { name: 'web.dev — Google SEO & Performance Guides', url: 'https://web.dev/learn-core-web-vitals/' },
+      { name: 'Google Search Central . SEO Documentation', url: 'https://developers.google.com/search/docs' },
+      { name: 'Moz . The Beginner\'s Guide to SEO', url: 'https://moz.com/beginners-guide-to-seo' },
+      { name: 'web.dev . Google SEO & Performance Guides', url: 'https://web.dev/learn-core-web-vitals/' },
     ];
     if (post.category === 'Technical SEO' || post.tags?.some(t => /accessibility|a11y|wcag/i.test(t))) {
       sources.push({ name: 'W3C Web Accessibility Initiative (WAI)', url: 'https://www.w3.org/WAI/' });
     }
     if (post.category === 'Content SEO' || post.tags?.some(t => /content|writing|readability/i.test(t))) {
-      sources.push({ name: 'Search Engine Journal — Content SEO', url: 'https://www.searchenginejournal.com/category/content/' });
+      sources.push({ name: 'Search Engine Journal . Content SEO', url: 'https://www.searchenginejournal.com/category/content/' });
     }
     if (post.tags?.some(t => /analytics|search-console|gsc/i.test(t))) {
       sources.push({ name: 'Google Search Status Dashboard', url: 'https://status.search.google.com/' });
@@ -325,6 +325,31 @@ export default async function Page({ params, searchParams }) {
             <ul className="grid gap-3 text-gray-700 dark:text-gray-300">
               {post.sections.tips.map((t, i) => (<li key={i} className="rounded-2xl bg-earth-50/70 px-4 py-3 text-sm leading-6 ring-1 ring-earth-100 dark:bg-earth-500/10 dark:ring-earth-500/20">{t}</li>))}
             </ul>
+          </div>
+        )}
+
+        {Array.isArray(post.sections?.commonMistakes) && post.sections.commonMistakes.length > 0 && (
+          <div>
+            <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Common mistakes</h2>
+            <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+              {post.sections.commonMistakes.map((m, i) => (<li key={i} className="rounded-2xl border border-red-100 bg-red-50/50 px-4 py-3 text-sm leading-6 dark:border-red-500/20 dark:bg-red-500/5">{m}</li>))}
+            </ul>
+          </div>
+        )}
+
+        {Array.isArray(post.sections?.advancedTips) && post.sections.advancedTips.length > 0 && (
+          <div>
+            <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Advanced tips</h2>
+            <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+              {post.sections.advancedTips.map((t, i) => (<li key={i} className="rounded-2xl border border-brand-100 bg-brand-50/50 px-4 py-3 text-sm leading-6 dark:border-brand-500/20 dark:bg-brand-500/5">{t}</li>))}
+            </ul>
+          </div>
+        )}
+
+        {post.sections?.summary && (
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/5">
+            <h2 className="mb-2 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Summary</h2>
+            <p className="text-gray-700 dark:text-gray-300">{post.sections.summary}</p>
           </div>
         )}
 

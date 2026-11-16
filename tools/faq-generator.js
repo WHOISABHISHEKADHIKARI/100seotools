@@ -11,7 +11,7 @@ const faqGenerator = {
   "content": {
     "introduction": "FAQ sections serve a dual purpose: they answer real user questions and provide structured data that Google can display as rich snippets. Our FAQ Generator creates comprehensive, search-optimized FAQ content that targets People Also Ask queries, builds topical authority, and gives your pages an expanded presence on the SERP. Well-crafted FAQs can double the real estate your result occupies in search.",
     "whatItDoes": "This tool takes a topic or page URL and generates a complete FAQ section with relevant questions and concise, informative answers. It researches common user questions from search queries, formats answers to align with Google's FAQ rich snippet requirements, and structures the output with proper schema-ready markup. The tool covers informational, navigational, and transactional question types for complete intent coverage.",
-    "whyItMatters": "FAQ rich snippets can increase SERP visibility by 25-30%, effectively doubling the clickable area of your search result. Beyond visibility, FAQ sections improve topical comprehensiveness—a key quality signal. Pages that thoroughly answer related questions tend to rank for more long-tail keywords and attract featured snippet placements.",
+    "whyItMatters": "FAQ rich snippets can increase SERP visibility by 25-30%, effectively doubling the clickable area of your search result. Beyond visibility, FAQ sections improve topical comprehensiveness.a key quality signal. Pages that thoroughly answer related questions tend to rank for more long-tail keywords and attract featured snippet placements.",
     "benefits": [
       "Generates relevant questions from real search query data",
       "Formats answers to meet Google FAQ rich snippet requirements",
@@ -28,7 +28,7 @@ const faqGenerator = {
       "Developing e-commerce category page FAQs for buyer guidance"
     ],
     "bestPractices": [
-      "Keep answers concise—40-60 words is ideal for FAQ rich snippet display",
+      "Keep answers concise.40-60 words is ideal for FAQ rich snippet display",
       "Use question format that matches actual user queries in People Also Ask",
       "Place the most important FAQ at the top of the section for visibility",
       "Implement FAQ schema markup on the page to enable rich snippet display",

@@ -9,7 +9,7 @@ const contentGapFinder = {
   "template": "contentGapFinder",
   "api": true,
   "content": {
-    "introduction": "Your competitors are ranking for keywords you haven't targeted yet—and those gaps represent your biggest organic growth opportunities. Our Content Gap Finder systematically identifies topics, questions, and keyword clusters where competitors have coverage but you don't. It transforms competitive intelligence into a prioritized content roadmap that captures traffic you're currently leaving on the table.",
+    "introduction": "Your competitors are ranking for keywords you haven't targeted yet.and those gaps represent your biggest organic growth opportunities. Our Content Gap Finder systematically identifies topics, questions, and keyword clusters where competitors have coverage but you don't. It transforms competitive intelligence into a prioritized content roadmap that captures traffic you're currently leaving on the table.",
     "whatItDoes": "This tool compares your domain against competitor domains to identify keyword and topic gaps. It analyzes ranking data across multiple competitors, clusters related topics, identifies question-based gaps from People Also Ask data, and detects format gaps where competitors use content types you haven't deployed. Each gap is scored by traffic potential, competition level, and implementation difficulty.",
     "whyItMatters": "Content gap analysis is one of the highest-ROI SEO activities because it targets proven demand. Instead of guessing what topics to create, you're identifying keywords with existing search volume where competitors have demonstrated ranking success. Filling these gaps systematically builds topical authority faster than random content creation.",
     "benefits": [
@@ -35,7 +35,7 @@ const contentGapFinder = {
       "Re-run gap analysis quarterly as new competitors and topics emerge",
       "Cross-reference gaps with your existing content to find optimization opportunities"
     ],
-    "exampleResults": "Sample Output:\n\nInput: Your domain vs 3 competitor domains in 'home fitness' niche\n\nTop 10 Content Gaps Identified:\n\n1. 'home gym equipment for small spaces' — Volume: 2,400/mo | Difficulty: Medium | Priority: HIGH\n2. 'bodyweight exercises no equipment' — Volume: 6,600/mo | Difficulty: Low | Priority: HIGH\n3. 'home workout routine for beginners' — Volume: 4,200/mo | Difficulty: Medium | Priority: HIGH\n4. 'best resistance bands review 2026' — Volume: 1,800/mo | Difficulty: Low | Priority: MEDIUM\n5. 'how to build muscle at home without weights' — Volume: 3,100/mo | Difficulty: Medium | Priority: MEDIUM\n\nFormat Gaps Detected:\n- Competitor A has a video series on 'home workout mistakes' (you have no video content)\n- Competitor B has an interactive calorie calculator (you have no tools)\n- Competitor C has downloadable workout plans (you have no lead magnets)",
+    "exampleResults": "Sample Output:\n\nInput: Your domain vs 3 competitor domains in 'home fitness' niche\n\nTop 10 Content Gaps Identified:\n\n1. 'home gym equipment for small spaces' . Volume: 2,400/mo | Difficulty: Medium | Priority: HIGH\n2. 'bodyweight exercises no equipment' . Volume: 6,600/mo | Difficulty: Low | Priority: HIGH\n3. 'home workout routine for beginners' . Volume: 4,200/mo | Difficulty: Medium | Priority: HIGH\n4. 'best resistance bands review 2026' . Volume: 1,800/mo | Difficulty: Low | Priority: MEDIUM\n5. 'how to build muscle at home without weights' . Volume: 3,100/mo | Difficulty: Medium | Priority: MEDIUM\n\nFormat Gaps Detected:\n- Competitor A has a video series on 'home workout mistakes' (you have no video content)\n- Competitor B has an interactive calorie calculator (you have no tools)\n- Competitor C has downloadable workout plans (you have no lead magnets)",
     "relatedTools": ["blog-title-generator", "faq-generator", "content-freshness-checker"],
     "faqs": [
       {
@@ -44,7 +44,7 @@ const contentGapFinder = {
       },
       {
         "q": "What is a format gap in content analysis?",
-        "a": "A format gap occurs when competitors use a content format you haven't deployed—such as video tutorials, interactive tools, downloadable templates, or infographics. These gaps represent opportunities to differentiate your content and capture audiences who prefer those formats."
+        "a": "A format gap occurs when competitors use a content format you haven't deployed.such as video tutorials, interactive tools, downloadable templates, or infographics. These gaps represent opportunities to differentiate your content and capture audiences who prefer those formats."
       },
       {
         "q": "How often should I run content gap analysis?",

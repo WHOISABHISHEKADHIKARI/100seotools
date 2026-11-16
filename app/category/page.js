@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Home, Layers } from 'lucide-react';
 import { getAllToolsMeta } from '../../tools';
 import { getBaseUrl } from '../../lib/site';
 import { createSocialMetadata } from '../../lib/socialMetadata';
@@ -164,7 +165,7 @@ export default function CategoryIndexPage() {
               </div>
               <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-extrabold text-slate-400 dark:border-white/10">
                 Browse tools
-                <svg className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-brand-600" aria-hidden viewBox="0 0 24 24"><path d="M5 12h3L12 5l7 7L20 9"/path></svg>
+                <svg className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-brand-600" aria-hidden viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </div>
             </Link>
           );

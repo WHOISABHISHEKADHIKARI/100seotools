@@ -9,9 +9,9 @@ const readabilityEnhancer = {
   "template": "readabilityEnhancer",
   "api": true,
   "content": {
-    "introduction": "Readable content keeps users engaged, reduces bounce rates, and signals quality to search engines. Our Readability Enhancer analyzes your writing for clarity issues—long sentences, passive voice, jargon, and complex structures—then provides actionable suggestions to improve comprehension. Content that reads at an eighth-grade level consistently outperforms denser alternatives in both user satisfaction and search rankings.",
+    "introduction": "Readable content keeps users engaged, reduces bounce rates, and signals quality to search engines. Our Readability Enhancer analyzes your writing for clarity issues.long sentences, passive voice, jargon, and complex structures.then provides actionable suggestions to improve comprehension. Content that reads at an eighth-grade level consistently outperforms denser alternatives in both user satisfaction and search rankings.",
     "whatItDoes": "This tool evaluates your text against multiple readability metrics including Flesch-Kincaid, Gunning Fog, and Coleman-Liau indices. It identifies specific sentences that are too long or complex, flags passive voice constructions, highlights unnecessary jargon, and suggests simpler alternatives. The tool also checks for transition word usage and paragraph length to ensure smooth reading flow.",
-    "whyItMatters": "Google's algorithms increasingly evaluate user experience signals like dwell time and bounce rate. Content that is difficult to read causes users to leave quickly, sending negative engagement signals. Additionally, accessible content reaches broader audiences—including non-native speakers and users reading on mobile devices where dense text is especially hard to parse.",
+    "whyItMatters": "Google's algorithms increasingly evaluate user experience signals like dwell time and bounce rate. Content that is difficult to read causes users to leave quickly, sending negative engagement signals. Additionally, accessible content reaches broader audiences.including non-native speakers and users reading on mobile devices where dense text is especially hard to parse.",
     "benefits": [
       "Scores content against Flesch-Kincaid, Gunning Fog, and other readability indices",
       "Identifies and flags sentences exceeding recommended word counts",
@@ -32,7 +32,7 @@ const readabilityEnhancer = {
       "Break sentences longer than 20 words into two shorter sentences",
       "Replace passive voice with active voice wherever it improves clarity",
       "Swap jargon for plain language unless writing for a specialist audience",
-      "Use transition words—however, moreover, therefore, in addition—to connect ideas",
+      "Use transition words.however, moreover, therefore, in addition.to connect ideas",
       "Aim for paragraphs of 3-5 sentences to maintain visual and cognitive flow"
     ],
     "exampleResults": "Sample Output:\n\nInput Text: 'The implementation of the new system was conducted by the team in a manner that was deemed to be satisfactory by all stakeholders who were involved in the process.'\n\nEnhanced Text: 'The team implemented the new system successfully. All stakeholders approved the results.'\n\nReadability Changes:\n- Flesch-Kincaid Grade: 18.2 → 6.4\n- Flesch Reading Ease: 12 → 78\n- Passive Voice: Detected and converted to active\n- Sentence Length: Reduced from 28 words to 12 words\n- Transition Words: Added for better flow",
@@ -44,7 +44,7 @@ const readabilityEnhancer = {
       },
       {
         "q": "Does readability affect SEO rankings?",
-        "a": "While readability is not a confirmed direct ranking factor, it influences engagement metrics—dwell time, bounce rate, pages per session—that do affect rankings. Content that is easier to read keeps users on your page longer and reduces pogo-sticking, both positive signals to search engines."
+        "a": "While readability is not a confirmed direct ranking factor, it influences engagement metrics.dwell time, bounce rate, pages per session.that do affect rankings. Content that is easier to read keeps users on your page longer and reduces pogo-sticking, both positive signals to search engines."
       },
       {
         "q": "How do I balance readability with keyword optimization?",

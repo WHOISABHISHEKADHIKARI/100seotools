@@ -32,10 +32,10 @@ const visibilityIndexCalculator = {
       "Compare visibility indices across competitors using the same keyword set for fair benchmarking",
       "Break down your visibility score by category to understand which segments drive your presence",
       "Focus optimization efforts on keywords where small ranking gains produce large visibility increases",
-      "Use the visibility trend as a leading indicator—declines often precede traffic drops by weeks",
+      "Use the visibility trend as a leading indicator.declines often precede traffic drops by weeks",
       "Segment visibility by branded versus non-branded keywords to understand organic growth separate from brand awareness"
     ],
-    "exampleResults": "Sample Output:\n\nVisibility Index Score: 1,247\n\nScore Breakdown by Position:\n- Positions 1-3: 58% of total visibility (723 points)\n- Positions 4-10: 31% of total visibility (387 points)\n- Positions 11-20: 11% of total visibility (137 points)\n\nCompetitor Comparison:\n- Your Site: 1,247\n- Competitor A: 1,892 (+52% higher)\n- Competitor B: 934 (-25% lower)\n- Competitor C: 1,105 (-11% lower)\n\nTop Visibility Drivers:\n1. \"content marketing strategy\" — Position 2, 90,500 volume — 189 points\n2. \"seo best practices\" — Position 1, 74,000 volume — 156 points\n3. \"keyword research tools\" — Position 4, 60,500 volume — 98 points\n\nTrend: +12% visibility increase over last 90 days",
+    "exampleResults": "Sample Output:\n\nVisibility Index Score: 1,247\n\nScore Breakdown by Position:\n- Positions 1-3: 58% of total visibility (723 points)\n- Positions 4-10: 31% of total visibility (387 points)\n- Positions 11-20: 11% of total visibility (137 points)\n\nCompetitor Comparison:\n- Your Site: 1,247\n- Competitor A: 1,892 (+52% higher)\n- Competitor B: 934 (-25% lower)\n- Competitor C: 1,105 (-11% lower)\n\nTop Visibility Drivers:\n1. \"content marketing strategy\" . Position 2, 90,500 volume . 189 points\n2. \"seo best practices\" . Position 1, 74,000 volume . 156 points\n3. \"keyword research tools\" . Position 4, 60,500 volume . 98 points\n\nTrend: +12% visibility increase over last 90 days",
     "relatedTools": ["ranking-progress-tracker", "keyword-share-estimator", "site-comparison-report-generator"],
     "faqs": [
       {

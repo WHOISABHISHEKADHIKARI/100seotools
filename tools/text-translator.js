@@ -9,9 +9,9 @@ const textTranslator = {
   "template": "textTranslator",
   "api": true,
   "content": {
-    "introduction": "Expanding your content into new languages unlocks entirely new audiences — but poor translation can damage your brand and hurt SEO. The Text Translator goes beyond basic word-for-word conversion to produce translations that preserve meaning, maintain tone, and are optimized for search engines in the target language. Whether you're localizing product descriptions, translating blog posts for international readers, or creating multilingual meta tags, this tool delivers translations that read naturally and perform well in foreign-language SERPs.",
+    "introduction": "Expanding your content into new languages unlocks entirely new audiences . but poor translation can damage your brand and hurt SEO. The Text Translator goes beyond basic word-for-word conversion to produce translations that preserve meaning, maintain tone, and are optimized for search engines in the target language. Whether you're localizing product descriptions, translating blog posts for international readers, or creating multilingual meta tags, this tool delivers translations that read naturally and perform well in foreign-language SERPs.",
     "whatItDoes": "Enter text in any supported language, select your target language, and receive a fluent translation that preserves the original intent and tone. The tool handles idiomatic expressions, technical terminology, and cultural nuances that machine translation often misses. It also generates hreflang tag pairs for the source-target language combination, suggests localized keywords for the translated content, and flags terms that may need manual review for brand-specific or region-specific context.",
-    "whyItMatters": "International SEO requires more than just translating words — it requires translating intent. A literal translation might be grammatically correct but miss the search behavior of the target audience. People in different regions use different terms for the same concept. The Text Translator accounts for these differences, helping you create content that ranks in foreign-language search engines while maintaining your brand voice. Without proper translation, international pages risk high bounce rates, poor engagement, and complete invisibility in local SERPs.",
+    "whyItMatters": "International SEO requires more than just translating words . it requires translating intent. A literal translation might be grammatically correct but miss the search behavior of the target audience. People in different regions use different terms for the same concept. The Text Translator accounts for these differences, helping you create content that ranks in foreign-language search engines while maintaining your brand voice. Without proper translation, international pages risk high bounce rates, poor engagement, and complete invisibility in local SERPs.",
     "benefits": [
       "Produces fluent, context-aware translations rather than literal word swaps",
       "Preserves original tone, meaning, and brand voice across languages",
@@ -29,12 +29,12 @@ const textTranslator = {
       "Marketing campaigns: localize ad copy and promotional content for new markets"
     ],
     "bestPractices": [
-      "Always review brand names and product names — they often shouldn't be translated",
+      "Always review brand names and product names . they often shouldn't be translated",
       "Research target-language keywords separately, don't just translate source keywords",
       "Include hreflang tags when publishing translated versions to avoid duplicate content",
       "Have native speakers review translations before publishing for final polish",
       "Translate metadata (titles, descriptions) separately from body content for optimal length",
-      "Consider cultural context — humor, idioms, and references may not translate directly"
+      "Consider cultural context . humor, idioms, and references may not translate directly"
     ],
     "exampleResults": "Sample Output:\n\nSource (English):\n\"Boost your search rankings with our free SEO audit tool. Get a comprehensive analysis of your site's technical health, content quality, and backlink profile in seconds.\"\n\nTranslation (Spanish):\n\"Mejora tu posicionamiento con nuestra herramienta de auditoría SEO gratuita. Obtén un análisis integral de la salud técnica, calidad de contenido y perfil de enlaces de tu sitio en segundos.\"\n\nLocalized Keywords (Spanish):\n  \"auditoría SEO\" (not \"auditoría de búsqueda\")\n  \"posicionamiento web\" (not \"clasificación de búsqueda\")\n  \"perfil de enlaces\" (not \"perfil de vínculos\")\n\nHreflang Pair Generated:\n  <link rel=\"alternate\" hreflang=\"en\" href=\"https://www.example.com/tools/seo-audit\" />\n  <link rel=\"alternate\" hreflang=\"es\" href=\"https://www.example.com/es/herramientas/auditoria-seo\" />",
     "relatedTools": ["hreflang-tag-generator", "local-keyword-generator", "geo-keyword-expansion-tool", "ai-content-improver", "content-freshness-checker"],

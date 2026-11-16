@@ -14,7 +14,7 @@ export async function POST(request) {
 
     // Derive seed phrases from the competitor's real title + H1 + H2s.
     const seeds = new Set();
-    if (meta.title) seeds.add(meta.title.split(/[|\-—–:]/)[0].trim().toLowerCase());
+    if (meta.title) seeds.add(meta.title.split(/[|\-.,:]/)[0].trim().toLowerCase());
     meta.headings.h1.forEach((h) => seeds.add(h.toLowerCase()));
     meta.headings.h2.slice(0, 5).forEach((h) => seeds.add(h.toLowerCase()));
     const seedList = [...seeds].filter((s) => s && s.length > 4 && s.length < 80).slice(0, 4);
@@ -36,7 +36,7 @@ export async function POST(request) {
     }
 
     const lines = [];
-    lines.push(`Real Ranking Opportunities — competitor: ${host}`);
+    lines.push(`Real Ranking Opportunities . competitor: ${host}`);
     lines.push('Source: Live competitor page parse + DuckDuckGo SERP scrape');
     lines.push('='.repeat(60));
     lines.push('');
@@ -54,7 +54,7 @@ export async function POST(request) {
         lines.push(`${i + 1}. "${o.keyword}"`);
         lines.push(`   Competitor SERP position: ${o.competitorPosition}`);
         lines.push(`   Current top 3:`);
-        o.top3.forEach((r, j) => lines.push(`     ${j + 1}. ${r.host} — ${r.title}`));
+        o.top3.forEach((r, j) => lines.push(`     ${j + 1}. ${r.host} . ${r.title}`));
         lines.push(`   Opportunity: write a deeper page on this keyword (target ${Math.max(meta.wordCount + 300, 1500)}+ words).`);
       });
     }

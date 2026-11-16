@@ -1,8 +1,10 @@
 import ContactForm from './ContactForm';
 import { getBaseUrl, siteName, logoImage } from '../../lib/site';
 import { generateStaticPageSchema } from '../../lib/schema';
+import { createSocialMetadata } from '../../lib/socialMetadata';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Home, Layers3, HelpCircle, ShieldCheck, FileText, Mail } from 'lucide-react';
 
 const baseUrl = getBaseUrl();
 
@@ -25,19 +27,17 @@ pageSchema['@type'] = 'ContactPage';
 pageSchema['@context'] = 'https://schema.org';
 pageSchema.contactPoint = {
   '@type': 'ContactPoint',
-  telephone: '+1 (555) 123-4567',
   contactType: 'customer service',
+  email: 'contact@100seotools.com',
   areaServed: 'Global',
   availableLanguage: ['English', 'Nepali'],
   url: `${baseUrl}/contact`,
 };
-pageSchema.telephone = 'tel:+15551234567';
 pageSchema.email = 'contact@100seotools.com';
 
-pageSchema['@type'] = 'Organization';
-pageSchema.name = '100 SEO Tools';
+pageSchema['@type'] = 'ContactPage';
+pageSchema.name = 'Contact Us | 100 SEO Tools';
 pageSchema.url = baseUrl;
-pageSchema.sameAs = ['https://www.linkedin.com/in/whoisabhishekadhikari/'];
 
 export default function ContactPage() {
   const pageSchema = generateStaticPageSchema({
@@ -80,6 +80,7 @@ export default function ContactPage() {
               <p className="text-sm font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">
                 Get in touch with 100 SEO Tools
               </p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 24-48h response time
               </p>
             </div>
@@ -206,6 +207,7 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

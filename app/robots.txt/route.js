@@ -22,6 +22,26 @@ Disallow: /*?page=
 Disallow: /*?_rsc
 Disallow: /api/
 
+# Block tool-overlap blog redirect variants (redirect to /tools/*)
+Disallow: /blog/*-overview
+Disallow: /blog/*-guide
+Disallow: /blog/*-how-to-use
+Disallow: /blog/*-features-benefits-keywords
+Disallow: /blog/*-best-practices-integrations-costs
+Disallow: /blog/*-checklist-workflow
+Disallow: /blog/*-popular-search-terms
+
+# Block tool variant redirect URLs (redirect to /tools/*)
+Disallow: /tools/*-guide
+Disallow: /tools/*-best-practices-integrations-costs
+Disallow: /tools/*-features-benefits-keywords
+Disallow: /tools/*-checklist-workflow
+Disallow: /tools/*-popular-search-terms
+Disallow: /tools/*-how-to-use
+
+# Block numbered SEO basics redirect variants (redirect to /blog/seo-basics)
+Disallow: /blog/seo-basics-
+
 # Block error pages
 Disallow: /404
 Disallow: /500

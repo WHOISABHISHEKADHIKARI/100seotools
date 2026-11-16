@@ -2,14 +2,15 @@ import HomePageClient from './HomePageClient';
 import { getAllToolsMeta } from '../tools';
 import { getBaseUrl } from '../lib/site';
 import { createSocialMetadata } from '../lib/socialMetadata';
-import { generateStaticPageSchema } from '../lib/schema';
-import { StructuredData } from '../components/ui/StructuredData';
+import { generateStaticPageSchema, generateHomepageGraphSchema } from '../lib/schema';
+import StructuredData from '../components/ui/StructuredData';
+import { socialLinks } from '../lib/site';
 
 const baseUrl = getBaseUrl();
 
 export const metadata = {
-  title: '100+ Free SEO Tools - No Signup Required | 100 SEO Tools',
-  description: 'Use 100+ free SEO tools for keyword research, on-page audits, technical SEO, schema generation, content optimization, and SEO reports. Instant results, no signup required.',
+  title: 'Free SEO Tools: Keyword Research, Audits & Schema | 100 SEO Tools',
+  description: '100+ free SEO tools for keyword research, on-page audits, technical SEO, schema markup, and content optimization. Instant results, no signup, no data collection.',
   alternates: { canonical: baseUrl },
   ...createSocialMetadata({
     title: '100+ Free SEO Tools - No Signup Required',
@@ -33,8 +34,8 @@ export const metadata = {
 // Enhanced WebPage schema for AEO/GEO optimization
 const pageSchema = generateStaticPageSchema({
   path: '/',
-  title: metadata.title,
-  description: metadata.description,
+  title: 'Free SEO Tools: Keyword Research, Audits & Schema | 100 SEO Tools',
+  description: '100+ free SEO tools for keyword research, on-page audits, technical SEO, schema markup, and content optimization. Instant results, no signup, no data collection.',
 }, baseUrl);
 
 pageSchema['@type'] = 'WebPage';
@@ -56,6 +57,13 @@ pageSchema.changefreq = 'daily';
 
 export default function HomePage() {
   const tools = getAllToolsMeta().map((tool) => ({ ...tool, type: 'tool' }));
+  const globalGraph = generateHomepageGraphSchema(baseUrl, socialLinks);
 
-  return <HomePageClient initialTools={tools} structuredData={pageSchema} h1Title="100+ Free SEO Tools" />;
+  return (
+    <>
+      <StructuredData data={globalGraph} />
+      <StructuredData data={pageSchema} />
+      <HomePageClient initialTools={tools} h1Title="100+ Free SEO Tools" />
+    </>
+  );
 }

@@ -277,7 +277,7 @@ export default function ToolRunner({ tool }) {
                 {f.required && <span className="text-red-500 ml-1" title="Required">*</span>}
                 {pasteFeedback.field === f.name && (
                   <span role="status" aria-live="polite" className="ml-2 text-xs text-green-600 dark:text-green-400">
-                    ✓ Pasted as plain text
+                    <Check className="h-4 w-4 lucide lucide-check" /> Pasted as plain text
                   </span>
                 )}
               </label>

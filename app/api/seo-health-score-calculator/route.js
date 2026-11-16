@@ -45,7 +45,7 @@ export async function POST(request) {
     const tier = score >= 85 ? 'Excellent' : score >= 70 ? 'Good' : score >= 50 ? 'Fair' : score >= 30 ? 'Poor' : 'Critical';
 
     const lines = [];
-    lines.push(`Real SEO Health Score — ${page.data.finalUrl}`);
+    lines.push(`Real SEO Health Score . ${page.data.finalUrl}`);
     lines.push('Source: Live page fetch + robots/sitemap probes');
     lines.push('='.repeat(60));
     lines.push('');

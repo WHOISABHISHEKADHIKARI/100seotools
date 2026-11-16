@@ -37,7 +37,7 @@ const localKeywordGenerator = {
     "relatedTools": ["geo-keyword-expansion-tool", "local-seo-audit-checklist", "location-based-content-idea-generator"],
     "faqs": [
       {"q": "How many keywords should I target per location?", "a": "Start with 15-25 high-intent keywords per location, focusing on those with clear commercial intent. Expand to 50+ terms as you build topical authority and create dedicated landing pages for each keyword cluster."},
-      {"q": "What is the difference between near me and city-specific keywords?", "a": "Near me keywords trigger Google's proximity-based ranking and rely on the searcher's physical location, while city-specific keywords target users who explicitly include a location name. Both are valuable—near me for mobile users and city keywords for broader geographic targeting."},
+      {"q": "What is the difference between near me and city-specific keywords?", "a": "Near me keywords trigger Google's proximity-based ranking and rely on the searcher's physical location, while city-specific keywords target users who explicitly include a location name. Both are valuable.near me for mobile users and city keywords for broader geographic targeting."},
       {"q": "Should I target neighborhoods or just the main city?", "a": "Target both. Use city-level keywords for your main pages and create neighborhood-specific content for areas where you want to establish dominance. Neighborhood terms typically have lower competition and higher conversion rates for hyper-local searches."}
     ]
   }

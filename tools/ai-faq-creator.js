@@ -9,7 +9,7 @@ const aiFaqCreator = {
   "template": "aiFaqCreator",
   "api": true,
   "content": {
-    "introduction": "The AI FAQ Creator generates comprehensive, search-intent-aligned question-and-answer pairs for any topic. FAQs serve dual purposes — they improve user experience by addressing common concerns and they unlock FAQ rich results in Google, which expand your SERP listing with clickable dropdown questions.",
+    "introduction": "The AI FAQ Creator generates comprehensive, search-intent-aligned question-and-answer pairs for any topic. FAQs serve dual purposes . they improve user experience by addressing common concerns and they unlock FAQ rich results in Google, which expand your SERP listing with clickable dropdown questions.",
     "whatItDoes": "Input a topic, keyword, or existing article and the tool produces a set of question-and-answer pairs organized by user intent. It mines People Also Ask data, competitor FAQ pages, and search query patterns to surface the questions real users are searching. Each answer is crafted to be concise, accurate, and structured for both reader comprehension and schema markup compatibility.",
     "whyItMatters": "FAQ content targets long-tail queries that have clear informational intent and lower competition. When marked up with FAQPage schema, these sections can generate rich results that significantly increase SERP real estate and click-through rates. Beyond SEO, well-written FAQs reduce support tickets and improve page engagement metrics like time on page and scroll depth.",
     "benefits": [
@@ -28,7 +28,7 @@ const aiFaqCreator = {
     ],
     "bestPractices": [
       "Group questions by topic rather than listing them randomly to improve page structure",
-      "Keep answers between 40 and 80 words — long enough to be useful, short enough for snippet extraction",
+      "Keep answers between 40 and 80 words . long enough to be useful, short enough for snippet extraction",
       "Use natural language in questions that matches how people actually speak and search",
       "Pair the generated FAQ section with FAQPage schema for maximum rich result eligibility",
       "Update FAQs periodically as new questions emerge from search console query data"

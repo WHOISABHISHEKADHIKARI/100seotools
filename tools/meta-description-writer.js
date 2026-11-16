@@ -9,7 +9,7 @@ const metaDescriptionWriter = {
   "template": "metaDescriptionWriter",
   "api": true,
   "content": {
-    "introduction": "Meta descriptions are your elevator pitch in search results. While they don't directly influence rankings, they heavily impact click-through rates—making them one of the highest-leverage SEO elements you can optimize. Our Meta Description Writer generates compelling, action-oriented snippets that entice users to click through to your page instead of your competitors'.",
+    "introduction": "Meta descriptions are your elevator pitch in search results. While they don't directly influence rankings, they heavily impact click-through rates.making them one of the highest-leverage SEO elements you can optimize. Our Meta Description Writer generates compelling, action-oriented snippets that entice users to click through to your page instead of your competitors'.",
     "whatItDoes": "This tool analyzes your page content or target topic and generates multiple meta description options. Each description is crafted to fit within the optimal 150-160 character limit, includes your target keyword, and ends with a clear call-to-action. The tool ensures every description communicates a distinct value proposition that differentiates your result from others on the SERP.",
     "whyItMatters": "Google displays meta descriptions in approximately 70% of search results when available. A well-written description can increase CTR by 5-10%, which translates directly to more traffic without improving rankings. Over thousands of monthly impressions, even small CTR improvements compound into significant traffic gains.",
     "benefits": [
@@ -31,7 +31,7 @@ const metaDescriptionWriter = {
       "Always include a clear call-to-action such as 'Learn more,' 'Discover,' or 'Get started today'",
       "Keep descriptions between 150-160 characters to display fully in SERPs",
       "Place your primary keyword as close to the beginning as possible",
-      "Write unique descriptions for every page—duplicate descriptions dilute effectiveness",
+      "Write unique descriptions for every page.duplicate descriptions dilute effectiveness",
       "A/B test descriptions quarterly by monitoring CTR changes in Search Console",
       "Match the description's promise to the page's actual content to minimize bounces"
     ],
