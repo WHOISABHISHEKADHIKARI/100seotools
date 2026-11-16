@@ -60,10 +60,10 @@ export default function HomePage() {
   const globalGraph = generateHomepageGraphSchema(baseUrl, socialLinks);
 
   return (
-    <>
-      <StructuredData data={globalGraph} />
-      <StructuredData data={pageSchema} />
-      <HomePageClient initialTools={tools} h1Title="100+ Free SEO Tools" />
-    </>
+    <HomePageClient
+      initialTools={tools}
+      h1Title="100+ Free SEO Tools"
+      structuredData={[globalGraph, pageSchema]}
+    />
   );
 }

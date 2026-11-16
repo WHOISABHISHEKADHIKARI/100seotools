@@ -157,7 +157,7 @@ export default function RootLayout({ children }) {
             <ClientLayout />
 
             {/* Main content */}
-            <main id="main" className="flex-1 pt-16 md:pt-24 pb-12 md:pb-16" tabIndex="-1">
+            <main id="main" className="flex-1 pt-16 md:pt-24 pb-12 md:pb-16 bg-[color-bg] dark:bg-[color-slate-950] text-[color-fg] dark:text-[color-slate-100]" tabIndex="-1">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <ErrorBoundary>
                   {children}

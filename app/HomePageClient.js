@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
+import StructuredData from '../components/ui/StructuredData';
 import {
   ArrowRight,
   BarChart2,
@@ -79,7 +80,7 @@ const testimonials = [
   ['Ryan M.', 'Content Manager', 'The AI and metadata tools are now part of our publishing checklist for every campaign.'],
 ];
 
-export default function HomePageClient({ initialTools = [] }) {
+export default function HomePageClient({ initialTools = [], structuredData = null }) {
   const [tools] = useState(initialTools);
   const [filteredTools, setFilteredTools] = useState(initialTools);
 
@@ -94,7 +95,11 @@ export default function HomePageClient({ initialTools = [] }) {
   const aiTools = useMemo(() => tools.filter((tool) => tool.category === 'AI-Powered SEO').slice(0, 6), [tools]);
 
   return (
-    <div className="space-y-0">
+    <>
+      {Array.isArray(structuredData) && structuredData.filter(Boolean).map((d, i) => (
+        <StructuredData key={i} data={d} />
+      ))}
+      <div className="space-y-0">
       <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="absolute -top-40 left-1/2 h-[560px] w-[980px] -translate-x-1/2 rounded-full bg-brand-700 opacity-25 blur-3xl" />
@@ -451,5 +456,6 @@ export default function HomePageClient({ initialTools = [] }) {
         </div>
       </section>
     </div>
+    </>
   );
 }
