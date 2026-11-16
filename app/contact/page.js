@@ -95,35 +95,35 @@ export default function ContactPage() {
                 <nav className="space-y-1">
                   <a
                     href="/"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group cursor-pointer cursor-pointer"
                   >
                     <Home className="w-4 h-4 text-slate-300" aria-hidden />
                     Home
                   </a>
                   <a
                     href="/about"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group cursor-pointer cursor-pointer"
                   >
                     <FileText className="w-4 h-4 text-slate-300 group-hover:text-earth-600" />
                     About
                   </a>
                   <a
                     href="/tools"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group cursor-pointer cursor-pointer"
                   >
                     <Layers3 className="w-4 h-4 text-slate-300 group-hover:text-brand-200" />
                     Tools
                   </a>
                   <a
                     href="/faq"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group cursor-pointer cursor-pointer"
                   >
                     <HelpCircle className="w-4 h-4 text-slate-300 group-hover:text-brand-600" />
                     FAQ
                   </a>
                   <a
                     href="/privacy"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group cursor-pointer cursor-pointer"
                   >
                     <ShieldCheck className="w-4 h-4 text-earth-600" />
                     Privacy

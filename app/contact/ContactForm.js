@@ -248,7 +248,7 @@ export default function ContactForm() {
                                         ['SEO Learning Blog', '/blog'],
                                         ['Privacy & Data', '/privacy'],
                                     ].map(([label, href]) => (
-                                        <Link key={label} href={href} className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
+                                        <Link key={label} href={href} className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group cursor-pointer cursor-pointer">
                                             <span className="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-brand-600">{label}</span>
                                             <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-brand-600 transition-all group-hover:translate-x-1" />
                                         </Link>
@@ -262,7 +262,7 @@ export default function ContactForm() {
                             <p className="text-white/70 text-sm leading-relaxed mb-8">
                                 We love high-quality, original content. If you're an SEO expert with a unique perspective, we want to hear from you.
                             </p>
-                            <Link href="/blog" className="inline-flex items-center justify-center w-full py-4 bg-white text-brand-700 text-sm font-black rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-black/10">
+                            <Link href="/blog" className="inline-flex items-center justify-center w-full py-4 bg-white text-brand-700 text-sm font-black rounded-2xl hover:opacity-90 active:opacity-80 transition-all shadow-xl shadow-black/10">
                                 View Content Guidelines
                             </Link>
                         </div>

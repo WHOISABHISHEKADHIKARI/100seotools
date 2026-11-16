@@ -101,7 +101,7 @@ export default function TermsPage() {
                   <a
                     key={s.id}
                     href={`#${s.id}`}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group cursor-pointer cursor-pointer"
                   >
                     <s.icon className="w-4 h-4 text-slate-400 group-hover:text-brand-600" />
                     {s.title}

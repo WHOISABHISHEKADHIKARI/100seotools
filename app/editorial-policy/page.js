@@ -87,7 +87,7 @@ export default function EditorialPolicyPage() {
                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 px-4 pt-2">On this page</p>
                   <nav className="space-y-1">
                     {sections.map((s) => (
-                      <a key={s.id} href={`#${s.id}`} className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-white/5 transition-all group">
+                      <a key={s.id} href={`#${s.id}`} className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-white/5 transition-all group cursor-pointer cursor-pointer">
                         <s.icon className="w-4 h-4 text-slate-400 group-hover:text-brand-600" />
                         {s.title}
                       </a>
@@ -99,7 +99,7 @@ export default function EditorialPolicyPage() {
                   <Search className="h-6 w-6 mb-4 text-brand-200" />
                   <h3 className="text-lg font-black mb-2">Explore our tools</h3>
                   <p className="text-xs text-white/70 leading-relaxed mb-6">All 100+ tools are free, browser-based, and require no signup.</p>
-                  <Link href="/tools" className="inline-flex items-center justify-center w-full py-3 bg-white text-brand-700 text-xs font-black rounded-xl hover:scale-105 active:scale-95 transition-all">
+                  <Link href="/tools" className="inline-flex items-center justify-center w-full py-3 bg-white text-brand-700 text-xs font-black rounded-xl hover:opacity-90 active:opacity-80 transition-all">
                     Browse Tools
                   </Link>
                 </div>

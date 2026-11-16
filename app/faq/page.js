@@ -170,7 +170,7 @@ export default function FAQPage() {
             <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 px-4 pt-2">Categories</p>
             <nav className="space-y-1">
               {faqCategories.map((cat) => (
-                <button key={cat.category} className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
+                <button key={cat.category} className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group cursor-pointer cursor-pointer">
                   <span className="flex items-center gap-3">
                     <cat.icon className="h-4 w-4 text-slate-400 group-hover:text-brand-600" />
                     {cat.category}
@@ -185,7 +185,7 @@ export default function FAQPage() {
             <MessageSquare className="h-6 w-6 mb-4 text-brand-200" />
             <h3 className="text-lg font-black mb-2">Still have questions?</h3>
             <p className="text-xs text-white/70 leading-relaxed mb-6">Our team is here to help you with any custom tool requests or technical issues.</p>
-            <Link href="/contact" className="inline-flex items-center justify-center w-full py-3 bg-white text-brand-700 text-xs font-black rounded-xl hover:scale-105 active:scale-95 transition-all">
+            <Link href="/contact" className="inline-flex items-center justify-center w-full py-3 bg-white text-brand-700 text-xs font-black rounded-xl hover:opacity-90 active:opacity-80 transition-all">
               Contact Support
             </Link>
           </div>
