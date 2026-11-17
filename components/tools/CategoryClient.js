@@ -117,7 +117,7 @@ export default function CategoryClient({ items = [], catName, slug, initialPage 
               <LayoutGrid className="text-white w-5 h-5" />
             </div>
             <div>
-              <p className="text-xs font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Displaying</p>
+              <p className="text-xs font-black text-slate-600 uppercase tracking-widest leading-none mb-1">Displaying</p>
               <p className="text-sm font-black text-slate-900 dark:text-white">{totalTools} {toolsPlural} in {catName}</p>
             </div>
           </div>
@@ -193,7 +193,7 @@ export default function CategoryClient({ items = [], catName, slug, initialPage 
         {/* Mobile Pagination */}
         <div className="flex sm:hidden items-center justify-between">
            <button onClick={goPrev} disabled={currentPage <= 1} className="px-6 py-3 rounded-xl bg-white dark:bg-gray-900 border border-slate-200 text-xs font-black disabled:opacity-50">Prev</button>
-           <span className="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">Page {currentPage} of {totalPages}</span>
+           <span className="text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest">Page {currentPage} of {totalPages}</span>
            <button onClick={goNext} disabled={currentPage >= totalPages} className="px-6 py-3 rounded-xl bg-white dark:bg-gray-900 border border-slate-200 text-xs font-black disabled:opacity-50">Next</button>
         </div>
       </section>
@@ -212,7 +212,7 @@ export default function CategoryClient({ items = [], catName, slug, initialPage 
               </span>
               <div className="min-w-0 flex-1">
                 <span className="block font-black text-slate-900 dark:text-white group-hover:text-brand-600 transition-colors">{title}</span>
-                <span className="mt-1 block text-sm leading-relaxed text-slate-500 dark:text-slate-400">{desc}</span>
+                <span className="mt-1 block text-sm leading-relaxed text-slate-600 dark:text-slate-300">{desc}</span>
               </div>
               <ArrowRight className="w-5 h-5 text-slate-200 group-hover:text-brand-600 transition-all group-hover:translate-x-1" />
             </Link>

@@ -252,7 +252,7 @@ export default async function Page({ params, searchParams }) {
             <article className="min-w-0 space-y-8 rounded-[1.75rem] border border-white/70 bg-white/95 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)] ring-1 ring-slate-900/[0.03] transition-shadow duration-300 hover:shadow-[0_28px_90px_rgba(15,23,42,0.11)] md:p-9 dark:border-white/10 dark:bg-white/[0.04]">
       <header className="sr-only">
         <p className="text-gray-700 dark:text-gray-300">{post.description}</p>
-        <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+        <div className="flex items-center gap-3 text-xs text-slate-600 dark:text-slate-300">
           <span>{new Date(post.datePublished).toLocaleDateString()}</span>
           <span>·</span>
           <span>{post.readTimeMinutes || 6} min read</span>
@@ -372,7 +372,7 @@ export default async function Page({ params, searchParams }) {
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/5">
                     <th className="px-4 py-3 text-left font-extrabold text-slate-700 dark:text-slate-200">Feature</th>
-                    <th className="px-4 py-3 text-left font-semibold text-slate-500 dark:text-slate-400">Cloud Analytics</th>
+                    <th className="px-4 py-3 text-left font-semibold text-slate-600 dark:text-slate-300">Cloud Analytics</th>
                     <th className="px-4 py-3 text-left font-semibold text-earth-700 dark:text-emerald-300">Self-Hosted</th>
                   </tr>
                 </thead>
@@ -380,7 +380,7 @@ export default async function Page({ params, searchParams }) {
                   {post.sections.comparison.rows.map((row, i) => (
                     <tr key={i} className="border-b border-slate-100 last:border-0 dark:border-white/5">
                       <td className="px-4 py-3 font-medium text-slate-900 dark:text-white">{row.feature}</td>
-                      <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{row.cloud}</td>
+                      <td className="px-4 py-3 text-slate-600 dark:text-slate-300">{row.cloud}</td>
                       <td className="px-4 py-3 font-medium text-earth-700 dark:text-emerald-300">{row.selfHosted}</td>
                     </tr>
                   ))}
@@ -417,7 +417,7 @@ export default async function Page({ params, searchParams }) {
               href={`/blog/${previousPost.slug}`}
               className="group p-4 rounded-lg border border-slate-200 dark:border-white/10 hover:border-brand-500 dark:hover:border-brand-500 hover:shadow-md transition-all"
             >
-              <div className="text-xs text-slate-500 dark:text-slate-400 mb-1 flex items-center gap-1">
+              <div className="text-xs text-slate-600 dark:text-slate-300 mb-1 flex items-center gap-1">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
@@ -427,12 +427,12 @@ export default async function Page({ params, searchParams }) {
                 {previousPost.title}
               </div>
               {previousPost.category && (
-                <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{previousPost.category}</div>
+                <div className="text-xs text-slate-600 dark:text-slate-300 mt-1">{previousPost.category}</div>
               )}
             </Link>
           ) : (
             <div className="p-4 rounded-lg border border-slate-200 dark:border-white/10 opacity-50">
-              <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">No previous post</div>
+              <div className="text-xs text-slate-600 dark:text-slate-300 mb-1">No previous post</div>
             </div>
           )}
 
@@ -441,7 +441,7 @@ export default async function Page({ params, searchParams }) {
               href={`/blog/${nextPost.slug}`}
               className="group p-4 rounded-lg border border-slate-200 dark:border-white/10 hover:border-brand-500 dark:hover:border-brand-500 hover:shadow-md transition-all text-right"
             >
-              <div className="text-xs text-slate-500 dark:text-slate-400 mb-1 flex items-center justify-end gap-1">
+              <div className="text-xs text-slate-600 dark:text-slate-300 mb-1 flex items-center justify-end gap-1">
                 Next
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -451,12 +451,12 @@ export default async function Page({ params, searchParams }) {
                 {nextPost.title}
               </div>
               {nextPost.category && (
-                <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{nextPost.category}</div>
+                <div className="text-xs text-slate-600 dark:text-slate-300 mt-1">{nextPost.category}</div>
               )}
             </Link>
           ) : (
             <div className="p-4 rounded-lg border border-slate-200 dark:border-white/10 opacity-50 text-right">
-              <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">No next post</div>
+              <div className="text-xs text-slate-600 dark:text-slate-300 mb-1">No next post</div>
             </div>
           )}
         </div>

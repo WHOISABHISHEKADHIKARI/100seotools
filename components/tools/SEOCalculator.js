@@ -251,7 +251,7 @@ export default function SEOCalculator() {
                 <span className="rounded-md border border-brand-100 bg-brand-50 px-2 py-1 text-[11px] font-semibold text-brand-700 dark:border-brand-400/20 dark:bg-indigo-400/10 dark:text-brand-200">
                   {post.category || 'SEO Guide'}
                 </span>
-                <span className="inline-flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+                <span className="inline-flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300">
                   <Clock className="h-3.5 w-3.5" aria-hidden />
                   {post.readTimeMinutes || 6} min
                 </span>

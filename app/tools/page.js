@@ -100,7 +100,7 @@ export default function ToolsIndexPage() {
   return (
     <section id="main" className="py-8">
       <nav aria-label="Breadcrumb" className="mb-5 text-sm">
-        <ol className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-400">
+        <ol className="flex flex-wrap items-center gap-2 text-slate-600 dark:text-slate-300">
           <li>
             <Link href="/" className="inline-flex items-center gap-1 hover:text-brand-700 dark:hover:text-brand-200">
               <Home className="h-3.5 w-3.5" aria-hidden />
@@ -172,7 +172,7 @@ export default function ToolsIndexPage() {
                     <h2 id={`cat-${categorySlug}`} className="text-2xl font-extrabold text-slate-950 dark:text-white">
                       {category}
                     </h2>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">{items.length} tools · {detail.description}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-300">{items.length} tools · {detail.description}</p>
                   </div>
                 </div>
                 <Link href={getCategoryHref(category)} className="inline-flex items-center gap-2 text-sm font-extrabold text-brand-700 hover:underline dark:text-brand-300">
@@ -207,9 +207,9 @@ export default function ToolsIndexPage() {
                       <h3 className="line-clamp-2 text-base font-extrabold leading-snug text-slate-900 group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">
                         {shortToolName(item.name)}
                       </h3>
-                      <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-500 dark:text-slate-400">{item.description}</p>
+                      <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{item.description}</p>
                       <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 text-xs dark:border-white/10">
-                        <span className="inline-flex items-center gap-1.5 text-slate-400">
+                        <span className="inline-flex items-center gap-1.5 text-slate-600">
                           <Users className="h-3.5 w-3.5" aria-hidden />
                           {getMonthlyUse(index)}/mo
                         </span>
@@ -232,7 +232,7 @@ export default function ToolsIndexPage() {
           <div className="mb-10 text-center">
             <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">FAQ</p>
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white md:text-4xl">SEO Tools . Common Questions</h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
               Direct answers about free SEO tools, privacy, and capabilities.
             </p>
           </div>

@@ -106,7 +106,7 @@ export default function SearchFilter({ tools, onChange, initialCategory = 'All' 
     <div className="overflow-visible rounded-2xl border border-slate-100 bg-white p-3 shadow-xl shadow-slate-900/5 dark:border-white/10 dark:bg-gray-900" role="search" aria-label="Filter and search tools">
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-12">
         <div className="relative lg:col-span-6">
-          <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" aria-hidden />
+          <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-600" aria-hidden />
           <input
             id="tool-search"
             type="search"
@@ -124,7 +124,7 @@ export default function SearchFilter({ tools, onChange, initialCategory = 'All' 
           {query && (
             <button
               type="button"
-              className="absolute right-3 top-1/2 grid min-h-[44px] min-w-[44px] -translate-y-1/2 place-items-center rounded-lg text-slate-400 transition hover:bg-slate-200 hover:text-slate-700 dark:hover:bg-white/10 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2"
+              className="absolute right-3 top-1/2 grid min-h-[44px] min-w-[44px] -translate-y-1/2 place-items-center rounded-lg text-slate-600 transition hover:bg-slate-200 hover:text-slate-700 dark:hover:bg-white/10 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2"
               onClick={() => setQuery('')}
               aria-label="Clear search"
             >
@@ -197,7 +197,7 @@ export default function SearchFilter({ tools, onChange, initialCategory = 'All' 
       </div>
 
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm">
-        <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+        <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
           <Filter className="h-4 w-4" aria-hidden />
           <span aria-live="polite">
             <strong className="text-slate-800 dark:text-white">{filteredTools.length}</strong> tools found

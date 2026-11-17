@@ -100,7 +100,7 @@ export default function HomePageClient({ initialTools = [], structuredData = nul
         <StructuredData key={i} data={d} />
       ))}
       <div className="space-y-0">
-      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white">
+      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-slate-900 bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white" style={{backgroundColor: '#151515'}}
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="absolute -top-40 left-1/2 h-[560px] w-[980px] -translate-x-1/2 rounded-full bg-brand-700 opacity-25 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-[360px] w-[360px] rounded-full bg-blue-600 opacity-15 blur-3xl" />
@@ -155,7 +155,7 @@ export default function HomePageClient({ initialTools = [], structuredData = nul
 
       <section className="relative left-1/2 w-screen -translate-x-1/2 border-b border-slate-100 bg-white py-5 dark:border-white/10 dark:bg-gray-950 flex justify-center items-center">
         <div className="relative w-full max-w-[600px] mx-auto">
-          <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" aria-hidden />
+          <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-600" aria-hidden />
           <input
             id="tool-search"
             type="search"
@@ -182,7 +182,7 @@ export default function HomePageClient({ initialTools = [], structuredData = nul
         <div className="mb-10 text-center">
           <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">Browse by Category</p>
           <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white md:text-4xl">Find the Right Tool Fast</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
             Every utility is organized by workflow, with fast search and clean tool cards so you can jump straight into the job.
           </p>
         </div>
@@ -223,9 +223,9 @@ export default function HomePageClient({ initialTools = [], structuredData = nul
                     </span>
                   </div>
                   <h3 className="text-sm font-extrabold text-slate-900 group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">{category.label}</h3>
-                  <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">{category.description}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-300">{category.description}</p>
                 </a>
-                <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-bold text-slate-400 dark:border-white/10">
+                <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-bold text-slate-500 dark:border-white/10 dark:text-slate-400">
                   <a href={href} onClick={followNativeHref(href)} className="flex w-full items-center justify-between transition hover:text-brand-600">
                     Explore category
                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
@@ -276,7 +276,7 @@ export default function HomePageClient({ initialTools = [], structuredData = nul
                     </span>
                     <div className="min-w-0 flex-1">
                       <div className="truncate text-sm font-extrabold text-slate-900 group-hover:text-brand-700 dark:text-white">{shortToolName(tool.name)}</div>
-                      <div className="mt-1 flex items-center gap-1.5 text-xs text-slate-400">
+                      <div className="mt-1 flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300">
                         <span>{tool.category}</span>
                         <span>·</span>
                         <Users className="h-3 w-3" aria-hidden />
@@ -319,7 +319,7 @@ export default function HomePageClient({ initialTools = [], structuredData = nul
               </div>
               <div className="text-[11px] font-extrabold text-brand-600">{number}</div>
               <h3 className="mt-1 text-sm font-extrabold text-slate-900 dark:text-white">{title}</h3>
-              <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">{description}</p>
+              <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-300">{description}</p>
             </div>
           ))}
         </div>
@@ -401,7 +401,7 @@ export default function HomePageClient({ initialTools = [], structuredData = nul
                   <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-blue-600 text-sm font-extrabold text-white">{name.charAt(0)}</span>
                   <span>
                     <span className="block text-sm font-extrabold text-slate-900 dark:text-white">{name}</span>
-                    <span className="text-xs text-slate-400">{role}</span>
+                    <span className="text-xs text-slate-600 dark:text-slate-300">{role}</span>
                   </span>
                 </div>
               </div>

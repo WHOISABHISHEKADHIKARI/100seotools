@@ -400,7 +400,7 @@ export default function ToolRunner({ tool }) {
         <div className="min-w-0 space-y-3" ref={outputRef}>
           <div className="flex flex-wrap items-center justify-between gap-2">
             <label className="block text-sm font-bold text-gray-900 dark:text-gray-100">Output</label>
-            <span className="text-xs text-slate-500 dark:text-slate-400">Readable summary and export tools</span>
+            <span className="text-xs text-slate-600 dark:text-slate-300">Readable summary and export tools</span>
           </div>
           <OutputPresentation
             output={output}

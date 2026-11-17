@@ -138,7 +138,7 @@ export default function AiTrainerNepalPage() {
         <div className="bg-[#fafbfc] dark:bg-[#020617] min-h-screen">
             <StructuredData data={[personSchema, serviceSchema, webPageSchema, faqSchema, breadcrumbSchema]} />
 
-            <nav aria-label="Breadcrumb" className="max-w-5xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
+            <nav aria-label="Breadcrumb" className="max-w-5xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-600 dark:text-slate-300">
                 <ol className="flex flex-wrap items-center gap-1.5">
                     <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
                     <li aria-hidden="true">/</li>
@@ -162,7 +162,7 @@ export default function AiTrainerNepalPage() {
                         नेपालमा व्यावहारिक AI प्रशिक्षण, prompt engineering र AI workshop सम्बन्धी जानकारी।
                     </p>
 
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-slate-600 dark:text-slate-300">
                         <span className="inline-flex items-center gap-1.5">
                             <Image src="/author.png" alt="Abhishek Adhikari" width={24} height={24} className="rounded-full" />
                             <Link href="/author" className="font-semibold text-brand-600 hover:text-brand-800 dark:text-brand-400">Abhishek Adhikari</Link>
@@ -181,7 +181,7 @@ export default function AiTrainerNepalPage() {
                     ].map(([value, label]) => (
                         <div key={label} className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm dark:border-white/10 dark:bg-gray-900">
                             <p className="text-2xl font-extrabold text-brand-600 dark:text-brand-400">{value}</p>
-                            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{label}</p>
+                            <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">{label}</p>
                         </div>
                     ))}
                 </div>
@@ -198,7 +198,7 @@ export default function AiTrainerNepalPage() {
                             loading="lazy"
                         />
                     </div>
-                    <figcaption className="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center">
+                    <figcaption className="mt-2 text-xs text-slate-600 dark:text-slate-300 text-center">
                         Abhishek Adhikari, AI trainer in Nepal.
                     </figcaption>
                 </figure>
@@ -213,7 +213,7 @@ export default function AiTrainerNepalPage() {
 
                 {/* ── TABLE OF CONTENTS ── */}
                 <nav className="rounded-2xl border border-slate-200 bg-slate-50 p-5 mb-8 dark:border-white/10 dark:bg-white/5" aria-label="Table of contents">
-                    <h2 className="text-sm font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3">In this guide</h2>
+                    <h2 className="text-sm font-extrabold uppercase tracking-widest text-slate-600 dark:text-slate-300 mb-3">In this guide</h2>
                     <ol className="space-y-1 text-sm">
                         {[
                             ['Why most AI training misses the point', '#why'],
@@ -320,25 +320,25 @@ export default function AiTrainerNepalPage() {
                                 <a href="https://abhishekadhikari.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300 hover:underline">
                                     Abhishek Adhikari portfolio <ExternalLink className="h-3 w-3" aria-hidden />
                                 </a>
-                                <span className="text-slate-500 dark:text-slate-400"> . professional background and selected work.</span>
+                                <span className="text-slate-600 dark:text-slate-300"> . professional background and selected work.</span>
                             </li>
                             <li>
                                 <a href="https://kathmandu.wordcamp.org/2026/speaker/abhishek-adhikari/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300 hover:underline">
                                     WordCamp Kathmandu 2026 speaker profile <ExternalLink className="h-3 w-3" aria-hidden />
                                 </a>
-                                <span className="text-slate-500 dark:text-slate-400"> . public speaking reference.</span>
+                                <span className="text-slate-600 dark:text-slate-300"> . public speaking reference.</span>
                             </li>
                             <li>
                                 <a href="https://github.com/WHOISABHISHEKADHIKARI" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300 hover:underline">
                                     GitHub profile <ExternalLink className="h-3 w-3" aria-hidden />
                                 </a>
-                                <span className="text-slate-500 dark:text-slate-400"> . open-source activity and technical work.</span>
+                                <span className="text-slate-600 dark:text-slate-300"> . open-source activity and technical work.</span>
                             </li>
                             <li>
                                 <a href="https://www.linkedin.com/in/whoisabhishekadhikari/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300 hover:underline">
                                     LinkedIn profile <ExternalLink className="h-3 w-3" aria-hidden />
                                 </a>
-                                <span className="text-slate-500 dark:text-slate-400"> . professional identity reference.</span>
+                                <span className="text-slate-600 dark:text-slate-300"> . professional identity reference.</span>
                             </li>
                         </ul>
 
@@ -353,7 +353,7 @@ export default function AiTrainerNepalPage() {
                                     loading="lazy"
                                 />
                             </div>
-                            <figcaption className="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center">
+                            <figcaption className="mt-2 text-xs text-slate-600 dark:text-slate-300 text-center">
                                 Prompt engineering workshop at J&B Coffee, Hetauda.
                             </figcaption>
                         </figure>
@@ -369,7 +369,7 @@ export default function AiTrainerNepalPage() {
                                     loading="lazy"
                                 />
                             </div>
-                            <figcaption className="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center">
+                            <figcaption className="mt-2 text-xs text-slate-600 dark:text-slate-300 text-center">
                                 AI and digital literacy workshop session.
                             </figcaption>
                         </figure>
@@ -385,7 +385,7 @@ export default function AiTrainerNepalPage() {
                                     loading="lazy"
                                 />
                             </div>
-                            <figcaption className="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center">
+                            <figcaption className="mt-2 text-xs text-slate-600 dark:text-slate-300 text-center">
                                 Speaking at WordCamp Kathmandu 2026.
                             </figcaption>
                         </figure>

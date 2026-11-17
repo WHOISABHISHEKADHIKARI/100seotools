@@ -55,7 +55,7 @@ const Footer = function Footer() {
                 100SEO<span className="text-brand-300">Tools</span>
               </span>
             </Link>
-            <p className="max-w-sm text-sm leading-6 text-slate-400">
+            <p className="max-w-sm text-sm leading-6 text-slate-400 dark:text-slate-300">
               A complete collection of free SEO tools for keyword research, technical audits, content optimization,
               local SEO, schema, links, and performance forecasting.
             </p>
@@ -70,7 +70,7 @@ const Footer = function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="grid min-h-[44px] min-w-[44px] place-items-center rounded-lg bg-white/10 text-slate-400 transition hover:bg-brand-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
+                  className="grid min-h-[44px] min-w-[44px] place-items-center rounded-lg bg-white/10 text-slate-600 transition hover:bg-brand-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
                   aria-label={`Follow us on ${label}`}
                 >
                   <Icon className="h-4 w-4" aria-hidden />

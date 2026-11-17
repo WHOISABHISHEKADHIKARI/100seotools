@@ -125,7 +125,7 @@ function ToolCard({ tool, index, isFavorite, onToggleFavorite, onToolClick }) {
             {!isBlog && (
               <button
                 type="button"
-                className="grid min-h-[44px] min-w-[44px] place-items-center rounded-xl border border-slate-200 text-slate-400 transition hover:border-yellow-200 hover:bg-yellow-50 hover:text-yellow-500 dark:border-white/10 dark:hover:bg-yellow-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2"
+                className="grid min-h-[44px] min-w-[44px] place-items-center rounded-xl border border-slate-200 text-slate-600 transition hover:border-yellow-200 hover:bg-yellow-50 hover:text-yellow-500 dark:border-white/10 dark:hover:bg-yellow-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2"
                 onClick={(event) => {
                   event.preventDefault();
                   onToggleFavorite(tool?.slug);
@@ -143,12 +143,12 @@ function ToolCard({ tool, index, isFavorite, onToggleFavorite, onToolClick }) {
           <h3 className="line-clamp-2 text-base font-extrabold leading-snug text-slate-900 transition group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">
             {title}
           </h3>
-          <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-500 dark:text-slate-400">
+          <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
             {description}
           </p>
         </a>
 
-        <div className="mt-5 flex flex-wrap items-center gap-2 text-xs text-slate-400">
+        <div className="mt-5 flex flex-wrap items-center gap-2 text-xs text-slate-600">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1 font-semibold text-slate-600 dark:bg-white/10 dark:text-slate-300">
             <Icon className="h-3.5 w-3.5" aria-hidden />
             {tool?.category || 'SEO Tool'}

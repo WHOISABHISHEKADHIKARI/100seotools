@@ -140,7 +140,7 @@ export default async function BlogPage({ searchParams }) {
       <StructuredData data={graphLd} />
 
       <section className="min-h-screen bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
-        <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 text-sm text-slate-500 dark:text-slate-400">
+        <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 text-sm text-slate-600 dark:text-slate-300">
           <ol className="flex flex-wrap items-center gap-1.5">
             <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
             <li aria-hidden="true">/</li>
@@ -183,7 +183,7 @@ export default async function BlogPage({ searchParams }) {
               ].map((stat) => (
                 <div key={stat.label} className="rounded-lg border border-slate-100 bg-white p-4 dark:border-white/10 dark:bg-slate-950/40">
                   <div className="text-2xl font-semibold tracking-tight">{stat.value}</div>
-                  <div className="mt-1 text-xs font-medium text-slate-500 dark:text-slate-400">{stat.label}</div>
+                  <div className="mt-1 text-xs font-medium text-slate-600 dark:text-slate-300">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -211,7 +211,7 @@ export default async function BlogPage({ searchParams }) {
                   <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300 md:text-base">
                     {featuredPost.description}
                   </p>
-                    <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-slate-500 dark:text-slate-400">
+                    <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-slate-600 dark:text-slate-300">
                       <span className="inline-flex items-center gap-2">
                         <CalendarDays className="h-4 w-4" aria-hidden />
                         {cleanDate(featuredPost.datePublished)}
@@ -220,7 +220,7 @@ export default async function BlogPage({ searchParams }) {
                         <Clock className="h-4 w-4" aria-hidden />
                         {featuredPost.readTimeMinutes || 6} min read
                       </span>
-                      <span className="inline-flex items-center gap-2 text-slate-400">
+                      <span className="inline-flex items-center gap-2 text-slate-600">
                         <span aria-hidden>by</span>
                         <a
                           href="/author"
@@ -233,7 +233,7 @@ export default async function BlogPage({ searchParams }) {
                           href="https://www.linkedin.com/in/whoisabhishekadhikari/"
                           target="_blank"
                           rel="noopener noreferrer author"
-                          className="text-slate-400 hover:text-brand-600 dark:hover:text-brand-300"
+                          className="text-slate-600 hover:text-brand-600 dark:hover:text-brand-300"
                           aria-label="Abhishek Adhikari on LinkedIn"
                         >
                           <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -247,7 +247,7 @@ export default async function BlogPage({ searchParams }) {
                         <div className="mb-4 grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-white dark:bg-white dark:text-slate-950">
                           <CheckCircle2 className="h-5 w-5" aria-hidden />
                         </div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Editorial Pick</p>
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-600 dark:text-slate-300">Editorial Pick</p>
                         <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
                           Start here for a polished, practical workflow before exploring the full library.
                         </p>
@@ -302,7 +302,7 @@ export default async function BlogPage({ searchParams }) {
               </div>
               <aside className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/5">
                 <h3 className="text-base font-semibold text-slate-950 dark:text-white">Sources & references</h3>
-                <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">
+                <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-300">
                   Each guide is built from hands-on SEO experience, platform documentation, and industry best practices from Google Search Central, Schema.org, and Moz.
                 </p>
                 <div className="mt-3 space-y-2 text-xs">
@@ -313,7 +313,7 @@ export default async function BlogPage({ searchParams }) {
                   ].map(([name, url]) => (
                     <a key={name} href={url} target="_blank" rel="noopener noreferrer" className="block rounded-md border border-slate-100 px-3 py-2 text-slate-600 transition:hover:border-brand-200:hover:text-brand-700 dark:border-white/10 dark:text-slate-400 dark:hover:text-brand-300">
                       <span className="font-medium">{name}</span>
-                      <span className="ml-2 text-slate-400">↗</span>
+                      <span className="ml-2 text-slate-600">↗</span>
                     </a>
                   ))}
                 </div>
@@ -324,7 +324,7 @@ export default async function BlogPage({ searchParams }) {
                   {guidePosts.map((post) => (
                     <Link key={post.slug} href={`/blog/${post.slug}`} className="block rounded-lg border border-slate-100 p-3 text-sm transition:hover:border-brand-200:hover:bg-slate-50 dark:hover:bg-white/5">
                       <span className="line-clamp-2 font-medium text-slate-800 dark:text-slate-100">{post.title}</span>
-                      <span className="mt-1 block text-xs text-slate-500 dark:text-slate-400">{post.readTimeMinutes || 5} min read</span>
+                      <span className="mt-1 block text-xs text-slate-600 dark:text-slate-300">{post.readTimeMinutes || 5} min read</span>
                     </Link>
                   ))}
                 </div>

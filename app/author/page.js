@@ -169,7 +169,7 @@ export default function AuthorPage() {
         </div>
       </section>
 
-      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
+      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-600 dark:text-slate-300">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
           <li aria-hidden="true">/</li>
@@ -181,12 +181,12 @@ export default function AuthorPage() {
         {/* Sidebar Nav */}
         <aside className="hidden lg:block sticky top-24">
           <div className="bg-white dark:bg-gray-900 rounded-3xl border border-slate-100 dark:border-white/10 shadow-sm p-4">
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 px-4 pt-2">Categories</p>
+            <p className="text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest mb-4 px-4 pt-2">Categories</p>
             <nav className="space-y-1">
               {faqCategories.map((cat) => (
                 <button key={cat.category} className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-all group cursor-pointer cursor-pointer">
                   <span className="flex items-center gap-3">
-                    <cat.icon className="h-4 w-4 text-slate-400 group-hover:text-brand-600" />
+                    <cat.icon className="h-4 w-4 text-slate-600 group-hover:text-brand-600" />
                     {cat.category}
                   </span>
                   <ChevronRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-all" />
@@ -223,7 +223,7 @@ export default function AuthorPage() {
                       <span className="text-brand-600 dark:text-brand-400 mt-0.5 font-black text-sm">Q.</span>
                       {faq.q}
                     </h3>
-                    <div className="pl-7 text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                    <div className="pl-7 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                       {faq.a}
                     </div>
                     {faq.tool && (
@@ -243,7 +243,7 @@ export default function AuthorPage() {
         {/* Bottom CTA */}
         <div className="bg-slate-50 dark:bg-white/5 rounded-[40x] p-12 text-center border border-slate-100 dark:border-white/10">
           <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-4">Can't find what you're looking for?</h2>
-          <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed font-medium">
+          <p className="text-slate-600 dark:text-slate-300 max-w-xl mx-auto mb-10 leading-relaxed font-medium">
             We're constantly updating our documentation and tools. If you have a specific question or feature request, we'd love to hear from you.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

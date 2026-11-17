@@ -88,7 +88,7 @@ export default function TrainingEnquiryForm() {
                 <h2 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-2">
                     Request a corporate training proposal
                 </h2>
-                <p className="text-slate-500 dark:text-slate-400 text-sm">
+                <p className="text-slate-600 dark:text-slate-300 text-sm">
                     Tell us about your team and goals. Required fields are marked with an asterisk (*).
                 </p>
             </div>
@@ -121,7 +121,7 @@ export default function TrainingEnquiryForm() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                        <label htmlFor="name" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Your Name *</label>
+                        <label htmlFor="name" className="text-xs font-black text-slate-600 uppercase tracking-widest ml-1">Your Name *</label>
                         <input
                             id="name"
                             name="name"
@@ -133,7 +133,7 @@ export default function TrainingEnquiryForm() {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label htmlFor="email" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Work Email *</label>
+                        <label htmlFor="email" className="text-xs font-black text-slate-600 uppercase tracking-widest ml-1">Work Email *</label>
                         <input
                             id="email"
                             name="email"
@@ -148,7 +148,7 @@ export default function TrainingEnquiryForm() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                        <label htmlFor="organisation" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Organisation *</label>
+                        <label htmlFor="organisation" className="text-xs font-black text-slate-600 uppercase tracking-widest ml-1">Organisation *</label>
                         <input
                             id="organisation"
                             name="organisation"
@@ -160,7 +160,7 @@ export default function TrainingEnquiryForm() {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label htmlFor="teamSize" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Approximate Participants</label>
+                        <label htmlFor="teamSize" className="text-xs font-black text-slate-600 uppercase tracking-widest ml-1">Approximate Participants</label>
                         <select
                             id="teamSize"
                             name="teamSize"
@@ -181,7 +181,7 @@ export default function TrainingEnquiryForm() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                        <label htmlFor="format" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Preferred Format</label>
+                        <label htmlFor="format" className="text-xs font-black text-slate-600 uppercase tracking-widest ml-1">Preferred Format</label>
                         <select
                             id="format"
                             name="format"
@@ -195,7 +195,7 @@ export default function TrainingEnquiryForm() {
                         </select>
                     </div>
                     <div className="space-y-2">
-                        <label htmlFor="preferredDates" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Preferred Dates</label>
+                        <label htmlFor="preferredDates" className="text-xs font-black text-slate-600 uppercase tracking-widest ml-1">Preferred Dates</label>
                         <input
                             id="preferredDates"
                             name="preferredDates"
@@ -207,7 +207,7 @@ export default function TrainingEnquiryForm() {
                 </div>
 
                 <div className="space-y-2">
-                    <label htmlFor="phone" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Phone (optional)</label>
+                    <label htmlFor="phone" className="text-xs font-black text-slate-600 uppercase tracking-widest ml-1">Phone (optional)</label>
                     <input
                         id="phone"
                         name="phone"
@@ -219,7 +219,7 @@ export default function TrainingEnquiryForm() {
                 </div>
 
                 <div className="space-y-2">
-                    <label htmlFor="goals" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Training Goals *</label>
+                    <label htmlFor="goals" className="text-xs font-black text-slate-600 uppercase tracking-widest ml-1">Training Goals *</label>
                     <textarea
                         id="goals"
                         name="goals"
@@ -234,7 +234,7 @@ export default function TrainingEnquiryForm() {
 
                 <div className="flex items-start gap-3 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 p-5">
                     <ShieldCheck className="w-5 h-5 text-earth-600 flex-shrink-0 mt-0.5" aria-hidden />
-                    <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                         We use your details only to respond to this training enquiry. Please do not include confidential documents or personal data. See our <Link href="/privacy" className="font-bold text-brand-600 dark:text-brand-400 hover:underline">Privacy Policy</Link>.
                     </p>
                 </div>
@@ -258,7 +258,7 @@ export default function TrainingEnquiryForm() {
                 </button>
             </form>
 
-            <p className="mt-6 text-center text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            <p className="mt-6 text-center text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                 Prefer to contact Abhishek directly? All enquiries can also be handled through the{' '}
                 <a
                     href="https://abhishekadhikari.com/contact"

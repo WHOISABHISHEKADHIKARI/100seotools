@@ -70,7 +70,7 @@ export default function SeoStatisticsPage() {
               {cat.items.map((item, i) => (
                 <li key={i} className="rounded-2xl border border-slate-100 dark:border-white/10 bg-white dark:bg-gray-900 p-4 shadow-sm">
                   <p className="text-sm font-medium text-slate-900 dark:text-white">{item.stat}</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Source: {item.source}</p>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">Source: {item.source}</p>
                 </li>
               ))}
             </ul>

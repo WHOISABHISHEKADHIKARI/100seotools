@@ -13,7 +13,7 @@ export default function GlobalError({ error, reset }) {
           </div>
 
           <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-2">Critical Application Error</h1>
-          <p className="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
             A serious error occurred that prevented the application from loading. We&#39;ve been notified and are looking into it.
           </p>
 
@@ -37,7 +37,7 @@ export default function GlobalError({ error, reset }) {
 
           {process.env.NODE_ENV === 'development' && (
             <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-700 text-left">
-              <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-2">Error Debug Info</p>
+              <p className="text-[10px] font-extrabold text-slate-600 uppercase tracking-widest mb-2">Error Debug Info</p>
               <pre className="text-xs text-red-500 dark:text-red-400 bg-red-50/50 dark:bg-red-900/20 p-4 rounded-lg overflow-auto max-h-40 font-mono">
                 {error?.message || 'Unknown Error'}
                 {'\n\n'}

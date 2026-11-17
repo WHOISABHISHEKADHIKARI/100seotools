@@ -20,7 +20,7 @@ export default function Error({ error, reset }) {
         </div>
 
         <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-3">Something went wrong</h1>
-        <p className="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">
+        <p className="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
           An error occurred while loading this part of the application. The rest of the site is still operational.
         </p>
 
@@ -44,7 +44,7 @@ export default function Error({ error, reset }) {
 
         {process.env.NODE_ENV === 'development' && (
           <div className="mt-10 pt-6 border-t border-slate-50 dark:border-white/5 text-left">
-            <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-3 px-1">Developer Details</p>
+            <p className="text-[10px] font-extrabold text-slate-600 uppercase tracking-widest mb-3 px-1">Developer Details</p>
             <div className="bg-red-50/50 dark:bg-red-900/10 p-4 rounded-xl overflow-hidden">
               <pre className="text-xs text-red-600 dark:text-red-400 overflow-auto max-h-48 font-mono">
                 {error?.message || 'Unknown Segment Error'}

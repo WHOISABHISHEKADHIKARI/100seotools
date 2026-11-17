@@ -140,21 +140,21 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
             <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-earth-500" />
             <div>
               <p className="text-sm font-bold text-slate-900 dark:text-white">100% Free</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">No signup, no limits, no hidden costs</p>
+              <p className="text-xs text-slate-600 dark:text-slate-300">No signup, no limits, no hidden costs</p>
             </div>
           </div>
           <div className="flex gap-3">
             <Shield className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-500" />
             <div>
               <p className="text-sm font-bold text-slate-900 dark:text-white">Privacy First</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">All processing happens in your browser</p>
+              <p className="text-xs text-slate-600 dark:text-slate-300">All processing happens in your browser</p>
             </div>
           </div>
           <div className="flex gap-3">
             <Zap className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
             <div>
               <p className="text-sm font-bold text-slate-900 dark:text-white">Instant Results</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">No waiting, no server processing needed</p>
+              <p className="text-xs text-slate-600 dark:text-slate-300">No waiting, no server processing needed</p>
             </div>
           </div>
         </div>
@@ -180,7 +180,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
           <div key={label} className="flex flex-col items-center rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm dark:border-white/10 dark:bg-gray-900">
             <StatIcon className={`mb-2 h-5 w-5 ${iconColor}`} aria-hidden />
             <span className="text-lg font-extrabold text-slate-950 dark:text-white">{value}</span>
-            <span className="mt-1 text-[10px] font-extrabold uppercase tracking-widest text-slate-400">{label}</span>
+            <span className="mt-1 text-[10px] font-extrabold uppercase tracking-widest text-slate-600">{label}</span>
           </div>
         ))}
       </div>
@@ -192,7 +192,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
               <section aria-labelledby="intro-heading" className="space-y-3">
                 <h2 id="intro-heading" className="text-2xl font-extrabold text-slate-900 dark:text-white">What is {displayName}</h2>
                 <p className="leading-7 text-slate-600 dark:text-slate-300">{displayName} is a free, browser-based SEO tool from 100 SEO Tools that helps you {guide.whatItDoes?.toLowerCase() || 'optimize your SEO workflow'}. No signup, no data storage . everything runs client-side in your browser for instant, private results.</p>
-                <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-500 dark:text-slate-400">
+                <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-600 dark:text-slate-300">
                   <span className="inline-flex items-center gap-1.5">
                     <Image src="/author.png" alt="Abhishek Adhikari" width={20} height={20} className="rounded-full" />
                     <a href="/author" className="font-semibold text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300">Abhishek Adhikari</a>
@@ -275,7 +275,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
                     {guide.faqs.map((faq, index) => (
                       <div key={index} className="py-4 first:pt-0">
                         <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{faq.q}</h3>
-                        <p className="text-sm leading-7 text-slate-500 dark:text-slate-400">{faq.a}</p>
+                        <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">{faq.a}</p>
                       </div>
                     ))}
                   </div>
@@ -373,7 +373,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
           <aside className="space-y-5">
             {relatedItems.length > 0 && (
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900">
-                <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.15em] text-slate-400">Related tools</h3>
+                <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.15em] text-slate-600">Related tools</h3>
                 <div className="space-y-2">
                   {relatedItems.map((item) => (
                     <Link
@@ -391,7 +391,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
 
             {Array.isArray(guide.benefits) && guide.benefits.length > 0 && (
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900">
-                <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.15em] text-slate-400">What improves</h3>
+                <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.15em] text-slate-600">What improves</h3>
                 <ul className="space-y-3">
                   {guide.benefits.slice(0, 5).map((benefit, index) => (
                     <li key={index} className="flex gap-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
@@ -405,7 +405,7 @@ export default function ToolLayout({ tool, children, relatedTools = [], extraSch
 
             {Array.isArray(guide.useCases) && guide.useCases.length > 0 && (
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900">
-                <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.15em] text-slate-400">Use cases</h3>
+                <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.15em] text-slate-600">Use cases</h3>
                 <ul className="space-y-3">
                   {guide.useCases.slice(0, 5).map((uc, index) => (
                     <li key={index} className="flex gap-2 text-sm leading-6 text-slate-600 dark:text-slate-300">

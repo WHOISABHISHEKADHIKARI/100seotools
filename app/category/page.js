@@ -109,7 +109,7 @@ export default function CategoryIndexPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/<\/script>/gi, '<\\/script>') }} />
 
       <nav aria-label="Breadcrumb" className="mb-5 text-sm">
-        <ol className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-400">
+        <ol className="flex flex-wrap items-center gap-2 text-slate-600 dark:text-slate-300">
           <li>
             <Link href="/" className="inline-flex items-center gap-1 hover:text-brand-700 dark:hover:text-brand-200">
               <Home className="h-3.5 w-3.5" aria-hidden />Home
@@ -161,9 +161,9 @@ export default function CategoryIndexPage() {
                 <h2 className="text-base font-extrabold text-slate-950 transition group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">
                   {category}
                 </h2>
-                <p className="mt-2 min-h-[3.75rem] text-sm leading-6 text-slate-500 dark:text-slate-400">{detail.description}</p>
+                <p className="mt-2 min-h-[3.75rem] text-sm leading-6 text-slate-600 dark:text-slate-300">{detail.description}</p>
               </div>
-              <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-extrabold text-slate-400 dark:border-white/10">
+              <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 text-xs font-extrabold text-slate-500 dark:border-white/10 dark:text-slate-400">
                 Browse tools
                 <svg className="h-4 w-4 transition group-hover:translate-x-1 group-hover:text-brand-600" aria-hidden viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </div>

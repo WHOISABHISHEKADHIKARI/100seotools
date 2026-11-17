@@ -68,7 +68,7 @@ export default function EditorialPolicyPage() {
         </div>
       </section>
 
-      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
+      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-600 dark:text-slate-300">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
           <li aria-hidden="true">/</li>
@@ -84,11 +84,11 @@ export default function EditorialPolicyPage() {
             <aside className="hidden lg:block">
               <div className="sticky top-24 space-y-6">
                 <div className="bg-slate-50 dark:bg-white/5 rounded-3xl p-4 border border-slate-100 dark:border-white/10">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 px-4 pt-2">On this page</p>
+                  <p className="text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest mb-4 px-4 pt-2">On this page</p>
                   <nav className="space-y-1">
                     {sections.map((s) => (
                       <a key={s.id} href={`#${s.id}`} className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-white/5 transition-all group cursor-pointer cursor-pointer">
-                        <s.icon className="w-4 h-4 text-slate-400 group-hover:text-brand-600" />
+                        <s.icon className="w-4 h-4 text-slate-600 group-hover:text-brand-600" />
                         {s.title}
                       </a>
                     ))}
@@ -127,7 +127,7 @@ export default function EditorialPolicyPage() {
                         <CheckCircle className="h-5 w-5 text-earth-500 shrink-0 mt-0.5" />
                         <div>
                           <div className="font-bold text-slate-900 dark:text-white mb-1">{title}</div>
-                          <div className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{desc}</div>
+                          <div className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{desc}</div>
                         </div>
                       </li>
                     ))}
@@ -151,7 +151,7 @@ export default function EditorialPolicyPage() {
                     ].map(([title, desc]) => (
                       <div key={title} className="p-5 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10">
                         <div className="font-bold text-sm text-slate-900 dark:text-white mb-2">{title}</div>
-                        <div className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{desc}</div>
+                        <div className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{desc}</div>
                       </div>
                     ))}
                   </div>
@@ -187,11 +187,11 @@ export default function EditorialPolicyPage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-4 pt-8 border-t border-slate-100 dark:border-white/10">
-                <Link href="/privacy" className="text-xs font-black text-slate-400 hover:text-brand-600 uppercase tracking-widest transition-colors">Privacy Policy</Link>
+                <Link href="/privacy" className="text-xs font-black text-slate-600 hover:text-brand-600 uppercase tracking-widest transition-colors">Privacy Policy</Link>
                 <span className="w-1 h-1 rounded-full bg-slate-300" />
-                <Link href="/terms" className="text-xs font-black text-slate-400 hover:text-brand-600 uppercase tracking-widest transition-colors">Terms of Service</Link>
+                <Link href="/terms" className="text-xs font-black text-slate-600 hover:text-brand-600 uppercase tracking-widest transition-colors">Terms of Service</Link>
                 <span className="w-1 h-1 rounded-full bg-slate-300" />
-                <Link href="/about" className="text-xs font-black text-slate-400 hover:text-brand-600 uppercase tracking-widest transition-colors">About Us</Link>
+                <Link href="/about" className="text-xs font-black text-slate-600 hover:text-brand-600 uppercase tracking-widest transition-colors">About Us</Link>
               </div>
             </article>
           </div>

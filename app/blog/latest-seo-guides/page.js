@@ -145,7 +145,7 @@ export default function LatestSEOGuidesPage() {
               <img src={f.image} alt={f.alt} className="w-full h-40 object-cover rounded" loading="lazy" />
               <h3 className="text-lg font-semibold">{f.title}</h3>
               <p className="text-slate-600 dark:text-slate-300">{f.description}</p>
-              <div className="text-sm text-slate-500 dark:text-slate-400">Published: {new Date(f.published).toLocaleDateString()} • {f.readTime} min read</div>
+              <div className="text-sm text-slate-600 dark:text-slate-300">Published: {new Date(f.published).toLocaleDateString()} • {f.readTime} min read</div>
               <div className="flex flex-wrap gap-2 text-xs">
                 {f.tags.map((t, idx) => (
                   <span key={idx} className="px-2 py-1 rounded bg-slate-100 dark:bg-white/10">{t}</span>
@@ -189,7 +189,7 @@ export default function LatestSEOGuidesPage() {
               <img src={f.image} alt={f.alt} className="w-full h-40 object-cover rounded" loading="lazy" />
               <h3 className="text-lg font-semibold">{f.title}</h3>
               <p className="text-slate-600 dark:text-slate-300">{f.description}</p>
-              <div className="text-sm text-slate-500 dark:text-slate-400">Published: {new Date(f.published).toLocaleDateString()} • {f.readTime} min read</div>
+              <div className="text-sm text-slate-600 dark:text-slate-300">Published: {new Date(f.published).toLocaleDateString()} • {f.readTime} min read</div>
               <div className="flex flex-wrap gap-2 text-xs">
                 {f.tags.map((t, idx) => (
                   <span key={idx} className="px-2 py-1 rounded bg-slate-100 dark:bg-white/10">{t}</span>

@@ -101,7 +101,7 @@ export default function ContactForm() {
                 </div>
             </section>
 
-            <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
+            <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-600 dark:text-slate-300">
                 <ol className="flex flex-wrap items-center gap-1.5">
                     <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
                     <li aria-hidden="true">/</li>
@@ -116,7 +116,7 @@ export default function ContactForm() {
                     <div className="bg-white dark:bg-gray-900 rounded-[40px] border border-slate-100 dark:border-white/10 shadow-2xl p-8 md:p-12">
                         <div className="mb-10">
                             <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Send us a message</h2>
-                            <p className="text-slate-500 dark:text-slate-400 text-sm">Required fields are marked with an asterisk (*)</p>
+                            <p className="text-slate-600 dark:text-slate-300 text-sm">Required fields are marked with an asterisk (*)</p>
                         </div>
 
                         {status.message && (
@@ -136,9 +136,9 @@ export default function ContactForm() {
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label htmlFor="name" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Your Name *</label>
+                                    <label htmlFor="name" className="text-xs font-black text-slate-600 uppercase tracking-widest ml-1">Your Name *</label>
                                     <div className="relative group">
-                                        <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand-600 transition-colors w-5 h-5" />
+                                        <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 group-focus-within:text-brand-600 transition-colors w-5 h-5" />
                                         <input
                                             type="text"
                                             id="name"
@@ -151,9 +151,9 @@ export default function ContactForm() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="email" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Your Email *</label>
+                                    <label htmlFor="email" className="text-xs font-black text-slate-600 uppercase tracking-widest ml-1">Your Email *</label>
                                     <div className="relative group">
-                                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand-600 transition-colors w-5 h-5" />
+                                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 group-focus-within:text-brand-600 transition-colors w-5 h-5" />
                                         <input
                                             type="email"
                                             id="email"
@@ -167,9 +167,9 @@ export default function ContactForm() {
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="subject" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Subject *</label>
+                                <label htmlFor="subject" className="text-xs font-black text-slate-600 uppercase tracking-widest ml-1">Subject *</label>
                                 <div className="relative group">
-                                    <Zap className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand-600 transition-colors w-5 h-5" />
+                                    <Zap className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 group-focus-within:text-brand-600 transition-colors w-5 h-5" />
                                     <input
                                         type="text"
                                         id="subject"
@@ -182,7 +182,7 @@ export default function ContactForm() {
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="message" className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Message *</label>
+                                <label htmlFor="message" className="text-xs font-black text-slate-600 uppercase tracking-widest ml-1">Message *</label>
                                 <textarea
                                     id="message"
                                     name="message"
@@ -223,7 +223,7 @@ export default function ContactForm() {
                                         <Mail className="w-5 h-5 text-brand-600" />
                                     </div>
                                     <div>
-                                        <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Email Support</div>
+                                        <div className="text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest mb-1">Email Support</div>
                                         <a href="mailto:abhishekadhikari1254@gmail.com" className="text-sm font-bold text-slate-900 dark:text-white hover:text-brand-600 transition-colors break-all">
                                             abhishekadhikari1254@gmail.com
                                         </a>
@@ -234,14 +234,14 @@ export default function ContactForm() {
                                         <Clock className="w-5 h-5 text-blue-600" />
                                     </div>
                                     <div>
-                                        <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Business Hours</div>
+                                        <div className="text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest mb-1">Business Hours</div>
                                         <div className="text-sm font-bold text-slate-900 dark:text-white">Mon . Fri: 9am - 6pm EST</div>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="mt-12 pt-10 border-t border-slate-50 dark:border-white/5">
-                                <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-6">Popular Resources</h4>
+                                <h4 className="text-xs font-black text-slate-600 uppercase tracking-widest mb-6">Popular Resources</h4>
                                 <div className="space-y-2">
                                     {[
                                         ['Browse 100+ Tools', '/tools'],
@@ -271,7 +271,7 @@ export default function ContactForm() {
             </div>
 
             <div className="py-24 text-center">
-                <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em]">Serving 50,000+ Professionals Worldwide</p>
+                <p className="text-xs font-black text-slate-600 uppercase tracking-[0.2em]">Serving 50,000+ Professionals Worldwide</p>
             </div>
         </div>
     );

@@ -113,7 +113,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
+      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-600 dark:text-slate-300">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
           <li aria-hidden="true">/</li>
@@ -159,7 +159,7 @@ export default function AboutPage() {
                         <CheckCircle className="h-5 w-5 text-earth-500 shrink-0" />
                         <div>
                           <div className="text-sm font-bold text-slate-900 dark:text-white">{title}</div>
-                          <div className="text-xs text-slate-500 dark:text-slate-400">{desc}</div>
+                          <div className="text-xs text-slate-600 dark:text-slate-300">{desc}</div>
                         </div>
                       </li>
                     ))}
@@ -184,7 +184,7 @@ export default function AboutPage() {
                           <div className="text-sm font-bold text-slate-900 dark:text-white">
                             {link ? <Link href={link} className="hover:text-brand-600 dark:hover:text-brand-400">{title}</Link> : title}
                           </div>
-                          <div className="text-xs text-slate-500 dark:text-slate-400">{desc}</div>
+                          <div className="text-xs text-slate-600 dark:text-slate-300">{desc}</div>
                         </div>
                       </li>
                     ))}
@@ -226,7 +226,7 @@ export default function AboutPage() {
                   {faqs.map((faq, index) => (
                     <div key={index} className="p-6 rounded-2xl border border-slate-100 dark:border-white/10 bg-white dark:bg-gray-800/50">
                       <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">{faq.question}</h3>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
+                      <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{faq.answer}</p>
                     </div>
                   ))}
                 </div>
@@ -242,7 +242,7 @@ export default function AboutPage() {
             <aside className="space-y-8">
               {/* Author Profile */}
               <div className="bg-slate-50 dark:bg-white/5 rounded-3xl p-8 border border-slate-100 dark:border-white/10 text-center">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Author & Creator</p>
+                <p className="text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest mb-6">Author & Creator</p>
                 <div className="relative inline-block mb-6">
                   <div className="absolute inset-0 bg-brand-500 blur-2xl opacity-20 rounded-full" />
                   <Image
@@ -255,7 +255,7 @@ export default function AboutPage() {
                 </div>
                 <h2 className="text-xl font-black text-slate-900 dark:text-white mb-2">Abhishek Adhikari</h2>
                 <p className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-4">Lead Developer & SEO Strategist</p>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
                   Passionate about building accessible <strong>AI SEO tools</strong> and automation workflows for the digital marketing community.
                 </p>
                 <Link href="/author" className="inline-flex items-center justify-center gap-2 w-full py-4 bg-white dark:bg-gray-800 text-slate-900 dark:text-white text-sm font-black rounded-2xl border border-slate-200 dark:border-white/10 hover:border-brand-300 transition-all shadow-sm">
@@ -274,7 +274,7 @@ export default function AboutPage() {
                     ['Privacy Policy', '/privacy', ShieldCheck],
                   ].map(([label, href, Icon]) => (
                     <Link key={label} href={href} className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group">
-                      <span className="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-brand-600">{label}</span>
+                      <span className="text-sm font-bold text-slate-600 dark:text-slate-300 group-hover:text-brand-600">{label}</span>
                       <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-brand-600 transition-all group-hover:translate-x-1" />
                     </Link>
                   ))}

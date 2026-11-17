@@ -82,7 +82,7 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-500 dark:text-slate-400">
+      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 text-sm text-slate-600 dark:text-slate-300">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li><Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">Home</Link></li>
           <li aria-hidden="true">/</li>
@@ -96,7 +96,7 @@ export default function PrivacyPage() {
           {/* ── SIDEBAR NAVIGATION ── */}
           <aside className="hidden lg:block sticky top-24">
             <div className="bg-white dark:bg-gray-900 rounded-3xl border border-slate-100 dark:border-white/10 shadow-sm p-5">
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 px-3">Sections</p>
+              <p className="text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest mb-4 px-3">Sections</p>
               <nav className="space-y-1">
                 {sections.map((s) => (
                   <a
@@ -209,7 +209,7 @@ export default function PrivacyPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">Privacy Concerns?</h3>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
+                      <p className="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
                         If you have any questions regarding this policy or how your data is handled, please reach out to our team.
                       </p>
                       <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-black text-earth-600 hover:underline">
@@ -224,11 +224,11 @@ export default function PrivacyPage() {
 
             {/* Bottom Nav */}
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/terms" className="text-xs font-black text-slate-400 hover:text-earth-600 uppercase tracking-widest transition-colors">Terms of Service</Link>
+              <Link href="/terms" className="text-xs font-black text-slate-600 hover:text-earth-600 uppercase tracking-widest transition-colors">Terms of Service</Link>
               <span className="w-1 h-1 rounded-full bg-slate-300" />
-              <Link href="/faq" className="text-xs font-black text-slate-400 hover:text-earth-600 uppercase tracking-widest transition-colors">FAQ</Link>
+              <Link href="/faq" className="text-xs font-black text-slate-600 hover:text-earth-600 uppercase tracking-widest transition-colors">FAQ</Link>
               <span className="w-1 h-1 rounded-full bg-slate-300" />
-              <Link href="/about" className="text-xs font-black text-slate-400 hover:text-earth-600 uppercase tracking-widest transition-colors">About Us</Link>
+              <Link href="/about" className="text-xs font-black text-slate-600 hover:text-earth-600 uppercase tracking-widest transition-colors">About Us</Link>
             </div>
           </article>
 

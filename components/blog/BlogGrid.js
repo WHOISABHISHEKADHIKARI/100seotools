@@ -88,7 +88,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
           <div className="rounded-lg border border-slate-200 bg-slate-50 p-2 shadow-sm dark:border-white/10 dark:bg-white/5">
             <label className="sr-only" htmlFor="blog-search">Search guides</label>
             <div className="relative">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden />
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-600" aria-hidden />
               <input
                 id="blog-search"
                 value={query}
@@ -101,7 +101,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
                   type="button"
                   onClick={() => setQuery("")}
                   aria-label="Clear search"
-                  className="absolute right-2 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-white/10 dark:hover:text-white"
+                  className="absolute right-2 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-lg text-slate-600 transition hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-white/10 dark:hover:text-white"
                 >
                   <X className="h-4 w-4" aria-hidden />
                 </button>
@@ -111,7 +111,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
         </div>
 
         <div className="mb-8 rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/[0.03]">
-          <div className="mb-3 flex items-center gap-2 px-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+          <div className="mb-3 flex items-center gap-2 px-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600 dark:text-slate-300">
             <SlidersHorizontal className="h-3.5 w-3.5" aria-hidden />
             Topics
           </div>
@@ -130,7 +130,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
                   }`}
                 >
                   {item}
-                  <span className={`rounded-md px-1.5 py-0.5 text-[10px] ${active ? "bg-white/15 text-white dark:bg-slate-950/10 dark:text-slate-700" : "bg-slate-100 text-slate-500 dark:bg-white/10 dark:text-slate-400"}`}>
+                  <span className={`rounded-md px-1.5 py-0.5 text-[10px] ${active ? "bg-white/15 text-white dark:bg-slate-950/10 dark:text-slate-700" : "bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-400"}`}>
                     {getCategoryCount(initialPosts, item)}
                   </span>
                 </button>
@@ -144,7 +144,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
             {visiblePosts.length === 0 ? (
               <div className="rounded-lg border border-slate-200 bg-slate-50 px-6 py-20 text-center dark:border-white/10 dark:bg-white/[0.03]">
                 <p className="text-lg font-semibold text-slate-800 dark:text-white">No guides found</p>
-                <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Try another topic or clear the search field.</p>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Try another topic or clear the search field.</p>
                 <button
                   type="button"
                   onClick={() => {
@@ -185,7 +185,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
                               SEO
                             </Link>
                           )}
-                          <span className="inline-flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+                          <span className="inline-flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300">
                             <Clock className="h-3.5 w-3.5" aria-hidden />
                             {post.readTimeMinutes || 6} min
                           </span>
@@ -217,7 +217,7 @@ export default function BlogGrid({ initialPosts = [], initialCategories = [], li
 
             {totalPages > 1 && (
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-sm text-slate-500 dark:text-slate-400">
+                <p className="text-sm text-slate-600 dark:text-slate-300">
                   Showing {visiblePosts.length} of {filtered.length} guides
                 </p>
                 <div className="flex items-center gap-2">

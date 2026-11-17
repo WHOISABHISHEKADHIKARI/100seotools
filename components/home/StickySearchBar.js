@@ -61,7 +61,7 @@ export default function StickySearchBar({ onSearch }) {
     >
       <div className="mx-auto max-w-3xl px-4 py-3 sm:px-6">
         <form onSubmit={handleSubmit} className="relative">
-          <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden />
+          <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-600" aria-hidden />
           <input
             ref={inputRef}
             type="text"
@@ -93,7 +93,7 @@ export default function StickySearchBar({ onSearch }) {
                 <button
                   type="button"
                   onClick={handleClear}
-                  className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-white/10 dark:hover:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2"
+                  className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-slate-600 transition hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-white/10 dark:hover:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2"
                   aria-label="Clear search"
                 >
                   <X className="h-3.5 w-3.5" />

@@ -41,7 +41,7 @@ const Markdown = ({ text, className = "" }) => {
                     {codeLang && (
                         <div className="absolute -top-2.5 left-4 z-10 inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-slate-950 px-2.5 py-1 shadow-lg">
                             <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />
-                            <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">{codeLang}</span>
+                            <span className="text-[9px] font-black uppercase tracking-wider text-slate-600">{codeLang}</span>
                         </div>
                     )}
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-brand-500/5 via-transparent to-slate-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />

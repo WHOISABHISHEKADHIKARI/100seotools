@@ -80,7 +80,7 @@ export default function ContactPage() {
               <p className="text-sm font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">
                 Get in touch with 100 SEO Tools
               </p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
+              <p className="text-xs text-slate-600 dark:text-slate-300">
                 24-48h response time
               </p>
             </div>
@@ -91,7 +91,7 @@ export default function ContactPage() {
             {/* ── SIDEBAR NAVIGATION ── */}
             <aside className="hidden lg:block sticky top-24">
               <div className="bg-white dark:bg-gray-900 rounded-3xl border border-slate-100 dark:border-white/10 shadow-sm p-5">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 px-3">Sections</p>
+                <p className="text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest mb-4 px-3">Sections</p>
                 <nav className="space-y-1">
                   <a
                     href="/"
@@ -155,12 +155,12 @@ export default function ContactPage() {
                   <Mail className="w-5 h-5 text-slate-600" />
                   <div>
                     <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest mb-1">Contact Details</h3>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <p className="text-sm text-slate-600 dark:text-slate-300">
                       Email: <a href="mailto:contact@100seotools.com" className="font-black text-earth-600 hover:underline dark:text-brand-400 dark:hover:text-brand-300">
                         contact@100seotools.com
                       </a>
                     </p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <p className="text-sm text-slate-600 dark:text-slate-300">
                       Response Time: 24-48 hours
                     </p>
                   </div>
@@ -198,11 +198,11 @@ export default function ContactPage() {
           {/* ── Bottom Nav ── */}
           <div className="pt-8 border-t border-slate-100 dark:border-white/10">
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/privacy" className="text-xs font-black text-slate-400 hover:text-earth-600 uppercase tracking-widest transition-colors">Privacy Policy</Link>
+              <Link href="/privacy" className="text-xs font-black text-slate-600 hover:text-earth-600 uppercase tracking-widest transition-colors">Privacy Policy</Link>
               <span className="w-1 h-1 rounded-full bg-slate-300" />
-              <Link href="/terms" className="text-xs font-black text-slate-400 hover:text-earth-600 uppercase tracking-widest transition-colors">Terms of Service</Link>
+              <Link href="/terms" className="text-xs font-black text-slate-600 hover:text-earth-600 uppercase tracking-widest transition-colors">Terms of Service</Link>
               <span className="w-1 h-1 rounded-full bg-slate-300" />
-              <Link href="/about" className="text-xs font-black text-slate-400 hover:text-earth-600 uppercase tracking-widest transition-colors">About Us</Link>
+              <Link href="/about" className="text-xs font-black text-slate-600 hover:text-earth-600 uppercase tracking-widest transition-colors">About Us</Link>
             </div>
           </div>
         </div>

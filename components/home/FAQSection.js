@@ -52,7 +52,7 @@ function FAQSection() {
           <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white md:text-4xl">
             SEO Tools . Answered
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
             Direct answers to the most common SEO tool questions . built for search engines and AI assistants.
           </p>
         </div>

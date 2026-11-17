@@ -208,7 +208,7 @@ export default function OutputPresentation({
                   />
                 ))}
               </div>
-              <p className="mt-4 text-sm leading-6 text-slate-500 dark:text-slate-400">
+              <p className="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">
                 Turning raw data into a polished, actionable report
               </p>
             </div>
@@ -241,10 +241,10 @@ export default function OutputPresentation({
                         <div className="text-right">
                           <div className="flex items-center gap-1.5">
                             <span className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-600">{wordCount}</span>
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">words</span>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">words</span>
                           </div>
                           <div className="flex items-center gap-1 justify-end">
-                            <Clock className="w-2.5 h-2.5 text-slate-400" />
+                            <Clock className="w-2.5 h-2.5 text-slate-600" />
                             <span className="text-[10px] font-semibold text-slate-500">{readingTime} min read</span>
                           </div>
                         </div>
@@ -283,7 +283,7 @@ export default function OutputPresentation({
                   <div className="mb-3 flex items-center gap-2">
                     <Code className="w-3.5 h-3.5 text-brand-500" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-600">Raw Output</span>
-                    <span className="text-[10px] font-medium text-slate-400">· {charCount} chars</span>
+                    <span className="text-[10px] font-medium text-slate-600">· {charCount} chars</span>
                   </div>
                   <pre className="whitespace-pre-wrap break-words font-mono text-sm leading-relaxed text-gray-700 selection:bg-brand-100 dark:text-gray-300 dark:selection:bg-brand-900/40">
                     {output}

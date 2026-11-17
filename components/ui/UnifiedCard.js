@@ -203,7 +203,7 @@ function UnifiedCard({
                   {author}
                 </span>
               )}
-              <div className="flex items-center gap-3 text-xs font-bold text-slate-400 uppercase tracking-wider">
+              <div className="flex items-center gap-3 text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
                 {formattedDate && <time dateTime={publishedAt}>{formattedDate}</time>}
                 {readTime && (
                   <span className="flex items-center gap-1">

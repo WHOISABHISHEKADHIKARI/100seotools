@@ -26,7 +26,7 @@ export default async function NotFound() {
           </div>
         </div>
 
-        <p className="text-lg text-slate-500 dark:text-slate-400 mb-10 max-w-lg mx-auto leading-relaxed font-medium">
+        <p className="text-lg text-slate-600 dark:text-slate-300 mb-10 max-w-lg mx-auto leading-relaxed font-medium">
           The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
         </p>
 
@@ -62,7 +62,7 @@ export default async function NotFound() {
                   <h4 className="font-extrabold text-slate-900 dark:text-white group-hover:text-brand-600 transition-colors line-clamp-1 mb-2">
                     {p.title}
                   </h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
                     {p.description}
                   </p>
                 </Link>

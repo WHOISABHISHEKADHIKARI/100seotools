@@ -54,7 +54,7 @@ export default function OfflinePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-slate-600 dark:text-slate-300">
-            <svg className="h-3.5 w-3.5 text-slate-400" viewBox="0 0 24 24" aria-hidden><path d="M19 13h2v2h-2v-2zm0 4h2v-2h-2v-2zm-2-4h2v6H17v-6zm4-6v2h6V7h-6zm4 12H5v-2h6v-2h2v2h4v2h-4v2zm-8-4H3v-2h2v2zm0-8h2v6H3V9z"/></svg>
+            <svg className="h-3.5 w-3.5 text-slate-600" viewBox="0 0 24 24" aria-hidden><path d="M19 13h2v2h-2v-2zm0 4h2v-2h-2v-2zm-2-4h2v6H17v-6zm4-6v2h6V7h-6zm4 12H5v-2h6v-2h2v2h4v2h-4v2zm-8-4H3v-2h2v2zm0-8h2v6H3V9z"/></svg>
             Offline
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">All Tools Go Offline</h1>
