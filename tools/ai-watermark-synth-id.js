@@ -1,15 +1,15 @@
 const aiWatermarkSynthId = {
   "slug": "ai-watermark-synth-id",
-  "name": "AI Watermark SynthID Detector | Check AI Image Watermarks",
+  "name": "AI Watermark SynthID Detector & Remover | C2PA + SynthID",
   "category": "AI-Powered SEO",
   "description": "Detect and analyze SynthID watermarks in AI-generated images. Check if an image contains Google's SynthID watermark and understand AI image provenance for content authenticity.",
-  "metaTitle": "AI Watermark SynthID Detector | Free AI Image Watermark Check",
+  "metaTitle": "SynthID Detector & Remover + C2PA | Free AI Watermark Tool",
   "metaDescription": "Detect SynthID watermarks in AI-generated images. Free tool to check if images contain Google's invisible AI watermark for content authenticity verification.",
-  "keywords": ["synthid detector", "ai watermark detector", "ai image watermark", "synthid checker", "ai image authenticity", "google synthid", "ai watermark removal", "image provenance"],
+  "keywords": ["synthid detector", "synthid remover", "ai watermark detector", "ai watermark remover", "c2pa", "content credentials", "ai image watermark", "synthid checker", "ai image authenticity", "google synthid", "remove synthid", "ai watermark removal", "image provenance", "c2pa verification"],
   "template": "aiWatermarkSynthId",
   "api": false,
   "content": {
-    "introduction": "Google's SynthID is an invisible watermarking technology embedded in AI-generated images created by Google's image generation models (Imagen, Gemini). SynthID watermarks are designed to be imperceptible to humans but detectable by specialized tools, allowing verification of AI-generated content origin. The AI Watermark SynthID Detector analyzes images for the presence of these invisible watermarks, helping content creators, publishers, and SEO professionals verify image authenticity and maintain transparency about AI-generated visual content.",
+    "introduction": "Google's SynthID is an invisible watermarking technology embedded in AI-generated images created by Google's image generation models (Imagen, Gemini). SynthID watermarks are designed to be imperceptible to humans but detectable by specialized tools, allowing verification of AI-generated content origin. This tool detects AND removes SynthID watermarks from AI-generated images. It also supports C2PA (Content Credentials) verification for image provenance. Whether you need to check if an image contains a SynthID watermark or remove it for clean usage, this tool covers both detection and removal workflows.",
     "whatItDoes": "This tool examines image files for statistical patterns characteristic of SynthID watermarks. SynthID embeds information in the frequency domain of images using subtle pixel modifications that survive compression, resizing, and minor edits. The detector analyzes the image's frequency spectrum, noise patterns, and pixel-level statistics to determine the probability that a SynthID watermark is present. It provides a confidence score and detailed analysis of the image's watermark status.",
     "whyItMatters": "As AI-generated images become ubiquitous in content marketing, stock photography, and social media, verifying image authenticity is critical for content transparency, copyright compliance, and search engine trust signals. SynthID watermarks help identify AI-generated images even after they have been downloaded, shared, or modified. For SEO professionals, understanding whether images on a site are AI-generated helps maintain content authenticity standards that search engines increasingly evaluate. Publishers and content creators can use SynthID detection to verify image sources, ensure proper attribution, and maintain editorial transparency.",
     "benefits": [
