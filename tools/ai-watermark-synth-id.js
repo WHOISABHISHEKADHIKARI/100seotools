@@ -6,7 +6,7 @@ const aiWatermarkSynthId = {
   "metaTitle": "AI Watermark SynthID Detector | Free AI Image Watermark Check",
   "metaDescription": "Detect SynthID watermarks in AI-generated images. Free tool to check if images contain Google's invisible AI watermark for content authenticity verification.",
   "keywords": ["synthid detector", "ai watermark detector", "ai image watermark", "synthid checker", "ai image authenticity", "google synthid", "ai watermark removal", "image provenance"],
-  "template": "default",
+  "template": "aiWatermarkSynthId",
   "api": false,
   "content": {
     "introduction": "Google's SynthID is an invisible watermarking technology embedded in AI-generated images created by Google's image generation models (Imagen, Gemini). SynthID watermarks are designed to be imperceptible to humans but detectable by specialized tools, allowing verification of AI-generated content origin. The AI Watermark SynthID Detector analyzes images for the presence of these invisible watermarks, helping content creators, publishers, and SEO professionals verify image authenticity and maintain transparency about AI-generated visual content.",
