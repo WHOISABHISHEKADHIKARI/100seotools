@@ -328,30 +328,38 @@ export default async function Page({ params, searchParams }) {
           </div>
         )}
 
-        {Array.isArray(post.sections?.commonMistakes) && post.sections.commonMistakes.length > 0 && (
-          <div>
-            <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Common mistakes</h2>
-            <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-              {post.sections.commonMistakes.map((m, i) => (<li key={i} className="rounded-2xl border border-red-100 bg-red-50/50 px-4 py-3 text-sm leading-6 dark:border-red-500/20 dark:bg-red-500/5">{m}</li>))}
-            </ul>
-          </div>
-        )}
+        {(() => {
+          const mistakes = Array.isArray(post.sections?.commonMistakes) && post.sections.commonMistakes.length > 0
+            ? post.sections.commonMistakes
+            : ['Ignoring search intent when selecting keywords', 'Over-optimizing with keyword stuffing', 'Skipping internal links to related guides', 'Publishing without reviewing content for accuracy', 'Neglecting mobile optimization and Core Web Vitals'];
+          return (
+            <div>
+              <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Common mistakes</h2>
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+                {mistakes.map((m, i) => (<li key={i} className="rounded-2xl border border-red-100 bg-red-50/50 px-4 py-3 text-sm leading-6 dark:border-red-500/20 dark:bg-red-500/5">{m}</li>))}
+              </ul>
+            </div>
+          );
+        })()}
 
-        {Array.isArray(post.sections?.advancedTips) && post.sections.advancedTips.length > 0 && (
-          <div>
-            <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Advanced tips</h2>
-            <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-              {post.sections.advancedTips.map((t, i) => (<li key={i} className="rounded-2xl border border-brand-100 bg-brand-50/50 px-4 py-3 text-sm leading-6 dark:border-brand-500/20 dark:bg-brand-500/5">{t}</li>))}
-            </ul>
-          </div>
-        )}
+        {(() => {
+          const tips = Array.isArray(post.sections?.advancedTips) && post.sections.advancedTips.length > 0
+            ? post.sections.advancedTips
+            : ['Combine this guide with related tools for deeper analysis', 'Save outputs to build a reusable SEO checklist', 'Track changes over time by re-running audits after site updates', 'Cross-reference results with Google Search Console data', 'Share outputs with teammates for consistent SEO workflows'];
+          return (
+            <div>
+              <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Advanced tips</h2>
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+                {tips.map((t, i) => (<li key={i} className="rounded-2xl border border-brand-100 bg-brand-50/50 px-4 py-3 text-sm leading-6 dark:border-brand-500/20 dark:bg-brand-500/5">{t}</li>))}
+              </ul>
+            </div>
+          );
+        })()}
 
-        {post.sections?.summary && (
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/5">
-            <h2 className="mb-2 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Summary</h2>
-            <p className="text-gray-700 dark:text-gray-300">{post.sections.summary}</p>
-          </div>
-        )}
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/5">
+          <h2 className="mb-2 text-2xl font-extrabold tracking-tight text-slate-950 dark:text-white">Summary</h2>
+          <p className="text-gray-700 dark:text-gray-300">{post.sections?.summary || `${post.title} covers essential SEO concepts and practical strategies for 2026. Apply the best practices, use the free tools mentioned, and iterate based on your results. Consistent effort and data-driven decisions will improve your search rankings over time.`}</p>
+        </div>
 
         {Array.isArray(post.sections?.faq) && post.sections.faq.length > 0 && (
           <div>
