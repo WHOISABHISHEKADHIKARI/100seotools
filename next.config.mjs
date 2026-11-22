@@ -96,9 +96,11 @@ const nextConfig = withBundleAnalyzer({
       // Fix broken redirect: translate-to-english-complete-guide was redirecting to non-existent tool
       // The correct tool slug is text-translator
       { source: '/blog/translate-to-english-complete-guide', destination: '/tools/text-translator', permanent: true },
+      { source: '/blog/ai-detector-comprehensive-guide', destination: '/tools/ai-content-detector', permanent: true },
 
       // Fix 404s for non-existent tool slugs -> closest existing tool
       { source: '/tools/ai-meta-description-generator', destination: '/tools/ai-meta-tag-writer', permanent: true },
+      { source: '/tools/ai-detector-comprehensive', destination: '/tools/ai-content-detector', permanent: true },
       { source: '/tools/robots-txt-generator', destination: '/tools/robots-txt-creator', permanent: true },
       { source: '/tools/website-speed-test', destination: '/tools/page-speed-score-simulator', permanent: true },
       { source: '/tools/local-content-idea-generator', destination: '/tools/location-based-content-idea-generator', permanent: true },
