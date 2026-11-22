@@ -143,7 +143,7 @@ export default function RootLayout({ children }) {
 
         {/* Service worker removed . wastes crawl budget with no SEO benefit */}
       </head>
-      <body suppressHydrationWarning className="min-h-screen bg-[color-bg] text-[color-fg] selection:bg-[color-brand-100] selection:text-[color-brand-900] dark:bg-[color-slate-950] dark:text-[color-slate-100]">
+      <body suppressHydrationWarning className="min-h-screen bg-[color-bg] text-[color-fg] selection:bg-[color-brand-100] selection:text-[color-brand-900] dark:bg-[color-brand-950] dark:text-[color-brand-50]">
         {/* Skip to main content link for accessibility */}
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-brand-600 text-white px-4 py-2 rounded-xl z-50 shadow-xl">
           Skip to main content
@@ -157,7 +157,7 @@ export default function RootLayout({ children }) {
             <ClientLayout />
 
             {/* Main content */}
-            <main id="main" className="flex-1 pt-16 md:pt-24 pb-12 md:pb-16 bg-[color-bg] dark:bg-[color-slate-950] text-[color-fg] dark:text-[color-slate-100]" tabIndex="-1">
+            <main id="main" className="flex-1 pt-16 md:pt-24 pb-12 md:pb-16 bg-[color-bg] dark:bg-[color-brand-950] text-[color-fg] dark:text-[color-brand-50]" tabIndex="-1">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <ErrorBoundary>
                   {children}
