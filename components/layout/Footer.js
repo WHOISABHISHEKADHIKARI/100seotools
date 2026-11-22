@@ -88,7 +88,7 @@ const Footer = function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p>Copyright {year} 100 SEO Tools. All rights reserved.</p>
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-earth-400" aria-hidden />
@@ -120,7 +120,7 @@ function FooterColumn({ title, items }) {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm leading-5 text-slate-500 transition hover:text-brand-300"
+                  className="text-sm leading-5 text-slate-400 transition hover:text-brand-300"
                 >
                   {label}
                 </a>
@@ -129,7 +129,7 @@ function FooterColumn({ title, items }) {
           }
           return (
             <li key={`${title}-${label}`}>
-              <Link href={href} prefetch={false} className="text-sm leading-5 text-slate-500 transition hover:text-brand-300">
+              <Link href={href} prefetch={false} className="text-sm leading-5 text-slate-400 transition hover:text-brand-300">
                 {label}
               </Link>
             </li>

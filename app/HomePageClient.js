@@ -96,17 +96,23 @@ export default function HomePageClient({ initialTools = [], structuredData = nul
 
   return (
     <>
-      {Array.isArray(structuredData) && structuredData.filter(Boolean).map((d, i) => (
-        <StructuredData key={i} data={d} />
-      ))}
+      <div suppressHydrationWarning>
+        {Array.isArray(structuredData) && structuredData.filter(Boolean).map((d, i) => (
+          <script
+            key={i}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(d).replace(/<\/script>/gi, '<\\/script>') }}
+          />
+        ))}
+      </div>
       <div className="space-y-0">
-      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-slate-900 bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white" style={{backgroundColor: '#151515'}}>
+      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-slate-900 text-white" style={{backgroundColor: '#151515', backgroundImage: 'linear-gradient(135deg, #151515 0%, #262626 50%, #151515 100%)'}}>
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="absolute -top-40 left-1/2 h-[560px] w-[980px] -translate-x-1/2 rounded-full bg-brand-700 opacity-25 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-[360px] w-[360px] rounded-full bg-blue-600 opacity-15 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-20 text-center sm:px-6">
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-extrabold text-brand-100">
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-slate-900/80 px-4 py-2 text-xs font-extrabold text-white">
             <Star className="h-3.5 w-3.5 text-yellow-300" aria-hidden />
             100+ Free Tools · No Signup · Built for SEO teams
           </div>
@@ -142,7 +148,7 @@ export default function HomePageClient({ initialTools = [], structuredData = nul
             ))}
           </div>
 
-          <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-white/40">
+          <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-white/60">
             <span className="font-medium uppercase tracking-wider text-white/30">Trusted by teams at</span>
             {['HubSpot', 'Shopify', 'WordPress', 'Moz'].map((name) => (
               <span key={name} className="font-extrabold tracking-tight text-white/50 transition hover:text-white/80">
@@ -340,10 +346,10 @@ export default function HomePageClient({ initialTools = [], structuredData = nul
       </section>
 
       <section className="py-20">
-        <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] p-8 text-white md:p-12">
+        <div className="overflow-hidden rounded-3xl bg-slate-900 bg-gradient-to-r from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] p-8 text-white md:p-12" style={{backgroundColor: '#151515'}}>
           <div className="grid gap-10 md:grid-cols-2 md:items-center">
             <div>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-extrabold text-brand-100">
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-slate-900/80 px-3 py-1.5 text-xs font-extrabold text-white">
                 <Zap className="h-3.5 w-3.5 text-yellow-300" aria-hidden />
                 AI-powered SEO tools
               </div>
@@ -361,7 +367,7 @@ export default function HomePageClient({ initialTools = [], structuredData = nul
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-brand-50 text-sm font-extrabold text-brand-700">{shortToolName(tool.name).charAt(0)}</span>
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-sm font-bold">{shortToolName(tool.name)}</span>
-                    <span className="text-[11px] text-white/40">{tool.category}</span>
+                    <span className="text-[11px] text-white/60">{tool.category}</span>
                   </span>
                   <Zap className="h-4 w-4 text-yellow-300" aria-hidden />
                 </a>

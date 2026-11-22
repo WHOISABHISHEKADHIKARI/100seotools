@@ -130,7 +130,7 @@ export default function OutputPresentation({
             className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
               view === 'preview'
                 ? 'bg-gradient-to-br from-brand-600 to-brand-600 text-white shadow-md'
-                : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+                : 'text-slate-600 hover:text-slate-900 dark:hover:text-slate-200'
             }`}
           >
             <Eye className="w-3.5 h-3.5" />
@@ -141,7 +141,7 @@ export default function OutputPresentation({
             className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
               view === 'raw'
                 ? 'bg-gradient-to-br from-brand-600 to-brand-600 text-white shadow-md'
-                : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+                : 'text-slate-600 hover:text-slate-900 dark:hover:text-slate-200'
             }`}
           >
             <Code className="w-3.5 h-3.5" />
@@ -154,7 +154,7 @@ export default function OutputPresentation({
             onClick={handleCopy}
             disabled={!output || isProcessing}
             aria-label="Copy to clipboard"
-            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            className="rounded-lg p-2 text-slate-600 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
             {isCopied ? <Check className="w-4 h-4 text-earth-500" /> : <Copy className="w-4 h-4" />}
           </button>
@@ -162,7 +162,7 @@ export default function OutputPresentation({
             onClick={copyAsHtml}
             disabled={!output || isProcessing}
             aria-label="Copy as HTML"
-            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            className="rounded-lg p-2 text-slate-600 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
             <FileText className="w-4 h-4" />
           </button>
@@ -170,7 +170,7 @@ export default function OutputPresentation({
             onClick={onDownload}
             disabled={!output || isProcessing}
             aria-label="Download results"
-            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            className="rounded-lg p-2 text-slate-600 transition hover:bg-white hover:text-slate-900 disabled:opacity-30 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
             <Download className="w-4 h-4" />
           </button>
@@ -178,7 +178,7 @@ export default function OutputPresentation({
             onClick={() => setIsExpanded(!isExpanded)}
             aria-label={isExpanded ? "Collapse" : "Full Screen"}
             aria-expanded={isExpanded}
-            className="rounded-lg p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            className="rounded-lg p-2 text-slate-600 transition hover:bg-white hover:text-slate-900 dark:hover:bg-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
             {isExpanded ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
           </button>
@@ -191,10 +191,10 @@ export default function OutputPresentation({
             <div className="w-full max-w-sm rounded-3xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50 p-6 text-center shadow-2xl shadow-violet-900/5 dark:border-white/[0.08] dark:from-gray-900 dark:to-gray-950">
               <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-brand-500 via-brand-500 to-brand-500 p-[2px] shadow-lg shadow-brand-500/20">
                 <div className="flex h-full w-full items-center justify-center rounded-[1.35rem] bg-white dark:bg-gray-900">
-                  <FileText className="h-9 w-9 text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-brand-600 dark-from-brand-400 dark-to-brand-400" />
+                  <FileText className="h-9 w-9 text-brand-600 dark:text-brand-400" />
                 </div>
               </div>
-              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-600">Generating report</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-brand-600 dark:text-brand-400">Generating report</p>
               <h3 className="mt-2 text-lg font-extrabold text-slate-950 dark:text-white">{loadingStages[stageIndex]}</h3>
               <div className="mt-5 grid grid-cols-4 gap-2">
                 {loadingStages.map((stage, index) => (
@@ -234,18 +234,18 @@ export default function OutputPresentation({
                     <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-brand-200/20 to-blue-200/10 blur-3xl dark:from-brand-500/5 dark:to-slate-500/5" />
                     <div className="relative flex flex-wrap items-start justify-between gap-4">
                       <div className="flex-1 min-w-0">
-                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-600">Generated report</p>
+                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">Generated report</p>
                         <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-950 dark:text-white truncate">{report.title}</h3>
                       </div>
                       <div className="flex shrink-0 items-center gap-2 rounded-2xl border border-slate-200/80 bg-white/80 px-4 py-2.5 shadow-sm backdrop-blur-sm dark:border-white/[0.08] dark:bg-white/[0.04]">
                         <div className="text-right">
                           <div className="flex items-center gap-1.5">
-                            <span className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-600">{wordCount}</span>
+                            <span className="text-lg font-black text-brand-600 dark:text-brand-400">{wordCount}</span>
                             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">words</span>
                           </div>
                           <div className="flex items-center gap-1 justify-end">
                             <Clock className="w-2.5 h-2.5 text-slate-600" />
-                            <span className="text-[10px] font-semibold text-slate-500">{readingTime} min read</span>
+                            <span className="text-[10px] font-semibold text-slate-600">{readingTime} min read</span>
                           </div>
                         </div>
                       </div>
@@ -282,7 +282,7 @@ export default function OutputPresentation({
                 <div className="rounded-2xl border border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-white p-4 dark:border-white/[0.06] dark:from-gray-900/50 dark:to-gray-950">
                   <div className="mb-3 flex items-center gap-2">
                     <Code className="w-3.5 h-3.5 text-brand-500" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-600">Raw Output</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-400">Raw Output</span>
                     <span className="text-[10px] font-medium text-slate-600">· {charCount} chars</span>
                   </div>
                   <pre className="whitespace-pre-wrap break-words font-mono text-sm leading-relaxed text-gray-700 selection:bg-brand-100 dark:text-gray-300 dark:selection:bg-brand-900/40">
@@ -295,7 +295,7 @@ export default function OutputPresentation({
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-2 rounded-b-2xl border border-t-0 border-slate-200/80 bg-gradient-to-r from-slate-50/80 to-white/80 px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-500 backdrop-blur-sm dark:border-white/[0.06] dark:from-gray-900/80 dark:to-gray-950/80 dark:text-slate-400">
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-b-2xl border border-t-0 border-slate-200/80 bg-gradient-to-r from-slate-50/80 to-white/80 px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-600 backdrop-blur-sm dark:border-white/[0.06] dark:from-gray-900/80 dark:to-gray-950/80 dark:text-slate-300">
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-1.5">
             <Hash className="w-3 h-3 text-brand-500" />
