@@ -212,16 +212,16 @@ export default async function CategoryPage({ params, searchParams }) {
         </ol>
       </nav>
 
-      <header className="relative left-1/2 mb-10 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white">
+      <header className="relative left-1/2 mb-10 w-screen -translate-x-1/2 overflow-hidden bg-slate-900 bg-gradient-to-br from-[color-brand-900] via-[color-brand-700] to-[color-brand-900] text-white" style={{backgroundColor: '#151515'}}>
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-brand-100">
             <Layers className="h-4 w-4" aria-hidden />
             Browse by Workflow
           </div>
-          <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl">SEO Tool Categories</h1>
+          <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl text-white">{catName} Tools</h1>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/65 md:text-lg">
-            Pick the workflow you are working on now, then jump into focused tools for keywords, content, technical SEO, links, local search, AI, and more.
+            Explore free {catName.toLowerCase()} tools. {detail.description}
           </p>
         </div>
       </header>
